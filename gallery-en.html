@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Photo Gallery | Global AI Hub Goyang
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+/* 상단 */
+
+header {
+  background: #10315e;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 10px 0 0;
+}
+
+/* 메뉴 */
+
+nav {
+  background: #0754a6;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  margin: 5px 12px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ffe44d;
+}
+
+/* 본문 */
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.intro {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+/* 사진 카드 */
+
+.gallery {
+  display: grid;
+
+  grid-template-columns:
+  repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 25px;
+}
+
+.gallery-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow:
+  0 3px 12px rgba(0,0,0,0.08);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-info {
+  padding: 22px;
+}
+
+.gallery-info h3 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.gallery-date {
+  color: #63748a;
+  font-size: 14px;
+}
+
+/* 준비 중 */
+
+.coming-soon {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 30px;
+  margin-top: 35px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* 하단 */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 40px;
+}
+
+/* 모바일 */
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 24px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .intro {
+    padding: 23px;
+  }
+
+  nav a {
+    font-size: 13px;
+    margin: 5px 8px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>Photo Gallery</h1>
+
+<p>
+Goyang Citizens' Committee for Hosting<br>
+the Global AI Hub in Gyeonggi Province
+</p>
+
+</header>
+
+<nav aria-label="Gallery navigation">
+
+<a href="index-en.html">Home</a>
+
+<a href="committee-en.html">About Us</a>
+
+<a href="news-en.html">News & Activities</a>
+
+<a href="history-en.html">Timeline</a>
+
+<a href="gallery-en.html"
+aria-current="page">Photo Gallery</a>
+
+<a href="index.html">한국어</a>
+
+</nav>
+
+<main>
+
+<section class="intro">
+
+<h2>Our Activities in Pictures</h2>
+
+<p>
+Explore the activities of citizens,
+civic organizations and community leaders
+working together to bring
+the Global AI Hub to Goyang.
+</p>
+
+<p>
+This gallery will document
+public campaigns, policy discussions,
+international cooperation activities
+and major events.
+</p>
+
+</section>
+
+<div class="gallery">
+
+<!-- 사진 등록 시 이곳에 카드 추가 -->
+
+</div>
+
+<section class="coming-soon">
+
+<h2>Photo Gallery Coming Soon</h2>
+
+<p>
+Photographs and records of our activities
+will be published here progressively.
+</p>
+
+<p>
+Thank you for your interest
+in the Global AI Hub Goyang initiative.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+<strong>
+Goyang Citizens' Committee for Hosting<br>
+the Global AI Hub in Gyeonggi Province
+</strong>
+</p>
+
+<p>
+AI for All · AI for Humanity
+</p>
+
+<p>
+<a href="index-en.html"
+style="color:white;">
+Return to English Homepage
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
