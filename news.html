@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>활동 소식·공지사항 | 글로벌 AI 허브 유치위원회</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+}
+
+header p { font-size: 17px; }
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.search-box {
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.news-list {
+  display: grid;
+  gap: 18px;
+}
+
+.news-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  border-left: 5px solid #168de0;
+}
+
+.news-item h3 {
+  color: #0754a6;
+  margin: 10px 0;
+  font-size: 21px;
+}
+
+.category {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.date {
+  color: #68788c;
+  font-size: 14px;
+}
+
+.news-item p {
+  color: #46566d;
+}
+
+.news-link {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #68788c;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  header { padding: 40px 15px; }
+  main { padding: 20px 12px; }
+  .intro, .news-item { padding: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>활동 소식·공지사항</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <p>
+    글로벌 AI 허브 유치를 위한
+    시민사회 활동과 주요 소식을 전합니다.
+  </p>
+
+  <a href="index.html" class="home-link">
+    ← 홈페이지로 돌아가기
+  </a>
+</header>
+
+<main>
+
+<section class="intro">
+  <h2>위원회 소식</h2>
+
+  <p>
+    범시민추진위원회의 활동,
+    주요 행사, 정책 제안,
+    언론보도 및 공지사항을 안내합니다.
+  </p>
+
+  <p>
+    새로운 소식은 지속적으로 추가할 예정입니다.
+  </p>
+</section>
+
+<div class="search-box">
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="소식 제목 또는 키워드 검색"
+    aria-label="활동 소식 검색">
+</div>
+
+<div class="filters">
+  <button class="active" data-category="all">전체</button>
+  <button data-category="notice">공지사항</button>
+  <button data-category="activity">위원회 활동</button>
+  <button data-category="event">행사 소식</button>
+  <button data-category="press">언론보도</button>
+  <button data-category="policy">정책 소식</button>
+</div>
+
+<div class="news-list" id="newsList"></div>
+
+<p class="empty" id="empty" hidden>
+  검색 조건에 맞는 소식이 없습니다.
+</p>
+
+</main>
+
+<footer>
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+  <p>시민의 힘으로, 경기도의 역량으로, 세계와 함께!</p>
+</footer>
+
+<script>
+
+/*
+  새로운 소식 등록 방법
+
+  아래 news 배열에 게시물 하나를 추가하면
+  홈페이지에 자동으로 표시됩니다.
+
+  link에는 실제 연결 주소를 입력합니다.
+  연결 주소가 없으면 빈 문자열("")로 둡니다.
+*/
+
+const news = [
+
+  {
+    date: "2026.10.30",
+    category: "event",
+    categoryName: "행사 소식",
+    title: "경기도 글로벌 AI 허브 유치전략 포럼",
+    description:
+      "고양특례시 킨텍스에서 경기도 글로벌 AI 허브 유치전략 포럼이 개최되었습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.10.26",
+    category: "policy",
+    categoryName: "정책 소식",
+    title: "고양특례시의회 글로벌 AI 허브 유치 촉구 결의",
+    description:
+      "고양특례시의회가 글로벌 AI 허브 유치 촉구 결의안을 만장일치로 채택했습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.10.20",
+    category: "activity",
+    categoryName: "위원회 활동",
+    title: "제7회 고양혁신전략세미나 참여",
+    description:
+      "글로벌 AI 허브 유치 전략 확정과 실행조직 구축, 협력기관 확보 및 증빙자료 준비의 중요성을 제안했습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.10.15",
+    category: "activity",
+    categoryName: "위원회 활동",
+    title: "글로벌 AI 허브 입지 선정 평가기준 개선 건의",
+    description:
+      "국제기구 초기 정착, 시민 수용성, 공공 AI 실증 및 국제협력 잠재력의 평가 반영을 제안했습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.10.14",
+    category: "policy",
+    categoryName: "정책 소식",
+    title: "글로벌 AI 허브 입지 선정 평가기준 공청회",
+    description:
+      "정부의 글로벌 AI 허브 입지 선정 평가기준안이 공개되고 의견수렴이 진행되었습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.10.12",
+    category: "policy",
+    categoryName: "정책 소식",
+    title: "경기도 글로벌 AI 허브 유치 추진지원단 출범",
+    description:
+      "경기도의 글로벌 AI 허브 유치 전략 수립과 협력체계 구축을 위한 추진지원단이 출범했습니다.",
+    link: ""
+  },
+
+  {
+    date: "2026.09.07",
+    category: "activity",
+    categoryName: "위원회 활동",
+    title: "글로벌 AI 허브 유치 범시민추진위원회 발대식",
+    description:
+      "고양특례시 호수공원 꽃전시관에서 시민사회가 참여하는 글로벌 AI 허브 유치운동이 출범했습니다.",
+    link: ""
+  }
+
+];
+
+let currentCategory = "all";
+
+const newsList = document.getElementById("newsList");
+const searchInput = document.getElementById("searchInput");
+const empty = document.getElementById("empty");
+
+function renderNews() {
+
+  const keyword = searchInput.value.trim().toLowerCase();
+
+  const filtered = news.filter(item => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      item.category === currentCategory;
+
+    const searchText = [
+      item.title,
+      item.description,
+      item.categoryName,
+      item.date
+    ].join(" ").toLowerCase();
+
+    return categoryMatch && searchText.includes(keyword);
+  });
+
+  filtered.sort((a, b) => b.date.localeCompare(a.date));
+
+  newsList.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    const card = document.createElement("article");
+    card.className = "news-item";
+
+    const category = document.createElement("span");
+    category.className = "category";
+    category.textContent = item.categoryName;
+
+    const date = document.createElement("p");
+    date.className = "date";
+    date.textContent = item.date;
+
+    const title = document.createElement("h3");
+    title.textContent = item.title;
+
+    const description = document.createElement("p");
+    description.textContent = item.description;
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    if (item.link) {
+
+      const link = document.createElement("a");
+      link.className = "news-link";
+      link.href = item.link;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "자세히 보기";
+
+      card.appendChild(link);
+    }
+
+    newsList.appendChild(card);
+  });
+
+  empty.hidden = filtered.length !== 0;
+}
+
+document.querySelectorAll("[data-category]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    currentCategory = button.dataset.category;
+
+    document.querySelectorAll("[data-category]")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    renderNews();
+  });
+});
+
+searchInput.addEventListener("input", renderNews);
+
+renderNews();
+
+</script>
+
+</body>
+</html>
