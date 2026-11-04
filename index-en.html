@@ -294,43 +294,323 @@ footer p {
   }
 }
 
+/* =====================================
+   ENGLISH HOME PAGE
+   HERO LAYOUT
+===================================== */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 650px;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 35, 85, 0.55),
+      rgba(0, 60, 130, 0.65)
+    ),
+    url("./goyang-main.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 110px 20px 70px;
+
+  color: white;
+  text-align: center;
+}
+
+
+/* Main Content */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1100px;
+}
+
+
+/* Committee Name */
+
+.hero-logo {
+  color: white;
+
+  font-size: clamp(21px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1.5;
+
+  margin-bottom: 35px;
+
+  text-shadow:
+    0 3px 10px rgba(0,0,0,0.6);
+}
+
+
+/* GLOBAL AI HUB */
+
+.hero-content h1 {
+  color: white;
+
+  font-size: clamp(36px, 6vw, 68px);
+
+  font-weight: 900;
+  letter-spacing: 2px;
+
+  margin: 15px 0;
+}
+
+
+/* Main Slogan */
+
+.hero-content h2 {
+  color: white;
+
+  font-size: clamp(25px, 4vw, 44px);
+
+  font-weight: 800;
+
+  margin: 15px 0;
+}
+
+.hero-content h2 strong {
+  color: #ffe44d;
+}
+
+
+/* Language Buttons */
+
+.hero-language {
+  position: absolute;
+
+  top: 20px;
+  right: 25px;
+
+  display: flex;
+  gap: 10px;
+
+  z-index: 10;
+}
+
+.hero-language a {
+  display: inline-block;
+
+  padding: 9px 17px;
+
+  background: rgba(0, 40, 90, 0.55);
+  color: white;
+
+  border: 2px solid white;
+  border-radius: 6px;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-language a:hover,
+.hero-language a.active {
+  background: white;
+  color: #0754a6;
+}
+
+
+/* Navigation Below Hero */
+
+nav {
+  position: relative;
+  z-index: 5;
+
+  width: 100%;
+
+  background: #0754a6;
+
+  padding: 12px;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+
+  font-weight: bold;
+  font-size: 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+
+/* =====================================
+   MOBILE OPTIMIZATION
+===================================== */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 650px;
+    padding: 100px 15px 60px;
+  }
+
+  .hero-logo {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content h2 {
+    font-size: 25px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .hero-language {
+    top: 15px;
+    right: 15px;
+  }
+
+  .hero-language a {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  nav a {
+    font-size: 13px;
+  }
+
+}
+  
 </style>
 </head>
 
 <body>
 
-<!-- Header -->
+<!-- =====================================
+     ENGLISH HOME PAGE HERO
+===================================== -->
 
-<header class="site-header">
+<div class="hero" id="home">
 
-  <div class="header-inner">
+  <!-- Language Selection -->
 
-    <div class="site-title">
-      Goyang Citizens' Committee for Hosting<br>
-      the Global AI Hub in Gyeonggi Province
+  <div class="hero-language">
+
+    <a href="index.html" lang="ko">
+      한국어
+    </a>
+
+    <a href="index-en.html"
+       lang="en"
+       class="active"
+       aria-current="page">
+      English
+    </a>
+
+  </div>
+
+
+  <!-- Main Hero Content -->
+
+  <div class="hero-content">
+
+    <div class="hero-logo">
+
+      Gyeonggi Province Global AI Hub Initiative<br>
+      Goyang Citizens' Committee
+
     </div>
 
-    <div class="language">
-      <a href="index.html" lang="ko">한국어</a>
-      <a href="index-en.html" class="active"
-         aria-current="page">English</a>
+
+    <h1>
+      GLOBAL AI HUB
+    </h1>
+
+
+    <h2>
+      Bring the Global AI Hub<br>
+      <strong>to Goyang!</strong>
+    </h2>
+
+
+    <p>
+      A Global Center for Public-Interest AI<br>
+      and International Cooperation
+    </p>
+
+
+    <p class="hero-slogan">
+
+      Give Goyang New Engines of Growth!<br>
+      Create More Jobs in Goyang!
+
+    </p>
+
+
+    <p>
+      Together, Gyeonggi Province
+      Can Make It Happen!
+    </p>
+
+
+    <div class="hero-buttons">
+
+      <a href="hub-en.html"
+         class="button">
+
+        Discover the Global AI Hub
+
+      </a>
+
+      <a href="participate-en.html"
+         class="button button-primary">
+
+        Get Involved
+
+      </a>
+
     </div>
 
   </div>
 
-</header>
+</div>
 
-<!-- Navigation -->
+
+<!-- =====================================
+     NAVIGATION BELOW HERO
+===================================== -->
 
 <nav aria-label="Main navigation">
 
   <div class="nav-inner">
 
-    <a href="index-en.html">Home</a>
+    <a href="#home">Home</a>
 
     <a href="committee-en.html">About Us</a>
-    
-   <a href="hub-en.html">Global AI Hub</a>
+
+    <a href="hub-en.html">Global AI Hub</a>
 
     <a href="goyang-en.html">Why Goyang</a>
 
@@ -341,6 +621,7 @@ footer p {
     <a href="history-en.html">Timeline</a>
 
     <a href="news-en.html">News & Activities</a>
+
     <a href="library-en.html">Policy Library</a>
 
     <a href="participate-en.html">Get Involved</a>
@@ -348,50 +629,7 @@ footer p {
   </div>
 
 </nav>
-
-<!-- Hero -->
-
-<div class="hero">
-
-  <div class="hero-content">
-
-    <h1>
-      Bring the Global AI Hub<br>
-      to Goyang!
-    </h1>
-
-    <p>
-      A Global Center for Public-Interest AI
-      and International Cooperation
-    </p>
-
-    <p class="hero-slogan">
-      Give Goyang New Engines of Growth!<br>
-      Create More Jobs in Goyang!
-    </p>
-
-    <p>
-      Together, Gyeonggi Province
-      Can Make It Happen!
-    </p>
-
-    <div class="hero-buttons">
-
-      <a href="hub-en.html" class="button">
-        Discover the Global AI Hub
-      </a>
-
-      <a href="participate-en.html"
-   class="button button-primary">
-        Get Involved
-      </a>
-
-    </div>
-
-  </div>
-
-</div>
-
+  
 <main>
 
 <!-- Committee -->
