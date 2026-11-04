@@ -853,6 +853,55 @@ nav a:hover {
 .hero + nav {
   margin-top: 0;
 }
+
+/* =========================================
+   메인 사진 + 파란색 메뉴
+   모니터 화면 안에 함께 표시
+========================================= */
+
+/* 파란색 메뉴의 예상 높이 */
+:root {
+  --menu-height: 76px;
+}
+
+/* 메인 사진 높이 조정 */
+
+.hero {
+  min-height: calc(100vh - var(--menu-height));
+  min-height: calc(100svh - var(--menu-height));
+
+  height: auto;
+
+  padding: 90px 20px 40px;
+}
+
+/* 메뉴 높이와 위치 */
+
+nav {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  min-height: var(--menu-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 스마트폰 */
+
+@media (max-width: 600px) {
+
+  :root {
+    --menu-height: 120px;
+  }
+
+  .hero {
+    min-height: calc(100svh - var(--menu-height));
+    padding: 90px 15px 35px;
+  }
+
+}
   
 </style>
 </head>
