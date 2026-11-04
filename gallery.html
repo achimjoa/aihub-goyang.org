@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>시민활동 사진기록관 | 글로벌 AI 허브</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  font-size: clamp(24px, 4vw, 38px);
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filters button {
+  padding: 12px 18px;
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.photo {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,.1);
+}
+
+.photo img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.photo p {
+  padding: 15px;
+  margin: 0;
+}
+
+.viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.9);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.viewer img {
+  max-width: 95%;
+  max-height: 85%;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>시민활동 사진기록관</h1>
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <a href="index.html">← 홈페이지로 돌아가기</a>
+</header>
+
+<main>
+
+<div class="intro">
+  <h2>시민의 힘으로 만들어가는 글로벌 AI 허브</h2>
+  <p>
+    글로벌 AI 허브 유치를 위한
+    시민들의 활동을 기록합니다.
+  </p>
+</div>
+
+<div class="filters">
+  <button class="active" onclick="filterPhotos('all',this)">
+    전체
+  </button>
+
+  <button onclick="filterPhotos('signature',this)">
+    시민 서명운동
+  </button>
+
+  <button onclick="filterPhotos('solidarity',this)">
+    시민사회 연대
+  </button>
+
+  <button onclick="filterPhotos('promotion',this)">
+    홍보활동
+  </button>
+
+  <button onclick="filterPhotos('culture',this)">
+    문화예술
+  </button>
+</div>
+
+<div class="gallery" id="gallery"></div>
+
+</main>
+
+<div class="viewer" id="viewer"
+     role="dialog"
+     aria-modal="true"
+     aria-label="사진 확대 보기">
+
+  <button class="close"
+          aria-label="닫기"
+          onclick="closePhoto()">×</button>
+
+  <img id="largePhoto" alt="확대 사진">
+
+</div>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script>
+
+/* 업로드된 사진을 이 목록에 등록합니다. */
+
+const photos = [
+  {
+    file: "activity-01.jpg",
+    title: "시민 서명운동",
+    category: "signature"
+  },
+  {
+    file: "activity-02.jpg",
+    title: "시민 참여 현장",
+    category: "signature"
+  },
+  {
+    file: "activity-03.jpg",
+    title: "시민사회 연대 활동",
+    category: "solidarity"
+  },
+  {
+    file: "activity-04.jpg",
+    title: "글로벌 AI 허브 유치 홍보",
+    category: "promotion"
+  },
+  {
+    file: "activity-05.jpg",
+    title: "지역 축제 서명운동",
+    category: "signature"
+  },
+  {
+    file: "culture-01.jpg",
+    title: "고양특례시 문화예술",
+    category: "culture"
+  },
+  {
+    file: "culture-02.jpg",
+    title: "고양호수예술축제 드론 공연",
+    category: "culture"
+  },
+  {
+    file: "promotion-01.jpg",
+    title: "글로벌 AI 허브 홍보자료",
+    category: "promotion"
+  }
+];
+
+function renderPhotos(category = "all") {
+  const gallery = document.getElementById("gallery");
+  gallery.innerHTML = "";
+
+  const selected = photos.filter(photo =>
+    category === "all" || photo.category === category
+  );
+
+  selected.forEach(photo => {
+    const card = document.createElement("div");
+    card.className = "photo";
+
+    const img = document.createElement("img");
+    img.src = "images/" + photo.file;
+    img.alt = photo.title;
+    img.loading = "lazy";
+    img.onclick = () => openPhoto(img.src, photo.title);
+
+    const caption = document.createElement("p");
+    caption.textContent = photo.title;
+
+    card.appendChild(img);
+    card.appendChild(caption);
+    gallery.appendChild(card);
+  });
+}
+
+function filterPhotos(category, button) {
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+  renderPhotos(category);
+}
+
+function openPhoto(src, title) {
+  const viewer = document.getElementById("viewer");
+  const largePhoto = document.getElementById("largePhoto");
+
+  largePhoto.src = src;
+  largePhoto.alt = title;
+  viewer.style.display = "flex";
+}
+
+function closePhoto() {
+  document.getElementById("viewer").style.display = "none";
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") closePhoto();
+});
+
+document.getElementById("viewer")
+  .addEventListener("click", event => {
+    if (event.target.id === "viewer") closePhoto();
+  });
+
+renderPhotos();
+
+</script>
+
+</body>
+</html>
