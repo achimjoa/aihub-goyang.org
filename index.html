@@ -1396,6 +1396,28 @@ function setLang(lang) {
   }
 
 }
+
+<script>
+function adjustHeroHeight() {
+
+  const nav = document.querySelector("nav");
+  const hero = document.querySelector(".hero");
+
+  if (!nav || !hero) return;
+
+  const menuHeight = nav.getBoundingClientRect().height;
+
+  const screenHeight = window.innerHeight;
+
+  const heroHeight = screenHeight - menuHeight;
+
+  hero.style.minHeight = Math.max(0, heroHeight) + "px";
+}
+
+window.addEventListener("load", adjustHeroHeight);
+
+window.addEventListener("resize", adjustHeroHeight);
+</script>
   
 </body>
 </html>
