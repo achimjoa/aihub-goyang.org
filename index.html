@@ -2,40 +2,7 @@
 <html lang="ko">
 <head>
 <!-- 카카오톡 및 SNS 공유 대표 이미지 -->
-<style>
 
-/* English 언어 전환 버튼 */
-
-.english-button {
-  display: inline-block;
-  padding: 9px 18px;
-  background-color: #ffffff;
-  color: #0754a6 !important;
-  border: 2px solid #0754a6;
-  border-radius: 6px;
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none !important;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-/* 마우스를 올렸을 때 */
-
-.english-button:hover {
-  background-color: #0754a6;
-  color: #ffffff !important;
-}
-
-/* 키보드로 선택했을 때 */
-
-.english-button:focus-visible {
-  outline: 3px solid #ffcc33;
-  outline-offset: 3px;
-}
-
-</style>
 <meta property="og:type" content="website">
 
 <meta property="og:title"
@@ -403,25 +370,130 @@ footer {
     left: -30px;
   }
 }
+
+  /* =====================================
+   메인 이미지와 상단 제목 통합
+===================================== */
+
+.hero {
+  position: relative;
+  min-height: 650px;
+  padding: 150px 20px 80px;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 35, 85, 0.55),
+      rgba(0, 60, 130, 0.65)
+    ),
+    url("./goyang-main.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+}
+
+/* 메인 이미지 안의 위원회 명칭 */
+
+.hero-header {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  padding: 0 30px;
+  text-align: center;
+  z-index: 2;
+}
+
+.hero-logo {
+  color: white;
+  font-size: clamp(19px, 2.5vw, 30px);
+  font-weight: 800;
+  line-height: 1.5;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* 언어 선택 버튼 */
+
+.hero-language {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 5;
+
+  display: flex;
+  gap: 10px;
+}
+
+.hero-language a {
+  display: inline-block;
+  padding: 9px 17px;
+
+  background: rgba(0, 50, 110, 0.5);
+  color: white;
+
+  border: 2px solid white;
+  border-radius: 6px;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-language a:hover {
+  background: white;
+  color: #0754a6;
+}
+
+/* 모바일 최적화 */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 600px;
+    padding: 180px 15px 60px;
+  }
+
+  .hero-header {
+    top: 85px;
+    padding: 0 15px;
+  }
+
+  .hero-logo {
+    font-size: 19px;
+  }
+
+  .hero-language {
+    top: 15px;
+    right: 15px;
+  }
+
+  .hero-language a {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero h2 {
+    font-size: 25px;
+  }
+
+}
+  
 </style>
 </head>
 
 <body>
-
-<header>
-  <div class="logo"
-       data-ko="경기도 글로벌 AI 허브 유치<br>고양특례시 범시민추진위원회"
-       data-en="Goyang Citizens' Committee<br>for the Global AI Hub">
-    경기도 글로벌 AI 허브 유치<br>
-    고양특례시 범시민추진위원회
-  </div>
-
-  <div class="lang">
-    <button onclick="setLang('ko')">한국어</button>
-   
-<a href="index-en.html" class="lang-link english-button">English</a>
-</div>
-</header>
 
 <nav>
   <a href="#home"
@@ -463,8 +535,39 @@ footer {
 
 <div class="hero" id="home">
 
-  <h1>GLOBAL AI HUB</h1>
+  <!-- 메인 이미지 오른쪽 상단 언어 선택 -->
 
+  <div class="hero-language">
+
+    <a href="index.html"
+       lang="ko"
+       aria-current="page">
+      한국어
+    </a>
+
+    <a href="index-en.html"
+       lang="en">
+      English
+    </a>
+
+  </div>
+
+  <!-- 메인 이미지 내부 위원회 명칭 -->
+
+  <div class="hero-header">
+
+    <div class="hero-logo">
+
+      경기도 글로벌 AI 허브 유치<br>
+      고양특례시 범시민추진위원회
+
+    </div>
+
+  </div>
+
+  <!-- 메인 슬로건 -->
+
+  <h1>GLOBAL AI HUB</h1>
   <h2
     data-ko="글로벌 AI 허브는 <strong>고양특례시로!</strong>"
     data-en="Bring the Global AI Hub <strong>to Goyang!</strong>">
@@ -480,7 +583,7 @@ footer {
   </p>
 
   <div class="hero-buttons">
-    <a class="btn" href="#hub"
+    <a class="btn" href="hub.html"
        data-ko="글로벌 AI 허브 알아보기"
        data-en="Explore the Hub">
        글로벌 AI 허브 알아보기
