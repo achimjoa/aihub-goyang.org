@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<meta name="description"
+content="Latest news, activities, events and policy updates from the Goyang Citizens' Committee for Hosting the Global AI Hub.">
+
+<title>News & Announcements | Global AI Hub Goyang</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 17px;
+}
+
+.language {
+  margin-top: 20px;
+}
+
+.language a {
+  display: inline-block;
+  color: white;
+  border: 1px solid white;
+  padding: 8px 15px;
+  margin: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.language a.active {
+  background: white;
+  color: #0754a6;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.search-box {
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.news-list {
+  display: grid;
+  gap: 18px;
+}
+
+.news-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  border-left: 5px solid #168de0;
+}
+
+.news-item h3 {
+  color: #0754a6;
+  margin: 10px 0;
+  font-size: 21px;
+}
+
+.category {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.date {
+  color: #68788c;
+  font-size: 14px;
+}
+
+.news-item p {
+  color: #46566d;
+}
+
+.news-link {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #68788c;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .intro,
+  .news-item {
+    padding: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>News & Announcements</h1>
+
+  <p>
+    Goyang Citizens' Committee for Hosting<br>
+    the Global AI Hub in Gyeonggi Province
+  </p>
+
+  <p>
+    Latest activities, events and policy updates
+    supporting Goyang's Global AI Hub initiative.
+  </p>
+
+  <div class="language">
+    <a href="news.html" lang="ko">한국어</a>
+    <a href="news-en.html"
+       class="active"
+       aria-current="page">English</a>
+  </div>
+
+  <a href="index-en.html" class="home-link">
+    ← Back to Home
+  </a>
+
+</header>
+
+<main>
+
+<section class="intro">
+
+  <h2>Latest Updates</h2>
+
+  <p>
+    Follow the Citizens' Committee's
+    activities, public events,
+    policy recommendations,
+    media coverage and announcements.
+  </p>
+
+  <p>
+    New information will be added
+    as it becomes available.
+  </p>
+
+</section>
+
+<div class="search-box">
+
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="Search news by title or keyword"
+    aria-label="Search news">
+
+</div>
+
+<div class="filters">
+
+  <button class="active" data-category="all">
+    All News
+  </button>
+
+  <button data-category="notice">
+    Notices
+  </button>
+
+  <button data-category="activity">
+    Committee Activities
+  </button>
+
+  <button data-category="event">
+    Events
+  </button>
+
+  <button data-category="press">
+    Media Coverage
+  </button>
+
+  <button data-category="policy">
+    Policy Updates
+  </button>
+
+</div>
+
+<div class="news-list" id="newsList"></div>
+
+<p class="empty" id="empty" hidden>
+  No news items match your search.
+</p>
+
+</main>
+
+<footer>
+
+  <p>
+    <strong>
+      Goyang Citizens' Committee for Hosting<br>
+      the Global AI Hub in Gyeonggi Province
+    </strong>
+  </p>
+
+  <p>
+    Together for Goyang ·
+    Together for Gyeonggi ·
+    Together for Humanity
+  </p>
+
+  <p>
+    <a href="index-en.html">English Home</a>
+  </p>
+
+</footer>
+
+<script>
+
+/*
+  HOW TO ADD NEWS
+
+  Add a new object to the news array below.
+
+  date: YYYY-MM-DD
+  category: notice, activity, event, press, policy
+  categoryName: Display name
+  title: News title
+  description: Short summary
+  link: URL (leave empty if unavailable)
+
+  News items are automatically sorted
+  by date, newest first.
+*/
+
+const news = [
+
+  {
+    date: "2026-10-30",
+    category: "event",
+    categoryName: "Events",
+    title: "Gyeonggi Global AI Hub Hosting Strategy Forum",
+    description:
+      "A strategy forum was held at KINTEX in Goyang to discuss the Global AI Hub initiative, hosting conditions and international cooperation.",
+    link: ""
+  },
+
+  {
+    date: "2026-10-26",
+    category: "policy",
+    categoryName: "Policy Updates",
+    title: "Goyang City Council Adopts Resolution Supporting the Global AI Hub Bid",
+    description:
+      "Goyang City Council unanimously adopted a resolution supporting the city's bid to host the Global AI Hub.",
+    link: ""
+  },
+
+  {
+    date: "2026-10-20",
+    category: "activity",
+    categoryName: "Committee Activities",
+    title: "Participation in the 7th Goyang Innovation Strategy Seminar",
+    description:
+      "The importance of finalizing the hosting strategy, organizing implementation teams, securing institutional cooperation and preparing verifiable evidence was emphasized.",
+    link: ""
+  },
+
+  {
+    date: "2026-10-15",
+    category: "activity",
+    categoryName: "Committee Activities",
+    title: "Recommendations on Global AI Hub Site-Selection Criteria",
+    description:
+      "Recommendations proposed greater consideration of initial settlement, community acceptance, public-interest AI pilot projects and international cooperation potential.",
+    link: ""
+  },
+
+  {
+    date: "2026-10-14",
+    category: "policy",
+    categoryName: "Policy Updates",
+    title: "Public Hearing on Global AI Hub Site-Selection Criteria",
+    description:
+      "A public hearing was held to discuss the proposed evaluation criteria for selecting the Global AI Hub location.",
+    link: ""
+  },
+
+  {
+    date: "2026-10-12",
+    category: "policy",
+    categoryName: "Policy Updates",
+    title: "Launch of Gyeonggi Province's Global AI Hub Support Group",
+    description:
+      "Gyeonggi Province launched a support group to develop hosting strategies and strengthen institutional cooperation.",
+    link: ""
+  },
+
+  {
+    date: "2026-09-07",
+    category: "activity",
+    categoryName: "Committee Activities",
+    title: "Launch of the Goyang Citizens' Committee",
+    description:
+      "The Citizens' Committee was launched at the Flower Exhibition Hall in Goyang Lake Park to promote civic participation in the Global AI Hub initiative.",
+    link: ""
+  }
+
+];
+
+let currentCategory = "all";
+
+const newsList = document.getElementById("newsList");
+const searchInput = document.getElementById("searchInput");
+const empty = document.getElementById("empty");
+
+function renderNews() {
+
+  const keyword = searchInput.value.trim().toLowerCase();
+
+  const filtered = news.filter(item => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      item.category === currentCategory;
+
+    const searchText = [
+      item.title,
+      item.description,
+      item.categoryName,
+      item.date
+    ].join(" ").toLowerCase();
+
+    return categoryMatch && searchText.includes(keyword);
+  });
+
+  filtered.sort((a, b) => b.date.localeCompare(a.date));
+
+  newsList.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    const card = document.createElement("article");
+    card.className = "news-item";
+
+    const category = document.createElement("span");
+    category.className = "category";
+    category.textContent = item.categoryName;
+
+    const date = document.createElement("p");
+    date.className = "date";
+
+    const dateObject = new Date(item.date + "T00:00:00");
+
+    date.textContent = dateObject.toLocaleDateString(
+      "en-US",
+      {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      }
+    );
+
+    const title = document.createElement("h3");
+    title.textContent = item.title;
+
+    const description = document.createElement("p");
+    description.textContent = item.description;
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    if (item.link) {
+
+      const link = document.createElement("a");
+      link.className = "news-link";
+      link.href = item.link;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "Read More";
+
+      card.appendChild(link);
+    }
+
+    newsList.appendChild(card);
+  });
+
+  empty.hidden = filtered.length !== 0;
+}
+
+document.querySelectorAll("[data-category]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    currentCategory = button.dataset.category;
+
+    document.querySelectorAll("[data-category]")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    renderNews();
+  });
+});
+
+searchInput.addEventListener("input", renderNews);
+
+renderNews();
+
+</script>
+
+</body>
+</html>
