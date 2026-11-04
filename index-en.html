@@ -3,20 +3,20 @@
 
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+      content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0754a6">
 
 <meta name="description"
 content="Goyang Citizens' Committee for Hosting the Global AI Hub in Gyeonggi Province. Advancing international cooperation and public-interest AI.">
 
-<title>
-Global AI Hub Goyang | Citizens' Committee
-</title>
+<title>Global AI Hub Goyang | Citizens' Committee</title>
 
 <style>
+
+/* =====================================
+   BASIC SETTINGS
+===================================== */
 
 * {
   box-sizing: border-box;
@@ -34,84 +34,32 @@ body {
   line-height: 1.7;
 }
 
-/* Header */
-
-.site-header {
-  background: #10315e;
-  color: white;
-  padding: 18px 20px;
+:root {
+  --menu-height: 76px;
+  --main-blue: #0754a6;
+  --dark-blue: #10315e;
+  --yellow: #ffe44d;
 }
 
-.header-inner {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-}
-
-.site-title {
-  font-size: 17px;
-  font-weight: bold;
-  max-width: 650px;
-}
-
-.language {
-  display: flex;
-  gap: 10px;
-}
-
-.language a {
-  color: white;
-  text-decoration: none;
-  border: 1px solid rgba(255,255,255,.6);
-  padding: 7px 13px;
-  border-radius: 6px;
-}
-
-.language a.active {
-  background: white;
-  color: #10315e;
-}
-
-/* Navigation */
-
-nav {
-  background: #0754a6;
-  padding: 12px;
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 20px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* Hero */
+/* =====================================
+   HERO
+===================================== */
 
 .hero {
-  min-height: 560px;
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+
+  min-height: calc(100vh - var(--menu-height));
+  min-height: calc(100svh - var(--menu-height));
+
+  padding: 90px 20px 40px;
 
   background-image:
     linear-gradient(
-      rgba(4,45,100,.72),
-      rgba(4,70,145,.78)
+      rgba(0,35,85,0.55),
+      rgba(0,60,130,0.65)
     ),
     url("./goyang-main.jpg");
 
@@ -122,33 +70,114 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 
   color: white;
-  padding: 60px 20px;
+  text-align: center;
 }
+
+/* Main Content */
 
 .hero-content {
-  max-width: 1000px;
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: auto;
+  text-align: center;
 }
 
+/* Committee Name */
+
+.hero-logo {
+  color: white;
+  font-size: clamp(21px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+
+  text-shadow:
+    0 3px 10px rgba(0,0,0,0.6);
+}
+
+/* Main Heading */
+
 .hero h1 {
-  font-size: clamp(32px, 5vw, 56px);
+  font-size: clamp(36px, 6vw, 68px);
+  font-weight: 900;
+  letter-spacing: 2px;
   line-height: 1.3;
-  margin: 0 0 25px;
+  margin: 12px 0;
+}
+
+/* Main Slogan */
+
+.hero h2 {
+  font-size: clamp(25px, 4vw, 44px);
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+
+.hero h2 strong {
+  color: var(--yellow);
 }
 
 .hero p {
-  font-size: clamp(17px, 2.5vw, 23px);
+  font-size: clamp(17px, 2vw, 23px);
+  line-height: 1.7;
+  margin: 12px 0;
 }
 
 .hero-slogan {
   font-weight: bold;
-  margin-top: 25px;
 }
 
+/* =====================================
+   LANGUAGE BUTTONS
+===================================== */
+
+.hero-language {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  z-index: 10;
+
+  display: flex;
+  gap: 10px;
+}
+
+.hero-language a {
+  display: inline-block;
+
+  padding: 9px 17px;
+
+  background: rgba(0,40,90,0.55);
+  color: white;
+
+  border: 2px solid white;
+  border-radius: 6px;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-language a:hover,
+.hero-language a[aria-current="page"] {
+  background: white;
+  color: var(--main-blue);
+}
+
+/* =====================================
+   HERO BUTTONS
+===================================== */
+
 .hero-buttons {
-  margin-top: 35px;
+  margin-top: 25px;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -157,10 +186,13 @@ nav a:hover {
 
 .button {
   display: inline-block;
-  background: #ffffff;
-  color: #0754a6;
+
+  background: white;
+  color: var(--main-blue);
+
   padding: 13px 24px;
   border-radius: 7px;
+
   text-decoration: none;
   font-weight: bold;
 }
@@ -170,7 +202,67 @@ nav a:hover {
   color: white;
 }
 
-/* Main */
+.button:hover {
+  background: var(--yellow);
+  color: #17315b;
+}
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+nav {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  min-height: var(--menu-height);
+
+  margin: 0;
+  padding: 12px;
+
+  background: var(--main-blue);
+  border-top: 4px solid var(--yellow);
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.15);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+
+  font-weight: 700;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: var(--yellow);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
 
 main {
   max-width: 1200px;
@@ -183,26 +275,32 @@ section {
   padding: 35px;
   border-radius: 12px;
   margin-bottom: 30px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
+  scroll-margin-top: 20px;
 }
 
 section h2 {
-  color: #0754a6;
+  color: var(--main-blue);
   font-size: clamp(24px, 3vw, 32px);
   margin-top: 0;
 }
 
-.section-intro {
-  text-align: center;
-}
+/* Grid */
 
 .grid {
   display: grid;
+
   grid-template-columns:
     repeat(auto-fit, minmax(250px, 1fr));
+
   gap: 20px;
   margin-top: 25px;
 }
+
+/* Cards */
 
 .card {
   background: #f4f8fc;
@@ -212,22 +310,28 @@ section h2 {
 }
 
 .card h3 {
-  color: #0754a6;
+  color: var(--main-blue);
   margin-top: 0;
 }
+
+/* Highlight */
 
 .highlight {
   background: #eaf4ff;
   border-left: 5px solid #168de0;
+
   padding: 25px;
   border-radius: 8px;
   margin-top: 20px;
 }
 
+/* Organization Chart */
+
 .chart {
   display: block;
   max-width: 100%;
   height: auto;
+
   margin: 25px auto;
   border-radius: 8px;
 }
@@ -236,21 +340,28 @@ section h2 {
   text-align: center;
 }
 
+/* Links */
+
 .link-button {
   display: inline-block;
-  background: #0754a6;
+
+  background: var(--main-blue);
   color: white;
+
   padding: 12px 22px;
   border-radius: 7px;
+
   text-decoration: none;
   font-weight: bold;
   margin-top: 15px;
 }
 
-/* Footer */
+/* =====================================
+   FOOTER
+===================================== */
 
 footer {
-  background: #10315e;
+  background: var(--dark-blue);
   color: white;
   text-align: center;
   padding: 40px 20px;
@@ -260,231 +371,31 @@ footer p {
   margin: 10px 0;
 }
 
-/* Mobile */
-
-@media (max-width: 600px) {
-
-  .site-header {
-    padding: 15px;
-  }
-
-  .site-title {
-    font-size: 15px;
-  }
-
-  .hero {
-    min-height: 480px;
-    padding: 40px 15px;
-  }
-
-  main {
-    padding: 20px 12px;
-  }
-
-  section {
-    padding: 23px;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  nav a {
-    font-size: 13px;
-  }
-}
-
 /* =====================================
-   ENGLISH HOME PAGE
-   HERO LAYOUT
-===================================== */
-
-.hero {
-  position: relative;
-
-  width: 100%;
-  min-height: 650px;
-
-  background-image:
-    linear-gradient(
-      rgba(0, 35, 85, 0.55),
-      rgba(0, 60, 130, 0.65)
-    ),
-    url("./goyang-main.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 110px 20px 70px;
-
-  color: white;
-  text-align: center;
-}
-
-
-/* Main Content */
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  max-width: 1100px;
-}
-
-
-/* Committee Name */
-
-.hero-logo {
-  color: white;
-
-  font-size: clamp(21px, 3vw, 34px);
-  font-weight: 800;
-  line-height: 1.5;
-
-  margin-bottom: 35px;
-
-  text-shadow:
-    0 3px 10px rgba(0,0,0,0.6);
-}
-
-
-/* GLOBAL AI HUB */
-
-.hero-content h1 {
-  color: white;
-
-  font-size: clamp(36px, 6vw, 68px);
-
-  font-weight: 900;
-  letter-spacing: 2px;
-
-  margin: 15px 0;
-}
-
-
-/* Main Slogan */
-
-.hero-content h2 {
-  color: white;
-
-  font-size: clamp(25px, 4vw, 44px);
-
-  font-weight: 800;
-
-  margin: 15px 0;
-}
-
-.hero-content h2 strong {
-  color: #ffe44d;
-}
-
-
-/* Language Buttons */
-
-.hero-language {
-  position: absolute;
-
-  top: 20px;
-  right: 25px;
-
-  display: flex;
-  gap: 10px;
-
-  z-index: 10;
-}
-
-.hero-language a {
-  display: inline-block;
-
-  padding: 9px 17px;
-
-  background: rgba(0, 40, 90, 0.55);
-  color: white;
-
-  border: 2px solid white;
-  border-radius: 6px;
-
-  font-size: 15px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.hero-language a:hover,
-.hero-language a.active {
-  background: white;
-  color: #0754a6;
-}
-
-
-/* Navigation Below Hero */
-
-nav {
-  position: relative;
-  z-index: 5;
-
-  width: 100%;
-
-  background: #0754a6;
-
-  padding: 12px;
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  gap: 10px 20px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-
-  font-weight: bold;
-  font-size: 14px;
-}
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-
-/* =====================================
-   MOBILE OPTIMIZATION
+   MOBILE
 ===================================== */
 
 @media (max-width: 600px) {
 
   .hero {
-    min-height: 650px;
-    padding: 100px 15px 60px;
+    padding: 90px 15px 35px;
   }
 
   .hero-logo {
-    font-size: 20px;
+    font-size: 19px;
     margin-bottom: 25px;
   }
 
-  .hero-content h1 {
-    font-size: 36px;
+  .hero h1 {
+    font-size: 34px;
   }
 
-  .hero-content h2 {
-    font-size: 25px;
+  .hero h2 {
+    font-size: 24px;
   }
 
-  .hero-content p {
-    font-size: 16px;
+  .hero p {
+    font-size: 15px;
   }
 
   .hero-language {
@@ -501,155 +412,29 @@ nav a:hover {
     font-size: 13px;
   }
 
-}
-
-/* =====================================
-   메인 사진 높이 자동 조정
-   국문·영문 공통
-===================================== */
-
-.hero {
-  position: relative;
-
-  width: 100%;
-
-  /* 모니터 화면 높이에 맞춤 */
-  min-height: 100vh;
-  min-height: 100svh;
-
-  height: auto;
-
-  padding: 110px 20px 70px;
-
-  background-image:
-    linear-gradient(
-      rgba(0, 35, 85, 0.55),
-      rgba(0, 60, 130, 0.65)
-    ),
-    url("./goyang-main.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  color: white;
-
-  overflow: hidden;
-}
-
-/* =====================================
-   메인 사진과 메뉴바 완전 분리
-===================================== */
-
-/* 메인 사진 */
-
-.hero {
-  position: relative;
-  z-index: 1;
-}
-
-/* 메뉴바 */
-
-nav {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  margin: 0;
-
-  background: #0754a6;
-
-  border-top: 4px solid #ffe44d;
-
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* 메뉴 링크 */
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-/* 마우스 올렸을 때 */
-
-nav a:hover {
-  color: #ffe44d;
-}
-
-/* 메인 사진과 메뉴 사이 간격 제거 */
-
-.hero + nav {
-  margin-top: 0;
-}
-
-/* =========================================
-   메인 사진 + 파란색 메뉴
-   모니터 화면 안에 함께 표시
-========================================= */
-
-/* 파란색 메뉴의 예상 높이 */
-:root {
-  --menu-height: 76px;
-}
-
-/* 메인 사진 높이 조정 */
-
-.hero {
-  min-height: calc(100vh - var(--menu-height));
-  min-height: calc(100svh - var(--menu-height));
-
-  height: auto;
-
-  padding: 90px 20px 40px;
-}
-
-/* 메뉴 높이와 위치 */
-
-nav {
-  position: relative;
-  margin: 0;
-  width: 100%;
-  min-height: var(--menu-height);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* 스마트폰 */
-
-@media (max-width: 600px) {
-
-  :root {
-    --menu-height: 120px;
+  main {
+    padding: 20px 12px;
   }
 
-  .hero {
-    min-height: calc(100svh - var(--menu-height));
-    padding: 90px 15px 35px;
+  section {
+    padding: 23px;
   }
 
+  .card {
+    padding: 20px;
+  }
 }
-  
+
 </style>
 </head>
 
 <body>
 
 <!-- =====================================
-     ENGLISH HOME PAGE HERO
+     HERO
 ===================================== -->
 
 <div class="hero" id="home">
-
-  <!-- Language Selection -->
 
   <div class="hero-language">
 
@@ -659,71 +444,50 @@ nav {
 
     <a href="index-en.html"
        lang="en"
-       class="active"
        aria-current="page">
       English
     </a>
 
   </div>
 
-
-  <!-- Main Hero Content -->
-
   <div class="hero-content">
 
     <div class="hero-logo">
-
       Gyeonggi Province Global AI Hub Initiative<br>
       Goyang Citizens' Committee
-
     </div>
 
-
-    <h1>
-      GLOBAL AI HUB
-    </h1>
-
+    <h1>GLOBAL AI HUB</h1>
 
     <h2>
       Bring the Global AI Hub<br>
       <strong>to Goyang!</strong>
     </h2>
 
-
     <p>
       A Global Center for Public-Interest AI<br>
       and International Cooperation
     </p>
 
-
     <p class="hero-slogan">
-
       Give Goyang New Engines of Growth!<br>
       Create More Jobs in Goyang!
-
     </p>
-
 
     <p>
       Together, Gyeonggi Province
       Can Make It Happen!
     </p>
 
-
     <div class="hero-buttons">
 
-      <a href="hub-en.html"
-         class="button">
-
+      <a href="hub-en.html" class="button">
         Discover the Global AI Hub
-
       </a>
 
       <a href="participate-en.html"
          class="button button-primary">
-
         Get Involved
-
       </a>
 
     </div>
@@ -732,9 +496,8 @@ nav {
 
 </div>
 
-
 <!-- =====================================
-     NAVIGATION BELOW HERO
+     NAVIGATION
 ===================================== -->
 
 <nav aria-label="Main navigation">
@@ -764,7 +527,7 @@ nav {
   </div>
 
 </nav>
-  
+
 <main>
 
 <!-- Committee -->
@@ -1161,98 +924,28 @@ nav {
 
 </footer>
 
-/* 메인 사진 내부 콘텐츠 정렬 */
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-
-  width: 100%;
-  max-width: 1100px;
-
-  margin: auto;
-
-  text-align: center;
-}
-
-/* 위원회 명칭 */
-
-.hero-logo {
-  margin-bottom: 25px;
-}
-
-/* 제목 */
-
-.hero-content h1 {
-  margin: 12px 0;
-}
-
-/* 슬로건 */
-
-.hero-content h2 {
-  margin: 12px 0;
-}
-
-/* 설명 문구 */
-
-.hero-content p {
-  margin: 12px 0;
-}
-
-/* 버튼 */
-
-.hero-buttons {
-  margin-top: 25px;
-}
-
-/* 스마트폰 */
-
-@media (max-width: 600px) {
-
-  .hero {
-    min-height: 100svh;
-    padding: 100px 15px 45px;
-  }
-
-  .hero-logo {
-    font-size: 19px;
-  }
-
-  .hero-content h1 {
-    font-size: 34px;
-  }
-
-  .hero-content h2 {
-    font-size: 24px;
-  }
-
-  .hero-content p {
-    font-size: 15px;
-  }
-
-}
+<!-- =====================================
+     MENU HEIGHT AUTO ADJUSTMENT
+===================================== -->
 
 <script>
+
 function adjustHeroHeight() {
 
   const nav = document.querySelector("nav");
-  const hero = document.querySelector(".hero");
 
-  if (!nav || !hero) return;
+  if (!nav) return;
 
-  const menuHeight = nav.getBoundingClientRect().height;
-
-  const screenHeight = window.innerHeight;
-
-  const heroHeight = screenHeight - menuHeight;
-
-  hero.style.minHeight = Math.max(0, heroHeight) + "px";
+  document.documentElement.style.setProperty(
+    "--menu-height",
+    nav.getBoundingClientRect().height + "px"
+  );
 }
 
 window.addEventListener("load", adjustHeroHeight);
-
 window.addEventListener("resize", adjustHeroHeight);
+
 </script>
-  
+
 </body>
 </html>
