@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>유치 추진 경과 | 글로벌 AI 허브</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.intro {
+  text-align: center;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #0754a6;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.timeline {
+  border-left: 4px solid #168de0;
+  margin-left: 12px;
+  padding-left: 25px;
+}
+
+.event {
+  position: relative;
+  padding: 0 0 25px;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #168de0;
+  border-radius: 50%;
+}
+
+.date {
+  color: #0754a6;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.type {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.event h3 {
+  margin: 5px 0;
+  color: #17315b;
+}
+
+.event p {
+  margin: 5px 0;
+  color: #46566d;
+}
+
+.future {
+  border-left: 4px solid #1b9a80;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.note {
+  background: #fff8e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+@media (max-width: 600px) {
+  header { padding: 40px 15px; }
+  main { padding: 20px 12px; }
+  section { padding: 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>글로벌 AI 허브 유치 추진 경과</h1>
+
+  <p>
+    정부 · 경기도 · 고양특례시 · 범시민추진위원회
+  </p>
+
+  <a href="index.html" class="home-link">
+    ← 홈페이지로 돌아가기
+  </a>
+</header>
+
+<main>
+
+<section class="intro">
+  <h2>글로벌 AI 허브 유치의 발자취</h2>
+
+  <p>
+    글로벌 AI 허브 추진 과정과
+    고양특례시 유치를 위한
+    지역사회의 활동을 기록합니다.
+  </p>
+
+  <p>
+    시민의 참여와 정책적 준비가
+    국제협력의 미래를 만들어갑니다.
+  </p>
+</section>
+
+<div class="filters">
+  <button class="active" data-type="all">전체</button>
+  <button data-type="government">정부</button>
+  <button data-type="gyeonggi">경기도</button>
+  <button data-type="goyang">고양특례시</button>
+  <button data-type="civic">범시민추진위원회</button>
+</div>
+
+<section>
+  <h2>주요 추진 연혁</h2>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<section>
+  <h2>향후 주요 과제</h2>
+
+  <div class="future">
+    <h3>입지 선정 심사 대응</h3>
+    <p>
+      정부의 공식 공고와 평가기준을 확인하고
+      고양특례시의 경쟁력과 실행계획을
+      객관적인 증빙자료로 제시합니다.
+    </p>
+  </div>
+
+  <div class="future">
+    <h3>국제기구 초기 정착 지원 준비</h3>
+    <p>
+      업무시설, 정주환경, 의료·교육·교통서비스 등
+      실제 제공 가능한 지원체계를 구체화합니다.
+    </p>
+  </div>
+
+  <div class="future">
+    <h3>공공 AI 실증사업 준비</h3>
+    <p>
+      AI 기본의료와 복합위기 대응을 중심으로
+      국제기구별 협력사업의 실행 가능성을
+      검토하고 협력기관을 확보합니다.
+    </p>
+  </div>
+
+  <div class="note">
+    ※ 향후 일정은 정부의 공식 발표에 따라
+    변경될 수 있습니다. 이 페이지는
+    주요 추진 경과를 정리한 자료이며,
+    모든 일정이 공식 확정되었다는 의미는 아닙니다.
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+  <p>시민의 힘으로, 경기도의 역량으로, 세계와 함께!</p>
+</footer>
+
+<script>
+
+const events = [
+
+  {
+    date: "2026.03.10",
+    type: "government",
+    label: "정부",
+    title: "글로벌 AI 허브 추진 관련 정부 발표",
+    description: "글로벌 AI 허브 추진을 위한 정부 차원의 논의와 준비가 본격화되었습니다."
+  },
+
+  {
+    date: "2026.03.16",
+    type: "government",
+    label: "정부",
+    title: "국무총리와 유엔 측 면담",
+    description: "글로벌 AI 허브 추진과 관련한 국제협력 논의가 진행되었습니다."
+  },
+
+  {
+    date: "2026.03.17",
+    type: "government",
+    label: "정부",
+    title: "정부와 국제기구 간 협력의향서",
+    description: "국제기구와 글로벌 AI 허브 협력에 관한 의향서 체결이 추진되었습니다."
+  },
+
+  {
+    date: "2026.04.09",
+    type: "government",
+    label: "정부",
+    title: "글로벌 AI 허브 추진 관련 총리훈령",
+    description: "글로벌 AI 허브 추진을 위한 정부 협력체계의 제도적 기반이 마련되었습니다."
+  },
+
+  {
+    date: "2026.05.21",
+    type: "government",
+    label: "정부",
+    title: "국제기구 및 다자개발은행 공동성명",
+    description: "9개 국제기구와 5개 다자개발은행의 협력 관련 공동성명이 발표되었습니다."
+  },
+
+  {
+    date: "2026.09.07",
+    type: "civic",
+    label: "범시민추진위원회",
+    title: "글로벌 AI 허브 유치 범시민추진위원회 발대식",
+    description: "고양특례시 호수공원 꽃전시관에서 시민사회가 참여하는 유치운동이 출범했습니다."
+  },
+
+  {
+    date: "2026.10.12",
+    type: "gyeonggi",
+    label: "경기도",
+    title: "경기도 글로벌 AI 허브 유치 추진지원단 출범",
+    description: "경기도의 유치 전략 수립과 협력체계 구축을 위한 추진지원단이 출범했습니다."
+  },
+
+  {
+    date: "2026.10.14",
+    type: "government",
+    label: "정부",
+    title: "글로벌 AI 허브 입지 선정 평가기준 공청회",
+    description: "세종컨벤션센터에서 입지 선정 평가기준안이 공개되고 의견수렴이 진행되었습니다."
+  },
+
+  {
+    date: "2026.10.15",
+    type: "civic",
+    label: "범시민추진위원회",
+    title: "입지 선정 평가기준 개선 건의서 작성",
+    description: "초기 정착 가능성, 시민 수용성, 공공 AI 실증 등 평가항목 보완을 제안했습니다."
+  },
+
+  {
+    date: "2026.10.20",
+    type: "civic",
+    label: "범시민추진위원회",
+    title: "제7회 고양혁신전략세미나 참여",
+    description: "유치 전략 확정, 협력 요청, 실행조직 구축과 증빙 확보의 중요성을 강조했습니다."
+  },
+
+  {
+    date: "2026.10.26",
+    type: "goyang",
+    label: "고양특례시",
+    title: "고양특례시의회 글로벌 AI 허브 유치 촉구 결의",
+    description: "시의원 전원이 참여한 유치 촉구 결의안이 만장일치로 채택되었습니다."
+  },
+
+  {
+    date: "2026.10.30",
+    type: "gyeonggi",
+    label: "경기도",
+    title: "경기도 글로벌 AI 허브 유치전략 포럼",
+    description: "고양특례시 킨텍스에서 글로벌 AI 허브 유치 전략과 국제협력 방안을 논의하는 포럼이 개최되었습니다."
+  }
+
+];
+
+let currentType = "all";
+
+function renderTimeline() {
+
+  const timeline = document.getElementById("timeline");
+  timeline.innerHTML = "";
+
+  const filtered = events.filter(event =>
+    currentType === "all" || event.type === currentType
+  );
+
+  filtered.sort((a, b) => a.date.localeCompare(b.date));
+
+  filtered.forEach(event => {
+
+    const item = document.createElement("article");
+    item.className = "event";
+
+    const date = document.createElement("div");
+    date.className = "date";
+    date.textContent = event.date;
+
+    const type = document.createElement("span");
+    type.className = "type";
+    type.textContent = event.label;
+
+    const title = document.createElement("h3");
+    title.textContent = event.title;
+
+    const description = document.createElement("p");
+    description.textContent = event.description;
+
+    item.appendChild(date);
+    item.appendChild(type);
+    item.appendChild(title);
+    item.appendChild(description);
+
+    timeline.appendChild(item);
+  });
+}
+
+document.querySelectorAll("[data-type]").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    currentType = button.dataset.type;
+
+    document.querySelectorAll("[data-type]")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    renderTimeline();
+  });
+});
+
+renderTimeline();
+
+</script>
+
+</body>
+</html>
