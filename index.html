@@ -583,68 +583,204 @@ footer {
     padding: 7px 12px;
   }
 }
+
+/* =====================================
+   메인 화면 최종 배치
+===================================== */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  min-height: 650px;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 35, 85, 0.55),
+      rgba(0, 60, 130, 0.65)
+    ),
+    url("./goyang-main.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 110px 20px 70px;
+
+  color: white;
+  text-align: center;
+}
+
+
+/* 메인 사진 중앙 내용 */
+
+.hero-content {
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* 위원회 명칭 */
+
+.hero-logo {
+  color: white;
+
+  font-size: clamp(21px, 3vw, 34px);
+  font-weight: 800;
+  line-height: 1.5;
+
+  margin-bottom: 35px;
+
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+
+/* GLOBAL AI HUB */
+
+.hero-content h1 {
+  color: white;
+  font-size: clamp(36px, 6vw, 68px);
+  margin: 15px 0;
+}
+
+
+/* 메인 슬로건 */
+
+.hero-content h2 {
+  color: white;
+  font-size: clamp(25px, 4vw, 44px);
+  margin: 15px 0;
+}
+
+
+/* 한국어 English 버튼 */
+
+.hero-language {
+  position: absolute;
+
+  top: 20px;
+  right: 25px;
+
+  display: flex;
+  gap: 10px;
+
+  z-index: 10;
+}
+
+.hero-language a {
+  display: inline-block;
+
+  padding: 9px 17px;
+
+  background: rgba(0, 40, 90, 0.55);
+  color: white;
+
+  border: 2px solid white;
+  border-radius: 6px;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.hero-language a:hover {
+  background: white;
+  color: #0754a6;
+}
+
+
+/* 메인 사진 아래 파란색 메뉴 */
+
+nav {
+  position: relative;
+  z-index: 5;
+
+  background: #0754a6;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 100%;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+
+  padding: 14px 18px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  background: #003a7a;
+}
+
+
+/* =====================================
+   스마트폰 최적화
+===================================== */
+
+@media (max-width: 600px) {
+
+  .hero {
+    min-height: 650px;
+    padding: 100px 15px 60px;
+  }
+
+  .hero-logo {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .hero-content h1 {
+    font-size: 36px;
+  }
+
+  .hero-content h2 {
+    font-size: 25px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .hero-language {
+    top: 15px;
+    right: 15px;
+  }
+
+  .hero-language a {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+
+  nav a {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+}
+
+  
 </style>
 </head>
 
 <body>
 
-
-
-<nav>
-  <a href="#home"
-     data-ko="홈"
-     data-en="Home">홈</a>
-
-  <a href="committee.html"
-   data-ko="위원회 소개"
-   data-en="About Us">위원회 소개</a>
-
-  <a href="hub.html"
-   data-ko="글로벌 AI 허브"
-   data-en="Global AI Hub">글로벌 AI 허브</a>
-
-  <a href="goyang.html"
-   data-ko="유치 경쟁력"
-   data-en="Why Goyang">유치 경쟁력</a>
-
-  <a href="news.html"
-   data-ko="활동 소식"
-   data-en="News">활동 소식</a>
-
-  <a href="history.html"
-   data-ko="활동 연혁"
-   data-en="History">활동 연혁</a>
-
-  <a href="participate.html"
-     data-ko="시민 참여"
-     data-en="Participate">시민 참여</a>
-
-  <a href="gallery.html"
-     data-ko="활동 사진관"
-     data-en="Photo Gallery">활동 사진관</a>
-
-  <a href="library.html"
-     data-ko="정책자료실"
-     data-en="Policy Library">정책자료실</a>
-</nav>
+<!-- ===================================
+     메인 사진 영역
+=================================== -->
 
 <div class="hero" id="home">
 
-  <div class="hero-language">
-    <a href="index.html">한국어</a>
-    <a href="index-en.html">English</a>
-  </div>
-
-  <div class="hero-content">
-
-    <div class="hero-logo">
-      경기도 글로벌 AI 허브 유치<br>
-      고양특례시 범시민추진위원회
-    </div>
-
-    <h1>GLOBAL AI HUB</h1>
-
-  <!-- 메인 이미지 오른쪽 상단 언어 선택 -->
+  <!-- 오른쪽 상단 언어 선택 -->
 
   <div class="hero-language">
 
@@ -661,9 +797,10 @@ footer {
 
   </div>
 
-  <!-- 메인 이미지 내부 위원회 명칭 -->
 
-  <div class="hero-header">
+  <!-- 메인 사진 중앙 내용 -->
+
+  <div class="hero-content">
 
     <div class="hero-logo">
 
@@ -672,40 +809,67 @@ footer {
 
     </div>
 
-  </div>
 
-  <!-- 메인 슬로건 -->
+    <h1>GLOBAL AI HUB</h1>
 
-  <h1>GLOBAL AI HUB</h1>
-  <h2
-    data-ko="글로벌 AI 허브는 <strong>고양특례시로!</strong>"
-    data-en="Bring the Global AI Hub <strong>to Goyang!</strong>">
-    글로벌 AI 허브는 <strong>고양특례시로!</strong>
-  </h2>
 
-  <p
-    data-ko="고양시에 성장동력을 달라!<br>고양시에 일자리를 달라!<br>시민의 힘으로, 경기도의 역량으로, 세계와 함께!"
-    data-en="A New Growth Engine for Goyang!<br>More Jobs for Goyang!<br>Powered by Citizens, Connected to the World!">
-    고양시에 성장동력을 달라!<br>
-    고양시에 일자리를 달라!<br>
-    시민의 힘으로, 경기도의 역량으로, 세계와 함께!
-  </p>
+    <h2>
+      글로벌 AI 허브는
+      <strong>고양특례시로!</strong>
+    </h2>
 
-  <div class="hero-buttons">
-    <a class="btn" href="hub.html"
-       data-ko="글로벌 AI 허브 알아보기"
-       data-en="Explore the Hub">
-       글로벌 AI 허브 알아보기
-    </a>
 
-    <a class="btn" href="participate.html"
-   data-ko="시민 참여"
-   data-en="Participate">시민 참여</a>
+    <p>
+      고양시에 성장동력을 달라!<br>
+      고양시에 일자리를 달라!<br>
+      시민의 힘으로, 경기도의 역량으로, 세계와 함께!
+    </p>
+
+
+    <div class="hero-buttons">
+
+      <a class="btn" href="hub.html">
+        글로벌 AI 허브 알아보기
+      </a>
+
+      <a class="btn" href="participate.html">
+        시민 참여
+      </a>
+
     </div>
 
-  </div><!-- hero-content -->
+  </div>
 
-</div><!-- hero -->
+</div>
+
+
+<!-- ===================================
+     파란색 메뉴
+     메인 사진 아래 배치
+=================================== -->
+
+<nav aria-label="주 메뉴">
+
+  <a href="#home">홈</a>
+
+  <a href="committee.html">위원회 소개</a>
+
+  <a href="hub.html">글로벌 AI 허브</a>
+
+  <a href="goyang.html">유치 경쟁력</a>
+
+  <a href="news.html">활동 소식</a>
+
+  <a href="history.html">활동 연혁</a>
+
+  <a href="participate.html">시민 참여</a>
+
+  <a href="gallery.html">활동 사진관</a>
+
+  <a href="library.html">정책자료실</a>
+
+</nav>
+
 
 <main>
 <!-- 주요 소식 -->
