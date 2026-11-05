@@ -488,7 +488,9 @@ function renderPhotos(category = "all") {
 
     const img = document.createElement("img");
 
-    img.src = "images/" + photo.file;
+    img.src =
+  "https://achimjoa.github.io/aihub-goyang.org/images/"
+  + photo.file;
     img.alt = photo.title;
     img.loading = "lazy";
 
