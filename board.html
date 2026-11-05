@@ -889,9 +889,31 @@ if (selectedPhotos.length === 1) {
         attachment_type: "image"
       });
 
-  if (attachmentError) {
-    throw attachmentError;
-  }
+  /* =====================================
+   첨부파일 등록 결과 확인
+===================================== */
+
+if (attachmentError) {
+
+  console.error(
+    "첨부파일 등록 오류:",
+    attachmentError
+  );
+
+  throw new Error(
+    "사진은 Storage에 저장되었지만 " +
+    "첨부정보 등록에 실패했습니다.\n" +
+    "오류 코드: " +
+    (attachmentError.code || "없음") +
+    "\n오류 내용: " +
+    attachmentError.message
+  );
+
+}
+
+console.log(
+  "첨부파일 정보 등록 성공"
+);
 
 }
 
