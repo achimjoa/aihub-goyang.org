@@ -255,6 +255,52 @@ footer {
 
 }
 
+/* =====================================
+   EVENT RECORD DESIGN
+===================================== */
+
+.event-record {
+  background: white;
+  border-left: 6px solid #0754a6;
+  border-radius: 12px;
+
+  padding: 30px;
+  margin: 30px 0;
+
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.event-record h2 {
+  color: #0754a6;
+  font-size: clamp(22px, 3vw, 30px);
+  margin-top: 0;
+}
+
+.event-record p {
+  color: #34465f;
+  line-height: 1.9;
+}
+
+.event-record .gallery {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid #dce6f2;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .event-record {
+    padding: 20px;
+  }
+
+  .event-record h2 {
+    font-size: 22px;
+  }
+
+}
+
 </style>
 
 </head>
@@ -296,34 +342,7 @@ English
 
 <main>
 
-  <!-- Launch Ceremony Photo Section -->
 
-<section class="event-record">
-
-  <h2>
-    Launch Ceremony of the
-    Goyang Citizens' Committee
-  </h2>
-
-  <p>
-    <strong>Date:</strong>
-    September 7, 2026
-  </p>
-
-  <p>
-    <strong>Venue:</strong>
-    Goyang Lake Park Flower Exhibition Center
-  </p>
-
-  <p>
-    The Goyang Citizens' Committee
-    officially launched its campaign
-    to bring the Global AI Hub to Goyang.
-  </p>
-
-  <div class="gallery" id="launch-gallery"></div>
-
-</section>
 
 <div class="intro">
 
@@ -373,6 +392,35 @@ Arts & Culture
 
 <div class="gallery" id="gallery"></div>
 
+  <!-- Launch Ceremony Photo Section -->
+
+<section class="event-record">
+
+  <h2>
+    Launch Ceremony of the
+    Goyang Citizens' Committee
+  </h2>
+
+  <p>
+    <strong>Date:</strong>
+    September 7, 2026
+  </p>
+
+  <p>
+    <strong>Venue:</strong>
+    Goyang Lake Park Flower Exhibition Center
+  </p>
+
+  <p>
+    The Goyang Citizens' Committee
+    officially launched its campaign
+    to bring the Global AI Hub to Goyang.
+  </p>
+
+  <div class="gallery" id="launch-gallery"></div>
+
+</section>
+  
 </main>
 
 <!-- Image Viewer -->
@@ -485,69 +533,152 @@ category: "promotion"
 
 /* Render photos */
 
+/* =====================================
+   EVENT-BASED PHOTO GALLERY
+===================================== */
+
+/* Launch Ceremony Photos */
+
+const launchFiles = [
+  "activity-03.jpg",
+  "launch-02.jpg",
+  "launch-03.jpg",
+  "launch-04.jpg",
+  "launch-05.jpg"
+];
+
+
+/* Create Photo Card */
+
+function createPhotoCard(photo) {
+
+  const card = document.createElement("div");
+  card.className = "photo";
+
+  const imageArea = document.createElement("div");
+
+  imageArea.innerHTML = `
+    <div class="photo-placeholder">
+      <div class="icon">📷</div>
+      <p>Photo Coming Soon</p>
+    </div>
+  `;
+
+  const img = document.createElement("img");
+
+  img.onload = function() {
+
+    imageArea.innerHTML = "";
+
+    imageArea.appendChild(img);
+
+    img.onclick = () =>
+      openPhoto(img.src, photo.title);
+
+  };
+
+  img.onerror = function() {
+
+    imageArea.innerHTML = `
+      <div class="photo-placeholder">
+        <div class="icon">📷</div>
+        <p>Photo Coming Soon</p>
+      </div>
+    `;
+
+  };
+
+  img.alt = photo.title;
+  img.loading = "lazy";
+
+  /* Existing working image path */
+
+  img.src =
+    "https://achimjoa.github.io/aihub-goyang.org/images/"
+    + photo.file;
+
+  const caption = document.createElement("p");
+
+  caption.className = "photo-title";
+  caption.textContent = photo.title;
+
+  card.appendChild(imageArea);
+  card.appendChild(caption);
+
+  return card;
+
+}
+
+
+/* Render Photos */
+
 function renderPhotos(category = "all") {
 
-const gallery = document.getElementById("gallery");
+  const gallery =
+    document.getElementById("gallery");
 
-gallery.innerHTML = "";
+  const launchGallery =
+    document.getElementById("launch-gallery");
 
-const selected = photos.filter(photo =>
-category === "all" || photo.category === category
-);
+  const launchSection =
+    document.querySelector(".event-record");
 
-selected.forEach(photo => {
+  if (!gallery || !launchGallery || !launchSection) {
+    return;
+  }
 
-const card = document.createElement("div");
-card.className = "photo";
+  gallery.innerHTML = "";
+  launchGallery.innerHTML = "";
 
-const imageArea = document.createElement("div");
+  /* Show Launch Ceremony */
 
-imageArea.innerHTML = `
-<div class="photo-placeholder">
-<div class="icon">📷</div>
-<p>Photo Coming Soon</p>
-</div>
-`;
+  const showLaunch =
+    category === "all" ||
+    category === "solidarity";
 
-const img = document.createElement("img");
+  launchSection.style.display =
+    showLaunch ? "block" : "none";
 
-img.onload = function() {
+  launchGallery.style.display =
+    showLaunch ? "grid" : "none";
 
-imageArea.innerHTML = "";
-imageArea.appendChild(img);
 
-img.onclick = () =>
-openPhoto(img.src, photo.title);
+  /* Launch Ceremony Photos */
 
-};
+  if (showLaunch) {
 
-img.onerror = function() {
+    photos
+      .filter(photo =>
+        launchFiles.includes(photo.file)
+      )
+      .forEach(photo => {
 
-imageArea.innerHTML = `
-<div class="photo-placeholder">
-<div class="icon">📷</div>
-<p>Photo Coming Soon</p>
-</div>
-`;
+        launchGallery.appendChild(
+          createPhotoCard(photo)
+        );
 
-};
+      });
 
-img.alt = photo.title;
-img.loading = "lazy";
-img.src =
-  "https://achimjoa.github.io/aihub-goyang.org/images/"
-  + photo.file;
+  }
 
-const caption = document.createElement("p");
-caption.className = "photo-title";
-caption.textContent = photo.title;
 
-card.appendChild(imageArea);
-card.appendChild(caption);
+  /* Other Activity Photos */
 
-gallery.appendChild(card);
+  photos
+    .filter(photo =>
+      !launchFiles.includes(photo.file)
+    )
+    .filter(photo =>
+      category === "all" ||
+      photo.category === category
+    )
+    .forEach(photo => {
 
-});
+      gallery.appendChild(
+        createPhotoCard(photo)
+      );
+
+    });
 
 }
 
