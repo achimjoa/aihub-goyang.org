@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>Photo Gallery | Global AI Hub Goyang</title>
 
 <style>
+
+/* ===============================
+   BASIC
+================================ */
 
 * {
   box-sizing: border-box;
@@ -24,7 +26,9 @@ body {
   line-height: 1.7;
 }
 
-/* Header */
+/* ===============================
+   HEADER
+================================ */
 
 header {
   background: #0754a6;
@@ -40,10 +44,9 @@ header h1 {
 
 header p {
   margin: 10px 0 20px;
-  font-size: 16px;
 }
 
-/* Language selection */
+/* LANGUAGE */
 
 .language {
   display: flex;
@@ -59,7 +62,6 @@ header p {
   border-radius: 6px;
   color: white;
   text-decoration: none;
-  font-size: 14px;
 }
 
 .language a.active {
@@ -67,7 +69,7 @@ header p {
   color: #0754a6;
 }
 
-/* Back to Home */
+/* HOME BUTTON */
 
 .home-return {
   text-align: center;
@@ -81,7 +83,6 @@ header p {
   border: 2px solid white;
   border-radius: 8px;
   padding: 12px 28px;
-  font-size: 16px;
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 3px 10px rgba(0,0,0,0.15);
@@ -92,13 +93,17 @@ header p {
   border-color: #ffe44d;
 }
 
-/* Main */
+/* ===============================
+   MAIN
+================================ */
 
 main {
   max-width: 1200px;
   margin: auto;
   padding: 35px 15px;
 }
+
+/* INTRO */
 
 .intro {
   text-align: center;
@@ -113,7 +118,7 @@ main {
   color: #46566d;
 }
 
-/* Filters */
+/* FILTERS */
 
 .filters {
   display: flex;
@@ -138,17 +143,60 @@ main {
   color: white;
 }
 
-/* Gallery */
+/* ===============================
+   EVENT RECORD
+================================ */
+
+.event-record {
+  background: white;
+  border-left: 6px solid #0754a6;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 30px 0;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.event-record h2 {
+  color: #0754a6;
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 15px 0;
+}
+
+.event-date {
+  display: inline-block;
+  background: #eaf4ff;
+  color: #0754a6;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.event-location {
+  font-weight: bold;
+  color: #46566d;
+}
+
+.event-description {
+  line-height: 1.9;
+  color: #34465f;
+}
+
+/* ===============================
+   GALLERY
+================================ */
 
 .gallery {
   display: grid;
   grid-template-columns:
     repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  margin-top: 25px;
 }
 
 .photo {
   background: white;
+  border: 1px solid #e1e8f2;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 3px 12px rgba(0,0,0,0.1);
@@ -162,29 +210,20 @@ main {
   cursor: pointer;
 }
 
-.photo-placeholder {
-  width: 100%;
-  height: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #eaf1fa;
-  color: #63748a;
-  text-align: center;
-}
-
-.photo-placeholder .icon {
-  font-size: 38px;
-}
-
 .photo-title {
   padding: 15px;
   margin: 0;
   font-weight: bold;
 }
 
-/* Image Viewer */
+.photo-description {
+  padding: 0 15px 15px;
+  margin: 0;
+}
+
+/* ===============================
+   PHOTO VIEWER
+================================ */
 
 .viewer {
   display: none;
@@ -213,7 +252,7 @@ main {
   cursor: pointer;
 }
 
-/* Footer */
+/* FOOTER */
 
 footer {
   background: #10315e;
@@ -223,7 +262,7 @@ footer {
   margin-top: 40px;
 }
 
-/* Mobile */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -231,65 +270,9 @@ footer {
     padding: 28px 12px;
   }
 
-  header p {
-    font-size: 14px;
-  }
-
-  .home-return a {
-    padding: 11px 20px;
-    font-size: 14px;
-  }
-
   main {
     padding: 25px 12px;
   }
-
-  .filters button {
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-/* =====================================
-   EVENT RECORD DESIGN
-===================================== */
-
-.event-record {
-  background: white;
-  border-left: 6px solid #0754a6;
-  border-radius: 12px;
-
-  padding: 30px;
-  margin: 30px 0;
-
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}
-
-.event-record h2 {
-  color: #0754a6;
-  font-size: clamp(22px, 3vw, 30px);
-  margin-top: 0;
-}
-
-.event-record p {
-  color: #34465f;
-  line-height: 1.9;
-}
-
-.event-record .gallery {
-  margin-top: 25px;
-  padding-top: 25px;
-  border-top: 1px solid #dce6f2;
-}
-
-/* Mobile */
-
-@media (max-width: 600px) {
 
   .event-record {
     padding: 20px;
@@ -299,82 +282,25 @@ footer {
     font-size: 22px;
   }
 
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .filters button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
 }
 
-/* =====================================
-   영문 사진관 최종 화면 순서
-===================================== */
-
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-/* 1. 사진관 소개 */
-
-main > .intro {
-  order: 1 !important;
-}
-
-/* 2. 사진 분류 메뉴 */
-
-main > .filters {
-  order: 2 !important;
-}
-
-/* 3. 국회 유치 선언식 */
-
-main > #declaration-event {
-  order: 3 !important;
-}
-
-/* 4. 평화공존 시민토론회 */
-
-main > .event-record:has(
-  img[src*="peace-forum-20260825"]
-) {
-  order: 4 !important;
-}
-
-/* 5. 범시민추진위원회 발대식 */
-
-main > .event-record:has(#launch-gallery) {
-  order: 5 !important;
-}
-
-/* 6. 발대식 사진 */
-
-main > #launch-gallery {
-  order: 6 !important;
-}
-
-/* 7. 기타 활동 사진 */
-
-main > #gallery {
-  order: 7 !important;
-}
-
-/* 8. 고양 글로벌 AI 허브 포럼 */
-
-main > .event-record:has(
-  img[src*="forum-20261008"]
-) {
-  order: 8 !important;
-}
-
-/* 9. 고양혁신전략세미나 */
-
-main > .event-record:has(
-  img[src*="seminar-20261020"]
-) {
-  order: 9 !important;
-}
-  
 </style>
-
 </head>
 
 <body>
+
+<!-- ===============================
+     HEADER
+================================ -->
 
 <header>
 
@@ -392,8 +318,8 @@ the Global AI Hub in Gyeonggi Province
 </a>
 
 <a href="gallery-en.html"
-class="active"
-aria-current="page">
+   class="active"
+   aria-current="page">
 English
 </a>
 
@@ -409,190 +335,11 @@ English
 
 </header>
 
-<!-- =====================================
-August 25, 2026
-UN Global AI Hub Declaration Ceremony
-===================================== -->
-
-<section class="event-record" id="declaration-event">
-
-  <div class="event-header">
-
-    <span class="event-date">
-      August 25, 2026 · 10:00 AM
-    </span>
-
-    <h2>
-      Goyang City's Declaration Ceremony
-      for Hosting the UN Global AI Hub
-    </h2>
-
-    <p class="event-location">
-      📍 National Assembly Members' Office Building,
-      Conference Room No. 2
-    </p>
-
-    <p>
-      <strong>Hosted by:</strong>
-      National Assembly Members
-      Kim Sung-hoe, Han Jun-ho,
-      Lee Ki-heon, and Kim Young-hwan
-    </p>
-
-    <p>
-      <strong>Organized by:</strong>
-      Goyang Special City and
-      Goyang Research Institute
-    </p>
-
-    <p class="event-description">
-      On August 25, 2026, Goyang Special City
-      held a declaration ceremony at the
-      National Assembly to demonstrate its
-      commitment to hosting the UN Global AI Hub.
-      <br><br>
-      The event brought together lawmakers,
-      local government representatives,
-      and community members to express
-      their collective support for Goyang's bid.
-    </p>
-
-  </div>
-
-  <div class="gallery">
-
-    <div class="photo">
-      <img src="images/declaration-01.jpg"
-           alt="Speech at the declaration ceremony"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Declaration Ceremony Speech
-      </p>
-    </div>
-
-    <div class="photo">
-      <img src="images/declaration-02.jpg"
-           alt="Participants supporting the Global AI Hub"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Participants Expressing Their Support
-      </p>
-    </div>
-
-    <div class="photo">
-      <img src="images/declaration-03.jpg"
-           alt="Commemorative photograph"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Declaration Ceremony Group Photo
-      </p>
-    </div>
-
-    <div class="photo">
-      <img src="images/declaration-04.jpg"
-           alt="Declaration ceremony proceedings"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Declaration Ceremony Proceedings
-      </p>
-    </div>
-
-    <div class="photo">
-      <img src="images/declaration-05.jpg"
-           alt="Participants attending the ceremony"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Participants at the Ceremony
-      </p>
-    </div>
-
-    <div class="photo">
-      <img src="images/declaration-06.jpg"
-           alt="Overview of the declaration ceremony"
-           loading="lazy"
-           onclick="openPhoto(this.src,this.alt)">
-      <p class="photo-title">
-        Declaration Ceremony Venue
-      </p>
-    </div>
-
-  </div>
-
-</section>
-  
 <main>
 
-<!-- =====================================
-August 25, 2026
-Citizens' Forum on Peaceful Coexistence
-on the Korean Peninsula
-===================================== -->
-
-<section class="event-record">
-
-  <h2>
-    August 25, 2026 —
-    Citizens' Forum on Peaceful Coexistence
-    on the Korean Peninsula
-  </h2>
-
-  <p>
-    <strong>Date:</strong>
-    August 25, 2026
-  </p>
-
-  <p>
-    <strong>Venue:</strong>
-    Gawaji Grand Auditorium,
-    Ilsanseo-gu Office,
-    Goyang, Republic of Korea
-  </p>
-
-  <p>
-    A citizens' forum was held
-    to discuss peaceful coexistence
-    on the Korean Peninsula.
-  </p>
-
-  <p>
-    This event is documented
-    as part of Goyang's civic history
-    of peace and coexistence.
-  </p>
-
-  <div class="photo">
-
-  <img
-    src="images/peace-forum-20260825.png"
-    alt="Policy presentation by Hong Young-pyo at the Citizens' Forum on Peaceful Coexistence, August 25, 2026"
-    loading="lazy"
-    onclick="openPhoto(this.src, this.alt)">
-
-  <p class="photo-title">
-    Policy Presentation on Peaceful Coexistence
-  </p>
-
-  <p style="padding:0 15px 15px; margin:0;">
-    Presenter: Hong Young-pyo<br>
-    Co-Representative, Goyang Citizens' Association
-  </p>
-
-  <p style="padding:0 15px 15px; margin:0;">
-    Topic: Utilizing the Northeast Asia Peace Archives
-    and Building a Self-Sustaining Ecosystem in Goyang
-    through Community Engagement
-  </p>
-
-</div>
-
-  </div>
-
-</section>
+<!-- ===============================
+     1. INTRODUCTION
+================================ -->
 
 <div class="intro">
 
@@ -607,215 +354,387 @@ the Global AI Hub to Goyang.
 
 </div>
 
-<!-- Photo Filters -->
+<!-- ===============================
+     2. PHOTO FILTERS
+================================ -->
 
 <div class="filters">
 
 <button class="active"
-onclick="filterPhotos('all',this)">
+        onclick="filterPhotos('all',this)">
 All
 </button>
 
-<button
-onclick="filterPhotos('signature',this)">
+<button onclick="filterPhotos('signature',this)">
 Signature Campaign
 </button>
 
-<button
-onclick="filterPhotos('solidarity',this)">
+<button onclick="filterPhotos('solidarity',this)">
 Civic Solidarity
 </button>
 
-<button
-onclick="filterPhotos('promotion',this)">
+<button onclick="filterPhotos('promotion',this)">
 Promotion
 </button>
 
-<button
-onclick="filterPhotos('culture',this)">
+<button onclick="filterPhotos('culture',this)">
 Arts & Culture
 </button>
 
 </div>
 
-<!-- Gallery -->
+<!-- ===============================
+     3. DECLARATION CEREMONY
+     AUGUST 25, 2026
+================================ -->
 
-<div class="gallery" id="gallery"></div>
+<section class="event-record"
+         id="declaration-event"
+         data-category="solidarity">
 
-  <!-- Launch Ceremony Photo Section -->
+<span class="event-date">
+August 25, 2026 · 10:00 AM
+</span>
 
-<section class="event-record">
+<h2>
+Goyang City's Declaration Ceremony
+for Hosting the UN Global AI Hub
+</h2>
 
-  <h2>
-    Launch Ceremony of the
-    Goyang Citizens' Committee
-  </h2>
+<p class="event-location">
+📍 National Assembly Members' Office Building,
+Conference Room No. 2
+</p>
 
-  <p>
-    <strong>Date:</strong>
-    September 7, 2026
-  </p>
+<p>
+<strong>Hosted by:</strong>
+National Assembly Members
+Kim Sung-hoe, Han Jun-ho,
+Lee Ki-heon, and Kim Young-hwan
+</p>
 
-  <p>
-    <strong>Venue:</strong>
-    Goyang Lake Park Flower Exhibition Center
-  </p>
+<p>
+<strong>Organized by:</strong>
+Goyang Special City and
+Goyang Research Institute
+</p>
 
-  <p>
-    The Goyang Citizens' Committee
-    officially launched its campaign
-    to bring the Global AI Hub to Goyang.
-  </p>
+<p class="event-description">
+On August 25, 2026,
+Goyang Special City held a declaration ceremony
+at the National Assembly to demonstrate
+its commitment to hosting the UN Global AI Hub.
+</p>
 
-  <div class="gallery" id="launch-gallery"></div>
+<p class="event-description">
+Lawmakers, local government representatives,
+and community members expressed their
+collective support for Goyang's bid.
+</p>
+
+<div class="gallery">
+
+<div class="photo">
+<img src="images/declaration-01.jpg"
+     alt="Declaration Ceremony Speech"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Declaration Ceremony Speech
+</p>
+</div>
+
+<div class="photo">
+<img src="images/declaration-02.jpg"
+     alt="Participants Expressing Their Support"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Participants Expressing Their Support
+</p>
+</div>
+
+<div class="photo">
+<img src="images/declaration-03.jpg"
+     alt="Declaration Ceremony Group Photo"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Declaration Ceremony Group Photo
+</p>
+</div>
+
+<div class="photo">
+<img src="images/declaration-04.jpg"
+     alt="Declaration Ceremony Proceedings"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Declaration Ceremony Proceedings
+</p>
+</div>
+
+<div class="photo">
+<img src="images/declaration-05.jpg"
+     alt="Participants at the Ceremony"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Participants at the Ceremony
+</p>
+</div>
+
+<div class="photo">
+<img src="images/declaration-06.jpg"
+     alt="Declaration Ceremony Venue"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+<p class="photo-title">
+Declaration Ceremony Venue
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ===============================
+     4. PEACEFUL COEXISTENCE FORUM
+     AUGUST 25, 2026
+================================ -->
+
+<section class="event-record"
+         id="peace-event"
+         data-category="solidarity">
+
+<span class="event-date">
+August 25, 2026
+</span>
+
+<h2>
+Citizens' Forum on Peaceful Coexistence
+on the Korean Peninsula
+</h2>
+
+<p class="event-location">
+📍 Gawaji Grand Auditorium,
+Ilsanseo-gu Office, Goyang
+</p>
+
+<p>
+A citizens' forum was held
+to discuss peaceful coexistence
+on the Korean Peninsula.
+</p>
+
+<p>
+This event is documented
+as part of Goyang's civic history
+of peace and coexistence.
+</p>
+
+<div class="gallery">
+
+<div class="photo">
+
+<img
+src="images/peace-forum-20260825.png"
+alt="Policy presentation by Hong Young-pyo"
+loading="lazy"
+onclick="openPhoto(this.src,this.alt)">
+
+<p class="photo-title">
+Policy Presentation on Peaceful Coexistence
+</p>
+
+<p class="photo-description">
+Presenter: Hong Young-pyo<br>
+Co-Representative,
+Goyang Citizens' Association
+</p>
+
+<p class="photo-description">
+Topic: Utilizing the Northeast Asia Peace Archives
+and Building a Self-Sustaining Ecosystem
+in Goyang through Community Engagement
+</p>
+
+</div>
+
+</div>
 
 </section>
 
-<!-- =====================================
-     October 8, 2026
-     Goyang Global AI Hub Forum
-===================================== -->
+<!-- ===============================
+     5. LAUNCH CEREMONY
+     SEPTEMBER 7, 2026
+================================ -->
 
-<section class="event-record">
+<section class="event-record"
+         id="launch-event"
+         data-category="solidarity">
 
-  <h2>
-    October 8, 2026 —
-    Goyang Global AI Hub Forum
-  </h2>
+<span class="event-date">
+September 7, 2026
+</span>
 
-  <p>
-    <strong>Date:</strong>
-    October 8, 2026, 2:00 PM
-  </p>
+<h2>
+Launch Ceremony of the
+Goyang Citizens' Committee
+</h2>
 
-  <p>
-    <strong>Venue:</strong>
-    G-ROUND 877, 10th Floor,
-    Seongsa Creative Innovation Campus,
-    Goyang
-  </p>
+<p class="event-location">
+📍 Goyang Lake Park Flower Exhibition Center
+</p>
 
-  <p>
-    <strong>Organizers:</strong>
-    Goyang Special City and
-    Goyang Research Institute
-  </p>
+<p>
+The Goyang Citizens' Committee
+officially launched its campaign
+to bring the Global AI Hub to Goyang.
+</p>
 
-  <p>
-    The Goyang Global AI Hub Forum
-    brought together participants
-    to discuss strategies and
-    cooperation opportunities
-    for attracting the Global AI Hub
-    to Goyang.
-  </p>
-
-  <div class="gallery">
-
-    <div class="photo">
-
-      <img
-        src="images/forum-20261008.png"
-        alt="Goyang Global AI Hub Forum, October 8, 2026"
-        loading="lazy"
-        onclick="openPhoto(this.src, this.alt)">
-
-      <p class="photo-title">
-        Official Forum Poster
-      </p>
-
-    </div>
-
-  </div>
+<div class="gallery" id="launch-gallery"></div>
 
 </section>
 
+<!-- ===============================
+     6. GLOBAL AI HUB FORUM
+     OCTOBER 8, 2026
+================================ -->
 
-<!-- =====================================
-     October 20, 2026
-     7th Goyang Innovation Strategy Seminar
-===================================== -->
+<section class="event-record"
+         id="forum-event"
+         data-category="promotion">
 
-<section class="event-record">
+<span class="event-date">
+October 8, 2026 · 2:00 PM
+</span>
 
-  <h2>
-    October 20, 2026 —
-    7th Goyang Innovation Strategy Seminar
-  </h2>
+<h2>
+Goyang Global AI Hub Forum
+</h2>
 
-  <p>
-    <strong>Date:</strong>
-    October 20, 2026,
-    7:30–9:30 AM
-  </p>
+<p class="event-location">
+📍 G-ROUND 877, 10th Floor,
+Seongsa Creative Innovation Campus,
+Goyang
+</p>
 
-  <p>
-    <strong>Venue:</strong>
-    G-ROUND 877, 10th Floor,
-    Seongsa Creative Innovation Campus,
-    Goyang
-  </p>
+<p>
+<strong>Organizers:</strong>
+Goyang Special City and
+Goyang Research Institute
+</p>
 
-  <p>
-    <strong>Organizers:</strong>
-    Goyang Research Institute and
-    Goyang Chamber of Commerce and Industry
-  </p>
+<p>
+The forum discussed strategies
+and cooperation opportunities
+for attracting the Global AI Hub
+to Goyang.
+</p>
 
-  <p>
-    The seminar examined strategies
-    for attracting the Global AI Hub
-    to Goyang, drawing on experiences
-    in hosting international organizations.
-  </p>
+<div class="gallery">
 
-  <p>
-    During the panel discussion,
-    the Citizens' Committee emphasized
-    the importance of finalizing
-    a practical hosting strategy,
-    strengthening institutional cooperation,
-    establishing an implementation team,
-    and securing verifiable results.
-  </p>
+<div class="photo">
 
-  <div class="gallery">
+<img src="images/forum-20261008.png"
+     alt="Goyang Global AI Hub Forum"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
 
-    <div class="photo">
+<p class="photo-title">
+Official Forum Poster
+</p>
 
-      <img
-        src="images/seminar-20261020.png"
-        alt="7th Goyang Innovation Strategy Seminar, October 20, 2026"
-        loading="lazy"
-        onclick="openPhoto(this.src, this.alt)">
+</div>
 
-      <p class="photo-title">
-        Official Seminar Program
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
-  
+
+<!-- ===============================
+     7. INNOVATION STRATEGY SEMINAR
+     OCTOBER 20, 2026
+================================ -->
+
+<section class="event-record"
+         id="seminar-event"
+         data-category="promotion">
+
+<span class="event-date">
+October 20, 2026 · 7:30–9:30 AM
+</span>
+
+<h2>
+7th Goyang Innovation Strategy Seminar
+</h2>
+
+<p class="event-location">
+📍 G-ROUND 877, 10th Floor,
+Seongsa Creative Innovation Campus,
+Goyang
+</p>
+
+<p>
+<strong>Organizers:</strong>
+Goyang Research Institute and
+Goyang Chamber of Commerce and Industry
+</p>
+
+<p>
+The seminar examined strategies
+for attracting the Global AI Hub
+to Goyang.
+</p>
+
+<p>
+During the panel discussion,
+the Citizens' Committee emphasized
+the importance of institutional cooperation,
+an implementation team,
+and practical results.
+</p>
+
+<div class="gallery">
+
+<div class="photo">
+
+<img src="images/seminar-20261020.png"
+     alt="7th Goyang Innovation Strategy Seminar"
+     loading="lazy"
+     onclick="openPhoto(this.src,this.alt)">
+
+<p class="photo-title">
+Official Seminar Program
+</p>
+
+</div>
+
+</div>
+
+</section>
+
 </main>
 
-<!-- Image Viewer -->
+<!-- ===============================
+     PHOTO VIEWER
+================================ -->
 
 <div class="viewer"
-id="viewer"
-role="dialog"
-aria-modal="true"
-aria-label="Enlarged photo">
+     id="viewer"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Enlarged photo">
 
 <button class="close"
-aria-label="Close"
-onclick="closePhoto()">×</button>
+        aria-label="Close"
+        onclick="closePhoto()">×</button>
 
 <img id="largePhoto" alt="Enlarged photo">
 
 </div>
+
+<!-- FOOTER -->
 
 <footer>
 
@@ -832,318 +751,47 @@ AI for All · AI for Humanity
 
 <script>
 
-/* Shared photo list */
+/* ===============================
+   LAUNCH CEREMONY PHOTOS
+================================ */
 
-const photos = [
+const launchPhotos = [
 
 {
-file: "activity-01.jpg",
-title: "Citizen Signature Campaign",
-category: "signature"
+file: "activity-03.jpg",
+title: "Launch Ceremony"
 },
 
 {
-file: "activity-02.jpg",
-title: "Citizen Participation",
-category: "signature"
+file: "launch-02.jpg",
+title: "Launch Ceremony — Venue"
 },
 
 {
-  file: "activity-03.jpg",
-  title: "September 7, 2026 — Launch Ceremony",
-  category: "solidarity"
+file: "launch-03.jpg",
+title: "Launch Ceremony — Participants"
 },
 
 {
-  file: "launch-02.jpg",
-  title: "Launch Ceremony — Venue",
-  category: "solidarity"
+file: "launch-04.jpg",
+title: "Launch Ceremony — Main Event"
 },
 
 {
-  file: "launch-03.jpg",
-  title: "Launch Ceremony — Participants",
-  category: "solidarity"
-},
-
-{
-  file: "launch-04.jpg",
-  title: "Launch Ceremony — Main Event",
-  category: "solidarity"
-},
-
-{
-  file: "launch-05.jpg",
-  title: "Launch Ceremony — Group Photo",
-  category: "solidarity"
-},
-{
-file: "activity-04.jpg",
-title: "Global AI Hub Promotion",
-category: "promotion"
-},
-
-{
-file: "activity-05.jpg",
-title: "Signature Campaign at Local Festival",
-category: "signature"
-},
-
-{
-file: "culture-01.jpg",
-title: "Arts and Culture in Goyang",
-category: "culture"
-},
-
-{
-file: "culture-02.jpg",
-title: "Goyang Lake Arts Festival Drone Show",
-category: "culture"
-},
-
-{
-file: "promotion-01.jpg",
-title: "Global AI Hub Promotional Materials",
-category: "promotion"
+file: "launch-05.jpg",
+title: "Launch Ceremony — Group Photo"
 }
 
 ];
 
-/* Render photos */
+/* CREATE LAUNCH PHOTO CARDS */
 
-/* =====================================
-   EVENT-BASED PHOTO GALLERY
-===================================== */
-
-/* Launch Ceremony Photos */
-
-const launchFiles = [
-  "activity-03.jpg",
-  "launch-02.jpg",
-  "launch-03.jpg",
-  "launch-04.jpg",
-  "launch-05.jpg"
-];
-
-
-/* Create Photo Card */
-
-function createPhotoCard(photo) {
-
-  const card = document.createElement("div");
-  card.className = "photo";
-
-  const imageArea = document.createElement("div");
-
-  imageArea.innerHTML = `
-    <div class="photo-placeholder">
-      <div class="icon">📷</div>
-      <p>Photo Coming Soon</p>
-    </div>
-  `;
-
-  const img = document.createElement("img");
-
-  img.onload = function() {
-
-    imageArea.innerHTML = "";
-
-    imageArea.appendChild(img);
-
-    img.onclick = () =>
-      openPhoto(img.src, photo.title);
-
-  };
-
-  img.onerror = function() {
-
-    imageArea.innerHTML = `
-      <div class="photo-placeholder">
-        <div class="icon">📷</div>
-        <p>Photo Coming Soon</p>
-      </div>
-    `;
-
-  };
-
-  img.alt = photo.title;
-  img.loading = "lazy";
-
-  /* Existing working image path */
-
-  img.src =
-    "https://achimjoa.github.io/aihub-goyang.org/images/"
-    + photo.file;
-
-  const caption = document.createElement("p");
-
-  caption.className = "photo-title";
-  caption.textContent = photo.title;
-
-  card.appendChild(imageArea);
-  card.appendChild(caption);
-
-  return card;
-
-}
-
-
-/* Render Photos */
-
-function renderPhotos(category = "all") {
+function renderLaunchPhotos() {
 
   const gallery =
-    document.getElementById("gallery");
-
-  const launchGallery =
     document.getElementById("launch-gallery");
-
-  const launchSection =
-    document.querySelector(".event-record");
-
-  if (!gallery || !launchGallery || !launchSection) {
-    return;
-  }
 
   gallery.innerHTML = "";
-  launchGallery.innerHTML = "";
-
-  /* Show Launch Ceremony */
-
-  const showLaunch =
-    category === "all" ||
-    category === "solidarity";
-
-  launchSection.style.display =
-    showLaunch ? "block" : "none";
-
-  launchGallery.style.display =
-    showLaunch ? "grid" : "none";
-
-
-  /* Launch Ceremony Photos */
-
-  if (showLaunch) {
-
-    photos
-      .filter(photo =>
-        launchFiles.includes(photo.file)
-      )
-      .forEach(photo => {
-
-        launchGallery.appendChild(
-          createPhotoCard(photo)
-        );
-
-      });
-
-  }
-
-
-  /* Other Activity Photos */
-
-  photos
-    .filter(photo =>
-      !launchFiles.includes(photo.file)
-    )
-    .filter(photo =>
-      category === "all" ||
-      photo.category === category
-    )
-    .forEach(photo => {
-
-      gallery.appendChild(
-        createPhotoCard(photo)
-      );
-
-    });
-
-}
-
-/* Filter */
-
-function filterPhotos(category, button) {
-
-document.querySelectorAll(".filters button")
-.forEach(b => b.classList.remove("active"));
-
-button.classList.add("active");
-
-renderPhotos(category);
-
-}
-
-/* Open Photo */
-
-function openPhoto(src, title) {
-
-const viewer = document.getElementById("viewer");
-const largePhoto = document.getElementById("largePhoto");
-
-largePhoto.src = src;
-largePhoto.alt = title;
-
-viewer.style.display = "flex";
-
-}
-
-/* Close Photo */
-
-function closePhoto() {
-
-document.getElementById("viewer").style.display = "none";
-
-}
-
-/* Escape key */
-
-document.addEventListener("keydown", event => {
-
-if (event.key === "Escape") {
-closePhoto();
-}
-
-});
-
-/* Click background */
-
-document.getElementById("viewer")
-.addEventListener("click", event => {
-
-if (event.target.id === "viewer") {
-closePhoto();
-}
-
-});
-
-/* Initial display */
-
-renderPhotos();
-
-  /* =====================================
-   Launch Ceremony Photos
-===================================== */
-
-function showLaunchPhotos() {
-
-  const launchGallery =
-    document.getElementById("launch-gallery");
-
-  if (!launchGallery) return;
-
-  launchGallery.innerHTML = "";
-
-  const launchFiles = [
-    "activity-03.jpg",
-    "launch-02.jpg",
-    "launch-03.jpg",
-    "launch-04.jpg",
-    "launch-05.jpg"
-  ];
-
-  const launchPhotos = photos.filter(photo =>
-    launchFiles.includes(photo.file)
-  );
 
   launchPhotos.forEach(photo => {
 
@@ -1152,10 +800,7 @@ function showLaunchPhotos() {
 
     const img = document.createElement("img");
 
-    img.src =
-      "https://achimjoa.github.io/aihub-goyang.org/images/"
-      + photo.file;
-
+    img.src = "images/" + photo.file;
     img.alt = photo.title;
     img.loading = "lazy";
 
@@ -1169,15 +814,85 @@ function showLaunchPhotos() {
     card.appendChild(img);
     card.appendChild(caption);
 
-    launchGallery.appendChild(card);
+    gallery.appendChild(card);
 
   });
 
 }
 
-/* Display Launch Ceremony Photos */
+/* ===============================
+   FILTER EVENTS
+================================ */
 
-showLaunchPhotos();
+function filterPhotos(category, button) {
+
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  document.querySelectorAll(".event-record")
+    .forEach(section => {
+
+      const eventCategory =
+        section.dataset.category;
+
+      section.style.display =
+        category === "all" ||
+        eventCategory === category
+        ? "block"
+        : "none";
+
+    });
+
+}
+
+/* ===============================
+   PHOTO VIEWER
+================================ */
+
+function openPhoto(src, title) {
+
+  const viewer =
+    document.getElementById("viewer");
+
+  const largePhoto =
+    document.getElementById("largePhoto");
+
+  largePhoto.src = src;
+  largePhoto.alt = title;
+
+  viewer.style.display = "flex";
+
+}
+
+function closePhoto() {
+
+  document.getElementById("viewer")
+    .style.display = "none";
+
+}
+
+document.addEventListener("keydown", event => {
+
+  if (event.key === "Escape") {
+    closePhoto();
+  }
+
+});
+
+document.getElementById("viewer")
+  .addEventListener("click", event => {
+
+    if (event.target.id === "viewer") {
+      closePhoto();
+    }
+
+  });
+
+/* INITIAL DISPLAY */
+
+renderLaunchPhotos();
 
 </script>
 
