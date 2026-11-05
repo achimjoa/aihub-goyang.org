@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>회원관리 | 글로벌 AI 허브</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  margin: 0 0 12px;
+}
+
+header p {
+  line-height: 1.7;
+}
+
+.home-return {
+  margin-top: 25px;
+}
+
+.home-return a {
+  display: inline-block;
+  padding: 12px 25px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.admin-panel {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+h2 {
+  color: #0754a6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+th, td {
+  border-bottom: 1px solid #dce6f2;
+  padding: 14px;
+  text-align: left;
+}
+
+th {
+  background: #eaf4ff;
+}
+
+button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 3px;
+}
+
+.approve {
+  background: #0754a6;
+  color: white;
+}
+
+.reject {
+  background: #b91c1c;
+  color: white;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#message {
+  white-space: pre-line;
+  margin-top: 20px;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin-top: 40px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .admin-panel {
+    padding: 18px;
+  }
+
+  th, td {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>관리자 회원관리</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <div class="home-return">
+    <a href="index.html">← 홈페이지로 돌아가기</a>
+  </div>
+</header>
+
+<main>
+
+<section class="admin-panel">
+
+  <h2>회원가입 신청 관리</h2>
+
+  <p>
+    관리자만 회원가입 신청자를 확인하고
+    승인하거나 거절할 수 있습니다.
+  </p>
+
+  <p id="message" role="status" aria-live="polite">
+    관리자 권한을 확인하고 있습니다.
+  </p>
+
+  <div class="table-wrap" id="memberArea" hidden>
+
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>회원 역할</th>
+          <th>승인 상태</th>
+          <th>관리</th>
+        </tr>
+      </thead>
+
+      <tbody id="memberList"></tbody>
+    </table>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* Supabase 연결 */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const message = document.getElementById("message");
+const memberList = document.getElementById("memberList");
+const memberArea = document.getElementById("memberArea");
+
+let currentAdminId = null;
+let busy = false;
+
+/* 안내 메시지 */
+
+function showMessage(text, isError = false) {
+  message.textContent = text;
+  message.style.color =
+    isError ? "#b91c1c" : "#0754a6";
+}
+
+/* 관리자 확인 */
+
+async function checkAdmin() {
+
+  const { data: userData, error: userError } =
+    await supabase.auth.getUser();
+
+  if (userError || !userData.user) {
+    showMessage(
+      "로그인이 필요합니다. 로그인 페이지로 이동해 주세요.",
+      true
+    );
+    return false;
+  }
+
+  currentAdminId = userData.user.id;
+
+  const { data: isAdmin, error } =
+    await supabase.rpc("is_admin");
+
+  if (error) {
+    showMessage(
+      "관리자 권한 확인 중 오류가 발생했습니다.\n" +
+      error.message,
+      true
+    );
+    return false;
+  }
+
+  if (isAdmin !== true) {
+    showMessage(
+      "관리자 권한이 없습니다.",
+      true
+    );
+    return false;
+  }
+
+  return true;
+}
+
+/* 회원 목록 조회 */
+
+async function loadMembers() {
+
+  memberArea.hidden = true;
+
+  const { data, error } =
+    await supabase
+      .from("profiles")
+      .select(
+        "id, full_name, email, member_role, approval_status"
+      )
+      .order("created_at", { ascending: false });
+
+  if (error) {
+    showMessage(
+      "회원 목록을 불러오지 못했습니다.\n" +
+      error.message,
+      true
+    );
+    return;
+  }
+
+  memberList.replaceChildren();
+
+  for (const member of data) {
+
+    const row = document.createElement("tr");
+
+    const values = [
+      member.full_name || "",
+      member.email || "",
+      member.member_role || "",
+      member.approval_status || ""
+    ];
+
+    for (const value of values) {
+      const cell = document.createElement("td");
+      cell.textContent = value;
+      row.appendChild(cell);
+    }
+
+    const actionCell = document.createElement("td");
+
+    if (
+      member.id !== currentAdminId &&
+      member.member_role === "member"
+    ) {
+
+      const approveButton =
+        document.createElement("button");
+
+      approveButton.textContent = "승인";
+      approveButton.className = "approve";
+
+      approveButton.disabled =
+        member.approval_status === "approved";
+
+      approveButton.addEventListener("click", () => {
+        changeApproval(
+          member.id,
+          member.full_name,
+          "approved"
+        );
+      });
+
+      const rejectButton =
+        document.createElement("button");
+
+      rejectButton.textContent = "거절";
+      rejectButton.className = "reject";
+
+      rejectButton.disabled =
+        member.approval_status === "rejected";
+
+      rejectButton.addEventListener("click", () => {
+        changeApproval(
+          member.id,
+          member.full_name,
+          "rejected"
+        );
+      });
+
+      actionCell.append(
+        approveButton,
+        rejectButton
+      );
+
+    } else {
+      actionCell.textContent = "관리자 계정";
+    }
+
+    row.appendChild(actionCell);
+    memberList.appendChild(row);
+  }
+
+  memberArea.hidden = false;
+
+  showMessage(
+    `회원 ${data.length}명의 정보를 불러왔습니다.`
+  );
+}
+
+/* 승인 또는 거절 */
+
+async function changeApproval(
+  memberId,
+  memberName,
+  status
+) {
+
+  if (busy) return;
+
+  const action =
+    status === "approved" ? "승인" : "거절";
+
+  const confirmed = confirm(
+    `${memberName || "해당 회원"}님을 ${action}하시겠습니까?`
+  );
+
+  if (!confirmed) return;
+
+  busy = true;
+
+  memberArea.querySelectorAll("button")
+    .forEach(button => button.disabled = true);
+
+  try {
+
+    const { error } = await supabase.rpc(
+      "manage_member_approval",
+      {
+        target_user_id: memberId,
+        new_status: status
+      }
+    );
+
+    if (error) throw error;
+
+    await loadMembers();
+
+    showMessage(
+      `회원 ${action} 처리가 완료되었습니다.`
+    );
+
+  } catch (error) {
+
+    showMessage(
+      `회원 ${action} 처리 중 오류가 발생했습니다.\n` +
+      error.message,
+      true
+    );
+
+    await loadMembers();
+
+  } finally {
+
+    busy = false;
+
+  }
+}
+
+/* 최초 실행 */
+
+async function initialize() {
+
+  try {
+
+    const isAdmin = await checkAdmin();
+
+    if (isAdmin) {
+      await loadMembers();
+    }
+
+  } catch (error) {
+
+    showMessage(
+      "관리자 페이지를 불러오지 못했습니다.\n" +
+      error.message,
+      true
+    );
+
+  }
+}
+
+initialize();
+
+</script>
+
+</body>
+</html>
