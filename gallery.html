@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>시민활동 사진기록관 | 글로벌 AI 허브</title>
+<title>
+시민활동 사진기록관 | 글로벌 AI 허브
+</title>
 
 <style>
+
+/* 기본 설정 */
+
 * {
   box-sizing: border-box;
 }
@@ -17,121 +25,29 @@ body {
   font-family: "Malgun Gothic", Arial, sans-serif;
   background: #f4f8fc;
   color: #17315b;
+  line-height: 1.7;
 }
+
+/* 상단 제목 영역 */
 
 header {
   background: #0754a6;
   color: white;
   text-align: center;
-  padding: 35px 15px;
+  padding: 35px 15px 30px;
 }
 
 header h1 {
   font-size: clamp(24px, 4vw, 38px);
+  margin: 0 0 15px;
 }
 
-header a {
-  color: white;
-  text-decoration: none;
+header p {
+  margin: 10px 0 20px;
+  font-size: 16px;
 }
 
-main {
-  max-width: 1200px;
-  margin: auto;
-  padding: 25px 15px;
-}
-
-.intro {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.filters button {
-  padding: 12px 18px;
-  border: 1px solid #0754a6;
-  background: white;
-  color: #0754a6;
-  border-radius: 7px;
-  cursor: pointer;
-}
-
-.filters button.active {
-  background: #0754a6;
-  color: white;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.photo {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,.1);
-}
-
-.photo img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  cursor: pointer;
-}
-
-.photo p {
-  padding: 15px;
-  margin: 0;
-}
-
-.viewer {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.viewer img {
-  max-width: 95%;
-  max-height: 85%;
-  object-fit: contain;
-}
-
-.close {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  color: white;
-  background: transparent;
-  border: 0;
-  font-size: 40px;
-  cursor: pointer;
-}
-
-footer {
-  background: #10315e;
-  color: white;
-  text-align: center;
-  padding: 25px;
-  margin-top: 40px;
-}
-
-/* Back to Home Button */
-
-/* 홈페이지로 돌아가기 버튼 */
+/* 홈페이지 돌아가기 버튼 */
 
 .home-return {
   text-align: center;
@@ -141,7 +57,7 @@ footer {
 .home-return a {
   display: inline-block;
 
-  background-color: #ffffff;
+  background: #ffffff;
   color: #0754a6;
 
   border: 2px solid #ffffff;
@@ -159,51 +75,245 @@ footer {
 }
 
 .home-return a:hover {
-  background-color: #ffe44d;
+  background: #ffe44d;
   color: #0754a6;
   border-color: #ffe44d;
 }
 
-.home-return a {
-  display: inline-block;
+/* 본문 */
 
-  background: #ffffff;
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+/* 사진관 소개 */
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin-bottom: 12px;
+}
+
+.intro p {
+  font-size: 16px;
+  color: #46566d;
+}
+
+/* 사진 분류 메뉴 */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 35px;
+}
+
+.filters button {
+  padding: 12px 18px;
+
+  border: 1px solid #0754a6;
+  background: white;
   color: #0754a6;
 
-  border: 2px solid #0754a6;
-  border-radius: 8px;
+  border-radius: 7px;
 
-  padding: 13px 28px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.filters button:hover {
+  background: #eaf4ff;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+/* 사진 목록 */
+
+.gallery {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 20px;
+}
+
+/* 사진 카드 */
+
+.photo {
+  background: white;
+
+  border-radius: 12px;
+  overflow: hidden;
+
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+/* 실제 사진 */
+
+.photo img {
+  display: block;
+
+  width: 100%;
+  height: 220px;
+
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* 사진 준비 중 */
+
+.photo-placeholder {
+  width: 100%;
+  height: 220px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #eaf1fa;
+  color: #63748a;
+
+  text-align: center;
+  padding: 20px;
+}
+
+.photo-placeholder .icon {
+  font-size: 38px;
+  margin-bottom: 12px;
+}
+
+.photo-placeholder p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* 사진 제목 */
+
+.photo-title {
+  padding: 15px;
+  margin: 0;
 
   font-size: 16px;
   font-weight: bold;
-  text-decoration: none;
-
-  transition: 0.2s;
 }
 
-.home-return a:hover {
-  background: #0754a6;
-  color: #ffffff;
+/* 사진 확대 화면 */
+
+.viewer {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,0.92);
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
 }
-  
+
+.viewer img {
+  max-width: 95%;
+  max-height: 85%;
+
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+
+  top: 15px;
+  right: 25px;
+
+  color: white;
+  background: transparent;
+
+  border: 0;
+
+  font-size: 40px;
+  cursor: pointer;
+}
+
+/* 하단 */
+
+footer {
+  background: #10315e;
+  color: white;
+
+  text-align: center;
+
+  padding: 30px 15px;
+  margin-top: 40px;
+}
+
+/* 모바일 */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 28px 12px;
+  }
+
+  header p {
+    font-size: 14px;
+  }
+
+  .home-return a {
+    padding: 11px 20px;
+    font-size: 14px;
+  }
+
+  main {
+    padding: 25px 12px;
+  }
+
+  .filters {
+    gap: 8px;
+  }
+
+  .filters button {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 </style>
+
 </head>
 
 <body>
 
-<!-- 페이지 상단 -->
+<!-- 상단 -->
 
 <header>
 
-  <h1>시민활동 사진기록관</h1>
+  <h1>
+    시민활동 사진기록관
+  </h1>
 
   <p>
     경기도 글로벌 AI 허브 유치<br>
     고양특례시 범시민추진위원회
   </p>
-
-  <!-- 홈페이지로 돌아가기 버튼 -->
 
   <div class="home-return">
 
@@ -215,116 +325,154 @@ footer {
 
 </header>
 
-<!-- 사진관 본문 -->
+<!-- 본문 -->
 
 <main>
 
-<div class="intro">
-  <h2>시민의 힘으로 만들어가는 글로벌 AI 허브</h2>
-  <p>
-    글로벌 AI 허브 유치를 위한
-    시민들의 활동을 기록합니다.
-  </p>
-</div>
+  <div class="intro">
 
-<div class="filters">
-  <button class="active" onclick="filterPhotos('all',this)">
-    전체
-  </button>
+    <h2>
+      시민의 힘으로 만들어가는 글로벌 AI 허브
+    </h2>
 
-  <button onclick="filterPhotos('signature',this)">
-    시민 서명운동
-  </button>
+    <p>
+      글로벌 AI 허브 유치를 위한
+      시민들의 활동을 기록합니다.
+    </p>
 
-  <button onclick="filterPhotos('solidarity',this)">
-    시민사회 연대
-  </button>
+  </div>
 
-  <button onclick="filterPhotos('promotion',this)">
-    홍보활동
-  </button>
+  <!-- 사진 분류 -->
 
-  <button onclick="filterPhotos('culture',this)">
-    문화예술
-  </button>
-</div>
+  <div class="filters">
 
-<div class="gallery" id="gallery"></div>
+    <button class="active"
+      onclick="filterPhotos('all',this)">
+      전체
+    </button>
 
+    <button
+      onclick="filterPhotos('signature',this)">
+      시민 서명운동
+    </button>
 
-  
+    <button
+      onclick="filterPhotos('solidarity',this)">
+      시민사회 연대
+    </button>
+
+    <button
+      onclick="filterPhotos('promotion',this)">
+      홍보활동
+    </button>
+
+    <button
+      onclick="filterPhotos('culture',this)">
+      문화예술
+    </button>
+
+  </div>
+
+  <!-- 사진 표시 영역 -->
+
+  <div class="gallery" id="gallery"></div>
+
 </main>
 
-<div class="viewer" id="viewer"
+<!-- 사진 확대 화면 -->
+
+<div class="viewer"
+     id="viewer"
      role="dialog"
      aria-modal="true"
      aria-label="사진 확대 보기">
 
   <button class="close"
           aria-label="닫기"
-          onclick="closePhoto()">×</button>
+          onclick="closePhoto()">
+    ×
+  </button>
 
   <img id="largePhoto" alt="확대 사진">
 
 </div>
 
+<!-- 하단 -->
+
 <footer>
+
   경기도 글로벌 AI 허브 유치<br>
   고양특례시 범시민추진위원회
-
-
 
 </footer>
 
 <script>
 
-/* 업로드된 사진을 이 목록에 등록합니다. */
+/* =====================================
+   사진 등록 목록
+===================================== */
 
 const photos = [
+
   {
     file: "activity-01.jpg",
     title: "시민 서명운동",
     category: "signature"
   },
+
   {
     file: "activity-02.jpg",
     title: "시민 참여 현장",
     category: "signature"
   },
+
   {
     file: "activity-03.jpg",
     title: "시민사회 연대 활동",
     category: "solidarity"
   },
+
   {
     file: "activity-04.jpg",
     title: "글로벌 AI 허브 유치 홍보",
     category: "promotion"
   },
+
   {
     file: "activity-05.jpg",
     title: "지역 축제 서명운동",
     category: "signature"
   },
+
   {
     file: "culture-01.jpg",
     title: "고양특례시 문화예술",
     category: "culture"
   },
+
   {
     file: "culture-02.jpg",
     title: "고양호수예술축제 드론 공연",
     category: "culture"
   },
+
   {
     file: "promotion-01.jpg",
     title: "글로벌 AI 허브 홍보자료",
     category: "promotion"
   }
+
 ];
 
+
+/* =====================================
+   사진 표시
+===================================== */
+
 function renderPhotos(category = "all") {
+
   const gallery = document.getElementById("gallery");
+
   gallery.innerHTML = "";
 
   const selected = photos.filter(photo =>
@@ -332,58 +480,140 @@ function renderPhotos(category = "all") {
   );
 
   selected.forEach(photo => {
+
     const card = document.createElement("div");
     card.className = "photo";
 
+    const imageArea = document.createElement("div");
+
     const img = document.createElement("img");
+
     img.src = "images/" + photo.file;
     img.alt = photo.title;
     img.loading = "lazy";
-    img.onclick = () => openPhoto(img.src, photo.title);
+
+    /* 사진이 정상적으로 로드되면 */
+
+    img.onload = function() {
+
+      imageArea.innerHTML = "";
+
+      imageArea.appendChild(img);
+
+      img.onclick = () =>
+        openPhoto(img.src, photo.title);
+
+    };
+
+    /* 사진이 없거나 오류가 발생하면 */
+
+    img.onerror = function() {
+
+      imageArea.innerHTML = `
+        <div class="photo-placeholder">
+          <div class="icon">📷</div>
+          <p>사진 준비 중</p>
+        </div>
+      `;
+
+    };
+
+    /* 사진 로딩 전에도 안내 표시 */
+
+    imageArea.innerHTML = `
+      <div class="photo-placeholder">
+        <div class="icon">📷</div>
+        <p>사진 준비 중</p>
+      </div>
+    `;
 
     const caption = document.createElement("p");
+    caption.className = "photo-title";
     caption.textContent = photo.title;
 
-    card.appendChild(img);
+    card.appendChild(imageArea);
     card.appendChild(caption);
+
     gallery.appendChild(card);
+
   });
+
 }
 
+
+/* =====================================
+   사진 분류
+===================================== */
+
 function filterPhotos(category, button) {
+
   document.querySelectorAll(".filters button")
     .forEach(b => b.classList.remove("active"));
 
   button.classList.add("active");
+
   renderPhotos(category);
+
 }
 
+
+/* =====================================
+   사진 확대
+===================================== */
+
 function openPhoto(src, title) {
+
   const viewer = document.getElementById("viewer");
+
   const largePhoto = document.getElementById("largePhoto");
 
   largePhoto.src = src;
   largePhoto.alt = title;
+
   viewer.style.display = "flex";
+
 }
+
+
+/* =====================================
+   사진 확대 닫기
+===================================== */
 
 function closePhoto() {
+
   document.getElementById("viewer").style.display = "none";
+
 }
 
+
+/* ESC 키로 닫기 */
+
 document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closePhoto();
+
+  if (event.key === "Escape") {
+    closePhoto();
+  }
+
 });
+
+
+/* 배경 클릭 시 닫기 */
 
 document.getElementById("viewer")
   .addEventListener("click", event => {
-    if (event.target.id === "viewer") closePhoto();
+
+    if (event.target.id === "viewer") {
+      closePhoto();
+    }
+
   });
+
+
+/* 최초 실행 */
 
 renderPhotos();
 
 </script>
-
 
 </body>
 </html>
