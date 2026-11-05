@@ -370,6 +370,25 @@ footer {
   }
 
 }
+
+/* 발대식 행사 사진 */
+
+.event-record .gallery {
+  margin-top: 25px;
+}
+
+/* 행사별 사진 카드 */
+
+.event-record .photo {
+  border: 1px solid #e1e8f2;
+}
+
+/* 행사 설명과 사진 구분 */
+
+.event-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dce6f2;
+}
   
 </style>
 
@@ -476,12 +495,23 @@ footer {
       공동 활동을 시작하였습니다.
     </p>
 
-  </div>
+ </div>
+
+  <!-- 발대식 사진 5장 -->
+
+  
 
 </section>
+  
   <!-- 사진 표시 영역 -->
 
-  <div class="gallery" id="gallery"></div>
+  <!-- 발대식 사진 5장 -->
+
+<div class="gallery" id="launch-gallery"></div>
+
+<!-- 다른 활동 사진 -->
+
+<div class="gallery" id="gallery"></div>
 
 </main>
 
@@ -599,45 +629,73 @@ const photos = [
    사진 표시
 ===================================== */
 
+/* =====================================
+   행사별 사진 표시
+===================================== */
+
 function renderPhotos(category = "all") {
 
-  const gallery = document.getElementById("gallery");
+  const gallery =
+    document.getElementById("gallery");
+
+  const launchGallery =
+    document.getElementById("launch-gallery");
+
+  const launchSection =
+    document.querySelector(".event-record");
 
   gallery.innerHTML = "";
+  launchGallery.innerHTML = "";
 
-  const selected = photos.filter(photo =>
-    category === "all" || photo.category === category
-  );
+  /* 발대식 사진 파일 */
 
-  selected.forEach(photo => {
+  const launchFiles = [
+    "activity-03.jpg",
+    "launch-02.jpg",
+    "launch-03.jpg",
+    "launch-04.jpg",
+    "launch-05.jpg"
+  ];
+
+  /* 발대식 표시 여부 */
+
+  const showLaunch =
+    category === "all" ||
+    category === "solidarity";
+
+  launchSection.style.display =
+    showLaunch ? "block" : "none";
+
+  launchGallery.style.display =
+    showLaunch ? "grid" : "none";
+
+  /* 사진 카드 생성 */
+
+  function createPhotoCard(photo) {
 
     const card = document.createElement("div");
     card.className = "photo";
 
     const imageArea = document.createElement("div");
 
+    imageArea.innerHTML = `
+      <div class="photo-placeholder">
+        <div class="icon">📷</div>
+        <p>사진 준비 중</p>
+      </div>
+    `;
+
     const img = document.createElement("img");
-
-    img.src =
-  "https://achimjoa.github.io/aihub-goyang.org/images/"
-  + photo.file;
-    img.alt = photo.title;
-    img.loading = "lazy";
-
-    /* 사진이 정상적으로 로드되면 */
 
     img.onload = function() {
 
       imageArea.innerHTML = "";
-
       imageArea.appendChild(img);
 
       img.onclick = () =>
         openPhoto(img.src, photo.title);
 
     };
-
-    /* 사진이 없거나 오류가 발생하면 */
 
     img.onerror = function() {
 
@@ -650,14 +708,14 @@ function renderPhotos(category = "all") {
 
     };
 
-    /* 사진 로딩 전에도 안내 표시 */
+    img.alt = photo.title;
+    img.loading = "lazy";
 
-    imageArea.innerHTML = `
-      <div class="photo-placeholder">
-        <div class="icon">📷</div>
-        <p>사진 준비 중</p>
-      </div>
-    `;
+    /* 기존에 성공한 이미지 주소 유지 */
+
+    img.src =
+      "https://achimjoa.github.io/aihub-goyang.org/images/"
+      + photo.file;
 
     const caption = document.createElement("p");
     caption.className = "photo-title";
@@ -666,17 +724,44 @@ function renderPhotos(category = "all") {
     card.appendChild(imageArea);
     card.appendChild(caption);
 
-    gallery.appendChild(card);
+    return card;
+  }
 
-  });
+  /* 발대식 사진 */
+
+  if (showLaunch) {
+
+    photos
+      .filter(photo => launchFiles.includes(photo.file))
+      .forEach(photo => {
+
+        launchGallery.appendChild(
+          createPhotoCard(photo)
+        );
+
+      });
+
+  }
+
+  /* 기타 활동 사진 */
+
+  photos
+    .filter(photo =>
+      !launchFiles.includes(photo.file)
+    )
+    .filter(photo =>
+      category === "all" ||
+      photo.category === category
+    )
+    .forEach(photo => {
+
+      gallery.appendChild(
+        createPhotoCard(photo)
+      );
+
+    });
 
 }
-
-
-/* =====================================
-   사진 분류
-===================================== */
-
 function filterPhotos(category, button) {
 
   document.querySelectorAll(".filters button")
