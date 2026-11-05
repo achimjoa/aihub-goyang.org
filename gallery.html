@@ -389,6 +389,59 @@ footer {
   padding-bottom: 20px;
   border-bottom: 1px solid #dce6f2;
 }
+
+/* =====================================
+   활동 사진관 화면 표시 순서 수정
+===================================== */
+
+/* 본문을 세로 방향으로 배열 */
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. 사진관 소개 */
+
+main > .intro {
+  order: 1;
+}
+
+/* 2. 사진 분류 메뉴 */
+
+main > .filters {
+  order: 2;
+}
+
+/* 3. 8월 25일 평화공존 시민토론회 */
+
+main > .event-record:first-child {
+  order: 3;
+}
+
+/* 4. 9월 7일 발대식 */
+
+#launch-event {
+  order: 4;
+}
+
+/* 5. 기타 활동 사진 */
+
+#gallery {
+  order: 5;
+}
+
+/* 6. 10월 8일 포럼 */
+
+main > .event-record:has(img[src*="forum-20261008"]) {
+  order: 6;
+}
+
+/* 7. 10월 20일 세미나 */
+
+main > .event-record:has(img[src*="seminar-20261020"]) {
+  order: 7;
+}
   
 </style>
 
