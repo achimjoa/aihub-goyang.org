@@ -301,6 +301,76 @@ footer {
 
 }
 
+/* =====================================
+   ENGLISH PHOTO GALLERY
+   DISPLAY ORDER
+===================================== */
+
+/* Main layout */
+
+main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. Gallery introduction */
+
+main > .intro {
+  order: 1;
+}
+
+/* 2. Photo category filters */
+
+main > .filters {
+  order: 2;
+}
+
+/* 3. UN Global AI Hub Declaration */
+
+main > #declaration-event {
+  order: 3;
+}
+
+/* 4. Peaceful Coexistence Forum */
+
+main > .event-record:not(#declaration-event):has(
+  img[src*="peace-forum-20260825"]
+) {
+  order: 4;
+}
+
+/* 5. Citizens' Committee Launch */
+
+main > .event-record:has(#launch-gallery) {
+  order: 5;
+}
+
+/* 6. Other activity photographs */
+
+main > #launch-gallery {
+  order: 6;
+}
+
+main > #gallery {
+  order: 7;
+}
+
+/* 7. Goyang Global AI Hub Forum */
+
+main > .event-record:has(
+  img[src*="forum-20261008"]
+) {
+  order: 8;
+}
+
+/* 8. Innovation Strategy Seminar */
+
+main > .event-record:has(
+  img[src*="seminar-20261020"]
+) {
+  order: 9;
+}
+  
 </style>
 
 </head>
