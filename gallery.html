@@ -296,6 +296,81 @@ footer {
 
 }
 
+/* =====================================
+   행사별 활동 기록
+===================================== */
+
+.event-record {
+  background: #ffffff;
+
+  border-radius: 12px;
+  border-left: 6px solid #0754a6;
+
+  padding: 30px;
+
+  margin: 30px 0 25px;
+
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.event-header {
+  text-align: left;
+}
+
+.event-date {
+  display: inline-block;
+
+  background: #eaf4ff;
+  color: #0754a6;
+
+  padding: 6px 14px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.event-record h2 {
+  color: #0754a6;
+
+  font-size: clamp(22px, 3vw, 30px);
+
+  margin: 18px 0 12px;
+}
+
+.event-location {
+  color: #46566d;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.event-description {
+  color: #34465f;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-bottom: 0;
+}
+
+/* 스마트폰 */
+
+@media (max-width: 600px) {
+
+  .event-record {
+    padding: 22px;
+    margin: 25px 0 20px;
+  }
+
+  .event-record h2 {
+    font-size: 22px;
+  }
+
+  .event-description {
+    font-size: 15px;
+  }
+
+}
+  
 </style>
 
 </head>
