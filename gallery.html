@@ -530,8 +530,8 @@ footer {
      범시민추진위원회 발대식
 ===================================== -->
 
-<section class="event-record">
-
+<section class="event-record" id="launch-event">
+  
   <div class="event-header">
 
     <span class="event-date">
@@ -557,17 +557,11 @@ footer {
 
  </div>
 
-  <!-- 발대식 사진 5장 -->
+ <!-- 발대식 사진 5장 -->
 
-  
+  <div class="gallery" id="launch-gallery"></div>
 
 </section>
-  
-  <!-- 사진 표시 영역 -->
-
-  <!-- 발대식 사진 5장 -->
-
-<div class="gallery" id="launch-gallery"></div>
 
 <!-- 다른 활동 사진 -->
 
@@ -816,7 +810,7 @@ function renderPhotos(category = "all") {
     document.getElementById("launch-gallery");
 
   const launchSection =
-    document.querySelector(".event-record");
+  document.getElementById("launch-event");
 
   gallery.innerHTML = "";
   launchGallery.innerHTML = "";
