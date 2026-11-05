@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>회원가입 | 글로벌 AI 허브 고양특례시</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 12px 0;
+}
+
+.home-return {
+  margin-top: 25px;
+}
+
+.home-return a {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  border: 2px solid white;
+  border-radius: 8px;
+  padding: 12px 28px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-return a:hover {
+  background: #ffe44d;
+  border-color: #ffe44d;
+}
+
+main {
+  max-width: 520px;
+  margin: 45px auto;
+  padding: 0 15px;
+}
+
+.signup-box {
+  background: white;
+  padding: 35px;
+  border-radius: 12px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+}
+
+.signup-box h2 {
+  text-align: center;
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.agreement {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 25px 0;
+  font-size: 14px;
+}
+
+.agreement input {
+  margin-top: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #0754a6;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #10315e;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#message {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+  white-space: pre-line;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.login-link a {
+  color: #0754a6;
+  font-weight: bold;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+  margin-top: 50px;
+}
+
+@media (max-width: 600px) {
+  .signup-box {
+    padding: 23px;
+  }
+
+  header h1 {
+    font-size: 25px;
+  }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>회원가입</h1>
+
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
+
+<div class="home-return">
+  <a href="index.html">
+    ← 홈페이지로 돌아가기
+  </a>
+</div>
+
+</header>
+
+<main>
+
+<section class="signup-box">
+
+<h2>회원가입 신청</h2>
+
+<p>
+회원가입 후 이메일 인증을 완료하면
+관리자 승인 절차를 진행할 수 있습니다.
+</p>
+
+<form id="signupForm">
+
+<div class="form-group">
+  <label for="fullName">이름</label>
+
+  <input
+    type="text"
+    id="fullName"
+    maxlength="100"
+    autocomplete="name"
+    required>
+</div>
+
+<div class="form-group">
+  <label for="email">이메일</label>
+
+  <input
+    type="email"
+    id="email"
+    autocomplete="email"
+    required>
+</div>
+
+<div class="form-group">
+  <label for="password">비밀번호</label>
+
+  <input
+    type="password"
+    id="password"
+    minlength="12"
+    autocomplete="new-password"
+    required>
+</div>
+
+<div class="form-group">
+  <label for="confirmPassword">
+    비밀번호 확인
+  </label>
+
+  <input
+    type="password"
+    id="confirmPassword"
+    minlength="12"
+    autocomplete="new-password"
+    required>
+</div>
+
+<div class="agreement">
+
+<input
+  type="checkbox"
+  id="agree"
+  required>
+
+<label for="agree">
+  개인정보 수집·이용 안내를 확인하고
+  동의합니다.
+</label>
+
+</div>
+
+<!-- 실제 운영 전 개인정보 안내문 연결 필요 -->
+<p>
+  <small>
+    수집 항목: 이름, 이메일<br>
+    이용 목적: 회원가입 및 회원관리<br>
+    보관 기간 및 삭제 절차 등은
+    개인정보 처리방침에 명시해야 합니다.
+  </small>
+</p>
+
+<button type="submit" id="submitButton">
+  회원가입 신청
+</button>
+
+<p id="message" role="status" aria-live="polite"></p>
+
+</form>
+
+<div class="login-link">
+  이미 회원이신가요?
+  <a href="login.html">로그인</a>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   Supabase 연결 정보
+===================================== */
+
+const SUPABASE_URL =
+  "여기에_Project_URL_입력";
+
+const SUPABASE_KEY =
+  "여기에_Publishable_key_입력";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   회원가입
+===================================== */
+
+const form =
+  document.getElementById("signupForm");
+
+const message =
+  document.getElementById("message");
+
+const submitButton =
+  document.getElementById("submitButton");
+
+form.addEventListener("submit", async (event) => {
+
+  event.preventDefault();
+
+  const fullName =
+    document.getElementById("fullName").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const confirmPassword =
+    document.getElementById("confirmPassword").value;
+
+  const agree =
+    document.getElementById("agree").checked;
+
+  if (!fullName || !email || !password) {
+    message.textContent =
+      "모든 항목을 입력해 주세요.";
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    message.textContent =
+      "비밀번호가 일치하지 않습니다.";
+    return;
+  }
+
+  if (password.length < 12) {
+    message.textContent =
+      "비밀번호는 12자 이상 입력해 주세요.";
+    return;
+  }
+
+  if (!agree) {
+    message.textContent =
+      "개인정보 수집·이용 동의가 필요합니다.";
+    return;
+  }
+
+  submitButton.disabled = true;
+  message.textContent = "회원가입을 처리하고 있습니다.";
+
+  try {
+
+    const { data, error } =
+      await supabase.auth.signUp({
+
+        email: email,
+
+        password: password,
+
+        options: {
+          data: {
+            full_name: fullName
+          },
+
+          emailRedirectTo:
+            "https://achimjoa.github.io/aihub-goyang.org/login.html"
+        }
+
+      });
+
+    if (error) {
+      throw error;
+    }
+
+    message.style.color = "#0754a6";
+
+    message.textContent =
+      "회원가입 요청이 접수되었습니다.\n" +
+      "이메일 인증 안내를 확인해 주세요.\n" +
+      "인증 후에도 관리자 승인이 필요합니다.";
+
+    form.reset();
+
+  } catch (error) {
+
+    message.style.color = "#b91c1c";
+
+    message.textContent =
+      "회원가입 처리 중 오류가 발생했습니다.\n" +
+      error.message;
+
+  } finally {
+
+    submitButton.disabled = false;
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
