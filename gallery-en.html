@@ -482,7 +482,9 @@ imageArea.innerHTML = `
 
 img.alt = photo.title;
 img.loading = "lazy";
-img.src = "images/" + photo.file;
+img.src =
+  "https://achimjoa.github.io/aihub-goyang.org/images/"
+  + photo.file;
 
 const caption = document.createElement("p");
 caption.className = "photo-title";
