@@ -413,36 +413,42 @@ main > .filters {
   order: 2;
 }
 
+  /* 국회 선언식 행사 순서 */
+
+#declaration-event {
+  order: 3;
+}
+  
 /* 3. 8월 25일 평화공존 시민토론회 */
 
 main > .event-record:first-child {
-  order: 3;
+  order: 4;
 }
 
 /* 4. 9월 7일 발대식 */
 
 #launch-event {
-  order: 4;
+  order: 5;
 }
 
 /* 5. 기타 활동 사진 */
 
 #gallery {
-  order: 5;
+  order: 6;
 }
 
 /* 6. 10월 8일 포럼 */
 
 main > .event-record:has(img[src*="forum-20261008"]) {
-  order: 6;
+  order: 7;
 }
 
 /* 7. 10월 20일 세미나 */
 
 main > .event-record:has(img[src*="seminar-20261020"]) {
-  order: 7;
+  order: 8;
 }
-  
+
 </style>
 
 </head>
@@ -522,6 +528,111 @@ main > .event-record:has(img[src*="seminar-20261020"]) {
       문화예술
     </button>
 
+<!-- =====================================
+2026.08.25 오전 10시
+고양특례시 UN 글로벌 AI 허브 유치 선언식
+===================================== -->
+
+<section class="event-record" id="declaration-event">
+
+  <div class="event-header">
+
+    <span class="event-date">
+      2026년 8월 25일 오전 10시
+    </span>
+
+    <h2>
+      고양특례시 UN 글로벌 AI 허브 유치 선언식
+    </h2>
+
+    <p class="event-location">
+      📍 국회의원회관 제2소회의실
+    </p>
+
+    <p>
+      <strong>주최:</strong>
+      국회의원 김성회·한준호·이기헌·김영환
+    </p>
+
+    <p>
+      <strong>주관:</strong>
+      고양특례시·고양연구원
+    </p>
+
+    <p class="event-description">
+      2026년 8월 25일 오전 10시,
+      국회의원회관 제2소회의실에서
+      고양특례시 UN 글로벌 AI 허브 유치 선언식이
+      개최되었습니다.
+      <br><br>
+      이날 행사에서는 글로벌 AI 허브의
+      고양특례시 유치를 위한 의지를
+      대내외에 알리고,
+      주요 참석자들이 유치 결의를 함께했습니다.
+    </p>
+
+  </div>
+
+  <div class="gallery" id="declaration-gallery">
+
+    <div class="photo">
+      <img
+        src="images/declaration-01.jpg"
+        alt="글로벌 AI 허브 유치 선언식 연설"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">유치 선언식 연설</p>
+    </div>
+
+    <div class="photo">
+      <img
+        src="images/declaration-02.jpg"
+        alt="글로벌 AI 허브 유치 응원"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">참석자들의 유치 응원</p>
+    </div>
+
+    <div class="photo">
+      <img
+        src="images/declaration-03.jpg"
+        alt="유치 선언식 기념촬영"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">유치 선언 기념촬영</p>
+    </div>
+
+    <div class="photo">
+      <img
+        src="images/declaration-04.jpg"
+        alt="유치 선언식 행사"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">선언식 행사 장면</p>
+    </div>
+
+    <div class="photo">
+      <img
+        src="images/declaration-05.jpg"
+        alt="유치 선언식 참석자"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">주요 참석자들의 행사 참관</p>
+    </div>
+
+    <div class="photo">
+      <img
+        src="images/declaration-06.jpg"
+        alt="유치 선언식 행사장 전경"
+        loading="lazy"
+        onclick="openPhoto(this.src, this.alt)">
+      <p class="photo-title">국회의원회관 행사장 전경</p>
+    </div>
+
+  </div>
+
+</section>
+    
 <!-- =====================================
 2026.08.25
 한반도 평화공존 시민토론회
