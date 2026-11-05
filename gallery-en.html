@@ -742,6 +742,65 @@ closePhoto();
 
 renderPhotos();
 
+  /* =====================================
+   Launch Ceremony Photos
+===================================== */
+
+function showLaunchPhotos() {
+
+  const launchGallery =
+    document.getElementById("launch-gallery");
+
+  if (!launchGallery) return;
+
+  launchGallery.innerHTML = "";
+
+  const launchFiles = [
+    "activity-03.jpg",
+    "launch-02.jpg",
+    "launch-03.jpg",
+    "launch-04.jpg",
+    "launch-05.jpg"
+  ];
+
+  const launchPhotos = photos.filter(photo =>
+    launchFiles.includes(photo.file)
+  );
+
+  launchPhotos.forEach(photo => {
+
+    const card = document.createElement("div");
+    card.className = "photo";
+
+    const img = document.createElement("img");
+
+    img.src =
+      "https://achimjoa.github.io/aihub-goyang.org/images/"
+      + photo.file;
+
+    img.alt = photo.title;
+    img.loading = "lazy";
+
+    img.onclick = () =>
+      openPhoto(img.src, photo.title);
+
+    const caption = document.createElement("p");
+    caption.className = "photo-title";
+    caption.textContent = photo.title;
+
+    card.appendChild(img);
+    card.appendChild(caption);
+
+    launchGallery.appendChild(card);
+
+  });
+
+}
+
+/* Display Launch Ceremony Photos */
+
+showLaunchPhotos();
+
 </script>
 
 </body>
