@@ -454,9 +454,28 @@ const { data, error } =
     idCell.textContent = resource.id;
 
     const titleCell =
-      document.createElement("td");
+  document.createElement("td");
 
-    titleCell.textContent = resource.title;
+const titleButton =
+  document.createElement("button");
+
+titleButton.type = "button";
+
+titleButton.textContent = resource.title;
+
+titleButton.style.background = "none";
+titleButton.style.border = "none";
+titleButton.style.padding = "0";
+titleButton.style.color = "#0754a6";
+titleButton.style.cursor = "pointer";
+titleButton.style.textAlign = "left";
+titleButton.style.textDecoration = "underline";
+
+titleButton.addEventListener("click", () => {
+  openResource(resource.id);
+});
+
+titleCell.appendChild(titleButton);
 
     const categoryCell =
       document.createElement("td");
@@ -485,6 +504,105 @@ const { data, error } =
 
 }
 
+/* =====================================
+   132단계
+   자료실 상세보기
+===================================== */
+
+async function openResource(resourceId) {
+
+  const listView =
+    document.getElementById("resourceListView");
+
+  const detailView =
+    document.getElementById("resourceDetailView");
+
+  const { data, error } =
+    await supabase
+      .from("resource_posts")
+      .select(
+        "id, title, content, category, youtube_url, created_at"
+      )
+      .eq("id", resourceId)
+      .single();
+
+  if (error) {
+
+    console.error(
+      "자료 상세조회 오류:",
+      error
+    );
+
+    alert(
+      "자료를 불러오지 못했습니다.\n" +
+      error.message
+    );
+
+    return;
+  }
+
+  /* 제목 */
+
+  document.getElementById(
+    "resourceDetailTitle"
+  ).textContent = data.title;
+
+  /* 등록일 */
+
+  document.getElementById(
+    "resourceDetailDate"
+  ).textContent =
+    "등록일: " +
+    new Date(data.created_at)
+      .toLocaleString("ko-KR");
+
+  /* 자료 설명 */
+
+  const contentArea =
+    document.getElementById(
+      "resourceDetailContent"
+    );
+
+  contentArea.textContent =
+    data.content || "";
+
+  contentArea.style.whiteSpace = "pre-wrap";
+
+  /* 기존 첨부 영역 초기화 */
+
+  document.getElementById(
+    "resourceAttachments"
+  ).replaceChildren();
+
+  document.getElementById(
+    "resourceMedia"
+  ).replaceChildren();
+
+  /* 상세화면 표시 */
+
+  listView.hidden = true;
+  detailView.hidden = false;
+
+}
+
+/* =====================================
+   목록으로 돌아가기
+===================================== */
+
+document.getElementById(
+  "resourceBackButton"
+).addEventListener("click", () => {
+
+  document.getElementById(
+    "resourceDetailView"
+  ).hidden = true;
+
+  document.getElementById(
+    "resourceListView"
+  ).hidden = false;
+
+});
+  
 /* =====================================
    최초 실행
 ===================================== */
