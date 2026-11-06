@@ -307,6 +307,52 @@ const resourceWriteButton =
   document.getElementById("resourceWriteButton");
 
 /* =====================================
+   133단계
+   자료실 관리자 권한 확인
+===================================== */
+
+let resourceAdmin = false;
+
+async function checkResourceAdmin() {
+
+  /* 기본적으로 등록 버튼 숨김 */
+
+  resourceWriteButton.hidden = true;
+  resourceAdmin = false;
+
+  /* 로그인 사용자 확인 */
+
+  const { data, error } =
+    await supabase.auth.getUser();
+
+  if (error || !data.user) {
+    return;
+  }
+
+  /* 관리자 권한 확인 */
+
+  const result =
+    await supabase.rpc("is_resource_admin");
+
+  if (result.error) {
+
+    console.error(
+      "자료실 관리자 확인 오류:",
+      result.error
+    );
+
+    return;
+  }
+
+  resourceAdmin = result.data === true;
+
+  /* 관리자에게만 등록 버튼 표시 */
+
+  resourceWriteButton.hidden = !resourceAdmin;
+
+}
+  
+/* =====================================
    자료 분류 이름
 ===================================== */
 
@@ -607,6 +653,15 @@ document.getElementById(
    최초 실행
 ===================================== */
 
+async function initializeResources() {
+
+  await checkResourceAdmin();
+
+  await loadResources();
+
+}
+
+initializeResources();
 loadResources();
 
 </script>
