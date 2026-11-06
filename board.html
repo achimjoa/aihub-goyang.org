@@ -956,6 +956,113 @@ try {
 
 }
 
+/* =====================================
+   문서파일 업로드
+===================================== */
+
+const selectedDocuments = Array.from(
+  document.getElementById("documentFiles").files
+);
+
+const allowedExtensions = [
+  "pdf",
+  "hwp",
+  "hwpx",
+  "doc",
+  "docx",
+  "xls",
+  "xlsx",
+  "ppt",
+  "pptx",
+  "zip"
+];
+
+const maxDocumentSize = 20 * 1024 * 1024;
+
+/* 파일 검사 */
+
+for (const file of selectedDocuments) {
+
+  const extension =
+    file.name.split(".").pop().toLowerCase();
+
+  if (!allowedExtensions.includes(extension)) {
+    throw new Error(
+      "지원하지 않는 문서 형식입니다: " +
+      file.name
+    );
+  }
+
+  if (file.size > maxDocumentSize) {
+    throw new Error(
+      "문서파일은 개당 20MB 이하만 가능합니다: " +
+      file.name
+    );
+  }
+
+}
+
+/* 문서 업로드 */
+
+for (const file of selectedDocuments) {
+
+  const extension =
+    file.name.split(".").pop().toLowerCase();
+
+  const filePath =
+    currentUser.id + "/" +
+    crypto.randomUUID() + "." + extension;
+
+  showMessage(
+    "문서파일을 업로드하고 있습니다: " +
+    file.name
+  );
+
+  const { error: uploadError } =
+    await supabase.storage
+      .from("board-files")
+      .upload(filePath, file, {
+        contentType:
+          file.type || "application/octet-stream",
+        upsert: false
+      });
+
+  if (uploadError) {
+    throw new Error(
+      "문서 업로드 실패: " +
+      uploadError.message
+    );
+  }
+
+  /* 첨부정보 등록 */
+
+  const { error: attachmentError } =
+    await supabase
+      .from("board_attachments")
+      .insert({
+        post_id: post.id,
+        uploader_id: currentUser.id,
+        file_name: file.name,
+        file_path: filePath,
+        file_type:
+          file.type || "application/octet-stream",
+        file_size: file.size,
+        attachment_type: "document"
+      });
+
+  if (attachmentError) {
+    throw new Error(
+      "문서는 Storage에 저장되었지만 " +
+      "첨부정보 등록에 실패했습니다.\n" +
+      "오류 코드: " +
+      (attachmentError.code || "없음") +
+      "\n오류 내용: " +
+      attachmentError.message
+    );
+  }
+
+}
+    
     postForm.reset();
 
     await loadPosts();
