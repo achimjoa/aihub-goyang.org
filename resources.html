@@ -319,6 +319,46 @@ const categoryNames = {
 };
 
 /* =====================================
+   현재 선택된 자료 분류
+===================================== */
+
+let currentCategory = "all";
+
+/* =====================================
+   자료 분류 버튼
+===================================== */
+
+const categoryButtons =
+  document.querySelectorAll(
+    ".category-menu button"
+  );
+
+categoryButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    /* 선택된 분류 저장 */
+
+    currentCategory =
+      button.dataset.category;
+
+    /* 버튼 선택 표시 */
+
+    categoryButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    /* 자료 목록 다시 불러오기 */
+
+    loadResources();
+
+  });
+
+});
+  
+/* =====================================
    자료실 목록 불러오기
 ===================================== */
 
@@ -339,13 +379,31 @@ async function loadResources() {
   loadingRow.appendChild(loadingCell);
   resourceList.appendChild(loadingRow);
 
-  const { data, error } =
-    await supabase
-      .from("resource_posts")
-      .select("id, title, category, created_at")
-      .order("created_at", {
-        ascending: false
-      });
+  /* =====================================
+   선택된 분류에 따라 자료 조회
+===================================== */
+
+let query = supabase
+  .from("resource_posts")
+  .select("id, title, category, created_at");
+
+/* 전체가 아니면 분류 조건 적용 */
+
+if (currentCategory !== "all") {
+
+  query = query.eq(
+    "category",
+    currentCategory
+  );
+
+}
+
+/* 최신 자료부터 정렬 */
+
+const { data, error } =
+  await query.order("created_at", {
+    ascending: false
+  });
 
   resourceList.replaceChildren();
 
