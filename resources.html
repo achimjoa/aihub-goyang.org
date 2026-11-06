@@ -796,6 +796,8 @@ titleCell.appendChild(titleButton);
 
 async function openResource(resourceId) {
 
+currentResourceId = resourceId;
+  
   const listView =
     document.getElementById("resourceListView");
 
@@ -950,7 +952,20 @@ resourceWriteButton.addEventListener(
 
     /* 입력 내용 초기화 */
 
-    resourceForm.reset();
+   /* 신규 자료 등록 모드 */
+
+resourceEditMode = false;
+currentResourceId = null;
+
+/* 입력 내용 초기화 */
+
+resourceForm.reset();
+
+/* 버튼 문구 초기화 */
+
+document.getElementById(
+  "resourceSubmitButton"
+).textContent = "자료 등록";
 
     /* 기존 화면 숨기기 */
 
@@ -978,17 +993,30 @@ resourceCancelButton.addEventListener(
   "click",
   () => {
 
-    /* 자료 등록 화면 숨기기 */
-
     resourceWriteView.hidden = true;
 
-    /* 자료 목록 표시 */
+    /* 수정 중 취소 */
 
-    resourceListView.hidden = false;
+    if (resourceEditMode && currentResourceId) {
+
+      resourceDetailView.hidden = false;
+
+    } else {
+
+      resourceListView.hidden = false;
+
+    }
+
+    resourceEditMode = false;
+
+    document.getElementById(
+      "resourceSubmitButton"
+    ).textContent = "자료 등록";
 
   }
 );
 
+  
 /* =====================================
    136단계
    자료실 게시물 등록
@@ -1838,6 +1866,127 @@ function showResourceYoutube(youtubeUrl) {
   mediaArea.appendChild(videoContainer);
 
 }
+
+/* =====================================
+   142-3단계
+   자료 수정 화면 열기
+===================================== */
+
+/* 현재 상세보기 자료 ID */
+
+let currentResourceId = null;
+
+/* 수정 모드 여부 */
+
+let resourceEditMode = false;
+
+/* 자료 수정 버튼 */
+
+const resourceEditButton =
+  document.getElementById("resourceEditButton");
+
+/* =====================================
+   자료 수정 버튼 클릭
+===================================== */
+
+resourceEditButton.addEventListener(
+  "click",
+  async () => {
+
+    alert("자료 수정 버튼 클릭 확인");
+
+    /* 관리자 권한 확인 */
+    
+    if (!resourceAdmin) {
+      alert("관리자만 자료를 수정할 수 있습니다.");
+      return;
+    }
+
+    if (!currentResourceId) {
+      alert("수정할 자료가 선택되지 않았습니다.");
+      return;
+    }
+
+    /* 기존 자료 조회 */
+
+    const { data, error } =
+      await supabase
+        .from("resource_posts")
+        .select(
+          "id, title, category, content, youtube_url"
+        )
+        .eq("id", currentResourceId)
+        .single();
+
+    if (error) {
+
+      console.error(
+        "자료 수정 조회 오류:",
+        error
+      );
+
+      alert(
+        "자료를 불러오지 못했습니다.\n" +
+        error.message
+      );
+
+      return;
+    }
+
+    /* 수정 모드 활성화 */
+
+    resourceEditMode = true;
+
+    /* 기존 자료 입력 */
+
+    document.getElementById(
+      "resourceTitle"
+    ).value = data.title || "";
+
+    document.getElementById(
+      "resourceCategory"
+    ).value = data.category || "other";
+
+    document.getElementById(
+      "resourceContent"
+    ).value = data.content || "";
+
+    document.getElementById(
+      "resourceYoutube"
+    ).value = data.youtube_url || "";
+
+    /* 파일 입력 초기화 */
+
+    document.getElementById(
+      "resourceDocuments"
+    ).value = "";
+
+    document.getElementById(
+      "resourcePhotos"
+    ).value = "";
+
+    document.getElementById(
+      "resourceAudio"
+    ).value = "";
+
+    /* 등록 버튼 문구 변경 */
+
+    document.getElementById(
+      "resourceSubmitButton"
+    ).textContent = "수정 내용 저장";
+
+    /* 화면 전환 */
+
+    resourceListView.hidden = true;
+    resourceDetailView.hidden = true;
+    resourceWriteView.hidden = false;
+
+    document.getElementById(
+      "resourceTitle"
+    ).focus();
+
+  }
+);
   
 /* =====================================
    최초 실행
