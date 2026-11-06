@@ -1383,9 +1383,54 @@ async function loadResourceAttachments(resourceId) {
 
   for (const file of files) {
 
+/* =====================================
+   139단계
+   첨부사진 미리보기
+===================================== */
+
+if (file.attachment_type === "image") {
+
+  const { data: imageData } =
+    supabase.storage
+      .from("resource-files")
+      .getPublicUrl(file.file_path);
+
+  const image =
+    document.createElement("img");
+
+  image.src = imageData.publicUrl;
+
+  image.alt = file.file_name || "첨부사진";
+
+  image.loading = "lazy";
+
+  image.style.width = "180px";
+  image.style.maxWidth = "100%";
+  image.style.height = "auto";
+  image.style.borderRadius = "8px";
+  image.style.margin = "10px 0";
+  image.style.cursor = "pointer";
+  image.style.display = "block";
+
+  /* 사진 클릭 시 확대 */
+
+  image.addEventListener("click", () => {
+
+    window.open(
+      imageData.publicUrl,
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  });
+
+  attachmentArea.appendChild(image);
+
+}
+    
     const row =
       document.createElement("div");
-
+   
     row.style.margin = "12px 0";
     row.style.padding = "12px";
     row.style.background = "#f8fafc";
