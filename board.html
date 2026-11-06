@@ -964,6 +964,19 @@ const selectedDocuments = Array.from(
   document.getElementById("documentFiles").files
 );
 
+/* 문서 선택 여부 확인 */
+
+console.log(
+  "선택된 문서파일:",
+  selectedDocuments
+);
+
+alert(
+  "문서 업로드 코드 실행 확인\n" +
+  "선택된 파일 수: " +
+  selectedDocuments.length
+);
+
 const allowedExtensions = [
   "pdf",
   "hwp",
