@@ -146,6 +146,25 @@ th {
   background: #64748b;
   margin-left: 8px;
 }
+
+/* =====================================
+   자료실 관리자 관리 버튼
+===================================== */
+
+#resourceAdminButtons {
+  margin: 25px 0 15px;
+}
+
+#resourceAdminButtons button {
+  margin-right: 8px;
+  margin-bottom: 10px;
+}
+
+/* hidden 속성 유지 */
+
+#resourceAdminButtons[hidden] {
+  display: none;
+}
   
   footer {
   text-align: center;
@@ -444,6 +463,32 @@ th {
 
 <div id="resourceMedia"></div>
 
+<!-- =====================================
+     142-2단계
+     관리자 전용 자료 관리 버튼
+===================================== -->
+
+<div id="resourceAdminButtons" hidden>
+
+  <button
+    type="button"
+    id="resourceEditButton"
+    class="primary"
+  >
+    ✏️ 자료 수정
+  </button>
+
+  <button
+    type="button"
+    id="resourceDeleteButton"
+    class="primary"
+    style="background:#dc2626;"
+  >
+    🗑️ 자료 삭제
+  </button>
+
+</div>
+  
 <button
   type="button"
   id="resourceBackButton"
@@ -824,10 +869,21 @@ document.getElementById(
 
 await loadResourceAttachments(data.id);
 
-  /* 상세화면 표시 */
+ /* =====================================
+   관리자 전용 수정·삭제 버튼 표시
+===================================== */
 
-  listView.hidden = true;
-  detailView.hidden = false;
+const adminButtons =
+  document.getElementById("resourceAdminButtons");
+
+adminButtons.hidden = !resourceAdmin;
+
+/* =====================================
+   상세화면 표시
+===================================== */
+
+listView.hidden = true;
+detailView.hidden = false;
 
 showResourceYoutube(data.youtube_url);
   
