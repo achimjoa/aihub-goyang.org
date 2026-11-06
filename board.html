@@ -432,7 +432,7 @@ class="secondary">
     <div class="form-group">
 
       <label for="documentFiles">
-        📎 문서 첨부
+  📎 문서 첨부 (최대 10개)
       </label>
 
       <input
@@ -938,6 +938,15 @@ const selectedDocuments = Array.from(
   document.getElementById("documentFiles").files
 );
 
+/* 문서 첨부 최대 10개 제한 */
+
+if (selectedDocuments.length > 10) {
+  throw new Error(
+    "문서파일은 최대 10개까지 첨부할 수 있습니다."
+  );
+}
+
+    
 /* 문서 선택 여부 확인 */
 
 console.log(
