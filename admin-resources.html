@@ -141,6 +141,30 @@ footer {
 
 }
 
+/* =====================================
+   관리자 자료 등록 버튼
+===================================== */
+
+.resource-admin-actions {
+  margin: 25px 0;
+}
+
+#resourceWriteButton {
+  padding: 12px 22px;
+  background: #0754a6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#resourceWriteButton:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+  
 </style>
 
 </head>
@@ -195,6 +219,23 @@ footer {
     확인할 수 있습니다.
   </p>
 
+<!-- =====================================
+     관리자 자료 등록 버튼
+===================================== -->
+
+<div class="resource-admin-actions">
+
+  <button
+    type="button"
+    id="resourceWriteButton"
+    disabled
+    title="자료 등록 기능 연결 준비 중"
+  >
+    ＋ 새 자료 등록
+  </button>
+
+</div>
+  
   <div class="category-buttons">
 
     <button type="button"
