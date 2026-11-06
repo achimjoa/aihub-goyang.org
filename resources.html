@@ -2074,6 +2074,178 @@ resourceEditButton.addEventListener(
 
   }
 );
+
+/* =====================================
+   142-5-2단계
+   관리자 자료 삭제
+===================================== */
+
+const resourceDeleteButton =
+  document.getElementById("resourceDeleteButton");
+
+resourceDeleteButton.addEventListener(
+  "click",
+  async () => {
+
+    /* 중복 클릭 방지 */
+
+    if (resourceDeleteButton.disabled) {
+      return;
+    }
+
+    /* 관리자 권한 확인 */
+
+    if (!resourceAdmin) {
+      alert("관리자만 자료를 삭제할 수 있습니다.");
+      return;
+    }
+
+    if (currentResourceId == null) {
+      alert("삭제할 자료가 선택되지 않았습니다.");
+      return;
+    }
+
+    /* 삭제할 자료 ID 보관 */
+
+    const resourceId = currentResourceId;
+
+    /* 삭제 확인 */
+
+    const confirmed = confirm(
+      "이 자료를 삭제하시겠습니까?\n\n" +
+      "게시물과 첨부파일이 삭제됩니다.\n" +
+      "삭제 후에는 복구하기 어렵습니다."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    resourceDeleteButton.disabled = true;
+    resourceDeleteButton.textContent = "삭제 중...";
+
+    try {
+
+      /* 로그인 상태 재확인 */
+
+      const { data: authData, error: authError } =
+        await supabase.auth.getUser();
+
+      if (authError || !authData.user) {
+        throw new Error(
+          "로그인 상태를 확인할 수 없습니다."
+        );
+      }
+
+      /* 관리자 권한 재확인 */
+
+      const { data: isAdmin, error: adminError } =
+        await supabase.rpc("is_resource_admin");
+
+      if (adminError || isAdmin !== true) {
+        throw new Error(
+          "관리자 권한을 확인할 수 없습니다."
+        );
+      }
+
+      /* 첨부파일 경로 조회 */
+
+      const { data: attachments, error: attachmentError } =
+        await supabase
+          .from("resource_attachments")
+          .select("file_path")
+          .eq("resource_id", resourceId);
+
+      if (attachmentError) {
+        throw attachmentError;
+      }
+
+      const filePaths = [
+        ...new Set(
+          (attachments || [])
+            .map(file => file.file_path)
+            .filter(Boolean)
+        )
+      ];
+
+      /* Storage 실제 파일 삭제 */
+
+      if (filePaths.length > 0) {
+
+        const { error: storageError } =
+          await supabase.storage
+            .from("resource-files")
+            .remove(filePaths);
+
+        if (storageError) {
+          throw new Error(
+            "첨부파일 삭제 실패: " +
+            storageError.message
+          );
+        }
+
+      }
+
+      /* 게시물 삭제 */
+
+      const { data: deletedPosts, error: deleteError } =
+        await supabase
+          .from("resource_posts")
+          .delete()
+          .eq("id", resourceId)
+          .select("id");
+
+      if (deleteError) {
+        throw new Error(
+          "게시물 삭제 실패: " +
+          deleteError.message
+        );
+      }
+
+      if (!deletedPosts || deletedPosts.length !== 1) {
+        throw new Error(
+          "게시물 삭제가 확인되지 않았습니다."
+        );
+      }
+
+      /* 화면 초기화 */
+
+      currentResourceId = null;
+      resourceEditMode = false;
+
+      resourceDetailView.hidden = true;
+      resourceWriteView.hidden = true;
+      resourceListView.hidden = false;
+
+      /* 자료 목록 갱신 */
+
+      await loadResources();
+
+      alert("자료가 정상적으로 삭제되었습니다.");
+
+    } catch (error) {
+
+      console.error(
+        "자료실 삭제 오류:",
+        error
+      );
+
+      alert(
+        "자료 삭제 중 오류가 발생했습니다.\n" +
+        error.message +
+        "\n\n삭제가 일부 진행되었을 수 있으므로 " +
+        "Storage와 데이터베이스를 확인해 주세요."
+      );
+
+    } finally {
+
+      resourceDeleteButton.disabled = false;
+      resourceDeleteButton.textContent = "🗑️ 자료 삭제";
+
+    }
+
+  }
+);
   
 /* =====================================
    최초 실행
