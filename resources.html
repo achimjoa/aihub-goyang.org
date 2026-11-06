@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+자료실 | 고양특례시 글로벌 AI 허브 유치
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Malgun Gothic",
+    "Apple SD Gothic Neo",
+    sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+header p {
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.category-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.category-menu button {
+  padding: 10px 18px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.category-menu button.active {
+  background: #0754a6;
+  color: white;
+  border-color: #0754a6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #eef3fa;
+}
+
+.primary {
+  background: #0754a6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+#resourceWriteButton {
+  margin-top: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  color: #666;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 21px;
+  }
+
+  section {
+    padding: 18px;
+  }
+
+  th, td {
+    padding: 10px 5px;
+    font-size: 13px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>📚 글로벌 AI 허브 자료실</h1>
+
+<p>
+고양특례시 글로벌 AI 허브 유치 관련<br>
+문서와 다양한 미디어 자료를 제공합니다.
+</p>
+
+</header>
+
+<main>
+
+<section>
+
+<h2>자료실</h2>
+
+<p>
+정책자료, 홍보자료, 행사사진,
+동영상 및 음성자료를 확인할 수 있습니다.
+</p>
+
+<!-- 자료 분류 -->
+
+<div class="category-menu">
+
+<button class="active" data-category="all">
+전체
+</button>
+
+<button data-category="document">
+문서
+</button>
+
+<button data-category="image">
+사진
+</button>
+
+<button data-category="video">
+동영상
+</button>
+
+<button data-category="audio">
+음성
+</button>
+
+<button data-category="other">
+기타
+</button>
+
+</div>
+
+<!-- 자료 목록 -->
+
+<div id="resourceListView">
+
+<table>
+
+<thead>
+
+<tr>
+<th>번호</th>
+<th>자료 제목</th>
+<th>분류</th>
+<th>등록일</th>
+</tr>
+
+</thead>
+
+<tbody id="resourceList">
+
+<tr>
+<td colspan="4">
+등록된 자료가 없습니다.
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<button
+  type="button"
+  id="resourceWriteButton"
+  class="primary"
+  hidden
+>
+자료 등록
+</button>
+
+</div>
+
+<!-- 자료 상세보기 -->
+
+<div id="resourceDetailView" hidden>
+
+<h2 id="resourceDetailTitle"></h2>
+
+<p id="resourceDetailDate"></p>
+
+<div id="resourceDetailContent"></div>
+
+<div id="resourceAttachments"></div>
+
+<div id="resourceMedia"></div>
+
+<button
+  type="button"
+  id="resourceBackButton"
+  class="primary"
+>
+목록으로
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+
+</footer>
+
+</body>
+</html>
