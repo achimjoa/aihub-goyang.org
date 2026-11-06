@@ -1148,22 +1148,147 @@ if (audioError) {
       throw new Error("로그인 상태를 확인할 수 없습니다.");
     }
 
-    /* 자료실 게시물 저장 */
+   /* =====================================
+   자료실 게시물 저장
+===================================== */
 
-    const { error } =
-      await supabase
-        .from("resource_posts")
-        .insert({
-          title: title,
-          category: category,
-          content: content,
-          youtube_url: youtubeUrl || null,
-          author_id: authData.user.id
+const { data: resource, error: postError } =
+  await supabase
+    .from("resource_posts")
+    .insert({
+      title: title,
+      category: category,
+      content: content,
+      youtube_url: youtubeUrl || null,
+      author_id: authData.user.id
+    })
+    .select("id")
+    .single();
+
+if (postError) {
+  throw postError;
+}
+
+/* =====================================
+   자료실 첨부파일 업로드
+===================================== */
+
+const uploadItems = [
+  ...selectedDocuments.map(file => ({
+    file,
+    type: "document"
+  })),
+
+  ...selectedPhotos.map(file => ({
+    file,
+    type: "image"
+  })),
+
+  ...selectedAudio.map(file => ({
+    file,
+    type: "audio"
+  }))
+];
+
+/* 업로드한 파일 경로 기록 */
+
+const uploadedPaths = [];
+
+try {
+
+  for (let i = 0; i < uploadItems.length; i++) {
+
+    const item = uploadItems[i];
+
+    const file = item.file;
+
+    const extension =
+      file.name.split(".").pop().toLowerCase();
+
+    const filePath =
+      authData.user.id + "/" +
+      crypto.randomUUID() + "." + extension;
+
+    /* 업로드 진행 상황 */
+
+    resourceSubmitButton.textContent =
+      `파일 업로드 중 (${i + 1}/${uploadItems.length})`;
+
+    /* Storage 업로드 */
+
+    const { error: uploadError } =
+      await supabase.storage
+        .from("resource-files")
+        .upload(filePath, file, {
+          contentType:
+            file.type || "application/octet-stream",
+          upsert: false
         });
 
-    if (error) {
-      throw error;
+    if (uploadError) {
+      throw new Error(
+        "파일 업로드 실패: " +
+        file.name + "\n" +
+        uploadError.message
+      );
     }
+
+    uploadedPaths.push(filePath);
+
+    /* 첨부파일 정보 등록 */
+
+    const { error: attachmentError } =
+      await supabase
+        .from("resource_attachments")
+        .insert({
+          resource_id: resource.id,
+          uploader_id: authData.user.id,
+          file_name: file.name,
+          file_path: filePath,
+          file_type:
+            file.type || "application/octet-stream",
+          file_size: file.size,
+          attachment_type: item.type
+        });
+
+    if (attachmentError) {
+      throw new Error(
+        "첨부정보 등록 실패: " +
+        file.name + "\n" +
+        attachmentError.message
+      );
+    }
+
+  }
+
+} catch (uploadError) {
+
+  console.error(
+    "자료실 파일 업로드 오류:",
+    uploadError
+  );
+
+  /* 업로드된 파일 정리 */
+
+  if (uploadedPaths.length > 0) {
+
+    const { error: cleanupError } =
+      await supabase.storage
+        .from("resource-files")
+        .remove(uploadedPaths);
+
+    if (cleanupError) {
+      console.error(
+        "업로드 파일 정리 실패:",
+        cleanupError
+      );
+    }
+
+  }
+
+  throw uploadError;
+
+}
 
     /* 목록 갱신 */
 
