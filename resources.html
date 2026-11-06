@@ -114,7 +114,40 @@ th {
   margin-top: 25px;
 }
 
-footer {
+/* =====================================
+   자료 등록 화면
+===================================== */
+
+.form-group {
+  margin: 18px 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font: inherit;
+}
+
+.form-group input[type="file"] {
+  background: #f8fafc;
+}
+
+#resourceCancelButton {
+  background: #64748b;
+  margin-left: 8px;
+}
+  
+  footer {
   text-align: center;
   padding: 30px 15px;
   color: #666;
@@ -236,6 +269,167 @@ footer {
 
 </div>
 
+<!-- =====================================
+     134단계
+     관리자 자료 등록 화면
+===================================== -->
+
+<div id="resourceWriteView" hidden>
+
+<h2>📚 자료 등록</h2>
+
+<p>
+글로벌 AI 허브 유치 관련 자료를 등록합니다.
+</p>
+
+<form id="resourceForm">
+
+<!-- 자료 제목 -->
+
+<div class="form-group">
+
+<label for="resourceTitle">
+자료 제목 *
+</label>
+
+<input
+  type="text"
+  id="resourceTitle"
+  maxlength="200"
+  required
+>
+
+</div>
+
+<!-- 자료 분류 -->
+
+<div class="form-group">
+
+<label for="resourceCategory">
+자료 분류 *
+</label>
+
+<select id="resourceCategory" required>
+
+<option value="document">문서</option>
+<option value="image">사진</option>
+<option value="video">동영상</option>
+<option value="audio">음성</option>
+<option value="other">기타</option>
+
+</select>
+
+</div>
+
+<!-- 자료 설명 -->
+
+<div class="form-group">
+
+<label for="resourceContent">
+자료 설명
+</label>
+
+<textarea
+  id="resourceContent"
+  rows="8"
+></textarea>
+
+</div>
+
+<!-- 문서 첨부 -->
+
+<div class="form-group">
+
+<label for="resourceDocuments">
+📎 문서 첨부
+</label>
+
+<input
+  type="file"
+  id="resourceDocuments"
+  accept=".pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+  multiple
+>
+
+</div>
+
+<!-- 사진 첨부 -->
+
+<div class="form-group">
+
+<label for="resourcePhotos">
+📷 사진 첨부
+</label>
+
+<input
+  type="file"
+  id="resourcePhotos"
+  accept="image/jpeg,image/png,image/webp,image/gif"
+  multiple
+>
+
+</div>
+
+<!-- 음성 첨부 -->
+
+<div class="form-group">
+
+<label for="resourceAudio">
+🎵 음성 첨부
+</label>
+
+<input
+  type="file"
+  id="resourceAudio"
+  accept=".mp3,.wav,.m4a"
+  multiple
+>
+
+</div>
+
+<p>
+첨부파일은 총 10개까지 등록할 수 있으며,
+파일당 최대 20MB입니다.
+</p>
+
+<!-- YouTube 주소 -->
+
+<div class="form-group">
+
+<label for="resourceYoutube">
+▶️ YouTube 영상 주소
+</label>
+
+<input
+  type="url"
+  id="resourceYoutube"
+  placeholder="https://www.youtube.com/watch?v=..."
+>
+
+</div>
+
+<br>
+
+<button
+  type="submit"
+  id="resourceSubmitButton"
+  class="primary"
+>
+자료 등록
+</button>
+
+<button
+  type="button"
+  id="resourceCancelButton"
+  class="primary"
+>
+취소
+</button>
+
+</form>
+
+</div>
+  
 <!-- 자료 상세보기 -->
 
 <div id="resourceDetailView" hidden>
