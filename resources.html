@@ -973,21 +973,131 @@ resourceForm.addEventListener("submit", async event => {
     return;
   }
 
-  /* 파일 첨부는 아직 지원하지 않음 */
+  /* =====================================
+   137단계
+   자료실 첨부파일 사전 검사
+===================================== */
 
-  const selectedFiles = [
-    ...document.getElementById("resourceDocuments").files,
-    ...document.getElementById("resourcePhotos").files,
-    ...document.getElementById("resourceAudio").files
-  ];
+/* 파일 선택 */
 
-  if (selectedFiles.length > 0) {
-    alert(
-      "파일 첨부 기능은 다음 단계에서 연결합니다.\n" +
-      "현재는 파일 없이 자료를 등록해 주세요."
-    );
-    return;
+const selectedDocuments = Array.from(
+  document.getElementById("resourceDocuments").files
+);
+
+const selectedPhotos = Array.from(
+  document.getElementById("resourcePhotos").files
+);
+
+const selectedAudio = Array.from(
+  document.getElementById("resourceAudio").files
+);
+
+/* 전체 파일 목록 */
+
+const selectedFiles = [
+  ...selectedDocuments,
+  ...selectedPhotos,
+  ...selectedAudio
+];
+
+/* 최대 첨부 개수 */
+
+if (selectedFiles.length > 10) {
+  alert(
+    "첨부파일은 문서·사진·음성을 합쳐 " +
+    "최대 10개까지 등록할 수 있습니다."
+  );
+  return;
+}
+
+/* 파일당 최대 크기 */
+
+const maxFileSize = 20 * 1024 * 1024;
+
+/* 허용 확장자 */
+
+const allowedDocumentExtensions = [
+  "pdf", "hwp", "hwpx",
+  "doc", "docx",
+  "xls", "xlsx",
+  "ppt", "pptx",
+  "zip"
+];
+
+const allowedImageExtensions = [
+  "jpg", "jpeg", "png",
+  "webp", "gif"
+];
+
+const allowedAudioExtensions = [
+  "mp3", "wav", "m4a"
+];
+
+/* 파일 검사 함수 */
+
+function validateFiles(files, allowedExtensions) {
+
+  for (const file of files) {
+
+    const extension =
+      file.name.split(".").pop().toLowerCase();
+
+    if (!allowedExtensions.includes(extension)) {
+      return "지원하지 않는 파일 형식입니다: " +
+        file.name;
+    }
+
+    if (file.size === 0) {
+      return "빈 파일은 등록할 수 없습니다: " +
+        file.name;
+    }
+
+    if (file.size > maxFileSize) {
+      return "파일당 20MB를 초과했습니다: " +
+        file.name;
+    }
+
   }
+
+  return null;
+
+}
+
+/* 문서 검사 */
+
+const documentError = validateFiles(
+  selectedDocuments,
+  allowedDocumentExtensions
+);
+
+if (documentError) {
+  alert(documentError);
+  return;
+}
+
+/* 사진 검사 */
+
+const photoError = validateFiles(
+  selectedPhotos,
+  allowedImageExtensions
+);
+
+if (photoError) {
+  alert(photoError);
+  return;
+}
+
+/* 음성 검사 */
+
+const audioError = validateFiles(
+  selectedAudio,
+  allowedAudioExtensions
+);
+
+if (audioError) {
+  alert(audioError);
+  return;
+}
 
   /* YouTube 주소 기본 검사 */
 
