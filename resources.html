@@ -271,5 +271,169 @@ footer {
 
 </footer>
 
+<!-- =====================================
+     130단계
+     자료실 Supabase 연결
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   Supabase 연결
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   화면 요소
+===================================== */
+
+const resourceList =
+  document.getElementById("resourceList");
+
+const resourceWriteButton =
+  document.getElementById("resourceWriteButton");
+
+/* =====================================
+   자료 분류 이름
+===================================== */
+
+const categoryNames = {
+  document: "문서",
+  image: "사진",
+  video: "동영상",
+  audio: "음성",
+  other: "기타"
+};
+
+/* =====================================
+   자료실 목록 불러오기
+===================================== */
+
+async function loadResources() {
+
+  resourceList.replaceChildren();
+
+  const loadingRow =
+    document.createElement("tr");
+
+  const loadingCell =
+    document.createElement("td");
+
+  loadingCell.colSpan = 4;
+  loadingCell.textContent =
+    "자료를 불러오고 있습니다.";
+
+  loadingRow.appendChild(loadingCell);
+  resourceList.appendChild(loadingRow);
+
+  const { data, error } =
+    await supabase
+      .from("resource_posts")
+      .select("id, title, category, created_at")
+      .order("created_at", {
+        ascending: false
+      });
+
+  resourceList.replaceChildren();
+
+  if (error) {
+
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+
+    cell.colSpan = 4;
+    cell.textContent =
+      "자료를 불러오지 못했습니다: " +
+      error.message;
+
+    row.appendChild(cell);
+    resourceList.appendChild(row);
+
+    console.error(
+      "자료실 조회 오류:",
+      error
+    );
+
+    return;
+  }
+
+  if (!data || data.length === 0) {
+
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+
+    cell.colSpan = 4;
+    cell.textContent =
+      "아직 등록된 자료가 없습니다.";
+
+    row.appendChild(cell);
+    resourceList.appendChild(row);
+
+    return;
+  }
+
+  data.forEach(resource => {
+
+    const row =
+      document.createElement("tr");
+
+    const idCell =
+      document.createElement("td");
+
+    idCell.textContent = resource.id;
+
+    const titleCell =
+      document.createElement("td");
+
+    titleCell.textContent = resource.title;
+
+    const categoryCell =
+      document.createElement("td");
+
+    categoryCell.textContent =
+      categoryNames[resource.category] ||
+      resource.category;
+
+    const dateCell =
+      document.createElement("td");
+
+    dateCell.textContent =
+      new Date(resource.created_at)
+        .toLocaleDateString("ko-KR");
+
+    row.append(
+      idCell,
+      titleCell,
+      categoryCell,
+      dateCell
+    );
+
+    resourceList.appendChild(row);
+
+  });
+
+}
+
+/* =====================================
+   최초 실행
+===================================== */
+
+loadResources();
+
+</script>
+  
 </body>
 </html>
