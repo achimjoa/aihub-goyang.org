@@ -808,15 +808,21 @@ async function openResource(resourceId) {
 
   contentArea.style.whiteSpace = "pre-wrap";
 
-  /* 기존 첨부 영역 초기화 */
+ /* =====================================
+   첨부파일 및 미디어 영역 초기화
+===================================== */
 
-  document.getElementById(
-    "resourceAttachments"
-  ).replaceChildren();
+document.getElementById(
+  "resourceAttachments"
+).replaceChildren();
 
-  document.getElementById(
-    "resourceMedia"
-  ).replaceChildren();
+document.getElementById(
+  "resourceMedia"
+).replaceChildren();
+
+/* 첨부파일 불러오기 */
+
+await loadResourceAttachments(data.id);
 
   /* 상세화면 표시 */
 
@@ -1321,6 +1327,175 @@ try {
   }
 
 });
+
+/* =====================================
+   138단계
+   자료실 첨부파일 표시 및 다운로드
+===================================== */
+
+async function loadResourceAttachments(resourceId) {
+
+  const attachmentArea =
+    document.getElementById("resourceAttachments");
+
+  attachmentArea.replaceChildren();
+
+  /* 첨부파일 정보 조회 */
+
+  const { data: files, error } =
+    await supabase
+      .from("resource_attachments")
+      .select(
+        "id, file_name, file_path, file_type, file_size, attachment_type"
+      )
+      .eq("resource_id", resourceId)
+      .order("id", {
+        ascending: true
+      });
+
+  if (error) {
+
+    console.error(
+      "자료실 첨부파일 조회 오류:",
+      error
+    );
+
+    attachmentArea.textContent =
+      "첨부파일을 불러오지 못했습니다.";
+
+    return;
+  }
+
+  if (!files || files.length === 0) {
+    return;
+  }
+
+  /* 제목 */
+
+  const heading =
+    document.createElement("h3");
+
+  heading.textContent = "📎 첨부파일";
+
+  attachmentArea.appendChild(heading);
+
+  /* 파일 목록 */
+
+  for (const file of files) {
+
+    const row =
+      document.createElement("div");
+
+    row.style.margin = "12px 0";
+    row.style.padding = "12px";
+    row.style.background = "#f8fafc";
+    row.style.borderRadius = "7px";
+
+    /* 파일 종류 */
+
+    const icons = {
+      document: "📄",
+      image: "🖼️",
+      audio: "🎵",
+      other: "📦"
+    };
+
+    const icon =
+      icons[file.attachment_type] || "📎";
+
+    /* 파일명 */
+
+    const name =
+      document.createElement("div");
+
+    name.textContent =
+      icon + " " + file.file_name;
+
+    name.style.marginBottom = "8px";
+
+    /* 파일 크기 */
+
+    const size =
+      document.createElement("small");
+
+    size.textContent =
+      (file.file_size / 1024 / 1024)
+        .toFixed(2) + " MB";
+
+    /* 다운로드 버튼 */
+
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.className = "primary";
+    button.textContent = "다운로드";
+    button.style.marginTop = "10px";
+    button.style.display = "block";
+
+    button.addEventListener("click", async () => {
+
+      button.disabled = true;
+      button.textContent = "다운로드 준비 중...";
+
+      try {
+
+        const { data, error: downloadError } =
+          await supabase.storage
+            .from("resource-files")
+            .download(file.file_path);
+
+        if (downloadError) {
+          throw downloadError;
+        }
+
+        const url =
+          URL.createObjectURL(data);
+
+        const link =
+          document.createElement("a");
+
+        link.href = url;
+        link.download = file.file_name;
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        setTimeout(() => {
+          URL.revokeObjectURL(url);
+        }, 60000);
+
+      } catch (error) {
+
+        console.error(
+          "파일 다운로드 오류:",
+          error
+        );
+
+        alert(
+          "파일을 다운로드하지 못했습니다.\n" +
+          error.message
+        );
+
+      } finally {
+
+        button.disabled = false;
+        button.textContent = "다운로드";
+
+      }
+
+    });
+
+    row.appendChild(name);
+    row.appendChild(size);
+    row.appendChild(button);
+
+    attachmentArea.appendChild(row);
+
+  }
+
+}
   
 /* =====================================
    최초 실행
