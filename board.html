@@ -735,10 +735,14 @@ async function openPost(postId) {
       new Date(data.created_at)
         .toLocaleString("ko-KR");
 
-  document.getElementById("detailContent")
+ document.getElementById("detailContent")
     .textContent = data.content;
 
   showView(detailView);
+
+  /* 첨부사진 불러오기 */
+
+  await loadPostImages(data.id);
 
   showMessage("");
 
@@ -1021,6 +1025,61 @@ photoFiles.addEventListener("change", () => {
   });
 
 });
+
+
+/* =====================================
+   게시글 첨부사진 표시
+===================================== */
+
+async function loadPostImages(postId) {
+
+  const imageArea =
+    document.getElementById("postImages");
+
+  if (!imageArea) return;
+
+  imageArea.replaceChildren();
+
+  const { data, error } =
+    await supabase
+      .from("board_attachments")
+      .select("*")
+      .eq("post_id", postId)
+      .eq("attachment_type", "image");
+
+  if (error) {
+    console.error("첨부사진 조회 오류:", error);
+    return;
+  }
+
+  for (const file of data || []) {
+
+    const { data: urlData } =
+      supabase.storage
+        .from("board-images")
+        .getPublicUrl(file.file_path);
+
+    const img = document.createElement("img");
+
+    img.src = urlData.publicUrl;
+    img.alt = file.file_name || "첨부사진";
+    img.loading = "lazy";
+
+    img.addEventListener("click", () => {
+
+      window.open(
+        urlData.publicUrl,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+    });
+
+    imageArea.appendChild(img);
+
+  }
+
+}
   
 initialize();
 
