@@ -491,12 +491,11 @@ footer {
     <div class="form-actions">
 
       <button
-        type="submit"
-        id="resourceSubmitButton"
-        disabled
-      >
-        자료 등록 (연결 준비 중)
-      </button>
+  type="submit"
+  id="resourceSubmitButton"
+>
+  자료 등록
+</button>
 
       <button
         type="button"
@@ -804,12 +803,257 @@ resourceCancelButton.addEventListener(
   }
 );
 
-/* 저장 기능 연결 전 제출 방지 */
+/* =====================================
+   144-5-5-7단계
+   관리자 자료 등록 기능
+   첨부파일 없는 자료부터 등록
+===================================== */
+
+const resourceSubmitButton =
+  document.getElementById("resourceSubmitButton");
+
+let resourceSaving = false;
 
 resourceForm.addEventListener(
   "submit",
-  event => {
+  async event => {
+
     event.preventDefault();
+
+    /* 중복 제출 방지 */
+
+    if (resourceSaving) {
+      return;
+    }
+
+    /* 관리자 권한 재확인 */
+
+    const { data: isAdmin, error: adminError } =
+      await supabase.rpc("is_admin");
+
+    if (adminError || isAdmin !== true) {
+
+      alert(
+        "관리자 권한을 확인할 수 없습니다."
+      );
+
+      return;
+    }
+
+    /* 로그인 사용자 확인 */
+
+    const { data: authData, error: authError } =
+      await supabase.auth.getUser();
+
+    if (authError || !authData.user) {
+
+      alert(
+        "로그인 상태를 확인할 수 없습니다."
+      );
+
+      return;
+    }
+
+    /* 입력값 */
+
+    const title =
+      document.getElementById("resourceTitle")
+        .value.trim();
+
+    const category =
+      document.getElementById("resourceCategory")
+        .value;
+
+    const content =
+      document.getElementById("resourceContent")
+        .value.trim();
+
+    const youtubeUrl =
+      document.getElementById("resourceYoutube")
+        .value.trim();
+
+    /* 제목 확인 */
+
+    if (!title) {
+
+      alert("자료 제목을 입력해 주세요.");
+
+      return;
+    }
+
+    /* 자료 분류 확인 */
+
+    const allowedCategories = [
+      "document",
+      "image",
+      "video",
+      "audio",
+      "other"
+    ];
+
+    if (!allowedCategories.includes(category)) {
+
+      alert("올바른 자료 분류를 선택해 주세요.");
+
+      return;
+    }
+
+    /* 첨부파일 확인 */
+
+    const selectedFiles = [
+
+      ...document.getElementById(
+        "resourceDocuments"
+      ).files,
+
+      ...document.getElementById(
+        "resourcePhotos"
+      ).files,
+
+      ...document.getElementById(
+        "resourceAudio"
+      ).files
+
+    ];
+
+    /* 이번 단계에서는 첨부파일 등록 방지 */
+
+    if (selectedFiles.length > 0) {
+
+      alert(
+        "첨부파일 등록 기능은 다음 단계에서 연결합니다.\n" +
+        "이번에는 첨부파일 없이 등록해 주세요."
+      );
+
+      return;
+    }
+
+    /* YouTube 주소 검사 */
+
+    if (youtubeUrl) {
+
+      let url;
+
+      try {
+
+        url = new URL(youtubeUrl);
+
+      } catch {
+
+        alert(
+          "올바른 YouTube 주소를 입력해 주세요."
+        );
+
+        return;
+      }
+
+      const allowedHosts = [
+        "youtube.com",
+        "www.youtube.com",
+        "m.youtube.com",
+        "youtu.be",
+        "www.youtu.be"
+      ];
+
+      if (
+        url.protocol !== "https:" ||
+        !allowedHosts.includes(
+          url.hostname.toLowerCase()
+        )
+      ) {
+
+        alert(
+          "HTTPS YouTube 주소만 등록할 수 있습니다."
+        );
+
+        return;
+      }
+    }
+
+    /* 저장 시작 */
+
+    resourceSaving = true;
+
+    resourceSubmitButton.disabled = true;
+
+    resourceSubmitButton.textContent =
+      "자료 등록 중...";
+
+    try {
+
+      /* Supabase 게시물 저장 */
+
+      const { data: resource, error } =
+        await supabase
+          .from("resource_posts")
+          .insert({
+
+            title: title,
+
+            category: category,
+
+            content: content,
+
+            youtube_url:
+              youtubeUrl || null,
+
+            author_id:
+              authData.user.id
+
+          })
+          .select("id")
+          .single();
+
+      if (error) {
+        throw error;
+      }
+
+      if (!resource) {
+
+        throw new Error(
+          "등록된 자료를 확인할 수 없습니다."
+        );
+      }
+
+      /* 입력 화면 초기화 */
+
+      resourceForm.reset();
+
+      resourceWriteView.hidden = true;
+
+      resourceArea.hidden = false;
+
+      /* 자료 목록 갱신 */
+
+      await loadResources();
+
+      alert(
+        "자료가 정상적으로 등록되었습니다."
+      );
+
+    } catch (error) {
+
+      console.error(
+        "관리자 자료 등록 오류:",
+        error
+      );
+
+      alert(
+        "자료 등록 중 오류가 발생했습니다.\n" +
+        error.message
+      );
+
+    } finally {
+
+      resourceSaving = false;
+
+      resourceSubmitButton.disabled = false;
+
+      resourceSubmitButton.textContent =
+        "자료 등록";
+
+    }
+
   }
 );
   
