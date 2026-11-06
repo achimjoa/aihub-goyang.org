@@ -1430,7 +1430,81 @@ if (file.attachment_type === "image") {
     
     const row =
       document.createElement("div");
-   
+
+/* =====================================
+   140단계
+   첨부 음성파일 재생
+===================================== */
+
+if (file.attachment_type === "audio") {
+
+  /* 음성파일 공개 URL */
+
+  const { data: audioData } =
+    supabase.storage
+      .from("resource-files")
+      .getPublicUrl(file.file_path);
+
+  /* 음성 재생 영역 */
+
+  const audioContainer =
+    document.createElement("div");
+
+  audioContainer.style.margin = "15px 0";
+  audioContainer.style.padding = "15px";
+  audioContainer.style.background = "#f1f5f9";
+  audioContainer.style.borderRadius = "8px";
+
+  /* 음성 제목 */
+
+  const audioTitle =
+    document.createElement("div");
+
+  audioTitle.textContent =
+    "🎵 " + file.file_name;
+
+  audioTitle.style.fontWeight = "bold";
+  audioTitle.style.marginBottom = "10px";
+
+  /* HTML5 음성 플레이어 */
+
+  const audio =
+    document.createElement("audio");
+
+  audio.controls = true;
+  audio.preload = "metadata";
+
+  audio.style.width = "100%";
+  audio.style.maxWidth = "600px";
+
+  /* 음성파일 주소 */
+
+  audio.src = audioData.publicUrl;
+
+  /* 재생 오류 처리 */
+
+  audio.addEventListener("error", () => {
+
+    console.error(
+      "음성파일 재생 오류:",
+      file.file_name
+    );
+
+    audioTitle.textContent =
+      "⚠️ 음성파일을 재생할 수 없습니다: " +
+      file.file_name;
+
+  });
+
+  /* 화면에 추가 */
+
+  audioContainer.appendChild(audioTitle);
+  audioContainer.appendChild(audio);
+
+  attachmentArea.appendChild(audioContainer);
+
+}
+    
     row.style.margin = "12px 0";
     row.style.padding = "12px";
     row.style.background = "#f8fafc";
