@@ -829,6 +829,8 @@ await loadResourceAttachments(data.id);
   listView.hidden = true;
   detailView.hidden = false;
 
+showResourceYoutube(data.youtube_url);
+  
 }
 
 /* =====================================
@@ -1613,6 +1615,171 @@ if (file.attachment_type === "audio") {
     attachmentArea.appendChild(row);
 
   }
+
+}
+
+/* =====================================
+   141단계
+   YouTube 주소 변환 함수
+===================================== */
+
+function getYoutubeEmbedUrl(youtubeUrl) {
+
+  if (!youtubeUrl) {
+    return null;
+  }
+
+  try {
+
+    const url = new URL(youtubeUrl);
+
+    if (url.protocol !== "https:") {
+      return null;
+    }
+
+    const host = url.hostname.toLowerCase();
+
+    let videoId = null;
+
+    /* 일반 YouTube 주소 */
+
+    if (
+      host === "youtube.com" ||
+      host === "www.youtube.com" ||
+      host === "m.youtube.com"
+    ) {
+
+      if (url.pathname === "/watch") {
+
+        videoId = url.searchParams.get("v");
+
+      } else if (
+        url.pathname.startsWith("/shorts/")
+      ) {
+
+        videoId = url.pathname.split("/")[2];
+
+      } else if (
+        url.pathname.startsWith("/embed/")
+      ) {
+
+        videoId = url.pathname.split("/")[2];
+
+      }
+
+    }
+
+    /* YouTube 단축 주소 */
+
+    if (
+      host === "youtu.be" ||
+      host === "www.youtu.be"
+    ) {
+
+      videoId = url.pathname.split("/")[1];
+
+    }
+
+    /* 동영상 ID 검사 */
+
+    if (
+      !videoId ||
+      !/^[a-zA-Z0-9_-]{11}$/.test(videoId)
+    ) {
+      return null;
+    }
+
+    return (
+      "https://www.youtube-nocookie.com/embed/" +
+      videoId
+    );
+
+  } catch (error) {
+
+    console.error(
+      "YouTube 주소 변환 오류:",
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+/* =====================================
+   자료실 YouTube 영상 표시
+===================================== */
+
+function showResourceYoutube(youtubeUrl) {
+
+  const mediaArea =
+    document.getElementById("resourceMedia");
+
+  mediaArea.replaceChildren();
+
+  if (!youtubeUrl) {
+    return;
+  }
+
+  const embedUrl =
+    getYoutubeEmbedUrl(youtubeUrl);
+
+  if (!embedUrl) {
+
+    mediaArea.textContent =
+      "올바른 YouTube 영상 주소가 아닙니다.";
+
+    return;
+
+  }
+
+  /* 영상 제목 */
+
+  const heading =
+    document.createElement("h3");
+
+  heading.textContent = "▶️ 동영상";
+
+  mediaArea.appendChild(heading);
+
+  /* 반응형 영상 영역 */
+
+  const videoContainer =
+    document.createElement("div");
+
+  videoContainer.style.position = "relative";
+  videoContainer.style.width = "100%";
+  videoContainer.style.maxWidth = "800px";
+  videoContainer.style.aspectRatio = "16 / 9";
+  videoContainer.style.margin = "20px 0";
+
+  /* YouTube 플레이어 */
+
+  const iframe =
+    document.createElement("iframe");
+
+  iframe.src = embedUrl;
+
+  iframe.title = "YouTube 동영상";
+
+  iframe.style.width = "100%";
+  iframe.style.height = "100%";
+  iframe.style.border = "0";
+  iframe.style.borderRadius = "10px";
+
+  iframe.loading = "lazy";
+
+  iframe.allow =
+    "accelerometer; autoplay; clipboard-write; " +
+    "encrypted-media; gyroscope; picture-in-picture; " +
+    "web-share";
+
+  iframe.allowFullscreen = true;
+
+  videoContainer.appendChild(iframe);
+
+  mediaArea.appendChild(videoContainer);
 
 }
   
