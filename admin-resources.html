@@ -164,6 +164,70 @@ footer {
   background: #9ca3af;
   cursor: not-allowed;
 }
+
+/* =====================================
+   자료 등록 입력 화면
+===================================== */
+
+#resourceWriteView[hidden] {
+  display: none;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #0754a6;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.form-actions button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 7px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#resourceSubmitButton {
+  background: #0754a6;
+  color: white;
+}
+
+#resourceSubmitButton:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+#resourceCancelButton {
+  background: #e5e7eb;
+  color: #17315b;
+}
   
 </style>
 
@@ -280,6 +344,173 @@ footer {
 
 </section>
 
+<!-- =====================================
+     관리자 자료 등록 화면
+===================================== -->
+
+<section id="resourceWriteView" hidden>
+
+  <h2>새 자료 등록</h2>
+
+  <p>
+    통합 자료실에 게시할 자료를
+    등록합니다.
+  </p>
+
+  <form id="resourceForm">
+
+    <!-- 자료 제목 -->
+
+    <div class="form-group">
+
+      <label for="resourceTitle">
+        자료 제목 *
+      </label>
+
+      <input
+        type="text"
+        id="resourceTitle"
+        maxlength="200"
+        required
+      >
+
+    </div>
+
+    <!-- 자료 분류 -->
+
+    <div class="form-group">
+
+      <label for="resourceCategory">
+        자료 분류 *
+      </label>
+
+      <select
+        id="resourceCategory"
+        required
+      >
+
+        <option value="document">문서</option>
+        <option value="image">사진</option>
+        <option value="video">동영상</option>
+        <option value="audio">음성</option>
+        <option value="other">기타</option>
+
+      </select>
+
+    </div>
+
+    <!-- 자료 설명 -->
+
+    <div class="form-group">
+
+      <label for="resourceContent">
+        자료 설명
+      </label>
+
+      <textarea
+        id="resourceContent"
+        rows="8"
+      ></textarea>
+
+    </div>
+
+    <!-- 문서 첨부 -->
+
+    <div class="form-group">
+
+      <label for="resourceDocuments">
+        📎 문서 첨부
+      </label>
+
+      <input
+        type="file"
+        id="resourceDocuments"
+        accept=".pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+        multiple
+      >
+
+    </div>
+
+    <!-- 사진 첨부 -->
+
+    <div class="form-group">
+
+      <label for="resourcePhotos">
+        📷 사진 첨부
+      </label>
+
+      <input
+        type="file"
+        id="resourcePhotos"
+        accept="image/jpeg,image/png,image/webp,image/gif"
+        multiple
+      >
+
+    </div>
+
+    <!-- 음성 첨부 -->
+
+    <div class="form-group">
+
+      <label for="resourceAudio">
+        🎵 음성 첨부
+      </label>
+
+      <input
+        type="file"
+        id="resourceAudio"
+        accept=".mp3,.wav,.m4a"
+        multiple
+      >
+
+    </div>
+
+    <p>
+      첨부파일은 총 10개까지 등록할 수 있으며,
+      파일당 최대 20MB입니다.
+    </p>
+
+    <!-- YouTube 주소 -->
+
+    <div class="form-group">
+
+      <label for="resourceYoutube">
+        ▶️ YouTube 영상 주소
+      </label>
+
+      <input
+        type="url"
+        id="resourceYoutube"
+        placeholder="https://www.youtube.com/watch?v=..."
+      >
+
+    </div>
+
+    <!-- 버튼 -->
+
+    <div class="form-actions">
+
+      <button
+        type="submit"
+        id="resourceSubmitButton"
+        disabled
+      >
+        자료 등록 (연결 준비 중)
+      </button>
+
+      <button
+        type="button"
+        id="resourceCancelButton"
+      >
+        취소
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
+  
 </main>
 
 <footer>
@@ -523,6 +754,65 @@ categoryButtons.forEach(button => {
 
 });
 
+/* =====================================
+   관리자 자료 등록 화면 전환
+===================================== */
+
+const resourceWriteButton =
+  document.getElementById("resourceWriteButton");
+
+const resourceWriteView =
+  document.getElementById("resourceWriteView");
+
+const resourceCancelButton =
+  document.getElementById("resourceCancelButton");
+
+const resourceForm =
+  document.getElementById("resourceForm");
+
+/* 자료 등록 화면 열기 */
+
+resourceWriteButton.addEventListener(
+  "click",
+  () => {
+
+    if (resourceArea.hidden) {
+      return;
+    }
+
+    resourceArea.hidden = true;
+    resourceWriteView.hidden = false;
+
+    document.getElementById(
+      "resourceTitle"
+    ).focus();
+
+  }
+);
+
+/* 자료 등록 취소 */
+
+resourceCancelButton.addEventListener(
+  "click",
+  () => {
+
+    resourceForm.reset();
+
+    resourceWriteView.hidden = true;
+    resourceArea.hidden = false;
+
+  }
+);
+
+/* 저장 기능 연결 전 제출 방지 */
+
+resourceForm.addEventListener(
+  "submit",
+  event => {
+    event.preventDefault();
+  }
+);
+  
 /* 최초 실행 */
 
 async function initialize() {
@@ -538,9 +828,13 @@ async function initialize() {
       return;
     }
 
-    resourceArea.hidden = false;
+   resourceArea.hidden = false;
 
-    await loadResources();
+/* 관리자 인증 후 등록 화면 열기 허용 */
+
+resourceWriteButton.disabled = false;
+
+await loadResources();
 
   } catch (error) {
 
