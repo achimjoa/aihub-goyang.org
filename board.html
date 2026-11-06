@@ -438,7 +438,48 @@ required></textarea>
 
 </div>
 
+<!-- =====================================
+     사진 첨부
+===================================== -->
 
+<div class="form-group">
+
+  <label for="photoFiles">
+    📷 사진 첨부 (최대 10장)
+  </label>
+
+  <input
+    type="file"
+    id="photoFiles"
+    accept="image/jpeg,image/png,image/webp,image/gif"
+    multiple
+  >
+
+  <div id="photoPreview"></div>
+
+</div>
+
+
+<!-- =====================================
+     문서 첨부
+===================================== -->
+
+<div class="form-group">
+
+  <label for="documentFiles">
+    📎 문서 첨부
+  </label>
+
+  <input
+    type="file"
+    id="documentFiles"
+    accept=".pdf,.hwp,.hwpx,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip"
+    multiple
+  >
+
+  <p>파일당 최대 20MB</p>
+
+</div>
   
 <button
 type="submit"
