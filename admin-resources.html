@@ -1099,6 +1099,150 @@ for (const [inputId, extensions] of
         );
       }
 
+/* =====================================
+   144-5-5-8-2단계
+   첨부파일 업로드 및 정보 저장
+===================================== */
+
+/* 파일 종류별 업로드 목록 */
+
+const uploadItems = [
+
+  ...Array.from(
+    document.getElementById("resourceDocuments").files
+  ).map(file => ({
+    file,
+    type: "document"
+  })),
+
+  ...Array.from(
+    document.getElementById("resourcePhotos").files
+  ).map(file => ({
+    file,
+    type: "image"
+  })),
+
+  ...Array.from(
+    document.getElementById("resourceAudio").files
+  ).map(file => ({
+    file,
+    type: "audio"
+  }))
+
+];
+
+/* 업로드된 파일 경로 */
+
+const uploadedPaths = [];
+
+try {
+
+  for (let i = 0; i < uploadItems.length; i++) {
+
+    const item = uploadItems[i];
+    const file = item.file;
+
+    const extension =
+      file.name.split(".").pop().toLowerCase();
+
+    /* 관리자 UID 폴더에 저장 */
+
+    const filePath =
+      authData.user.id + "/" +
+      crypto.randomUUID() + "." + extension;
+
+    /* 진행 상황 표시 */
+
+    resourceSubmitButton.textContent =
+      `파일 업로드 중 (${i + 1}/${uploadItems.length})`;
+
+    /* Supabase Storage 업로드 */
+
+    const { error: uploadError } =
+      await supabase.storage
+        .from("resource-files")
+        .upload(filePath, file, {
+
+          contentType:
+            file.type || "application/octet-stream",
+
+          upsert: false
+
+        });
+
+    if (uploadError) {
+      throw new Error(
+        "파일 업로드 실패: " +
+        file.name + "\n" +
+        uploadError.message
+      );
+    }
+
+    uploadedPaths.push(filePath);
+
+    /* 첨부파일 정보 저장 */
+
+    const { error: attachmentError } =
+      await supabase
+        .from("resource_attachments")
+        .insert({
+
+          resource_id: resource.id,
+
+          uploader_id: authData.user.id,
+
+          file_name: file.name,
+
+          file_path: filePath,
+
+          file_type:
+            file.type || "application/octet-stream",
+
+          file_size: file.size,
+
+          attachment_type: item.type
+
+        });
+
+    if (attachmentError) {
+      throw new Error(
+        "첨부파일 정보 저장 실패: " +
+        file.name + "\n" +
+        attachmentError.message
+      );
+    }
+
+  }
+
+} catch (uploadError) {
+
+  console.error(
+    "첨부파일 업로드 오류:",
+    uploadError
+  );
+
+  /* 이미 업로드한 파일 정리 */
+
+  if (uploadedPaths.length > 0) {
+
+    const { error: cleanupError } =
+      await supabase.storage
+        .from("resource-files")
+        .remove(uploadedPaths);
+
+    if (cleanupError) {
+      console.error(
+        "업로드 파일 정리 실패:",
+        cleanupError
+      );
+    }
+
+  }
+
+  throw uploadError;
+
+}
+      
       /* 입력 화면 초기화 */
 
       resourceForm.reset();
