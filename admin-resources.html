@@ -916,17 +916,101 @@ resourceForm.addEventListener(
 
     ];
 
-    /* 이번 단계에서는 첨부파일 등록 방지 */
+    /* =====================================
+   144-5-5-8-1단계
+   첨부파일 사전 검사
+===================================== */
 
-    if (selectedFiles.length > 0) {
+/* 전체 첨부파일 개수 확인 */
+
+if (selectedFiles.length > 10) {
+
+  alert(
+    "첨부파일은 문서·사진·음성을 합쳐 " +
+    "최대 10개까지 등록할 수 있습니다."
+  );
+
+  return;
+}
+
+/* 파일당 최대 20MB */
+
+const maxFileSize = 20 * 1024 * 1024;
+
+/* 허용 확장자 */
+
+const allowedExtensions = {
+
+  resourceDocuments: [
+    "pdf", "hwp", "hwpx",
+    "doc", "docx",
+    "xls", "xlsx",
+    "ppt", "pptx", "zip"
+  ],
+
+  resourcePhotos: [
+    "jpg", "jpeg", "png",
+    "webp", "gif"
+  ],
+
+  resourceAudio: [
+    "mp3", "wav", "m4a"
+  ]
+
+};
+
+/* 파일 종류별 검사 */
+
+for (const [inputId, extensions] of
+  Object.entries(allowedExtensions)) {
+
+  const input =
+    document.getElementById(inputId);
+
+  for (const file of input.files) {
+
+    const extension =
+      file.name.split(".").pop().toLowerCase();
+
+    /* 확장자 검사 */
+
+    if (!extensions.includes(extension)) {
 
       alert(
-        "첨부파일 등록 기능은 다음 단계에서 연결합니다.\n" +
-        "이번에는 첨부파일 없이 등록해 주세요."
+        "지원하지 않는 파일 형식입니다:\n" +
+        file.name
       );
 
       return;
     }
+
+    /* 빈 파일 검사 */
+
+    if (file.size === 0) {
+
+      alert(
+        "빈 파일은 등록할 수 없습니다:\n" +
+        file.name
+      );
+
+      return;
+    }
+
+    /* 파일 크기 검사 */
+
+    if (file.size > maxFileSize) {
+
+      alert(
+        "파일당 최대 20MB까지 등록할 수 있습니다:\n" +
+        file.name
+      );
+
+      return;
+    }
+
+  }
+
+}
 
     /* YouTube 주소 검사 */
 
