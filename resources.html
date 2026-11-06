@@ -1435,8 +1435,18 @@ async function loadResourceAttachments(resourceId) {
 
     button.addEventListener("click", async () => {
 
-      button.disabled = true;
-      button.textContent = "다운로드 준비 중...";
+  /* 다운로드 버튼 작동 확인 */
+
+  alert("다운로드 버튼 클릭이 확인되었습니다.");
+
+  console.log(
+    "다운로드 요청 파일:",
+    file.file_name,
+    file.file_path
+  );
+
+  button.disabled = true;
+  button.textContent = "다운로드 준비 중...";
 
       try {
 
