@@ -1180,6 +1180,37 @@ const img =
       return;
     }
 
+/* =====================================
+   제145-2-9-10-7-4단계
+   신규 사진 조회 후 선택 분류 유지
+===================================== */
+
+/* 현재 선택된 분류 버튼 */
+
+const activeButton =
+  document.querySelector(
+    ".filters button.active"
+  );
+
+/* 선택된 분류 다시 적용 */
+
+if (activeButton) {
+
+  const category =
+    activeButton.getAttribute("onclick")
+      ?.match(/filterPhotos\('([^']+)'/)?.[1];
+
+  if (category) {
+
+    filterPhotos(
+      category,
+      activeButton
+    );
+
+  }
+
+}
+     
     console.log(
       "Supabase 활동 사진 조회 완료:",
       photoCount,
