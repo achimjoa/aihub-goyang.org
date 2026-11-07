@@ -1462,6 +1462,73 @@ function setNewsManagementTitle() {
 /* 페이지 시작 */
 
 setNewsManagementTitle();
+
+/* =====================================
+   제145-2-8-2-1단계
+   언론보도 관리 화면 제목 설정
+===================================== */
+
+function applyPressManagementView() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  const isPress =
+    params.get("category") === "press";
+
+  if (!isPress) {
+    return;
+  }
+
+  /* 관리자 화면 제목 */
+
+  const heading =
+    document.querySelector(
+      "#newsAdminArea h2"
+    );
+
+  if (heading) {
+
+    heading.textContent =
+      "📺 언론보도 목록";
+
+  }
+
+  /* 관리자 화면 안내 문구 */
+
+  const description =
+    document.querySelector(
+      "#newsAdminArea > p"
+    );
+
+  if (description) {
+
+    description.textContent =
+      "신문기사와 방송 보도자료를 관리합니다.";
+
+  }
+
+  /* 등록 버튼 문구 */
+
+  const writeButton =
+    document.getElementById(
+      "newsWriteButton"
+    );
+
+  if (writeButton) {
+
+    writeButton.textContent =
+      "＋ 새 언론보도 등록";
+
+  }
+
+}
+
+/* 언론보도 화면 적용 */
+
+applyPressManagementView();
   
 checkNewsAdmin();
 
