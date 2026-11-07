@@ -271,118 +271,102 @@ const supabase = createClient(
   연결 주소가 없으면 빈 문자열("")로 둡니다.
 */
 
-const news = [
-
-  {
-    date: "2026.10.30",
-    category: "event",
-    categoryName: "행사 소식",
-    title: "경기도 글로벌 AI 허브 유치전략 포럼",
-    description:
-      "고양특례시 킨텍스에서 경기도 글로벌 AI 허브 유치전략 포럼이 개최되었습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.10.26",
-    category: "policy",
-    categoryName: "정책 소식",
-    title: "고양특례시의회 글로벌 AI 허브 유치 촉구 결의",
-    description:
-      "고양특례시의회가 글로벌 AI 허브 유치 촉구 결의안을 만장일치로 채택했습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.10.20",
-    category: "activity",
-    categoryName: "위원회 활동",
-    title: "제7회 고양혁신전략세미나 참여",
-    description:
-      "글로벌 AI 허브 유치 전략 확정과 실행조직 구축, 협력기관 확보 및 증빙자료 준비의 중요성을 제안했습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.10.15",
-    category: "activity",
-    categoryName: "위원회 활동",
-    title: "글로벌 AI 허브 입지 선정 평가기준 개선 건의",
-    description:
-      "국제기구 초기 정착, 시민 수용성, 공공 AI 실증 및 국제협력 잠재력의 평가 반영을 제안했습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.10.14",
-    category: "policy",
-    categoryName: "정책 소식",
-    title: "글로벌 AI 허브 입지 선정 평가기준 공청회",
-    description:
-      "정부의 글로벌 AI 허브 입지 선정 평가기준안이 공개되고 의견수렴이 진행되었습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.10.12",
-    category: "policy",
-    categoryName: "정책 소식",
-    title: "경기도 글로벌 AI 허브 유치 추진지원단 출범",
-    description:
-      "경기도의 글로벌 AI 허브 유치 전략 수립과 협력체계 구축을 위한 추진지원단이 출범했습니다.",
-    link: ""
-  },
-
-  {
-    date: "2026.09.07",
-    category: "activity",
-    categoryName: "위원회 활동",
-    title: "글로벌 AI 허브 유치 범시민추진위원회 발대식",
-    description:
-      "고양특례시 호수공원 꽃전시관에서 시민사회가 참여하는 글로벌 AI 허브 유치운동이 출범했습니다.",
-    link: ""
-  }
-
-];
-
 /* =====================================
-   제145-2-6-4단계
-   Supabase 활동 소식 조회 시험
+   제145-2-6-5단계
+   활동 소식 데이터 저장 배열
 ===================================== */
 
-async function testLoadNews() {
+let news = [];
 
-  console.log(
-    "Supabase 활동 소식 조회 시작"
-  );
+/* =====================================
+   제145-2-6-5단계
+   Supabase 활동 소식 불러오기
+===================================== */
 
-  const { data, error } =
-    await supabase
-      .from("news_posts")
-      .select(
-        "id, title, category, description, link, published_at"
-      )
-      .order("published_at", {
-        ascending: false
-      });
+async function loadNews() {
 
-  if (error) {
+  /* 로딩 표시 */
+
+  newsList.textContent =
+    "활동 소식을 불러오고 있습니다.";
+
+  empty.hidden = true;
+
+  try {
+
+    /* Supabase 조회 */
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, description, link, published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    /* 분류 이름 */
+
+    const categoryNames = {
+      notice: "공지사항",
+      activity: "위원회 활동",
+      event: "행사 소식",
+      press: "언론보도",
+      policy: "정책 소식"
+    };
+
+    /* Supabase 데이터를 기존 화면 형식으로 변환 */
+
+    news = (data || []).map(item => ({
+
+      id: item.id,
+
+      date: item.published_at
+        ? item.published_at.replace(/-/g, ".")
+        : "",
+
+      category: item.category,
+
+      categoryName:
+        categoryNames[item.category] || "기타",
+
+      title: item.title || "",
+
+      description: item.description || "",
+
+      link: item.link || ""
+
+    }));
+
+    /* 화면 갱신 */
+
+    renderNews();
+
+    console.log(
+      "활동 소식 불러오기 완료:",
+      news.length,
+      "건"
+    );
+
+  } catch (error) {
 
     console.error(
-      "Supabase 활동 소식 조회 오류:",
+      "활동 소식 조회 오류:",
       error
     );
 
-    return;
+    newsList.textContent =
+      "활동 소식을 불러오지 못했습니다. " +
+      "잠시 후 다시 시도해 주세요.";
+
+    empty.hidden = true;
+
   }
-
-  console.log(
-    "Supabase 활동 소식 조회 성공:",
-    data.length,
-    "건"
-  );
-
-  console.table(data);
 
 }
   
@@ -473,13 +457,18 @@ document.querySelectorAll("[data-category]").forEach(button => {
   });
 });
 
-searchInput.addEventListener("input", renderNews);
+/* =====================================
+   활동 소식 검색 및 초기 조회
+===================================== */
 
-renderNews();
+searchInput.addEventListener(
+  "input",
+  renderNews
+);
 
-/* Supabase 조회 시험 실행 */
+/* Supabase 데이터 불러오기 */
 
-testLoadNews();
+loadNews();
   
 </script>
 
