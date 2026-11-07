@@ -1605,6 +1605,22 @@ function applyPressManagementView() {
     return;
   }
 
+/* =====================================
+   최상단 관리자 화면 제목 변경
+===================================== */
+
+const pageHeading =
+  document.querySelector(
+    "header h1"
+  );
+
+if (pageHeading) {
+
+  pageHeading.textContent =
+    "📺 언론보도 관리";
+
+}
+  
   /* 관리자 화면 제목 */
 
   const heading =
