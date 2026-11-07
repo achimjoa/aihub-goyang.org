@@ -2378,7 +2378,64 @@ if (cleanupErrors.length > 0) {
   }
 );
 
+/* =====================================
+   제145-2-9-10-4단계
+   사진 활동 분류 메뉴 자동 표시
+===================================== */
 
+/* 자료 분류 선택 메뉴 */
+
+const photoResourceCategory =
+  document.getElementById("resourceCategory");
+
+/* 사진 활동 분류 영역 */
+
+const photoActivityCategoryArea =
+  document.getElementById(
+    "photoActivityCategoryArea"
+  );
+
+/* 사진 활동 분류 선택 메뉴 */
+
+const photoActivityCategory =
+  document.getElementById(
+    "photoActivityCategory"
+  );
+
+/* 사진 선택 여부에 따른 화면 변경 */
+
+function updatePhotoActivityCategory() {
+
+  const isPhoto =
+    photoResourceCategory.value === "image";
+
+  /* 사진일 때만 표시 */
+
+  photoActivityCategoryArea.style.display =
+    isPhoto ? "block" : "none";
+
+  /* 사진일 때 필수 선택 */
+
+  photoActivityCategory.required = isPhoto;
+
+  /* 사진이 아니면 선택값 초기화 */
+
+  if (!isPhoto) {
+    photoActivityCategory.value = "";
+  }
+
+}
+
+/* 자료 분류 변경 감지 */
+
+photoResourceCategory.addEventListener(
+  "change",
+  updatePhotoActivityCategory
+);
+
+/* 최초 화면 설정 */
+
+updatePhotoActivityCategory();
   
 /* 최초 실행 */
 
