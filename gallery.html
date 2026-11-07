@@ -235,6 +235,30 @@ main {
 }
 
 /* =====================================
+   신규 사진 활동 분류 표시
+===================================== */
+
+.photo-category {
+
+  display: inline-block;
+
+  margin: 15px 15px 0;
+
+  padding: 5px 12px;
+
+  background: #eaf4ff;
+
+  color: #0754a6;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+}
+   
+/* =====================================
    사진 확대 화면
 ===================================== */
 
@@ -1155,18 +1179,58 @@ const img =
 
         };
 
-        /* 사진 제목 */
+        /* =====================================
+   제145-2-9-11-6-4단계
+   신규 사진 활동 분류 이름 표시
+===================================== */
 
-        const caption =
-          document.createElement("p");
+/* 사진 활동 분류 이름 */
 
-        caption.className = "photo-title";
+const activityCategoryNames = {
 
-        caption.textContent =
-          post.title || "활동 사진";
+  signature: "시민 서명운동",
 
-        card.appendChild(img);
-        card.appendChild(caption);
+  solidarity: "시민사회 연대",
+
+  promotion: "홍보활동",
+
+  culture: "문화예술",
+
+  other: "기타 활동"
+
+};
+
+/* 활동 분류 표시 */
+
+const categoryLabel =
+  document.createElement("p");
+
+categoryLabel.className =
+  "photo-category";
+
+categoryLabel.textContent =
+  activityCategoryNames[
+    post.activity_category
+  ] || "기타 활동";
+
+/* 사진 제목 */
+
+const caption =
+  document.createElement("p");
+
+caption.className =
+  "photo-title";
+
+caption.textContent =
+  post.title || "활동 사진";
+
+/* 사진 카드에 추가 */
+
+card.appendChild(img);
+
+card.appendChild(categoryLabel);
+
+card.appendChild(caption);
 
         /* 사진 설명 */
 
