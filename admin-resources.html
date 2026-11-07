@@ -1633,8 +1633,99 @@ for (const [inputId, extensions] of
     resourceSubmitButton.disabled = true;
 
     resourceSubmitButton.textContent =
-      "자료 등록 중...";
+  resourceEditMode
+    ? "자료 수정 중..."
+    : "자료 등록 중...";
 
+/* =====================================
+   144-5-5-9-5-4단계
+   기존 자료 수정 저장
+===================================== */
+
+if (resourceEditMode) {
+
+  /* 수정 대상 확인 */
+
+  if (!currentResourceId) {
+    throw new Error(
+      "수정할 자료가 선택되지 않았습니다."
+    );
+  }
+
+  /* 수정 중 신규 첨부파일 방지 */
+
+  if (selectedFiles.length > 0) {
+    throw new Error(
+      "자료 수정 중에는 새 파일을 첨부할 수 없습니다."
+    );
+  }
+
+  /* Supabase 자료 수정 */
+
+  const { data: updatedResource, error: updateError } =
+    await supabase
+      .from("resource_posts")
+      .update({
+        title: title,
+        category: category,
+        content: content,
+        youtube_url: youtubeUrl || null
+      })
+      .eq("id", currentResourceId)
+      .select("id")
+      .single();
+
+  if (updateError) {
+    throw updateError;
+  }
+
+  if (!updatedResource) {
+    throw new Error(
+      "수정된 자료를 확인할 수 없습니다."
+    );
+  }
+
+  /* 수정 완료 후 상세보기 */
+
+  await loadResources();
+
+  await openAdminResource(updatedResource.id);
+
+  /* 수정 모드 종료 */
+
+  resourceEditMode = false;
+
+  /* 입력 초기화 */
+
+  resourceForm.reset();
+
+  /* 첨부파일 입력 활성화 */
+
+  [
+    "resourceDocuments",
+    "resourcePhotos",
+    "resourceAudio"
+  ].forEach(id => {
+
+    document.getElementById(id).disabled = false;
+
+  });
+
+  /* 화면 제목 복원 */
+
+  document.getElementById(
+    "resourceFormHeading"
+  ).textContent =
+    "새 자료 등록";
+
+  alert(
+    "자료가 정상적으로 수정되었습니다."
+  );
+
+  return;
+
+}
+    
     try {
 
       /* Supabase 게시물 저장 */
