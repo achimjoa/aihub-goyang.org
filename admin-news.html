@@ -789,17 +789,7 @@ newsForm.addEventListener(
 
     event.preventDefault();
 
-/* 수정 저장 기능 연결 전 보호 */
 
-if (editingNewsId !== null) {
-
-  alert(
-    "수정 저장 기능은 다음 단계에서 연결합니다."
-  );
-
-  return;
-
-}
     
     /* 중복 제출 방지 */
 
@@ -913,28 +903,81 @@ if (editingNewsId !== null) {
         );
       }
 
-      /* Supabase 저장 */
+     /* =====================================
+   활동 소식 등록·수정 구분 저장
+===================================== */
 
-      const { error } =
-        await supabase
-          .from("news_posts")
-          .insert({
+const newsData = {
 
-            title: title,
-            category: category,
-            published_at: publishedAt,
-            description: description,
-            link: link,
-            author_id: authData.user.id
+  title: title,
 
-          });
+  category: category,
 
-      if (error) {
-        throw error;
-      }
+  published_at: publishedAt,
 
+  description: description,
+
+  link: link
+
+};
+
+let saveError = null;
+
+if (editingNewsId !== null) {
+
+  /* 기존 활동 소식 수정 */
+
+  const { data, error } =
+    await supabase
+      .from("news_posts")
+      .update(newsData)
+      .eq("id", editingNewsId)
+      .select("id");
+
+  if (error) {
+    throw error;
+  }
+
+  if (!data || data.length !== 1) {
+    throw new Error(
+      "수정된 게시물을 확인할 수 없습니다."
+    );
+  }
+
+} else {
+
+  /* 새로운 활동 소식 등록 */
+
+  const { error } =
+    await supabase
+      .from("news_posts")
+      .insert({
+
+        ...newsData,
+
+        author_id: authData.user.id
+
+      });
+
+  if (error) {
+    throw error;
+  }
+
+}
+
+
+      
       /* 입력 화면 초기화 */
 
+/* 수정 여부 기록 */
+
+const wasEditing =
+  editingNewsId !== null;
+
+/* 수정 상태 초기화 */
+
+editingNewsId = null;
+      
       newsForm.reset();
 
       newsWriteView.hidden = true;
@@ -946,8 +989,10 @@ if (editingNewsId !== null) {
       await loadAdminNews();
 
       alert(
-        "활동 소식이 정상적으로 등록되었습니다."
-      );
+  wasEditing
+    ? "활동 소식이 정상적으로 수정되었습니다."
+    : "활동 소식이 정상적으로 등록되었습니다."
+);
 
     } catch (error) {
 
@@ -1062,12 +1107,12 @@ async function openNewsEdit(newsId) {
 
     newsWriteView.hidden = false;
 
-    /* 저장 버튼 비활성화 */
+    /* 수정 저장 버튼 활성화 */
 
-    newsSubmitButton.disabled = true;
+newsSubmitButton.disabled = false;
 
-    newsSubmitButton.textContent =
-      "수정 저장 기능 연결 준비 중";
+newsSubmitButton.textContent =
+  "수정 내용 저장";
 
     console.log(
       "활동 소식 수정 화면 준비 완료:",
