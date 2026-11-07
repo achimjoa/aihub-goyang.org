@@ -997,7 +997,9 @@ async function loadSupabasePhotos() {
     const { data: posts, error: postError } =
       await supabase
         .from("resource_posts")
-        .select("id, title, content, created_at")
+        .select(
+  "id, title, content, activity_category, created_at"
+)
         .eq("category", "image")
         .order("created_at", {
           ascending: false
@@ -1071,6 +1073,11 @@ async function loadSupabasePhotos() {
 
         card.className = "photo";
 
+/* Activity category */
+
+card.dataset.category =
+  post.activity_category || "uncategorized";
+            
         const img =
           document.createElement("img");
 
