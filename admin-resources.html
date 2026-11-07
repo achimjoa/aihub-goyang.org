@@ -1361,16 +1361,88 @@ resourceWriteButton.addEventListener(
   }
 );
 
-/* 자료 등록 취소 */
+/* =====================================
+   144-5-5-9-5-5단계
+   자료 등록·수정 취소 처리
+===================================== */
 
 resourceCancelButton.addEventListener(
   "click",
-  () => {
+  async () => {
+
+    /* 저장 진행 중 취소 방지 */
+
+    if (resourceSaving) {
+      return;
+    }
+
+    /* 현재 수정 모드 확인 */
+
+    const wasEditing = resourceEditMode;
+
+    const editingResourceId =
+      currentResourceId;
+
+    /* 입력 화면 초기화 */
 
     resourceForm.reset();
 
+    /* 수정 모드 종료 */
+
+    resourceEditMode = false;
+
+    /* 첨부파일 입력 활성화 */
+
+    [
+      "resourceDocuments",
+      "resourcePhotos",
+      "resourceAudio"
+    ].forEach(id => {
+
+      const input =
+        document.getElementById(id);
+
+      input.disabled = false;
+
+    });
+
+    /* 화면 제목 복원 */
+
+    document.getElementById(
+      "resourceFormHeading"
+    ).textContent =
+      "새 자료 등록";
+
+    /* 저장 버튼 복원 */
+
+    resourceSubmitButton.disabled = false;
+
+    resourceSubmitButton.textContent =
+      "자료 등록";
+
+    /* 등록 화면 닫기 */
+
     resourceWriteView.hidden = true;
-    resourceArea.hidden = false;
+
+    /* 수정 취소 시 상세보기 복귀 */
+
+    if (wasEditing && editingResourceId) {
+
+      await openAdminResource(
+        editingResourceId
+      );
+
+    } else {
+
+      /* 신규 등록 취소 시 목록 복귀 */
+
+      currentResourceId = null;
+
+      resourceDetailView.hidden = true;
+
+      resourceArea.hidden = false;
+
+    }
 
   }
 );
