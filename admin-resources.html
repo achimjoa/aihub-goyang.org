@@ -2062,16 +2062,36 @@ if (resourceEditMode) {
 
   const { data: updatedResource, error: updateError } =
     await supabase
-      .from("resource_posts")
-      .update({
-        title: title,
-        category: category,
-        content: content,
-        youtube_url: youtubeUrl || null
-      })
-      .eq("id", currentResourceId)
-      .select("id")
-      .single();
+/* =====================================
+   제145-2-9-11-3단계
+   사진 활동 분류 수정 기능
+===================================== */
+
+.from("resource_posts")
+.update({
+
+  title: title,
+
+  category: category,
+
+  /* 사진 활동 분류 수정 */
+
+  activity_category:
+    category === "image"
+      ? document.getElementById(
+          "photoActivityCategory"
+        ).value
+      : null,
+
+  content: content,
+
+  youtube_url:
+    youtubeUrl || null
+
+})
+.eq("id", currentResourceId)
+.select("id")
+.single();
 
   if (updateError) {
     throw updateError;
