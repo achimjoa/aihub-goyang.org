@@ -317,6 +317,137 @@ const newsAdminArea =
   document.getElementById("newsAdminArea");
 
 /* =====================================
+   제145-2-7-3단계
+   관리자 활동 소식 목록 조회
+===================================== */
+
+const adminNewsList =
+  document.getElementById("adminNewsList");
+
+/* 분류 이름 */
+
+function newsCategoryName(category) {
+
+  const names = {
+    notice: "공지사항",
+    activity: "위원회 활동",
+    event: "행사 소식",
+    press: "언론보도",
+    policy: "정책 소식"
+  };
+
+  return names[category] || "기타";
+
+}
+
+/* 목록 안내 메시지 */
+
+function showNewsMessage(message) {
+
+  adminNewsList.replaceChildren();
+
+  const row =
+    document.createElement("tr");
+
+  const cell =
+    document.createElement("td");
+
+  cell.colSpan = 4;
+  cell.textContent = message;
+
+  row.appendChild(cell);
+  adminNewsList.appendChild(row);
+
+}
+
+/* Supabase 목록 조회 */
+
+async function loadAdminNews() {
+
+  showNewsMessage(
+    "활동 소식을 불러오고 있습니다."
+  );
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        })
+        .order("id", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    adminNewsList.replaceChildren();
+
+    if (!data || data.length === 0) {
+
+      showNewsMessage(
+        "등록된 활동 소식이 없습니다."
+      );
+
+      return;
+    }
+
+    data.forEach((item, index) => {
+
+      const row =
+        document.createElement("tr");
+
+      const values = [
+        index + 1,
+        item.title || "",
+        newsCategoryName(item.category),
+        item.published_at || ""
+      ];
+
+      values.forEach(value => {
+
+        const cell =
+          document.createElement("td");
+
+        cell.textContent = value;
+
+        row.appendChild(cell);
+
+      });
+
+      adminNewsList.appendChild(row);
+
+    });
+
+    console.log(
+      "관리자 활동 소식 조회 완료:",
+      data.length,
+      "건"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "관리자 활동 소식 조회 오류:",
+      error
+    );
+
+    showNewsMessage(
+      "활동 소식을 불러오지 못했습니다: " +
+      error.message
+    );
+
+  }
+
+}
+  
+/* =====================================
    관리자 인증
 ===================================== */
 
@@ -359,12 +490,16 @@ async function checkNewsAdmin() {
 
     }
 
-    /* 인증 성공 */
+   /* 인증 성공 */
 
-    authMessage.textContent =
-      "관리자 인증이 완료되었습니다.";
+authMessage.textContent =
+  "관리자 인증이 완료되었습니다.";
 
-    newsAdminArea.hidden = false;
+newsAdminArea.hidden = false;
+
+/* 관리자 활동 소식 목록 조회 */
+
+await loadAdminNews();
 
   } catch (error) {
 
