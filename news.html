@@ -234,8 +234,33 @@ footer {
   <p>시민의 힘으로, 경기도의 역량으로, 세계와 함께!</p>
 </footer>
 
-<script>
+<script type="module">
 
+/* =====================================
+   제145-2-6-3단계
+   Supabase 라이브러리 연결
+===================================== */
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   Supabase 연결 정보
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+/* Supabase 클라이언트 생성 */
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+  
 /*
   새로운 소식 등록 방법
 
