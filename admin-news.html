@@ -980,9 +980,20 @@ newsForm.addEventListener(
       document.getElementById("newsTitle")
         .value.trim();
 
-    const category =
-      document.getElementById("newsCategory")
-        .value;
+    /* =====================================
+   제145-2-8-2-3단계
+   언론보도 저장 분류 보호
+===================================== */
+
+const selectedCategory =
+  document.getElementById(
+    "newsCategory"
+  ).value;
+
+const category =
+  pressManagementMode
+    ? "press"
+    : selectedCategory;
 
     const publishedAt =
       document.getElementById("newsDate")
