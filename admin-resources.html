@@ -846,6 +846,47 @@ resourceEditButton.addEventListener(
   "click",
   openResourceEdit
 );
+
+/* =====================================
+   144-5-5-9-6-2단계
+   자료 삭제 버튼 연결 준비
+===================================== */
+
+const resourceDeleteButton =
+  document.getElementById(
+    "resourceDeleteButton"
+  );
+
+/* 삭제 버튼 활성화 */
+
+resourceDeleteButton.disabled = false;
+
+resourceDeleteButton.removeAttribute("title");
+
+/* 삭제 대상 확인 */
+
+resourceDeleteButton.addEventListener(
+  "click",
+  () => {
+
+    if (!currentResourceId) {
+
+      alert(
+        "삭제할 자료가 선택되지 않았습니다."
+      );
+
+      return;
+    }
+
+    /* 실제 삭제는 아직 실행하지 않음 */
+
+    alert(
+      "삭제 대상 자료 번호: " +
+      currentResourceId
+    );
+
+  }
+);
   
 /* =====================================
    144-5-5-9-4단계
