@@ -710,13 +710,34 @@ deleteButton.textContent = "🗑️ 삭제";
 deleteButton.className =
   "news-delete-button";
 
-/* 삭제 기능은 다음 단계에서 연결 */
+/* =====================================
+   제145-2-7-6-3단계
+   활동 소식 삭제 대상 확인
+===================================== */
 
-deleteButton.disabled = true;
+/* 삭제 버튼 활성화 */
+
+deleteButton.disabled = false;
 
 deleteButton.title =
-  "삭제 기능 연결 준비 중";
+  "활동 소식 삭제";
 
+/* 삭제 대상 확인 */
+
+deleteButton.addEventListener(
+  "click",
+  () => {
+
+    confirmNewsDelete(
+      item.id,
+      item.title
+    );
+
+  }
+);
+
+actionCell.appendChild(deleteButton);
+      
 actionCell.appendChild(deleteButton);
       
 row.appendChild(actionCell);
@@ -1182,6 +1203,36 @@ newsSubmitButton.textContent =
     );
 
   }
+
+}
+
+/* =====================================
+   제145-2-7-6-3단계
+   활동 소식 삭제 확인 함수
+===================================== */
+
+function confirmNewsDelete(newsId, newsTitle) {
+
+  /* 삭제 대상 확인 */
+
+  const confirmed = window.confirm(
+    "다음 활동 소식을 삭제하시겠습니까?\n\n" +
+    "제목: " + newsTitle + "\n\n" +
+    "삭제한 게시물은 복구하기 어렵습니다."
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  /* 실제 삭제 기능은 다음 단계에서 연결 */
+
+  alert(
+    "삭제 대상 확인이 완료되었습니다.\n\n" +
+    "게시물 ID: " + newsId + "\n" +
+    "제목: " + newsTitle + "\n\n" +
+    "현재는 실제 삭제되지 않습니다."
+  );
 
 }
   
