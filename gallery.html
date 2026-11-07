@@ -1069,15 +1069,27 @@ async function loadSupabasePhotos() {
           return;
         }
 
-        /* 사진 카드 */
+        /* =====================================
+   제145-2-9-10-7-2단계
+   신규 사진 활동 분류 연결
+===================================== */
 
-        const card =
-          document.createElement("div");
+/* 사진 카드 */
 
-        card.className = "photo";
+const card =
+  document.createElement("div");
 
-        const img =
-          document.createElement("img");
+card.className = "photo";
+
+/* Supabase 사진 활동 분류 연결 */
+
+card.dataset.category =
+  post.activity_category || "uncategorized";
+
+/* 사진 이미지 */
+
+const img =
+  document.createElement("img");
 
         img.src = urlData.publicUrl;
 
