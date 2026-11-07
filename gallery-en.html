@@ -1169,6 +1169,37 @@ card.dataset.category =
       return;
     }
 
+/* =====================================
+   Step 145-2-9-10-8-3
+   Preserve Selected Photo Category
+===================================== */
+
+/* Find currently selected filter */
+
+const activeButton =
+  document.querySelector(
+    ".filters button.active"
+  );
+
+/* Reapply selected category */
+
+if (activeButton) {
+
+  const category =
+    activeButton.getAttribute("onclick")
+      ?.match(/filterPhotos\('([^']+)'/)?.[1];
+
+  if (category) {
+
+    window.filterPhotos(
+      category,
+      activeButton
+    );
+
+  }
+
+}
+        
     console.log(
       "Supabase activity photos loaded:",
       photoCount
