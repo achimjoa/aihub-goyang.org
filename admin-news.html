@@ -627,6 +627,14 @@ function showNewsMessage(message) {
 
 /* Supabase 목록 조회 */
 
+async function loadAdminNews() {
+
+  showNewsMessage(
+    "활동 소식을 불러오고 있습니다."
+  );
+
+  try {
+  
 /* Supabase 조회 조건 */
 
 let query = supabase
