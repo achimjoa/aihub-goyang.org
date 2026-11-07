@@ -765,6 +765,116 @@ const resourceDetailBackButton =
     "resourceDetailBackButton"
   );
 
+/* =====================================
+   144-5-5-9-4단계
+   관리자 상세보기 첨부파일 조회
+===================================== */
+
+async function loadAdminResourceAttachments(resourceId) {
+
+  const attachmentArea =
+    document.getElementById(
+      "resourceDetailAttachments"
+    );
+
+  attachmentArea.replaceChildren();
+
+  /* 첨부파일 정보 조회 */
+
+  const { data: files, error } =
+    await supabase
+      .from("resource_attachments")
+      .select(
+        "id, file_name, file_path, file_size, attachment_type"
+      )
+      .eq("resource_id", resourceId)
+      .order("id", {
+        ascending: true
+      });
+
+  if (error) {
+
+    console.error(
+      "첨부파일 조회 오류:",
+      error
+    );
+
+    attachmentArea.textContent =
+      "첨부파일을 불러오지 못했습니다.";
+
+    return;
+  }
+
+  if (!files || files.length === 0) {
+
+    attachmentArea.textContent =
+      "첨부파일이 없습니다.";
+
+    return;
+  }
+
+  /* 제목 */
+
+  const heading =
+    document.createElement("h3");
+
+  heading.textContent = "📎 첨부파일";
+
+  attachmentArea.appendChild(heading);
+
+  /* 첨부파일 목록 */
+
+  for (const file of files) {
+
+    const item =
+      document.createElement("div");
+
+    item.style.marginBottom = "12px";
+
+    const link =
+      document.createElement("a");
+
+    /* Supabase Storage 공개 URL */
+
+    const { data: urlData } =
+      supabase.storage
+        .from("resource-files")
+        .getPublicUrl(file.file_path);
+
+    link.href = urlData.publicUrl;
+
+    link.target = "_blank";
+
+    link.rel = "noopener noreferrer";
+
+    link.textContent =
+      "📄 " + file.file_name;
+
+    item.appendChild(link);
+
+    /* 파일 크기 표시 */
+
+    const size =
+      document.createElement("span");
+
+    size.style.marginLeft = "12px";
+
+    size.style.color = "#666";
+
+    size.textContent =
+      "(" +
+      (file.file_size / 1024 / 1024)
+        .toFixed(2) +
+      " MB)";
+
+    item.appendChild(size);
+
+    attachmentArea.appendChild(item);
+
+  }
+
+}
+  
 /* 자료 상세보기 */
 
 async function openAdminResource(resourceId) {
@@ -853,6 +963,10 @@ async function openAdminResource(resourceId) {
 
   }
 
+/* 첨부파일 목록 표시 */
+
+await loadAdminResourceAttachments(resource.id);
+  
   /* 화면 전환 */
 
   resourceArea.hidden = true;
