@@ -1211,28 +1211,114 @@ newsSubmitButton.textContent =
    활동 소식 삭제 확인 함수
 ===================================== */
 
-function confirmNewsDelete(newsId, newsTitle) {
+/* =====================================
+   제145-2-7-6-4단계
+   활동 소식 Supabase 삭제 기능
+===================================== */
+
+let newsDeleting = false;
+
+async function confirmNewsDelete(newsId, newsTitle) {
+
+  /* 중복 삭제 방지 */
+
+  if (newsDeleting) {
+    return;
+  }
 
   /* 삭제 대상 확인 */
 
   const confirmed = window.confirm(
     "다음 활동 소식을 삭제하시겠습니까?\n\n" +
     "제목: " + newsTitle + "\n\n" +
-    "삭제한 게시물은 복구하기 어렵습니다."
+    "삭제 후 복구하기 어려울 수 있습니다."
   );
 
   if (!confirmed) {
     return;
   }
 
-  /* 실제 삭제 기능은 다음 단계에서 연결 */
+  /* 삭제 시작 */
 
-  alert(
-    "삭제 대상 확인이 완료되었습니다.\n\n" +
-    "게시물 ID: " + newsId + "\n" +
-    "제목: " + newsTitle + "\n\n" +
-    "현재는 실제 삭제되지 않습니다."
-  );
+  newsDeleting = true;
+
+  try {
+
+    /* 로그인 상태 재확인 */
+
+    const { data: authData, error: authError } =
+      await supabase.auth.getUser();
+
+    if (authError || !authData.user) {
+
+      throw new Error(
+        "로그인 상태를 확인할 수 없습니다."
+      );
+
+    }
+
+    /* 관리자 권한 재확인 */
+
+    const { data: isAdmin, error: adminError } =
+      await supabase.rpc("is_admin");
+
+    if (adminError || isAdmin !== true) {
+
+      throw new Error(
+        "관리자 권한을 확인할 수 없습니다."
+      );
+
+    }
+
+    /* Supabase 게시물 삭제 */
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .delete()
+        .eq("id", newsId)
+        .select("id");
+
+    if (error) {
+      throw error;
+    }
+
+    /* 실제 삭제 여부 확인 */
+
+    if (!data || data.length !== 1) {
+
+      throw new Error(
+        "삭제된 게시물을 확인할 수 없습니다."
+      );
+
+    }
+
+    /* 관리자 목록 갱신 */
+
+    await loadAdminNews();
+
+    alert(
+      "활동 소식이 정상적으로 삭제되었습니다."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "활동 소식 삭제 오류:",
+      error
+    );
+
+    alert(
+      "활동 소식 삭제 처리 중 오류가 발생했습니다.\n" +
+      error.message +
+      "\n\n목록을 새로고침하여 삭제 여부를 확인해 주세요."
+    );
+
+  } finally {
+
+    newsDeleting = false;
+
+  }
 
 }
   
