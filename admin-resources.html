@@ -1221,23 +1221,92 @@ try {
     uploadError
   );
 
-  /* 이미 업로드한 파일 정리 */
+ /* =====================================
+   144-5-5-8-4단계
+   업로드 실패 시 자료 정리
+===================================== */
 
-  if (uploadedPaths.length > 0) {
+const cleanupErrors = [];
 
-    const { error: cleanupError } =
-      await supabase.storage
-        .from("resource-files")
-        .remove(uploadedPaths);
+/* 1. Storage 파일 삭제 */
 
-    if (cleanupError) {
-      console.error(
-        "업로드 파일 정리 실패:",
-        cleanupError
-      );
-    }
+if (uploadedPaths.length > 0) {
+
+  const { error: storageError } =
+    await supabase.storage
+      .from("resource-files")
+      .remove(uploadedPaths);
+
+  if (storageError) {
+
+    cleanupErrors.push(
+      "Storage 파일 삭제 실패: " +
+      storageError.message
+    );
 
   }
+
+}
+
+/* 2. 첨부파일 정보 삭제 */
+
+if (cleanupErrors.length === 0) {
+
+  const { error: attachmentDeleteError } =
+    await supabase
+      .from("resource_attachments")
+      .delete()
+      .eq("resource_id", resource.id);
+
+  if (attachmentDeleteError) {
+
+    cleanupErrors.push(
+      "첨부파일 정보 삭제 실패: " +
+      attachmentDeleteError.message
+    );
+
+  }
+
+}
+
+/* 3. 게시물 삭제 */
+
+if (cleanupErrors.length === 0) {
+
+  const { error: postDeleteError } =
+    await supabase
+      .from("resource_posts")
+      .delete()
+      .eq("id", resource.id);
+
+  if (postDeleteError) {
+
+    cleanupErrors.push(
+      "게시물 삭제 실패: " +
+      postDeleteError.message
+    );
+
+  }
+
+}
+
+/* 4. 정리 결과 확인 */
+
+if (cleanupErrors.length > 0) {
+
+  console.error(
+    "업로드 실패 후 정리 오류:",
+    cleanupErrors
+  );
+
+  throw new Error(
+    "첨부파일 업로드에 실패했습니다.\n" +
+    "일부 자료가 남아 있을 수 있습니다.\n" +
+    "관리자 확인이 필요합니다.\n\n" +
+    cleanupErrors.join("\n")
+  );
+
+}
 
   throw uploadError;
 
