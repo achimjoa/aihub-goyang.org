@@ -649,10 +649,23 @@ editButton.className = "news-edit-button";
 
 /* 수정 기능은 다음 단계에서 연결 */
 
-editButton.disabled = true;
+/* 수정 버튼 활성화 */
+
+editButton.disabled = false;
 
 editButton.title =
-  "수정 기능 연결 준비 중";
+  "활동 소식 수정";
+
+/* 수정 화면 열기 */
+
+editButton.addEventListener(
+  "click",
+  () => {
+
+    openNewsEdit(item.id);
+
+  }
+);
 
 actionCell.appendChild(editButton);
 
@@ -711,6 +724,15 @@ newsWriteButton.addEventListener(
   "click",
   () => {
 
+/* 새 등록 모드 */
+
+editingNewsId = null;
+
+newsSubmitButton.disabled = false;
+
+newsSubmitButton.textContent =
+  "활동 소식 등록";
+    
     newsForm.reset();
 
     newsDate.value =
@@ -723,13 +745,20 @@ newsWriteButton.addEventListener(
   }
 );
 
-/* 등록 취소 */
+/* 등록·수정 취소 */
 
 newsCancelButton.addEventListener(
   "click",
   () => {
 
     newsForm.reset();
+
+    editingNewsId = null;
+
+    newsSubmitButton.disabled = false;
+
+    newsSubmitButton.textContent =
+      "활동 소식 등록";
 
     newsWriteView.hidden = true;
 
@@ -748,12 +777,30 @@ const newsSubmitButton =
 
 let newsSaving = false;
 
+/* =====================================
+   활동 소식 수정 대상 관리
+===================================== */
+
+let editingNewsId = null;
+  
 newsForm.addEventListener(
   "submit",
   async event => {
 
     event.preventDefault();
 
+/* 수정 저장 기능 연결 전 보호 */
+
+if (editingNewsId !== null) {
+
+  alert(
+    "수정 저장 기능은 다음 단계에서 연결합니다."
+  );
+
+  return;
+
+}
+    
     /* 중복 제출 방지 */
 
     if (newsSaving) {
@@ -927,6 +974,121 @@ newsForm.addEventListener(
 
   }
 );
+
+/* =====================================
+   제145-2-7-5-2단계
+   활동 소식 수정 화면 열기
+===================================== */
+
+async function openNewsEdit(newsId) {
+
+  try {
+
+    /* 로그인 상태 확인 */
+
+    const { data: authData, error: authError } =
+      await supabase.auth.getUser();
+
+    if (authError || !authData.user) {
+
+      throw new Error(
+        "로그인 상태를 확인할 수 없습니다."
+      );
+
+    }
+
+    /* 관리자 권한 확인 */
+
+    const { data: isAdmin, error: adminError } =
+      await supabase.rpc("is_admin");
+
+    if (adminError || isAdmin !== true) {
+
+      throw new Error(
+        "관리자 권한을 확인할 수 없습니다."
+      );
+
+    }
+
+    /* 기존 게시물 조회 */
+
+    const { data: news, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, published_at, description, link"
+        )
+        .eq("id", newsId)
+        .single();
+
+    if (error) {
+      throw error;
+    }
+
+    if (!news) {
+
+      throw new Error(
+        "수정할 활동 소식을 찾을 수 없습니다."
+      );
+
+    }
+
+    /* 수정 대상 저장 */
+
+    editingNewsId = news.id;
+
+    /* 기존 내용 입력 */
+
+    document.getElementById("newsTitle").value =
+      news.title || "";
+
+    document.getElementById("newsCategory").value =
+      news.category || "notice";
+
+    document.getElementById("newsDate").value =
+      news.published_at
+        ? String(news.published_at).slice(0, 10)
+        : "";
+
+    document.getElementById("newsDescription").value =
+      news.description || "";
+
+    document.getElementById("newsLink").value =
+      news.link || "";
+
+    /* 수정 화면 표시 */
+
+    newsAdminArea.hidden = true;
+
+    newsWriteView.hidden = false;
+
+    /* 저장 버튼 비활성화 */
+
+    newsSubmitButton.disabled = true;
+
+    newsSubmitButton.textContent =
+      "수정 저장 기능 연결 준비 중";
+
+    console.log(
+      "활동 소식 수정 화면 준비 완료:",
+      news.id
+    );
+
+  } catch (error) {
+
+    console.error(
+      "활동 소식 수정 화면 오류:",
+      error
+    );
+
+    alert(
+      "수정 화면을 열지 못했습니다.\n" +
+      error.message
+    );
+
+  }
+
+}
   
   /* =====================================
    관리자 인증
