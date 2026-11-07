@@ -257,58 +257,6 @@ footer {
 
 <main>
 
-/* =====================================
-   제145-2-7-4-1단계
-   활동 소식 등록 화면 제어
-===================================== */
-
-const newsWriteButton =
-  document.getElementById("newsWriteButton");
-
-const newsWriteView =
-  document.getElementById("newsWriteView");
-
-const newsForm =
-  document.getElementById("newsForm");
-
-const newsDate =
-  document.getElementById("newsDate");
-
-const newsCancelButton =
-  document.getElementById("newsCancelButton");
-
-/* 등록 화면 열기 */
-
-newsWriteButton.addEventListener(
-  "click",
-  () => {
-
-    newsForm.reset();
-
-    newsDate.value =
-      new Date().toLocaleDateString("en-CA");
-
-    newsAdminArea.hidden = true;
-
-    newsWriteView.hidden = false;
-
-  }
-);
-
-/* 등록 취소 */
-
-newsCancelButton.addEventListener(
-  "click",
-  () => {
-
-    newsForm.reset();
-
-    newsWriteView.hidden = true;
-
-    newsAdminArea.hidden = false;
-
-  }
-);
   
 <!-- =====================================
      관리자 인증 상태
@@ -683,7 +631,60 @@ async function loadAdminNews() {
   }
 
 }
+
   
+/* =====================================
+   제145-2-7-4-1단계
+   활동 소식 등록 화면 제어
+===================================== */
+
+const newsWriteButton =
+  document.getElementById("newsWriteButton");
+
+const newsWriteView =
+  document.getElementById("newsWriteView");
+
+const newsForm =
+  document.getElementById("newsForm");
+
+const newsDate =
+  document.getElementById("newsDate");
+
+const newsCancelButton =
+  document.getElementById("newsCancelButton");
+
+/* 등록 화면 열기 */
+
+newsWriteButton.addEventListener(
+  "click",
+  () => {
+
+    newsForm.reset();
+
+    newsDate.value =
+      new Date().toLocaleDateString("en-CA");
+
+    newsAdminArea.hidden = true;
+
+    newsWriteView.hidden = false;
+
+  }
+);
+
+/* 등록 취소 */
+
+newsCancelButton.addEventListener(
+  "click",
+  () => {
+
+    newsForm.reset();
+
+    newsWriteView.hidden = true;
+
+    newsAdminArea.hidden = false;
+
+  }
+);
 /* =====================================
    관리자 인증
 ===================================== */
