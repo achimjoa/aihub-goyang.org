@@ -1831,6 +1831,43 @@ resourceForm.addEventListener(
       return;
     }
 
+/* =====================================
+   제145-2-9-10-6-2단계
+   사진 활동 분류 입력값 확인
+===================================== */
+
+const activityCategory =
+  document.getElementById(
+    "photoActivityCategory"
+  ).value;
+
+/* 사진 등록 시 활동 분류 필수 확인 */
+
+if (category === "image") {
+
+  const allowedActivityCategories = [
+    "signature",
+    "solidarity",
+    "promotion",
+    "culture"
+  ];
+
+  if (
+    !allowedActivityCategories.includes(
+      activityCategory
+    )
+  ) {
+
+    alert(
+      "사진 활동 분류를 선택해 주세요."
+    );
+
+    return;
+
+  }
+
+}
+    
     /* 첨부파일 확인 */
 
     const selectedFiles = [
