@@ -1275,6 +1275,32 @@ async function openNewsEdit(newsId) {
     document.getElementById("newsTitle").value =
       news.title || "";
 
+/* =====================================
+   제145-2-8-2-5단계
+   언론보도 수정 분류 보호
+===================================== */
+
+const categorySelect =
+  document.getElementById(
+    "newsCategory"
+  );
+
+if (pressManagementMode) {
+
+  /* 언론보도 분류 고정 */
+
+  categorySelect.value = "press";
+
+  categorySelect.disabled = true;
+
+} else {
+
+  /* 일반 활동 소식 관리 */
+
+  categorySelect.disabled = false;
+
+}
+    
     document.getElementById("newsCategory").value =
       news.category || "notice";
 
@@ -1291,6 +1317,22 @@ async function openNewsEdit(newsId) {
 
     /* 수정 화면 표시 */
 
+/* 수정 화면 제목 */
+
+const writeHeading =
+  document.querySelector(
+    "#newsWriteView h2"
+  );
+
+if (writeHeading) {
+
+  writeHeading.textContent =
+    pressManagementMode
+      ? "📺 언론보도 수정"
+      : "📰 활동 소식 수정";
+
+}
+    
     newsAdminArea.hidden = true;
 
     newsWriteView.hidden = false;
@@ -1300,7 +1342,9 @@ async function openNewsEdit(newsId) {
 newsSubmitButton.disabled = false;
 
 newsSubmitButton.textContent =
-  "수정 내용 저장";
+  pressManagementMode
+    ? "언론보도 수정 저장"
+    : "수정 내용 저장";
 
     console.log(
       "활동 소식 수정 화면 준비 완료:",
