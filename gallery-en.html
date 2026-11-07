@@ -724,8 +724,7 @@ Official Seminar Program
 <section
   class="event-record"
   id="supabase-photo-section"
-  data-category="promotion"
->
+  >
 
   <h2>
     📸 New Activity Photos
@@ -854,16 +853,22 @@ function renderLaunchPhotos() {
 
 }
 
-/* ===============================
-   FILTER EVENTS
-================================ */
+/* =====================================
+   Step 145-2-9-10-8-2
+   Activity Photo Category Filtering
+===================================== */
 
 function filterPhotos(category, button) {
+
+  /* 1. Highlight selected button */
 
   document.querySelectorAll(".filters button")
     .forEach(b => b.classList.remove("active"));
 
   button.classList.add("active");
+
+
+  /* 2. Filter existing event records */
 
   document.querySelectorAll(".event-record")
     .forEach(section => {
@@ -874,10 +879,28 @@ function filterPhotos(category, button) {
       section.style.display =
         category === "all" ||
         eventCategory === category
-        ? "block"
-        : "none";
+          ? "block"
+          : "none";
 
     });
+
+
+  /* 3. Filter Supabase activity photos */
+
+  document.querySelectorAll(
+    "#supabase-photo-gallery .photo"
+  ).forEach(card => {
+
+    const photoCategory =
+      card.dataset.category;
+
+    card.style.display =
+      category === "all" ||
+      photoCategory === category
+        ? ""
+        : "none";
+
+  });
 
 }
 
