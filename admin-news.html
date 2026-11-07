@@ -151,6 +151,60 @@ button {
   }
 
 }
+
+/* =====================================
+   활동 소식 등록 화면
+===================================== */
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: 2px solid #0b5394;
+  border-color: #0b5394;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.form-actions button {
+  min-width: 110px;
+}
+
+#newsCancelButton {
+  background: #e5e7eb;
+  color: #333;
+}
   
 footer {
   text-align: center;
@@ -203,6 +257,59 @@ footer {
 
 <main>
 
+/* =====================================
+   제145-2-7-4-1단계
+   활동 소식 등록 화면 제어
+===================================== */
+
+const newsWriteButton =
+  document.getElementById("newsWriteButton");
+
+const newsWriteView =
+  document.getElementById("newsWriteView");
+
+const newsForm =
+  document.getElementById("newsForm");
+
+const newsDate =
+  document.getElementById("newsDate");
+
+const newsCancelButton =
+  document.getElementById("newsCancelButton");
+
+/* 등록 화면 열기 */
+
+newsWriteButton.addEventListener(
+  "click",
+  () => {
+
+    newsForm.reset();
+
+    newsDate.value =
+      new Date().toLocaleDateString("en-CA");
+
+    newsAdminArea.hidden = true;
+
+    newsWriteView.hidden = false;
+
+  }
+);
+
+/* 등록 취소 */
+
+newsCancelButton.addEventListener(
+  "click",
+  () => {
+
+    newsForm.reset();
+
+    newsWriteView.hidden = true;
+
+    newsAdminArea.hidden = false;
+
+  }
+);
+  
 <!-- =====================================
      관리자 인증 상태
 ===================================== -->
@@ -277,6 +384,135 @@ footer {
 </div>
 </section>
 
+<!-- =====================================
+     제145-2-7-4-1단계
+     새 활동 소식 등록 화면
+===================================== -->
+
+<section id="newsWriteView" hidden>
+
+  <h2>📰 새 활동 소식 등록</h2>
+
+  <p>
+    위원회 활동, 공지사항 및
+    행사 소식을 등록합니다.
+  </p>
+
+  <form id="newsForm">
+
+    <!-- 제목 -->
+
+    <div class="form-group">
+
+      <label for="newsTitle">
+        소식 제목 *
+      </label>
+
+      <input
+        type="text"
+        id="newsTitle"
+        maxlength="200"
+        required
+      >
+
+    </div>
+
+    <!-- 분류 -->
+
+    <div class="form-group">
+
+      <label for="newsCategory">
+        소식 분류 *
+      </label>
+
+      <select
+        id="newsCategory"
+        required
+      >
+
+        <option value="notice">공지사항</option>
+        <option value="activity">위원회 활동</option>
+        <option value="event">행사 소식</option>
+        <option value="press">언론보도</option>
+        <option value="policy">정책 소식</option>
+
+      </select>
+
+    </div>
+
+    <!-- 게시 날짜 -->
+
+    <div class="form-group">
+
+      <label for="newsDate">
+        게시 날짜 *
+      </label>
+
+      <input
+        type="date"
+        id="newsDate"
+        required
+      >
+
+    </div>
+
+    <!-- 소식 설명 -->
+
+    <div class="form-group">
+
+      <label for="newsDescription">
+        소식 내용
+      </label>
+
+      <textarea
+        id="newsDescription"
+        rows="8"
+      ></textarea>
+
+    </div>
+
+    <!-- 관련 링크 -->
+
+    <div class="form-group">
+
+      <label for="newsLink">
+        관련 기사·자료 링크
+      </label>
+
+      <input
+        type="url"
+        id="newsLink"
+        placeholder="https://example.com"
+      >
+
+    </div>
+
+    <!-- 버튼 -->
+
+    <div class="form-actions">
+
+      <button
+        type="submit"
+        id="newsSubmitButton"
+        class="primary-button"
+        disabled
+      >
+        자료 등록
+      </button>
+
+      <button
+        type="button"
+        id="newsCancelButton"
+      >
+        취소
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
+  
 </main>
 
 <footer>
@@ -316,6 +552,23 @@ const authMessage =
 const newsAdminArea =
   document.getElementById("newsAdminArea");
 
+/* =====================================
+   저장 기능 연결 전 제출 방지
+===================================== */
+
+newsForm.addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+    alert(
+      "자료 등록 기능은 다음 단계에서 연결합니다."
+    );
+
+  }
+);
+  
 /* =====================================
    제145-2-7-3단계
    관리자 활동 소식 목록 조회
@@ -490,12 +743,16 @@ async function checkNewsAdmin() {
 
     }
 
-   /* 인증 성공 */
+ /* 인증 성공 */
 
 authMessage.textContent =
   "관리자 인증이 완료되었습니다.";
 
 newsAdminArea.hidden = false;
+
+/* 등록 화면 열기 버튼 활성화 */
+
+newsWriteButton.disabled = false;
 
 /* 관리자 활동 소식 목록 조회 */
 
