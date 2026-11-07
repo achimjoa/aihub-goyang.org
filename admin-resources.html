@@ -258,6 +258,61 @@ footer {
   outline: 2px solid #0754a6;
   outline-offset: 4px;
 }
+
+/* =====================================
+   관리자 자료 상세보기
+===================================== */
+
+#resourceDetailView {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 25px;
+}
+
+#resourceDetailView[hidden] {
+  display: none;
+}
+
+#resourceDetailTitle {
+  color: #0754a6;
+  margin-bottom: 25px;
+}
+
+#resourceDetailContent {
+  margin: 25px 0;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+#resourceDetailYoutube {
+  margin: 25px 0;
+}
+
+#resourceDetailAttachments {
+  margin: 25px 0;
+}
+
+.resource-detail-actions {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #dce6f2;
+}
+
+.resource-detail-actions button {
+  background: #0754a6;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  #resourceDetailView {
+    padding: 18px;
+  }
+}
   
 </style>
 
@@ -374,6 +429,58 @@ footer {
 
 </section>
 
+<!-- =====================================
+     144-5-5-9-2단계
+     관리자 자료 상세보기
+===================================== -->
+
+<section id="resourceDetailView" hidden>
+
+  <h2>자료 상세보기</h2>
+
+  <!-- 자료 제목 -->
+
+  <h3 id="resourceDetailTitle"></h3>
+
+  <!-- 자료 기본정보 -->
+
+  <p>
+    <strong>자료 분류:</strong>
+    <span id="resourceDetailCategory"></span>
+  </p>
+
+  <p>
+    <strong>등록일:</strong>
+    <span id="resourceDetailDate"></span>
+  </p>
+
+  <!-- 자료 설명 -->
+
+  <div id="resourceDetailContent"></div>
+
+  <!-- YouTube 영상 -->
+
+  <div id="resourceDetailYoutube"></div>
+
+  <!-- 첨부파일 -->
+
+  <div id="resourceDetailAttachments"></div>
+
+  <!-- 상세보기 하단 버튼 -->
+
+  <div class="resource-detail-actions">
+
+    <button
+      type="button"
+      id="resourceDetailBackButton"
+    >
+      ← 자료 목록으로
+    </button>
+
+  </div>
+
+</section>
+  
 <!-- =====================================
      관리자 자료 등록 화면
 ===================================== -->
