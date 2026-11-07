@@ -837,23 +837,77 @@ const newsCancelButton =
 
 /* 등록 화면 열기 */
 
+/* =====================================
+   제145-2-8-2-2단계
+   언론보도 등록 화면 자동 설정
+===================================== */
+
 newsWriteButton.addEventListener(
   "click",
   () => {
 
-/* 새 등록 모드 */
+    /* 새 등록 모드 */
 
-editingNewsId = null;
+    editingNewsId = null;
 
-newsSubmitButton.disabled = false;
-
-newsSubmitButton.textContent =
-  "활동 소식 등록";
-    
     newsForm.reset();
+
+    /* 게시 날짜 기본값 */
 
     newsDate.value =
       new Date().toLocaleDateString("en-CA");
+
+    /* 등록 화면 제목 */
+
+    const writeHeading =
+      document.querySelector(
+        "#newsWriteView h2"
+      );
+
+    /* 분류 선택 요소 */
+
+    const categorySelect =
+      document.getElementById(
+        "newsCategory"
+      );
+
+    if (pressManagementMode) {
+
+      /* 언론보도 등록 모드 */
+
+      if (writeHeading) {
+        writeHeading.textContent =
+          "📺 새 언론보도 등록";
+      }
+
+      categorySelect.value = "press";
+
+      categorySelect.disabled = true;
+
+      newsSubmitButton.textContent =
+        "언론보도 등록";
+
+    } else {
+
+      /* 일반 활동 소식 등록 모드 */
+
+      if (writeHeading) {
+        writeHeading.textContent =
+          "📰 새 활동 소식 등록";
+      }
+
+      categorySelect.disabled = false;
+
+      newsSubmitButton.textContent =
+        "활동 소식 등록";
+
+    }
+
+    /* 저장 버튼 활성화 */
+
+    newsSubmitButton.disabled = false;
+
+    /* 화면 전환 */
 
     newsAdminArea.hidden = true;
 
@@ -861,13 +915,19 @@ newsSubmitButton.textContent =
 
   }
 );
-
+  
 /* 등록·수정 취소 */
 
 newsCancelButton.addEventListener(
   "click",
   () => {
 
+/* 분류 선택 상태 복구 */
+
+document.getElementById(
+  "newsCategory"
+).disabled = false;
+    
     newsForm.reset();
 
     editingNewsId = null;
