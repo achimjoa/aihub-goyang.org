@@ -2100,7 +2100,16 @@ if (resourceEditMode) {
 
             category: category,
 
-            content: content,
+/* 사진 활동 분류 저장 */
+
+activity_category:
+  category === "image"
+    ? document.getElementById(
+        "photoActivityCategory"
+      ).value
+    : null,
+
+content: content,
 
             youtube_url:
               youtubeUrl || null,
