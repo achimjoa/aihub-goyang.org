@@ -1231,8 +1231,8 @@ async function openResourceEdit() {
     await supabase
       .from("resource_posts")
       .select(
-        "id, title, category, content, youtube_url"
-      )
+  "id, title, category, activity_category, content, youtube_url"
+)
       .eq("id", currentResourceId)
       .single();
 
@@ -1261,6 +1261,22 @@ async function openResourceEdit() {
     "resourceCategory"
   ).value =
     resource.category || "document";
+
+  /* =====================================
+   제145-2-9-11-4-1단계
+   기존 사진 활동 분류 자동 불러오기
+===================================== */
+
+/* 사진 활동 분류 메뉴 표시 */
+
+updatePhotoActivityCategory();
+
+/* 기존 사진 활동 분류 선택 */
+
+photoActivityCategory.value =
+  resource.category === "image"
+    ? resource.activity_category || ""
+    : "";
 
   document.getElementById(
     "resourceContent"
