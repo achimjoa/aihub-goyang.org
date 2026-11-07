@@ -316,6 +316,26 @@ footer {
   
 </style>
 
+/* 관리자 자료 삭제 버튼 */
+
+#resourceDeleteButton {
+  background: #b91c1c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+}
+
+#resourceDeleteButton:hover:not(:disabled) {
+  background: #991b1b;
+}
+
+#resourceDeleteButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+  
 </head>
 
 <body>
@@ -488,6 +508,20 @@ footer {
     ✏️ 자료 수정
   </button>
 
+<!-- =====================================
+     144-5-5-9-6-1단계
+     관리자 자료 삭제 버튼
+===================================== -->
+
+<button
+  type="button"
+  id="resourceDeleteButton"
+  disabled
+  title="자료 삭제 기능 연결 준비 중"
+>
+  🗑️ 자료 삭제
+</button>
+  
   <!-- 목록 복귀 -->
 
   <button
