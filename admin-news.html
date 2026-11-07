@@ -99,6 +99,59 @@ button {
   line-height: 1.8;
 }
 
+/* =====================================
+   관리자 활동 소식 목록
+===================================== */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 25px;
+}
+
+.news-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.news-table th {
+  background: #eef3f9;
+  color: #0b5394;
+  font-weight: bold;
+}
+
+.news-table th,
+.news-table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.news-table tbody tr:hover {
+  background: #f7faff;
+}
+
+.news-table td:first-child {
+  width: 65px;
+  text-align: center;
+}
+
+.news-table td:last-child {
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+
+  .news-table th,
+  .news-table td {
+    padding: 10px 7px;
+    font-size: 13px;
+  }
+
+}
+  
 footer {
   text-align: center;
   padding: 30px 15px;
@@ -190,13 +243,38 @@ footer {
     ＋ 새 활동 소식 등록
   </button>
 
-  <p class="status">
-    활동 소식 관리 기능을 연결할 준비가
-    완료되었습니다.
-  </p>
+ <!-- =====================================
+     활동 소식 목록
+===================================== -->
 
-  <div id="adminNewsList"></div>
+<div class="table-wrap">
 
+  <table class="news-table">
+
+    <thead>
+
+      <tr>
+        <th>번호</th>
+        <th>활동 소식 제목</th>
+        <th>분류</th>
+        <th>게시일</th>
+      </tr>
+
+    </thead>
+
+    <tbody id="adminNewsList">
+
+      <tr>
+        <td colspan="4">
+          활동 소식을 불러오고 있습니다.
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
 </section>
 
 </main>
