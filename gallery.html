@@ -381,34 +381,54 @@ English
 
 </div>
 
-<!-- =====================================
-   2. 사진 분류 메뉴
-===================================== -->
+/* =====================================
+   제145-2-9-11-6-2단계
+   기존 행사 및 신규 사진 통합 분류
+===================================== */
 
-<div class="filters">
+function filterPhotos(category, button) {
 
-<button class="active"
-onclick="filterPhotos('all',this)">
-전체
-</button>
+  /* 선택 버튼 표시 */
 
-<button onclick="filterPhotos('signature',this)">
-시민 서명운동
-</button>
+  document.querySelectorAll(".filters button")
+    .forEach(b => b.classList.remove("active"));
 
-<button onclick="filterPhotos('solidarity',this)">
-시민사회 연대
-</button>
+  button.classList.add("active");
 
-<button onclick="filterPhotos('promotion',this)">
-홍보활동
-</button>
+  /* 기존 행사 기록 분류 */
 
-<button onclick="filterPhotos('culture',this)">
-문화예술
-</button>
+  document.querySelectorAll(".event-record")
+    .forEach(section => {
 
-</div>
+      const eventCategory =
+        section.dataset.category;
+
+      section.style.display =
+        category === "all" ||
+        eventCategory === category
+          ? "block"
+          : "none";
+
+    });
+
+  /* Supabase 신규 사진 분류 */
+
+  document.querySelectorAll(
+    "#supabase-photo-gallery .photo"
+  ).forEach(card => {
+
+    const photoCategory =
+      card.dataset.category;
+
+    card.style.display =
+      category === "all" ||
+      photoCategory === category
+        ? ""
+        : "none";
+
+  });
+
+}
 
 <!-- =====================================
    3. 국회 유치 선언식
@@ -1026,7 +1046,9 @@ async function loadSupabasePhotos() {
     const { data: posts, error: postError } =
       await supabase
         .from("resource_posts")
-        .select("id, title, content, activity_category, created_at")
+        .select(
+  "id, title, content, activity_category, created_at"
+)
         .eq("category", "image")
         .order("created_at", {
           ascending: false
@@ -1105,10 +1127,10 @@ const card =
 
 card.className = "photo";
 
-/* Supabase 사진 활동 분류 연결 */
+/* 사진 활동 분류 연결 */
 
 card.dataset.category =
-  post.activity_category || "uncategorized";
+  post.activity_category || "other";
 
 /* 사진 이미지 */
 
@@ -1217,6 +1239,23 @@ if (activeButton) {
       "장"
     );
 
+/* 현재 선택된 사진 분류 다시 적용 */
+
+const activeFilter =
+  document.querySelector(
+    ".filters button.active"
+  );
+
+if (activeFilter) {
+
+  const category =
+    activeFilter.getAttribute("onclick")
+      ?.match(/'([^']+)'/)?.[1] || "all";
+
+  filterPhotos(category, activeFilter);
+
+}
+     
   } catch (error) {
 
     console.error(
