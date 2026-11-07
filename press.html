@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+  언론보도 | 경기도 글로벌 AI 허브 유치
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Noto Sans KR",
+    Arial,
+    sans-serif;
+  background: #f4f7fb;
+  color: #243247;
+  line-height: 1.7;
+}
+
+/* 상단 제목 */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #123b73,
+    #1769aa
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  margin: 0 0 18px;
+  font-size: 32px;
+}
+
+header p {
+  margin: 12px 0;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 22px;
+  padding: 10px 20px;
+  border: 1px solid white;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* 본문 */
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.intro h2 {
+  margin-top: 0;
+  color: #123b73;
+}
+
+/* 검색 */
+
+.search-box {
+  margin: 25px 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* 언론보도 목록 */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press-item {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #e1e7ef;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.press-item h3 {
+  margin: 8px 0;
+  color: #123b73;
+}
+
+.press-date {
+  color: #69788c;
+  font-size: 14px;
+}
+
+.press-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e7f0fa;
+  color: #175b9a;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.press-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #1769aa;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.press-link:hover {
+  text-decoration: underline;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+}
+
+/* 하단 */
+
+footer {
+  background: #123b73;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 60px;
+}
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 25px;
+  }
+
+  .intro {
+    padding: 20px;
+  }
+
+  .press-item {
+    padding: 20px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <h1>📺 언론보도</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <p>
+    글로벌 AI 허브 유치와 관련된
+    신문기사 및 방송 보도자료를 안내합니다.
+  </p>
+
+  <a
+    href="index.html"
+    class="home-link"
+  >
+    ← 홈페이지로 돌아가기
+  </a>
+
+</header>
+
+<main>
+
+  <section class="intro">
+
+    <h2>언론보도 자료</h2>
+
+    <p>
+      경기도 글로벌 AI 허브 유치와 관련된
+      주요 언론보도 및 방송 소식을
+      확인하실 수 있습니다.
+    </p>
+
+  </section>
+
+  <!-- 검색 -->
+
+  <div class="search-box">
+
+    <input
+      type="search"
+      id="pressSearch"
+      placeholder="언론보도 제목 또는 키워드 검색"
+      aria-label="언론보도 검색"
+    >
+
+  </div>
+
+  <!-- 언론보도 목록 -->
+
+  <div
+    class="press-list"
+    id="pressList"
+    aria-live="polite"
+  >
+
+    <p class="empty">
+      언론보도 자료를 불러올 준비가 되었습니다.
+    </p>
+
+  </div>
+
+</main>
+
+<footer>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <p>
+    시민의 힘으로,
+    경기도의 역량으로,
+    세계와 함께!
+  </p>
+
+</footer>
+
+</body>
+
+</html>
