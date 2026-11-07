@@ -345,6 +345,47 @@ const news = [
 
 ];
 
+/* =====================================
+   제145-2-6-4단계
+   Supabase 활동 소식 조회 시험
+===================================== */
+
+async function testLoadNews() {
+
+  console.log(
+    "Supabase 활동 소식 조회 시작"
+  );
+
+  const { data, error } =
+    await supabase
+      .from("news_posts")
+      .select(
+        "id, title, category, description, link, published_at"
+      )
+      .order("published_at", {
+        ascending: false
+      });
+
+  if (error) {
+
+    console.error(
+      "Supabase 활동 소식 조회 오류:",
+      error
+    );
+
+    return;
+  }
+
+  console.log(
+    "Supabase 활동 소식 조회 성공:",
+    data.length,
+    "건"
+  );
+
+  console.table(data);
+
+}
+  
 let currentCategory = "all";
 
 const newsList = document.getElementById("newsList");
@@ -436,6 +477,10 @@ searchInput.addEventListener("input", renderNews);
 
 renderNews();
 
+/* Supabase 조회 시험 실행 */
+
+testLoadNews();
+  
 </script>
 
 </body>
