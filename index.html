@@ -2058,46 +2058,25 @@ function createBannerLayout() {
     layout.appendChild(section);
   }
 
-  /* =====================================
-   배너를 주요 게시물 앞에 배치
+/* =====================================
+   제151단계
+   홈페이지 메뉴 바로 아래 배너 배치
 ===================================== */
 
-const boardSections = [
-  document.getElementById("boardHomeSection"),
-  document.getElementById("boardFeaturedSection"),
-  document.getElementById("featured-board")
-].filter(Boolean);
+const navigation =
+  document.querySelector("nav");
 
-/* 주요 게시물 영역 찾기 */
+if (navigation) {
 
-const boardSection =
-  boardSections.find(section =>
-    main.contains(section)
+  navigation.insertAdjacentElement(
+    "afterend",
+    layout
   );
-
-/* 배너를 main의 직접 자식으로 배치 */
-
-if (boardSection) {
-
-  let target = boardSection;
-
-  while (
-    target.parentElement &&
-    target.parentElement !== main
-  ) {
-
-    target = target.parentElement;
-
-  }
-
-  main.insertBefore(layout, target);
 
 } else {
 
   main.prepend(layout);
 
-}
-      
 }
 
 /* =====================================
