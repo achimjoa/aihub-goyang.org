@@ -253,14 +253,15 @@ nav a {
   align-items: center;
   justify-content: center;
 
-  padding: 8px 12px;
-  min-height: 38px;
+  min-height: 40px;
+  padding: 8px 13px;
 
-  background: #176bbd;
-  border: 1px solid #8ab8e8;
+  background: #ffffff;
+  color: #0754a6;
+
+  border: 1px solid #d6e5f5;
   border-radius: 6px;
 
-  color: white;
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
@@ -272,6 +273,11 @@ nav a:focus-visible {
   color: #003b79;
 }
 
+nav .nav-member-link {
+  background: #ffe44d;
+  color: #003b79;
+  border-color: #ffe44d;
+}
 /* 모바일 */
 
 @media (max-width: 600px) {
@@ -314,7 +320,7 @@ nav a:focus-visible {
      홈페이지 최상단 메뉴
 ===================================== -->
 
-<nav aria-label="주 메뉴">
+<nav id="home" aria-label="주 메뉴">
 
   <a href="#home">홈</a>
   <a href="committee.html">위원회 소개</a>
@@ -329,164 +335,23 @@ nav a:focus-visible {
   <a href="gallery.html">활동 사진관</a>
   <a href="#library">지식·자료</a>
 
+<a href="board.html">
+  시민참여 게시판
+</a>
+
+<a href="login.html" class="nav-member-link">
+  로그인
+</a>
+
+<a href="signup.html" class="nav-member-link">
+  회원가입
+</a>
+
+<a href="index-en.html" lang="en">
+  English
+</a>
+
 </nav>
-
-<!-- =====================================
-     제164단계
-     메인 홍보 이미지 및 회원 메뉴
-===================================== -->
-
-<style>
-
-/* 메인 홍보 이미지 */
-
-.hero {
-  width: 100%;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
-  background: none;
-  display: block;
-  text-align: center;
-}
-
-.hero-image-wrap {
-  width: 100%;
-  line-height: 0;
-}
-
-.hero-main-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-/* 이미지 아래 버튼 */
-
-.hero-actions {
-  width: 100%;
-  padding: 12px 15px;
-  background: #eaf3ff;
-}
-
-/* 언어 선택 */
-
-.hero-actions .hero-language {
-  position: static;
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 10px;
-}
-
-.hero-actions .hero-language a {
-  background: #0754a6;
-  color: white;
-}
-
-/* 홍보 및 회원 버튼 */
-
-.hero-actions .hero-buttons,
-.hero-actions .member-menu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin: 8px 0;
-}
-
-.hero-actions .member-menu a {
-  background: #0754a6;
-  border: 1px solid #0754a6;
-  color: white;
-}
-
-/* 모바일 */
-
-@media (max-width: 600px) {
-
-  .hero {
-    min-height: 0;
-    padding: 0;
-  }
-
-  .hero-actions {
-    padding: 10px;
-  }
-
-  .hero-actions .hero-buttons,
-  .hero-actions .member-menu {
-    gap: 6px;
-  }
-
-}
-
-</style>
-
-<header class="hero" id="home">
-
-  <!-- 메인 이미지 -->
-
-  <div class="hero-image-wrap">
-
-    <img
-      src="./goyang-main.jpg"
-      alt="글로벌 AI 허브 고양특례시 유치 홍보"
-      class="hero-main-image">
-
-  </div>
-
-  <!-- 이미지 아래 버튼 -->
-
-  <div class="hero-actions">
-
-    <div class="hero-language">
-
-      <a href="index-test.html"
-         lang="ko"
-         aria-current="page">
-        한국어
-      </a>
-
-      <a href="index-en.html"
-         lang="en">
-        English
-      </a>
-
-    </div>
-
-    <div class="hero-buttons">
-
-      <a class="btn" href="hub.html">
-        글로벌 AI 허브 알아보기
-      </a>
-
-      <a class="btn" href="participate.html">
-        시민 참여
-      </a>
-
-    </div>
-
-    <div class="member-menu">
-
-      <a href="login.html">
-        로그인
-      </a>
-
-      <a href="signup.html">
-        회원가입
-      </a>
-
-      <a href="board.html">
-        시민참여 게시판
-      </a>
-
-    </div>
-
-  </div>
-
-</header>
 
 <!-- =====================================
      배너 표시 영역
@@ -562,44 +427,48 @@ nav a:focus-visible {
   width: calc(100% - 30px);
   max-width: 1180px;
 
-  margin: 12px auto 20px;
+  margin: 15px auto 20px;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
   gap: 15px;
 }
 
-/* 숨김 처리 */
+#homepageBannerCenter {
+  grid-column: 1 / -1;
+}
+
+#homepageBannerLeft {
+  grid-column: 1;
+}
+
+#homepageBannerRight {
+  grid-column: 2;
+}
 
 #homepageBannerLayout[hidden],
 #homepageBannerLayout .banner-section[hidden] {
   display: none !important;
 }
 
-/* 배너 공통 영역 */
+@media (max-width: 600px) {
 
-#homepageBannerLayout .banner-section {
-  width: 100%;
-  min-width: 0;
+  #homepageBannerLayout {
+    width: calc(100% - 20px);
+    grid-template-columns: minmax(0, 1fr);
+    margin: 10px auto 15px;
+  }
 
-  background: white;
+  #homepageBannerCenter,
+  #homepageBannerLeft,
+  #homepageBannerRight {
+    grid-column: 1;
+  }
 
-  padding: 25px;
-
-  border-radius: 12px;
-
-  box-shadow:
-    0 2px 10px rgba(0,0,0,0.05);
 }
-
-#homepageBannerLayout .banner-section h2 {
-  margin: 0 0 20px;
-
-  color: #0754a6;
-  font-size: 24px;
-}
-
 /* =====================================
    중앙 홍보 배너
 ===================================== */
