@@ -2012,20 +2012,44 @@ function initializeMemberMenu() {
    배너 영역 생성
 ===================================== */
 
+/* =====================================
+   제155단계
+   홈페이지 배너 영역 생성 및 위치 지정
+===================================== */
+
 function createBannerLayout() {
 
-  if (document.getElementById("homepageBannerLayout")) {
+  /* 중복 생성 방지 */
+
+  if (
+    document.getElementById(
+      "homepageBannerLayout"
+    )
+  ) {
     return;
   }
 
-  const main = document.querySelector("main");
+  /* 홈페이지 본문 확인 */
 
-  if (!main) return;
+  const main =
+    document.querySelector("main");
 
-  const layout = document.createElement("div");
+  if (!main) {
+    console.error(
+      "홈페이지 main 요소를 찾을 수 없습니다."
+    );
+    return;
+  }
+
+  /* 배너 전체 영역 생성 */
+
+  const layout =
+    document.createElement("div");
 
   layout.id = "homepageBannerLayout";
   layout.hidden = true;
+
+  /* 배너 위치 설정 */
 
   const positions = [
     ["center", "위원회 주요 활동"],
@@ -2033,9 +2057,12 @@ function createBannerLayout() {
     ["right", "회원 광고 · 우측"]
   ];
 
+  /* 각 배너 영역 생성 */
+
   for (const [position, title] of positions) {
 
-    const section = document.createElement("section");
+    const section =
+      document.createElement("section");
 
     section.id =
       "homepageBanner" +
@@ -2045,10 +2072,13 @@ function createBannerLayout() {
     section.className = "banner-section";
     section.hidden = true;
 
-    const heading = document.createElement("h2");
+    const heading =
+      document.createElement("h2");
+
     heading.textContent = title;
 
-    const items = document.createElement("div");
+    const items =
+      document.createElement("div");
 
     items.className = "homepage-banner-items";
     items.dataset.position = position;
@@ -2058,30 +2088,35 @@ function createBannerLayout() {
     layout.appendChild(section);
   }
 
-/* =====================================
-   제151단계
-   홈페이지 메뉴 바로 아래 배너 배치
-===================================== */
+  /* =====================================
+     배너 위치 지정
+     홈페이지 메뉴 바로 아래
+  ===================================== */
 
-const navigation =
-  document.querySelector("nav");
+  const navigation =
+    document.querySelector("nav");
 
-if (navigation) {
+  if (navigation) {
 
-  navigation.insertAdjacentElement(
-    "afterend",
-    layout
+    navigation.insertAdjacentElement(
+      "afterend",
+      layout
+    );
+
+  } else {
+
+    main.insertAdjacentElement(
+      "beforebegin",
+      layout
+    );
+
+  }
+
+  console.log(
+    "홈페이지 배너 영역 생성 완료"
   );
 
-} else {
-
-  main.prepend(layout);
-
 }
-
-/* =====================================
-   안전한 URL 확인
-===================================== */
 
 function resolveBannerUrl(value) {
 
