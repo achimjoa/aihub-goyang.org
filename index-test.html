@@ -306,7 +306,28 @@ nav a:hover {
 <body>
 
 <!-- =====================================
-     메인 화면
+     홈페이지 최상단 메뉴
+===================================== -->
+
+<nav aria-label="주 메뉴">
+
+  <a href="#home">홈</a>
+  <a href="committee.html">위원회 소개</a>
+  <a href="hub.html">글로벌 AI 허브</a>
+  <a href="goyang.html">유치 경쟁력</a>
+  <a href="agencies.html">9개 국제기구</a>
+  <a href="strategy.html">유치 전략</a>
+  <a href="news.html">활동 소식</a>
+  <a href="press.html">언론보도</a>
+  <a href="history.html">활동 연혁</a>
+  <a href="participate.html">시민 참여</a>
+  <a href="gallery.html">활동 사진관</a>
+  <a href="#library">지식·자료</a>
+
+</nav>
+      
+<!-- =====================================
+     메인 홍보 화면
 ===================================== -->
 
 <header class="hero" id="home">
@@ -378,25 +399,63 @@ nav a:hover {
 </header>
 
 <!-- =====================================
-     홈페이지 메뉴
+     배너 표시 영역
 ===================================== -->
 
-<nav aria-label="주 메뉴">
+<div
+  id="homepageBannerLayout"
+  aria-label="홈페이지 홍보 및 광고 배너"
+  hidden>
 
-  <a href="#home">홈</a>
-  <a href="committee.html">위원회 소개</a>
-  <a href="hub.html">글로벌 AI 허브</a>
-  <a href="goyang.html">유치 경쟁력</a>
-  <a href="agencies.html">9개 국제기구</a>
-  <a href="strategy.html">유치 전략</a>
-  <a href="news.html">활동 소식</a>
-  <a href="press.html">언론보도</a>
-  <a href="history.html">활동 연혁</a>
-  <a href="participate.html">시민 참여</a>
-  <a href="gallery.html">활동 사진관</a>
-  <a href="#library">지식·자료</a>
+  <!-- 중앙 홍보 배너 10개 -->
 
-</nav>
+  <section
+    id="homepageBannerCenter"
+    class="banner-section"
+    hidden>
+
+    <h2>위원회 주요 활동</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="centerBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 좌측 회원 광고 10개 -->
+
+  <section
+    id="homepageBannerLeft"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 좌측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="leftBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 우측 회원 광고 10개 -->
+
+  <section
+    id="homepageBannerRight"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 우측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="rightBannerItems">
+    </div>
+
+  </section>
+
+</div>
 
 <!-- =====================================
      제159-2단계
@@ -524,15 +583,11 @@ nav a:hover {
 
 /* 배너 이미지 */
 
-.homepage-banner-link img {
+homepage-banner-link img {
   display: block;
-
   width: 100%;
-
-  aspect-ratio: 16 / 9;
-
+  height: 105px;
   object-fit: contain;
-
   background: #ffffff;
 }
 
@@ -615,6 +670,14 @@ nav a:hover {
 
 @media (max-width: 600px) {
 
+  .homepage-banner-link img {
+    height: 90px;
+  }
+
+}
+      
+@media (max-width: 600px) {
+
   #homepageBannerLayout {
     width: calc(100% - 20px);
 
@@ -656,64 +719,7 @@ nav a:hover {
 
 </style>
 
-<!-- =====================================
-     배너 표시 영역
-===================================== -->
 
-<div
-  id="homepageBannerLayout"
-  aria-label="홈페이지 홍보 및 광고 배너"
-  hidden>
-
-  <!-- 중앙 홍보 배너 -->
-
-  <section
-    id="homepageBannerCenter"
-    class="banner-section"
-    hidden>
-
-    <h2>위원회 주요 활동</h2>
-
-    <div
-      class="homepage-banner-items"
-      id="centerBannerItems">
-    </div>
-
-  </section>
-
-  <!-- 좌측 회원 광고 -->
-
-  <section
-    id="homepageBannerLeft"
-    class="banner-section"
-    hidden>
-
-    <h2>회원 광고 · 좌측</h2>
-
-    <div
-      class="homepage-banner-items"
-      id="leftBannerItems">
-    </div>
-
-  </section>
-
-  <!-- 우측 회원 광고 -->
-
-  <section
-    id="homepageBannerRight"
-    class="banner-section"
-    hidden>
-
-    <h2>회원 광고 · 우측</h2>
-
-    <div
-      class="homepage-banner-items"
-      id="rightBannerItems">
-    </div>
-
-  </section>
-
-</div>
 
 <!-- =====================================
      Supabase 및 배너 조회
@@ -2291,234 +2297,7 @@ main section h2 {
 
 </script>
 
-<!-- =====================================
-     제160단계
-     홈페이지 메뉴 및 배너 배치 수정
-===================================== -->
 
-<style>
-
-/* 전체 배너 영역 */
-
-#homepageBannerLayout {
-  width: min(1180px, calc(100% - 32px));
-  max-width: 1180px;
-  margin: 24px auto;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-#homepageBannerLayout[hidden] {
-  display: none !important;
-}
-
-/* 개별 배너 영역 */
-
-#homepageBannerLayout .banner-section {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 20px;
-  box-sizing: border-box;
-  background: #fff;
-  border-radius: 12px;
-}
-
-#homepageBannerLayout .banner-section[hidden] {
-  display: none !important;
-}
-
-#homepageBannerLayout .banner-section h2 {
-  margin: 0 0 18px;
-  color: #0754a6;
-  font-size: 22px;
-}
-
-/* 배너 5열 */
-
-#homepageBannerLayout .homepage-banner-items {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 12px;
-  align-items: start;
-}
-
-/* 배너 카드 크기 제한 */
-
-#homepageBannerLayout .homepage-banner-items > * {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-/* 썸네일 이미지 */
-
-#homepageBannerLayout .homepage-banner-items img {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  height: 105px;
-  object-fit: contain;
-  border-radius: 6px;
-}
-
-/* 배너 표시 순서 */
-
-#homepageBannerCenter {
-  order: 1;
-}
-
-#homepageBannerLeft {
-  order: 2;
-}
-
-#homepageBannerRight {
-  order: 3;
-}
-
-/* 태블릿 */
-
-@media (max-width: 900px) {
-
-  #homepageBannerLayout .homepage-banner-items {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-}
-
-/* 휴대폰 */
-
-@media (max-width: 600px) {
-
-  #homepageBannerLayout {
-    width: calc(100% - 20px);
-    margin: 15px auto;
-    gap: 15px;
-  }
-
-  #homepageBannerLayout .banner-section {
-    padding: 15px;
-  }
-
-  #homepageBannerLayout .homepage-banner-items {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  #homepageBannerLayout .homepage-banner-items img {
-    height: 90px;
-  }
-
-}
-
-</style>
-
-<script>
-
-/* =====================================
-   메뉴 및 배너 순서 정리
-===================================== */
-
-(function () {
-
-  "use strict";
-
-  function arrangeHomepage() {
-
-    const hero =
-      document.querySelector("header.hero");
-
-    const nav =
-      document.querySelector("nav");
-
-    const banners =
-      document.getElementById(
-        "homepageBannerLayout"
-      );
-
-    const posts =
-      document.getElementById(
-        "homepagePostsSection"
-      );
-
-    if (!hero || !nav) {
-      console.warn(
-        "메뉴 또는 메인 화면을 찾지 못했습니다."
-      );
-      return;
-    }
-
-    /* 1. 메뉴를 메인 화면 위로 이동 */
-
-    hero.before(nav);
-
-    /* 2. 배너를 메인 화면 바로 아래 배치 */
-
-    if (banners) {
-      hero.after(banners);
-    }
-
-    /* 3. 배너 내부 순서 정리 */
-
-    if (banners) {
-
-      const positions = [
-        "homepageBannerCenter",
-        "homepageBannerLeft",
-        "homepageBannerRight"
-      ];
-
-      for (const id of positions) {
-
-        const section =
-          document.getElementById(id);
-
-        if (section) {
-          banners.appendChild(section);
-        }
-
-      }
-
-    }
-
-    /* 4. 주요 게시물을 배너 다음으로 이동 */
-
-    if (posts) {
-
-      if (banners) {
-        banners.after(posts);
-      } else {
-        hero.after(posts);
-      }
-
-    }
-
-    console.log(
-      "제160단계: 홈페이지 배치 정리 완료"
-    );
-
-  }
-
-  if (document.readyState === "loading") {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      arrangeHomepage,
-      { once: true }
-    );
-
-  } else {
-
-    arrangeHomepage();
-
-  }
-
-})();
-
-</script>
       
 </body>
 </html>     
