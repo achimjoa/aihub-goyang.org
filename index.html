@@ -470,6 +470,95 @@ footer {
   }
 }
 
+/* =====================================
+   관리자 선택 게시물 자동 표시
+===================================== */
+
+.board-feature-section {
+  background: #ffffff;
+}
+
+.board-feature-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(240px, 1fr));
+
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.board-feature-card {
+  background: #eef5ff;
+
+  border: 1px solid #dce6f2;
+  border-radius: 10px;
+
+  padding: 22px;
+
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.board-feature-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.1);
+}
+
+.board-feature-card h3 {
+  color: #0754a6;
+
+  font-size: 19px;
+  margin: 10px 0;
+}
+
+.board-feature-card a {
+  color: #0754a6;
+  text-decoration: none;
+}
+
+.board-feature-card a:hover {
+  text-decoration: underline;
+}
+
+.board-feature-date {
+  color: #63748a;
+  font-size: 13px;
+}
+
+.board-feature-summary {
+  color: #46566d;
+
+  font-size: 15px;
+  line-height: 1.7;
+
+  overflow-wrap: anywhere;
+}
+
+.board-feature-more {
+  display: inline-block;
+
+  margin-top: 12px;
+
+  color: #0754a6;
+  font-weight: bold;
+}
+
+@media (max-width:600px) {
+
+  .board-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .board-feature-card {
+    padding: 18px;
+  }
+
+}
+      
 </style>
 </head>
 
@@ -550,46 +639,53 @@ footer {
 
 <main>
 
-<!-- 주요 소식 -->
+<!-- =====================================
+     관리자 선택 홈페이지 게시물
+===================================== -->
 
-<section id="news">
+<section
+  id="boardHomeSection"
+  class="board-feature-section"
+  hidden>
 
-  <h2>글로벌 AI 허브 유치 주요 소식</h2>
-  <p>시민의 힘으로 만들어 가는 변화</p>
+  <h2>시민참여 주요 게시물</h2>
 
-  <div class="grid">
+  <p>
+    시민과 함께 만들어 가는
+    글로벌 AI 허브 유치 활동
+  </p>
 
-    <div class="card">
-      <h3>2026.10.30</h3>
-      <h4>경기도 글로벌 AI 허브 유치전략 포럼</h4>
-      <p>
-        킨텍스에서 글로벌 AI 허브 유치 전략과
-        국제협력 방안을 논의하는 포럼이 개최되었습니다.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>2026.10.26</h3>
-      <h4>고양특례시의회 유치 촉구 결의</h4>
-      <p>
-        고양특례시의회가 글로벌 AI 허브
-        고양특례시 유치 촉구 결의안을
-        만장일치로 채택했습니다.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>2026.09.07</h3>
-      <h4>범시민추진위원회 발대식</h4>
-      <p>
-        고양특례시 시민사회가 글로벌 AI 허브
-        유치를 위한 범시민추진위원회를 출범시켰습니다.
-      </p>
-    </div>
-
+  <div
+    id="boardHomePosts"
+    class="board-feature-grid">
   </div>
 
 </section>
+
+<!-- =====================================
+     관리자 선택 주요 게시물
+===================================== -->
+
+<section
+  id="boardFeaturedSection"
+  class="board-feature-section"
+  hidden>
+
+  <h2>주요 게시물</h2>
+
+  <p>
+    범시민추진위원회가 선정한
+    주요 소식과 시민 의견입니다.
+  </p>
+
+  <div
+    id="boardFeaturedPosts"
+    class="board-feature-grid">
+  </div>
+
+</section>
+
+<!-- 주요 소식 -->
 
 <!-- 위원회 소개 -->
 
@@ -987,5 +1083,251 @@ window.addEventListener("resize", adjustHeroHeight);
 
 </script>
 
+<!-- =====================================
+     관리자 선택 게시물 자동 표시
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* Supabase 연결 */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   게시물 카드 생성
+===================================== */
+
+function createBoardCard(post) {
+
+  const card =
+    document.createElement("article");
+
+  card.className =
+    "board-feature-card";
+
+  /* 작성일 */
+
+  const date =
+    document.createElement("div");
+
+  date.className =
+    "board-feature-date";
+
+  date.textContent =
+    new Date(post.created_at)
+      .toLocaleDateString("ko-KR");
+
+  /* 제목 */
+
+  const title =
+    document.createElement("h3");
+
+  const link =
+    document.createElement("a");
+
+  link.href =
+    "board.html?post=" +
+    encodeURIComponent(post.id);
+
+  link.textContent =
+    post.title;
+
+  title.appendChild(link);
+
+  /* 본문 미리보기 */
+
+  const summary =
+    document.createElement("p");
+
+  summary.className =
+    "board-feature-summary";
+
+  const content =
+    post.content || "";
+
+  summary.textContent =
+    content.length > 150
+      ? content.slice(0,150) + "..."
+      : content;
+
+  /* 자세히 보기 */
+
+  const more =
+    document.createElement("a");
+
+  more.className =
+    "board-feature-more";
+
+  more.href =
+    link.href;
+
+  more.textContent =
+    "자세히 보기 →";
+
+  card.append(
+    date,
+    title,
+    summary,
+    more
+  );
+
+  return card;
+
+}
+
+/* =====================================
+   표시 위치별 게시물 조회
+===================================== */
+
+async function loadBoardPlacement(
+  placement,
+  sectionId,
+  containerId
+) {
+
+  const section =
+    document.getElementById(sectionId);
+
+  const container =
+    document.getElementById(containerId);
+
+  if (!section || !container) {
+    return;
+  }
+
+  section.hidden = true;
+  container.replaceChildren();
+
+  try {
+
+    /* 관리자 표시 설정 조회 */
+
+    const {
+      data: placements,
+      error: placementError
+    } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,created_at")
+        .eq("placement",placement)
+        .order("created_at",{
+          ascending:false
+        })
+        .limit(20);
+
+    if (placementError) {
+      throw placementError;
+    }
+
+    if (!placements || placements.length === 0) {
+      return;
+    }
+
+    const postIds =
+      placements.map(item => item.post_id);
+
+    /* 실제 게시물 조회 */
+
+    const {
+      data: posts,
+      error: postError
+    } =
+      await supabase
+        .from("board_posts")
+        .select(
+          "id,title,content,created_at"
+        )
+        .in("id",postIds);
+
+    if (postError) {
+      throw postError;
+    }
+
+    if (!posts || posts.length === 0) {
+      return;
+    }
+
+    /* 표시 설정 순서 유지 */
+
+    const postMap =
+      new Map(
+        posts.map(post => [
+          String(post.id),
+          post
+        ])
+      );
+
+    for (const item of placements) {
+
+      const post =
+        postMap.get(
+          String(item.post_id)
+        );
+
+      if (!post) continue;
+
+      const card =
+        createBoardCard(post);
+
+      container.appendChild(card);
+
+    }
+
+    if (container.children.length > 0) {
+      section.hidden = false;
+    }
+
+  } catch(error) {
+
+    console.error(
+      "게시물 자동 표시 오류:",
+      placement,
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   홈페이지 게시물 초기화
+===================================== */
+
+async function initializeBoardFeatures() {
+
+  await Promise.all([
+
+    loadBoardPlacement(
+      "home",
+      "boardHomeSection",
+      "boardHomePosts"
+    ),
+
+    loadBoardPlacement(
+      "featured",
+      "boardFeaturedSection",
+      "boardFeaturedPosts"
+    )
+
+  ]);
+
+}
+
+initializeBoardFeatures();
+
+</script>
+      
 </body>
 </html>
