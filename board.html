@@ -302,6 +302,47 @@ footer {
     font-size: 13px;
   }
 }
+
+/* =====================================
+   게시판 관리 버튼 정렬
+===================================== */
+
+.board-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.board-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 18px;
+  white-space: nowrap;
+}
+
+/* hidden 속성이 CSS에 의해 무시되지 않도록 처리 */
+
+.board-actions button[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+
+  .board-actions {
+    gap: 8px;
+  }
+
+  .board-actions button {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+}
+  
 </style>
 </head>
 
@@ -343,30 +384,32 @@ footer {
 
 <div id="listView">
 
-<button id="writeButton" class="primary" hidden>
+<!-- =====================================
+     게시판 관리 버튼
+===================================== -->
 
-<button
-  type="button"
-  id="retryCleanupButton"
-  class="secondary"
-  hidden>
-  미완료 첨부파일 정리
-</button>
-  
-글쓰기
-</button>
+<div class="board-actions">
 
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>번호</th>
-<th>제목</th>
-<th>작성일</th>
-</tr>
-</thead>
-<tbody id="postList"></tbody>
-</table>
+  <!-- 글쓰기 -->
+
+  <button
+    type="button"
+    id="writeButton"
+    class="primary"
+    hidden>
+    글쓰기
+  </button>
+
+  <!-- 관리자 첨부파일 정리 -->
+
+  <button
+    type="button"
+    id="retryCleanupButton"
+    class="secondary"
+    hidden>
+    미완료 첨부파일 정리
+  </button>
+
 </div>
 
 </div>
