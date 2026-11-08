@@ -1157,6 +1157,192 @@ footer {
 
 </footer>
 
+<!-- =====================================
+     주요 게시물 자동 표시
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* Supabase 연결 */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* 화면 요소 */
+
+const featuredPosts =
+  document.getElementById("featuredPosts");
+
+const featuredMessage =
+  document.getElementById("featuredMessage");
+
+/* =====================================
+   주요 게시물 불러오기
+===================================== */
+
+async function loadFeaturedPosts() {
+
+  try {
+
+    /* 1. 관리자 표시 설정 조회 */
+
+    const { data: placements, error: placementError } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "home",
+          "featured"
+        ]);
+
+    if (placementError) {
+      throw placementError;
+    }
+
+    /* 2. 중복 게시글 제거 */
+
+    const postIds = [
+      ...new Set(
+        (placements || []).map(
+          item => item.post_id
+        )
+      )
+    ];
+
+    featuredPosts.replaceChildren();
+
+    if (postIds.length === 0) {
+
+      featuredMessage.textContent =
+        "현재 등록된 주요 게시물이 없습니다.";
+
+      return;
+    }
+
+    /* 3. 실제 게시글 조회 */
+
+    const { data: posts, error: postError } =
+      await supabase
+        .from("board_posts")
+        .select(
+          "id,title,content,created_at"
+        )
+        .in("id", postIds)
+        .order("created_at", {
+          ascending: false
+        });
+
+    if (postError) {
+      throw postError;
+    }
+
+    /* 4. 화면에 게시물 표시 */
+
+    const fragment =
+      document.createDocumentFragment();
+
+    for (const post of posts || []) {
+
+      const card =
+        document.createElement("article");
+
+      card.className = "featured-post";
+
+      /* 작성일 */
+
+      const date =
+        document.createElement("p");
+
+      date.className = "featured-post-date";
+
+      date.textContent =
+        new Date(post.created_at)
+          .toLocaleDateString("ko-KR");
+
+      /* 제목 */
+
+      const title =
+        document.createElement("h3");
+
+      title.textContent = post.title;
+
+      /* 내용 요약 */
+
+      const description =
+        document.createElement("p");
+
+      const content =
+        post.content || "";
+
+      description.textContent =
+        content.length > 120
+          ? content.slice(0, 120) + "..."
+          : content;
+
+      /* 게시글 연결 */
+
+      const link =
+        document.createElement("a");
+
+      link.className = "featured-post-link";
+
+      link.href =
+        "board.html?post=" +
+        encodeURIComponent(post.id);
+
+      link.textContent = "게시글 자세히 보기 →";
+
+      /* 카드 구성 */
+
+      card.append(
+        date,
+        title,
+        description,
+        link
+      );
+
+      fragment.appendChild(card);
+
+    }
+
+    featuredPosts.appendChild(fragment);
+
+    featuredMessage.textContent =
+      posts && posts.length > 0
+        ? ""
+        : "현재 등록된 주요 게시물이 없습니다.";
+
+  } catch (error) {
+
+    console.error(
+      "주요 게시물 조회 오류:",
+      error
+    );
+
+    featuredMessage.textContent =
+      "주요 게시물을 불러오지 못했습니다.";
+
+  }
+
+}
+
+/* 최초 실행 */
+
+loadFeaturedPosts();
+
+</script>
+      
 <!-- 메뉴 높이 자동 측정 -->
 
 <script>
