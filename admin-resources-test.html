@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>관리자 통합자료실 | 글로벌 AI 허브</title>
+
+<style>
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+}
+
+header h1 { margin: 0; font-size: 28px; }
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 15px;
+}
+
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+h2 { color: #0754a6; }
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 11px;
+  margin-top: 5px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+}
+
+textarea { min-height: 110px; }
+
+button {
+  padding: 10px 16px;
+  margin: 8px 5px 5px 0;
+  border: 0;
+  border-radius: 6px;
+  background: #0754a6;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+button.secondary { background: #64748b; }
+button.danger { background: #b42318; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.row {
+  padding: 14px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.muted { color: #64748b; }
+.error { color: #b42318; }
+.success { color: #087443; }
+
+.photo-preview {
+  max-width: 180px;
+  max-height: 140px;
+  object-fit: contain;
+  display: block;
+  margin-top: 8px;
+}
+
+footer {
+  text-align: center;
+  background: #10315e;
+  color: white;
+  padding: 25px;
+}
+
+@media(max-width:600px) {
+  section { padding: 18px; }
+  header h1 { font-size: 23px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>관리자 통합자료실</h1>
+  <p>경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회</p>
+  <a href="index.html" style="color:white">← 홈페이지</a>
+</header>
+
+<main>
+
+<section id="loginSection">
+  <h2>관리자 로그인</h2>
+  <form id="loginForm">
+    <label for="email">이메일</label>
+    <input id="email" type="email" autocomplete="username" required>
+
+    <label for="password">비밀번호</label>
+    <input id="password" type="password"
+           autocomplete="current-password" required>
+
+    <button type="submit">로그인</button>
+  </form>
+  <p id="loginMessage" role="status"></p>
+</section>
+
+<div id="adminArea" hidden>
+
+<section>
+  <div class="toolbar">
+    <strong id="adminEmail"></strong>
+    <button id="logoutButton" class="secondary">로그아웃</button>
+    <a href="gallery.html">사진기록관 보기</a>
+  </div>
+</section>
+
+<section>
+  <h2 id="formHeading">자료 등록</h2>
+
+  <form id="resourceForm">
+
+    <label for="resourceCategory">자료 종류</label>
+    <select id="resourceCategory" required>
+      <option value="document">문서</option>
+      <option value="image">사진</option>
+      <option value="video">동영상</option>
+      <option value="audio">음성</option>
+      <option value="other">기타</option>
+    </select>
+
+    <label for="resourceTitle">자료 제목</label>
+    <input id="resourceTitle" maxlength="300" required>
+
+    <label for="resourceContent">자료 설명</label>
+    <textarea id="resourceContent"></textarea>
+
+    <div id="photoFields" hidden>
+      <label for="photoActivityCategory">사진 활동 분류</label>
+      <select id="photoActivityCategory"></select>
+
+      <label for="photoEventName">행사명</label>
+      <input id="photoEventName" maxlength="200">
+
+      <label for="photoEventDate">행사일</label>
+      <input id="photoEventDate" type="date">
+    </div>
+
+    <div id="videoFields" hidden>
+      <label for="youtubeUrl">유튜브 주소</label>
+      <input id="youtubeUrl" type="url"
+             placeholder="https://www.youtube.com/watch?v=...">
+    </div>
+
+    <label for="resourceFiles">첨부파일</label>
+    <input id="resourceFiles" type="file" multiple>
+    <p class="muted">사진은 최대 10개, 파일당 최대 20MB입니다.</p>
+
+    <div id="existingAttachments"></div>
+
+    <button id="saveButton" type="submit">자료 저장</button>
+    <button id="cancelEditButton" type="button"
+            class="secondary" hidden>수정 취소</button>
+
+    <p id="saveMessage" role="status"></p>
+  </form>
+</section>
+
+<section>
+  <h2>등록된 자료</h2>
+  <button id="refreshResources">목록 새로고침</button>
+  <div id="resourceList">자료를 불러오고 있습니다.</div>
+</section>
+
+<section>
+  <h2>사진 활동 분류 관리</h2>
+
+  <form id="categoryForm">
+    <label for="categoryCode">분류 코드</label>
+    <input id="categoryCode" placeholder="예: campaign" required>
+
+    <label for="categoryNameKo">한글 분류명</label>
+    <input id="categoryNameKo" required>
+
+    <label for="categoryNameEn">영문 분류명</label>
+    <input id="categoryNameEn">
+
+    <label for="categorySort">표시 순서</label>
+    <input id="categorySort" type="number" value="0">
+
+    <button type="submit">분류 추가</button>
+  </form>
+
+  <div id="categoryList"></div>
+</section>
+
+</div>
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+  <p>AI for All · AI for Humanity</p>
+</footer>
+
+<script type="module">
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+let editingId = null;
+let editingPost = null;
+let attachments = [];
+let categories = [];
+
+const MAX_PHOTOS = 10;
+const MAX_PHOTO_BYTES = 20 * 1024 * 1024;
+
+function message(id, text, error = false) {
+  const el = $(id);
+  el.textContent = text;
+  el.className = error ? "error" : "success";
+}
+
+function button(text, action, className = "") {
+  const el = document.createElement("button");
+  el.type = "button";
+  el.textContent = text;
+  el.className = className;
+  el.addEventListener("click", action);
+  return el;
+}
+
+function paragraph(text, className = "") {
+  const el = document.createElement("p");
+  el.textContent = text;
+  el.className = className;
+  return el;
+}
+
+async function verifyAdmin() {
+  const { data: { user }, error } =
+    await supabase.auth.getUser();
+
+  if (error || !user) return null;
+
+  const result = await supabase.rpc("is_resource_admin");
+
+  if (result.error || result.data !== true) return null;
+
+  return user;
+}
+
+async function refreshAuth() {
+  currentUser = await verifyAdmin();
+
+  $("loginSection").hidden = Boolean(currentUser);
+  $("adminArea").hidden = !currentUser;
+
+  if (currentUser) {
+    $("adminEmail").textContent = currentUser.email || "";
+    await Promise.all([
+      loadCategories(),
+      loadResources()
+    ]);
+  }
+}
+
+$("loginForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  message("loginMessage", "로그인 확인 중입니다.");
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email: $("email").value.trim(),
+    password: $("password").value
+  });
+
+  if (error) {
+    message("loginMessage", error.message, true);
+    return;
+  }
+
+  await refreshAuth();
+
+  if (!currentUser) {
+    message("loginMessage", "관리자 권한이 없습니다.", true);
+  }
+});
+
+$("logoutButton").addEventListener("click", async () => {
+  await supabase.auth.signOut();
+  currentUser = null;
+  $("adminArea").hidden = true;
+  $("loginSection").hidden = false;
+  $("password").value = "";
+});
+
+function updateCategoryFields() {
+  const category = $("resourceCategory").value;
+
+  $("photoFields").hidden = category !== "image";
+  $("videoFields").hidden = category !== "video";
+
+  $("photoActivityCategory").required = category === "image";
+  $("photoEventName").required = category === "image" && !editingId;
+  $("photoEventDate").required = category === "image" && !editingId;
+
+  $("resourceFiles").accept =
+    category === "image" ? "image/*" : "";
+}
+
+$("resourceCategory").addEventListener(
+  "change", updateCategoryFields
+);
+
+async function loadCategories() {
+  const { data, error } = await supabase
+    .from("photo_activity_categories")
+    .select("code,name_ko,name_en,sort_order,is_active")
+    .order("sort_order", { ascending: true });
+
+  if (error) throw error;
+
+  categories = data || [];
+
+  renderCategorySelect();
+  renderCategoryManager();
+}
+
+function renderCategorySelect() {
+  const select = $("photoActivityCategory");
+  const previous = select.value;
+
+  select.replaceChildren();
+
+  const placeholder = new Option("활동 분류 선택", "");
+  select.add(placeholder);
+
+  categories.filter(item => item.is_active).forEach(item => {
+    select.add(new Option(item.name_ko, item.code));
+  });
+
+  if (previous && ![...select.options].some(
+    option => option.value === previous
+  )) {
+    select.add(new Option(
+      previous + " (기존 분류)", previous
+    ));
+  }
+
+  select.value = previous;
+}
+
+function renderCategoryManager() {
+  const container = $("categoryList");
+  container.replaceChildren();
+
+  categories.forEach(category => {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    const title = document.createElement("strong");
+    title.textContent =
+      `${category.name_ko} (${category.code})`;
+
+    row.append(
+      title,
+      paragraph(category.is_active ? "활성" : "비활성")
+    );
+
+    row.append(
+      button("이름·순서 수정", async () => {
+        const nameKo = prompt(
+          "한글 분류명", category.name_ko
+        );
+        if (nameKo === null) return;
+        if (!nameKo.trim()) return alert("이름을 입력하세요.");
+
+        const nameEn = prompt(
+          "영문 분류명", category.name_en || ""
+        );
+        if (nameEn === null) return;
+
+        const sort = prompt(
+          "표시 순서", String(category.sort_order ?? 0)
+        );
+        if (sort === null) return;
+
+        if (!Number.isInteger(Number(sort)) || sort.trim() === "") {
+          return alert("올바른 표시 순서를 입력하세요.");
+        }
+
+        await updateCategory(category.code, {
+          name_ko: nameKo.trim(),
+          name_en: nameEn.trim() || null,
+          sort_order: Number(sort)
+        });
+      }),
+      button(
+        category.is_active ? "비활성화" : "활성화",
+        () => updateCategory(category.code, {
+          is_active: !category.is_active
+        }),
+        "secondary"
+      )
+    );
+
+    container.appendChild(row);
+  });
+}
+
+async function updateCategory(code, changes) {
+  try {
+    const { error } = await supabase
+      .from("photo_activity_categories")
+      .update(changes)
+      .eq("code", code);
+
+    if (error) throw error;
+    await loadCategories();
+  } catch (error) {
+    alert("분류 수정 실패: " + error.message);
+  }
+}
+
+$("categoryForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const code = $("categoryCode").value.trim().toLowerCase();
+  const nameKo = $("categoryNameKo").value.trim();
+  const nameEn = $("categoryNameEn").value.trim();
+  const sort = Number($("categorySort").value);
+
+  if (!/^[a-z][a-z0-9_-]*$/.test(code)) {
+    return alert("분류 코드를 확인하세요.");
+  }
+
+  if (!nameKo || !Number.isInteger(sort)) {
+    return alert("분류명과 순서를 확인하세요.");
+  }
+
+  const { error } = await supabase
+    .from("photo_activity_categories")
+    .insert({
+      code,
+      name_ko: nameKo,
+      name_en: nameEn || null,
+      sort_order: sort,
+      is_active: true
+    });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  $("categoryForm").reset();
+  await loadCategories();
+});
+
+async function loadResources() {
+  const container = $("resourceList");
+  container.textContent = "자료를 불러오고 있습니다.";
+
+  const { data, error } = await supabase
+    .from("resource_posts")
+    .select(
+      "id,title,content,category,youtube_url," +
+      "activity_category,event_name,event_date,created_at"
+    )
+    .order("created_at", { ascending: false })
+    .limit(500);
+
+  if (error) {
+    container.textContent = error.message;
+    return;
+  }
+
+  container.replaceChildren();
+
+  if (!data?.length) {
+    container.append(paragraph("등록된 자료가 없습니다."));
+    return;
+  }
+
+  data.forEach(post => {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    const title = document.createElement("strong");
+    title.textContent = post.title;
+
+    row.append(
+      title,
+      paragraph(
+        `${post.category} · ${
+          post.event_name || post.created_at?.slice(0,10) || ""
+        }`,
+        "muted"
+      ),
+      button("수정", () => editResource(post)),
+      button("삭제", () => deleteResource(post), "danger")
+    );
+
+    container.appendChild(row);
+  });
+}
+
+$("refreshResources").addEventListener(
+  "click", loadResources
+);
+
+async function loadAttachments(postId) {
+  const { data, error } = await supabase
+    .from("resource_attachments")
+    .select(
+      "resource_id,file_name,file_path,file_type,attachment_type"
+    )
+    .eq("resource_id", postId);
+
+  if (error) throw error;
+
+  attachments = data || [];
+  renderAttachments();
+}
+
+function renderAttachments() {
+  const container = $("existingAttachments");
+  container.replaceChildren();
+
+  if (!editingId) return;
+
+  container.append(paragraph("기존 첨부파일"));
+
+  attachments.forEach(file => {
+    const row = document.createElement("div");
+    row.className = "row";
+
+    const { data } = supabase.storage
+      .from("resource-files")
+      .getPublicUrl(file.file_path);
+
+    const link = document.createElement("a");
+    link.href = data.publicUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = file.file_name || "첨부파일 보기";
+
+    row.append(link);
+
+    row.append(button("첨부 삭제", async () => {
+      if (!confirm("이 첨부파일을 삭제하시겠습니까?")) return;
+
+      try {
+        // 먼저 DB 연결 정보를 삭제합니다.
+        const { error } = await supabase
+          .from("resource_attachments")
+          .delete()
+          .eq("resource_id", editingId)
+          .eq("file_path", file.file_path);
+
+        if (error) throw error;
+
+        // Storage 삭제 실패 시 고아 파일이 남을 수 있습니다.
+        const removed = await supabase.storage
+          .from("resource-files")
+          .remove([file.file_path]);
+
+        if (removed.error) {
+          console.warn("Storage 정리 필요:", removed.error);
+          alert("첨부 연결은 삭제되었으나 저장소 파일 정리가 필요합니다.");
+        }
+
+        await loadAttachments(editingId);
+      } catch (error) {
+        alert(error.message);
+      }
+    }, "danger"));
+
+    container.appendChild(row);
+  });
+}
+
+async function editResource(post) {
+  editingId = post.id;
+  editingPost = post;
+
+  $("formHeading").textContent = "자료 수정";
+  $("resourceCategory").value = post.category;
+  $("resourceTitle").value = post.title || "";
+  $("resourceContent").value = post.content || "";
+  $("youtubeUrl").value = post.youtube_url || "";
+
+  updateCategoryFields();
+
+  const select = $("photoActivityCategory");
+  select.value = post.activity_category || "";
+
+  if (post.activity_category && !select.value) {
+    select.add(new Option(
+      post.activity_category + " (기존 분류)",
+      post.activity_category
+    ));
+    select.value = post.activity_category;
+  }
+
+  $("photoEventName").value = post.event_name || "";
+  $("photoEventDate").value = post.event_date || "";
+
+  $("cancelEditButton").hidden = false;
+
+  try {
+    await loadAttachments(post.id);
+  } catch (error) {
+    message("saveMessage", error.message, true);
+  }
+
+  $("resourceForm").scrollIntoView({ behavior: "smooth" });
+}
+
+function resetEditor() {
+  editingId = null;
+  editingPost = null;
+  attachments = [];
+
+  $("resourceForm").reset();
+  $("formHeading").textContent = "자료 등록";
+  $("cancelEditButton").hidden = true;
+  $("existingAttachments").replaceChildren();
+
+  updateCategoryFields();
+}
+
+$("cancelEditButton").addEventListener(
+  "click", resetEditor
+);
+
+function getAttachmentType(file, category) {
+  if (category === "image") return "image";
+  if (category === "audio") return "audio";
+  if (category === "video") return "video";
+  return "document";
+}
+
+async function uploadFiles(postId, category) {
+  const files = [...$("resourceFiles").files];
+
+  if (!files.length) return;
+
+  if (category === "image") {
+    const existingCount = attachments.filter(
+      file => file.attachment_type === "image"
+    ).length;
+
+    if (files.length + existingCount > MAX_PHOTOS) {
+      throw new Error("사진은 최대 10개까지 등록할 수 있습니다.");
+    }
+
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) {
+        throw new Error("사진 파일만 첨부할 수 있습니다.");
+      }
+      if (file.size > MAX_PHOTO_BYTES) {
+        throw new Error("사진 한 개의 크기는 20MB 이하여야 합니다.");
+      }
+    }
+  }
+
+  for (const file of files) {
+    const safeName = file.name
+      .replace(/[^a-zA-Z0-9._-]/g, "_")
+      .slice(-120);
+
+    const path =
+      `resources/${postId}/${crypto.randomUUID()}-${safeName}`;
+
+    const uploaded = await supabase.storage
+      .from("resource-files")
+      .upload(path, file, {
+        contentType: file.type || "application/octet-stream",
+        upsert: false
+      });
+
+    if (uploaded.error) throw uploaded.error;
+
+    const inserted = await supabase
+      .from("resource_attachments")
+      .insert({
+        resource_id: postId,
+        file_name: file.name,
+        file_path: path,
+        file_type: file.type || "application/octet-stream",
+        attachment_type: getAttachmentType(file, category)
+      });
+
+    if (inserted.error) {
+      await supabase.storage
+        .from("resource-files")
+        .remove([path]);
+
+      throw inserted.error;
+    }
+  }
+}
+
+$("resourceForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const save = $("saveButton");
+  save.disabled = true;
+
+  let savedPostId = editingId;
+
+  try {
+    if (!await verifyAdmin()) {
+      throw new Error("관리자 권한이 없습니다.");
+    }
+
+    const category = $("resourceCategory").value;
+
+    const payload = {
+      title: $("resourceTitle").value.trim(),
+      content: $("resourceContent").value.trim() || null,
+      category,
+      youtube_url: $("youtubeUrl").value.trim() || null
+    };
+
+    if (!payload.title) {
+      throw new Error("자료 제목을 입력하세요.");
+    }
+
+    if (category === "image") {
+      payload.activity_category =
+        $("photoActivityCategory").value || null;
+
+      payload.event_name =
+        $("photoEventName").value.trim() || null;
+
+      payload.event_date =
+        $("photoEventDate").value || null;
+
+      if (!payload.activity_category) {
+        throw new Error("사진 활동 분류를 선택하세요.");
+      }
+
+      if (!editingId &&
+          (!payload.event_name || !payload.event_date)) {
+        throw new Error("행사명과 행사일을 입력하세요.");
+      }
+    }
+
+    let postId = editingId;
+
+    if (editingId) {
+      const { error } = await supabase
+        .from("resource_posts")
+        .update(payload)
+        .eq("id", editingId);
+
+      if (error) throw error;
+    } else {
+      const { data, error } = await supabase
+        .from("resource_posts")
+        .insert({
+          ...payload,
+          author_id: currentUser.id
+        })
+        .select("id")
+        .single();
+
+      if (error) throw error;
+
+      postId = data.id;
+      savedPostId = postId;
+    }
+
+    await uploadFiles(postId, category);
+
+    resetEditor();
+    message("saveMessage", "자료가 저장되었습니다.");
+    await loadResources();
+
+  } catch (error) {
+    console.error(error);
+
+    message(
+      "saveMessage",
+      `저장 중 오류가 발생했습니다: ${error.message}` +
+      (savedPostId
+        ? ` (게시물 ID: ${savedPostId}, 첨부파일은 일부만 저장되었을 수 있습니다.)`
+        : ""),
+      true
+    );
+  } finally {
+    save.disabled = false;
+  }
+});
+
+async function deleteResource(post) {
+  if (!confirm(
+    `"${post.title}" 자료를 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`
+  )) return;
+
+  try {
+    if (!await verifyAdmin()) {
+      throw new Error("관리자 권한이 없습니다.");
+    }
+
+    const { data: files, error: fileError } =
+      await supabase
+        .from("resource_attachments")
+        .select("file_path")
+        .eq("resource_id", post.id);
+
+    if (fileError) throw fileError;
+
+    const { error: attachmentError } = await supabase
+      .from("resource_attachments")
+      .delete()
+      .eq("resource_id", post.id);
+
+    if (attachmentError) throw attachmentError;
+
+    const { error: postError } = await supabase
+      .from("resource_posts")
+      .delete()
+      .eq("id", post.id);
+
+    if (postError) throw postError;
+
+    const paths = (files || []).map(item => item.file_path);
+
+    if (paths.length) {
+      const { error: storageError } = await supabase.storage
+        .from("resource-files")
+        .remove(paths);
+
+      if (storageError) {
+        console.warn("Storage 정리 필요:", storageError);
+        alert("게시물은 삭제되었지만 저장소 파일 정리가 필요합니다.");
+      }
+    }
+
+    if (editingId === post.id) resetEditor();
+
+    await loadResources();
+
+  } catch (error) {
+    alert("삭제 실패: " + error.message);
+  }
+}
+
+updateCategoryFields();
+
+refreshAuth().catch(error => {
+  console.error(error);
+  message("loginMessage", error.message, true);
+});
+</script>
+
+</body>
+</html>
