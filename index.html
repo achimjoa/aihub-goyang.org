@@ -1609,6 +1609,446 @@ async function initializeBoardFeatures() {
 initializeBoardFeatures();
 
 </script>
+
+<!-- =========================================
+     홈페이지 배너 및 회원 메뉴 통합
+========================================= -->
+
+<style>
+
+/* 배너 및 회원 메뉴 */
+
+#homepageMemberMenu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#homepageMemberMenu a {
+  display: inline-block;
+  padding: 11px 20px;
+  border-radius: 7px;
+  background: #ffe44d;
+  color: #17315b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#homepageMemberMenu a:hover {
+  background: white;
+}
+
+/* 배너 전체 */
+
+#homepageBannerLayout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 2fr)
+    minmax(0, 1fr);
+
+  grid-template-areas:
+    "left center right";
+
+  gap: 16px;
+
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 15px;
+
+  align-items: start;
+}
+
+#homepageBannerLayout[hidden],
+#homepageBannerLayout .banner-section[hidden] {
+  display: none !important;
+}
+
+#homepageBannerLayout .banner-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  min-width: 0;
+  margin: 0;
+}
+
+#homepageBannerLayout .banner-section h2 {
+  color: #0754a6;
+  font-size: 21px;
+  margin: 0 0 18px;
+}
+
+#homepageBannerCenter {
+  grid-area: center;
+}
+
+#homepageBannerLeft {
+  grid-area: left;
+}
+
+#homepageBannerRight {
+  grid-area: right;
+}
+
+.homepage-banner-items {
+  display: grid;
+  gap: 15px;
+}
+
+.homepage-banner-link {
+  display: block;
+  text-decoration: none;
+  color: #17315b;
+  background: #eef5ff;
+  border: 1px solid #dce6f2;
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+.homepage-banner-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.homepage-banner-title {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* 모바일 */
+
+@media (max-width: 767px) {
+
+  #homepageBannerLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #homepageBannerCenter {
+    order: 1;
+  }
+
+  #homepageBannerLeft {
+    order: 2;
+  }
+
+  #homepageBannerRight {
+    order: 3;
+  }
+
+  #homepageBannerLayout .banner-section {
+    width: 100%;
+  }
+
+  .homepage-banner-items {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+</style>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* 기존 Supabase 연결 정보 */
+
+const bannerSupabase = createClient(
+  "https://gugkwqpvtwivqudkimvy.supabase.co",
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5"
+);
+
+/* =====================================
+   회원 메뉴
+===================================== */
+
+function initializeMemberMenu() {
+
+  if (document.getElementById("homepageMemberMenu")) {
+    return;
+  }
+
+  const heroButtons =
+    document.querySelector(".hero-buttons");
+
+  if (!heroButtons) return;
+
+  const menu = document.createElement("div");
+
+  menu.id = "homepageMemberMenu";
+
+  const links = [
+    ["로그인", "login.html"],
+    ["회원가입", "signup.html"],
+    ["시민참여 게시판", "board.html"]
+  ];
+
+  for (const [title, url] of links) {
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.textContent = title;
+
+    menu.appendChild(link);
+  }
+
+  heroButtons.insertAdjacentElement(
+    "afterend",
+    menu
+  );
+}
+
+/* =====================================
+   배너 영역 생성
+===================================== */
+
+function createBannerLayout() {
+
+  if (document.getElementById("homepageBannerLayout")) {
+    return;
+  }
+
+  const main = document.querySelector("main");
+
+  if (!main) return;
+
+  const layout = document.createElement("div");
+
+  layout.id = "homepageBannerLayout";
+  layout.hidden = true;
+
+  const positions = [
+    ["center", "위원회 주요 활동"],
+    ["left", "회원 광고 · 좌측"],
+    ["right", "회원 광고 · 우측"]
+  ];
+
+  for (const [position, title] of positions) {
+
+    const section = document.createElement("section");
+
+    section.id =
+      "homepageBanner" +
+      position.charAt(0).toUpperCase() +
+      position.slice(1);
+
+    section.className = "banner-section";
+    section.hidden = true;
+
+    const heading = document.createElement("h2");
+    heading.textContent = title;
+
+    const items = document.createElement("div");
+
+    items.className = "homepage-banner-items";
+    items.dataset.position = position;
+
+    section.append(heading, items);
+
+    layout.appendChild(section);
+  }
+
+  main.prepend(layout);
+}
+
+/* =====================================
+   안전한 URL 확인
+===================================== */
+
+function resolveBannerUrl(value) {
+
+  if (!value || typeof value !== "string") {
+    return null;
+  }
+
+  const trimmed = value.trim();
+
+  if (
+    trimmed.startsWith("//") ||
+    trimmed.startsWith("/") ||
+    trimmed.includes("\\") ||
+    trimmed.split(/[?#]/)[0]
+      .split("/")
+      .includes("..")
+  ) {
+    return null;
+  }
+
+  try {
+
+    const url = new URL(trimmed, location.href);
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+      return null;
+    }
+
+    return url;
+
+  } catch {
+    return null;
+  }
+}
+
+/* =====================================
+   공개 배너 조회 및 표시
+===================================== */
+
+async function loadHomepageBanners() {
+
+  const layout =
+    document.getElementById("homepageBannerLayout");
+
+  if (!layout) return;
+
+  try {
+
+    const { data, error } =
+      await bannerSupabase
+        .from("homepage_banners")
+        .select(
+          "position,slot_number,title,description,image_url,link_url"
+        )
+        .eq("is_active", true)
+        .order("slot_number", {
+          ascending: true
+        });
+
+    if (error) throw error;
+
+    let totalVisible = 0;
+
+    for (const position of ["center", "left", "right"]) {
+
+      const container = layout.querySelector(
+        `[data-position="${position}"]`
+      );
+
+      if (!container) continue;
+
+      const section = container.closest("section");
+
+      container.replaceChildren();
+      section.hidden = true;
+
+      const banners = (data || [])
+        .filter(item =>
+          item.position === position &&
+          Number.isInteger(item.slot_number) &&
+          item.slot_number >= 1 &&
+          item.slot_number <= 10
+        )
+        .slice(0, 10);
+
+      for (const banner of banners) {
+
+        const imageUrl =
+          resolveBannerUrl(banner.image_url);
+
+        const linkUrl =
+          resolveBannerUrl(banner.link_url);
+
+        if (!imageUrl || !linkUrl) {
+          continue;
+        }
+
+        const link = document.createElement("a");
+
+        link.className = "homepage-banner-link";
+        link.href = linkUrl.href;
+
+        if (linkUrl.origin !== location.origin) {
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+
+        const img = document.createElement("img");
+
+        img.src = imageUrl.href;
+        img.alt = banner.title || "홍보 배너";
+        img.loading = "lazy";
+
+        link.appendChild(img);
+
+        if (banner.title) {
+
+          const title = document.createElement("span");
+
+          title.className = "homepage-banner-title";
+          title.textContent = banner.title;
+
+          link.appendChild(title);
+        }
+
+        container.appendChild(link);
+        totalVisible++;
+      }
+
+      section.hidden =
+        container.children.length === 0;
+    }
+
+    layout.hidden = totalVisible === 0;
+
+    console.log(
+      "홈페이지 공개 배너:",
+      totalVisible,
+      "개"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "홈페이지 배너 조회 오류:",
+      error
+    );
+
+  }
+}
+
+/* =====================================
+   중복 게시물 영역 숨김
+===================================== */
+
+function hideDuplicateFeaturedBoard() {
+
+  const duplicate =
+    document.getElementById("featured-board");
+
+  if (duplicate) {
+    duplicate.hidden = true;
+    duplicate.style.display = "none";
+  }
+}
+
+/* =====================================
+   초기 실행
+===================================== */
+
+initializeMemberMenu();
+
+createBannerLayout();
+
+hideDuplicateFeaturedBoard();
+
+await loadHomepageBanners();
+
+</script>
       
 </body>
 </html>
