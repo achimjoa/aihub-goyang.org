@@ -1663,10 +1663,20 @@ async function uploadFiles(
         )
         .slice(-120);
 
-    const path =
-      `resources/${postId}/` +
-      `${crypto.randomUUID()}-${safeName}`;
+    const {
+  data: { user },
+  error: userError
+} = await supabase.auth.getUser();
 
+if (userError || !user) {
+  throw new Error(
+    "로그인 사용자 정보를 확인할 수 없습니다."
+  );
+}
+
+const path =
+  `${user.id}/resources/${postId}/` +
+  `${crypto.randomUUID()}-${safeName}`;
     const uploaded =
       await supabase.storage
         .from("resource-files")
@@ -1682,18 +1692,20 @@ async function uploadFiles(
     }
 
     const inserted =
-      await supabase
-        .from("resource_attachments")
-        .insert({
-          resource_id: postId,
-          file_name: file.name,
-          file_path: path,
-          file_type:
-            file.type ||
-            "application/octet-stream",
-          attachment_type:
-            getAttachmentType(category)
-        });
+  await supabase
+    .from("resource_attachments")
+    .insert({
+      resource_id: postId,
+      uploader_id: user.id,
+      file_name: file.name,
+      file_path: path,
+      file_type:
+        file.type ||
+        "application/octet-stream",
+      file_size: file.size,
+      attachment_type:
+        getAttachmentType(category)
+    });
 
     if (inserted.error) {
 
