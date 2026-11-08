@@ -283,24 +283,60 @@ let news = [];
    Supabase 활동 소식 불러오기
 ===================================== */
 
-async function loadNews() {
+/* =====================================
+   활동 소식 + 게시판 선택 게시물 통합 조회
+===================================== */
 
-  /* 로딩 표시 */
+async function loadNews() {
 
   newsList.textContent =
     "활동 소식을 불러오고 있습니다.";
 
   empty.hidden = true;
 
-  try {
+  const categoryNames = {
+    notice: "공지사항",
+    activity: "위원회 활동",
+    event: "행사 소식",
+    press: "언론보도",
+    policy: "정책 소식"
+  };
 
-    /* Supabase 조회 */
+  /* 날짜 표시 */
+
+  function formatDate(value) {
+
+    if (!value) return "";
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+      return String(value).slice(0, 10);
+    }
+
+    return [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")
+    ].join(".");
+
+  }
+
+  const combinedNews = [];
+
+  let successfulQueries = 0;
+
+  /* =====================================
+     1. 기존 활동 소식 조회
+  ===================================== */
+
+  try {
 
     const { data, error } =
       await supabase
         .from("news_posts")
         .select(
-          "id, title, category, description, link, published_at"
+          "id,title,category,description,link,published_at"
         )
         .order("published_at", {
           ascending: false
@@ -310,55 +346,161 @@ async function loadNews() {
       throw error;
     }
 
-    /* 분류 이름 */
+    successfulQueries++;
 
-    const categoryNames = {
-      notice: "공지사항",
-      activity: "위원회 활동",
-      event: "행사 소식",
-      press: "언론보도",
-      policy: "정책 소식"
-    };
+    for (const item of data || []) {
 
-    /* Supabase 데이터를 기존 화면 형식으로 변환 */
+      combinedNews.push({
 
-    news = (data || []).map(item => ({
+        id: "news-" + item.id,
 
-      id: item.id,
+        date: formatDate(item.published_at),
 
-      date: item.published_at
-        ? item.published_at.replace(/-/g, ".")
-        : "",
+        sortDate: item.published_at || "",
 
-      category: item.category,
+        category: item.category,
 
-      categoryName:
-        categoryNames[item.category] || "기타",
+        categoryName:
+          categoryNames[item.category] || "기타",
 
-      title: item.title || "",
+        title: item.title || "",
 
-      description: item.description || "",
+        description: item.description || "",
 
-      link: item.link || ""
+        link: item.link || ""
 
-    }));
+      });
 
-    /* 화면 갱신 */
-
-    renderNews();
-
-    console.log(
-      "활동 소식 불러오기 완료:",
-      news.length,
-      "건"
-    );
+    }
 
   } catch (error) {
 
     console.error(
-      "활동 소식 조회 오류:",
+      "기존 활동 소식 조회 오류:",
       error
     );
+
+  }
+
+  /* =====================================
+     2. 관리자 선택 게시물 조회
+  ===================================== */
+
+  try {
+
+    const { data: placements, error } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "notice",
+          "activity"
+        ]);
+
+    if (error) {
+      throw error;
+    }
+
+    if (placements && placements.length > 0) {
+
+      const postIds = [
+        ...new Set(
+          placements.map(item => item.post_id)
+        )
+      ];
+
+      const {
+        data: posts,
+        error: postError
+      } =
+        await supabase
+          .from("board_posts")
+          .select(
+            "id,title,content,created_at"
+          )
+          .in("id", postIds);
+
+      if (postError) {
+        throw postError;
+      }
+
+      const postMap = new Map(
+        (posts || []).map(post => [
+          String(post.id),
+          post
+        ])
+      );
+
+      for (const placement of placements) {
+
+        const post = postMap.get(
+          String(placement.post_id)
+        );
+
+        if (!post) continue;
+
+        const content = post.content || "";
+
+        combinedNews.push({
+
+          id:
+            "board-" +
+            placement.placement +
+            "-" +
+            post.id,
+
+          date: formatDate(post.created_at),
+
+          sortDate: post.created_at || "",
+
+          category: placement.placement,
+
+          categoryName:
+            categoryNames[placement.placement],
+
+          title: post.title || "",
+
+          description:
+            content.length > 200
+              ? content.slice(0, 200) + "..."
+              : content,
+
+          link:
+            "board.html?post=" +
+            encodeURIComponent(post.id)
+
+        });
+
+      }
+
+    }
+
+    successfulQueries++;
+
+  } catch (error) {
+
+    console.error(
+      "관리자 선택 게시물 조회 오류:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     3. 날짜순 정렬
+  ===================================== */
+
+  combinedNews.sort((a, b) =>
+    b.sortDate.localeCompare(a.sortDate)
+  );
+
+  news = combinedNews;
+
+  /* =====================================
+     4. 화면 갱신
+  ===================================== */
+
+  if (successfulQueries === 0) {
 
     newsList.textContent =
       "활동 소식을 불러오지 못했습니다. " +
@@ -366,7 +508,17 @@ async function loadNews() {
 
     empty.hidden = true;
 
+    return;
+
   }
+
+  renderNews();
+
+  console.log(
+    "통합 활동 소식 조회 완료:",
+    news.length,
+    "건"
+  );
 
 }
   
@@ -396,8 +548,13 @@ function renderNews() {
     return categoryMatch && searchText.includes(keyword);
   });
 
-  filtered.sort((a, b) => b.date.localeCompare(a.date));
-
+  filtered.sort((a, b) =>
+  (b.sortDate || b.date || "")
+    .localeCompare(
+      a.sortDate || a.date || ""
+    )
+);
+  
   newsList.innerHTML = "";
 
   filtered.forEach(item => {
@@ -429,8 +586,23 @@ function renderNews() {
       const link = document.createElement("a");
       link.className = "news-link";
       link.href = item.link;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
+      if (
+  item.link.startsWith("board.html?")
+) {
+
+  /* 게시판 게시물은 현재 창에서 열기 */
+
+  link.target = "_self";
+
+} else {
+
+  /* 기존 외부 링크는 새 창에서 열기 */
+
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+
+}
+      
       link.textContent = "자세히 보기";
 
       card.appendChild(link);
