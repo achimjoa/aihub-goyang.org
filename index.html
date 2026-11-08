@@ -11,7 +11,10 @@
 경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회
 </title>
 
-<!-- SNS 공유 설정 -->
+<meta name="description"
+content="경기도 글로벌 AI 허브의 고양특례시 유치를 위한 범시민추진위원회 공식 홈페이지">
+
+<!-- SNS 공유 -->
 
 <meta property="og:type" content="website">
 
@@ -25,17 +28,16 @@ content="고양시에 성장동력을 달라! 고양시에 일자리를 달라! 
 content="https://achimjoa.github.io/aihub-goyang.org/">
 
 <meta property="og:image"
-content="https://achimjoa.github.io/aihub-goyang.org/goyang-main.jpg?v=3">
-
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+content="https://achimjoa.github.io/aihub-goyang.org/goyang-main.jpg">
 
 <meta name="twitter:card"
 content="summary_large_image">
 
 <style>
 
-/* 기본 설정 */
+/* =====================================
+   기본 설정
+===================================== */
 
 * {
   box-sizing: border-box;
@@ -47,33 +49,36 @@ html {
 
 body {
   margin: 0;
-  font-family: "Malgun Gothic", "Noto Sans KR",
-               Arial, sans-serif;
+
+  font-family:
+    "Malgun Gothic",
+    "Noto Sans KR",
+    Arial,
+    sans-serif;
+
   color: #17315b;
   background: #f5f8fc;
+
   line-height: 1.7;
 }
 
 :root {
-  --menu-height: 76px;
   --main-blue: #0754a6;
   --dark-blue: #10315e;
   --yellow: #ffe44d;
 }
 
-/* =================================
-   메인 사진
-================================= */
+/* =====================================
+   메인 화면
+===================================== */
 
 .hero {
   position: relative;
-  z-index: 1;
 
   width: 100%;
+  min-height: 400px;
 
-  min-height: 360px;
-
-  padding: 45px 20px;
+  padding: 55px 20px;
 
   background-image:
     linear-gradient(
@@ -84,7 +89,6 @@ body {
 
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
 
   display: flex;
   align-items: center;
@@ -94,48 +98,36 @@ body {
   text-align: center;
 }
 
-/* 메인 내용 */
-
 .hero-content {
-  position: relative;
-  z-index: 2;
-
   width: 100%;
   max-width: 1100px;
-
   margin: auto;
-  text-align: center;
 }
 
-/* 위원회 명칭 */
-
 .hero-logo {
-  color: white;
-  font-size: clamp(21px, 3vw, 34px);
+  font-size: clamp(20px, 3vw, 30px);
   font-weight: 800;
   line-height: 1.5;
 
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 
   text-shadow:
     0 3px 10px rgba(0,0,0,0.6);
 }
 
-/* 제목 */
-
 .hero h1 {
-  font-size: clamp(36px, 6vw, 68px);
+  font-size: clamp(34px, 5vw, 56px);
   font-weight: 900;
   letter-spacing: 2px;
-  margin: 12px 0;
+
+  margin: 10px 0;
 }
 
-/* 슬로건 */
-
 .hero h2 {
-  font-size: clamp(25px, 4vw, 44px);
+  font-size: clamp(23px, 3.5vw, 36px);
   font-weight: 800;
-  margin: 12px 0;
+
+  margin: 10px 0;
 }
 
 .hero strong {
@@ -143,35 +135,32 @@ body {
 }
 
 .hero p {
-  font-size: clamp(17px, 2vw, 23px);
-  line-height: 1.9;
-  margin: 12px 0;
+  font-size: clamp(15px, 2vw, 19px);
+  line-height: 1.8;
+  margin: 10px 0;
 }
 
-/* 언어 버튼 */
+/* 언어 선택 */
 
 .hero-language {
   position: absolute;
-  top: 20px;
-  right: 25px;
-  z-index: 10;
+  top: 15px;
+  right: 20px;
 
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .hero-language a {
-  display: inline-block;
-
-  padding: 9px 17px;
+  padding: 7px 14px;
 
   background: rgba(0,40,90,0.55);
   color: white;
 
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: 6px;
 
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   text-decoration: none;
 }
@@ -185,58 +174,91 @@ body {
 /* 메인 버튼 */
 
 .hero-buttons {
-  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .btn {
   display: inline-block;
 
+  padding: 10px 18px;
+
   background: var(--yellow);
   color: #17315b;
 
-  padding: 13px 24px;
-  margin: 8px;
-
   border-radius: 7px;
-  text-decoration: none;
+
   font-weight: 700;
+  text-decoration: none;
 }
 
 .btn:hover {
   background: white;
 }
 
-/* =================================
-   파란색 메뉴
-================================= */
+/* 회원 메뉴 */
+
+.member-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.member-menu a {
+  display: inline-block;
+
+  padding: 9px 16px;
+
+  border: 1px solid white;
+  border-radius: 6px;
+
+  background: rgba(0,40,90,0.65);
+  color: white;
+
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.member-menu a:hover {
+  background: white;
+  color: var(--main-blue);
+}
+
+/* =====================================
+   홈페이지 메뉴
+===================================== */
 
 nav {
-  position: relative;
-  z-index: 2;
-
   width: 100%;
-  min-height: var(--menu-height);
-
-  margin: 0;
 
   background: var(--main-blue);
-  border-top: 4px solid var(--yellow);
 
-  box-shadow:
-    0 4px 12px rgba(0,0,0,0.15);
+  border-top: 4px solid var(--yellow);
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.15);
 }
 
 nav a {
   color: white;
   text-decoration: none;
 
-  padding: 14px 18px;
+  padding: 13px 16px;
 
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -245,388 +267,49 @@ nav a:hover {
   color: var(--yellow);
 }
 
-a:focus-visible {
-  outline: 3px solid var(--yellow);
-  outline-offset: 3px;
-}
-
-/* =================================
-   본문
-================================= */
-
-main {
-  max-width: 1180px;
-  margin: auto;
-}
-
-section {
-  background: white;
-
-  padding: 35px;
-  margin: 30px 15px;
-
-  border-radius: 12px;
-
-  box-shadow:
-    0 2px 10px rgba(0,0,0,0.04);
-
-  scroll-margin-top: 20px;
-}
-
-section h2 {
-  color: var(--main-blue);
-  font-size: 28px;
-  margin-top: 0;
-}
-
-/* 카드 */
-
-.grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(220px, 1fr));
-
-  gap: 18px;
-}
-
-.card {
-  background: #eef5ff;
-  border-radius: 10px;
-  padding: 22px;
-}
-
-.card h3 {
-  color: var(--main-blue);
-  margin-top: 0;
-}
-
-.agency {
-  border-left: 4px solid #168de0;
-
-  padding: 15px 18px;
-
-  background: #f4f9ff;
-  border-radius: 5px;
-}
-
-/* =================================
-   조직도
-================================= */
-
-.committee-organization {
-  margin-top: 35px;
-  padding: 25px;
-
-  background: #f4f8ff;
-  border-radius: 12px;
-  text-align: center;
-}
-
-.committee-organization h3 {
-  color: var(--main-blue);
-  font-size: 24px;
-}
-
-.organization-image {
-  display: block;
-
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-
-  margin: 20px auto;
-
-  border-radius: 8px;
-
-  box-shadow:
-    0 4px 15px rgba(0,0,0,0.12);
-}
-
-.image-guide {
-  color: #63748a;
-  font-size: 14px;
-}
-
-/* =================================
-   활동 연혁
-================================= */
-
-.timeline {
-  border-left: 4px solid #168de0;
-
-  margin: 30px 0 20px 15px;
-  padding-left: 25px;
-}
-
-.event {
-  position: relative;
-  padding: 5px 0 28px;
-}
-
-.event::before {
-  content: "";
-
-  position: absolute;
-  left: -35px;
-  top: 12px;
-
-  width: 16px;
-  height: 16px;
-
-  background: var(--main-blue);
-
-  border: 4px solid white;
-  border-radius: 50%;
-
-  box-shadow:
-    0 0 0 2px #168de0;
-}
-
-.event time {
-  color: var(--main-blue);
-  font-weight: 800;
-}
-
-.event h3 {
-  margin: 8px 0;
-}
-
-.event p {
-  margin: 0;
-  color: #46566d;
-}
-
-/* =================================
-   하단
-================================= */
-
-footer {
-  background: var(--dark-blue);
-  color: white;
-
-  text-align: center;
-  padding: 35px 15px;
-}
-
-/* =================================
-   모바일
-================================= */
+/* 모바일 */
 
 @media (max-width: 600px) {
 
   .hero {
-    padding: 90px 15px 35px;
+    min-height: 430px;
+    padding: 70px 15px 35px;
   }
 
   .hero-logo {
-    font-size: 19px;
-    margin-bottom: 25px;
+    font-size: 18px;
   }
 
   .hero h1 {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .hero h2 {
-    font-size: 24px;
+    font-size: 23px;
   }
 
   .hero p {
-    font-size: 15px;
-  }
-
-  .hero-language {
-    top: 15px;
-    right: 15px;
-  }
-
-  .hero-language a {
-    padding: 7px 12px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   nav a {
-    font-size: 13px;
+    font-size: 12px;
     padding: 10px;
   }
 
-  section {
-    padding: 22px;
-    margin: 15px 10px;
-  }
-
-  .committee-organization {
-    padding: 12px;
-  }
-
-  .timeline {
-    padding-left: 20px;
-  }
-
-  .event::before {
-    left: -30px;
-  }
 }
 
-/* =====================================
-   관리자 선택 게시물 자동 표시
-===================================== */
-
-.board-feature-section {
-  background: #ffffff;
-}
-
-.board-feature-grid {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(240px, 1fr));
-
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.board-feature-card {
-  background: #eef5ff;
-
-  border: 1px solid #dce6f2;
-  border-radius: 10px;
-
-  padding: 22px;
-
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
-}
-
-.board-feature-card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 5px 15px rgba(0,0,0,0.1);
-}
-
-.board-feature-card h3 {
-  color: #0754a6;
-
-  font-size: 19px;
-  margin: 10px 0;
-}
-
-.board-feature-card a {
-  color: #0754a6;
-  text-decoration: none;
-}
-
-.board-feature-card a:hover {
-  text-decoration: underline;
-}
-
-.board-feature-date {
-  color: #63748a;
-  font-size: 13px;
-}
-
-.board-feature-summary {
-  color: #46566d;
-
-  font-size: 15px;
-  line-height: 1.7;
-
-  overflow-wrap: anywhere;
-}
-
-.board-feature-more {
-  display: inline-block;
-
-  margin-top: 12px;
-
-  color: #0754a6;
-  font-weight: bold;
-}
-
-@media (max-width:600px) {
-
-  .board-feature-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .board-feature-card {
-    padding: 18px;
-  }
-
-}
-
-/* =====================================
-   홈페이지 주요 게시물
-===================================== */
-
-.featured-posts {
-  display: grid;
-
-  grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-
-  gap: 18px;
-  margin-top: 20px;
-}
-
-.featured-post {
-  background: #eef5ff;
-  border-radius: 10px;
-  padding: 22px;
-
-  border-left: 5px solid #168de0;
-}
-
-.featured-post h3 {
-  color: #0754a6;
-  margin: 10px 0;
-  font-size: 20px;
-}
-
-.featured-post p {
-  color: #46566d;
-  overflow-wrap: anywhere;
-}
-
-.featured-post-date {
-  font-size: 14px;
-  color: #63748a;
-}
-
-.featured-post-link {
-  display: inline-block;
-
-  background: #0754a6;
-  color: white;
-
-  padding: 9px 16px;
-  border-radius: 6px;
-
-  text-decoration: none;
-  font-weight: bold;
-
-  margin-top: 10px;
-}
-
-.featured-post-link:hover {
-  background: #003a7a;
-}
-
-.featured-empty {
-  color: #63748a;
-  padding: 20px 0;
-      
 </style>
+
 </head>
 
 <body>
 
-<!-- 메인 사진 -->
+<!-- =====================================
+     메인 화면
+===================================== -->
 
-<div class="hero" id="home">
+<header class="hero" id="home">
 
   <div class="hero-language">
 
@@ -674,11 +357,29 @@ footer {
 
     </div>
 
+    <div class="member-menu">
+
+      <a href="login.html">
+        로그인
+      </a>
+
+      <a href="signup.html">
+        회원가입
+      </a>
+
+      <a href="board.html">
+        시민참여 게시판
+      </a>
+
+    </div>
+
   </div>
 
-</div>
+</header>
 
-<!-- 파란색 메뉴 -->
+<!-- =====================================
+     홈페이지 메뉴
+===================================== -->
 
 <nav aria-label="주 메뉴">
 
@@ -694,94 +395,1215 @@ footer {
   <a href="participate.html">시민 참여</a>
   <a href="gallery.html">활동 사진관</a>
   <a href="#library">지식·자료</a>
-      
+
 </nav>
+
+<!-- =====================================
+     제159-2단계
+     홈페이지 배너 30개
+===================================== -->
+
+<style>
+
+/* =====================================
+   배너 전체 영역
+===================================== */
+
+#homepageBannerLayout {
+  width: calc(100% - 30px);
+  max-width: 1180px;
+
+  margin: 25px auto 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+/* 숨김 처리 */
+
+#homepageBannerLayout[hidden],
+#homepageBannerLayout .banner-section[hidden] {
+  display: none !important;
+}
+
+/* 배너 공통 영역 */
+
+#homepageBannerLayout .banner-section {
+  width: 100%;
+  min-width: 0;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.05);
+}
+
+#homepageBannerLayout .banner-section h2 {
+  margin: 0 0 20px;
+
+  color: #0754a6;
+  font-size: 24px;
+}
+
+/* =====================================
+   중앙 홍보 배너
+===================================== */
+
+#homepageBannerCenter {
+  order: 1;
+}
+
+#homepageBannerCenter .homepage-banner-items {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+/* =====================================
+   좌우 회원 광고
+===================================== */
+
+#homepageBannerLeft {
+  order: 2;
+}
+
+#homepageBannerRight {
+  order: 3;
+}
+
+#homepageBannerLeft .homepage-banner-items,
+#homepageBannerRight .homepage-banner-items {
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+/* =====================================
+   배너 카드
+===================================== */
+
+.homepage-banner-link {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  background: #eef5ff;
+
+  border: 1px solid #dce6f2;
+  border-radius: 9px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+  color: #17315b;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.homepage-banner-link:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.12);
+}
+
+/* 배너 이미지 */
+
+.homepage-banner-link img {
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  object-fit: contain;
+
+  background: #ffffff;
+}
+
+/* 이미지 없는 배너 */
+
+.homepage-banner-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0754a6,
+      #168de0
+    );
+
+  color: white;
+
+  font-size: 30px;
+  font-weight: 900;
+}
+
+/* 배너 제목 */
+
+.homepage-banner-title {
+  display: block;
+
+  padding: 9px 10px;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 배너 설명 */
+
+.homepage-banner-description {
+  display: block;
+
+  padding: 0 10px 12px;
+
+  color: #53647a;
+
+  text-align: center;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  word-break: keep-all;
+}
+
+/* =====================================
+   태블릿
+===================================== */
+
+@media (max-width: 900px) {
+
+  #homepageBannerCenter .homepage-banner-items,
+  #homepageBannerLeft .homepage-banner-items,
+  #homepageBannerRight .homepage-banner-items {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+}
+
+/* =====================================
+   휴대폰
+===================================== */
+
+@media (max-width: 600px) {
+
+  #homepageBannerLayout {
+    width: calc(100% - 20px);
+
+    margin: 15px auto;
+
+    gap: 15px;
+  }
+
+  #homepageBannerLayout .banner-section {
+    padding: 15px;
+  }
+
+  #homepageBannerLayout .banner-section h2 {
+    font-size: 20px;
+  }
+
+  #homepageBannerCenter .homepage-banner-items,
+  #homepageBannerLeft .homepage-banner-items,
+  #homepageBannerRight .homepage-banner-items {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+  .homepage-banner-title {
+    font-size: 12px;
+  }
+
+  .homepage-banner-description {
+    font-size: 11px;
+  }
+
+  .homepage-banner-icon {
+    font-size: 24px;
+  }
+
+}
+
+</style>
+
+<!-- =====================================
+     배너 표시 영역
+===================================== -->
+
+<div
+  id="homepageBannerLayout"
+  aria-label="홈페이지 홍보 및 광고 배너"
+  hidden>
+
+  <!-- 중앙 홍보 배너 -->
+
+  <section
+    id="homepageBannerCenter"
+    class="banner-section"
+    hidden>
+
+    <h2>위원회 주요 활동</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="centerBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 좌측 회원 광고 -->
+
+  <section
+    id="homepageBannerLeft"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 좌측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="leftBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 우측 회원 광고 -->
+
+  <section
+    id="homepageBannerRight"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 우측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="rightBannerItems">
+    </div>
+
+  </section>
+
+</div>
+
+<!-- =====================================
+     Supabase 및 배너 조회
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   Supabase 연결
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/*
+  다음 단계의 게시물 조회 기능에서도
+  이 supabase 클라이언트를 사용합니다.
+
+  별도의 createClient()를 추가하지 않습니다.
+*/
+
+/* =====================================
+   배너 URL 확인
+===================================== */
+
+function resolveBannerUrl(value) {
+
+  if (
+    typeof value !== "string" ||
+    !value.trim()
+  ) {
+    return null;
+  }
+
+  try {
+
+    const url = new URL(
+      value.trim(),
+      window.location.href
+    );
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+      return null;
+    }
+
+    return url.href;
+
+  } catch (error) {
+
+    return null;
+
+  }
+}
+
+/* =====================================
+   배너 카드 생성
+===================================== */
+
+function createBannerCard(banner) {
+
+  const link =
+    document.createElement("a");
+
+  link.className = "homepage-banner-link";
+
+  const linkUrl =
+    resolveBannerUrl(banner.link_url);
+
+  if (linkUrl) {
+
+    link.href = linkUrl;
+
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+
+  } else {
+
+    link.removeAttribute("href");
+
+  }
+
+  /* 이미지 또는 아이콘 */
+
+  const imageUrl =
+    resolveBannerUrl(banner.image_url);
+
+  if (imageUrl) {
+
+    const image =
+      document.createElement("img");
+
+    image.src = imageUrl;
+
+    image.alt =
+      banner.title || "홍보 배너";
+
+    image.loading = "lazy";
+
+    link.appendChild(image);
+
+  } else {
+
+    const icon =
+      document.createElement("div");
+
+    icon.className =
+      "homepage-banner-icon";
+
+    icon.textContent = "AI";
+
+    link.appendChild(icon);
+
+  }
+
+  /* 제목 */
+
+  if (banner.title) {
+
+    const title =
+      document.createElement("span");
+
+    title.className =
+      "homepage-banner-title";
+
+    title.textContent =
+      banner.title;
+
+    link.appendChild(title);
+
+  }
+
+  /* 설명 */
+
+  if (banner.description) {
+
+    const description =
+      document.createElement("span");
+
+    description.className =
+      "homepage-banner-description";
+
+    description.textContent =
+      banner.description;
+
+    link.appendChild(description);
+
+  }
+
+  return link;
+}
+
+/* =====================================
+   배너 조회
+===================================== */
+
+async function loadHomepageBanners() {
+
+  const layout =
+    document.getElementById(
+      "homepageBannerLayout"
+    );
+
+  if (!layout) return;
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("homepage_banners")
+        .select(`
+          id,
+          position,
+          slot_number,
+          title,
+          description,
+          image_url,
+          link_url
+        `)
+        .eq("is_active", true)
+        .order("slot_number", {
+          ascending: true
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    const positions = {
+      center: {
+        section: "homepageBannerCenter",
+        items: "centerBannerItems"
+      },
+
+      left: {
+        section: "homepageBannerLeft",
+        items: "leftBannerItems"
+      },
+
+      right: {
+        section: "homepageBannerRight",
+        items: "rightBannerItems"
+      }
+    };
+
+    let totalCount = 0;
+
+    for (
+      const [position, config]
+      of Object.entries(positions)
+    ) {
+
+      const section =
+        document.getElementById(
+          config.section
+        );
+
+      const container =
+        document.getElementById(
+          config.items
+        );
+
+      if (!section || !container) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      const banners = (data || [])
+        .filter(item =>
+          item.position === position &&
+          Number.isInteger(item.slot_number) &&
+          item.slot_number >= 1 &&
+          item.slot_number <= 10
+        )
+        .slice(0, 10);
+
+      for (const banner of banners) {
+
+        const card =
+          createBannerCard(banner);
+
+        container.appendChild(card);
+
+      }
+
+      section.hidden =
+        banners.length === 0;
+
+      totalCount += banners.length;
+
+    }
+
+    layout.hidden =
+      totalCount === 0;
+
+    console.log(
+      "홈페이지 배너 조회 완료:",
+      totalCount,
+      "개"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "홈페이지 배너 조회 오류:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   배너 초기 실행
+===================================== */
+
+loadHomepageBanners();
+
+/* =====================================
+   제159-3단계
+   주요 게시물 조회 및 중복 제거
+===================================== */
+
+/*
+  기존 Supabase 클라이언트를 사용합니다.
+
+  createClient()를 다시 실행하지 않습니다.
+*/
+
+/* =====================================
+   게시물 데이터 저장
+===================================== */
+
+let homepagePosts = [];
+
+/* =====================================
+   게시물 조회
+===================================== */
+
+async function loadHomepagePosts() {
+
+  const container =
+    document.getElementById(
+      "homepagePostList"
+    );
+
+  const empty =
+    document.getElementById(
+      "homepagePostEmpty"
+    );
+
+  if (!container || !empty) {
+    console.warn(
+      "홈페이지 게시물 표시 영역을 찾을 수 없습니다."
+    );
+    return;
+  }
+
+  container.replaceChildren();
+
+  empty.hidden = true;
+
+  try {
+
+    /* ---------------------------------
+       1. 홈페이지 지정 게시물 조회
+    --------------------------------- */
+
+    const { data: placements, error: placementError } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id, placement")
+        .in("placement", [
+          "home",
+          "featured"
+        ]);
+
+    if (placementError) {
+      throw placementError;
+    }
+
+    /* ---------------------------------
+       2. 게시물 ID 중복 제거
+    --------------------------------- */
+
+    const postIds = [
+      ...new Set(
+        (placements || [])
+          .map(item => item.post_id)
+          .filter(id =>
+            Number.isSafeInteger(Number(id)) &&
+            Number(id) > 0
+          )
+      )
+    ];
+
+    if (postIds.length === 0) {
+
+      empty.hidden = false;
+      return;
+
+    }
+
+    /* ---------------------------------
+       3. 실제 게시물 조회
+    --------------------------------- */
+
+    const { data: posts, error: postsError } =
+      await supabase
+        .from("board_posts")
+        .select(
+          "id, title, created_at"
+        )
+        .in("id", postIds)
+        .order("created_at", {
+          ascending: false
+        });
+
+    if (postsError) {
+      throw postsError;
+    }
+
+    /* ---------------------------------
+       4. 게시물 ID 기준 최종 중복 제거
+    --------------------------------- */
+
+    const uniquePosts = new Map();
+
+    for (const post of posts || []) {
+
+      if (!uniquePosts.has(String(post.id))) {
+
+        uniquePosts.set(
+          String(post.id),
+          post
+        );
+
+      }
+
+    }
+
+    homepagePosts = [
+      ...uniquePosts.values()
+    ];
+
+    /* ---------------------------------
+       5. 게시물 표시
+    --------------------------------- */
+
+    renderHomepagePosts();
+
+    console.log(
+      "홈페이지 주요 게시물:",
+      homepagePosts.length,
+      "건"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "홈페이지 게시물 조회 오류:",
+      error
+    );
+
+    container.replaceChildren();
+
+    empty.hidden = false;
+
+    empty.textContent =
+      "주요 게시물을 불러오지 못했습니다.";
+
+  }
+
+}
+
+/* =====================================
+   게시물 화면 표시
+===================================== */
+
+function renderHomepagePosts() {
+
+  const container =
+    document.getElementById(
+      "homepagePostList"
+    );
+
+  const empty =
+    document.getElementById(
+      "homepagePostEmpty"
+    );
+
+  if (!container || !empty) {
+    return;
+  }
+
+  container.replaceChildren();
+
+  if (homepagePosts.length === 0) {
+
+    empty.hidden = false;
+    return;
+
+  }
+
+  empty.hidden = true;
+
+  for (const post of homepagePosts) {
+
+    const article =
+      document.createElement("article");
+
+    article.className =
+      "homepage-post-card";
+
+    /* 제목 */
+
+    const title =
+      document.createElement("h3");
+
+    const link =
+      document.createElement("a");
+
+    link.href =
+      "board.html?post=" +
+      encodeURIComponent(post.id);
+
+    link.textContent =
+      post.title || "제목 없음";
+
+    title.appendChild(link);
+
+    /* 날짜 */
+
+    const date =
+      document.createElement("p");
+
+    date.className =
+      "homepage-post-date";
+
+    if (post.created_at) {
+
+      const parsed =
+        new Date(post.created_at);
+
+      date.textContent =
+        Number.isNaN(parsed.getTime())
+          ? ""
+          : parsed.toLocaleDateString("ko-KR");
+
+    }
+
+    article.appendChild(title);
+    article.appendChild(date);
+
+    container.appendChild(article);
+
+  }
+
+}
+
+/* =====================================
+   주요 게시물 초기 조회
+===================================== */
+
+loadHomepagePosts();
+
+<!-- =====================================
+     제159-4단계
+     주요 게시물 표시 영역
+===================================== -->
+
+<style>
+
+/* 주요 게시물 전체 */
+
+.homepage-posts-section {
+  width: calc(100% - 30px);
+  max-width: 1180px;
+
+  margin: 30px auto;
+  padding: 30px;
+
+  background: white;
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.05);
+}
+
+.homepage-posts-header {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.homepage-posts-header h2 {
+  margin: 0;
+  color: #0754a6;
+  font-size: 26px;
+}
+
+.homepage-posts-header a {
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.homepage-post-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.homepage-post-card {
+  padding: 22px;
+
+  background: #eef5ff;
+  border-radius: 10px;
+
+  border-left: 4px solid #168de0;
+}
+
+.homepage-post-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.homepage-post-card h3 a {
+  color: #0754a6;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.homepage-post-card h3 a:hover {
+  text-decoration: underline;
+}
+
+.homepage-post-date {
+  margin: 0;
+  color: #68788c;
+  font-size: 13px;
+}
+
+.homepage-post-empty {
+  padding: 25px;
+  color: #68788c;
+  text-align: center;
+}
+
+.homepage-post-empty[hidden] {
+  display: none;
+}
+
+/* =====================================
+   기존 홈페이지 콘텐츠
+===================================== */
+
+main {
+  max-width: 1180px;
+  margin: auto;
+}
+
+main section {
+  background: white;
+
+  padding: 35px;
+  margin: 30px 15px;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 2px 10px rgba(0,0,0,0.04);
+}
+
+main section h2 {
+  color: #0754a6;
+  font-size: 28px;
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 18px;
+}
+
+.card {
+  background: #eef5ff;
+  border-radius: 10px;
+  padding: 22px;
+}
+
+.card h3 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.agency {
+  border-left: 4px solid #168de0;
+  padding: 15px 18px;
+
+  background: #f4f9ff;
+  border-radius: 5px;
+}
+
+/* 조직도 */
+
+.committee-organization {
+  margin-top: 35px;
+  padding: 25px;
+
+  background: #f4f8ff;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.committee-organization h3 {
+  color: #0754a6;
+  font-size: 24px;
+}
+
+.organization-image {
+  display: block;
+
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+
+  margin: 20px auto;
+  border-radius: 8px;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.12);
+}
+
+.image-guide {
+  color: #63748a;
+  font-size: 14px;
+}
+
+/* 활동 연혁 */
+
+.timeline {
+  border-left: 4px solid #168de0;
+  margin: 30px 0 20px 15px;
+  padding-left: 25px;
+}
+
+.event {
+  position: relative;
+  padding: 5px 0 28px;
+}
+
+.event::before {
+  content: "";
+
+  position: absolute;
+  left: -35px;
+  top: 12px;
+
+  width: 16px;
+  height: 16px;
+
+  background: #0754a6;
+  border: 4px solid white;
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 2px #168de0;
+}
+
+.event time {
+  color: #0754a6;
+  font-weight: 800;
+}
+
+.event h3 {
+  margin: 8px 0;
+}
+
+.event p {
+  margin: 0;
+  color: #46566d;
+}
+
+/* 모바일 */
+
+@media (max-width: 767px) {
+
+  .homepage-posts-section {
+    width: calc(100% - 20px);
+    padding: 20px;
+    margin: 15px auto;
+  }
+
+  .homepage-post-list {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage-posts-header h2 {
+    font-size: 22px;
+  }
+
+  main section {
+    padding: 22px;
+    margin: 15px 10px;
+  }
+
+  .committee-organization {
+    padding: 12px;
+  }
+
+  .timeline {
+    padding-left: 20px;
+  }
+
+  .event::before {
+    left: -30px;
+  }
+
+}
+
+</style>
+
+<!-- =====================================
+     시민참여 주요 게시물
+===================================== -->
+
+<section
+  id="homepagePostsSection"
+  class="homepage-posts-section">
+
+  <div class="homepage-posts-header">
+
+    <h2>시민참여 주요 게시물</h2>
+
+    <a href="board.html">
+      게시판 전체 보기 →
+    </a>
+
+  </div>
+
+  <div
+    id="homepagePostList"
+    class="homepage-post-list">
+  </div>
+
+  <p
+    id="homepagePostEmpty"
+    class="homepage-post-empty"
+    hidden>
+    등록된 주요 게시물이 없습니다.
+  </p>
+
+</section>
 
 <main>
 
 <!-- =====================================
-     관리자 선택 홈페이지 게시물
+     주요 소식
 ===================================== -->
 
-<section
-  id="boardHomeSection"
-  class="board-feature-section"
-  hidden>
+<section id="news">
 
-  <h2>시민참여 주요 게시물</h2>
+  <h2>글로벌 AI 허브 유치 주요 소식</h2>
 
-  <p>
-    시민과 함께 만들어 가는
-    글로벌 AI 허브 유치 활동
-  </p>
+  <p>시민의 힘으로 만들어 가는 변화</p>
 
-  <div
-    id="boardHomePosts"
-    class="board-feature-grid">
+  <div class="grid">
+
+    <div class="card">
+      <h3>2026.10.30</h3>
+      <h4>경기도 글로벌 AI 허브 유치전략 포럼</h4>
+      <p>
+        킨텍스에서 글로벌 AI 허브 유치 전략과
+        국제협력 방안을 논의하는 포럼이 개최되었습니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>2026.10.26</h3>
+      <h4>고양특례시의회 유치 촉구 결의</h4>
+      <p>
+        고양특례시의회가 글로벌 AI 허브
+        고양특례시 유치 촉구 결의안을
+        만장일치로 채택했습니다.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>2026.09.07</h3>
+      <h4>범시민추진위원회 발대식</h4>
+      <p>
+        고양특례시 시민사회가 글로벌 AI 허브
+        유치를 위한 범시민추진위원회를 출범시켰습니다.
+      </p>
+    </div>
+
   </div>
 
 </section>
 
 <!-- =====================================
-     관리자 선택 주요 게시물
+     위원회 소개
 ===================================== -->
-
-<section
-  id="boardFeaturedSection"
-  class="board-feature-section"
-  hidden>
-
-  <h2>주요 게시물</h2>
-
-  <p>
-    범시민추진위원회가 선정한
-    주요 소식과 시민 의견입니다.
-  </p>
-
-  <div
-    id="boardFeaturedPosts"
-    class="board-feature-grid">
-  </div>
-
-</section>
-
-<!-- =====================================
-     관리자 선정 주요 게시물
-===================================== -->
-
-<section id="featured-board">
-
-  <h2>주요 게시물</h2>
-
-  <p>
-    글로벌 AI 허브 고양특례시 유치와 관련된
-    주요 공지와 시민참여 게시물을 안내합니다.
-  </p>
-
-  <div
-    id="featuredPosts"
-    class="featured-posts"
-    aria-live="polite">
-  </div>
-
-  <p
-    id="featuredMessage"
-    class="featured-empty"
-    role="status">
-    주요 게시물을 불러오고 있습니다.
-  </p>
-
-  <p>
-    <a href="board.html">
-      시민참여 게시판 전체 보기 →
-    </a>
-  </p>
-
-</section>
-      
-<!-- 주요 소식 -->
-
-<!-- 위원회 소개 -->
 
 <section id="committee">
 
@@ -844,7 +1666,9 @@ footer {
 
 </section>
 
-<!-- 글로벌 AI 허브 -->
+<!-- =====================================
+     글로벌 AI 허브
+===================================== -->
 
 <section id="hub">
 
@@ -857,26 +1681,62 @@ footer {
     국제협력 플랫폼을 지향합니다.
   </p>
 
-  <div id="agencies"></div>
-  <h3>9개 국제기구 협력 분야</h3>
+  <h3 id="agencies">9개 국제기구 협력 분야</h3>
 
   <div class="grid">
 
-    <div class="agency"><b>WHO</b><br>기본의료·공공보건</div>
-    <div class="agency"><b>WFP</b><br>식량위기·공급망</div>
-    <div class="agency"><b>UNEP</b><br>기후변화·환경</div>
-    <div class="agency"><b>UNHCR</b><br>난민·강제이주</div>
-    <div class="agency"><b>IOM</b><br>국제이주·이재민</div>
-    <div class="agency"><b>ILO</b><br>노동시장·일자리</div>
-    <div class="agency"><b>ITU</b><br>재난통신·조기경보</div>
-    <div class="agency"><b>UNICEF</b><br>아동 보호·교육</div>
-    <div class="agency"><b>UNDP</b><br>복합위기·국가회복</div>
+    <div class="agency">
+      <b>WHO</b><br>
+      기본의료·공공보건
+    </div>
+
+    <div class="agency">
+      <b>WFP</b><br>
+      식량위기·공급망
+    </div>
+
+    <div class="agency">
+      <b>UNEP</b><br>
+      기후변화·환경
+    </div>
+
+    <div class="agency">
+      <b>UNHCR</b><br>
+      난민·강제이주
+    </div>
+
+    <div class="agency">
+      <b>IOM</b><br>
+      국제이주·이재민
+    </div>
+
+    <div class="agency">
+      <b>ILO</b><br>
+      노동시장·일자리
+    </div>
+
+    <div class="agency">
+      <b>ITU</b><br>
+      재난통신·조기경보
+    </div>
+
+    <div class="agency">
+      <b>UNICEF</b><br>
+      아동 보호·교육
+    </div>
+
+    <div class="agency">
+      <b>UNDP</b><br>
+      복합위기·국가회복
+    </div>
 
   </div>
 
 </section>
 
-<!-- 유치 경쟁력 -->
+<!-- =====================================
+     고양특례시 유치 경쟁력
+===================================== -->
 
 <section id="goyang">
 
@@ -918,8 +1778,9 @@ footer {
 
 </section>
 
-<!-- 활동 연혁 -->
-<!-- 유치 전략 -->
+<!-- =====================================
+     글로벌 AI 허브 유치 전략
+===================================== -->
 
 <section id="strategy">
 
@@ -988,17 +1849,23 @@ footer {
     font-weight:bold;
     text-align:center;
   ">
-
     초기 안착 · 운영 지원 · 동반 성장
-
   </p>
 
 </section>
+
+<!-- =====================================
+     활동 연혁
+===================================== -->
+
 <section id="history">
 
   <h2>글로벌 AI 허브 유치 활동 연혁</h2>
 
-  <p>시민의 힘으로 만들어 온 글로벌 AI 허브 유치의 역사</p>
+  <p>
+    시민의 힘으로 만들어 온
+    글로벌 AI 허브 유치의 역사
+  </p>
 
   <div class="timeline">
 
@@ -1042,7 +1909,9 @@ footer {
 
 </section>
 
-<!-- 시민 참여 -->
+ <!-- =====================================
+     시민 참여
+===================================== -->
 
 <section id="join">
 
@@ -1077,11 +1946,8 @@ footer {
 
 </section>
 
-<!-- 자료실 -->
-
 <!-- =====================================
-     143-2단계
-     메인화면 지식·자료 영역 정비
+     지식·자료
 ===================================== -->
 
 <section id="library">
@@ -1094,8 +1960,6 @@ footer {
   </p>
 
   <div class="grid">
-
-    <!-- 정책·연구 정보 -->
 
     <div class="card">
 
@@ -1114,8 +1978,6 @@ footer {
       </p>
 
     </div>
-
-    <!-- 통합 자료실 -->
 
     <div class="card">
 
@@ -1141,209 +2003,185 @@ footer {
 
 </main>
 
-<footer>
-
-  <p>
-    경기도 글로벌 AI 허브 유치<br>
-    고양특례시 범시민추진위원회
-  </p>
-
-  <p>
-    시민의 힘으로, 경기도의 역량으로, 세계와 함께!
-  </p>
-
-  <p>공식 홈페이지 시범 운영 중</p>
-
-</footer>
+ <!-- =====================================
+     제159-5단계
+     홈페이지 하단
+===================================== -->
 
 <style>
 
 /* =====================================
-   제150단계
-   홈페이지 배너 배치 최종 조정
+   홈페이지 하단
 ===================================== */
 
-/* 배너 전체 */
+.site-footer {
 
-#homepageBannerLayout {
+  width: 100%;
 
-  display: flex;
-  flex-direction: column;
+  margin-top: 40px;
+
+  padding: 40px 20px 25px;
+
+  background: #10315e;
+
+  color: white;
+
+  text-align: center;
+
+}
+
+.footer-inner {
 
   width: 100%;
   max-width: 1180px;
 
-  margin: 25px auto;
-  padding: 0 15px;
-
-  gap: 20px;
-
-  align-items: stretch;
-}
-
-/* 숨김 상태 유지 */
-
-#homepageBannerLayout[hidden],
-#homepageBannerLayout .banner-section[hidden] {
-  display: none !important;
-}
-
-/* 배너 영역 공통 */
-
-#homepageBannerLayout .banner-section {
-
-  width: 100%;
-  min-width: 0;
-
-  margin: 0;
-  padding: 20px;
-
-  background: white;
-  border-radius: 12px;
+  margin: 0 auto;
 
 }
 
-/* 중앙 홍보 배너 */
+.footer-title {
 
-#homepageBannerCenter {
-  order: 1;
-}
+  margin: 0 0 15px;
 
-/* 좌측 광고 */
+  font-size: 20px;
+  font-weight: 800;
 
-#homepageBannerLeft {
-  order: 2;
-}
-
-/* 우측 광고 */
-
-#homepageBannerRight {
-  order: 3;
-}
-
-/* 중앙 홍보 배너 5열 */
-
-#homepageBannerCenter .homepage-banner-items {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(5, minmax(0, 1fr));
-
-  gap: 15px;
+  line-height: 1.7;
 
 }
 
-/* 좌우 광고 배너 5열 */
+.footer-description {
 
-#homepageBannerLeft .homepage-banner-items,
-#homepageBannerRight .homepage-banner-items {
+  margin: 10px 0 20px;
 
-  display: grid;
+  font-size: 14px;
+  line-height: 1.8;
 
-  grid-template-columns:
-    repeat(5, minmax(0, 1fr));
-
-  gap: 15px;
+  color: #dbe8fa;
 
 }
 
-/* 배너 카드 */
+/* 하단 메뉴 */
 
-#homepageBannerLayout .homepage-banner-link {
+.footer-links {
 
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
 
-  width: 100%;
-  min-width: 0;
+  justify-content: center;
 
-  overflow: hidden;
+  gap: 12px 20px;
 
-  background: #eef5ff;
+  margin: 20px 0;
 
-  border: 1px solid #dce6f2;
-  border-radius: 8px;
+}
+
+.footer-links a {
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
 
   text-decoration: none;
 
 }
 
-/* 배너 이미지 */
+.footer-links a:hover {
 
-#homepageBannerLayout .homepage-banner-link img {
+  color: #ffe44d;
+  text-decoration: underline;
 
-  display: block;
+}
+
+/* 구분선 */
+
+.footer-divider {
 
   width: 100%;
-  height: auto;
+  height: 1px;
 
-  aspect-ratio: 16 / 9;
+  margin: 25px 0;
 
-  object-fit: contain;
+  background: rgba(255,255,255,0.2);
 
 }
 
-/* 배너 제목 */
+/* 저작권 */
 
-#homepageBannerLayout .homepage-banner-title {
+.footer-copyright {
 
-  display: block;
+  margin: 0;
 
-  padding: 8px;
+  color: #b8cbe5;
+
+  font-size: 12px;
+  line-height: 1.7;
+
+}
+
+/* 맨 위로 이동 */
+
+.back-to-top {
+
+  display: inline-block;
+
+  margin-top: 20px;
+
+  padding: 8px 18px;
+
+  background: #0754a6;
+
+  border: 1px solid #8eb9ed;
+  border-radius: 6px;
+
+  color: white;
 
   font-size: 13px;
-  line-height: 1.5;
+  font-weight: 700;
 
-  text-align: center;
-
-  overflow-wrap: anywhere;
+  text-decoration: none;
 
 }
 
-/* 태블릿 */
+.back-to-top:hover {
 
-@media (max-width: 900px) {
-
-  #homepageBannerCenter .homepage-banner-items,
-  #homepageBannerLeft .homepage-banner-items,
-  #homepageBannerRight .homepage-banner-items {
-
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
-
-  }
+  background: #ffffff;
+  color: #0754a6;
 
 }
 
-/* 휴대폰 */
+/* 모바일 */
 
 @media (max-width: 600px) {
 
-  #homepageBannerLayout {
+  .site-footer {
 
-    padding: 0 10px;
-    gap: 15px;
+    margin-top: 25px;
 
-  }
-
-  #homepageBannerLayout .banner-section {
-
-    padding: 15px;
+    padding: 30px 15px 20px;
 
   }
 
-  #homepageBannerCenter .homepage-banner-items,
-  #homepageBannerLeft .homepage-banner-items,
-  #homepageBannerRight .homepage-banner-items {
+  .footer-title {
 
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-
-    gap: 10px;
+    font-size: 17px;
 
   }
 
-  #homepageBannerLayout .homepage-banner-title {
+  .footer-description {
+
+    font-size: 12px;
+
+  }
+
+  .footer-links {
+
+    gap: 10px 15px;
+
+  }
+
+  .footer-links a {
 
     font-size: 12px;
 
@@ -1352,965 +2190,104 @@ footer {
 }
 
 </style>
-      
+
+<footer class="site-footer">
+
+  <div class="footer-inner">
+
+    <h2 class="footer-title">
+      경기도 글로벌 AI 허브 유치<br>
+      고양특례시 범시민추진위원회
+    </h2>
+
+    <p class="footer-description">
+      고양시에 성장동력을 달라!<br>
+      고양시에 일자리를 달라!<br>
+      글로벌 AI 허브는 고양특례시로!
+    </p>
+
+    <div class="footer-links">
+
+      <a href="index.html">
+        홈
+      </a>
+
+      <a href="committee.html">
+        위원회 소개
+      </a>
+
+      <a href="board.html">
+        시민참여 게시판
+      </a>
+
+      <a href="resources.html">
+        통합 자료실
+      </a>
+
+      <a href="login.html">
+        로그인
+      </a>
+
+      <a href="signup.html">
+        회원가입
+      </a>
+
+      <a href="privacy.html">
+        개인정보처리방침
+      </a>
+
+      <a href="index-en.html">
+        English
+      </a>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <p class="footer-copyright">
+      © <span id="copyrightYear">2026</span>
+      경기도 글로벌 AI 허브 유치
+      고양특례시 범시민추진위원회.
+      All rights reserved.
+    </p>
+
+    <a
+      href="#home"
+      class="back-to-top">
+      ↑ 맨 위로
+    </a>
+
+  </div>
+
+</footer>
+
 <!-- =====================================
-     주요 게시물 자동 표시
+     하단 공통 기능
 ===================================== -->
-
-<script type="module">
-
-import { createClient }
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-/* Supabase 연결 */
-
-const SUPABASE_URL =
-  "https://gugkwqpvtwivqudkimvy.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
-
-const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-/* 화면 요소 */
-
-const featuredPosts =
-  document.getElementById("featuredPosts");
-
-const featuredMessage =
-  document.getElementById("featuredMessage");
-
-/* =====================================
-   주요 게시물 불러오기
-===================================== */
-
-async function loadFeaturedPosts() {
-
-  try {
-
-    /* 1. 관리자 표시 설정 조회 */
-
-    const { data: placements, error: placementError } =
-      await supabase
-        .from("board_post_placements")
-        .select("post_id,placement")
-        .in("placement", [
-          "home",
-          "featured"
-        ]);
-
-    if (placementError) {
-      throw placementError;
-    }
-
-    /* 2. 중복 게시글 제거 */
-
-    const postIds = [
-      ...new Set(
-        (placements || []).map(
-          item => item.post_id
-        )
-      )
-    ];
-
-    featuredPosts.replaceChildren();
-
-    if (postIds.length === 0) {
-
-      featuredMessage.textContent =
-        "현재 등록된 주요 게시물이 없습니다.";
-
-      return;
-    }
-
-    /* 3. 실제 게시글 조회 */
-
-    const { data: posts, error: postError } =
-      await supabase
-        .from("board_posts")
-        .select(
-          "id,title,content,created_at"
-        )
-        .in("id", postIds)
-        .order("created_at", {
-          ascending: false
-        });
-
-    if (postError) {
-      throw postError;
-    }
-
-    /* 4. 화면에 게시물 표시 */
-
-    const fragment =
-      document.createDocumentFragment();
-
-    for (const post of posts || []) {
-
-      const card =
-        document.createElement("article");
-
-      card.className = "featured-post";
-
-      /* 작성일 */
-
-      const date =
-        document.createElement("p");
-
-      date.className = "featured-post-date";
-
-      date.textContent =
-        new Date(post.created_at)
-          .toLocaleDateString("ko-KR");
-
-      /* 제목 */
-
-      const title =
-        document.createElement("h3");
-
-      title.textContent = post.title;
-
-      /* 내용 요약 */
-
-      const description =
-        document.createElement("p");
-
-      const content =
-        post.content || "";
-
-      description.textContent =
-        content.length > 120
-          ? content.slice(0, 120) + "..."
-          : content;
-
-      /* 게시글 연결 */
-
-      const link =
-        document.createElement("a");
-
-      link.className = "featured-post-link";
-
-      link.href =
-        "board.html?post=" +
-        encodeURIComponent(post.id);
-
-      link.textContent = "게시글 자세히 보기 →";
-
-      /* 카드 구성 */
-
-      card.append(
-        date,
-        title,
-        description,
-        link
-      );
-
-      fragment.appendChild(card);
-
-    }
-
-    featuredPosts.appendChild(fragment);
-
-    featuredMessage.textContent =
-      posts && posts.length > 0
-        ? ""
-        : "현재 등록된 주요 게시물이 없습니다.";
-
-  } catch (error) {
-
-    console.error(
-      "주요 게시물 조회 오류:",
-      error
-    );
-
-    featuredMessage.textContent =
-      "주요 게시물을 불러오지 못했습니다.";
-
-  }
-
-}
-
-/* 최초 실행 */
-
-loadFeaturedPosts();
-
-</script>
-      
-<!-- 메뉴 높이 자동 측정 -->
 
 <script>
 
-function adjustHeroHeight() {
+(function () {
 
-  const nav = document.querySelector("nav");
+  "use strict";
 
-  if (!nav) return;
+  /* 저작권 연도 자동 표시 */
 
-  document.documentElement.style.setProperty(
-    "--menu-height",
-    nav.getBoundingClientRect().height + "px"
-  );
-}
-
-window.addEventListener("load", adjustHeroHeight);
-window.addEventListener("resize", adjustHeroHeight);
-
-</script>
-
-<!-- =====================================
-     관리자 선택 게시물 자동 표시
-===================================== -->
-
-<script type="module">
-
-import { createClient }
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-/* Supabase 연결 */
-
-const SUPABASE_URL =
-  "https://gugkwqpvtwivqudkimvy.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
-
-const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-/* =====================================
-   게시물 카드 생성
-===================================== */
-
-function createBoardCard(post) {
-
-  const card =
-    document.createElement("article");
-
-  card.className =
-    "board-feature-card";
-
-  /* 작성일 */
-
-  const date =
-    document.createElement("div");
-
-  date.className =
-    "board-feature-date";
-
-  date.textContent =
-    new Date(post.created_at)
-      .toLocaleDateString("ko-KR");
-
-  /* 제목 */
-
-  const title =
-    document.createElement("h3");
-
-  const link =
-    document.createElement("a");
-
-  link.href =
-    "board.html?post=" +
-    encodeURIComponent(post.id);
-
-  link.textContent =
-    post.title;
-
-  title.appendChild(link);
-
-  /* 본문 미리보기 */
-
-  const summary =
-    document.createElement("p");
-
-  summary.className =
-    "board-feature-summary";
-
-  const content =
-    post.content || "";
-
-  summary.textContent =
-    content.length > 150
-      ? content.slice(0,150) + "..."
-      : content;
-
-  /* 자세히 보기 */
-
-  const more =
-    document.createElement("a");
-
-  more.className =
-    "board-feature-more";
-
-  more.href =
-    link.href;
-
-  more.textContent =
-    "자세히 보기 →";
-
-  card.append(
-    date,
-    title,
-    summary,
-    more
-  );
-
-  return card;
-
-}
-
-/* =====================================
-   표시 위치별 게시물 조회
-===================================== */
-
-async function loadBoardPlacement(
-  placement,
-  sectionId,
-  containerId
-) {
-
-  const section =
-    document.getElementById(sectionId);
-
-  const container =
-    document.getElementById(containerId);
-
-  if (!section || !container) {
-    return;
-  }
-
-  section.hidden = true;
-  container.replaceChildren();
-
-  try {
-
-    /* 관리자 표시 설정 조회 */
-
-    const {
-      data: placements,
-      error: placementError
-    } =
-      await supabase
-        .from("board_post_placements")
-        .select("post_id,created_at")
-        .eq("placement",placement)
-        .order("created_at",{
-          ascending:false
-        })
-        .limit(20);
-
-    if (placementError) {
-      throw placementError;
-    }
-
-    if (!placements || placements.length === 0) {
-      return;
-    }
-
-    const postIds =
-      placements.map(item => item.post_id);
-
-    /* 실제 게시물 조회 */
-
-    const {
-      data: posts,
-      error: postError
-    } =
-      await supabase
-        .from("board_posts")
-        .select(
-          "id,title,content,created_at"
-        )
-        .in("id",postIds);
-
-    if (postError) {
-      throw postError;
-    }
-
-    if (!posts || posts.length === 0) {
-      return;
-    }
-
-    /* 표시 설정 순서 유지 */
-
-    const postMap =
-      new Map(
-        posts.map(post => [
-          String(post.id),
-          post
-        ])
-      );
-
-    for (const item of placements) {
-
-      const post =
-        postMap.get(
-          String(item.post_id)
-        );
-
-      if (!post) continue;
-
-      const card =
-        createBoardCard(post);
-
-      container.appendChild(card);
-
-    }
-
-    if (container.children.length > 0) {
-      section.hidden = false;
-    }
-
-  } catch(error) {
-
-    console.error(
-      "게시물 자동 표시 오류:",
-      placement,
-      error
-    );
-
-  }
-
-}
-
-/* =====================================
-   홈페이지 게시물 초기화
-===================================== */
-
-async function initializeBoardFeatures() {
-
-  await Promise.all([
-
-    loadBoardPlacement(
-      "home",
-      "boardHomeSection",
-      "boardHomePosts"
-    ),
-
-    loadBoardPlacement(
-      "featured",
-      "boardFeaturedSection",
-      "boardFeaturedPosts"
-    )
-
-  ]);
-
-}
-
-initializeBoardFeatures();
-
-</script>
-
-<!-- =========================================
-     홈페이지 배너 및 회원 메뉴 통합
-========================================= -->
-
-<style>
-
-/* 배너 및 회원 메뉴 */
-
-#homepageMemberMenu {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-#homepageMemberMenu a {
-  display: inline-block;
-  padding: 11px 20px;
-  border-radius: 7px;
-  background: #ffe44d;
-  color: #17315b;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-#homepageMemberMenu a:hover {
-  background: white;
-}
-
-/* 배너 전체 */
-
-#homepageBannerLayout {
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 2fr)
-    minmax(0, 1fr);
-
-  grid-template-areas:
-    "left center right";
-
-  gap: 16px;
-
-  max-width: 1400px;
-  margin: 30px auto;
-  padding: 0 15px;
-
-  align-items: start;
-}
-
-#homepageBannerLayout[hidden],
-#homepageBannerLayout .banner-section[hidden] {
-  display: none !important;
-}
-
-#homepageBannerLayout .banner-section {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  min-width: 0;
-  margin: 0;
-}
-
-#homepageBannerLayout .banner-section h2 {
-  color: #0754a6;
-  font-size: 21px;
-  margin: 0 0 18px;
-}
-
-#homepageBannerCenter {
-  grid-area: center;
-}
-
-#homepageBannerLeft {
-  grid-area: left;
-}
-
-#homepageBannerRight {
-  grid-area: right;
-}
-
-.homepage-banner-items {
-  display: grid;
-  gap: 15px;
-}
-
-.homepage-banner-link {
-  display: block;
-  text-decoration: none;
-  color: #17315b;
-  background: #eef5ff;
-  border: 1px solid #dce6f2;
-  border-radius: 9px;
-  overflow: hidden;
-}
-
-.homepage-banner-link img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-}
-
-.homepage-banner-title {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-/* 모바일 */
-
-@media (max-width: 767px) {
-
-  #homepageBannerLayout {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  #homepageBannerCenter {
-    order: 1;
-  }
-
-  #homepageBannerLeft {
-    order: 2;
-  }
-
-  #homepageBannerRight {
-    order: 3;
-  }
-
-  #homepageBannerLayout .banner-section {
-    width: 100%;
-  }
-
-  .homepage-banner-items {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-
-}
-
-</style>
-
-<script type="module">
-
-import { createClient }
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-/* 기존 Supabase 연결 정보 */
-
-const bannerSupabase = createClient(
-  "https://gugkwqpvtwivqudkimvy.supabase.co",
-  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5"
-);
-
-/* =====================================
-   회원 메뉴
-===================================== */
-
-function initializeMemberMenu() {
-
-  if (document.getElementById("homepageMemberMenu")) {
-    return;
-  }
-
-  const heroButtons =
-    document.querySelector(".hero-buttons");
-
-  if (!heroButtons) return;
-
-  const menu = document.createElement("div");
-
-  menu.id = "homepageMemberMenu";
-
-  const links = [
-    ["로그인", "login.html"],
-    ["회원가입", "signup.html"],
-    ["시민참여 게시판", "board.html"]
-  ];
-
-  for (const [title, url] of links) {
-
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.textContent = title;
-
-    menu.appendChild(link);
-  }
-
-  heroButtons.insertAdjacentElement(
-    "afterend",
-    menu
-  );
-}
-
-/* =====================================
-   배너 영역 생성
-===================================== */
-
-/* =====================================
-   제155단계
-   홈페이지 배너 영역 생성 및 위치 지정
-===================================== */
-
-function createBannerLayout() {
-
-  /* 중복 생성 방지 */
-
-  if (
+  const yearElement =
     document.getElementById(
-      "homepageBannerLayout"
-    )
-  ) {
-    return;
-  }
-
-  /* 홈페이지 본문 확인 */
-
-  const main =
-    document.querySelector("main");
-
-  if (!main) {
-    console.error(
-      "홈페이지 main 요소를 찾을 수 없습니다."
-    );
-    return;
-  }
-
-  /* 배너 전체 영역 생성 */
-
-  const layout =
-    document.createElement("div");
-
-  layout.id = "homepageBannerLayout";
-  layout.hidden = true;
-
-  /* 배너 위치 설정 */
-
-  const positions = [
-    ["center", "위원회 주요 활동"],
-    ["left", "회원 광고 · 좌측"],
-    ["right", "회원 광고 · 우측"]
-  ];
-
-  /* 각 배너 영역 생성 */
-
-  for (const [position, title] of positions) {
-
-    const section =
-      document.createElement("section");
-
-    section.id =
-      "homepageBanner" +
-      position.charAt(0).toUpperCase() +
-      position.slice(1);
-
-    section.className = "banner-section";
-    section.hidden = true;
-
-    const heading =
-      document.createElement("h2");
-
-    heading.textContent = title;
-
-    const items =
-      document.createElement("div");
-
-    items.className = "homepage-banner-items";
-    items.dataset.position = position;
-
-    section.append(heading, items);
-
-    layout.appendChild(section);
-  }
-
-  /* =====================================
-     배너 위치 지정
-     홈페이지 메뉴 바로 아래
-  ===================================== */
-
-  const navigation =
-    document.querySelector("nav");
-
-  if (navigation) {
-
-    navigation.insertAdjacentElement(
-      "afterend",
-      layout
+      "copyrightYear"
     );
 
-  } else {
+  if (yearElement) {
 
-    main.insertAdjacentElement(
-      "beforebegin",
-      layout
-    );
+    yearElement.textContent =
+      new Date().getFullYear();
 
   }
 
-  console.log(
-    "홈페이지 배너 영역 생성 완료"
-  );
-
-}
-
-function resolveBannerUrl(value) {
-
-  if (!value || typeof value !== "string") {
-    return null;
-  }
-
-  const trimmed = value.trim();
-
-  if (
-    trimmed.startsWith("//") ||
-    trimmed.startsWith("/") ||
-    trimmed.includes("\\") ||
-    trimmed.split(/[?#]/)[0]
-      .split("/")
-      .includes("..")
-  ) {
-    return null;
-  }
-
-  try {
-
-    const url = new URL(trimmed, location.href);
-
-    if (
-      url.protocol !== "https:" &&
-      url.protocol !== "http:"
-    ) {
-      return null;
-    }
-
-    return url;
-
-  } catch {
-    return null;
-  }
-}
-
-/* =====================================
-   공개 배너 조회 및 표시
-===================================== */
-
-async function loadHomepageBanners() {
-
-  const layout =
-    document.getElementById("homepageBannerLayout");
-
-  if (!layout) return;
-
-  try {
-
-    const { data, error } =
-      await bannerSupabase
-        .from("homepage_banners")
-        .select(
-          "position,slot_number,title,description,image_url,link_url"
-        )
-        .eq("is_active", true)
-        .order("slot_number", {
-          ascending: true
-        });
-
-    if (error) throw error;
-
-    let totalVisible = 0;
-
-    for (const position of ["center", "left", "right"]) {
-
-      const container = layout.querySelector(
-        `[data-position="${position}"]`
-      );
-
-      if (!container) continue;
-
-      const section = container.closest("section");
-
-      container.replaceChildren();
-      section.hidden = true;
-
-      const banners = (data || [])
-        .filter(item =>
-          item.position === position &&
-          Number.isInteger(item.slot_number) &&
-          item.slot_number >= 1 &&
-          item.slot_number <= 10
-        )
-        .slice(0, 10);
-
-      for (const banner of banners) {
-
-        const imageUrl =
-          resolveBannerUrl(banner.image_url);
-
-        const linkUrl =
-          resolveBannerUrl(banner.link_url);
-
-        if (!imageUrl || !linkUrl) {
-          continue;
-        }
-
-        const link = document.createElement("a");
-
-        link.className = "homepage-banner-link";
-        link.href = linkUrl.href;
-
-        if (linkUrl.origin !== location.origin) {
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-        }
-
-        const img = document.createElement("img");
-
-        img.src = imageUrl.href;
-        img.alt = banner.title || "홍보 배너";
-        img.loading = "lazy";
-
-        link.appendChild(img);
-
-        if (banner.title) {
-
-          const title = document.createElement("span");
-
-          title.className = "homepage-banner-title";
-          title.textContent = banner.title;
-
-          link.appendChild(title);
-        }
-
-        container.appendChild(link);
-        totalVisible++;
-      }
-
-      section.hidden =
-        container.children.length === 0;
-    }
-
-    layout.hidden = totalVisible === 0;
-
-    console.log(
-      "홈페이지 공개 배너:",
-      totalVisible,
-      "개"
-    );
-
-  } catch (error) {
-
-    console.error(
-      "홈페이지 배너 조회 오류:",
-      error
-    );
-
-  }
-}
-
-/* =====================================
-   중복 게시물 영역 숨김
-===================================== */
-
-function hideDuplicateFeaturedBoard() {
-
-  const duplicate =
-    document.getElementById("featured-board");
-
-  if (duplicate) {
-    duplicate.hidden = true;
-    duplicate.style.display = "none";
-  }
-}
-
-/* =====================================
-   홈페이지 배너 초기 실행
-===================================== */
-
-async function initializeHomepageBanners() {
-
-  initializeMemberMenu();
-
-  createBannerLayout();
-
-  hideDuplicateFeaturedBoard();
-
-  await loadHomepageBanners();
-
-}
-
-initializeHomepageBanners().catch(error => {
-
-  console.error(
-    "홈페이지 배너 초기화 오류:",
-    error
-  );
-
-});
+})();
 
 </script>
-      
+
 </body>
-</html>
+</html>     
