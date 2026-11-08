@@ -532,6 +532,143 @@ multiple>
 <script type="module">
 
 /* =====================================
+   미완료 첨부파일 재시도
+===================================== */
+
+const retryCleanupButton =
+  document.getElementById(
+    "retryCleanupButton"
+  );
+
+/* 관리자에게만 버튼 표시 */
+
+async function updateRetryButton() {
+
+  const isAdmin =
+    await checkBoardAdmin();
+
+  retryCleanupButton.hidden = !isAdmin;
+
+}
+
+/* 미완료 작업 조회 */
+
+async function retryPendingCleanup() {
+
+  const isAdmin =
+    await checkBoardAdmin();
+
+  if (!isAdmin) {
+
+    showMessage(
+      "관리자 권한이 없습니다.",
+      true
+    );
+
+    return;
+
+  }
+
+  retryCleanupButton.disabled = true;
+
+  try {
+
+    const { data: jobs, error } =
+      await supabase
+        .from("board_file_cleanup_jobs")
+        .select(
+          "id,file_bucket,file_path,status"
+        )
+        .in("status", [
+          "pending",
+          "failed"
+        ])
+        .order("id", {
+          ascending: true
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    if (!jobs || jobs.length === 0) {
+
+      showMessage(
+        "정리할 첨부파일이 없습니다."
+      );
+
+      return;
+
+    }
+
+    const confirmed = confirm(
+      "미완료 첨부파일 " +
+      jobs.length +
+      "개를 정리하시겠습니까?"
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    /* 기존 정리 함수 형식으로 변환 */
+
+    const cleanupJobs =
+      jobs.map(job => ({
+
+        job_id: job.id,
+
+        file_bucket:
+          job.file_bucket,
+
+        file_path:
+          job.file_path
+
+      }));
+
+    const result =
+      await cleanupBoardFiles(
+        cleanupJobs
+      );
+
+    showMessage(
+      "첨부파일 정리 결과\n" +
+      "완료: " +
+      result.completed +
+      "개\n" +
+      "실패: " +
+      result.failed +
+      "개",
+      result.failed > 0
+    );
+
+  } catch (error) {
+
+    console.error(
+      "첨부파일 재시도 오류:",
+      error
+    );
+
+    showMessage(
+      "첨부파일 정리 중 오류가 발생했습니다.\n" +
+      error.message,
+      true
+    );
+
+  } finally {
+
+    retryCleanupButton.disabled = false;
+
+  }
+
+}
+
+retryCleanupButton.addEventListener(
+  "click",
+  retryPendingCleanup
+);
+  
+/* =====================================
    관리자 게시글 삭제
 ===================================== */
 
@@ -580,116 +717,141 @@ async function updateAdminDeleteButton(postId) {
 }
 
 /* =====================================
-   게시글 삭제 처리
+   관리자 게시글 안전 삭제
 ===================================== */
 
 async function deleteBoardPost(postId) {
 
-  const isAdmin =
-    await checkBoardAdmin();
+  /* 1. 서버 측 게시글 삭제 */
 
-  if (!isAdmin) {
-    throw new Error(
-      "관리자 권한이 없습니다."
+  const { data: jobs, error } =
+    await supabase.rpc(
+      "delete_board_post_safely",
+      {
+        p_post_id: postId
+      }
     );
+
+  if (error) {
+    throw error;
   }
 
-  /* 첨부파일 정보 조회 */
+  /* 2. Storage 파일 정리 */
 
-  const {
-    data: attachments,
-    error: attachmentError
-  } =
-    await supabase
-      .from("board_attachments")
-      .select(
-        "file_path,attachment_type"
-      )
-      .eq("post_id", postId);
+  const results =
+    await cleanupBoardFiles(jobs || []);
 
-  if (attachmentError) {
-    throw attachmentError;
-  }
-
-  /* 게시글 삭제 */
-
-  const {
-    data: deletedPosts,
-    error: deleteError
-  } =
-    await supabase
-      .from("board_posts")
-      .delete()
-      .eq("id", postId)
-      .select("id");
-
-  if (deleteError) {
-    throw deleteError;
-  }
-
-  if (!deletedPosts || deletedPosts.length !== 1) {
-    throw new Error(
-      "게시글 삭제가 확인되지 않았습니다."
-    );
-  }
-
-  /* 사진 및 문서 경로 분리 */
-
-  const imagePaths = [];
-  const documentPaths = [];
-
-  for (const file of attachments || []) {
-
-    if (file.attachment_type === "image") {
-      imagePaths.push(file.file_path);
-    }
-
-    if (file.attachment_type === "document") {
-      documentPaths.push(file.file_path);
-    }
-
-  }
-
-  /* Storage 사진 삭제 */
-
-  if (imagePaths.length > 0) {
-
-    const { error } =
-      await supabase.storage
-        .from("board-images")
-        .remove(imagePaths);
-
-    if (error) {
-      throw new Error(
-        "게시글은 삭제되었지만 " +
-        "사진 파일 정리에 실패했습니다: " +
-        error.message
-      );
-    }
-
-  }
-
-  /* Storage 문서 삭제 */
-
-  if (documentPaths.length > 0) {
-
-    const { error } =
-      await supabase.storage
-        .from("board-files")
-        .remove(documentPaths);
-
-    if (error) {
-      throw new Error(
-        "게시글은 삭제되었지만 " +
-        "문서 파일 정리에 실패했습니다: " +
-        error.message
-      );
-    }
-
-  }
+  return results;
 
 }
 
+
+/* =====================================
+   Storage 파일 정리
+===================================== */
+
+async function cleanupBoardFiles(jobs) {
+
+  let completed = 0;
+  let failed = 0;
+
+  for (const job of jobs) {
+
+    try {
+
+      showMessage(
+        `첨부파일 정리 중... ${
+          completed + failed + 1
+        }/${jobs.length}`
+      );
+
+      /* 허용된 버킷 확인 */
+
+      if (
+        ![
+          "board-images",
+          "board-files"
+        ].includes(job.file_bucket)
+      ) {
+
+        throw new Error(
+          "허용되지 않은 Storage 버킷입니다."
+        );
+
+      }
+
+      /* 실제 Storage 파일 삭제 */
+
+      const { error: removeError } =
+        await supabase.storage
+          .from(job.file_bucket)
+          .remove([job.file_path]);
+
+      if (removeError) {
+        throw removeError;
+      }
+
+      /* 삭제 완료 기록 */
+
+      const {
+        error: completeError
+      } =
+        await supabase.rpc(
+          "complete_board_file_cleanup",
+          {
+            p_job_id: job.job_id
+          }
+        );
+
+      if (completeError) {
+        throw completeError;
+      }
+
+      completed++;
+
+    } catch (error) {
+
+      console.error(
+        "첨부파일 정리 오류:",
+        job,
+        error
+      );
+
+      /* 실패 기록 */
+
+      const {
+        error: failError
+      } =
+        await supabase.rpc(
+          "fail_board_file_cleanup",
+          {
+            p_job_id: job.job_id,
+            p_error:
+              error.message ||
+              "알 수 없는 오류"
+          }
+        );
+
+      if (failError) {
+        console.error(
+          "실패 기록 저장 오류:",
+          failError
+        );
+      }
+
+      failed++;
+
+    }
+
+  }
+
+  return {
+    completed,
+    failed
+  };
+
+}
+  
 /* =====================================
    관리자 삭제 버튼 클릭
 ===================================== */
@@ -721,16 +883,31 @@ adminDeletePostButton.addEventListener(
 
     try {
 
-      await deleteBoardPost(currentPostId);
+      const result =
+  await deleteBoardPost(currentPostId);
 
-      currentPostId = null;
+currentPostId = null;
 
-      await loadPosts();
+await loadPosts();
 
-      showMessage(
-        "게시글과 첨부파일이 삭제되었습니다."
-      );
+if (result.failed === 0) {
 
+  showMessage(
+    "게시글과 첨부파일이 정상적으로 삭제되었습니다."
+  );
+
+} else {
+
+  showMessage(
+    "게시글은 삭제되었습니다.\n" +
+    "첨부파일 " +
+    result.failed +
+    "개의 정리가 완료되지 않았습니다.\n" +
+    "관리자 재시도 기능에서 정리할 수 있습니다.",
+    true
+  );
+
+}
     } catch (error) {
 
       console.error(
@@ -959,6 +1136,14 @@ await updateAdminDeleteButton(postId);
       : Promise.resolve()
   ]);
 
+<button
+  type="button"
+  id="retryCleanupButton"
+  class="secondary"
+  hidden>
+  미완료 첨부파일 정리
+</button>
+  
   showMessage("");
 }
 
@@ -1878,6 +2063,9 @@ async function initialize() {
 
     await checkMember();
 
+await updateRetryButton();
+
+    
     /* 게시판 목록 조회 */
 
     await loadPosts();
