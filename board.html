@@ -1632,16 +1632,45 @@ async function initialize() {
 
   try {
 
-    showMessage("게시판을 불러오고 있습니다.");
+    showMessage(
+      "게시판을 불러오고 있습니다."
+    );
 
     await checkMember();
+
+    /* 게시판 목록 조회 */
+
     await loadPosts();
 
-  } catch(error) {
-    reportError(error);
-  }
-}
+    /* 홈페이지에서 전달된 게시물 번호 */
 
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const postId =
+      params.get("post");
+
+    /* 게시물 번호 검증 */
+
+    if (
+      postId &&
+      /^\d+$/.test(postId) &&
+      BigInt(postId) > 0n
+    ) {
+
+      await openPost(postId);
+
+    }
+
+  } catch(error) {
+
+    reportError(error);
+
+  }
+
+}
 initialize();
 
 </script>
