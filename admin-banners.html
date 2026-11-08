@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>홈페이지 배너 관리 | 글로벌 AI 허브 고양</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+header h1 {
+  margin: 0 0 10px;
+}
+
+header a {
+  color: white;
+}
+
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+.panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #0754a6;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.summary-card {
+  background: #eaf4ff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.summary-card strong {
+  display: block;
+  font-size: 28px;
+  color: #0754a6;
+}
+
+.banner-list {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+.banner-card {
+  border: 1px solid #dce6f2;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.banner-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  background: #eef5ff;
+  border-radius: 7px;
+}
+
+.banner-card h3 {
+  margin: 10px 0;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.active {
+  color: #047857;
+}
+
+.inactive {
+  color: #b45309;
+}
+
+button {
+  border: 0;
+  border-radius: 7px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 5px 5px 5px 0;
+}
+
+.primary {
+  background: #0754a6;
+  color: white;
+}
+
+.secondary {
+  background: #eaf1fa;
+  color: #17315b;
+}
+
+.danger {
+  background: #b91c1c;
+  color: white;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin: 15px 0 6px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+#message {
+  white-space: pre-line;
+  margin: 15px 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 25px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>홈페이지 배너 관리</h1>
+
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
+
+<p>
+<a href="admin-center.html">← 관리자 통합 관리</a>
+&nbsp; | &nbsp;
+<a href="index.html">홈페이지</a>
+</p>
+
+</header>
+
+<main>
+
+<p id="message" role="status" aria-live="polite">
+관리자 권한을 확인하고 있습니다.
+</p>
+
+<div id="adminArea" hidden>
+
+<section class="panel">
+
+<h2>배너 운영 현황</h2>
+
+<div class="summary">
+
+<div class="summary-card">
+중앙 홍보
+<strong id="centerCount">0 / 10</strong>
+</div>
+
+<div class="summary-card">
+좌측 광고
+<strong id="leftCount">0 / 10</strong>
+</div>
+
+<div class="summary-card">
+우측 광고
+<strong id="rightCount">0 / 10</strong>
+</div>
+
+</div>
+
+</section>
+
+<section class="panel">
+
+<h2>배너 위치별 관리</h2>
+
+<p>
+배너를 선택하면 등록·수정할 수 있습니다.
+비공개 배너는 홈페이지에 표시되지 않습니다.
+</p>
+
+<div id="bannerList" class="banner-list"></div>
+
+</section>
+
+<section id="editPanel" class="panel" hidden>
+
+<h2 id="editHeading">배너 수정</h2>
+
+<form id="bannerForm">
+
+<input type="hidden" id="bannerId">
+
+<label for="bannerTitle">배너 제목</label>
+<input id="bannerTitle" maxlength="200">
+
+<label for="bannerDescription">설명</label>
+<textarea id="bannerDescription"></textarea>
+
+<label for="bannerImage">썸네일 이미지 URL</label>
+<input
+  id="bannerImage"
+  type="url"
+  placeholder="https://example.com/banner.jpg">
+
+<label for="bannerLink">연결 URL</label>
+<input
+  id="bannerLink"
+  type="text"
+  placeholder="https://example.com 또는 board.html?post=15">
+
+<label for="bannerActive">공개 상태</label>
+<select id="bannerActive">
+<option value="false">비공개</option>
+<option value="true">공개</option>
+</select>
+
+<p>
+공개 배너는 이미지 URL과 연결 URL이 모두 필요합니다.
+</p>
+
+<button type="submit" id="saveButton" class="primary">
+저장
+</button>
+
+<button type="button" id="clearButton" class="danger">
+배너 내용 초기화
+</button>
+
+<button type="button" id="cancelButton" class="secondary">
+취소
+</button>
+
+</form>
+
+</section>
+
+</div>
+
+</main>
+
+<footer>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+  "https://gugkwqpvtwivqudkimvy.supabase.co",
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5"
+);
+
+const $ = id => document.getElementById(id);
+
+let banners = [];
+let selectedBanner = null;
+
+function showMessage(text, error = false) {
+  $("message").textContent = text;
+  $("message").style.color =
+    error ? "#b91c1c" : "#0754a6";
+}
+
+function checkUrl(value, allowRelative = false) {
+
+  if (!value) return false;
+
+  try {
+    const url = new URL(value, location.href);
+
+    if (!["http:", "https:"].includes(url.protocol)) {
+      return false;
+    }
+
+    if (!allowRelative && !/^https?:\/\//i.test(value)) {
+      return false;
+    }
+
+    if (allowRelative && !/^https?:\/\//i.test(value)) {
+
+      if (
+        value.startsWith("//") ||
+        value.startsWith("/") ||
+        value.includes("\\")
+      ) {
+        return false;
+      }
+
+      const relative = value.split(/[?#]/)[0];
+
+      if (
+        relative.split("/").includes("..") ||
+        !/^[a-zA-Z0-9_./-]+$/.test(relative)
+      ) {
+        return false;
+      }
+
+    }
+
+    return true;
+
+  } catch {
+    return false;
+  }
+}
+
+async function initialize() {
+
+  try {
+
+    const { data: userData, error: userError } =
+      await supabase.auth.getUser();
+
+    if (userError || !userData.user) {
+      showMessage(
+        "로그인이 필요합니다. 로그인 후 다시 접속해 주세요.",
+        true
+      );
+      return;
+    }
+
+    const { data: isAdmin, error: adminError } =
+      await supabase.rpc("is_resource_admin");
+
+    if (adminError) throw adminError;
+
+    if (isAdmin !== true) {
+      showMessage("배너 관리 권한이 없습니다.", true);
+      return;
+    }
+
+    $("adminArea").hidden = false;
+
+    await loadBanners();
+
+  } catch (error) {
+
+    console.error(error);
+    showMessage(
+      "관리자 화면 초기화 오류: " + error.message,
+      true
+    );
+
+  }
+}
+
+async function loadBanners() {
+
+  const { data, error } =
+    await supabase
+      .from("homepage_banners")
+      .select("*")
+      .order("slot_number", { ascending: true });
+
+  if (error) {
+    showMessage("배너 조회 오류: " + error.message, true);
+    return;
+  }
+
+  banners = data || [];
+
+  renderBanners();
+
+  showMessage("배너 정보를 불러왔습니다.");
+}
+
+function renderBanners() {
+
+  const list = $("bannerList");
+  list.replaceChildren();
+
+  const positions = [
+    ["center", "중앙 홍보"],
+    ["left", "좌측 광고"],
+    ["right", "우측 광고"]
+  ];
+
+  for (const [position, label] of positions) {
+
+    const items = banners
+      .filter(item => item.position === position)
+      .sort((a, b) => a.slot_number - b.slot_number);
+
+    const activeCount =
+      items.filter(item => item.is_active).length;
+
+    $(position + "Count").textContent =
+      activeCount + " / 10";
+
+    for (const banner of items) {
+
+      const card = document.createElement("article");
+      card.className = "banner-card";
+
+      const heading = document.createElement("h3");
+      heading.textContent =
+        label + " " + banner.slot_number + "번";
+
+      const status = document.createElement("p");
+      status.className =
+        "status " + (banner.is_active ? "active" : "inactive");
+
+      status.textContent =
+        banner.is_active ? "● 공개" : "● 비공개";
+
+      card.append(heading, status);
+
+      if (banner.image_url && checkUrl(banner.image_url)) {
+
+        const img = document.createElement("img");
+        img.src = banner.image_url;
+        img.alt = banner.title || "배너 이미지";
+        img.loading = "lazy";
+
+        card.appendChild(img);
+      }
+
+      const title = document.createElement("p");
+      title.textContent = banner.title || "미등록 배너";
+
+      card.appendChild(title);
+
+      const editButton = document.createElement("button");
+      editButton.className = "primary";
+      editButton.textContent = "관리";
+
+      editButton.addEventListener("click", () => {
+        openEditor(banner);
+      });
+
+      card.appendChild(editButton);
+      list.appendChild(card);
+    }
+  }
+}
+
+function openEditor(banner) {
+
+  selectedBanner = banner;
+
+  $("bannerId").value = banner.id;
+  $("bannerTitle").value = banner.title || "";
+  $("bannerDescription").value =
+    banner.description || "";
+  $("bannerImage").value = banner.image_url || "";
+  $("bannerLink").value = banner.link_url || "";
+  $("bannerActive").value = String(banner.is_active);
+
+  $("editHeading").textContent =
+    banner.position.toUpperCase() +
+    " " + banner.slot_number + "번 배너 관리";
+
+  $("editPanel").hidden = false;
+
+  $("editPanel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}
+
+$("bannerForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  if (!selectedBanner) return;
+
+  const title = $("bannerTitle").value.trim();
+  const description =
+    $("bannerDescription").value.trim();
+  const imageUrl = $("bannerImage").value.trim();
+  const linkUrl = $("bannerLink").value.trim();
+  const isActive = $("bannerActive").value === "true";
+
+  if (imageUrl && !checkUrl(imageUrl)) {
+    showMessage("올바른 이미지 URL을 입력하세요.", true);
+    return;
+  }
+
+  if (linkUrl && !checkUrl(linkUrl, true)) {
+    showMessage("올바른 연결 URL을 입력하세요.", true);
+    return;
+  }
+
+  if (isActive && (!title || !imageUrl || !linkUrl)) {
+    showMessage(
+      "공개 배너는 제목·이미지·연결 URL이 필요합니다.",
+      true
+    );
+    return;
+  }
+
+  $("saveButton").disabled = true;
+
+  try {
+
+    const { error } =
+      await supabase
+        .from("homepage_banners")
+        .update({
+          title: title || null,
+          description: description || null,
+          image_url: imageUrl || null,
+          link_url: linkUrl || null,
+          is_active: isActive,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", selectedBanner.id);
+
+    if (error) throw error;
+
+    $("editPanel").hidden = true;
+    selectedBanner = null;
+
+    await loadBanners();
+    showMessage("배너가 저장되었습니다.");
+
+  } catch (error) {
+
+    showMessage("저장 오류: " + error.message, true);
+
+  } finally {
+
+    $("saveButton").disabled = false;
+
+  }
+});
+
+$("clearButton").addEventListener("click", async () => {
+
+  if (!selectedBanner) return;
+
+  if (!confirm("이 배너의 등록 내용을 초기화하시겠습니까?")) {
+    return;
+  }
+
+  $("clearButton").disabled = true;
+
+  try {
+
+    const { error } =
+      await supabase
+        .from("homepage_banners")
+        .update({
+          title: null,
+          description: null,
+          image_url: null,
+          link_url: null,
+          is_active: false,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", selectedBanner.id);
+
+    if (error) throw error;
+
+    $("editPanel").hidden = true;
+    selectedBanner = null;
+
+    await loadBanners();
+    showMessage("배너 내용이 초기화되었습니다.");
+
+  } catch (error) {
+
+    showMessage("초기화 오류: " + error.message, true);
+
+  } finally {
+
+    $("clearButton").disabled = false;
+
+  }
+});
+
+$("cancelButton").addEventListener("click", () => {
+  $("editPanel").hidden = true;
+  selectedBanner = null;
+});
+
+initialize();
+
+</script>
+
+</body>
+</html>
