@@ -2288,6 +2288,40 @@ async function initialize() {
 
     await loadPosts();
 
+    /* =====================================
+   URL 게시글 직접 열기
+===================================== */
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const postId =
+  params.get("post");
+
+if (postId && /^\d+$/.test(postId)) {
+
+  try {
+
+    await openPost(postId);
+
+  } catch (error) {
+
+    console.error(
+      "게시글 직접 열기 오류:",
+      error
+    );
+
+    showMessage(
+      "요청한 게시글을 열지 못했습니다.",
+      true
+    );
+
+  }
+
+}
+
   } catch (error) {
 
     console.error(
