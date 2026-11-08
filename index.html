@@ -1157,6 +1157,203 @@ footer {
 
 </footer>
 
+<style>
+
+/* =====================================
+   제150단계
+   홈페이지 배너 배치 최종 조정
+===================================== */
+
+/* 배너 전체 */
+
+#homepageBannerLayout {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1180px;
+
+  margin: 25px auto;
+  padding: 0 15px;
+
+  gap: 20px;
+
+  align-items: stretch;
+}
+
+/* 숨김 상태 유지 */
+
+#homepageBannerLayout[hidden],
+#homepageBannerLayout .banner-section[hidden] {
+  display: none !important;
+}
+
+/* 배너 영역 공통 */
+
+#homepageBannerLayout .banner-section {
+
+  width: 100%;
+  min-width: 0;
+
+  margin: 0;
+  padding: 20px;
+
+  background: white;
+  border-radius: 12px;
+
+}
+
+/* 중앙 홍보 배너 */
+
+#homepageBannerCenter {
+  order: 1;
+}
+
+/* 좌측 광고 */
+
+#homepageBannerLeft {
+  order: 2;
+}
+
+/* 우측 광고 */
+
+#homepageBannerRight {
+  order: 3;
+}
+
+/* 중앙 홍보 배너 5열 */
+
+#homepageBannerCenter .homepage-banner-items {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 15px;
+
+}
+
+/* 좌우 광고 배너 5열 */
+
+#homepageBannerLeft .homepage-banner-items,
+#homepageBannerRight .homepage-banner-items {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 15px;
+
+}
+
+/* 배너 카드 */
+
+#homepageBannerLayout .homepage-banner-link {
+
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background: #eef5ff;
+
+  border: 1px solid #dce6f2;
+  border-radius: 8px;
+
+  text-decoration: none;
+
+}
+
+/* 배너 이미지 */
+
+#homepageBannerLayout .homepage-banner-link img {
+
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 16 / 9;
+
+  object-fit: contain;
+
+}
+
+/* 배너 제목 */
+
+#homepageBannerLayout .homepage-banner-title {
+
+  display: block;
+
+  padding: 8px;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  text-align: center;
+
+  overflow-wrap: anywhere;
+
+}
+
+/* 태블릿 */
+
+@media (max-width: 900px) {
+
+  #homepageBannerCenter .homepage-banner-items,
+  #homepageBannerLeft .homepage-banner-items,
+  #homepageBannerRight .homepage-banner-items {
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+  }
+
+}
+
+/* 휴대폰 */
+
+@media (max-width: 600px) {
+
+  #homepageBannerLayout {
+
+    padding: 0 10px;
+    gap: 15px;
+
+  }
+
+  #homepageBannerLayout .banner-section {
+
+    padding: 15px;
+
+  }
+
+  #homepageBannerCenter .homepage-banner-items,
+  #homepageBannerLeft .homepage-banner-items,
+  #homepageBannerRight .homepage-banner-items {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+  }
+
+  #homepageBannerLayout .homepage-banner-title {
+
+    font-size: 12px;
+
+  }
+
+}
+
+</style>
+      
 <!-- =====================================
      주요 게시물 자동 표시
 ===================================== -->
@@ -1861,7 +2058,46 @@ function createBannerLayout() {
     layout.appendChild(section);
   }
 
+  /* =====================================
+   배너를 주요 게시물 앞에 배치
+===================================== */
+
+const boardSections = [
+  document.getElementById("boardHomeSection"),
+  document.getElementById("boardFeaturedSection"),
+  document.getElementById("featured-board")
+].filter(Boolean);
+
+/* 주요 게시물 영역 찾기 */
+
+const boardSection =
+  boardSections.find(section =>
+    main.contains(section)
+  );
+
+/* 배너를 main의 직접 자식으로 배치 */
+
+if (boardSection) {
+
+  let target = boardSection;
+
+  while (
+    target.parentElement &&
+    target.parentElement !== main
+  ) {
+
+    target = target.parentElement;
+
+  }
+
+  main.insertBefore(layout, target);
+
+} else {
+
   main.prepend(layout);
+
+}
+      
 }
 
 /* =====================================
