@@ -2252,16 +2252,29 @@ function hideDuplicateFeaturedBoard() {
 }
 
 /* =====================================
-   초기 실행
+   홈페이지 배너 초기 실행
 ===================================== */
 
-initializeMemberMenu();
+async function initializeHomepageBanners() {
 
-createBannerLayout();
+  initializeMemberMenu();
 
-hideDuplicateFeaturedBoard();
+  createBannerLayout();
 
-await loadHomepageBanners();
+  hideDuplicateFeaturedBoard();
+
+  await loadHomepageBanners();
+
+}
+
+initializeHomepageBanners().catch(error => {
+
+  console.error(
+    "홈페이지 배너 초기화 오류:",
+    error
+  );
+
+});
 
 </script>
       
