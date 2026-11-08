@@ -330,8 +330,15 @@ nav a:focus-visible {
   <a href="#library">지식·자료</a>
 
 </nav>
-      
-/* 메인 화면 */
+
+<!-- =====================================
+     제164단계
+     메인 홍보 이미지 및 회원 메뉴
+===================================== -->
+
+<style>
+
+/* 메인 홍보 이미지 */
 
 .hero {
   width: 100%;
@@ -340,11 +347,8 @@ nav a:focus-visible {
   margin: 0;
   background: none;
   display: block;
-  color: #17315b;
   text-align: center;
 }
-
-/* 이미지 원본 비율 유지 */
 
 .hero-image-wrap {
   width: 100%;
@@ -361,7 +365,6 @@ nav a:focus-visible {
 /* 이미지 아래 버튼 */
 
 .hero-actions {
-  position: relative;
   width: 100%;
   padding: 12px 15px;
   background: #eaf3ff;
@@ -373,10 +376,16 @@ nav a:focus-visible {
   position: static;
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-/* 버튼 정렬 */
+.hero-actions .hero-language a {
+  background: #0754a6;
+  color: white;
+}
+
+/* 홍보 및 회원 버튼 */
 
 .hero-actions .hero-buttons,
 .hero-actions .member-menu {
@@ -387,8 +396,6 @@ nav a:focus-visible {
   margin: 8px 0;
 }
 
-/* 회원 버튼 */
-
 .hero-actions .member-menu a {
   background: #0754a6;
   border: 1px solid #0754a6;
@@ -398,6 +405,7 @@ nav a:focus-visible {
 /* 모바일 */
 
 @media (max-width: 600px) {
+
   .hero {
     min-height: 0;
     padding: 0;
@@ -411,7 +419,74 @@ nav a:focus-visible {
   .hero-actions .member-menu {
     gap: 6px;
   }
+
 }
+
+</style>
+
+<header class="hero" id="home">
+
+  <!-- 메인 이미지 -->
+
+  <div class="hero-image-wrap">
+
+    <img
+      src="./goyang-main.jpg"
+      alt="글로벌 AI 허브 고양특례시 유치 홍보"
+      class="hero-main-image">
+
+  </div>
+
+  <!-- 이미지 아래 버튼 -->
+
+  <div class="hero-actions">
+
+    <div class="hero-language">
+
+      <a href="index-test.html"
+         lang="ko"
+         aria-current="page">
+        한국어
+      </a>
+
+      <a href="index-en.html"
+         lang="en">
+        English
+      </a>
+
+    </div>
+
+    <div class="hero-buttons">
+
+      <a class="btn" href="hub.html">
+        글로벌 AI 허브 알아보기
+      </a>
+
+      <a class="btn" href="participate.html">
+        시민 참여
+      </a>
+
+    </div>
+
+    <div class="member-menu">
+
+      <a href="login.html">
+        로그인
+      </a>
+
+      <a href="signup.html">
+        회원가입
+      </a>
+
+      <a href="board.html">
+        시민참여 게시판
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
 
 <!-- =====================================
      배너 표시 영역
