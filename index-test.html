@@ -353,64 +353,27 @@ nav .nav-member-link {
 
 </nav>
 
-<!-- =====================================
-     배너 표시 영역
-===================================== -->
+<!-- 제167단계: 메인 홍보 영역 -->
 
-<div
-  id="homepageBannerLayout"
-  aria-label="홈페이지 홍보 및 광고 배너"
-  hidden>
+<section id="homepagePromotion" class="homepage-promotion">
 
-  <!-- 중앙 홍보 배너 10개 -->
+  <!-- 향후 메인 홍보 이미지 삽입 위치 -->
+  <div id="homepageHeroImage" hidden></div>
 
-  <section
-    id="homepageBannerCenter"
-    class="banner-section"
-    hidden>
+  <div class="homepage-quick-actions">
 
-    <h2>위원회 주요 활동</h2>
+    <a href="hub.html" class="quick-action">
+      글로벌 AI 허브 알아보기
+    </a>
 
-    <div
-      class="homepage-banner-items"
-      id="centerBannerItems">
-    </div>
+    <a href="participate.html" class="quick-action">
+      시민 참여
+    </a>
 
-  </section>
+  </div>
 
-  <!-- 좌측 회원 광고 10개 -->
-
-  <section
-    id="homepageBannerLeft"
-    class="banner-section"
-    hidden>
-
-    <h2>회원 광고 · 좌측</h2>
-
-    <div
-      class="homepage-banner-items"
-      id="leftBannerItems">
-    </div>
-
-  </section>
-
-  <!-- 우측 회원 광고 10개 -->
-
-  <section
-    id="homepageBannerRight"
-    class="banner-section"
-    hidden>
-
-    <h2>회원 광고 · 우측</h2>
-
-    <div
-      class="homepage-banner-items"
-      id="rightBannerItems">
-    </div>
-
-  </section>
-
-</div>
+</section>
+      
 
 <!-- =====================================
      제159-2단계
@@ -423,6 +386,67 @@ nav .nav-member-link {
    배너 전체 영역
 ===================================== */
 
+#homepageBannerLayout {
+  width: min(1180px, calc(100% - 32px));
+  margin: 16px auto 24px;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#homepageBannerLayout[hidden],
+#homepageBannerLayout .banner-section[hidden] {
+  display: none !important;
+}
+
+#homepageBannerCenter {
+  grid-column: 1 / -1;
+}
+
+#homepageBannerLeft {
+  grid-column: 1;
+}
+
+#homepageBannerRight {
+  grid-column: 2;
+}
+
+.homepage-banner-items {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.homepage-banner-items img {
+  display: block;
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  #homepageBannerLayout {
+    grid-template-columns: 1fr;
+  }
+
+  #homepageBannerCenter,
+  #homepageBannerLeft,
+  #homepageBannerRight {
+    grid-column: 1;
+  }
+
+  .homepage-banner-items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-banner-items {
+    grid-template-columns: 1fr;
+  }
+}
+      
 #homepageBannerLayout {
   width: calc(100% - 30px);
   max-width: 1180px;
@@ -610,6 +634,51 @@ nav .nav-member-link {
   word-break: keep-all;
 }
 
+/* 제167단계: 주요 홍보 버튼 */
+
+.homepage-promotion {
+  width: 100%;
+  background: #eaf3ff;
+  padding: 16px 0;
+}
+
+#homepageHeroImage[hidden] {
+  display: none !important;
+}
+
+.homepage-quick-actions {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.quick-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 48px;
+  padding: 12px 22px;
+
+  background: #ffe44d;
+  color: #003b79;
+
+  border-radius: 8px;
+
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.quick-action:hover,
+.quick-action:focus-visible {
+  background: #ffd52e;
+}
+      
 /* =====================================
    태블릿
 ===================================== */
@@ -2347,7 +2416,7 @@ nav[aria-label="주 메뉴"] .nav-member-link {
 
 /* 배너 영역 */
 
-#homepageBannerLayout {
+ {
   width: calc(100% - 30px);
   max-width: 1180px;
 
@@ -2359,7 +2428,7 @@ nav[aria-label="주 메뉴"] .nav-member-link {
 
 /* 배너 카드 */
 
-#homepageBannerLayout .banner-section {
+ .banner-section {
   padding: 20px;
 }
 
@@ -2392,6 +2461,65 @@ nav[aria-label="주 메뉴"] .nav-member-link {
 
 }
 
+<!-- =====================================
+     배너 표시 영역
+===================================== -->
+
+<div
+  id="homepageBannerLayout"
+  aria-label="홈페이지 홍보 및 광고 배너"
+  hidden>
+
+  <!-- 중앙 홍보 배너 10개 -->
+
+  <section
+    id="homepageBannerCenter"
+    class="banner-section"
+    hidden>
+
+    <h2>위원회 주요 활동</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="centerBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 좌측 회원 광고 10개 -->
+
+  <section
+    id="homepageBannerLeft"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 좌측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="leftBannerItems">
+    </div>
+
+  </section>
+
+  <!-- 우측 회원 광고 10개 -->
+
+  <section
+    id="homepageBannerRight"
+    class="banner-section"
+    hidden>
+
+    <h2>회원 광고 · 우측</h2>
+
+    <div
+      class="homepage-banner-items"
+      id="rightBannerItems">
+    </div>
+
+  </section>
+
+</div>
+      
 </style>
 
 <script>
