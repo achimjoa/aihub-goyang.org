@@ -2,97 +2,95 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-<title>
-시민활동 사진기록관 | 글로벌 AI 허브
-</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>시민활동 사진기록관 | 글로벌 AI 허브</title>
+
 <style>
-/* =====================================
-   기본 설정
-===================================== */
-* {
-  box-sizing: border-box;
-}body {
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
   margin: 0;
   font-family: "Malgun Gothic", Arial, sans-serif;
   background: #f4f8fc;
   color: #17315b;
   line-height: 1.7;
-}/* =====================================
-   상단
-===================================== */
+}
+
 header {
   background: #0754a6;
   color: white;
   text-align: center;
   padding: 35px 15px 30px;
-}header h1 {
+}
+
+header h1 {
   font-size: clamp(24px, 4vw, 38px);
   margin: 0 0 15px;
-}header p {
-  margin: 10px 0 20px;
-  font-size: 16px;
-}/* 언어 선택 */
+}
+
+header p { margin: 10px 0 20px; }
+
 .language {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
-}.language a {
-  display: inline-block;
+}
+
+.language a {
   padding: 7px 15px;
   border: 1px solid white;
   border-radius: 6px;
   color: white;
   text-decoration: none;
-  font-size: 14px;
-}.language a.active {
+}
+
+.language a.active {
   background: white;
   color: #0754a6;
-}/* 홈페이지 돌아가기 */
+}
+
 .home-return {
-  text-align: center;
   margin: 25px 0 10px;
-}.home-return a {
+}
+
+.home-return a {
   display: inline-block;
-  background: white;
+  background: #ffe44d;
   color: #0754a6;
-  border: 2px solid white;
   border-radius: 8px;
   padding: 12px 28px;
-  font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-}.home-return a:hover {
-  background: #ffe44d;
-  border-color: #ffe44d;
-}/* =====================================
-   본문
-===================================== */
+}
+
 main {
   max-width: 1200px;
   margin: auto;
   padding: 35px 15px;
-}/* 사진관 소개 */
+}
+
 .intro {
   text-align: center;
   margin-bottom: 35px;
-}.intro h2 {
+}
+
+.intro h2 {
   font-size: clamp(22px, 3vw, 30px);
-}.intro p {
-  color: #46566d;
-}/* =====================================
-   사진 분류 메뉴
-===================================== */
+}
+
+.intro p { color: #46566d; }
+
 .filters {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
   margin-bottom: 35px;
-}.filters button {
+}
+
+.filters button {
   padding: 12px 18px;
   border: 1px solid #0754a6;
   background: white;
@@ -100,26 +98,29 @@ main {
   border-radius: 7px;
   cursor: pointer;
   font-weight: bold;
-}.filters button:hover {
-  background: #eaf4ff;
-}.filters button.active {
+}
+
+.filters button.active {
   background: #0754a6;
   color: white;
-}/* =====================================
-   행사별 기록
-===================================== */
+}
+
 .event-record {
   background: white;
   border-left: 6px solid #0754a6;
   border-radius: 12px;
   padding: 30px;
   margin: 30px 0;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-}.event-record h2 {
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.event-record h2 {
   color: #0754a6;
   font-size: clamp(22px, 3vw, 30px);
   margin: 15px 0;
-}.event-date {
+}
+
+.event-date {
   display: inline-block;
   background: #eaf4ff;
   color: #0754a6;
@@ -127,69 +128,97 @@ main {
   border-radius: 20px;
   font-size: 14px;
   font-weight: bold;
-}.event-location {
+}
+
+.event-location {
   color: #46566d;
   font-weight: bold;
-}.event-description {
+}
+
+.event-description {
   color: #34465f;
   line-height: 1.9;
-}/* =====================================
-   사진 목록
-===================================== */
+}
+
 .gallery {
   display: grid;
-  grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin-top: 25px;
-}.photo {
+}
+
+.photo {
   background: white;
   border: 1px solid #e1e8f2;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-}.photo img {
+  box-shadow: 0 3px 12px rgba(0,0,0,.1);
+}
+
+.photo img {
   display: block;
   width: 100%;
   height: 220px;
   object-fit: cover;
   cursor: pointer;
-}.photo-title {
+}
+
+.photo-title {
   padding: 15px;
   margin: 0;
   font-weight: bold;
-}.photo-description {
+}
+
+.photo-description {
   padding: 0 15px 15px;
   margin: 0;
-}/* =====================================
-   신규 사진 활동 분류 표시
-===================================== */
+  color: #46566d;
+  font-size: 14px;
+}
+
 .photo-category {
   display: inline-block;
-  margin: 15px 15px 0;
-  padding: 5px 12px;
+  margin: 0 15px 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
   background: #eaf4ff;
   color: #0754a6;
-  border-radius: 20px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
-}   
-/* =====================================
-   사진 확대 화면
-===================================== */
+}
+
+#new-photo-section {
+  border-left-color: #e6a700;
+}
+
+#new-photo-section h2 {
+  color: #a66b00;
+}
+
+.empty-message {
+  color: #66758a;
+  padding: 20px;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
 .viewer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0,0,0,.92);
   justify-content: center;
   align-items: center;
   z-index: 1000;
-}.viewer img {
+}
+
+.viewer img {
   max-width: 95%;
   max-height: 85%;
   object-fit: contain;
-}.close {
+}
+
+.close {
   position: absolute;
   top: 15px;
   right: 25px;
@@ -198,726 +227,569 @@ main {
   border: 0;
   font-size: 40px;
   cursor: pointer;
-}/* =====================================
-   하단
-===================================== */
+}
+
 footer {
   background: #10315e;
   color: white;
   text-align: center;
   padding: 30px 15px;
   margin-top: 40px;
-}/* =====================================
-   모바일
-===================================== */
-@media (max-width: 600px) {
-  header {
-    padding: 28px 12px;
-  }
-  header p {
-    font-size: 14px;
-  }
-  main {
-    padding: 25px 12px;
-  }
-  .event-record {
-    padding: 20px;
-  }
-  .event-record h2 {
-    font-size: 22px;
-  }
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-  .filters button {
-    padding: 10px 12px;
-    font-size: 13px;
-  }
-  .home-return a {
-    padding: 11px 20px;
-    font-size: 14px;
-  }
-}</style>
+}
+
+@media(max-width:600px) {
+  main { padding: 25px 12px; }
+  .event-record { padding: 20px; }
+  .gallery { grid-template-columns: 1fr; }
+  .filters button { padding: 10px 12px; font-size: 13px; }
+  .photo img { height: auto; max-height: 300px; object-fit: contain; }
+}
+</style>
 </head>
+
 <body>
-<!-- =====================================
-   상단
-===================================== -->
+
 <header>
-<h1>시민활동 사진기록관</h1>
-<p>
-경기도 글로벌 AI 허브 유치<br>
-고양특례시 범시민추진위원회
-</p>
-<div class="language">
-<a href="gallery.html"
-   class="active"
-   aria-current="page">
-한국어
-</a>
-<a href="gallery-en.html" lang="en">
-English
-</a>
-</div>
-<div class="home-return">
-<a href="index.html">
-← 홈페이지로 돌아가기
-</a>
-</div>
-</header>
-<main>
-<!-- =====================================
-   1. 사진관 소개
-===================================== -->
-<div class="intro">
-<h2>
-시민의 힘으로 만들어가는 글로벌 AI 허브
-</h2>
-<p>
-글로벌 AI 허브 유치를 위한
-시민들의 활동을 기록합니다.
-</p>
-</div>
-/* =====================================
-   제145-2-9-11-6-2단계
-   기존 행사 및 신규 사진 통합 분류
-===================================== */
-function filterPhotos(category, button) {
-  /* 선택 버튼 표시 */
-  document.querySelectorAll(".filters button")
-    .forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  /* 기존 행사 기록 분류 */
-  document.querySelectorAll(".event-record")
-    .forEach(section => {
-      const eventCategory =
-        section.dataset.category;
-      section.style.display =
-        category === "all" ||
-        eventCategory === category
-          ? "block"
-          : "none";
-    });
-  /* Supabase 신규 사진 분류 */
-  document.querySelectorAll(
-    "#supabase-photo-gallery .photo"
-  ).forEach(card => {
-    const photoCategory =
-      card.dataset.category;
-    card.style.display =
-      category === "all" ||
-      photoCategory === category
-        ? ""
-        : "none";
-  });
-}<!-- =====================================
-   3. 국회 유치 선언식
-   2026.08.25 오전 10시
-===================================== -->
-<section class="event-record"
-         id="declaration-event"
-         data-category="solidarity">
-<span class="event-date">
-2026년 8월 25일 오전 10시
-</span>
-<h2>
-고양특례시 UN 글로벌 AI 허브 유치 선언식
-</h2>
-<p class="event-location">
-📍 국회의원회관 제2소회의실
-</p>
-<p>
-<strong>주최:</strong>
-국회의원 김성회·한준호·이기헌·김영환
-</p>
-<p>
-<strong>주관:</strong>
-고양특례시·고양연구원
-</p>
-<p class="event-description">
-2026년 8월 25일 오전 10시,
-국회의원회관 제2소회의실에서
-고양특례시 UN 글로벌 AI 허브 유치 선언식이
-개최되었습니다.
-</p>
-<p class="event-description">
-이날 행사에서는 글로벌 AI 허브의
-고양특례시 유치를 위한 의지를
-대내외에 알리고,
-주요 참석자들이 유치 결의를 함께했습니다.
-</p>
-<div class="gallery">
-<div class="photo">
-<img src="images/declaration-01.jpg"
-     alt="글로벌 AI 허브 유치 선언식 연설"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">유치 선언식 연설</p>
-</div>
-<div class="photo">
-<img src="images/declaration-02.jpg"
-     alt="글로벌 AI 허브 유치 응원"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">참석자들의 유치 응원</p>
-</div>
-<div class="photo">
-<img src="images/declaration-03.jpg"
-     alt="유치 선언식 기념촬영"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">유치 선언 기념촬영</p>
-</div>
-<div class="photo">
-<img src="images/declaration-04.jpg"
-     alt="유치 선언식 행사"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">선언식 행사 장면</p>
-</div>
-<div class="photo">
-<img src="images/declaration-05.jpg"
-     alt="유치 선언식 참석자"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">주요 참석자들의 행사 참관</p>
-</div>
-<div class="photo">
-<img src="images/declaration-06.jpg"
-     alt="유치 선언식 행사장 전경"
-     loading="lazy"
-     onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">국회의원회관 행사장 전경</p>
-</div>
-</div>
-</section>
-<!-- =====================================
-   4. 평화공존 시민토론회
-   2026.08.25
-===================================== -->
-<section class="event-record"
-         id="peace-event"
-         data-category="solidarity">
-<span class="event-date">
-2026년 8월 25일
-</span>
-<h2>
-한반도 평화공존 시민토론회
-</h2>
-<p class="event-location">
-📍 일산서구청 가와지대강당
-</p>
-<p>
-한반도 평화공존을 주제로 개최된
-시민토론회입니다.
-</p>
-<p>
-고양시 시민사회의 평화와 공존에 관한
-활동 기록으로 보존합니다.
-</p>
-<div class="gallery">
-<div class="photo">
-<img
-src="images/peace-forum-20260825.png"
-alt="한반도 평화공존 시민토론회 홍영표 발표자료"
-loading="lazy"
-onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">
-한반도 평화공존 시민토론회 발표자료
-</p>
-<p class="photo-description">
-발표자: 홍영표 (고양시민회 공동대표)
-</p>
-<p class="photo-description">
-발표 주제: 지역사회 연계 관점에서의
-동북아평화자료원 활용 및
-고양시 자족 생태계 구축 방안
-</p>
-</div>
-</div>
-</section>
-<!-- =====================================
-   5. 범시민추진위원회 발대식
-   2026.09.07
-===================================== -->
-<section class="event-record"
-         id="launch-event"
-         data-category="solidarity">
-<span class="event-date">
-2026년 9월 7일
-</span>
-<h2>
-글로벌 AI 허브 유치
-범시민추진위원회 발대식
-</h2>
-<p class="event-location">
-📍 고양호수공원 꽃전시관
-</p>
-<p>
-경기도 글로벌 AI 허브 유치
-고양특례시 범시민추진위원회는
-글로벌 AI 허브의 고양특례시 유치를 위해
-시민사회의 역량을 결집하고
-공동 활동을 시작하였습니다.
-</p>
-<div class="gallery" id="launch-gallery"></div>
-</section>
-<!-- =====================================
-   6. 고양 글로벌 AI 허브 포럼
-   2026.10.08
-===================================== -->
-<section class="event-record"
-         id="forum-event"
-         data-category="promotion">
-<span class="event-date">
-2026년 10월 8일 오후 2시
-</span>
-<h2>
-고양 글로벌 AI 허브 포럼
-</h2>
-<p class="event-location">
-📍 창조혁신캠퍼스 성사 C존 10층
-G-ROUND 877
-</p>
-<p>
-<strong>주최:</strong>
-고양특례시·고양연구원
-</p>
-<p>
-글로벌 AI 허브 고양특례시 유치를 위한
-전략과 협력 방안을 논의하는
-포럼이 개최되었습니다.
-</p>
-<div class="gallery">
-<div class="photo">
-<img
-src="images/forum-20261008.png"
-alt="고양 글로벌 AI 허브 포럼"
-loading="lazy"
-onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">
-고양 글로벌 AI 허브 포럼 홍보 포스터
-</p>
-</div>
-</div>
-</section>
-<!-- =====================================
-   7. 제7회 고양혁신전략세미나
-   2026.10.20
-===================================== -->
-<section class="event-record"
-         id="seminar-event"
-         data-category="promotion">
-<span class="event-date">
-2026년 10월 20일 오전 7시 30분
-</span>
-<h2>
-제7회 고양혁신전략세미나
-</h2>
-<p class="event-location">
-📍 창조혁신캠퍼스 성사 10층
-G-ROUND 877
-</p>
-<p>
-<strong>주최·주관:</strong>
-고양연구원·고양상공회의소
-</p>
-<p>
-글로벌 AI 허브 고양특례시 유치 전략을
-구체화하기 위한 세미나가 개최되었습니다.
-</p>
-<p>
-범시민추진위원회는 패널토론을 통해
-유치 전략 확정, 관계기관 협력,
-실행조직 구성 및 실질적인 성과 확보의
-필요성을 제안했습니다.
-</p>
-<div class="gallery">
-<div class="photo">
-<img
-src="images/seminar-20261020.png"
-alt="제7회 고양혁신전략세미나"
-loading="lazy"
-onclick="openPhoto(this.src,this.alt)">
-<p class="photo-title">
-제7회 고양혁신전략세미나 개최 계획안
-</p>
-</div>
-</div>
-</section>
-</main>
-<!-- =====================================
-   제145-2-9-9-3단계
-   Supabase 신규 활동 사진 표시 영역
-===================================== -->
-<section
-  class="event-record"
-  id="supabase-photo-section"
-  data-category="promotion"
->  <h2>
-    📸 새로운 활동 사진
-  </h2>
+  <h1>시민활동 사진기록관</h1>
   <p>
-    범시민추진위원회의 새로운 활동 사진을
-    소개합니다.
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
   </p>
-  <div
-    class="gallery"
-    id="supabase-photo-gallery"
-    aria-live="polite"
-  >
-    <p>
-      새로운 활동 사진을 불러올 준비 중입니다.
-    </p>
+
+  <div class="language">
+    <a href="gallery.html" class="active" aria-current="page">한국어</a>
+    <a href="gallery-en.html" lang="en">English</a>
+  </div>
+
+  <div class="home-return">
+    <a href="index.html">← 홈페이지로 돌아가기</a>
+  </div>
+</header>
+
+<main>
+
+<div class="intro">
+  <h2>시민의 힘으로 만들어가는 글로벌 AI 허브</h2>
+  <p>글로벌 AI 허브 유치를 위한 시민들의 활동을 기록합니다.</p>
+</div>
+
+<div class="filters" id="photo-filters" aria-label="사진 활동 분류">
+  <button type="button" class="active" data-category="all">전체</button>
+</div>
+
+<section class="event-record" id="new-photo-section">
+  <h2>📸 새로운 활동 사진</h2>
+  <p>최근 7일 이내 등록된 시민활동 사진입니다.</p>
+  <div class="gallery" id="new-photo-gallery">
+    <p class="empty-message">새로운 활동 사진을 불러오고 있습니다.</p>
   </div>
 </section>
-   
-<!-- =====================================
-   사진 확대 화면
-===================================== -->
-<div class="viewer"
-     id="viewer"
-     role="dialog"
-     aria-modal="true"
-     aria-label="사진 확대 보기">
-<button class="close"
-        aria-label="닫기"
-        onclick="closePhoto()">×</button>
-<img id="largePhoto" alt="확대 사진">
+
+<section class="event-record" id="declaration-event" data-category="solidarity">
+  <span class="event-date">2026년 8월 25일 오전 10시</span>
+  <h2>고양특례시 UN 글로벌 AI 허브 유치 선언식</h2>
+  <p class="event-location">📍 국회의원회관 제2소회의실</p>
+  <p><strong>주최:</strong> 국회의원 김성회·한준호·이기헌·김영환</p>
+  <p><strong>주관:</strong> 고양특례시·고양연구원</p>
+  <p class="event-description">
+    2026년 8월 25일 오전 10시, 국회의원회관 제2소회의실에서
+    고양특례시 UN 글로벌 AI 허브 유치 선언식이 개최되었습니다.
+  </p>
+  <p class="event-description">
+    이날 행사에서는 글로벌 AI 허브의 고양특례시 유치를 위한 의지를
+    대내외에 알리고, 주요 참석자들이 유치 결의를 함께했습니다.
+  </p>
+
+  <div class="gallery">
+    <div class="photo">
+      <img src="images/declaration-01.jpg" alt="글로벌 AI 허브 유치 선언식 연설" loading="lazy">
+      <p class="photo-title">유치 선언식 연설</p>
+    </div>
+    <div class="photo">
+      <img src="images/declaration-02.jpg" alt="글로벌 AI 허브 유치 응원" loading="lazy">
+      <p class="photo-title">참석자들의 유치 응원</p>
+    </div>
+    <div class="photo">
+      <img src="images/declaration-03.jpg" alt="유치 선언식 기념촬영" loading="lazy">
+      <p class="photo-title">유치 선언 기념촬영</p>
+    </div>
+    <div class="photo">
+      <img src="images/declaration-04.jpg" alt="유치 선언식 행사" loading="lazy">
+      <p class="photo-title">선언식 행사 장면</p>
+    </div>
+    <div class="photo">
+      <img src="images/declaration-05.jpg" alt="유치 선언식 참석자" loading="lazy">
+      <p class="photo-title">주요 참석자들의 행사 참관</p>
+    </div>
+    <div class="photo">
+      <img src="images/declaration-06.jpg" alt="유치 선언식 행사장 전경" loading="lazy">
+      <p class="photo-title">국회의원회관 행사장 전경</p>
+    </div>
+  </div>
+</section>
+
+<section class="event-record" id="peace-event" data-category="solidarity">
+  <span class="event-date">2026년 8월 25일</span>
+  <h2>한반도 평화공존 시민토론회</h2>
+  <p class="event-location">📍 일산서구청 가와지대강당</p>
+  <p>한반도 평화공존을 주제로 개최된 시민토론회입니다.</p>
+  <p>고양시 시민사회의 평화와 공존에 관한 활동 기록으로 보존합니다.</p>
+
+  <div class="gallery">
+    <div class="photo">
+      <img src="images/peace-forum-20260825.png"
+           alt="한반도 평화공존 시민토론회 홍영표 발표자료" loading="lazy">
+      <p class="photo-title">한반도 평화공존 시민토론회 발표자료</p>
+      <p class="photo-description">발표자: 홍영표 (고양시민회 공동대표)</p>
+      <p class="photo-description">
+        발표 주제: 지역사회 연계 관점에서의 동북아평화자료원 활용 및
+        고양시 자족 생태계 구축 방안
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="event-record" id="launch-event" data-category="solidarity">
+  <span class="event-date">2026년 9월 7일</span>
+  <h2>글로벌 AI 허브 유치 범시민추진위원회 발대식</h2>
+  <p class="event-location">📍 고양호수공원 꽃전시관</p>
+  <p>
+    경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회는
+    글로벌 AI 허브의 고양특례시 유치를 위해 시민사회의 역량을 결집하고
+    공동 활동을 시작하였습니다.
+  </p>
+  <div class="gallery" id="launch-gallery"></div>
+</section>
+
+<section class="event-record" id="forum-event" data-category="promotion">
+  <span class="event-date">2026년 10월 8일 오후 2시</span>
+  <h2>고양 글로벌 AI 허브 포럼</h2>
+  <p class="event-location">📍 창조혁신캠퍼스 성사 C존 10층 G-ROUND 877</p>
+  <p><strong>주최:</strong> 고양특례시·고양연구원</p>
+  <p>글로벌 AI 허브 고양특례시 유치를 위한 전략과 협력 방안을 논의하는 포럼이 개최되었습니다.</p>
+
+  <div class="gallery">
+    <div class="photo">
+      <img src="images/forum-20261008.png" alt="고양 글로벌 AI 허브 포럼" loading="lazy">
+      <p class="photo-title">고양 글로벌 AI 허브 포럼 홍보 포스터</p>
+    </div>
+  </div>
+</section>
+
+<section class="event-record" id="seminar-event" data-category="promotion">
+  <span class="event-date">2026년 10월 20일 오전 7시 30분</span>
+  <h2>제7회 고양혁신전략세미나</h2>
+  <p class="event-location">📍 창조혁신캠퍼스 성사 10층 G-ROUND 877</p>
+  <p><strong>주최·주관:</strong> 고양연구원·고양상공회의소</p>
+  <p>글로벌 AI 허브 고양특례시 유치 전략을 구체화하기 위한 세미나가 개최되었습니다.</p>
+  <p>
+    범시민추진위원회는 패널토론을 통해 유치 전략 확정, 관계기관 협력,
+    실행조직 구성 및 실질적인 성과 확보의 필요성을 제안했습니다.
+  </p>
+
+  <div class="gallery">
+    <div class="photo">
+      <img src="images/seminar-20261020.png" alt="제7회 고양혁신전략세미나" loading="lazy">
+      <p class="photo-title">제7회 고양혁신전략세미나 개최 계획안</p>
+    </div>
+  </div>
+</section>
+
+<section class="event-record" id="activity-photo-section">
+  <h2>활동별 사진기록</h2>
+  <p>관리자가 등록한 시민활동 사진을 활동 분류별로 열람할 수 있습니다.</p>
+  <div class="gallery" id="supabase-photo-gallery">
+    <p class="empty-message">활동 사진을 불러오고 있습니다.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true"
+     aria-label="사진 확대 보기" aria-hidden="true">
+  <button class="close" type="button" id="closePhotoButton" aria-label="닫기">×</button>
+  <img id="largePhoto" alt="확대 사진">
 </div>
-<!-- =====================================
-   하단
-===================================== -->
+
 <footer>
-<p>
-경기도 글로벌 AI 허브 유치<br>
-고양특례시 범시민추진위원회
-</p>
-<p>
-AI for All · AI for Humanity
-</p>
+  <p>경기도 글로벌 AI 허브 유치<br>고양특례시 범시민추진위원회</p>
+  <p>AI for All · AI for Humanity</p>
 </footer>
-<script>
-/* =====================================
-   발대식 사진 목록
-===================================== */
+
+<script type="module">
+import { createClient } from
+  "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const NEW_PHOTO_MS = 7 * 24 * 60 * 60 * 1000;
+
+let currentPhotoCategory = "all";
+let activityCategories = [];
+let photoPosts = [];
+let photoAttachments = [];
+
+const filters = document.getElementById("photo-filters");
+const newPhotoGallery = document.getElementById("new-photo-gallery");
+const activityPhotoGallery = document.getElementById("supabase-photo-gallery");
+const newPhotoSection = document.getElementById("new-photo-section");
+const activityPhotoSection = document.getElementById("activity-photo-section");
+const viewer = document.getElementById("viewer");
+const largePhoto = document.getElementById("largePhoto");
+
 const launchPhotos = [
-{file: "activity-03.jpg",
-title: "2026.09.07 범시민추진위원회 발대식"
-},
-{file: "launch-02.jpg",
-title: "2026.09.07 발대식 행사장 전경"
-},
-{file: "launch-03.jpg",
-title: "2026.09.07 발대식 참석자"
-},
-{file: "launch-04.jpg",
-title: "2026.09.07 발대식 주요 행사"
-},
-{file: "launch-05.jpg",
-title: "2026.09.07 발대식 기념사진"
-}];
-/* =====================================
-   발대식 사진 표시
-===================================== */
+  { file: "activity-03.jpg", title: "2026.09.07 범시민추진위원회 발대식" },
+  { file: "launch-02.jpg", title: "2026.09.07 발대식 행사장 전경" },
+  { file: "launch-03.jpg", title: "2026.09.07 발대식 참석자" },
+  { file: "launch-04.jpg", title: "2026.09.07 발대식 주요 행사" },
+  { file: "launch-05.jpg", title: "2026.09.07 발대식 기념사진" }
+];
+
+function openPhoto(src, title) {
+  largePhoto.src = src;
+  largePhoto.alt = title || "확대 사진";
+  viewer.style.display = "flex";
+  viewer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  document.getElementById("closePhotoButton").focus();
+}
+
+function closePhoto() {
+  viewer.style.display = "none";
+  viewer.setAttribute("aria-hidden", "true");
+  largePhoto.removeAttribute("src");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("closePhotoButton")
+  .addEventListener("click", closePhoto);
+
+viewer.addEventListener("click", event => {
+  if (event.target === viewer) closePhoto();
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && viewer.style.display === "flex") {
+    closePhoto();
+  }
+});
+
+function connectStaticPhotos() {
+  document.querySelectorAll(".event-record[data-category] .photo img")
+    .forEach(img => {
+      img.addEventListener("click", () => openPhoto(img.src, img.alt));
+    });
+}
+
 function renderLaunchPhotos() {
-  const gallery =
-    document.getElementById("launch-gallery");
-  gallery.innerHTML = "";
+  const gallery = document.getElementById("launch-gallery");
+  gallery.replaceChildren();
+
   launchPhotos.forEach(photo => {
     const card = document.createElement("div");
     card.className = "photo";
+
     const img = document.createElement("img");
     img.src = "images/" + photo.file;
     img.alt = photo.title;
     img.loading = "lazy";
-    img.onclick = () =>
-      openPhoto(img.src, photo.title);
+
     const caption = document.createElement("p");
     caption.className = "photo-title";
     caption.textContent = photo.title;
-    card.appendChild(img);
-    card.appendChild(caption);
+
+    card.append(img, caption);
     gallery.appendChild(card);
   });
-}/* =====================================
-   제145-2-9-10-7-3단계
-   기존 행사 + 신규 사진 통합 분류
-===================================== */
-function filterPhotos(category, button) {
-  /* 1. 선택 버튼 표시 */
-  document.querySelectorAll(".filters button")
-    .forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  /* 2. 기존 행사 사진 분류 */
-  document.querySelectorAll(".event-record")
-    .forEach(section => {
-      const eventCategory =
-        section.dataset.category;
-      section.style.display =
-        category === "all" ||
-        eventCategory === category
-          ? "block"
-          : "none";
-    });
-  /* 3. Supabase 신규 사진 분류 */
-  document.querySelectorAll(
-    "#supabase-photo-gallery .photo"
-  ).forEach(card => {
-    const photoCategory =
-      card.dataset.category;
-    card.style.display =
-      category === "all" ||
-      photoCategory === category
-        ? ""
-        : "none";
+}
+
+async function loadActivityCategories() {
+  const { data, error } = await supabase
+    .from("photo_activity_categories")
+    .select("code,name_ko,name_en,sort_order")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error) throw error;
+
+  activityCategories = data || [];
+}
+
+function getCategoryName(code) {
+  const category = activityCategories.find(item => item.code === code);
+  if (category) return category.name_ko;
+
+  const fallback = {
+    signature: "시민 서명운동",
+    solidarity: "시민사회 연대",
+    promotion: "홍보활동",
+    culture: "문화예술",
+    other: "기타 활동"
+  };
+
+  return fallback[code] || code || "미분류 활동";
+}
+
+function renderCategoryFilters() {
+  filters.replaceChildren();
+
+  const staticCodes = [
+    ...document.querySelectorAll(".event-record[data-category]")
+  ].map(section => section.dataset.category);
+
+  const codes = new Set([
+    ...staticCodes,
+    ...activityCategories.map(item => item.code),
+    ...photoPosts.map(post => post.activity_category).filter(Boolean)
+  ]);
+
+  const categories = [
+    { code: "all", name_ko: "전체" },
+    ...[...codes].map(code => ({
+      code,
+      name_ko: getCategoryName(code)
+    }))
+  ];
+
+  categories.forEach(category => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.dataset.category = category.code;
+    btn.textContent = category.name_ko;
+    btn.addEventListener("click", () => filterPhotos(category.code));
+    filters.appendChild(btn);
   });
-}/* =====================================
-   사진 확대
-===================================== */
-function openPhoto(src, title) {
-  const viewer =
-    document.getElementById("viewer");
-  const largePhoto =
-    document.getElementById("largePhoto");
-  largePhoto.src = src;
-  largePhoto.alt = title;
-  viewer.style.display = "flex";
-}function closePhoto() {
-  document.getElementById("viewer")
-    .style.display = "none";
-}document.addEventListener("keydown", event => {
-  if (event.key === "Escape") {
-    closePhoto();
+
+  filterPhotos(currentPhotoCategory);
+}
+
+function isNewPhoto(createdAt) {
+  if (!createdAt) return false;
+  const created = new Date(createdAt).getTime();
+  if (!Number.isFinite(created)) return false;
+  const elapsed = Date.now() - created;
+  return elapsed >= 0 && elapsed < NEW_PHOTO_MS;
+}
+
+function formatEventDate(value) {
+  if (!value) return "";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+
+  return date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC"
+  });
+}
+
+function createPhotoCard(post, file) {
+  const { data } = supabase.storage
+    .from("resource-files")
+    .getPublicUrl(file.file_path);
+
+  if (!data?.publicUrl) return null;
+
+  const card = document.createElement("div");
+  card.className = "photo";
+  card.dataset.category = post.activity_category || "other";
+
+  const img = document.createElement("img");
+  img.src = data.publicUrl;
+  img.alt = post.event_name || post.title || file.file_name || "활동 사진";
+  img.loading = "lazy";
+  img.addEventListener("click", () => openPhoto(img.src, img.alt));
+
+  const title = document.createElement("p");
+  title.className = "photo-title";
+  title.textContent = post.event_name || post.title || "활동 사진";
+
+  const category = document.createElement("span");
+  category.className = "photo-category";
+  category.textContent = getCategoryName(post.activity_category);
+
+  card.append(img, title, category);
+
+  if (post.event_date) {
+    const date = document.createElement("p");
+    date.className = "photo-description";
+    date.textContent = "행사일: " + formatEventDate(post.event_date);
+    card.appendChild(date);
   }
-});
-document.getElementById("viewer")
-  .addEventListener("click", event => {
-    if (event.target.id === "viewer") {
-      closePhoto();
-    }
-  });
-/* 최초 실행 */
-renderLaunchPhotos();
-</script>
-<!-- =====================================
-     제145-2-9-9-4단계
-     Supabase 신규 활동 사진 자동 조회
-===================================== -->
-<script type="module">
-import { createClient }
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-/* Supabase 프로젝트 주소 */
-const SUPABASE_URL =
-  "https://gugkwqpvtwivqudkimvy.supabase.co";
-/* Supabase 공개키 */
-const SUPABASE_KEY =
-  "sb_publishable_***********************";
-/* Supabase 연결 */
-const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-/* 사진 표시 영역 */
-const photoGallery =
-  document.getElementById(
-    "supabase-photo-gallery"
-  );
-/* 안내 메시지 */
-function showPhotoMessage(message) {
-  photoGallery.replaceChildren();
-  const paragraph =
-    document.createElement("p");
-  paragraph.textContent = message;
-  photoGallery.appendChild(paragraph);
-}/* =====================================
-   신규 활동 사진 조회
-===================================== */
+
+  if (post.content) {
+    const description = document.createElement("p");
+    description.className = "photo-description";
+    description.textContent = post.content;
+    card.appendChild(description);
+  }
+
+  return card;
+}
+
 async function loadSupabasePhotos() {
-  try {
-    showPhotoMessage(
-      "새로운 활동 사진을 불러오고 있습니다."
-    );
-    /* 사진 게시물 조회 */
-    const { data: posts, error: postError } =
-      await supabase
-        .from("resource_posts")
-        .select(
-  "id, title, content, activity_category, created_at"
-)        .eq("category", "image")
-        .order("created_at", {
-          ascending: false
-        });
-    if (postError) {
-      throw postError;
-    }
-    if (!posts || posts.length === 0) {
-      showPhotoMessage(
-        "등록된 활동 사진이 없습니다."
-      );
-      return;
-    }
-    /* 사진 게시물 ID 목록 */
-    const resourceIds =
-      posts.map(post => post.id);
-    /* 첨부파일 조회 */
-    const {
-      data: attachments,
-      error: attachmentError
-    } =
-      await supabase
+  const { data: posts, error: postError } = await supabase
+    .from("resource_posts")
+    .select("id,title,content,activity_category,event_name,event_date,created_at")
+    .eq("category", "image")
+    .order("created_at", { ascending: false });
+
+  if (postError) throw postError;
+
+  photoPosts = posts || [];
+  photoAttachments = [];
+
+  if (photoPosts.length) {
+    const ids = photoPosts.map(post => post.id);
+
+    // 대량 게시물에서도 URL 길이 제한을 피하도록 나누어 조회
+    for (let i = 0; i < ids.length; i += 100) {
+      const batch = ids.slice(i, i + 100);
+
+      const { data, error } = await supabase
         .from("resource_attachments")
-        .select(
-          "resource_id, file_name, file_path, file_type, attachment_type"
-        )
-        .in("resource_id", resourceIds)
+        .select("resource_id,file_name,file_path,file_type,attachment_type")
+        .in("resource_id", batch)
         .eq("attachment_type", "image");
-    if (attachmentError) {
-      throw attachmentError;
+
+      if (error) throw error;
+
+      photoAttachments.push(...(data || []));
     }
-    photoGallery.replaceChildren();
-    let photoCount = 0;
-    posts.forEach(post => {
-      const files =
-        (attachments || []).filter(file =>
-          file.resource_id === post.id &&
-          file.file_type?.startsWith("image/")
-        );
-      files.forEach(file => {
-        /* Storage 공개 URL */
-        const { data: urlData } =
-          supabase.storage
-            .from("resource-files")
-            .getPublicUrl(file.file_path);
-        if (!urlData?.publicUrl) {
-          return;
+  }
+
+  renderPhotoGalleries();
+  renderCategoryFilters();
+}
+
+function renderPhotoGalleries() {
+  newPhotoGallery.replaceChildren();
+  activityPhotoGallery.replaceChildren();
+
+  let newCount = 0;
+  let totalCount = 0;
+
+  const filesByPost = new Map();
+
+  photoAttachments.forEach(file => {
+    if (!filesByPost.has(file.resource_id)) {
+      filesByPost.set(file.resource_id, []);
+    }
+    filesByPost.get(file.resource_id).push(file);
+  });
+
+  photoPosts.forEach(post => {
+    const files = (filesByPost.get(post.id) || []).filter(file =>
+      file.file_type?.startsWith("image/") ||
+      /\.(jpg|jpeg|png|gif|webp|avif)$/i.test(file.file_name || "")
+    );
+
+    files.forEach(file => {
+      const card = createPhotoCard(post, file);
+      if (!card) return;
+
+      activityPhotoGallery.appendChild(card);
+      totalCount++;
+
+      if (isNewPhoto(post.created_at)) {
+        const newCard = createPhotoCard(post, file);
+        if (newCard) {
+          newPhotoGallery.appendChild(newCard);
+          newCount++;
         }
-        /* =====================================
-   제145-2-9-10-7-2단계
-   신규 사진 활동 분류 연결
-===================================== */
-/* 사진 카드 */
-const card =
-  document.createElement("div");
-card.className = "photo";
-/* 사진 활동 분류 연결 */
-card.dataset.category =
-  post.activity_category || "other";
-/* 사진 이미지 */
-const img =
-  document.createElement("img");
-        img.src = urlData.publicUrl;
-        img.alt =
-          post.title || file.file_name;
-        img.loading = "lazy";
-        /* 기존 사진 확대 기능 연결 */
-        img.onclick = () => {
-          window.openPhoto(
-            img.src,
-            img.alt
-          );
-        };
-        /* =====================================
-   제145-2-9-11-6-4단계
-   신규 사진 활동 분류 이름 표시
-===================================== */
-/* 사진 활동 분류 이름 */
-const activityCategoryNames = {
-  signature: "시민 서명운동",
-  solidarity: "시민사회 연대",
-  promotion: "홍보활동",
-  culture: "문화예술",
-  other: "기타 활동"
-};
-/* 활동 분류 표시 */
-const categoryLabel =
-  document.createElement("p");
-categoryLabel.className =
-  "photo-category";
-categoryLabel.textContent =
-  activityCategoryNames[
-    post.activity_category
-  ] || "기타 활동";
-/* 사진 제목 */
-const caption =
-  document.createElement("p");
-caption.className =
-  "photo-title";
-caption.textContent =
-  post.title || "활동 사진";
-/* 사진 카드에 추가 */
-card.appendChild(img);
-card.appendChild(categoryLabel);
-card.appendChild(caption);
-        /* 사진 설명 */
-        if (post.content) {
-          const description =
-            document.createElement("p");
-          description.className =
-            "photo-description";
-          description.textContent =
-            post.content;
-          card.appendChild(description);
-        }
-        photoGallery.appendChild(card);
-        photoCount++;
-      });
+      }
     });
-    if (photoCount === 0) {
-      showPhotoMessage(
-        "표시할 사진 파일이 없습니다."
-      );
-      return;
-    }
-/* =====================================
-   제145-2-9-10-7-4단계
-   신규 사진 조회 후 선택 분류 유지
-===================================== */
-/* 현재 선택된 분류 버튼 */
-const activeButton =
-  document.querySelector(
-    ".filters button.active"
-  );
-/* 선택된 분류 다시 적용 */
-if (activeButton) {
-  const category =
-    activeButton.getAttribute("onclick")
-      ?.match(/filterPhotos\('([^']+)'/)?.[1];
-  if (category) {
-    filterPhotos(
-      category,
-      activeButton
-    );
+  });
+
+  if (!newCount) {
+    const p = document.createElement("p");
+    p.className = "empty-message";
+    p.textContent = "최근 7일 이내 등록된 활동 사진이 없습니다.";
+    newPhotoGallery.appendChild(p);
   }
-}     
-    console.log(
-      "Supabase 활동 사진 조회 완료:",
-      photoCount,
-      "장"
-    );
-/* 현재 선택된 사진 분류 다시 적용 */
-const activeFilter =
-  document.querySelector(
-    ".filters button.active"
-  );
-if (activeFilter) {
-  const category =
-    activeFilter.getAttribute("onclick")
-      ?.match(/'([^']+)'/)?.[1] || "all";
-  filterPhotos(category, activeFilter);
-}     
+
+  if (!totalCount) {
+    const p = document.createElement("p");
+    p.className = "empty-message";
+    p.textContent = "등록된 활동 사진이 없습니다.";
+    activityPhotoGallery.appendChild(p);
+  }
+
+  filterPhotos(currentPhotoCategory);
+}
+
+function filterPhotos(category) {
+  currentPhotoCategory = category;
+
+  filters.querySelectorAll("button").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.category === category);
+  });
+
+  document.querySelectorAll(".event-record[data-category]")
+    .forEach(section => {
+      section.hidden =
+        category !== "all" && section.dataset.category !== category;
+    });
+
+  // 최근 등록 사진도 선택한 분류에 따라 표시
+  let visibleNewCount = 0;
+
+  newPhotoGallery.querySelectorAll(".photo").forEach(card => {
+    const visible =
+      category === "all" || card.dataset.category === category;
+    card.hidden = !visible;
+    if (visible) visibleNewCount++;
+  });
+
+  newPhotoSection.hidden = category !== "all" && visibleNewCount === 0;
+
+  let visibleCount = 0;
+
+  activityPhotoGallery.querySelectorAll(".photo").forEach(card => {
+    const visible =
+      category === "all" || card.dataset.category === category;
+    card.hidden = !visible;
+    if (visible) visibleCount++;
+  });
+
+  activityPhotoSection.hidden = category !== "all" && visibleCount === 0;
+}
+
+async function initializeGallery() {
+  renderLaunchPhotos();
+  connectStaticPhotos();
+  renderCategoryFilters();
+
+  try {
+    await loadActivityCategories();
+    renderCategoryFilters();
   } catch (error) {
-    console.error(
-      "Supabase 활동 사진 조회 오류:",
-      error
-    );
-    showPhotoMessage(
-      "새로운 활동 사진을 불러오지 못했습니다."
-    );
+    console.error("활동 분류 조회 오류:", error);
   }
-}/* 최초 실행 */
-loadSupabasePhotos();
+
+  try {
+    await loadSupabasePhotos();
+    console.log("시민활동 사진기록관 조회 완료");
+  } catch (error) {
+    console.error("활동 사진 조회 오류:", error);
+
+    const p = document.createElement("p");
+    p.className = "empty-message";
+    p.textContent = "활동 사진을 불러오지 못했습니다.";
+    activityPhotoGallery.replaceChildren(p);
+  }
+}
+
+initializeGallery();
 </script>
-   
+
 </body>
 </html>
