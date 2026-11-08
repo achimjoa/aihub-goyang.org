@@ -551,27 +551,35 @@ const retryCleanupButton =
 
 /* 관리자에게만 버튼 표시 */
 
+/* =====================================
+   관리자 첨부파일 정리 버튼 표시
+===================================== */
+
 async function updateRetryButton() {
 
-  const isAdmin =
-    await checkBoardAdmin();
-
-  retryCleanupButton.hidden = !isAdmin;
-
- const button =
+  const button =
     document.getElementById(
       "retryCleanupButton"
     );
 
+  /* 버튼 존재 여부 확인 */
+
   if (!button) {
+
     console.warn(
       "첨부파일 정리 버튼을 찾을 수 없습니다."
     );
+
     return;
+
   }
+
+  /* 관리자 권한 확인 */
 
   const isAdmin =
     await checkBoardAdmin();
+
+  /* 관리자에게만 버튼 표시 */
 
   button.hidden = !isAdmin;
 
