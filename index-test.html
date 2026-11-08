@@ -238,33 +238,38 @@ body {
 
 nav {
   width: 100%;
-
-  background: var(--main-blue);
-
-  border-top: 4px solid var(--yellow);
+  padding: 7px 10px;
+  background: #0754a6;
+  border-top: 3px solid #ffe44d;
 
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-
-  box-shadow:
-    0 4px 12px rgba(0,0,0,0.15);
+  gap: 5px;
 }
 
 nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 12px;
+  min-height: 38px;
+
+  background: #176bbd;
+  border: 1px solid #8ab8e8;
+  border-radius: 6px;
+
   color: white;
-  text-decoration: none;
-
-  padding: 13px 16px;
-
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  text-decoration: none;
 }
 
-nav a:hover {
-  background: #003a7a;
-  color: var(--yellow);
+nav a:hover,
+nav a:focus-visible {
+  background: #ffe44d;
+  color: #003b79;
 }
 
 /* 모바일 */
@@ -326,77 +331,87 @@ nav a:hover {
 
 </nav>
       
-<!-- =====================================
-     메인 홍보 화면
-===================================== -->
+/* 메인 화면 */
 
-<header class="hero" id="home">
+.hero {
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  display: block;
+  color: #17315b;
+  text-align: center;
+}
 
-  <div class="hero-language">
+/* 이미지 원본 비율 유지 */
 
-    <a href="index.html"
-       lang="ko"
-       aria-current="page">
-      한국어
-    </a>
+.hero-image-wrap {
+  width: 100%;
+  line-height: 0;
+}
 
-    <a href="index-en.html" lang="en">
-      English
-    </a>
+.hero-main-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
-  </div>
+/* 이미지 아래 버튼 */
 
-  <div class="hero-content">
+.hero-actions {
+  position: relative;
+  width: 100%;
+  padding: 12px 15px;
+  background: #eaf3ff;
+}
 
-    <div class="hero-logo">
-      경기도 글로벌 AI 허브 유치<br>
-      고양특례시 범시민추진위원회
-    </div>
+/* 언어 선택 */
 
-    <h1>GLOBAL AI HUB</h1>
+.hero-actions .hero-language {
+  position: static;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}
 
-    <h2>
-      글로벌 AI 허브는
-      <strong>고양특례시로!</strong>
-    </h2>
+/* 버튼 정렬 */
 
-    <p>
-      고양시에 성장동력을 달라!<br>
-      고양시에 일자리를 달라!<br>
-      시민의 힘으로, 경기도의 역량으로, 세계와 함께!
-    </p>
+.hero-actions .hero-buttons,
+.hero-actions .member-menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 8px 0;
+}
 
-    <div class="hero-buttons">
+/* 회원 버튼 */
 
-      <a class="btn" href="hub.html">
-        글로벌 AI 허브 알아보기
-      </a>
+.hero-actions .member-menu a {
+  background: #0754a6;
+  border: 1px solid #0754a6;
+  color: white;
+}
 
-      <a class="btn" href="participate.html">
-        시민 참여
-      </a>
+/* 모바일 */
 
-    </div>
+@media (max-width: 600px) {
+  .hero {
+    min-height: 0;
+    padding: 0;
+  }
 
-    <div class="member-menu">
+  .hero-actions {
+    padding: 10px;
+  }
 
-      <a href="login.html">
-        로그인
-      </a>
-
-      <a href="signup.html">
-        회원가입
-      </a>
-
-      <a href="board.html">
-        시민참여 게시판
-      </a>
-
-    </div>
-
-  </div>
-
-</header>
+  .hero-actions .hero-buttons,
+  .hero-actions .member-menu {
+    gap: 6px;
+  }
+}
 
 <!-- =====================================
      배너 표시 영역
