@@ -2389,7 +2389,179 @@ main section h2 {
 
 </script>
 
+<!-- =====================================
+     제165단계
+     상단 메뉴 및 배너 배치 안정화
+===================================== -->
 
+<style>
+
+/* 상단 메뉴 */
+
+nav[aria-label="주 메뉴"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 7px;
+  padding: 12px;
+
+  background: #0754a6;
+  border-top: 3px solid #ffe44d;
+}
+
+/* 메뉴 버튼 */
+
+nav[aria-label="주 메뉴"] a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+  padding: 8px 13px;
+
+  background: #ffffff;
+  color: #0754a6;
+
+  border: 1px solid #d6e5f5;
+  border-radius: 6px;
+
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+
+  transition: background 0.2s ease;
+}
+
+/* 마우스 및 키보드 선택 */
+
+nav[aria-label="주 메뉴"] a:hover,
+nav[aria-label="주 메뉴"] a:focus-visible {
+  background: #ffe44d;
+  color: #003b79;
+}
+
+/* 로그인·회원가입 버튼 */
+
+nav[aria-label="주 메뉴"] .nav-member-link {
+  background: #ffe44d;
+  color: #003b79;
+  border-color: #ffe44d;
+}
+
+/* 메인 이미지: 기존 비율 유지 */
+
+.hero {
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-image-wrap {
+  margin: 0;
+  padding: 0;
+}
+
+.hero-main-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 이미지 아래 버튼 */
+
+.hero-actions {
+  margin: 0;
+  padding: 10px 15px;
+}
+
+/* 배너 영역 */
+
+#homepageBannerLayout {
+  width: calc(100% - 30px);
+  max-width: 1180px;
+
+  margin: 12px auto 20px;
+  padding: 0;
+
+  gap: 15px;
+}
+
+/* 배너 카드 */
+
+#homepageBannerLayout .banner-section {
+  padding: 20px;
+}
+
+/* 배너 이미지 */
+
+.homepage-banner-link img {
+  width: 100%;
+  height: 105px;
+  object-fit: contain;
+}
+
+/* 모바일 */
+
+@media (max-width: 600px) {
+
+  nav[aria-label="주 메뉴"] {
+    gap: 5px;
+    padding: 8px;
+  }
+
+  nav[aria-label="주 메뉴"] a {
+    font-size: 12px;
+    padding: 7px 9px;
+  }
+
+  #homepageBannerLayout {
+    width: calc(100% - 20px);
+    margin: 10px auto;
+  }
+
+}
+
+</style>
+
+<script>
+
+/* =====================================
+   로그인·회원가입 상단 메뉴 이동
+===================================== */
+
+(function () {
+
+  "use strict";
+
+  const nav = document.querySelector(
+    'nav[aria-label="주 메뉴"]'
+  );
+
+  const memberMenu = document.querySelector(
+    ".hero-actions .member-menu"
+  );
+
+  if (!nav || !memberMenu) return;
+
+  const memberLinks = memberMenu.querySelectorAll(
+    'a[href="login.html"], a[href="signup.html"]'
+  );
+
+  memberLinks.forEach(function (link) {
+
+    link.classList.add("nav-member-link");
+
+    nav.appendChild(link);
+
+  });
+
+  /* 회원 메뉴에 남은 게시판 링크는 유지 */
+
+})();
+
+</script>
       
 </body>
 </html>     
