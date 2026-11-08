@@ -376,6 +376,20 @@ footer {
 
 <div class="action-row">
 
+<!-- 관리자 게시글 삭제 -->
+
+<button
+  type="button"
+  id="adminDeletePostButton"
+  class="secondary"
+  style="
+    background:#b91c1c;
+    color:white;
+  "
+  hidden>
+  관리자 게시글 삭제
+</button>
+  
 <button id="backButton" class="secondary">
 목록으로
 </button>
@@ -517,6 +531,228 @@ multiple>
 
 <script type="module">
 
+/* =====================================
+   관리자 게시글 삭제
+===================================== */
+
+let currentPostId = null;
+
+const adminDeletePostButton =
+  document.getElementById(
+    "adminDeletePostButton"
+  );
+
+/* 관리자 권한 확인 */
+
+async function checkBoardAdmin() {
+
+  const { data, error } =
+    await supabase.rpc(
+      "is_resource_admin"
+    );
+
+  if (error) {
+    console.error(
+      "관리자 권한 확인 오류:",
+      error
+    );
+
+    return false;
+  }
+
+  return data === true;
+
+}
+
+/* 삭제 버튼 표시 */
+
+async function updateAdminDeleteButton(postId) {
+
+  currentPostId = postId;
+
+  adminDeletePostButton.hidden = true;
+
+  const isAdmin =
+    await checkBoardAdmin();
+
+  adminDeletePostButton.hidden = !isAdmin;
+
+}
+
+/* =====================================
+   게시글 삭제 처리
+===================================== */
+
+async function deleteBoardPost(postId) {
+
+  const isAdmin =
+    await checkBoardAdmin();
+
+  if (!isAdmin) {
+    throw new Error(
+      "관리자 권한이 없습니다."
+    );
+  }
+
+  /* 첨부파일 정보 조회 */
+
+  const {
+    data: attachments,
+    error: attachmentError
+  } =
+    await supabase
+      .from("board_attachments")
+      .select(
+        "file_path,attachment_type"
+      )
+      .eq("post_id", postId);
+
+  if (attachmentError) {
+    throw attachmentError;
+  }
+
+  /* 게시글 삭제 */
+
+  const {
+    data: deletedPosts,
+    error: deleteError
+  } =
+    await supabase
+      .from("board_posts")
+      .delete()
+      .eq("id", postId)
+      .select("id");
+
+  if (deleteError) {
+    throw deleteError;
+  }
+
+  if (!deletedPosts || deletedPosts.length !== 1) {
+    throw new Error(
+      "게시글 삭제가 확인되지 않았습니다."
+    );
+  }
+
+  /* 사진 및 문서 경로 분리 */
+
+  const imagePaths = [];
+  const documentPaths = [];
+
+  for (const file of attachments || []) {
+
+    if (file.attachment_type === "image") {
+      imagePaths.push(file.file_path);
+    }
+
+    if (file.attachment_type === "document") {
+      documentPaths.push(file.file_path);
+    }
+
+  }
+
+  /* Storage 사진 삭제 */
+
+  if (imagePaths.length > 0) {
+
+    const { error } =
+      await supabase.storage
+        .from("board-images")
+        .remove(imagePaths);
+
+    if (error) {
+      throw new Error(
+        "게시글은 삭제되었지만 " +
+        "사진 파일 정리에 실패했습니다: " +
+        error.message
+      );
+    }
+
+  }
+
+  /* Storage 문서 삭제 */
+
+  if (documentPaths.length > 0) {
+
+    const { error } =
+      await supabase.storage
+        .from("board-files")
+        .remove(documentPaths);
+
+    if (error) {
+      throw new Error(
+        "게시글은 삭제되었지만 " +
+        "문서 파일 정리에 실패했습니다: " +
+        error.message
+      );
+    }
+
+  }
+
+}
+
+/* =====================================
+   관리자 삭제 버튼 클릭
+===================================== */
+
+adminDeletePostButton.addEventListener(
+  "click",
+  async () => {
+
+    if (!currentPostId) {
+      return;
+    }
+
+    const confirmed = confirm(
+      "이 게시글을 삭제하시겠습니까?\n\n" +
+      "게시글, 댓글, 답글 및 첨부파일이 " +
+      "삭제됩니다.\n\n" +
+      "삭제 후에는 복구하기 어렵습니다."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    adminDeletePostButton.disabled = true;
+
+    showMessage(
+      "게시글과 첨부파일을 삭제하고 있습니다."
+    );
+
+    try {
+
+      await deleteBoardPost(currentPostId);
+
+      currentPostId = null;
+
+      await loadPosts();
+
+      showMessage(
+        "게시글과 첨부파일이 삭제되었습니다."
+      );
+
+    } catch (error) {
+
+      console.error(
+        "관리자 게시글 삭제 오류:",
+        error
+      );
+
+      showMessage(
+        "게시글 삭제 처리 중 오류가 발생했습니다.\n" +
+        error.message,
+        true
+      );
+
+    } finally {
+
+      adminDeletePostButton.disabled = false;
+
+    }
+
+  }
+);
+  
 import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
@@ -710,6 +946,10 @@ async function openPost(postId) {
   $("commentFormArea").hidden = !approvedMember;
 
   showView("detailView");
+
+  /* 관리자 삭제 버튼 표시 */
+
+await updateAdminDeleteButton(postId);
 
   await Promise.all([
     loadAttachments(postId),
