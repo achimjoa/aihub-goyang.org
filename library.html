@@ -442,6 +442,51 @@ footer {
   gap: 8px;
   margin-top: 12px;
 }
+
+/* ==========================================
+   자료별 토론
+========================================== */
+
+#discussionContent {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font: inherit;
+  resize: vertical;
+}
+
+.discussion-item {
+  padding: 20px;
+  margin-bottom: 15px;
+  background: #f8fbff;
+  border: 1px solid #dce6f2;
+  border-radius: 9px;
+}
+
+.discussion-author {
+  font-weight: bold;
+  color: #0754a6;
+}
+
+.discussion-date {
+  font-size: 13px;
+  color: #68788c;
+}
+
+.discussion-content {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.discussion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+  
   
 </style>
 
@@ -1407,50 +1452,7 @@ async function openDocument(
 
 }
 
-/* ==========================================
-   자료별 토론
-========================================== */
 
-#discussionContent {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #c5d5e8;
-  border-radius: 8px;
-  font: inherit;
-  resize: vertical;
-}
-
-.discussion-item {
-  padding: 20px;
-  margin-bottom: 15px;
-  background: #f8fbff;
-  border: 1px solid #dce6f2;
-  border-radius: 9px;
-}
-
-.discussion-author {
-  font-weight: bold;
-  color: #0754a6;
-}
-
-.discussion-date {
-  font-size: 13px;
-  color: #68788c;
-}
-
-.discussion-content {
-  margin-top: 12px;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.discussion-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-  
 /* ==========================================
    13. 검색 이벤트
 ========================================== */
