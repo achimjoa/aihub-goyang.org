@@ -1701,6 +1701,98 @@ async function saveDiscussion() {
     return;
   }
 
+/* ==========================================
+   답글 작성 및 저장
+========================================== */
+
+async function saveDiscussionReply(
+  documentId,
+  parentId,
+  content,
+  button
+) {
+
+  // 현재 열려 있는 자료 확인
+
+  if (
+    !discussionDocument ||
+    discussionDocument.id !== documentId
+  ) {
+    return;
+  }
+
+  // 답글 내용 검증
+
+  const replyContent = content.trim();
+
+  if (
+    replyContent.length < 1 ||
+    replyContent.length > 5000
+  ) {
+
+    showDiscussionMessage(
+      "답글은 1자 이상 5,000자 이하로 작성해 주세요.",
+      true
+    );
+
+    return;
+  }
+
+  // 중복 등록 방지
+
+  button.disabled = true;
+
+  try {
+
+    // 답글 작성 RPC 호출
+
+    const { data, error } = await supabase.rpc(
+      "create_knowledge_discussion_reply",
+      {
+        p_document_id: documentId,
+        p_parent_id: parentId,
+        p_content: replyContent
+      }
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    if (
+      data === null ||
+      data === false
+    ) {
+
+      throw new Error(
+        "답글 저장 결과를 확인할 수 없습니다."
+      );
+    }
+
+    // 현재 자료가 유지되는 경우 목록 갱신
+
+    if (
+      discussionDocument?.id === documentId
+    ) {
+
+      await openDiscussion();
+
+    }
+
+  } catch (error) {
+
+    showDiscussionMessage(
+      "답글 저장 실패: " + error.message,
+      true
+    );
+
+  } finally {
+
+    button.disabled = false;
+
+  }
+}
+  
   const button = $("discussionSaveButton");
 
   button.disabled = true;
