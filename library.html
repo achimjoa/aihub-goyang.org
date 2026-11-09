@@ -1502,11 +1502,11 @@ async function openDiscussion() {
   try {
 
     const { data, error } = await supabase.rpc(
-      "get_knowledge_discussions",
-      {
-        p_document_id: documentId
-      }
-    );
+  "get_knowledge_discussions_v2",
+  {
+    p_document_id: documentId
+  }
+);
 
     if (requestId !== discussionRequestId) return;
 
