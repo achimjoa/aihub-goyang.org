@@ -782,51 +782,109 @@ if (canHide || canRestore) {
 
   button.addEventListener("click", async () => {
 
-    const nextDeleted = canHide;
+button.addEventListener("click", async () => {
 
-    const message = canHide
-      ? "이 게시글을 숨기시겠습니까?"
-      : "관리자가 숨긴 게시글을 복원하시겠습니까?";
+  const nextDeleted = canHide;
 
-    if (!confirm(message)) {
-      return;
+  const actionName = canHide
+    ? "게시글 숨김"
+    : "게시글 복원";
+
+  /* =====================================
+     관리자 처리 사유 입력
+  ===================================== */
+
+  const reasonInput = prompt(
+    actionName + " 처리 사유를 입력하세요.\n" +
+    "(필수 입력, 최대 1000자)"
+  );
+
+  // 취소 버튼을 누른 경우
+  if (reasonInput === null) {
+    return;
+  }
+
+  const reason = reasonInput.trim();
+
+  // 빈 사유 입력 방지
+  if (!reason) {
+    alert("관리자 처리 사유를 입력해야 합니다.");
+    return;
+  }
+
+  // 최대 길이 확인
+  if (reason.length > 1000) {
+    alert("처리 사유는 1000자 이내로 입력해야 합니다.");
+    return;
+  }
+
+  /* =====================================
+     최종 처리 확인
+  ===================================== */
+
+  const confirmed = confirm(
+    actionName + "을 진행하시겠습니까?\n\n" +
+    "처리 사유:\n" + reason
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+
+    /* =====================================
+       V2 관리자 처리 함수 호출
+    ===================================== */
+
+    const { data, error } = await supabase.rpc(
+      "admin_set_knowledge_discussion_visibility_v2",
+      {
+        p_discussion_id: item.id,
+        p_is_deleted: nextDeleted,
+        p_reason: reason
+      }
+    );
+
+    if (error) {
+      throw error;
     }
 
-    button.disabled = true;
-
-    try {
-
-      const { data, error } = await supabase.rpc(
-        "admin_set_knowledge_discussion_visibility",
-        {
-          p_discussion_id: item.id,
-          p_is_deleted: nextDeleted
-        }
+    if (data !== true) {
+      throw new Error(
+        "게시글 상태 변경에 실패했습니다."
       );
-
-      if (error) {
-        throw error;
-      }
-
-      if (data !== true) {
-        throw new Error(
-          "게시글 상태 변경에 실패했습니다."
-        );
-      }
-
-      await loadAdminDiscussions();
-
-    } catch (error) {
-
-      showDiscussionAdminMessage(
-        "게시글 관리 실패: " + error.message
-      );
-
-    } finally {
-
-      button.disabled = false;
     }
-  });
+
+    /* =====================================
+       처리 완료 후 목록 새로고침
+    ===================================== */
+
+    await loadAdminDiscussions();
+
+    alert(
+      actionName + " 처리가 완료되었습니다."
+    );
+
+  } catch (error) {
+
+    showDiscussionAdminMessage(
+      "게시글 관리 실패: " + error.message
+    );
+
+    alert(
+      "게시글 관리 중 오류가 발생했습니다.\n" +
+      error.message
+    );
+
+  } finally {
+
+    button.disabled = false;
+  }
+
+});    
 
 } else {
 
