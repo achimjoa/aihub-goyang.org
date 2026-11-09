@@ -640,8 +640,8 @@ async function loadAdminDiscussions() {
   try {
 
     const { data, error } = await supabase.rpc(
-      "admin_get_knowledge_discussions"
-    );
+  "admin_get_knowledge_discussions_v2"
+);
 
     if (error) {
       throw error;
@@ -720,76 +720,123 @@ function renderAdminDiscussions(items) {
 
     status.className = "discussion-status";
 
-    if (item.is_deleted) {
+    /* =====================================
+   게시글 관리 상태 구분
+===================================== */
 
-      status.classList.add("status-hidden");
-      status.textContent = "상태: 삭제 또는 숨김";
+switch (item.moderation_status) {
 
-    } else {
+  case "visible":
 
-      status.classList.add("status-visible");
-      status.textContent = "상태: 공개";
+    status.classList.add("status-visible");
+    status.textContent = "상태: 공개";
+    break;
+
+  case "admin_hidden":
+
+    status.classList.add("status-hidden");
+    status.textContent = "상태: 관리자 숨김";
+    break;
+
+  case "member_deleted":
+
+    status.classList.add("status-hidden");
+    status.textContent = "상태: 회원 삭제";
+    break;
+
+  case "legacy_deleted":
+
+    status.classList.add("status-hidden");
+    status.textContent = "상태: 과거 삭제 기록";
+    break;
+
+  default:
+
+    status.classList.add("status-hidden");
+    status.textContent = "상태: 확인 필요";
+}
+
+/* =====================================
+   게시글 상태별 관리 버튼
+===================================== */
+
+const button = document.createElement("button");
+
+button.type = "button";
+
+const canHide =
+  item.moderation_status === "visible";
+
+const canRestore =
+  item.moderation_status === "admin_hidden";
+
+if (canHide || canRestore) {
+
+  button.className = canRestore
+    ? "action-button restore"
+    : "action-button danger";
+
+  button.textContent = canRestore
+    ? "게시글 복원"
+    : "게시글 숨김";
+
+  button.addEventListener("click", async () => {
+
+    const nextDeleted = canHide;
+
+    const message = canHide
+      ? "이 게시글을 숨기시겠습니까?"
+      : "관리자가 숨긴 게시글을 복원하시겠습니까?";
+
+    if (!confirm(message)) {
+      return;
     }
 
-    const button = document.createElement("button");
+    button.disabled = true;
 
-    button.type = "button";
+    try {
 
-    button.className = item.is_deleted
-      ? "action-button restore"
-      : "action-button danger";
+      const { data, error } = await supabase.rpc(
+        "admin_set_knowledge_discussion_visibility",
+        {
+          p_discussion_id: item.id,
+          p_is_deleted: nextDeleted
+        }
+      );
 
-    button.textContent = item.is_deleted
-      ? "게시글 복원"
-      : "게시글 숨김";
-
-    button.addEventListener("click", async () => {
-
-      const nextDeleted = !item.is_deleted;
-
-      const message = nextDeleted
-        ? "이 게시글을 숨기시겠습니까?"
-        : "이 게시글을 복원하시겠습니까?\n\n" +
-          "주의: 회원이 직접 삭제한 게시글일 수도 있습니다.";
-
-      if (!confirm(message)) {
-        return;
+      if (error) {
+        throw error;
       }
 
-      button.disabled = true;
-
-      try {
-
-        const { data, error } = await supabase.rpc(
-          "admin_set_knowledge_discussion_visibility",
-          {
-            p_discussion_id: item.id,
-            p_is_deleted: nextDeleted
-          }
+      if (data !== true) {
+        throw new Error(
+          "게시글 상태 변경에 실패했습니다."
         );
-
-        if (error) {
-          throw error;
-        }
-
-        if (data !== true) {
-          throw new Error(
-            "게시글 상태를 변경하지 못했습니다."
-          );
-        }
-
-        await loadAdminDiscussions();
-
-      } catch (error) {
-
-        showDiscussionAdminMessage(
-          "게시글 관리 실패: " + error.message
-        );
-
-      } finally {
-
-        button.disabled = false;
       }
+
+      await loadAdminDiscussions();
+
+    } catch (error) {
+
+      showDiscussionAdminMessage(
+        "게시글 관리 실패: " + error.message
+      );
+
+    } finally {
+
+      button.disabled = false;
+    }
+  });
+
+} else {
+
+  button.className = "action-button";
+
+  button.textContent = "복원 불가";
+
+  button.disabled = true;
+}
+    
     });
 
     article.append(
