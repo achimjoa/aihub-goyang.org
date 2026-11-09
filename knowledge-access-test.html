@@ -1,9 +1,462 @@
-aihub-goyang.org/
-│
-├── index.html
-├── login.html
-├── signup.html
-├── admin-center.html
-├── library.html
-│
-└── knowledge-access-test.html  ← 신규
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>지식자료실 접근 권한 시험</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 15px;
+}
+
+section {
+  background: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+button {
+  padding: 12px 20px;
+  margin: 6px;
+  border: none;
+  border-radius: 7px;
+  background: #0754a6;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #10315e;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status {
+  padding: 15px;
+  background: #eef4fb;
+  border-radius: 8px;
+  margin-top: 15px;
+  white-space: pre-line;
+}
+
+.result {
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.success {
+  background: #e8f5e9;
+  color: #176534;
+}
+
+.failure {
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+.test-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #10315e;
+  color: white;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>지식자료실 접근 권한 시험</h1>
+  <p>제172-12단계 · 회원 인증 및 자료 등급 검증</p>
+</header>
+
+<main>
+
+<section>
+
+<h2>① 회원 로그인 상태</h2>
+
+<div id="memberStatus" class="status">
+  회원정보 확인 중...
+</div>
+
+<button id="refreshButton">
+  로그인 상태 새로 확인
+</button>
+
+<a href="login.html">
+  <button type="button">
+    로그인 페이지
+  </button>
+</a>
+
+</section>
+
+<section>
+
+<h2>② 자료별 접근 권한 시험</h2>
+
+<p>
+  각 버튼을 누르면 Supabase 서버에서
+  실제 자료 접근 권한을 검사합니다.
+</p>
+
+<div class="test-buttons">
+
+<button data-document-id="1">
+  3급 공개자료 시험
+</button>
+
+<button data-document-id="2">
+  2급 회원자료 시험
+</button>
+
+<button data-document-id="3">
+  1급 대외비 자료 시험
+</button>
+
+</div>
+
+<div id="testResult" class="result">
+  시험 버튼을 선택해 주세요.
+</div>
+
+</section>
+
+<section>
+
+<h2>③ 시험 기준</h2>
+
+<p>
+  <strong>3급:</strong>
+  누구나 열람할 수 있는 공개자료
+</p>
+
+<p>
+  <strong>2급:</strong>
+  관리자가 승인한 로그인 회원에게 공개
+</p>
+
+<p>
+  <strong>1급:</strong>
+  승인 회원 중 신원확인과 자료별 열람 승인을
+  완료한 회원에게 공개
+</p>
+
+<p>
+  이 페이지에서는 실제 원문 파일을 열지 않고
+  접근 권한과 임시 주소 발급 여부만 확인합니다.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// ===============================================
+// 1. 기존 로그인 시스템과 동일한 Supabase 설정
+// ===============================================
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const memberStatus =
+  document.getElementById("memberStatus");
+
+const testResult =
+  document.getElementById("testResult");
+
+const refreshButton =
+  document.getElementById("refreshButton");
+
+const testButtons =
+  document.querySelectorAll(
+    "[data-document-id]"
+  );
+
+// ===============================================
+// 2. 회원 상태 확인
+// ===============================================
+
+async function checkMemberStatus() {
+
+  memberStatus.textContent =
+    "회원정보 확인 중...";
+
+  try {
+
+    const { data, error } =
+      await supabase.auth.getUser();
+
+    if (error || !data.user) {
+
+      memberStatus.textContent =
+        "현재 로그인하지 않은 상태입니다.";
+
+      return;
+    }
+
+    const user = data.user;
+
+    const {
+      data: profile,
+      error: profileError
+    } = await supabase
+      .from("profiles")
+      .select(
+        "member_role, approval_status"
+      )
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileError || !profile) {
+
+      memberStatus.textContent =
+        "로그인은 확인되었으나 " +
+        "회원 승인 정보를 조회할 수 없습니다.";
+
+      return;
+    }
+
+    const approved =
+      profile.approval_status === "approved";
+
+    memberStatus.textContent =
+      "로그인 상태: 로그인됨\n" +
+      "회원 역할: " + profile.member_role + "\n" +
+      "승인 상태: " + profile.approval_status + "\n" +
+      "정식 회원: " +
+      (approved ? "승인 완료" : "미승인");
+
+  } catch (error) {
+
+    memberStatus.textContent =
+      "회원정보 확인 중 오류가 발생했습니다.";
+
+  }
+
+}
+
+// ===============================================
+// 3. 자료 접근 시험
+// ===============================================
+
+async function testDocumentAccess(documentId) {
+
+  testButtons.forEach(button => {
+    button.disabled = true;
+  });
+
+  testResult.className = "result";
+
+  testResult.textContent =
+    "자료 ID " + documentId +
+    " 접근 권한 확인 중...";
+
+  try {
+
+    // Edge Function 호출
+    // Supabase 클라이언트가 현재 세션의
+    // 인증정보를 사용하도록 구성
+
+    const { data, error } =
+      await supabase.functions.invoke(
+        "knowledge-document-access",
+        {
+          body: {
+            document_id: documentId
+          }
+        }
+      );
+
+    // HTTP 오류가 발생한 경우에도
+    // 서버가 반환한 JSON을 확인
+
+    if (error) {
+
+      let errorMessage =
+        "서버 요청에 실패했습니다.";
+
+      let httpStatus = "확인 불가";
+
+      if (error.context?.status) {
+        httpStatus = error.context.status;
+      }
+
+      if (error.context) {
+
+        try {
+
+          const errorBody =
+            await error.context.json();
+
+          if (errorBody?.error) {
+            errorMessage = errorBody.error;
+          }
+
+        } catch (_) {
+          // 오류 응답이 JSON이 아닐 수 있음
+        }
+
+      }
+
+      testResult.className =
+        "result failure";
+
+      testResult.textContent =
+        "자료 ID: " + documentId + "\n" +
+        "HTTP 상태: " + httpStatus + "\n" +
+        "접근 결과: 거부 또는 요청 실패\n" +
+        "사유: " + errorMessage;
+
+      return;
+    }
+
+    if (data?.success === true) {
+
+      testResult.className =
+        "result success";
+
+      testResult.textContent =
+        "자료 ID: " + data.document_id + "\n" +
+        "자료명: " + data.title + "\n" +
+        "공개 등급: " + data.security_grade + "급\n" +
+        "접근 결과: 허용\n" +
+        "임시 주소 발급: " +
+        (data.signed_url ? "성공" : "실패") + "\n" +
+        "유효기간: " + data.expires_in + "초";
+
+    } else {
+
+      testResult.className =
+        "result failure";
+
+      testResult.textContent =
+        "자료 ID: " + documentId + "\n" +
+        "접근 결과: 거부\n" +
+        "사유: " +
+        (data?.error || "알 수 없는 오류");
+
+    }
+
+  } catch (error) {
+
+    testResult.className =
+      "result failure";
+
+    testResult.textContent =
+      "시험 중 오류가 발생했습니다.";
+
+  } finally {
+
+    testButtons.forEach(button => {
+      button.disabled = false;
+    });
+
+  }
+
+}
+
+// ===============================================
+// 4. 버튼 이벤트
+// ===============================================
+
+refreshButton.addEventListener(
+  "click",
+  checkMemberStatus
+);
+
+testButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const documentId =
+      Number(button.dataset.documentId);
+
+    testDocumentAccess(documentId);
+
+  });
+
+});
+
+// ===============================================
+// 5. 초기 실행
+// ===============================================
+
+checkMemberStatus();
+
+</script>
+
+</body>
+</html>
