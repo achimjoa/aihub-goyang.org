@@ -221,6 +221,58 @@ async function runSecurityTest() {
           "PASS\n" +
           "일반회원의 관리자 감사기록 조회가 차단되었습니다.";
 
+        /* =====================================
+   4. 관리자 게시글 처리 RPC 접근 시험
+===================================== */
+
+result.textContent +=
+  "\n\n④ 관리자 게시글 처리 RPC 접근 시험 중...\n";
+
+const {
+  data: updateResult,
+  error: updateError,
+  status: updateStatus
+} = await supabase.rpc(
+  "admin_set_knowledge_discussion_visibility_v2",
+  {
+    p_discussion_id: -1,
+    p_is_deleted: true,
+    p_reason: "일반회원 관리자 접근 차단 보안 시험"
+  }
+);
+
+if (updateError) {
+
+  const denied =
+    updateError.message.includes(
+      "관리자 권한이 없습니다"
+    );
+
+  result.textContent +=
+    "\nHTTP 상태: " + updateStatus + "\n" +
+    "서버 응답: " + updateError.message + "\n\n";
+
+  if (denied) {
+
+    result.textContent +=
+      "PASS\n" +
+      "일반회원의 관리자 게시글 처리 RPC 접근이 차단되었습니다.";
+
+  } else {
+
+    result.textContent +=
+      "추가 확인 필요\n" +
+      "예상하지 못한 오류가 발생했습니다.";
+  }
+
+} else {
+
+  result.textContent +=
+    "\nFAIL\n" +
+    "관리자 게시글 처리 RPC가 오류 없이 실행되었습니다.\n" +
+    "반환값: " + updateResult;
+}
+
       } else {
 
         result.textContent +=
