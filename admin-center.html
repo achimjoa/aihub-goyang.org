@@ -487,6 +487,14 @@ footer {
       새로고침
     </button>
 
+<button
+  id="openModerationLogs"
+  class="action-button"
+  type="button"
+>
+  📋 감사기록 조회
+</button>
+    
     <button
       id="closeDiscussionAdmin"
       class="action-button"
@@ -507,6 +515,56 @@ footer {
 
   <div id="discussionAdminList"></div>
 
+<!-- =====================================
+     관리자 토론 감사기록
+===================================== -->
+
+<div
+  id="moderationLogsPanel"
+  hidden
+  style="
+    margin-top:30px;
+    padding-top:25px;
+    border-top:2px solid #dce6f2;
+  "
+>
+
+  <h3>📋 관리자 토론 처리 감사기록</h3>
+
+  <p>
+    게시글 숨김·복원 처리 이력을 확인합니다.
+  </p>
+
+  <div class="discussion-toolbar">
+
+    <button
+      id="refreshModerationLogs"
+      class="action-button"
+      type="button"
+    >
+      감사기록 새로고침
+    </button>
+
+    <button
+      id="closeModerationLogs"
+      class="action-button"
+      type="button"
+    >
+      감사기록 닫기
+    </button>
+
+  </div>
+
+  <div
+    id="moderationLogsMessage"
+    role="status"
+    aria-live="polite"
+  ></div>
+
+  <div id="moderationLogsList"></div>
+
+</div>
+  
 </section>
 
 </main>
@@ -956,6 +1014,158 @@ $("closeDiscussionAdmin").addEventListener(
   }
 );
 
+/* =====================================
+   관리자 토론 감사기록 조회
+===================================== */
+
+async function loadModerationLogs() {
+
+  if (!adminAuthenticated) {
+    return;
+  }
+
+  const list = $("moderationLogsList");
+
+  list.replaceChildren();
+
+  $("moderationLogsMessage").textContent =
+    "감사기록을 불러오는 중입니다.";
+
+  try {
+
+    const { data, error } = await supabase.rpc(
+      "admin_get_knowledge_discussion_moderation_logs"
+    );
+
+    if (error) {
+      throw error;
+    }
+
+    const logs = data || [];
+
+    $("moderationLogsMessage").textContent =
+      "전체 감사기록 " + logs.length + "건";
+
+    if (!logs.length) {
+
+      const empty = document.createElement("p");
+
+      empty.textContent =
+        "등록된 감사기록이 없습니다.";
+
+      list.appendChild(empty);
+
+      return;
+    }
+
+    logs.forEach(log => {
+
+      const article = document.createElement("article");
+
+      article.className = "discussion-admin-item";
+
+      const title = document.createElement("h3");
+
+      title.textContent =
+        "게시글 ID " + log.discussion_id +
+        " — " + (log.document_title || "자료명 없음");
+
+      const meta = document.createElement("div");
+
+      meta.className = "discussion-meta";
+
+      const actionName =
+        log.action_type === "hide"
+          ? "게시글 숨김"
+          : log.action_type === "restore"
+            ? "게시글 복원"
+            : "기타 처리";
+
+      const actionDate = log.action_at
+        ? new Date(log.action_at).toLocaleString("ko-KR")
+        : "-";
+
+      meta.textContent =
+        "처리 유형: " + actionName + "\n" +
+        "처리 관리자: " + (log.action_by || "-") + "\n" +
+        "처리 시각: " + actionDate + "\n" +
+        "이전 상태: " + log.previous_status + "\n" +
+        "변경 상태: " + log.new_status;
+
+      meta.style.whiteSpace = "pre-line";
+
+      const reasonTitle = document.createElement("strong");
+
+      reasonTitle.textContent = "처리 사유";
+
+      const reason = document.createElement("div");
+
+      reason.className = "discussion-content";
+
+      // 감사기록 내용을 HTML로 실행하지 않음
+      reason.textContent = log.reason || "사유 없음";
+
+      article.append(
+        title,
+        meta,
+        reasonTitle,
+        reason
+      );
+
+      list.appendChild(article);
+    });
+
+  } catch (error) {
+
+    $("moderationLogsMessage").textContent =
+      "감사기록 조회 실패: " + error.message;
+  }
+}
+
+/* =====================================
+   감사기록 화면 열기
+===================================== */
+
+$("openModerationLogs").addEventListener(
+  "click",
+  async () => {
+
+    if (!adminAuthenticated) {
+      return;
+    }
+
+    $("moderationLogsPanel").hidden = false;
+
+    await loadModerationLogs();
+
+    $("moderationLogsPanel").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+);
+
+/* =====================================
+   감사기록 새로고침
+===================================== */
+
+$("refreshModerationLogs").addEventListener(
+  "click",
+  loadModerationLogs
+);
+
+/* =====================================
+   감사기록 화면 닫기
+===================================== */
+
+$("closeModerationLogs").addEventListener(
+  "click",
+  () => {
+
+    $("moderationLogsPanel").hidden = true;
+  }
+);
+  
 /* =====================================
    최초 실행
 ===================================== */
