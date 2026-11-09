@@ -1675,6 +1675,96 @@ function renderDiscussions(items) {
     }
 
     list.appendChild(article);
+
+      actions.append(editButton, deleteButton);
+
+      article.appendChild(actions);
+    }
+
+    /* ==========================================
+       원본 게시글 답글 작성 기능
+    ========================================== */
+
+    if (item.parent_id === null) {
+
+      const replyButton = document.createElement("button");
+
+      replyButton.type = "button";
+      replyButton.className = "action-button secondary";
+      replyButton.textContent = "답글 작성";
+
+      const replyBox = document.createElement("div");
+
+      replyBox.className = "discussion-reply-editor";
+      replyBox.hidden = true;
+
+      const replyTextarea = document.createElement("textarea");
+
+      replyTextarea.rows = 4;
+      replyTextarea.maxLength = 5000;
+      replyTextarea.placeholder = "답글을 작성해 주세요.";
+      replyTextarea.setAttribute("aria-label", "토론 답글");
+
+      const replyActions = document.createElement("div");
+
+      replyActions.className = "discussion-actions";
+
+      const replySaveButton = document.createElement("button");
+
+      replySaveButton.type = "button";
+      replySaveButton.className = "action-button";
+      replySaveButton.textContent = "답글 등록";
+
+      const replyCancelButton = document.createElement("button");
+
+      replyCancelButton.type = "button";
+      replyCancelButton.className = "action-button secondary";
+      replyCancelButton.textContent = "취소";
+
+      replyButton.addEventListener("click", () => {
+
+        replyBox.hidden = !replyBox.hidden;
+
+        if (!replyBox.hidden) {
+          replyTextarea.focus();
+        }
+      });
+
+      replyCancelButton.addEventListener("click", () => {
+
+        replyBox.hidden = true;
+        replyTextarea.value = "";
+      });
+
+      replySaveButton.addEventListener("click", async () => {
+
+        await saveDiscussionReply(
+          item.document_id,
+          item.id,
+          replyTextarea.value,
+          replySaveButton
+        );
+
+      });
+
+      replyActions.append(
+        replySaveButton,
+        replyCancelButton
+      );
+
+      replyBox.append(
+        replyTextarea,
+        replyActions
+      );
+
+      article.append(
+        replyButton,
+        replyBox
+      );
+    }
+
+    list.appendChild(article);
+    
   });
 }
 
