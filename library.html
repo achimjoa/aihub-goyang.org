@@ -443,51 +443,6 @@ footer {
   margin-top: 12px;
 }
 
-/* ==========================================
-   자료별 토론
-========================================== */
-
-#discussionContent {
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #c5d5e8;
-  border-radius: 8px;
-  font: inherit;
-  resize: vertical;
-}
-
-.discussion-item {
-  padding: 20px;
-  margin-bottom: 15px;
-  background: #f8fbff;
-  border: 1px solid #dce6f2;
-  border-radius: 9px;
-}
-
-.discussion-author {
-  font-weight: bold;
-  color: #0754a6;
-}
-
-.discussion-date {
-  font-size: 13px;
-  color: #68788c;
-}
-
-.discussion-content {
-  margin-top: 12px;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.discussion-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-  
-  
 </style>
 
 </head>
@@ -1249,6 +1204,20 @@ function renderDocuments() {
 
 function showDocumentDetail(doc) {
 
+  // 다른 자료 선택 시 이전 토론 화면 초기화
+
+  discussionRequestId++;
+
+  discussionDocument = null;
+
+  $("discussionPanel").hidden = true;
+
+  $("discussionList").replaceChildren();
+
+  $("discussionEditor").hidden = true;
+
+  resetDiscussionEditor();
+  
   selectedDocument = doc;
 
   $("detailTitle").textContent =
@@ -1453,21 +1422,346 @@ async function openDocument(
 }
 
 /* ==========================================
-   자료별 토론 임시 연결
+   12. 자료별 토론 기능
 ========================================== */
 
-function openDiscussion() {
+let discussionDocument = null;
+let editingDiscussionId = null;
+let discussionRequestId = 0;
 
-  if (!selectedDocument) {
+function showDiscussionMessage(message, isError = false) {
+
+  const box = $("discussionMessage");
+
+  box.hidden = false;
+  box.className = isError
+    ? "message error"
+    : "message";
+
+  box.textContent = message;
+}
+
+function resetDiscussionEditor() {
+
+  editingDiscussionId = null;
+
+  $("discussionContent").value = "";
+
+  $("discussionEditorTitle").textContent =
+    "의견 작성";
+
+  $("discussionSaveButton").textContent =
+    "의견 등록";
+
+  $("discussionCancelButton").hidden = true;
+}
+
+async function openDiscussion() {
+
+  if (!selectedDocument) return;
+
+  const requestId = ++discussionRequestId;
+
+  discussionDocument = selectedDocument;
+
+  const documentId = discussionDocument.id;
+
+  $("discussionPanel").hidden = false;
+
+  $("discussionTitle").textContent =
+    discussionDocument.title || "자료별 토론";
+
+  $("discussionList").replaceChildren();
+
+  $("discussionEditor").hidden = true;
+
+  resetDiscussionEditor();
+
+  $("discussionPanel").scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+
+  if (
+    !currentUser ||
+    currentProfile?.approval_status !== "approved"
+  ) {
+
+    showDiscussionMessage(
+      "가입 승인을 받은 회원만 토론에 참여할 수 있습니다.",
+      true
+    );
+
     return;
   }
 
-  alert(
-    "자료별 토론 연결을 확인하고 있습니다.\n" +
-    "자료 ID: " + selectedDocument.id
+  showDiscussionMessage(
+    "토론 게시글을 불러오는 중입니다."
   );
 
-}  
+  try {
+
+    const { data, error } = await supabase.rpc(
+      "get_knowledge_discussions",
+      {
+        p_document_id: documentId
+      }
+    );
+
+    if (requestId !== discussionRequestId) return;
+
+    if (error) throw error;
+
+    renderDiscussions(data || []);
+
+    $("discussionEditor").hidden = false;
+
+    showDiscussionMessage(
+      "토론 게시글 " + (data || []).length + "건"
+    );
+
+  } catch (error) {
+
+    if (requestId !== discussionRequestId) return;
+
+    $("discussionList").replaceChildren();
+    $("discussionEditor").hidden = true;
+
+    showDiscussionMessage(
+      "토론 조회 실패: " + error.message,
+      true
+    );
+  }
+}
+
+/* ==========================================
+   게시글 목록 표시
+========================================== */
+
+function renderDiscussions(items) {
+
+  const list = $("discussionList");
+
+  list.replaceChildren();
+
+  if (!items.length) {
+
+    const empty = document.createElement("p");
+
+    empty.className = "empty";
+
+    empty.textContent =
+      "아직 등록된 의견이 없습니다.";
+
+    list.appendChild(empty);
+
+    return;
+  }
+
+  items.forEach(item => {
+
+    const article = document.createElement("article");
+
+    article.className = "discussion-item";
+
+    const author = document.createElement("div");
+
+    author.className = "discussion-author";
+
+    author.textContent =
+      item.author_name || "회원";
+
+    const date = document.createElement("div");
+
+    date.className = "discussion-date";
+
+    date.textContent =
+      new Date(item.created_at).toLocaleString("ko-KR");
+
+    const content = document.createElement("div");
+
+    content.className = "discussion-content";
+
+    content.textContent = item.content || "";
+
+    article.append(author, date, content);
+
+    if (currentUser?.id === item.user_id) {
+
+      const actions = document.createElement("div");
+
+      actions.className = "discussion-actions";
+
+      const editButton = document.createElement("button");
+
+      editButton.type = "button";
+
+      editButton.className =
+        "action-button secondary";
+
+      editButton.textContent = "수정";
+
+      editButton.addEventListener("click", () => {
+
+        editingDiscussionId = item.id;
+
+        $("discussionContent").value = item.content;
+
+        $("discussionEditorTitle").textContent =
+          "의견 수정";
+
+        $("discussionSaveButton").textContent =
+          "수정 저장";
+
+        $("discussionCancelButton").hidden = false;
+
+        $("discussionEditor").scrollIntoView({
+          behavior: "smooth"
+        });
+      });
+
+      const deleteButton = document.createElement("button");
+
+      deleteButton.type = "button";
+
+      deleteButton.className =
+        "action-button secondary";
+
+      deleteButton.textContent = "삭제";
+
+      deleteButton.addEventListener("click", async () => {
+
+        if (!confirm("이 의견을 삭제하시겠습니까?")) {
+          return;
+        }
+
+        deleteButton.disabled = true;
+
+        try {
+
+          const { data, error } = await supabase.rpc(
+            "delete_knowledge_discussion",
+            {
+              p_discussion_id: item.id
+            }
+          );
+
+          if (error) throw error;
+
+          if (data !== true) {
+            throw new Error(
+              "삭제할 게시글을 찾지 못했습니다."
+            );
+          }
+
+          await openDiscussion();
+
+        } catch (error) {
+
+          showDiscussionMessage(
+            "삭제 실패: " + error.message,
+            true
+          );
+
+        } finally {
+
+          deleteButton.disabled = false;
+        }
+      });
+
+      actions.append(editButton, deleteButton);
+
+      article.appendChild(actions);
+    }
+
+    list.appendChild(article);
+  });
+}
+
+/* ==========================================
+   게시글 작성 및 수정
+========================================== */
+
+async function saveDiscussion() {
+
+  if (!discussionDocument) return;
+
+  const documentId = discussionDocument.id;
+
+  const content =
+    $("discussionContent").value.trim();
+
+  if (content.length < 1 || content.length > 5000) {
+
+    showDiscussionMessage(
+      "의견은 1자 이상 5,000자 이하로 작성해 주세요.",
+      true
+    );
+
+    return;
+  }
+
+  const button = $("discussionSaveButton");
+
+  button.disabled = true;
+
+  try {
+
+    let result;
+
+    if (editingDiscussionId !== null) {
+
+      result = await supabase.rpc(
+        "update_knowledge_discussion",
+        {
+          p_discussion_id: editingDiscussionId,
+          p_content: content
+        }
+      );
+
+    } else {
+
+      result = await supabase.rpc(
+        "create_knowledge_discussion",
+        {
+          p_document_id: documentId,
+          p_content: content
+        }
+      );
+    }
+
+    if (result.error) {
+      throw result.error;
+    }
+
+    if (
+      result.data === null ||
+      result.data === false
+    ) {
+
+      throw new Error(
+        "게시글 저장 결과를 확인할 수 없습니다."
+      );
+    }
+
+    resetDiscussionEditor();
+
+    if (discussionDocument?.id === documentId) {
+      await openDiscussion();
+    }
+
+  } catch (error) {
+
+    showDiscussionMessage(
+      "의견 저장 실패: " + error.message,
+      true
+    );
+
+  } finally {
+
+    button.disabled = false;
+  }
+}
 
 /* ==========================================
    13. 검색 이벤트
@@ -1546,18 +1840,24 @@ $("detailOpenButton")
   );
 
 /* ==========================================
-   자료별 토론 버튼
-   임시 비활성화
+   16. 토론 이벤트
 ========================================== */
 
-$("detailDiscussionButton")
-  .addEventListener(
-    "click",
-    () => {
-      alert("자료별 토론 기능을 점검하고 있습니다.");
-    }
-  );
+$("detailDiscussionButton").addEventListener(
+  "click",
+  openDiscussion
+);
 
+$("discussionSaveButton").addEventListener(
+  "click",
+  saveDiscussion
+);
+
+$("discussionCancelButton").addEventListener(
+  "click",
+  resetDiscussionEditor
+);
+  
 /* ==========================================
    17. 초기 실행
 ========================================== */
