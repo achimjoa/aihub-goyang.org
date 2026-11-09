@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
 <meta name="theme-color" content="#0754a6">
 
-<title>정책·연구 정보 | 글로벌 AI 허브 유치 범시민추진위원회</title>
+<title>
+지식자료실 | 글로벌 AI 허브 유치 범시민추진위원회
+</title>
 
 <style>
+
+/* ==========================================
+   기본 설정
+========================================== */
+
 * {
   box-sizing: border-box;
 }
@@ -20,58 +34,135 @@ body {
   line-height: 1.7;
 }
 
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================
+   상단
+========================================== */
+
 header {
-  background: linear-gradient(135deg, #0754a6, #10315e);
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
   color: white;
-  padding: 50px 20px;
+  padding: 45px 20px;
   text-align: center;
 }
 
 header h1 {
-  font-size: clamp(28px, 5vw, 42px);
   margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
 }
 
 header p {
-  font-size: 17px;
+  margin: 8px 0;
 }
 
-.home-link {
+.top-links {
+  margin-top: 22px;
+}
+
+.top-links a {
   display: inline-block;
-  margin-top: 15px;
-  padding: 10px 20px;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 7px;
   background: white;
   color: #0754a6;
-  border-radius: 7px;
   text-decoration: none;
   font-weight: bold;
 }
 
+/* ==========================================
+   본문
+========================================== */
+
 main {
   max-width: 1200px;
   margin: auto;
-  padding: 35px 15px;
+  padding: 35px 18px;
 }
 
-.intro {
+.panel {
   background: white;
-  padding: 30px;
   border-radius: 12px;
+  padding: 28px;
   margin-bottom: 25px;
+  box-shadow: 0 3px 12px #00000010;
 }
 
-.intro h2 {
+.panel h2 {
   color: #0754a6;
   margin-top: 0;
 }
 
+/* ==========================================
+   회원 상태
+========================================== */
+
+.member-status {
+  padding: 15px;
+  background: #eef4fb;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.member-status a {
+  color: #0754a6;
+  font-weight: bold;
+}
+
+/* ==========================================
+   자료실 안내
+========================================== */
+
+.grade-guide {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.grade-item {
+  padding: 18px;
+  border-radius: 9px;
+  background: #f4f8fc;
+  border: 1px solid #dce6f2;
+}
+
+.grade-item strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #0754a6;
+}
+
+/* ==========================================
+   검색 및 분류
+========================================== */
+
 .search-box {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .search-box input {
   width: 100%;
-  padding: 16px;
+  padding: 15px;
   border: 1px solid #c5d5e8;
   border-radius: 8px;
   font-size: 16px;
@@ -81,16 +172,14 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 30px;
 }
 
 .filters button {
+  padding: 10px 17px;
   border: 1px solid #0754a6;
   background: white;
   color: #0754a6;
-  padding: 11px 16px;
   border-radius: 7px;
-  cursor: pointer;
   font-weight: bold;
 }
 
@@ -99,63 +188,155 @@ main {
   color: white;
 }
 
+/* ==========================================
+   자료 목록
+========================================== */
+
 .library-grid {
   display: grid;
   grid-template-columns:
     repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
 .document {
   background: white;
   border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.07);
+  overflow: hidden;
+  box-shadow: 0 3px 12px #00000012;
   border-top: 5px solid #168de0;
+}
+
+.document-body {
+  padding: 24px;
 }
 
 .document h3 {
   color: #0754a6;
-  margin-top: 10px;
+  margin: 12px 0;
   line-height: 1.5;
-}
-
-.category {
-  display: inline-block;
-  background: #e7f1ff;
-  color: #0754a6;
-  padding: 4px 10px;
-  border-radius: 5px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.date {
-  color: #68788c;
-  font-size: 14px;
 }
 
 .document p {
   color: #46566d;
 }
 
-.doc-link {
+.document-meta {
+  font-size: 14px;
+  color: #68788c;
+}
+
+.document-cover {
+  height: 190px;
+  background: linear-gradient(
+    135deg,
+    #e5effb,
+    #d0e3f7
+  );
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.document-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cover-placeholder {
+  font-size: 52px;
+  color: #0754a6;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.badge {
   display: inline-block;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+  background: #e7f1ff;
+  color: #0754a6;
+}
+
+.grade-1 {
+  background: #fce8e8;
+  color: #9b2020;
+}
+
+.grade-2 {
+  background: #fff3d9;
+  color: #8a5900;
+}
+
+.grade-3 {
+  background: #e6f4ea;
+  color: #176534;
+}
+
+/* ==========================================
+   버튼
+========================================== */
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.action-button {
+  padding: 10px 15px;
   background: #0754a6;
   color: white;
-  padding: 10px 16px;
+  border: none;
   border-radius: 6px;
-  text-decoration: none;
   font-weight: bold;
 }
 
-.doc-link:hover {
+.action-button:hover {
   background: #003a7a;
 }
 
-.pending {
-  color: #68788c;
-  font-size: 14px;
+.action-button.secondary {
+  background: #e7f1ff;
+  color: #0754a6;
+}
+
+.action-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* ==========================================
+   메시지
+========================================== */
+
+.message {
+  padding: 18px;
+  background: #eef4fb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.message.error {
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+.message.success {
+  background: #e8f5e9;
+  color: #176534;
 }
 
 .empty {
@@ -163,6 +344,28 @@ main {
   padding: 40px;
   color: #68788c;
 }
+
+/* ==========================================
+   자료 상세
+========================================== */
+
+.detail-panel {
+  margin-top: 30px;
+  border-top: 4px solid #0754a6;
+}
+
+.detail-panel h3 {
+  color: #0754a6;
+}
+
+.detail-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ==========================================
+   하단
+========================================== */
 
 footer {
   background: #10315e;
@@ -172,7 +375,12 @@ footer {
   margin-top: 40px;
 }
 
-@media (max-width: 600px) {
+/* ==========================================
+   모바일
+========================================== */
+
+@media(max-width:600px) {
+
   header {
     padding: 35px 15px;
   }
@@ -181,295 +389,1025 @@ footer {
     padding: 20px 12px;
   }
 
-  .intro {
+  .panel {
     padding: 20px;
   }
 
-  .document {
+  .document-body {
     padding: 20px;
   }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
+<!-- ==========================================
+     상단
+========================================== -->
+
 <header>
-  <h1>글로벌 AI 허브 정책·연구 정보</h1>
 
-  <p>
-    경기도 글로벌 AI 허브 유치<br>
-    고양특례시 범시민추진위원회
-  </p>
+<h1>글로벌 AI 허브 지식자료실</h1>
 
-  <p>
-    고양특례시의 유치 전략과 정책 제안을
-    시민 및 국내외 관계자들과 공유합니다.
-  </p>
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
 
-  <a class="home-link" href="index.html">
-    ← 홈페이지로 돌아가기
-  </a>
+<p>
+전자책 · 정책자료 · 연구보고서 · 회원 토론
+</p>
+
+<div class="top-links">
+
+<a href="index.html">
+← 홈페이지
+</a>
+
+<a href="login.html">
+회원 로그인
+</a>
+
+</div>
+
 </header>
 
 <main>
 
-<section class="intro">
-  <h2>정책·연구 정보 안내</h2>
+<!-- ==========================================
+     자료실 소개
+========================================== -->
 
-  <p>
-    글로벌 AI 허브 고양특례시 유치를 위한
-    정책보고서, 연구자료, 공식 건의서,
-    시민사회 활동자료를 제공합니다.
-  </p>
+<section class="panel">
 
-  <p>
-    자료는 분야별로 분류되어 있으며,
-    제목과 주요 내용을 검색할 수 있습니다.
-  </p>
+<h2>지식자료실 안내</h2>
 
-  <p>
-    현재는 자료 목록을 구축하는 단계입니다.
-    PDF 원문은 공개용 파일이 등록되는 대로
-    열람할 수 있도록 연결하겠습니다.
-  </p>
+<p>
+글로벌 AI 허브 유치와 관련된 전자책,
+정책자료, 연구보고서 및 시민사회 자료를
+공유하는 공간입니다.
+</p>
+
+<p>
+자료마다 공개 등급을 개별적으로 지정하며,
+회원 자격과 관리자의 승인 여부에 따라
+열람 범위가 달라집니다.
+</p>
+
+<div class="grade-guide">
+
+<div class="grade-item">
+
+<strong>3급 · 공개자료</strong>
+
+비회원도 원문을 열람할 수 있습니다.
+
+</div>
+
+<div class="grade-item">
+
+<strong>2급 · 회원자료</strong>
+
+가입 승인을 받은 회원에게
+원문을 공개합니다.
+
+</div>
+
+<div class="grade-item">
+
+<strong>1급 · 대외비 자료</strong>
+
+승인 회원에게 제목과 초록을 공개합니다.
+
+원문은 신원확인과 자료별 승인을
+받은 회원만 열람할 수 있습니다.
+
+</div>
+
+</div>
+
+<div
+  id="memberStatus"
+  class="member-status"
+  aria-live="polite"
+>
+회원 상태 확인 중...
+</div>
+
 </section>
 
+<!-- ==========================================
+     자료 검색
+========================================== -->
+
+<section class="panel">
+
+<h2>자료 검색</h2>
+
 <div class="search-box">
-  <input
-    type="search"
-    id="searchInput"
-    placeholder="보고서 제목 또는 키워드 검색"
-    aria-label="정책자료 검색">
+
+<input
+  type="search"
+  id="searchInput"
+  placeholder="자료 제목, 저자 또는 키워드 검색"
+  aria-label="지식자료 검색"
+>
+
 </div>
 
-<div class="filters" id="filters">
-  <button class="active" data-category="all">전체</button>
-  <button data-category="strategy">유치 전략</button>
-  <button data-category="pilot">실증 분야</button>
-  <button data-category="proposal">정책 건의</button>
-  <button data-category="official">정부·경기도</button>
-  <button data-category="civic">시민사회</button>
-  <button data-category="english">영문 자료</button>
+<div class="filters" id="typeFilters">
+
+<button
+  class="active"
+  data-type="all"
+  aria-pressed="true"
+>
+전체 자료
+</button>
+
+<button data-type="ebook" aria-pressed="false">
+전자책
+</button>
+
+<button data-type="policy" aria-pressed="false">
+정책·연구자료
+</button>
+
+<button data-type="other" aria-pressed="false">
+기타 자료
+</button>
+
 </div>
 
-<div class="library-grid" id="library"></div>
+</section>
 
-<p class="empty" id="empty" hidden>
-  검색 조건에 맞는 자료가 없습니다.
+<!-- ==========================================
+     자료 목록
+========================================== -->
+
+<section>
+
+<h2>전자책 · 정책자료 목록</h2>
+
+<div
+  id="libraryMessage"
+  class="message"
+  role="status"
+>
+자료 목록을 불러오는 중입니다.
+</div>
+
+<div
+  id="library"
+  class="library-grid"
+>
+</div>
+
+<p
+  id="empty"
+  class="empty"
+  hidden
+>
+검색 조건에 맞는 자료가 없습니다.
 </p>
+
+</section>
+
+<!-- ==========================================
+     자료 상세
+========================================== -->
+
+<section
+  id="detailPanel"
+  class="panel detail-panel"
+  hidden
+>
+
+<h2>자료 상세정보</h2>
+
+<h3 id="detailTitle"></h3>
+
+<p id="detailMeta"></p>
+
+<div
+  id="detailAbstract"
+  class="detail-text"
+></div>
+
+<div class="action-row">
+
+<button
+  id="detailOpenButton"
+  class="action-button"
+  type="button"
+>
+원문 열람
+</button>
+
+<button
+  id="detailDiscussionButton"
+  class="action-button secondary"
+  type="button"
+>
+자료별 토론
+</button>
+
+</div>
+
+<div
+  id="detailMessage"
+  class="message"
+  role="status"
+  hidden
+></div>
+
+</section>
 
 </main>
 
 <footer>
-  <p>
-    경기도 글로벌 AI 허브 유치<br>
-    고양특례시 범시민추진위원회
-  </p>
 
-  <p>
-    시민의 힘으로, 경기도의 역량으로, 세계와 함께!
-  </p>
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
 
-  <p>공식 홈페이지 시범 운영 중</p>
+<p>
+시민의 힘으로, 경기도의 역량으로, 세계와 함께!
+</p>
+
 </footer>
 
-<script>
+<!-- ==========================================
+     Supabase 연결 및 자료실 모듈
+========================================== -->
 
-/*
-  정책자료 목록
+<script type="module">
 
-  PDF 파일을 GitHub의 documents 폴더에
-  업로드한 뒤 url 항목에 주소를 입력하면
-  열람 버튼이 자동으로 나타납니다.
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-  예시:
-  url: "documents/report.pdf"
+/* ==========================================
+   1. Supabase 설정
+========================================== */
 
-  아직 등록하지 않은 자료:
-  url: ""
-*/
+const SUPABASE_URL =
+"https://gugkwqpvtwivqudkimvy.supabase.co";
 
-const documents = [
+const SUPABASE_KEY =
+"sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
 
-  {
-    title: "홍영표 허브 유치 전략 — 종합 전략 및 실행 안내서",
-    category: "strategy",
-    categoryName: "유치 전략",
-    date: "2026.10",
-    description:
-      "글로벌 AI 허브 고양특례시 유치를 위한 종합 전략, 입지 경쟁력, 평가 대응 및 실행계획을 정리한 자료입니다.",
-    url: ""
-  },
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-  {
-    title: "홍영표 실증 분야 전략 — 고양시 허브 실증 지원능력 보고서",
-    category: "pilot",
-    categoryName: "실증 분야",
-    date: "2026.10",
-    description:
-      "9개 국제기구의 업무와 고양특례시의 자산을 연계한 공공 AI 실증 및 운영 지원 전략입니다.",
-    url: ""
-  },
+/* ==========================================
+   2. 기본 상태
+========================================== */
 
-  {
-    title: "글로벌 AI 허브 업무 지원 종합계획서",
-    category: "pilot",
-    categoryName: "실증 분야",
-    date: "2026.10",
-    description:
-      "국제기구의 초기 정착, 운영 지원, 국제공동사업 및 고양특례시의 협력 방안을 종합한 계획서입니다.",
-    url: ""
-  },
+const $ = id =>
+  document.getElementById(id);
 
-  {
-    title: "글로벌 AI 허브 입지 선정 평가기준 개선 건의서",
-    category: "proposal",
-    categoryName: "정책 건의",
-    date: "2026.10.15",
-    description:
-      "국제기구 초기 정착 가능성, 시민 수용성, 공공 AI 실증 및 국제협력 잠재력 등을 평가에 반영하도록 제안한 건의서입니다.",
-    url: ""
-  },
+let currentUser = null;
 
-  {
-    title: "글로벌 AI 허브 입지 선정 평가기준 공청회",
-    category: "official",
-    categoryName: "정부·경기도",
-    date: "2026.10.14",
-    description:
-      "정부의 글로벌 AI 허브 입지 선정 평가기준 공청회 관련 자료입니다. 공식 공개자료를 확인하여 등록할 예정입니다.",
-    url: ""
-  },
+let currentProfile = null;
 
-  {
-    title: "고양특례시의회 글로벌 AI 허브 유치 촉구 결의",
-    category: "civic",
-    categoryName: "시민사회·지역사회",
-    date: "2026.10.26",
-    description:
-      "고양특례시의회에서 만장일치로 채택한 글로벌 AI 허브 유치 촉구 결의 관련 자료입니다.",
-    url: ""
-  },
+let documents = [];
 
-  {
-    title: "글로벌 AI 허브 유치 시민사회 활동자료",
-    category: "civic",
-    categoryName: "시민사회",
-    date: "2026",
-    description:
-      "범시민추진위원회의 발대식, 서명운동, 시민사회 연대 및 주요 활동 기록입니다.",
-    url: ""
-  },
+let currentType = "all";
 
-  {
-    title: "Global AI Hub — English Policy Documents",
-    category: "english",
-    categoryName: "English",
-    date: "2026",
-    description:
-      "English-language policy reports and proposals concerning the Global AI Hub initiative in Goyang.",
-    url: ""
+let selectedDocument = null;
+
+/* ==========================================
+   3. 자료 종류 판별
+========================================== */
+
+function normalizeDocumentType(type) {
+
+  const value = String(type || "")
+    .trim()
+    .toLowerCase();
+
+  if (
+    value === "ebook" ||
+    value === "e-book" ||
+    value === "book" ||
+    value === "전자책"
+  ) {
+    return "ebook";
   }
 
-];
+  if (
+    value === "policy" ||
+    value === "report" ||
+    value === "research" ||
+    value === "정책자료" ||
+    value === "연구자료" ||
+    value === "연구보고서"
+  ) {
+    return "policy";
+  }
 
-let currentCategory = "all";
+  return "other";
+}
 
-const library = document.getElementById("library");
-const searchInput = document.getElementById("searchInput");
-const empty = document.getElementById("empty");
+function typeName(type) {
 
-function renderDocuments() {
+  if(type === "ebook") {
+    return "전자책";
+  }
 
-  const keyword = searchInput.value.trim().toLowerCase();
+  if(type === "policy") {
+    return "정책·연구자료";
+  }
 
-  const filtered = documents.filter(doc => {
+  return "기타 자료";
+}
 
-    const categoryMatch =
-      currentCategory === "all" ||
-      doc.category === currentCategory;
+/* ==========================================
+   4. 공개 등급
+========================================== */
 
-    const searchText = [
-      doc.title,
-      doc.categoryName,
-      doc.description,
-      doc.date
-    ].join(" ").toLowerCase();
+function gradeName(grade) {
 
-    return categoryMatch && searchText.includes(keyword);
-  });
+  if(grade === 1) {
+    return "1급 · 대외비";
+  }
 
-  library.innerHTML = "";
+  if(grade === 2) {
+    return "2급 · 회원자료";
+  }
 
-  filtered.forEach(doc => {
+  if(grade === 3) {
+    return "3급 · 공개자료";
+  }
 
-    const card = document.createElement("article");
-    card.className = "document";
+  return "등급 미확인";
+}
 
-    const category = document.createElement("span");
-    category.className = "category";
-    category.textContent = doc.categoryName;
+/* ==========================================
+   5. 회원 확인
+========================================== */
 
-    const title = document.createElement("h3");
-    title.textContent = doc.title;
+async function checkMember() {
 
-    const date = document.createElement("p");
-    date.className = "date";
-    date.textContent = "작성·관련 시기: " + doc.date;
+  currentUser = null;
+  currentProfile = null;
 
-    const description = document.createElement("p");
-    description.textContent = doc.description;
+  try {
 
-    card.appendChild(category);
-    card.appendChild(title);
-    card.appendChild(date);
-    card.appendChild(description);
+    const {
+      data,
+      error
+    } = await supabase.auth.getUser();
 
-    if (doc.url) {
+    if(error || !data.user) {
 
-      const link = document.createElement("a");
-      link.className = "doc-link";
-      link.href = doc.url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "PDF 열람하기";
+      $("memberStatus").textContent =
+        "현재 비회원 상태입니다.\n" +
+        "3급 공개자료를 열람할 수 있습니다.";
 
-      card.appendChild(link);
+      return;
+    }
+
+    currentUser = data.user;
+
+    const {
+      data: profile,
+      error: profileError
+    } = await supabase
+      .from("profiles")
+      .select(
+        "member_role,approval_status"
+      )
+      .eq("id",currentUser.id)
+      .single();
+
+    if(profileError) {
+      throw profileError;
+    }
+
+    currentProfile = profile;
+
+    if(
+      profile.approval_status === "approved"
+    ) {
+
+      $("memberStatus").textContent =
+        "로그인 상태: 로그인됨\n" +
+        "회원 승인: 완료\n" +
+        "2급 회원자료 열람 가능\n" +
+        "1급 자료는 별도 승인이 필요합니다.";
 
     } else {
 
-      const pending = document.createElement("p");
-      pending.className = "pending";
-      pending.textContent = "원문 등록 준비 중";
+      $("memberStatus").textContent =
+        "로그인 상태: 로그인됨\n" +
+        "회원 승인 상태: " +
+        profile.approval_status +
+        "\n관리자 승인 후 회원자료를 열람할 수 있습니다.";
 
-      card.appendChild(pending);
     }
 
-    library.appendChild(card);
-  });
+  } catch(error) {
 
-  empty.hidden = filtered.length !== 0;
+    $("memberStatus").textContent =
+      "회원 상태 확인 실패: " +
+      error.message;
+
+  }
+
 }
 
-document.querySelectorAll("[data-category]").forEach(button => {
+/* ==========================================
+   6. 자료 목록 조회
+========================================== */
 
-  button.addEventListener("click", () => {
+async function loadDocuments() {
 
-    currentCategory = button.dataset.category;
+  $("libraryMessage").hidden = false;
 
-    document.querySelectorAll("[data-category]")
-      .forEach(btn => btn.classList.remove("active"));
+  $("libraryMessage").textContent =
+    "자료 목록을 불러오는 중입니다.";
 
-    button.classList.add("active");
+  try {
+
+    const {
+      data,
+      error
+    } = await supabase.rpc(
+      "get_knowledge_catalog"
+    );
+
+    if(error) {
+      throw error;
+    }
+
+    documents = Array.isArray(data)
+      ? data
+      : [];
 
     renderDocuments();
+
+    $("libraryMessage").hidden = true;
+
+  } catch(error) {
+
+    $("libraryMessage").hidden = false;
+
+    $("libraryMessage").className =
+      "message error";
+
+    $("libraryMessage").textContent =
+      "자료 목록 조회 실패: " +
+      error.message;
+
+  }
+
+}
+
+/* ==========================================
+   7. 자료 검색
+========================================== */
+
+function filteredDocuments() {
+
+  const keyword = $("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+  return documents.filter(doc => {
+
+    const type =
+      normalizeDocumentType(
+        doc.document_type
+      );
+
+    const typeMatch =
+      currentType === "all" ||
+      type === currentType;
+
+    const searchText = [
+      doc.title,
+      doc.abstract,
+      doc.author,
+      doc.category
+    ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+    return (
+      typeMatch &&
+      searchText.includes(keyword)
+    );
+
   });
-});
 
-searchInput.addEventListener("input", renderDocuments);
+}
 
-renderDocuments();
+/* ==========================================
+   8. 자료 카드 생성
+========================================== */
+
+function createDocumentCard(doc) {
+
+  const card =
+    document.createElement("article");
+
+  card.className = "document";
+
+  const body =
+    document.createElement("div");
+
+  body.className = "document-body";
+
+  const badges =
+    document.createElement("div");
+
+  badges.className = "badges";
+
+  const type =
+    normalizeDocumentType(
+      doc.document_type
+    );
+
+  const typeBadge =
+    document.createElement("span");
+
+  typeBadge.className = "badge";
+
+  typeBadge.textContent =
+    typeName(type);
+
+  badges.appendChild(typeBadge);
+
+  const grade =
+    Number(doc.security_grade);
+
+  const gradeBadge =
+    document.createElement("span");
+
+  gradeBadge.className =
+    "badge grade-" + grade;
+
+  gradeBadge.textContent =
+    gradeName(grade);
+
+  badges.appendChild(gradeBadge);
+
+  const title =
+    document.createElement("h3");
+
+  title.textContent =
+    doc.title || "제목 없음";
+
+  const meta =
+    document.createElement("p");
+
+  meta.className = "document-meta";
+
+  meta.textContent = [
+    doc.author || "",
+    doc.published_at || ""
+  ]
+  .filter(Boolean)
+  .join(" · ");
+
+  const abstract =
+    document.createElement("p");
+
+  abstract.textContent =
+    doc.abstract ||
+    "등록된 초록이 없습니다.";
+
+  const actions =
+    document.createElement("div");
+
+  actions.className = "action-row";
+
+  const detailButton =
+    document.createElement("button");
+
+  detailButton.type = "button";
+
+  detailButton.className =
+    "action-button secondary";
+
+  detailButton.textContent =
+    "상세정보";
+
+  detailButton.addEventListener(
+    "click",
+    () => showDocumentDetail(doc)
+  );
+
+  const openButton =
+    document.createElement("button");
+
+  openButton.type = "button";
+
+  openButton.className =
+    "action-button";
+
+  openButton.textContent =
+    "원문 열람";
+
+  openButton.addEventListener(
+    "click",
+    () => openDocument(doc,openButton)
+  );
+
+  actions.appendChild(detailButton);
+  actions.appendChild(openButton);
+
+  body.appendChild(badges);
+  body.appendChild(title);
+  body.appendChild(meta);
+  body.appendChild(abstract);
+  body.appendChild(actions);
+
+  card.appendChild(body);
+
+  return card;
+
+}
+
+/* ==========================================
+   9. 자료 목록 표시
+========================================== */
+
+function renderDocuments() {
+
+  const filtered =
+    filteredDocuments();
+
+  const library = $("library");
+
+  library.replaceChildren();
+
+  filtered.forEach(doc => {
+
+    library.appendChild(
+      createDocumentCard(doc)
+    );
+
+  });
+
+  $("empty").hidden =
+    filtered.length !== 0;
+
+}
+
+/* ==========================================
+   10. 자료 상세
+========================================== */
+
+function showDocumentDetail(doc) {
+
+  selectedDocument = doc;
+
+  $("detailTitle").textContent =
+    doc.title || "제목 없음";
+
+  $("detailMeta").textContent = [
+    typeName(
+      normalizeDocumentType(
+        doc.document_type
+      )
+    ),
+    gradeName(
+      Number(doc.security_grade)
+    ),
+    doc.author || "",
+    doc.published_at || ""
+  ]
+  .filter(Boolean)
+  .join(" · ");
+
+  $("detailAbstract").textContent =
+    doc.abstract ||
+    "등록된 초록이 없습니다.";
+
+  $("detailMessage").hidden = true;
+
+  $("detailPanel").hidden = false;
+
+  $("detailPanel").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+/* ==========================================
+   11. 자료 열람
+========================================== */
+
+async function openDocument(
+  doc,
+  button = null
+) {
+
+  const grade =
+    Number(doc.security_grade);
+
+  if(
+    grade !== 1 &&
+    grade !== 2 &&
+    grade !== 3
+  ) {
+
+    alert(
+      "자료의 공개 등급을 확인할 수 없습니다."
+    );
+
+    return;
+  }
+
+  if(
+    grade <= 2 &&
+    (
+      !currentUser ||
+      currentProfile?.approval_status
+        !== "approved"
+    )
+  ) {
+
+    alert(
+      "이 자료는 승인된 회원만 열람할 수 있습니다.\n" +
+      "로그인 및 회원 승인을 확인해 주세요."
+    );
+
+    return;
+  }
+
+  const originalText =
+    button?.textContent;
+
+  if(button) {
+
+    button.disabled = true;
+
+    button.textContent =
+      "접근 권한 확인 중...";
+
+  }
+
+  try {
+
+    const {
+      data: sessionData
+    } = await supabase.auth.getSession();
+
+    const accessToken =
+      sessionData.session?.access_token ||
+      SUPABASE_KEY;
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/functions/v1/knowledge-document-access",
+      {
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json",
+          "apikey":SUPABASE_KEY,
+          "Authorization":
+            "Bearer " + accessToken
+        },
+
+        body:JSON.stringify({
+          document_id:doc.id
+        })
+      }
+    );
+
+    const result =
+      await response.json();
+
+    if(
+      !response.ok ||
+      !result.success
+    ) {
+
+      throw new Error(
+        result.error ||
+        result.message ||
+        "자료 접근이 거부되었습니다."
+      );
+
+    }
+
+    if(!result.signed_url) {
+
+      throw new Error(
+        "자료 열람 주소가 발급되지 않았습니다."
+      );
+
+    }
+
+    /*
+      서버가 발급한 임시 URL만 사용합니다.
+      HTML에 원문 파일 경로를 저장하지 않습니다.
+    */
+
+    const url = new URL(
+      result.signed_url
+    );
+
+    if(
+      url.protocol !== "https:" ||
+      url.origin !== SUPABASE_URL ||
+      !url.pathname.startsWith(
+        "/storage/v1/object/sign/knowledge-private/"
+      )
+    ) {
+
+      throw new Error(
+        "허용되지 않은 자료 주소입니다."
+      );
+
+    }
+
+    const link =
+      document.createElement("a");
+
+    link.href = url.href;
+
+    link.target = "_blank";
+
+    link.rel =
+      "noopener noreferrer";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    link.remove();
+
+  } catch(error) {
+
+    alert(
+      "자료 열람 실패\n\n" +
+      error.message
+    );
+
+  } finally {
+
+    if(button) {
+
+      button.disabled = false;
+
+      button.textContent =
+        originalText;
+
+    }
+
+  }
+
+}
+
+/* ==========================================
+   12. 자료별 토론
+========================================== */
+
+function openDiscussion() {
+
+  if(!selectedDocument) {
+    return;
+  }
+
+  if(
+    !currentUser ||
+    currentProfile?.approval_status
+      !== "approved"
+  ) {
+
+    $("detailMessage").hidden = false;
+
+    $("detailMessage").textContent =
+      "자료별 토론은 가입 승인을 받은 " +
+      "회원만 참여할 수 있습니다.";
+
+    return;
+  }
+
+  $("detailMessage").hidden = false;
+
+  $("detailMessage").textContent =
+    "자료별 토론 기능은 현재 구축 준비 중입니다.\n" +
+    "자료 ID: " +
+    selectedDocument.id +
+    "\n토론 게시판 연결 후 이용할 수 있습니다.";
+
+}
+
+/* ==========================================
+   13. 검색 이벤트
+========================================== */
+
+$("searchInput").addEventListener(
+  "input",
+  renderDocuments
+);
+
+/* ==========================================
+   14. 분류 이벤트
+========================================== */
+
+document
+  .querySelectorAll("[data-type]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentType =
+          button.dataset.type;
+
+        document
+          .querySelectorAll("[data-type]")
+          .forEach(btn => {
+
+            btn.classList.remove(
+              "active"
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              "false"
+            );
+
+          });
+
+        button.classList.add(
+          "active"
+        );
+
+        button.setAttribute(
+          "aria-pressed",
+          "true"
+        );
+
+        renderDocuments();
+
+      }
+    );
+
+  });
+
+/* ==========================================
+   15. 상세 열람 버튼
+========================================== */
+
+$("detailOpenButton")
+  .addEventListener(
+    "click",
+    () => {
+
+      if(selectedDocument) {
+
+        openDocument(
+          selectedDocument,
+          $("detailOpenButton")
+        );
+
+      }
+
+    }
+  );
+
+/* ==========================================
+   16. 토론 버튼
+========================================== */
+
+$("detailDiscussionButton")
+  .addEventListener(
+    "click",
+    openDiscussion
+  );
+
+/* ==========================================
+   17. 초기 실행
+========================================== */
+
+async function initializeLibrary() {
+
+  await checkMember();
+
+  await loadDocuments();
+
+}
+
+initializeLibrary();
 
 </script>
 
