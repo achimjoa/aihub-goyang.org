@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>지식자료실 보안 검증</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:"Malgun Gothic",Arial,sans-serif;
+  background:#f4f8fc;
+  color:#17315b;
+  line-height:1.7;
+}
+
+header{
+  background:#0754a6;
+  color:white;
+  text-align:center;
+  padding:30px 15px;
+}
+
+header h1{
+  margin:0;
+  font-size:27px;
+}
+
+header p{
+  margin:10px 0 0;
+}
+
+main{
+  max-width:1000px;
+  margin:35px auto;
+  padding:0 18px;
+}
+
+section{
+  background:white;
+  padding:28px;
+  border-radius:12px;
+  margin-bottom:25px;
+  box-shadow:0 3px 12px #00000012;
+}
+
+h2{
+  color:#0754a6;
+  margin-top:0;
+}
+
+button,.link{
+  display:inline-block;
+  background:#0754a6;
+  color:white;
+  border:0;
+  border-radius:7px;
+  padding:12px 20px;
+  margin:6px 5px 6px 0;
+  font-size:15px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+}
+
+button:hover,.link:hover{
+  background:#063e7a;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+.status{
+  background:#eef4fb;
+  padding:17px;
+  border-radius:8px;
+  margin-top:15px;
+  white-space:pre-line;
+  overflow-wrap:anywhere;
+}
+
+.success{
+  background:#e8f5e9;
+  color:#176534;
+}
+
+.failure{
+  background:#fff1f2;
+  color:#991b1b;
+}
+
+.warning{
+  background:#fff7e6;
+  color:#92400e;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:18px;
+  font-size:14px;
+}
+
+th,td{
+  border:1px solid #dce6f2;
+  padding:12px;
+  text-align:left;
+}
+
+th{
+  background:#eef4fb;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+[hidden]{
+  display:none!important;
+}
+
+footer{
+  text-align:center;
+  background:#10315e;
+  color:white;
+  padding:25px;
+}
+
+@media(max-width:700px){
+  section{
+    padding:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>지식자료실 보안 검증</h1>
+<p>제172-30단계 · 일반회원 데이터 접근 차단 시험</p>
+</header>
+
+<main>
+
+<section>
+
+<h2>① 시험 계정 확인</h2>
+
+<div id="memberStatus" class="status">
+로그인 상태 확인 중...
+</div>
+
+<a class="link" href="login.html">
+로그인 페이지
+</a>
+
+</section>
+
+<section id="testSection" hidden>
+
+<h2>② 관리자 전용 데이터 접근 시험</h2>
+
+<p>
+일반회원의 인증정보로 관리자 전용 테이블에
+직접 SELECT 요청을 실행합니다.
+</p>
+
+<p>
+이 시험은 데이터를 읽기만 하며
+추가·수정·삭제하지 않습니다.
+</p>
+
+<button id="runTestButton">
+보안 시험 실행
+</button>
+
+<div id="testStatus" class="status">
+시험 대기 중
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>시험 대상</th>
+<th>조회 결과</th>
+<th>판정</th>
+</tr>
+</thead>
+
+<tbody id="resultTable">
+
+<tr>
+<td colspan="3">
+시험 실행 전
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>③ 시험 결과 종합</h2>
+
+<div id="summary" class="status">
+시험을 실행하면 결과가 표시됩니다.
+</div>
+
+<p>
+이 시험은 현재 로그인한 일반회원의
+데이터베이스 조회 권한을 확인합니다.
+</p>
+
+<p>
+실제 대외비 파일의 Storage 접근 차단과
+임시 URL 만료 검증은 별도로 진행합니다.
+</p>
+
+</section>
+
+</main>
+
+<footer>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import {createClient} from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+"https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase=createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const $=id=>document.getElementById(id);
+
+let verifiedMember=false;
+
+const testTargets=[
+  {
+    name:"회원 신원확인 정보",
+    table:"knowledge_member_verifications",
+    column:"user_id"
+  },
+  {
+    name:"자료별 열람 승인정보",
+    table:"knowledge_access_approvals",
+    column:"id"
+  },
+  {
+    name:"1급 자료 열람기록",
+    table:"knowledge_access_logs",
+    column:"id"
+  },
+  {
+    name:"관리자 승인·취소 이력",
+    table:"knowledge_approval_history",
+    column:"id"
+  },
+  {
+    name:"자료 원문 및 파일 경로",
+    table:"knowledge_document_contents",
+    column:"document_id"
+  }
+];
+
+function message(id,text,type=""){
+
+  const el=$(id);
+
+  el.textContent=text;
+  el.className="status";
+
+  if(type){
+    el.classList.add(type);
+  }
+}
+
+async function checkMember(){
+
+  verifiedMember=false;
+  $("testSection").hidden=true;
+
+  try{
+
+    const {data,error}=
+      await supabase.auth.getUser();
+
+    if(error||!data.user){
+
+      message(
+        "memberStatus",
+        "로그인하지 않은 상태입니다.",
+        "warning"
+      );
+
+      return;
+    }
+
+    const {data:profile,error:profileError}=
+      await supabase
+        .from("profiles")
+        .select(
+          "member_role,approval_status"
+        )
+        .eq("id",data.user.id)
+        .single();
+
+    if(profileError)throw profileError;
+
+    if(
+      profile.member_role!=="member"||
+      profile.approval_status!=="approved"
+    ){
+
+      message(
+        "memberStatus",
+        "현재 계정은 승인된 일반회원이 아닙니다.\n"+
+        "회원 역할: "+profile.member_role+"\n"+
+        "승인 상태: "+profile.approval_status,
+        "warning"
+      );
+
+      return;
+    }
+
+    const {data:isAdmin,error:adminError}=
+      await supabase.rpc("is_resource_admin");
+
+    if(adminError)throw adminError;
+
+    if(isAdmin!==false){
+
+      message(
+        "memberStatus",
+        "관리자 권한이 감지되었거나 확인되지 않았습니다.\n"+
+        "보안 시험을 중단합니다.",
+        "warning"
+      );
+
+      return;
+    }
+
+    verifiedMember=true;
+
+    message(
+      "memberStatus",
+      "로그인 확인: 정상\n"+
+      "회원 역할: member\n"+
+      "승인 상태: approved\n"+
+      "관리자 권한: 없음\n"+
+      "보안 시험 실행 가능",
+      "success"
+    );
+
+    $("testSection").hidden=false;
+
+  }catch(error){
+
+    message(
+      "memberStatus",
+      "회원 확인 실패: "+error.message,
+      "failure"
+    );
+
+  }
+}
+
+function addResult(name,result,judgment){
+
+  const tbody=$("resultTable");
+
+  const tr=document.createElement("tr");
+
+  [name,result,judgment].forEach(value=>{
+
+    const td=document.createElement("td");
+
+    td.textContent=value;
+
+    tr.appendChild(td);
+
+  });
+
+  tbody.appendChild(tr);
+}
+
+async function runSecurityTest(){
+
+  if(!verifiedMember){
+    alert("승인된 일반회원만 시험할 수 있습니다.");
+    return;
+  }
+
+  const button=$("runTestButton");
+
+  button.disabled=true;
+
+  $("resultTable").replaceChildren();
+
+  message(
+    "testStatus",
+    "관리자 전용 테이블 접근 시험 진행 중..."
+  );
+
+  let blocked=0;
+  let exposed=0;
+  let uncertain=0;
+
+  try{
+
+    for(const target of testTargets){
+
+      try{
+
+        const {data,error}=
+          await supabase
+            .from(target.table)
+            .select(target.column)
+            .limit(1);
+
+        if(error){
+
+          blocked++;
+
+          addResult(
+            target.name,
+            "조회 거부: "+error.message,
+            "차단 확인"
+          );
+
+        }else if(data&&data.length>0){
+
+          exposed++;
+
+          addResult(
+            target.name,
+            "데이터 "+data.length+"건 반환",
+            "보안 점검 필요"
+          );
+
+        }else{
+
+          uncertain++;
+
+          addResult(
+            target.name,
+            "조회 결과 0건",
+            "추가 검증 필요"
+          );
+
+        }
+
+      }catch(error){
+
+        uncertain++;
+
+        addResult(
+          target.name,
+          "요청 오류: "+error.message,
+          "추가 검증 필요"
+        );
+
+      }
+    }
+
+    message(
+      "testStatus",
+      "5개 테이블 접근 시험 완료",
+      "success"
+    );
+
+    const summaryText=
+      "시험 대상: "+testTargets.length+"개\n"+
+      "접근 차단 확인: "+blocked+"개\n"+
+      "데이터 반환: "+exposed+"개\n"+
+      "추가 검증 필요: "+uncertain+"개";
+
+    if(exposed>0){
+
+      message(
+        "summary",
+        summaryText+
+        "\n\n관리자 전용 데이터가 반환되었습니다."+
+        "\n보안 설정을 점검해야 합니다.",
+        "failure"
+      );
+
+    }else if(uncertain>0){
+
+      message(
+        "summary",
+        summaryText+
+        "\n\n데이터 반환은 확인되지 않았으나"+
+        "\nRLS 차단 여부를 추가 확인해야 합니다.",
+        "warning"
+      );
+
+    }else{
+
+      message(
+        "summary",
+        summaryText+
+        "\n\n현재 일반회원 계정의 조회 요청이 모두 거부되었습니다.",
+        "success"
+      );
+
+    }
+
+  }finally{
+
+    button.disabled=false;
+
+  }
+}
+
+$("runTestButton").addEventListener(
+  "click",
+  runSecurityTest
+);
+
+checkMember();
+
+</script>
+
+</body>
+</html>
