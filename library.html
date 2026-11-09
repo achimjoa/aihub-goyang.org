@@ -838,11 +838,11 @@ async function loadDocuments() {
   try {
 
     const {
-      data,
-      error
-    } = await supabase.rpc(
-      "get_knowledge_catalog"
-    );
+  data,
+  error
+} = await supabase.rpc(
+  "get_knowledge_catalog_v2"
+);
 
     if(error) {
       throw error;
@@ -1027,13 +1027,42 @@ function createDocumentCard(doc) {
   actions.appendChild(detailButton);
   actions.appendChild(openButton);
 
-  body.appendChild(badges);
-  body.appendChild(title);
-  body.appendChild(meta);
-  body.appendChild(abstract);
-  body.appendChild(actions);
+  // 전자책 표지 표시
+if (
+  type === "ebook" &&
+  doc.thumbnail_url
+) {
 
-  card.appendChild(body);
+  const cover =
+    document.createElement("div");
+
+  cover.className = "document-cover";
+
+  const img =
+    document.createElement("img");
+
+  img.src = doc.thumbnail_url;
+
+  img.alt =
+    (doc.title || "전자책") + " 표지";
+
+  img.loading = "lazy";
+
+  img.onerror = () => {
+    cover.remove();
+  };
+
+  cover.appendChild(img);
+  card.appendChild(cover);
+}
+
+body.appendChild(badges);
+body.appendChild(title);
+body.appendChild(meta);
+body.appendChild(abstract);
+body.appendChild(actions);
+
+card.appendChild(body);
 
   return card;
 
