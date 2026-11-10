@@ -710,6 +710,13 @@ footer {
   class="detail-text"
 ></div>
 
+<h3>상세 설명</h3>
+
+<div
+  id="detailDescription"
+  class="detail-text"
+></div>
+  
 <div class="action-row">
 
 <button
@@ -1320,23 +1327,38 @@ function showDocumentDetail(doc) {
     doc.title || "제목 없음";
 
   $("detailMeta").textContent = [
-    typeName(
-      normalizeDocumentType(
-        doc.document_type
-      )
-    ),
-    gradeName(
-      Number(doc.security_grade)
-    ),
-    doc.author || "",
-    doc.published_at || ""
-  ]
-  .filter(Boolean)
-  .join(" · ");
+
+ $("detailMeta").textContent = [
+  typeName(
+    normalizeDocumentType(
+      doc.document_type
+    )
+  ),
+
+  gradeName(
+    Number(doc.security_grade)
+  ),
+
+  doc.is_published
+    ? "공개자료"
+    : "비공개자료",
+
+  doc.author || "",
+
+  doc.published_at || ""
+]
+.filter(Boolean)
+.join(" · ");   
 
   $("detailAbstract").textContent =
     doc.abstract ||
     "등록된 초록이 없습니다.";
+
+  /* 상세 설명 표시 */
+
+$("detailDescription").textContent =
+  doc.description ||
+  "등록된 상세 설명이 없습니다.";
 
   $("detailMessage").hidden = true;
 
