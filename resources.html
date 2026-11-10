@@ -613,9 +613,18 @@ const resourceWriteButton =
      자료 등록 불가
 ===================================== */
 
-let resourceAdmin = false;
-let resourceWriter = false;
+resourceAdmin = false;
+resourceWriter = false;
+currentUserId = null;
 
+/* =====================================
+   제175-5-14-19단계
+
+   현재 로그인 사용자 ID 저장
+===================================== */
+
+let currentUserId = null;
+  
 async function checkResourceAdmin() {
 
   /* 권한 초기화 */
@@ -646,6 +655,10 @@ async function checkResourceAdmin() {
 
   const user = authData.user;
 
+  /* 현재 로그인 사용자 ID 저장 */
+
+currentUserId = user.id;
+  
   console.log(
     "[자료실] 로그인 확인 완료"
   );
@@ -1011,14 +1024,45 @@ document.getElementById(
 
 await loadResourceAttachments(data.id);
 
- /* =====================================
-   관리자 전용 수정·삭제 버튼 표시
+/* =====================================
+   제175-5-14-19단계
+
+   관리자 및 승인회원
+   자료 수정·삭제 버튼 표시
+
+   관리자:
+     모든 자료 수정·삭제 가능
+
+   승인회원:
+     본인이 등록한 자료만
+     수정·삭제 가능
 ===================================== */
 
-const adminButtons =
-  document.getElementById("resourceAdminButtons");
+/* 본인 자료 여부 확인 */
 
-adminButtons.hidden = !resourceAdmin;
+const isOwnResource =
+  currentUserId !== null &&
+  data.author_id === currentUserId;
+
+/* 자료 관리 권한 확인 */
+
+const canManageResource =
+  resourceAdmin ||
+  (
+    resourceWriter &&
+    isOwnResource
+  );
+
+/* 수정·삭제 버튼 영역 */
+
+const adminButtons =
+  document.getElementById(
+    "resourceAdminButtons"
+  );
+
+/* 권한에 따라 버튼 표시 */
+
+adminButtons.hidden = !canManageResource;
 
 /* =====================================
    상세화면 표시
