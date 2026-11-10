@@ -576,7 +576,7 @@ const resourceWriteButton =
   document.getElementById("resourceWriteButton");
 
 /* =====================================
-   제175-5-1단계
+   제175-5-9단계
    통합 자료실 등록 권한 확인
 
    관리자:
@@ -591,35 +591,11 @@ const resourceWriteButton =
 ===================================== */
 
 let resourceAdmin = false;
-
 let resourceWriter = false;
 
 async function checkResourceAdmin() {
 
-  /* 기본 권한 초기화 */
-
-  resourceAdmin = false;
-  resourceWriter = false;
-
-  resourceWriteButton.hidden = true;
-
-  /* 로그인 사용자 확인 */
-
-  const { data: authData, error: authError } =
-    await supabase.auth.getUser();
-
-  if (authError || !authData.user) {
-    return;
-  }
-
-  const user = authData.user;
-
-/* =====================================
-   제175-5-5단계
-   통합 자료실 등록 권한 진단
-===================================== */
-
-async function checkResourceAdmin() {
+  /* 권한 초기화 */
 
   resourceAdmin = false;
   resourceWriter = false;
@@ -630,7 +606,7 @@ async function checkResourceAdmin() {
     "[자료실] 권한 확인 시작"
   );
 
-  /* 로그인 확인 */
+  /* 로그인 사용자 확인 */
 
   const { data: authData, error: authError } =
     await supabase.auth.getUser();
@@ -651,7 +627,9 @@ async function checkResourceAdmin() {
     "[자료실] 로그인 확인 완료"
   );
 
-  /* 관리자 확인 */
+  /* =====================================
+     1. 관리자 권한 확인
+  ===================================== */
 
   const { data: adminResult, error: adminError } =
     await supabase.rpc("is_resource_admin");
@@ -669,7 +647,9 @@ async function checkResourceAdmin() {
 
   }
 
-  /* 회원 승인 상태 확인 */
+  /* =====================================
+     2. 승인회원 확인
+  ===================================== */
 
   const { data: profile, error: profileError } =
     await supabase
@@ -692,15 +672,23 @@ async function checkResourceAdmin() {
     profile?.member_role === "member" &&
     profile?.approval_status === "approved";
 
-  /* 등록 권한 */
+  /* =====================================
+     3. 자료등록 권한 결정
+  ===================================== */
 
   resourceWriter =
     resourceAdmin || approvedMember;
 
-  /* 버튼 표시 */
+  /* =====================================
+     4. 자료등록 버튼 표시
+  ===================================== */
 
   resourceWriteButton.hidden =
     !resourceWriter;
+
+  /* =====================================
+     5. 최종 권한 진단
+  ===================================== */
 
   console.log(
     "[자료실] 최종 권한 확인",
@@ -711,47 +699,6 @@ async function checkResourceAdmin() {
       buttonHidden: resourceWriteButton.hidden
     }
   );
-
-}
-
-  /* =====================================
-     2. 승인회원 확인
-  ===================================== */
-
-  const { data: profile, error: profileError } =
-    await supabase
-      .from("profiles")
-      .select(
-        "member_role, approval_status"
-      )
-      .eq("id", user.id)
-      .maybeSingle();
-
-  if (profileError) {
-
-    console.error(
-      "회원 승인 확인 오류:",
-      profileError
-    );
-
-    return;
-  }
-
-  /* =====================================
-     3. 승인회원 자료등록 허용
-  ===================================== */
-
-  const approvedMember =
-    profile?.approval_status === "approved" &&
-    profile?.member_role === "member";
-
-  resourceWriter = approvedMember;
-
-  /* =====================================
-     4. 자료등록 버튼 표시
-  ===================================== */
-
-  resourceWriteButton.hidden = !resourceWriter;
 
 }
   
