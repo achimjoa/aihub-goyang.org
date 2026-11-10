@@ -302,8 +302,29 @@ footer {
      원문 파일 등록
 ===================================== -->
 
+<!-- 원문 파일 관리 -->
+
+<div id="currentFileSection" hidden>
+
+  <h3>현재 등록된 원문 파일</h3>
+
+  <div class="status">
+
+    <p id="currentFileName"></p>
+
+    <p id="currentFileStatus"></p>
+
+  </div>
+
+  <p class="muted">
+    새로운 파일을 선택하지 않으면
+    기존 원문 파일이 유지됩니다.
+  </p>
+
+</div>
+
 <label for="documentFile">
-  원문 파일 첨부
+  원문 파일 첨부 또는 교체
 </label>
 
 <input
@@ -311,6 +332,10 @@ footer {
   type="file"
   accept=".pdf,.epub,.doc,.docx,.hwp,.hwpx,.ppt,.pptx,.xls,.xlsx,.txt"
 />
+
+<p id="selectedFileInfo" class="muted">
+  선택된 새 파일이 없습니다.
+</p>
 
 <p class="muted">
   PDF, 전자책 및 문서 파일을 첨부할 수 있습니다.
@@ -433,6 +458,36 @@ function typeName(type) {
 
 }
 
+/* 기존 원문 파일 표시 */
+
+function displayCurrentFile(doc) {
+
+  const section = $("currentFileSection");
+
+  if (!doc || !doc.file_path) {
+
+    section.hidden = true;
+
+    $("currentFileName").textContent = "";
+
+    $("currentFileStatus").textContent = "";
+
+    return;
+  }
+
+  section.hidden = false;
+
+  const storedName =
+    doc.file_path.split("/").pop();
+
+  $("currentFileName").textContent =
+    "📄 저장된 파일: " + storedName;
+
+  $("currentFileStatus").textContent =
+    "원문 파일 경로가 등록되어 있습니다.";
+
+}
+  
 /* 관리자 권한 확인 */
 
 async function verifyAdmin() {
@@ -656,6 +711,8 @@ function editDocument(doc) {
 
   editingId = doc.id;
 
+  displayCurrentFile(doc);
+
   $("formHeading").textContent = "자료 수정";
 
   const typeSelect = $("documentType");
@@ -719,6 +776,11 @@ function resetEditor() {
   editingId = null;
 
   $("documentForm").reset();
+
+  displayCurrentFile(null);
+
+$("selectedFileInfo").textContent =
+  "선택된 새 파일이 없습니다.";
 
   $("formHeading").textContent = "새 자료 등록";
 
@@ -1133,6 +1195,32 @@ async function openAdminDocument(doc, button) {
   
 /* 이벤트 */
 
+/* 새로 선택한 원문 파일 표시 */
+
+$("documentFile").addEventListener(
+  "change",
+  function () {
+
+    const file = this.files[0];
+
+    if (!file) {
+
+      $("selectedFileInfo").textContent =
+        "선택된 새 파일이 없습니다.";
+
+      return;
+    }
+
+    $("selectedFileInfo").textContent =
+      "새로 선택한 파일: " +
+      file.name +
+      " (" +
+      (file.size / 1024).toFixed(1) +
+      " KB)";
+
+  }
+);
+  
 $("searchInput").addEventListener(
   "input",
   renderDocuments
