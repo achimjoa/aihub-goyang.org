@@ -1668,6 +1668,26 @@ if (pageHeading) {
 /* 언론보도 화면 적용 */
 
 applyPressManagementView();
+
+ /* =====================================
+   언론보도 날짜 명칭 변경
+===================================== */
+
+if (pressManagementMode) {
+
+  const dateLabel =
+    document.querySelector(
+      'label[for="newsDate"]'
+    );
+
+  if (dateLabel) {
+
+    dateLabel.textContent =
+      "보도(방영)일자 *";
+
+  }
+
+} 
   
 checkNewsAdmin();
 
