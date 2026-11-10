@@ -941,18 +941,30 @@ $("documentForm").addEventListener(
         "자료가 정상적으로 저장되었습니다."
       );
 
-    } catch (error) {
+        } catch (error) {
 
-  showMessage(
-    "saveMessage",
-    "자료 저장 실패: " + error.message,
-    true
-  );
+      console.error(
+        "디지털 도서관 자료 저장 오류:",
+        error
+      );
 
-}
-다음과 같이 교체합니다.
+      showMessage(
+        "saveMessage",
+        "자료 저장 처리 중 오류가 발생했습니다.\n" +
+        "자료 정보는 저장되었을 수 있으나 " +
+        "원문 파일 등록은 완료되지 않았을 수 있습니다.\n\n" +
+        "오류 내용: " + error.message +
+        "\n\n자료 목록을 새로고침하여 " +
+        "원문 등록 상태를 확인하세요.",
+        true
+      );
 
-} catch (error) {
+    } finally {
+
+      saving = false;
+      $("saveButton").disabled = false;
+
+    }
 
   console.error(
     "디지털 도서관 자료 저장 오류:",
