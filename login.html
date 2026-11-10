@@ -314,12 +314,96 @@ form.addEventListener("submit", async (event) => {
     if (profile.approval_status === "approved") {
 
       message.style.color = "#0754a6";
+
       message.textContent =
         "로그인에 성공했습니다.\n" +
-        "회원 승인이 완료된 계정입니다.";
+        "이전 페이지로 이동합니다.";
+
+      /* =====================================
+         로그인 완료 후 이전 페이지 복귀
+      ===================================== */
+
+      const params =
+        new URLSearchParams(window.location.search);
+
+      const returnUrl = params.get("return");
+
+      let destination = "index.html";
+
+      if (returnUrl) {
+
+        try {
+
+          const target = new URL(
+            returnUrl,
+            window.location.href
+          );
+
+          /* 동일한 홈페이지 내부 이동만 허용 */
+
+          if (
+            target.origin === window.location.origin &&
+            target.pathname.endsWith(".html") &&
+            !target.pathname.endsWith("/login.html")
+          ) {
+
+            destination = target.href;
+
+          }
+
+        } catch (error) {
+
+          console.warn(
+            "복귀 주소 확인 실패:",
+            error
+          );
+
+        }
+
+      } else {
+
+        /* 복귀 주소가 없으면 이전 페이지 확인 */
+
+        try {
+
+          if (document.referrer) {
+
+            const previousPage =
+              new URL(document.referrer);
+
+            if (
+              previousPage.origin === window.location.origin &&
+              previousPage.pathname.endsWith(".html") &&
+              !previousPage.pathname.endsWith("/login.html")
+            ) {
+
+              destination = previousPage.href;
+
+            }
+
+          }
+
+        } catch (error) {
+
+          console.warn(
+            "이전 페이지 확인 실패:",
+            error
+          );
+
+        }
+
+      }
+
+      /* 로그인 성공 메시지 표시 후 이동 */
+
+      window.setTimeout(() => {
+
+        window.location.replace(destination);
+
+      }, 700);
 
     }
-
+        
   } catch (error) {
 
     message.style.color = "#b91c1c";
