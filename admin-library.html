@@ -639,6 +639,7 @@ row.append(
   title,
   meta,
   status,
+  fileStatus,
   document.createElement("br"),
   editButton,
   deleteButton,
@@ -855,20 +856,45 @@ $("documentForm").addEventListener(
 
       if (editingId !== null) {
 
-        const { data, error } =
-          await supabase
-            .from("knowledge_documents")
-            .update(payload)
-            .eq("id", editingId)
-            .select("id");
+  const documentId = editingId;
 
-        if (error) throw error;
+  const { data, error } =
+    await supabase
+      .from("knowledge_documents")
+      .update(payload)
+      .eq("id", documentId)
+      .select("id");
 
-        if (!data || data.length !== 1) {
-          throw new Error("수정 결과를 확인할 수 없습니다.");
-        }
+  if (error) {
+    throw error;
+  }
 
-      } else {
+  if (!data || data.length !== 1) {
+    throw new Error(
+      "수정 결과를 확인할 수 없습니다."
+    );
+  }
+
+  /* 수정 시 원문 파일 업로드 */
+
+  const file =
+    $("documentFile").files[0];
+
+  if (file) {
+
+    showMessage(
+      "saveMessage",
+      "자료 정보 저장 완료. 원문 파일을 업로드하고 있습니다."
+    );
+
+    await uploadDocumentFile(
+      documentId,
+      file
+    );
+
+  }
+
+} else {
 
         /* 신규 자료 등록 */
 
@@ -917,13 +943,34 @@ $("documentForm").addEventListener(
 
     } catch (error) {
 
-      showMessage(
-        "saveMessage",
-        "자료 저장 실패: " + error.message,
-        true
-      );
+  showMessage(
+    "saveMessage",
+    "자료 저장 실패: " + error.message,
+    true
+  );
 
-    } finally {
+}
+다음과 같이 교체합니다.
+
+} catch (error) {
+
+  console.error(
+    "디지털 도서관 자료 저장 오류:",
+    error
+  );
+
+  showMessage(
+    "saveMessage",
+    "자료 저장 처리 중 오류가 발생했습니다.\n" +
+    "자료 정보는 저장되었을 수 있으나 " +
+    "원문 파일 등록은 완료되지 않았을 수 있습니다.\n\n" +
+    "오류 내용: " + error.message +
+    "\n\n자료 목록을 새로고침하여 " +
+    "원문 등록 상태를 확인하세요.",
+    true
+  );
+
+} finally {
 
       saving = false;
       $("saveButton").disabled = false;
