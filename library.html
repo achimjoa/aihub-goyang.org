@@ -813,7 +813,7 @@ footer {
     type="button"
     class="action-button secondary"
   >
-    답글 수정 차단 시험
+    답글 삭제 차단 시험
   </button>
 
 </div>
@@ -2158,11 +2158,10 @@ $("searchInput").addEventListener(
 
 /* ==========================================
    임시 보안 시험
-   숨김 원본 답글 수정 차단 검증
-   시험 완료 후 삭제
+   숨김 원본 답글 삭제 차단 검증
 ========================================== */
 
-async function testHiddenReplyUpdate() {
+async function testHiddenReplyDelete() {
 
   const button = $("discussionSecurityTestButton");
 
@@ -2179,9 +2178,9 @@ async function testHiddenReplyUpdate() {
   }
 
   const confirmed = confirm(
-    "숨김 원본 답글 ID 10번의 수정 차단을 시험합니다.\n\n" +
-    "서버의 차단 기능이 정상이라면 데이터는 변경되지 않습니다.\n" +
-    "차단 기능에 문제가 있다면 시험용 답글 내용이 변경될 수 있습니다.\n\n" +
+    "숨김 원본의 답글 ID 10번 삭제 차단을 시험합니다.\n\n" +
+    "차단 기능이 정상이라면 데이터는 삭제되지 않습니다.\n" +
+    "차단 기능에 문제가 있으면 시험용 답글이 삭제 처리될 수 있습니다.\n\n" +
     "계속하시겠습니까?"
   );
 
@@ -2192,11 +2191,9 @@ async function testHiddenReplyUpdate() {
   try {
 
     const { data, error } = await supabase.rpc(
-      "update_knowledge_discussion",
+      "delete_knowledge_discussion",
       {
-        p_discussion_id: 10,
-        p_content:
-          "숨김 원본 답글 수정 차단 보안 시험"
+        p_discussion_id: 10
       }
     );
 
@@ -2204,12 +2201,12 @@ async function testHiddenReplyUpdate() {
 
       if (
         error.message.includes(
-          "수정할 수 있는 게시글이 없습니다."
+          "삭제할 수 있는 게시글이 없습니다."
         )
       ) {
 
         showDiscussionMessage(
-          "PASS: 숨김 원본의 답글 수정이 정상 차단되었습니다."
+          "PASS: 숨김 원본의 답글 삭제가 정상 차단되었습니다."
         );
 
       } else {
@@ -2225,7 +2222,7 @@ async function testHiddenReplyUpdate() {
     }
 
     showDiscussionMessage(
-      "FAIL: 수정 요청이 차단되지 않았습니다. 반환값: " +
+      "FAIL: 삭제 요청이 차단되지 않았습니다. 반환값: " +
       String(data),
       true
     );
@@ -2252,7 +2249,7 @@ async function testHiddenReplyUpdate() {
 $("discussionSecurityTestButton")
   ?.addEventListener(
     "click",
-    testHiddenReplyUpdate
+    testHiddenReplyDelete
   );
   
 /* ==========================================
