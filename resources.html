@@ -111,7 +111,8 @@ th {
 }
 
 #resourceWriteButton {
-  margin-top: 25px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* =====================================
@@ -284,6 +285,36 @@ th {
 
 <table>
 
+<!-- =====================================
+     제175-5-10단계
+     자료등록 버튼 상단 배치
+===================================== -->
+
+<!-- 자료 목록 -->
+
+<div id="resourceListView">
+
+  <!-- 자료등록 버튼 영역 -->
+
+  <div style="
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  ">
+
+    <button
+      type="button"
+      id="resourceWriteButton"
+      class="primary"
+      hidden
+    >
+      ✏️ 자료 등록
+    </button>
+
+  </div>
+
+  <table>
+  
 <thead>
 
 <tr>
@@ -307,14 +338,6 @@ th {
 
 </table>
 
-<button
-  type="button"
-  id="resourceWriteButton"
-  class="primary"
-  hidden
->
-자료 등록
-</button>
 
 </div>
 
