@@ -444,6 +444,36 @@ footer {
 }
 
 /* ==========================================
+   토론 답글 계층 표시
+========================================== */
+
+.discussion-reply {
+  margin-top: 15px;
+  margin-left: 28px;
+  padding: 18px;
+  background: #f0f6ff;
+  border: 1px solid #c8d9ef;
+  border-left: 4px solid #0b56a8;
+  border-radius: 8px;
+}
+
+.discussion-reply-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #0b56a8;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+
+  .discussion-reply {
+    margin-left: 12px;
+    padding: 12px;
+  }
+
+}
+  
+/* ==========================================
    토론 게시글 버튼 배치 개선
 ========================================== */
 
@@ -1835,15 +1865,58 @@ function renderDiscussions(items) {
       );
     }
 
-    /* =====================================
-       게시글 목록에 추가
+      /* =====================================
+       원본 게시글과 답글 구분
     ===================================== */
 
-    list.appendChild(article);
+    if (item.parent_id === null) {
+
+      // 원본 게시글
+
+      article.dataset.discussionId = String(item.id);
+
+      list.appendChild(article);
+
+    } else {
+
+      // 답글
+
+      article.classList.add("discussion-reply");
+
+      const replyLabel = document.createElement("div");
+
+      replyLabel.className = "discussion-reply-label";
+
+      replyLabel.textContent = "↳ 답글";
+
+      article.prepend(replyLabel);
+
+      const parentArticle = Array.from(
+        list.querySelectorAll(
+          ".discussion-item[data-discussion-id]"
+        )
+      ).find(
+        element =>
+          element.dataset.discussionId ===
+          String(item.parent_id)
+      );
+
+      if (parentArticle) {
+
+        parentArticle.appendChild(article);
+
+      } else {
+
+        // 원본 게시글을 찾지 못한 경우
+
+        list.appendChild(article);
+
+      }
+    }
 
   });
 
-}
+} 
 
   
 /* ==========================================
