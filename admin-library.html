@@ -804,10 +804,144 @@ $("cancelButton").addEventListener(
    원문 파일 업로드 및 DB 연결
 ===================================== */
 
+/* =====================================
+   원문 파일 업로드 및 DB 연결
+   관리자 전용 RPC 방식
+===================================== */
+
 async function uploadDocumentFile(
   documentId,
   file
 ) {
+
+  if (!file) {
+    return;
+  }
+
+  // 1. 관리자 권한 확인
+  const user = await verifyAdmin();
+
+  const BUCKET = "knowledge-private";
+
+  // 2. 파일 형식 확인
+  const extension =
+    file.name.split(".").pop().toLowerCase();
+
+  const allowedExtensions = [
+    "pdf", "epub", "doc", "docx",
+    "hwp", "hwpx", "ppt", "pptx",
+    "xls", "xlsx", "txt"
+  ];
+
+  if (!allowedExtensions.includes(extension)) {
+    throw new Error(
+      "허용되지 않은 파일 형식입니다."
+    );
+  }
+
+  // 3. 안전한 파일명 생성
+  const safeName = file.name
+    .replace(/[^a-zA-Z0-9._-]/g, "_")
+    .slice(-120);
+
+  const filePath =
+    `${user.id}/documents/${documentId}/` +
+    `${crypto.randomUUID()}-${safeName}`;
+
+  // 4. Storage 업로드
+  showMessage(
+    "saveMessage",
+    "원문 파일을 업로드하고 있습니다."
+  );
+
+  const { error: uploadError } =
+    await supabase.storage
+      .from(BUCKET)
+      .upload(filePath, file, {
+        contentType:
+          file.type || "application/octet-stream",
+        upsert: false
+      });
+
+  if (uploadError) {
+    throw new Error(
+      "원문 파일 업로드 실패: " +
+      uploadError.message
+    );
+  }
+
+  // 5. 관리자 전용 RPC 호출
+  showMessage(
+    "saveMessage",
+    "원문 파일과 자료 정보를 연결하고 있습니다."
+  );
+
+  const { error: rpcError } =
+    await supabase.rpc(
+      "save_knowledge_document_file",
+      {
+        p_document_id: documentId,
+        p_file_path: filePath
+      }
+    );
+
+  if (rpcError) {
+
+    console.error(
+      "원문 연결 RPC 오류:",
+      rpcError
+    );
+
+    // DB 연결 실패 시 업로드한 새 파일 정리
+    const { error: cleanupError } =
+      await supabase.storage
+        .from(BUCKET)
+        .remove([filePath]);
+
+    if (cleanupError) {
+      console.error(
+        "업로드 파일 정리 실패:",
+        cleanupError
+      );
+    }
+
+    throw new Error(
+      "원문 파일 연결 실패: " +
+      rpcError.message
+    );
+  }
+
+  // 6. 연결 결과 확인
+  const { data: savedDocument, error: verifyError } =
+    await supabase
+      .from("knowledge_documents")
+      .select("file_path")
+      .eq("id", documentId)
+      .single();
+
+  if (verifyError) {
+    throw new Error(
+      "원문 연결 확인 실패: " +
+      verifyError.message
+    );
+  }
+
+  if (savedDocument.file_path !== filePath) {
+    throw new Error(
+      "저장된 원문 파일 경로가 일치하지 않습니다."
+    );
+  }
+
+  console.log(
+    "원문 파일 업로드 및 연결 성공:",
+    {
+      documentId,
+      filePath
+    }
+  );
+
+  return filePath;
+}
 
   if (!file) {
     return;
