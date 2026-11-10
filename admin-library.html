@@ -591,6 +591,21 @@ function renderDocuments() {
     status.textContent =
       doc.is_published ? "공개 설정" : "비공개 설정";
 
+/* =====================================
+   원문 파일 등록 상태 표시
+===================================== */
+
+const fileStatus =
+  document.createElement("span");
+
+fileStatus.className =
+  doc.file_path ? "badge" : "badge private";
+
+fileStatus.textContent =
+  doc.file_path
+    ? "📄 원문 등록됨"
+    : "📄 원문 없음";
+    
     const editButton = document.createElement("button");
     editButton.type = "button";
     editButton.textContent = "수정";
@@ -609,13 +624,14 @@ function renderDocuments() {
     });
 
     row.append(
-      title,
-      meta,
-      status,
-      document.createElement("br"),
-      editButton,
-      deleteButton
-    );
+  title,
+  meta,
+  status,
+  fileStatus,
+  document.createElement("br"),
+  editButton,
+  deleteButton
+);
 
     container.appendChild(row);
   });
