@@ -797,26 +797,7 @@ footer {
 
   </div>
 
-<!-- ==========================================
-     임시 보안 시험 버튼
-     시험 완료 후 삭제
-========================================== -->
 
-<div
-  id="discussionSecurityTest"
-  class="action-row"
-  style="margin-top:20px;"
->
-
-  <button
-    id="discussionSecurityTestButton"
-    type="button"
-    class="action-button secondary"
-  >
-    답글 삭제 차단 시험
-  </button>
-
-</div>
   
 </section>
 
@@ -2156,102 +2137,6 @@ $("searchInput").addEventListener(
   renderDocuments
 );
 
-/* ==========================================
-   임시 보안 시험
-   숨김 원본 답글 삭제 차단 검증
-========================================== */
-
-async function testHiddenReplyDelete() {
-
-  const button = $("discussionSecurityTestButton");
-
-  if (!button) return;
-
-  if (!currentUser) {
-
-    showDiscussionMessage(
-      "로그인 후 시험할 수 있습니다.",
-      true
-    );
-
-    return;
-  }
-
-  const confirmed = confirm(
-    "숨김 원본의 답글 ID 10번 삭제 차단을 시험합니다.\n\n" +
-    "차단 기능이 정상이라면 데이터는 삭제되지 않습니다.\n" +
-    "차단 기능에 문제가 있으면 시험용 답글이 삭제 처리될 수 있습니다.\n\n" +
-    "계속하시겠습니까?"
-  );
-
-  if (!confirmed) return;
-
-  button.disabled = true;
-
-  try {
-
-    const { data, error } = await supabase.rpc(
-      "delete_knowledge_discussion",
-      {
-        p_discussion_id: 10
-      }
-    );
-
-    if (error) {
-
-      if (
-        error.message.includes(
-          "삭제할 수 있는 게시글이 없습니다."
-        )
-      ) {
-
-        showDiscussionMessage(
-          "PASS: 숨김 원본의 답글 삭제가 정상 차단되었습니다."
-        );
-
-      } else {
-
-        showDiscussionMessage(
-          "시험 중 오류: " + error.message,
-          true
-        );
-
-      }
-
-      return;
-    }
-
-    showDiscussionMessage(
-      "FAIL: 삭제 요청이 차단되지 않았습니다. 반환값: " +
-      String(data),
-      true
-    );
-
-  } catch (error) {
-
-    showDiscussionMessage(
-      "시험 실행 오류: " + error.message,
-      true
-    );
-
-  } finally {
-
-    button.disabled = false;
-
-  }
-
-}
-
-/* ==========================================
-   임시 보안 시험 버튼 이벤트 연결
-========================================== */
-
-$("discussionSecurityTestButton")
-  ?.addEventListener(
-    "click",
-    testHiddenReplyDelete
-  );
-  
 /* ==========================================
    14. 분류 이벤트
 ========================================== */
