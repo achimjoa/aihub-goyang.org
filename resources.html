@@ -190,6 +190,10 @@ th {
 
 }
 
+#resourceWriteButton[hidden] {
+  display: none;
+}
+  
 </style>
 
 </head>
@@ -610,9 +614,44 @@ async function checkResourceAdmin() {
 
   const user = authData.user;
 
-  /* =====================================
-     1. 관리자 권한 확인
-  ===================================== */
+/* =====================================
+   제175-5-5단계
+   통합 자료실 등록 권한 진단
+===================================== */
+
+async function checkResourceAdmin() {
+
+  resourceAdmin = false;
+  resourceWriter = false;
+
+  resourceWriteButton.hidden = true;
+
+  console.log(
+    "[자료실] 권한 확인 시작"
+  );
+
+  /* 로그인 확인 */
+
+  const { data: authData, error: authError } =
+    await supabase.auth.getUser();
+
+  if (authError || !authData?.user) {
+
+    console.warn(
+      "[자료실] 로그인 확인 실패",
+      authError
+    );
+
+    return;
+  }
+
+  const user = authData.user;
+
+  console.log(
+    "[자료실] 로그인 확인 완료"
+  );
+
+  /* 관리자 확인 */
 
   const { data: adminResult, error: adminError } =
     await supabase.rpc("is_resource_admin");
@@ -620,25 +659,60 @@ async function checkResourceAdmin() {
   if (adminError) {
 
     console.error(
-      "관리자 권한 확인 오류:",
+      "[자료실] 관리자 권한 확인 오류",
       adminError
     );
 
-    return;
+  } else {
+
+    resourceAdmin = adminResult === true;
+
   }
 
-  resourceAdmin = adminResult === true;
+  /* 회원 승인 상태 확인 */
 
-  /* 관리자는 자료 등록 가능 */
+  const { data: profile, error: profileError } =
+    await supabase
+      .from("profiles")
+      .select("member_role, approval_status")
+      .eq("id", user.id)
+      .maybeSingle();
 
-  if (resourceAdmin) {
+  if (profileError) {
 
-    resourceWriter = true;
+    console.error(
+      "[자료실] 회원정보 조회 오류",
+      profileError
+    );
 
-    resourceWriteButton.hidden = false;
-
-    return;
   }
+
+  const approvedMember =
+    !profileError &&
+    profile?.member_role === "member" &&
+    profile?.approval_status === "approved";
+
+  /* 등록 권한 */
+
+  resourceWriter =
+    resourceAdmin || approvedMember;
+
+  /* 버튼 표시 */
+
+  resourceWriteButton.hidden =
+    !resourceWriter;
+
+  console.log(
+    "[자료실] 최종 권한 확인",
+    {
+      resourceAdmin,
+      approvedMember,
+      resourceWriter,
+      buttonHidden: resourceWriteButton.hidden
+    }
+  );
+
+}
 
   /* =====================================
      2. 승인회원 확인
