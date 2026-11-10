@@ -1136,6 +1136,32 @@ function createDocumentCard(doc) {
 
   badges.appendChild(gradeBadge);
 
+/* =====================================
+   제174-5단계
+   공개·비공개 상태 표시
+===================================== */
+
+const publishBadge =
+  document.createElement("span");
+
+publishBadge.className = "badge";
+
+if (doc.is_published === true) {
+
+  publishBadge.textContent = "공개자료";
+
+  publishBadge.classList.add("grade-3");
+
+} else {
+
+  publishBadge.textContent = "비공개자료";
+
+  publishBadge.classList.add("grade-1");
+
+}
+
+badges.appendChild(publishBadge);
+  
   const title =
     document.createElement("h3");
 
