@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>디지털 도서관 관리 | 글로벌 AI 허브</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  margin: 0 0 12px;
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+header a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 18px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 25px 15px;
+}
+
+section {
+  background: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.07);
+}
+
+h2 {
+  margin-top: 0;
+  color: #0754a6;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border: 1px solid #c5d5e8;
+  border-radius: 7px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  padding: 11px 17px;
+  margin: 8px 6px 5px 0;
+  border: 0;
+  border-radius: 7px;
+  background: #0754a6;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.secondary {
+  background: #64748b;
+}
+
+button.danger {
+  background: #b42318;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.status {
+  padding: 14px;
+  margin-top: 15px;
+  border-radius: 8px;
+  background: #eef4fb;
+  white-space: pre-wrap;
+}
+
+.status.error {
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+.status.success {
+  background: #e8f5e9;
+  color: #176534;
+}
+
+.muted {
+  color: #64748b;
+}
+
+.document-row {
+  padding: 20px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.document-row:last-child {
+  border-bottom: 0;
+}
+
+.document-row h3 {
+  margin: 0 0 8px;
+  color: #0754a6;
+}
+
+.document-meta {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  margin-right: 6px;
+  border-radius: 6px;
+  background: #e7f1ff;
+  color: #0754a6;
+  font-size: 13px;
+}
+
+.badge.private {
+  background: #fff3d9;
+  color: #8a5900;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  background: #10315e;
+  color: white;
+}
+
+@media(max-width:600px) {
+  section {
+    padding: 18px;
+  }
+
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📚 디지털 도서관 관리</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <a href="admin-center.html">
+    ← 통합 관리센터로 돌아가기
+  </a>
+</header>
+
+<main>
+
+<section id="authSection">
+
+  <h2>관리자 인증</h2>
+
+  <p id="authMessage" class="status" role="status">
+    관리자 권한을 확인하고 있습니다.
+  </p>
+
+  <a href="login.html">
+    회원 로그인 페이지
+  </a>
+
+</section>
+
+<div id="adminArea" hidden>
+
+<section>
+
+  <div class="toolbar">
+
+    <strong id="adminEmail"></strong>
+
+    <button id="refreshButton" type="button">
+      자료 목록 새로고침
+    </button>
+
+    <a href="library.html" target="_blank"
+       rel="noopener noreferrer">
+      시민용 지식자료실 보기
+    </a>
+
+  </div>
+
+</section>
+
+<section id="editorSection">
+
+  <h2 id="formHeading">새 자료 등록</h2>
+
+  <p class="muted">
+    1차 관리 화면입니다.
+    원문 파일과 표지 등록 기능은
+    다음 단계에서 연결합니다.
+  </p>
+
+  <form id="documentForm">
+
+    <label for="documentType">자료 종류 *</label>
+
+    <select id="documentType" required>
+      <option value="ebook">전자책</option>
+      <option value="policy">정책·연구자료</option>
+      <option value="other">기타 자료</option>
+    </select>
+
+    <label for="documentTitle">자료 제목 *</label>
+
+    <input
+      id="documentTitle"
+      maxlength="300"
+      required
+    >
+
+    <label for="documentAuthor">저자·발행기관</label>
+
+    <input id="documentAuthor">
+
+    <label for="documentDate">발행일</label>
+
+    <input id="documentDate" type="date">
+
+    <label for="documentCategory">세부 분류</label>
+
+    <input
+      id="documentCategory"
+      placeholder="예: AI 정책, 연구보고서"
+    >
+
+    <label for="documentAbstract">자료 초록</label>
+
+    <textarea id="documentAbstract"></textarea>
+
+    <label for="documentDescription">상세 설명</label>
+
+    <textarea id="documentDescription"></textarea>
+
+    <label for="securityGrade">공개 등급 *</label>
+
+    <select id="securityGrade" required>
+      <option value="3">3급 · 공개자료</option>
+      <option value="2">2급 · 회원자료</option>
+      <option value="1">1급 · 대외비</option>
+    </select>
+
+    <p class="status">
+      신규 자료는 비공개 상태로 등록됩니다.
+      기존 자료의 공개 여부도
+      이번 화면에서는 변경하지 않습니다.
+    </p>
+
+    <button id="saveButton" type="submit">
+      자료 저장
+    </button>
+
+    <button
+      id="cancelButton"
+      type="button"
+      class="secondary"
+      hidden>
+      수정 취소
+    </button>
+
+    <p id="saveMessage" class="status" role="status"></p>
+
+  </form>
+
+</section>
+
+<section>
+
+  <h2>등록된 도서관 자료</h2>
+
+  <label for="searchInput">자료 검색</label>
+
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="제목 또는 저자 검색"
+  >
+
+  <p id="listMessage" class="status" role="status">
+    자료 목록을 불러오고 있습니다.
+  </p>
+
+  <div id="documentList"></div>
+
+</section>
+
+</div>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const $ = id => document.getElementById(id);
+
+let currentUser = null;
+let documents = [];
+let editingId = null;
+let saving = false;
+
+function showMessage(id, text, error = false) {
+  const element = $(id);
+  element.textContent = text;
+  element.className =
+    error ? "status error" : "status success";
+}
+
+function gradeName(grade) {
+  const names = {
+    1: "1급 · 대외비",
+    2: "2급 · 회원자료",
+    3: "3급 · 공개자료"
+  };
+
+  return names[Number(grade)] || "등급 미확인";
+}
+
+function typeName(type) {
+  const names = {
+    ebook: "전자책",
+    policy: "정책·연구자료",
+    other: "기타 자료"
+  };
+
+  return names[type] || type || "기타";
+}
+
+/* 관리자 권한 확인 */
+
+async function verifyAdmin() {
+
+  const { data, error } =
+    await supabase.auth.getUser();
+
+  if (error || !data.user) {
+    throw new Error("관리자 로그인이 필요합니다.");
+  }
+
+  const result =
+    await supabase.rpc("is_resource_admin");
+
+  if (result.error) {
+    throw result.error;
+  }
+
+  if (result.data !== true) {
+    throw new Error("자료실 관리자 권한이 없습니다.");
+  }
+
+  return data.user;
+}
+
+/* 초기 인증 */
+
+async function initialize() {
+
+  try {
+
+    currentUser = await verifyAdmin();
+
+    $("adminEmail").textContent =
+      currentUser.email || "";
+
+    $("authSection").hidden = true;
+    $("adminArea").hidden = false;
+
+    await loadDocuments();
+
+  } catch (error) {
+
+    $("adminArea").hidden = true;
+
+    showMessage(
+      "authMessage",
+      error.message,
+      true
+    );
+
+  }
+}
+
+/* 자료 목록 조회 */
+
+async function loadDocuments() {
+
+  showMessage(
+    "listMessage",
+    "자료 목록을 불러오고 있습니다."
+  );
+
+  const { data, error } =
+    await supabase
+      .from("knowledge_documents")
+      .select(`
+        id,
+        title,
+        abstract,
+        description,
+        document_type,
+        category,
+        security_grade,
+        author,
+        published_at,
+        is_published
+      `)
+      .order("id", {
+        ascending: false
+      });
+
+  if (error) {
+
+    showMessage(
+      "listMessage",
+      "자료 조회 실패: " + error.message,
+      true
+    );
+
+    return;
+  }
+
+  documents = data || [];
+
+  showMessage(
+    "listMessage",
+    "등록 자료 " + documents.length + "건"
+  );
+
+  renderDocuments();
+}
+
+/* 목록 표시 */
+
+function renderDocuments() {
+
+  const keyword =
+    $("searchInput").value.trim().toLowerCase();
+
+  const filtered = documents.filter(doc => {
+
+    const text = [
+      doc.title,
+      doc.author
+    ].filter(Boolean).join(" ").toLowerCase();
+
+    return text.includes(keyword);
+  });
+
+  const container = $("documentList");
+
+  container.replaceChildren();
+
+  if (filtered.length === 0) {
+    const empty = document.createElement("p");
+    empty.textContent = "검색 조건에 맞는 자료가 없습니다.";
+    container.appendChild(empty);
+    return;
+  }
+
+  filtered.forEach(doc => {
+
+    const row = document.createElement("article");
+    row.className = "document-row";
+
+    const title = document.createElement("h3");
+    title.textContent = doc.title || "제목 없음";
+
+    const meta = document.createElement("p");
+    meta.className = "document-meta";
+
+    meta.textContent = [
+      typeName(doc.document_type),
+      gradeName(doc.security_grade),
+      doc.author || "",
+      doc.published_at || ""
+    ].filter(Boolean).join(" · ");
+
+    const status = document.createElement("span");
+    status.className =
+      doc.is_published ? "badge" : "badge private";
+
+    status.textContent =
+      doc.is_published ? "공개 설정" : "비공개 설정";
+
+    const editButton = document.createElement("button");
+    editButton.type = "button";
+    editButton.textContent = "수정";
+
+    editButton.addEventListener("click", () => {
+      editDocument(doc);
+    });
+
+    const deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.className = "danger";
+    deleteButton.textContent = "삭제";
+
+    deleteButton.addEventListener("click", () => {
+      deleteDocument(doc);
+    });
+
+    row.append(
+      title,
+      meta,
+      status,
+      document.createElement("br"),
+      editButton,
+      deleteButton
+    );
+
+    container.appendChild(row);
+  });
+}
+
+/* 수정 화면 */
+
+function editDocument(doc) {
+
+  editingId = doc.id;
+
+  $("formHeading").textContent = "자료 수정";
+
+  $("documentType").value =
+    doc.document_type || "other";
+
+  $("documentTitle").value =
+    doc.title || "";
+
+  $("documentAuthor").value =
+    doc.author || "";
+
+  $("documentDate").value =
+    doc.published_at
+      ? String(doc.published_at).slice(0, 10)
+      : "";
+
+  $("documentCategory").value =
+    doc.category || "";
+
+  $("documentAbstract").value =
+    doc.abstract || "";
+
+  $("documentDescription").value =
+    doc.description || "";
+
+  $("securityGrade").value =
+    String(doc.security_grade ?? 3);
+
+  $("cancelButton").hidden = false;
+
+  $("saveMessage").textContent = "";
+
+  $("editorSection").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+/* 입력 초기화 */
+
+function resetEditor() {
+
+  editingId = null;
+
+  $("documentForm").reset();
+
+  $("formHeading").textContent = "새 자료 등록";
+
+  $("cancelButton").hidden = true;
+
+  $("saveMessage").textContent = "";
+}
+
+$("cancelButton").addEventListener(
+  "click",
+  resetEditor
+);
+
+/* 자료 저장 */
+
+$("documentForm").addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    if (saving) return;
+
+    saving = true;
+    $("saveButton").disabled = true;
+
+    try {
+
+      currentUser = await verifyAdmin();
+
+      const payload = {
+        title: $("documentTitle").value.trim(),
+        author: $("documentAuthor").value.trim() || null,
+        published_at: $("documentDate").value || null,
+        category: $("documentCategory").value.trim() || null,
+        abstract: $("documentAbstract").value.trim() || null,
+        description: $("documentDescription").value.trim() || null,
+        document_type: $("documentType").value,
+        security_grade: Number($("securityGrade").value)
+      };
+
+      if (!payload.title) {
+        throw new Error("자료 제목을 입력하세요.");
+      }
+
+      if (![1, 2, 3].includes(payload.security_grade)) {
+        throw new Error("공개 등급을 확인하세요.");
+      }
+
+      if (editingId !== null) {
+
+        const { data, error } =
+          await supabase
+            .from("knowledge_documents")
+            .update(payload)
+            .eq("id", editingId)
+            .select("id");
+
+        if (error) throw error;
+
+        if (!data || data.length !== 1) {
+          throw new Error("수정 결과를 확인할 수 없습니다.");
+        }
+
+      } else {
+
+        const { data, error } =
+          await supabase
+            .from("knowledge_documents")
+            .insert({
+              ...payload,
+              is_published: false,
+              created_by: currentUser.id
+            })
+            .select("id");
+
+        if (error) throw error;
+
+        if (!data || data.length !== 1) {
+          throw new Error("등록 결과를 확인할 수 없습니다.");
+        }
+      }
+
+      resetEditor();
+
+      await loadDocuments();
+
+      showMessage(
+        "saveMessage",
+        "자료가 정상적으로 저장되었습니다."
+      );
+
+    } catch (error) {
+
+      showMessage(
+        "saveMessage",
+        "자료 저장 실패: " + error.message,
+        true
+      );
+
+    } finally {
+
+      saving = false;
+      $("saveButton").disabled = false;
+
+    }
+  }
+);
+
+/* 자료 삭제 */
+
+async function deleteDocument(doc) {
+
+  if (!confirm(
+    `"${doc.title}" 자료를 삭제하시겠습니까?\n\n` +
+    "삭제한 자료는 복구하기 어렵습니다."
+  )) {
+    return;
+  }
+
+  try {
+
+    await verifyAdmin();
+
+    const { data, error } =
+      await supabase
+        .from("knowledge_documents")
+        .delete()
+        .eq("id", doc.id)
+        .select("id");
+
+    if (error) throw error;
+
+    if (!data || data.length !== 1) {
+      throw new Error("삭제 결과를 확인할 수 없습니다.");
+    }
+
+    if (editingId === doc.id) {
+      resetEditor();
+    }
+
+    await loadDocuments();
+
+    alert("자료가 삭제되었습니다.");
+
+  } catch (error) {
+
+    alert(
+      "자료 삭제 실패: " + error.message
+    );
+
+  }
+}
+
+/* 이벤트 */
+
+$("searchInput").addEventListener(
+  "input",
+  renderDocuments
+);
+
+$("refreshButton").addEventListener(
+  "click",
+  loadDocuments
+);
+
+/* 최초 실행 */
+
+initialize();
+
+</script>
+
+</body>
+</html>
