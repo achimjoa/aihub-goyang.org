@@ -878,7 +878,18 @@ $("documentForm").addEventListener(
   /* 수정 시 원문 파일 업로드 */
 
   const file =
-    $("documentFile").files[0];
+  $("documentFile").files[0];
+
+console.log(
+  "원문 파일 선택 확인:",
+  file
+    ? {
+        name: file.name,
+        size: file.size,
+        type: file.type
+      }
+    : "선택된 파일 없음"
+);
 
   if (file) {
 
