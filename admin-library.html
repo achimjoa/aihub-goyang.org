@@ -774,6 +774,14 @@ async function uploadDocumentFile(
         upsert: false
       });
 
+console.log(
+  "Supabase Storage 업로드 결과:",
+  {
+    filePath: filePath,
+    uploadError: uploadError
+  }
+);
+  
   if (uploadError) {
     throw uploadError;
   }
