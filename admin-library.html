@@ -623,14 +623,26 @@ fileStatus.textContent =
       deleteDocument(doc);
     });
 
-    row.append(
+    const openButton = document.createElement("button");
+
+openButton.type = "button";
+openButton.textContent = "원문 열람";
+openButton.className = "secondary";
+
+openButton.disabled = !doc.file_path;
+
+openButton.addEventListener("click", () => {
+  openAdminDocument(doc, openButton);
+});
+
+row.append(
   title,
   meta,
   status,
-  fileStatus,
   document.createElement("br"),
   editButton,
-  deleteButton
+  deleteButton,
+  openButton
 );
 
     container.appendChild(row);
