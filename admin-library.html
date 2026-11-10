@@ -703,6 +703,92 @@ $("cancelButton").addEventListener(
 
 /* 자료 저장 */
 
+/* =====================================
+   원문 파일 업로드
+===================================== */
+
+async function uploadDocumentFile(
+  documentId,
+  file
+) {
+
+  if (!file) {
+    return;
+  }
+
+  /* 관리자 권한 확인 */
+
+  const user = await verifyAdmin();
+
+  /* 안전한 파일명 생성 */
+
+  const safeName = file.name
+    .replace(/[^a-zA-Z0-9._-]/g, "_")
+    .slice(-120);
+
+  /* 파일 저장 경로 */
+
+  const filePath =
+    `${user.id}/documents/${documentId}/` +
+    `${crypto.randomUUID()}-${safeName}`;
+
+  /* Supabase Storage 업로드 */
+
+  const { error: uploadError } =
+    await supabase.storage
+      .from("knowledge-private")
+      .upload(filePath, file, {
+        contentType:
+          file.type || "application/octet-stream",
+        upsert: false
+      });
+
+  if (uploadError) {
+    throw uploadError;
+  }
+
+  /* 데이터베이스 파일 경로 연결 */
+
+  const { data, error: updateError } =
+    await supabase
+      .from("knowledge_documents")
+      .update({
+        file_path: filePath
+      })
+      .eq("id", documentId)
+      .select("id");
+
+  if (
+    updateError ||
+    !data ||
+    data.length !== 1
+  ) {
+
+    /*
+      데이터베이스 연결 실패 시
+      업로드된 파일 정리
+    */
+
+    const { error: cleanupError } =
+      await supabase.storage
+        .from("knowledge-private")
+        .remove([filePath]);
+
+    if (cleanupError) {
+      console.error(
+        "업로드 파일 정리 실패:",
+        cleanupError
+      );
+    }
+
+    throw updateError ||
+      new Error(
+        "원문 파일 경로 연결에 실패했습니다."
+      );
+  }
+
+}
+  
 $("documentForm").addEventListener(
   "submit",
   async event => {
@@ -754,6 +840,8 @@ $("documentForm").addEventListener(
 
       } else {
 
+        /* 신규 자료 등록 */
+
         const { data, error } =
           await supabase
             .from("knowledge_documents")
@@ -767,8 +855,25 @@ $("documentForm").addEventListener(
         if (error) throw error;
 
         if (!data || data.length !== 1) {
-          throw new Error("등록 결과를 확인할 수 없습니다.");
+          throw new Error(
+            "등록 결과를 확인할 수 없습니다."
+          );
         }
+
+        /* 원문 파일 업로드 */
+
+        const file =
+          $("documentFile").files[0];
+
+        if (file) {
+
+          await uploadDocumentFile(
+            data[0].id,
+            file
+          );
+
+        }
+
       }
 
       resetEditor();
