@@ -509,7 +509,9 @@ async function loadDocuments() {
         security_grade,
         author,
         published_at,
-        is_published
+        is_published,
+        file_path,
+        thumbnail_url
       `)
       .order("id", {
         ascending: false
