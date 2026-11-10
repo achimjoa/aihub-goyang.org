@@ -1143,6 +1143,34 @@ function createDocumentCard(doc) {
 
   badges.appendChild(gradeBadge);
 
+// ==========================================
+// 제174-8단계
+// 공개·비공개 상태 표시
+// ==========================================
+
+const publishBadge =
+  document.createElement("span");
+
+publishBadge.className =
+  "badge";
+
+publishBadge.textContent =
+  doc.is_published
+    ? "공개"
+    : "비공개";
+
+if (!doc.is_published) {
+
+  publishBadge.style.background =
+    "#fce8e8";
+
+  publishBadge.style.color =
+    "#9b2020";
+
+}
+
+badges.appendChild(publishBadge);
+  
 /* =====================================
    제174-5단계
    공개·비공개 상태 표시
@@ -1348,10 +1376,22 @@ function showDocumentDetail(doc) {
 .filter(Boolean)
 .join(" · ");   
 
-  $("detailAbstract").textContent =
-    doc.abstract ||
-    "등록된 초록이 없습니다.";
+const abstractText =
+  doc.abstract ||
+  "등록된 초록이 없습니다.";
 
+const descriptionText =
+  doc.description || "";
+
+$("detailAbstract").textContent =
+  descriptionText
+    ? "【초록】\n" +
+      abstractText +
+      "\n\n【상세설명】\n" +
+      descriptionText
+    : "【초록】\n" +
+      abstractText;
+  
   /* 상세 설명 표시 */
 
 $("detailDescription").textContent =
