@@ -262,10 +262,10 @@ footer {
     <label for="documentType">자료 종류 *</label>
 
     <select id="documentType" required>
-      <option value="ebook">전자책</option>
-      <option value="policy">정책·연구자료</option>
-      <option value="other">기타 자료</option>
-    </select>
+  <option value="ebook">전자책</option>
+  <option value="policy">정책·연구자료</option>
+  <option value="document">일반 문서·기타 자료</option>
+</select>
 
     <label for="documentTitle">자료 제목 *</label>
 
@@ -400,13 +400,18 @@ function gradeName(grade) {
 }
 
 function typeName(type) {
+
   const names = {
     ebook: "전자책",
     policy: "정책·연구자료",
-    other: "기타 자료"
+    document: "일반 문서·기타 자료",
+    photo: "사진",
+    video: "동영상",
+    audio: "음성"
   };
 
-  return names[type] || type || "기타";
+  return names[type] || type || "기타 자료";
+
 }
 
 /* 관리자 권한 확인 */
@@ -603,8 +608,27 @@ function editDocument(doc) {
 
   $("formHeading").textContent = "자료 수정";
 
-  $("documentType").value =
-    doc.document_type || "other";
+  const typeSelect = $("documentType");
+
+const existingType =
+  doc.document_type || "document";
+
+if (
+  !Array.from(typeSelect.options).some(
+    option => option.value === existingType
+  )
+) {
+
+  typeSelect.add(
+    new Option(
+      typeName(existingType) + " (기존 자료 종류)",
+      existingType
+    )
+  );
+
+}
+
+typeSelect.value = existingType;
 
   $("documentTitle").value =
     doc.title || "";
