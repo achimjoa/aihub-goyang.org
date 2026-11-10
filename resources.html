@@ -598,6 +598,20 @@ const resourceList =
 const resourceWriteButton =
   document.getElementById("resourceWriteButton");
 
+/* 사용자 권한 변수 */
+
+let resourceAdmin = false;
+let resourceWriter = false;
+let currentUserId = null;
+
+/* 사용자 권한 확인 함수 */
+
+async function checkResourceAdmin() {
+
+  // 기존 권한 확인 코드 유지
+
+}
+  
 /* =====================================
    제175-5-9단계
    통합 자료실 등록 권한 확인
