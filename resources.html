@@ -938,14 +938,20 @@ currentResourceId = resourceId;
   const detailView =
     document.getElementById("resourceDetailView");
 
-  const { data, error } =
-    await supabase
-      .from("resource_posts")
-      .select(
-        "id, title, content, category, youtube_url, created_at"
-      )
-      .eq("id", resourceId)
-      .single();
+ /* =====================================
+   제175-5-14-18단계
+
+   자료 상세조회 시 작성자 정보 포함
+===================================== */
+
+const { data, error } =
+  await supabase
+    .from("resource_posts")
+    .select(
+      "id, title, content, category, youtube_url, created_at, author_id"
+    )
+    .eq("id", resourceId)
+    .single();
 
   if (error) {
 
