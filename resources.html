@@ -2455,12 +2455,22 @@ resourceDeleteButton.addEventListener(
       return;
     }
 
-    /* 관리자 권한 확인 */
+   /* =====================================
+   제175-5-14-26단계
 
-    if (!resourceAdmin) {
-      alert("관리자만 자료를 삭제할 수 있습니다.");
-      return;
-    }
+   관리자 및 승인회원
+   자료 삭제 권한 확인
+===================================== */
+
+if (!resourceAdmin && !resourceWriter) {
+
+  alert(
+    "자료 삭제 권한이 없습니다."
+  );
+
+  return;
+
+}
 
     if (currentResourceId == null) {
       alert("삭제할 자료가 선택되지 않았습니다.");
@@ -2499,16 +2509,90 @@ resourceDeleteButton.addEventListener(
         );
       }
 
-      /* 관리자 권한 재확인 */
+      /* =====================================
+   제175-5-14-26단계
 
-      const { data: isAdmin, error: adminError } =
-        await supabase.rpc("is_resource_admin");
+   삭제 대상 작성자 및 권한 재확인
+===================================== */
 
-      if (adminError || isAdmin !== true) {
-        throw new Error(
-          "관리자 권한을 확인할 수 없습니다."
-        );
-      }
+/* 삭제 대상 게시물 확인 */
+
+const { data: targetResource, error: targetError } =
+  await supabase
+    .from("resource_posts")
+    .select("id, author_id")
+    .eq("id", resourceId)
+    .single();
+
+if (targetError || !targetResource) {
+
+  throw new Error(
+    "삭제할 자료를 확인할 수 없습니다."
+  );
+
+}
+
+/* 관리자 권한 재확인 */
+
+const { data: isAdmin, error: adminError } =
+  await supabase.rpc("is_resource_admin");
+
+if (adminError) {
+
+  throw new Error(
+    "관리자 권한 확인 중 오류가 발생했습니다."
+  );
+
+}
+
+/* 승인회원 권한 재확인 */
+
+const { data: isApprovedMember, error: memberError } =
+  await supabase.rpc(
+    "is_approved_resource_member"
+  );
+
+if (memberError) {
+
+  throw new Error(
+    "회원 승인 상태 확인 중 오류가 발생했습니다."
+  );
+
+}
+
+/* 본인 작성 자료 여부 */
+
+const isOwnResource =
+  targetResource.author_id === authData.user.id;
+
+/* 최종 삭제 권한 */
+
+const canDeleteResource =
+  isAdmin === true ||
+  (
+    isApprovedMember === true &&
+    isOwnResource
+  );
+
+/* 권한이 없으면 삭제 중단 */
+
+if (!canDeleteResource) {
+
+  throw new Error(
+    "본인이 등록한 자료만 삭제할 수 있습니다."
+  );
+
+}
+
+console.log(
+  "[자료실] 삭제 권한 확인 완료",
+  {
+    isAdmin,
+    isApprovedMember,
+    isOwnResource,
+    canDeleteResource
+  }
+);
 
       /* 첨부파일 경로 조회 */
 
