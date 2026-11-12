@@ -1574,6 +1574,45 @@ if (resourceEditMode) {
     document.getElementById("resourceYoutube")
       .value.trim();
 
+  /* =====================================
+   제175-5-14-44단계
+   사진 활동정보 입력값 가져오기
+===================================== */
+
+const activityCategory =
+  category === "image"
+    ? document.getElementById(
+        "resourceActivityCategory"
+      ).value
+    : null;
+
+const eventName =
+  category === "image"
+    ? document.getElementById(
+        "resourceEventName"
+      ).value.trim()
+    : "";
+
+const eventDate =
+  category === "image"
+    ? document.getElementById(
+        "resourceEventDate"
+      ).value
+    : "";
+
+/* 사진자료 활동 분류 필수 검사 */
+
+if (
+  category === "image" &&
+  !activityCategory
+) {
+
+  alert("사진자료의 활동 분류를 선택해 주세요.");
+
+  return;
+
+}
+
   if (!title) {
     alert("자료 제목을 입력해 주세요.");
     return;
@@ -1783,11 +1822,26 @@ if (resourceEditMode) {
     await supabase
       .from("resource_posts")
       .update({
-        title: title,
-        category: category,
-        content: content,
-        youtube_url: youtubeUrl || null
-      })
+  title: title,
+  category: category,
+  content: content,
+  youtube_url: youtubeUrl || null,
+
+  activity_category:
+    category === "image"
+      ? activityCategory
+      : null,
+
+  event_name:
+    category === "image"
+      ? eventName || null
+      : null,
+
+  event_date:
+    category === "image"
+      ? eventDate || null
+      : null
+})
       .eq("id", currentResourceId)
       .select("id")
       .single();
@@ -1839,12 +1893,27 @@ const { data: resource, error: postError } =
   await supabase
     .from("resource_posts")
     .insert({
-      title: title,
-      category: category,
-      content: content,
-      youtube_url: youtubeUrl || null,
-      author_id: authData.user.id
-    })
+  title: title,
+  category: category,
+  content: content,
+  youtube_url: youtubeUrl || null,
+  author_id: authData.user.id,
+
+  activity_category:
+    category === "image"
+      ? activityCategory
+      : null,
+
+  event_name:
+    category === "image"
+      ? eventName || null
+      : null,
+
+  event_date:
+    category === "image"
+      ? eventDate || null
+      : null
+})
     .select("id")
     .single();
 
