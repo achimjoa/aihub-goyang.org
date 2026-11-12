@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회 홈페이지 이용 안내. 온라인 서명, 추진위원 등록, 후원회원 가입 등 시민참여 방법을 소개합니다.">
+
+<title>
+홈페이지 이용 안내 | 글로벌 AI 허브 고양특례시 유치
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Malgun Gothic",
+    "Noto Sans KR",
+    Arial,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* 상단 */
+
+header {
+  background:
+    linear-gradient(
+      135deg,
+      #0754a6,
+      #10315e
+    );
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.home-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 빠른 메뉴 */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 본문 */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>홈페이지 이용 안내</h1>
+
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
+
+<p>
+홈페이지 주요 기능과 시민참여 방법을
+안내합니다.
+</p>
+
+<a href="index.html" class="home-link">
+← 홈페이지로 돌아가기
+</a>
+
+</header>
+
+<nav class="quick-nav" aria-label="이용 안내 바로가기">
+
+<a href="#intro">홈페이지 소개</a>
+<a href="#menus">주요 메뉴</a>
+<a href="#participation">시민참여</a>
+<a href="#account">후원·계좌 안내</a>
+<a href="#board">게시판·자료</a>
+<a href="#faq">자주 묻는 질문</a>
+<a href="#help">이용 도움말</a>
+
+</nav>
+
+<main>
+
+<section id="intro">
+
+<h2>1. 홈페이지에 오신 것을 환영합니다</h2>
+
+<p>
+경기도 글로벌 AI 허브 유치
+고양특례시 범시민추진위원회 홈페이지는
+글로벌 AI 허브 유치의 필요성을 알리고,
+시민의 관심과 참여를 모으기 위한
+공식 온라인 소통 창구입니다.
+</p>
+
+<p>
+홈페이지에서는 글로벌 AI 허브에 관한
+정보를 확인하고, 위원회의 활동을 살펴보며,
+다양한 시민참여 활동에 동참하실 수 있습니다.
+</p>
+
+<div class="highlight">
+
+<strong>
+고양시에 성장동력을 달라!<br>
+고양시에 일자리를 달라!<br>
+글로벌 AI 허브는 고양특례시로!
+</strong>
+
+</div>
+
+<p>
+PC와 스마트폰에서 이용할 수 있으며,
+별도의 프로그램 설치 없이
+인터넷 브라우저로 접속할 수 있습니다.
+</p>
+
+</section>
+
+<section id="menus">
+
+<h2>2. 주요 메뉴 안내</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>위원회 소개</h3>
+
+<p>
+위원회의 설립 취지와
+활동 방향을 확인합니다.
+</p>
+
+<a class="button secondary"
+href="committee.html">
+자세히 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>글로벌 AI 허브</h3>
+
+<p>
+글로벌 AI 허브의 개념과
+국제협력 비전을 알아봅니다.
+</p>
+
+<a class="button secondary"
+href="hub.html">
+자세히 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>고양특례시 유치 경쟁력</h3>
+
+<p>
+고양특례시가 글로벌 AI 허브
+유치에 적합한 이유를 살펴봅니다.
+</p>
+
+<a class="button secondary"
+href="goyang.html">
+자세히 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>9개 국제기구</h3>
+
+<p>
+국제기구별 주요 역할과
+AI 협력 가능성을 확인합니다.
+</p>
+
+<a class="button secondary"
+href="agencies.html">
+자세히 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>유치 전략</h3>
+
+<p>
+초기 안착, 운영 지원,
+동반 성장의 3단계 전략을 소개합니다.
+</p>
+
+<a class="button secondary"
+href="strategy.html">
+자세히 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>시민참여센터</h3>
+
+<p>
+온라인 서명과 각종 시민참여
+신청을 안내합니다.
+</p>
+
+<a class="button"
+href="participate.html">
+시민참여센터
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="participation">
+
+<h2>3. 시민참여 방법</h2>
+
+<p>
+시민참여센터에서는
+다음 다섯 가지 참여 신청을
+이용하실 수 있습니다.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>① 온라인 유치 동의 서명</h3>
+
+<p>
+글로벌 AI 허브의 고양특례시 유치를
+지지하는 시민의 뜻을 모읍니다.
+</p>
+
+<ol class="steps">
+<li>온라인 서명 버튼을 선택합니다.</li>
+<li>신청서의 필수 정보를 입력합니다.</li>
+<li>개인정보 관련 안내를 확인합니다.</li>
+<li>제출 버튼을 누릅니다.</li>
+</ol>
+
+<a class="button"
+href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+target="_blank"
+rel="noopener noreferrer">
+온라인 서명 참여
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>② 범시민추진위원 등록</h3>
+
+<p>
+글로벌 AI 허브 유치운동에
+적극적으로 참여하고자 하는 시민은
+추진위원 등록을 신청할 수 있습니다.
+</p>
+
+<p>
+성명, 전화번호, 행정동,
+소속 단체 등 신청서에서
+요구하는 정보를 입력합니다.
+</p>
+
+<a class="button"
+href="https://forms.gle/FaZCDwm7gqu5rthb7"
+target="_blank"
+rel="noopener noreferrer">
+추진위원 등록
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>③ 후원회원 가입</h3>
+
+<p>
+글로벌 AI 허브 유치 활동을
+후원하고자 하는 분은
+후원회원 가입을 신청할 수 있습니다.
+</p>
+
+<p>
+신청서를 제출한 후
+홈페이지에 표시된 공식 계좌정보와
+납부 안내를 확인해 주세요.
+</p>
+
+<a class="button"
+href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+target="_blank"
+rel="noopener noreferrer">
+후원회원 가입
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>④ 홍보현수막 게시 신청</h3>
+
+<p>
+글로벌 AI 허브 유치 홍보를 위한
+현수막 게시를 신청할 수 있습니다.
+</p>
+
+<p>
+게시 장소와 관련 법령,
+게시 가능 여부를 확인해 주세요.
+</p>
+
+<a class="button"
+href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+target="_blank"
+rel="noopener noreferrer">
+현수막 게시 신청
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>⑤ 차량 홍보 스티커 신청</h3>
+
+<p>
+차량을 이용한 유치 홍보에
+참여하고자 하는 시민은
+홍보 스티커를 신청할 수 있습니다.
+</p>
+
+<p>
+성명, 전화번호, 행정동,
+신청 수량 등 필요한 정보를
+입력합니다.
+</p>
+
+<a class="button"
+href="https://forms.gle/cisRHEsN61pxVycG8"
+target="_blank"
+rel="noopener noreferrer">
+차량 스티커 신청
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+※ 신청 가능 여부와 실제 처리 일정은
+위원회의 운영 상황에 따라 달라질 수 있습니다.
+</p>
+
+</section>
+
+<section id="account">
+
+<h2>4. 후원회비 및 현수막 비용 안내</h2>
+
+<p>
+후원회원 가입이나 홍보현수막 게시 신청 후
+비용을 납부하려는 경우,
+시민참여센터에 표시된 공식 계좌정보를
+확인하시기 바랍니다.
+</p>
+
+<div class="highlight">
+
+<strong>입금 전 확인사항</strong>
+
+<p>
+은행명, 계좌번호, 예금주를
+반드시 확인해 주세요.
+</p>
+
+<p>
+신청서 제출과 실제 입금은
+별도의 절차입니다.
+</p>
+
+<p>
+계좌정보가 표시되지 않거나
+내용이 불분명한 경우에는
+임의로 입금하지 마시고
+공식 안내를 확인해 주세요.
+</p>
+
+</div>
+
+<a class="button"
+href="participate.html">
+공식 계좌정보 확인
+</a>
+
+<p class="note">
+※ 계좌정보는 변경될 수 있으므로
+이 안내 페이지에는 계좌번호를
+직접 기재하지 않습니다.
+</p>
+
+</section>
+
+<section id="board">
+
+<h2>5. 게시판과 활동자료 이용</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>시민참여 게시판</h3>
+
+<p>
+글로벌 AI 허브 유치 관련
+시민 의견과 정보를 공유하는 공간입니다.
+</p>
+
+<a class="button secondary"
+href="board.html">
+게시판 바로가기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>활동 소식</h3>
+
+<p>
+위원회의 주요 행사와
+활동 소식을 확인합니다.
+</p>
+
+<a class="button secondary"
+href="news.html">
+활동 소식 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>언론보도</h3>
+
+<p>
+글로벌 AI 허브 유치와 관련된
+언론 기사를 살펴봅니다.
+</p>
+
+<a class="button secondary"
+href="press.html">
+언론보도 보기
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>활동 연혁</h3>
+
+<p>
+위원회의 주요 활동을
+시간순으로 확인합니다.
+</p>
+
+<a class="button secondary"
+href="history.html">
+활동 연혁 보기
+</a>
+
+</div>
+
+</div>
+
+<p>
+게시판에서는 다른 사람을 존중하고,
+개인정보나 허위정보를 게시하지
+않도록 유의해 주세요.
+</p>
+
+</section>
+
+<section id="faq">
+
+<h2>6. 자주 묻는 질문</h2>
+
+<div class="faq">
+
+<h3>Q. 홈페이지 이용에 회원가입이 필요한가요?</h3>
+
+<p>
+일반적인 정보 열람은
+회원가입 없이 이용할 수 있습니다.
+다만 일부 기능은 로그인이나
+별도의 권한이 필요할 수 있습니다.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>Q. 온라인 서명과 추진위원 등록은 같은가요?</h3>
+
+<p>
+아닙니다.
+온라인 서명은 유치 지지 의사를
+표시하는 참여 방식이며,
+추진위원 등록은 위원회 활동에
+참여하기 위한 별도 신청입니다.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>Q. 온라인 서명에 참여하면 회비를 내야 하나요?</h3>
+
+<p>
+온라인 서명과 후원회원 가입은
+서로 다른 참여 방식입니다.
+온라인 서명 자체가
+후원회비 납부를 의미하지는 않습니다.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>Q. 후원회원 가입 신청만 하면 입금도 완료되나요?</h3>
+
+<p>
+아닙니다.
+신청서 제출과 실제 입금은
+별개의 절차입니다.
+공식 계좌정보를 확인해 주세요.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>Q. 9개 국제기구의 고양특례시 입주가 확정되었나요?</h3>
+
+<p>
+아닙니다.
+홈페이지에 소개된 국제기구는
+글로벌 AI 허브 구상과 관련하여
+협력 가능성을 검토하는 대상입니다.
+참여나 입주가 확정되었다는
+의미는 아닙니다.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>Q. 현수막 신청 후 바로 설치할 수 있나요?</h3>
+
+<p>
+신청서 제출만으로
+게시가 승인되는 것은 아닙니다.
+관련 법령과 장소별 허용 기준을
+확인해야 합니다.
+</p>
+
+</div>
+
+</section>
+
+<section id="help">
+
+<h2>7. 홈페이지 이용 도움말</h2>
+
+<h3>홈페이지가 열리지 않을 때</h3>
+
+<p>
+인터넷 연결과 주소를 확인하고
+잠시 후 다시 접속해 주세요.
+</p>
+
+<h3>화면이 정상적으로 보이지 않을 때</h3>
+
+<p>
+새로고침하거나 다른 브라우저에서
+접속해 보시기 바랍니다.
+</p>
+
+<h3>신청서가 열리지 않을 때</h3>
+
+<p>
+신청 버튼을 다시 선택하거나
+다른 브라우저로 접속해 보세요.
+</p>
+
+<h3>계좌정보가 보이지 않을 때</h3>
+
+<p>
+페이지를 새로고침한 후 확인해 주세요.
+문제가 계속되면 임의로 입금하지 말고
+위원회의 공식 안내를 확인하시기 바랍니다.
+</p>
+
+<h3>개인정보 보호</h3>
+
+<p>
+신청서 제출 전에 개인정보 수집·이용
+안내를 확인해 주세요.
+공개 게시판에는 다른 사람의
+개인정보를 게시하지 마세요.
+</p>
+
+<a class="button secondary"
+href="privacy.html">
+개인정보처리방침
+</a>
+
+</section>
+
+<section>
+
+<h2>8. 시민 여러분의 참여를 기다립니다</h2>
+
+<p>
+글로벌 AI 허브의 고양특례시 유치는
+새로운 성장동력과 양질의 일자리,
+지역경제의 미래를 준비하는
+공동의 과제입니다.
+</p>
+
+<p>
+시민 여러분께서는
+온라인 서명과 추진위원 등록,
+후원회원 가입 및 홍보활동 등
+다양한 방법으로 함께하실 수 있습니다.
+</p>
+
+<div class="highlight">
+
+<strong>
+시민 한 분 한 분의 관심과 참여가<br>
+고양특례시의 새로운 미래를 만듭니다.
+</strong>
+
+</div>
+
+<a class="button"
+href="participate.html">
+시민참여센터 바로가기
+</a>
+
+<a class="button secondary"
+href="index.html">
+홈페이지 첫 화면
+</a>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+<strong>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</strong>
+</p>
+
+<p>
+시민의 힘으로, 경기도의 역량으로, 세계와 함께!
+</p>
+
+<p>
+<a href="index.html">
+홈페이지
+</a>
+&nbsp; | &nbsp;
+<a href="participate.html">
+시민참여
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
