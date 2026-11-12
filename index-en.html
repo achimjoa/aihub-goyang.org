@@ -61,7 +61,7 @@ a:focus-visible {
 }
 
 /* =====================================
-   HEADER
+   COMPACT HEADER
 ===================================== */
 
 header {
@@ -70,29 +70,28 @@ header {
     #0754a6,
     #10315e
   );
-
   color: white;
-  padding: 45px 20px;
+  padding: 16px 20px;
   text-align: center;
 }
 
 header h1 {
-  font-size: clamp(29px, 5vw, 48px);
-  margin: 0 0 15px;
-  line-height: 1.25;
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 4px;
+  line-height: 1.3;
 }
 
 header h2 {
-  font-size: clamp(17px, 3vw, 24px);
+  font-size: 15px;
   font-weight: normal;
   color: #dcecff;
   margin: 0;
-  border: none;
   padding: 0;
+  border: none;
 }
 
 header p {
-  font-size: 17px;
+  display: none;
 }
 
 /* =====================================
@@ -150,22 +149,109 @@ header p {
 
 .main-nav {
   background: #10315e;
-  padding: 15px;
+  padding: 10px 18px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
+  align-items: center;
+  gap: 12px;
 }
 
-.main-nav a {
+.main-nav > a {
   color: white;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
-.main-nav a:hover {
+.main-nav > a:hover {
   color: #ffdf5a;
+}
+
+/* =====================================
+   LANGUAGE DROPDOWN
+===================================== */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+  margin-left: 10px;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-dropdown summary:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 190px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+.language-options a,
+.language-options span {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  background: white;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.language-options a:hover {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+  font-weight: bold;
+}
+
+.language-options .pending {
+  color: #788493;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 14px 12px;
+  }
+
+  .main-nav {
+    gap: 10px;
+  }
+
+  .language-dropdown {
+    margin-left: 0;
+  }
 }
 
 /* =====================================
@@ -360,19 +446,6 @@ footer a {
     margin: 10px 0;
   }
 
-  .language-selector {
-    gap: 8px;
-  }
-
-  .language-selector a,
-  .language-selector span {
-    padding: 7px 12px;
-  }
-
-  .main-nav {
-    gap: 12px;
-  }
-
 }
 
 </style>
@@ -382,56 +455,19 @@ footer a {
 <body>
 
 <!-- =====================================
-     HEADER
+     COMPACT HEADER
 ===================================== -->
 
 <header>
 
-<h1>
-GLOBAL AI HUB INITIATIVE
-</h1>
+  <h1>GLOBAL AI HUB INITIATIVE</h1>
 
-<h2>
-Goyang Special City<br>
-Gyeonggi Province, Republic of Korea
-</h2>
-
-<p>
-Advancing International Cooperation<br>
-through Artificial Intelligence
-</p>
+  <h2>
+    Goyang Special City ·
+    Gyeonggi Province, Republic of Korea
+  </h2>
 
 </header>
-
-<!-- =====================================
-     MULTILINGUAL LANGUAGE SELECTOR
-===================================== -->
-
-<div class="language-selector"
-     aria-label="Website language selection">
-
-<span class="language-title">
-🌐 Language
-</span>
-
-<a href="index-en.html"
-   lang="en"
-   aria-current="page">
-English
-</a>
-
-<a href="index.html"
-   lang="ko">
-한국어
-</a>
-
-<span class="coming-soon"
-      lang="es"
-      title="Spanish version under preparation">
-Español — Coming Soon
-</span>
-
-</div>
 
 <!-- =====================================
      MAIN NAVIGATION
@@ -440,15 +476,54 @@ Español — Coming Soon
 <nav class="main-nav"
      aria-label="Main navigation">
 
-<a href="#vision">Vision</a>
-<a href="#hub">Global AI Hub</a>
-<a href="#goyang">Why Goyang?</a>
-<a href="#organizations">International Organizations</a>
-<a href="#strategy">Strategy</a>
-<a href="#committee">Committee</a>
-<a href="#partnership">Partnership</a>
-<a href="#contact">Contact</a>
-<a href="#directory">Explore Website</a>
+  <a href="#vision">Vision</a>
+
+  <a href="#hub">Global AI Hub</a>
+
+  <a href="#goyang">Why Goyang?</a>
+
+  <a href="#organizations">
+    International Organizations
+  </a>
+
+  <a href="#strategy">Strategy</a>
+
+  <a href="#committee">Committee</a>
+
+  <a href="#partnership">Partnership</a>
+
+  <a href="#contact">Contact</a>
+
+  <a href="#directory">Explore Website</a>
+
+  <!-- LANGUAGE SELECTOR -->
+
+  <details class="language-dropdown">
+
+    <summary aria-label="Select website language">
+      🌐 Language ▾
+    </summary>
+
+    <div class="language-options">
+
+      <a href="index-en.html"
+         lang="en"
+         aria-current="page">
+        English ✓
+      </a>
+
+      <a href="index.html"
+         lang="ko">
+        한국어
+      </a>
+
+      <span class="pending" lang="es">
+        Español — Coming Soon
+      </span>
+
+    </div>
+
+  </details>
 
 </nav>
 
