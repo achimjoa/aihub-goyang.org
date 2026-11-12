@@ -334,6 +334,28 @@ nav .nav-member-link {
   }
 
 }
+
+/* 입금 계좌 안내 */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  color: #0754a6;
+}
       
 </style>
 
@@ -1317,6 +1339,90 @@ async function loadHomepageBanners() {
 ===================================== */
 
 loadHomepageBanners();
+
+      /* =====================================
+   제175-5-17-24단계
+   입금 계좌 자동 표시
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) throw error;
+
+    const targets = {
+      membership: "membershipAccountInfo",
+      banner: "bannerAccountInfo"
+    };
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      container.replaceChildren();
+      container.hidden = true;
+
+      const bank =
+        (account.bank_name || "").trim();
+
+      const number =
+        (account.account_number || "").trim();
+
+      const holder =
+        (account.account_holder || "").trim();
+
+      if (!bank || !number || !holder) {
+        continue;
+      }
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "입금 계좌 안내";
+
+      const details =
+        document.createElement("p");
+
+      details.textContent =
+        `${bank} / ${number} / 예금주: ${holder}`;
+
+      details.style.margin = "8px 0 0";
+
+      container.append(title, details);
+
+      container.hidden = false;
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "입금 계좌 조회 오류:",
+      error
+    );
+
+  }
+
+}
+
+loadPaymentAccounts();
 
 /* =====================================
    제159-3단계
@@ -2340,6 +2446,11 @@ main section h2 {
         현수막 게시를 신청할 수 있습니다.
       </p>
 
+          <div id="bannerAccountInfo"
+     class="payment-account-info"
+     hidden>
+</div>
+          
       <a
         href="https://forms.gle/pRM9h8SBhYWXnhFi6"
         target="_blank"
@@ -2366,6 +2477,11 @@ main section h2 {
         신청서에서 확인할 수 있습니다.
       </p>
 
+<div id="membershipAccountInfo"
+     class="payment-account-info"
+     hidden>
+</div>
+          
       <a
         href="https://forms.gle/hdgHtRV2qpxrAhjW8"
         target="_blank"
