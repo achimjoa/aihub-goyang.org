@@ -196,6 +196,15 @@ th {
 }
 
 /* =====================================
+   제175-5-14-42단계
+   사진 활동정보 표시 제어
+===================================== */
+
+#resourcePhotoActivityFields[hidden] {
+  display: none !important;
+}
+  
+/* =====================================
    제175-5-14-33단계
    화면 표시 상태 통일
 ===================================== */
@@ -1230,6 +1239,53 @@ const resourceWriteView =
 
 const resourceForm =
   document.getElementById("resourceForm");
+
+ /* =====================================
+   제175-5-14-42단계
+   사진 활동정보 표시 제어
+===================================== */
+
+const resourceCategorySelect =
+  document.getElementById(
+    "resourceCategory"
+  );
+
+const resourcePhotoActivityFields =
+  document.getElementById(
+    "resourcePhotoActivityFields"
+  );
+
+const resourceActivityCategorySelect =
+  document.getElementById(
+    "resourceActivityCategory"
+  );
+
+/* 사진 선택 여부에 따라 입력 영역 표시 */
+
+function updatePhotoActivityFields() {
+
+  const isPhoto =
+    resourceCategorySelect.value === "image";
+
+  resourcePhotoActivityFields.hidden = !isPhoto;
+
+  /* 사진일 때만 활동 분류 필수 */
+
+  resourceActivityCategorySelect.required =
+    isPhoto;
+
+}
+
+/* 자료 분류 변경 감지 */
+
+resourceCategorySelect.addEventListener(
+  "change",
+  updatePhotoActivityFields
+);
+
+/* 최초 상태 설정 */
+
+updatePhotoActivityFields(); 
 
 const resourceCancelButton =
   document.getElementById("resourceCancelButton");
