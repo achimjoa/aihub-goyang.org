@@ -194,6 +194,34 @@ th {
 #resourceWriteButton[hidden] {
   display: none;
 }
+
+/* =====================================
+   제175-5-14-33단계
+   화면 표시 상태 통일
+===================================== */
+
+[hidden] {
+  display: none !important;
+}
+
+#resourceListView {
+  width: 100%;
+}
+
+#resourceListView table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#resourceListView th,
+#resourceListView td {
+  padding: 14px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#resourceWriteButton {
+  margin: 0;
+}
   
 </style>
 
@@ -280,15 +308,14 @@ th {
 </div>
 
 <!-- =====================================
-     제175-5-14-21단계
+     제175-5-14-33단계
      통합 자료실 목록 구조 정리
+     중복 HTML 제거
 ===================================== -->
 
-<!-- 자료 목록 -->
-
 <div id="resourceListView">
 
-  <!-- 자료등록 버튼 상단 배치 -->
+  <!-- 자료 등록 버튼 -->
 
   <div style="
     display: flex;
@@ -307,56 +334,30 @@ th {
 
   </div>
 
-  <!-- 자료 목록 테이블 -->
+  <!-- 자료 목록 -->
 
   <table>
 
-<div id="resourceListView">
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>자료 제목</th>
+        <th>분류</th>
+        <th>등록일</th>
+      </tr>
+    </thead>
 
-  <!-- 자료등록 버튼 영역 -->
+    <tbody id="resourceList">
 
-  <div style="
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  ">
+      <tr>
+        <td colspan="4">
+          자료를 불러오고 있습니다.
+        </td>
+      </tr>
 
-    <button
-      type="button"
-      id="resourceWriteButton"
-      class="primary"
-      hidden
-    >
-      ✏️ 자료 등록
-    </button>
+    </tbody>
 
-  </div>
-
-  <table>
-  
-<thead>
-
-<tr>
-<th>번호</th>
-<th>자료 제목</th>
-<th>분류</th>
-<th>등록일</th>
-</tr>
-
-</thead>
-
-<tbody id="resourceList">
-
-<tr>
-<td colspan="4">
-등록된 자료가 없습니다.
-</td>
-</tr>
-
-</tbody>
-
-</table>
-
+  </table>
 
 </div>
 
