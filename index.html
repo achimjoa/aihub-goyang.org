@@ -1351,66 +1351,7 @@ if (visibleSections.length === 1) {
 layout.hidden =
   visibleSections.length === 0;
 
-/* 한 영역만 표시될 때 */
 
-#homepageLayoutModule
-#homepageBannerLayout.center-only
-.banner-section:not([hidden]) {
-
-  grid-column: 1;
-  grid-row: 1;
-
-}
-
-/* 두 영역만 표시될 때 */
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns
-#homepageBannerLeft:not([hidden]) {
-
-  grid-column: 1;
-  grid-row: 1;
-
-}
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns
-#homepageBannerCenter:not([hidden]) {
-
-  grid-column: 2;
-  grid-row: 1;
-
-}
-
-/* 중앙이 없고 좌우 광고만 있는 경우 */
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns
-#homepageBannerLeft:not([hidden])
-~ #homepageBannerRight:not([hidden]) {
-
-  grid-column: 2;
-  grid-row: 1;
-
-}
-
-/* 중앙과 우측만 있는 경우 */
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns
-#homepageBannerCenter:not([hidden]) {
-
-  grid-column: 1;
-}
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns
-#homepageBannerRight:not([hidden]) {
-
-  grid-column: 2;
-  grid-row: 1;
-
-}
         
     console.log(
       "홈페이지 배너 조회 완료:",
