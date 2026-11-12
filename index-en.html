@@ -2,20 +2,38 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#0754a6">
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
 
 <meta name="description"
-content="Global AI Hub Initiative in Goyang Special City, Gyeonggi Province, Republic of Korea. Advancing international cooperation through artificial intelligence.">
+content="Global AI Hub Initiative in Goyang Special City, Republic of Korea. An international cooperation initiative connecting artificial intelligence, international organizations, research institutions and communities.">
 
 <title>
 Global AI Hub Initiative | Goyang Special City
 </title>
 
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
+
+<link rel="alternate"
+hreflang="en"
+href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
+
+<link rel="alternate"
+hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/index.html">
+
 <style>
+
+/* =====================================
+   BASIC SETTINGS
+===================================== */
 
 * {
   box-sizing: border-box;
@@ -42,12 +60,17 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+/* =====================================
+   HEADER
+===================================== */
+
 header {
   background: linear-gradient(
     135deg,
     #0754a6,
     #10315e
   );
+
   color: white;
   padding: 45px 20px;
   text-align: center;
@@ -64,13 +87,68 @@ header h2 {
   font-weight: normal;
   color: #dcecff;
   margin: 0;
+  border: none;
+  padding: 0;
 }
 
 header p {
   font-size: 17px;
 }
 
-nav {
+/* =====================================
+   LANGUAGE SELECTOR
+===================================== */
+
+.language-selector {
+  background: #eaf4ff;
+  padding: 13px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-bottom: 1px solid #c5d8ed;
+}
+
+.language-title {
+  font-weight: bold;
+  color: #10315e;
+}
+
+.language-selector a,
+.language-selector span {
+  display: inline-block;
+  padding: 8px 17px;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.language-selector a:hover {
+  background: #dcecff;
+}
+
+.language-selector a[aria-current="page"] {
+  background: #0754a6;
+  color: white;
+}
+
+.language-selector .coming-soon {
+  background: #edf0f4;
+  color: #6c7685;
+  border-color: #d7dce3;
+  cursor: not-allowed;
+}
+
+/* =====================================
+   MAIN NAVIGATION
+===================================== */
+
+.main-nav {
   background: #10315e;
   padding: 15px;
   display: flex;
@@ -79,23 +157,37 @@ nav {
   gap: 14px;
 }
 
-nav a {
+.main-nav a {
   color: white;
   text-decoration: none;
   font-size: 14px;
   font-weight: bold;
 }
 
-nav a:hover {
+.main-nav a:hover {
   color: #ffdf5a;
 }
 
-.language {
-  background: #ffdf5a;
-  color: #10315e;
-  padding: 5px 12px;
-  border-radius: 6px;
+/* =====================================
+   MAIN BANNER
+===================================== */
+
+.main-banner {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0754a6;
 }
+
+.main-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
 
 main {
   max-width: 1180px;
@@ -123,6 +215,10 @@ h3 {
   color: #0754a6;
 }
 
+/* =====================================
+   HERO
+===================================== */
+
 .hero {
   text-align: center;
   background: linear-gradient(
@@ -142,6 +238,10 @@ h3 {
   font-size: 18px;
 }
 
+/* =====================================
+   GRID
+===================================== */
+
 .grid {
   display: grid;
   grid-template-columns:
@@ -160,6 +260,10 @@ h3 {
   margin-top: 0;
 }
 
+/* =====================================
+   HIGHLIGHT
+===================================== */
+
 .highlight {
   background: #eaf4ff;
   border-left: 5px solid #168de0;
@@ -167,6 +271,10 @@ h3 {
   margin: 20px 0;
   border-radius: 8px;
 }
+
+/* =====================================
+   BUTTONS
+===================================== */
 
 .button {
   display: inline-block;
@@ -188,10 +296,34 @@ h3 {
   color: #0754a6;
 }
 
+.button.secondary:hover {
+  background: #cce2ff;
+}
+
 .note {
   font-size: 14px;
   color: #596a80;
 }
+
+/* =====================================
+   PAGE DIRECTORY
+===================================== */
+
+.page-directory {
+  background: #f0f6ff;
+}
+
+.page-directory .card {
+  background: white;
+}
+
+.page-directory .button {
+  margin-top: 12px;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
 
 footer {
   background: #10315e;
@@ -204,7 +336,12 @@ footer a {
   color: white;
 }
 
+/* =====================================
+   MOBILE
+===================================== */
+
 @media (max-width: 600px) {
+
   header {
     padding: 35px 15px;
   }
@@ -222,12 +359,31 @@ footer a {
     text-align: center;
     margin: 10px 0;
   }
+
+  .language-selector {
+    gap: 8px;
+  }
+
+  .language-selector a,
+  .language-selector span {
+    padding: 7px 12px;
+  }
+
+  .main-nav {
+    gap: 12px;
+  }
+
 }
 
 </style>
+
 </head>
 
 <body>
+
+<!-- =====================================
+     HEADER
+===================================== -->
 
 <header>
 
@@ -247,7 +403,42 @@ through Artificial Intelligence
 
 </header>
 
-<nav aria-label="Main navigation">
+<!-- =====================================
+     MULTILINGUAL LANGUAGE SELECTOR
+===================================== -->
+
+<div class="language-selector"
+     aria-label="Website language selection">
+
+<span class="language-title">
+🌐 Language
+</span>
+
+<a href="index-en.html"
+   lang="en"
+   aria-current="page">
+English
+</a>
+
+<a href="index.html"
+   lang="ko">
+한국어
+</a>
+
+<span class="coming-soon"
+      lang="es"
+      title="Spanish version under preparation">
+Español — Coming Soon
+</span>
+
+</div>
+
+<!-- =====================================
+     MAIN NAVIGATION
+===================================== -->
+
+<nav class="main-nav"
+     aria-label="Main navigation">
 
 <a href="#vision">Vision</a>
 <a href="#hub">Global AI Hub</a>
@@ -257,16 +448,29 @@ through Artificial Intelligence
 <a href="#committee">Committee</a>
 <a href="#partnership">Partnership</a>
 <a href="#contact">Contact</a>
-
-<a href="index.html" class="language">
-한국어
-</a>
+<a href="#directory">Explore Website</a>
 
 </nav>
 
+<!-- =====================================
+     ENGLISH MAIN BANNER
+===================================== -->
+
+<div class="main-banner">
+
+<img
+  src="aihub-main-banner-en.png"
+  alt="Global AI Hub Initiative in Goyang Special City"
+  loading="eager"
+  fetchpriority="high">
+
+</div>
+
 <main>
 
-<!-- VISION -->
+<!-- =====================================
+     VISION
+===================================== -->
 
 <section class="hero" id="vision">
 
@@ -309,7 +513,9 @@ Explore Partnership Opportunities
 
 </section>
 
-<!-- GLOBAL AI HUB -->
+<!-- =====================================
+     GLOBAL AI HUB
+===================================== -->
 
 <section id="hub">
 
@@ -400,9 +606,15 @@ opportunities.
 
 </div>
 
+<a href="hub-en.html" class="button">
+Learn More About the Global AI Hub
+</a>
+
 </section>
 
-<!-- GOYANG -->
+<!-- =====================================
+     GOYANG
+===================================== -->
 
 <section id="goyang">
 
@@ -560,9 +772,15 @@ and regional development.
 
 </div>
 
+<a href="goyang-en.html" class="button">
+Explore Goyang's Advantages
+</a>
+
 </section>
 
-<!-- ORGANIZATIONS -->
+<!-- =====================================
+     INTERNATIONAL ORGANIZATIONS
+===================================== -->
 
 <section id="organizations">
 
@@ -787,9 +1005,15 @@ and formal agreements.
 
 </div>
 
+<a href="agencies-en.html" class="button">
+Explore the Nine International Organizations
+</a>
+
 </section>
 
-<!-- STRATEGY -->
+<!-- =====================================
+     STRATEGY
+===================================== -->
 
 <section id="strategy">
 
@@ -896,9 +1120,15 @@ and approval by the relevant authorities.
 
 </div>
 
+<a href="strategy-en.html" class="button">
+Explore the Development Strategy
+</a>
+
 </section>
 
-<!-- COMMITTEE -->
+<!-- =====================================
+     COMMITTEE
+===================================== -->
 
 <section id="committee">
 
@@ -950,9 +1180,20 @@ of Goyang Special City.
 
 </div>
 
+<a href="committee-en.html" class="button">
+About the Committee
+</a>
+
+<a href="participate-en.html"
+class="button secondary">
+Citizen Participation
+</a>
+
 </section>
 
-<!-- PARTNERSHIP -->
+<!-- =====================================
+     PARTNERSHIP
+===================================== -->
 
 <section id="partnership">
 
@@ -1036,7 +1277,9 @@ by the relevant institutions.
 
 </section>
 
-<!-- CONTACT -->
+<!-- =====================================
+     CONTACT
+===================================== -->
 
 <section id="contact">
 
@@ -1055,16 +1298,20 @@ and the Citizens' Promotion Committee.
 
 <p>
 For general information,
-please visit the Korean-language
-homepage.
+please explore the English-language
+pages linked below.
+The Korean homepage provides
+access to the existing
+Korean-language information
+and administration-related resources.
 </p>
 
-<a href="index.html" class="button">
-Korean Homepage
+<a href="guide-en.html" class="button">
+Website User Guide
 </a>
 
-<a href="guide.html" class="button secondary">
-Website Guide (Korean)
+<a href="index.html" class="button secondary">
+Korean Homepage
 </a>
 
 <div class="highlight">
@@ -1095,7 +1342,283 @@ by any international organization.
 
 </section>
 
+<!-- =====================================
+     ENGLISH WEBSITE DIRECTORY
+===================================== -->
+
+<section id="directory" class="page-directory">
+
+<h2>
+8. Explore the Global AI Hub Website
+</h2>
+
+<p>
+Explore the following pages
+for detailed information
+about the Global AI Hub initiative,
+Goyang Special City,
+international cooperation,
+and citizen participation.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Global AI Hub
+</h3>
+
+<p>
+Learn about the proposed
+international cooperation platform
+and its vision.
+</p>
+
+<a href="hub-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Why Goyang?
+</h3>
+
+<p>
+Discover Goyang's
+location advantages,
+infrastructure,
+and development potential.
+</p>
+
+<a href="goyang-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+International Organizations
+</h3>
+
+<p>
+Learn about nine international
+organizations and potential
+areas of cooperation.
+</p>
+
+<a href="agencies-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Development Strategy
+</h3>
+
+<p>
+Review the proposed
+three-stage strategy
+for establishment,
+support,
+and sustainable growth.
+</p>
+
+<a href="strategy-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Citizens' Promotion Committee
+</h3>
+
+<p>
+Learn about the Committee,
+its mission,
+and civic activities.
+</p>
+
+<a href="committee-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Timeline & Milestones
+</h3>
+
+<p>
+Review major developments
+and activities
+related to the initiative.
+</p>
+
+<a href="history-en.html" class="button">
+Explore
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+News & Announcements
+</h3>
+
+<p>
+Read updates
+about Committee activities,
+events,
+and major developments.
+</p>
+
+<a href="news-en.html" class="button">
+View News
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Media Coverage
+</h3>
+
+<p>
+Explore newspaper articles,
+broadcast reports,
+and other media coverage.
+</p>
+
+<a href="press-en.html" class="button">
+View Media Coverage
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Citizen Participation
+</h3>
+
+<p>
+Learn about public support campaigns,
+Committee registration,
+and participation programs.
+</p>
+
+<a href="participate-en.html" class="button">
+Participation Center
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Website User Guide
+</h3>
+
+<p>
+Learn how to navigate
+the website,
+access information,
+and participate
+in available programs.
+</p>
+
+<a href="guide-en.html" class="button">
+View Guide
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     MULTILINGUAL INFORMATION
+===================================== -->
+
+<section>
+
+<h2>
+9. Multilingual Website Information
+</h2>
+
+<p>
+This website is being developed
+as a multilingual information platform
+for international visitors,
+organizations,
+research institutions,
+businesses,
+and interested citizens.
+</p>
+
+<p>
+English serves as the primary
+international language
+of the website.
+Korean is used for the existing
+administrative and content management
+system.
+Additional language versions
+will be introduced progressively.
+</p>
+
+<div class="highlight">
+
+<strong>
+Available Languages
+</strong>
+
+<p>
+English — International Website
+</p>
+
+<p>
+한국어 — Korean Website
+</p>
+
+<p>
+Español — Spanish Version
+(Under Preparation)
+</p>
+
+</div>
+
+<p>
+Visitors may select
+their preferred available language
+using the language menu
+at the top of the homepage.
+</p>
+
+</section>
+
 </main>
+
+<!-- =====================================
+     FOOTER
+===================================== -->
 
 <footer>
 
@@ -1107,7 +1630,8 @@ GLOBAL AI HUB INITIATIVE
 
 <p>
 Goyang Special City<br>
-Gyeonggi Province, Republic of Korea
+Gyeonggi Province,
+Republic of Korea
 </p>
 
 <p>
@@ -1122,8 +1646,27 @@ International Cooperation for a Better Future.
 </p>
 
 <p>
-<a href="index.html">
-한국어 홈페이지
+<a href="index-en.html">
+English
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+&nbsp; | &nbsp;
+
+<span lang="es">
+Español — Coming Soon
+</span>
+
+</p>
+
+<p>
+<a href="guide-en.html">
+Website User Guide
 </a>
 </p>
 
