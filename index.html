@@ -2879,6 +2879,59 @@ main section h2 {
 
 }
 
+/* =========================================
+   PC 배너 자동 배치 최종 설정
+========================================= */
+
+@media (min-width: 901px) {
+
+  /* 중앙 배너만 있는 경우 */
+
+  #homepageLayoutModule
+  #homepageBannerLayout.center-only {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 배너 영역이 2개인 경우 */
+
+  #homepageLayoutModule
+  #homepageBannerLayout.two-columns {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  /* 배너 영역이 3개인 경우 */
+
+  #homepageLayoutModule
+  #homepageBannerLayout.three-columns {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1.5fr)
+      minmax(0, 1fr);
+  }
+
+  /* 기존 고정 위치 초기화 */
+
+  #homepageLayoutModule
+  #homepageBannerLayout.center-only
+  > :not([hidden]),
+
+  #homepageLayoutModule
+  #homepageBannerLayout.two-columns
+  > :not([hidden]) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  /* 숨겨진 영역은 표시하지 않음 */
+
+  #homepageLayoutModule
+  #homepageBannerLayout > [hidden] {
+    display: none !important;
+  }
+
+}
+      
 </style>
 
 <footer class="site-footer">
