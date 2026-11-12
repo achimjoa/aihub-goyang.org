@@ -549,13 +549,51 @@ function renderCategoryFilters() {
     ...photoPosts.map(post => post.activity_category).filter(Boolean)
   ]);
 
-  const categories = [
-    { code: "all", name_ko: "전체" },
-    ...[...codes].map(code => ({
-      code,
-      name_ko: getCategoryName(code)
-    }))
-  ];
+  /* =====================================
+   제175-5-14-36단계
+   미분류 활동 필터 표시
+===================================== */
+
+const categories = [
+  {
+    code: "all",
+    name_ko: "전체"
+  },
+
+  ...[...codes].map(code => ({
+    code,
+    name_ko: getCategoryName(code)
+  }))
+];
+
+/* 미분류 사진 존재 여부 확인 */
+
+const uncategorizedPostIds = new Set(
+  photoPosts
+    .filter(post => !post.activity_category)
+    .map(post => post.id)
+);
+
+const hasUncategorizedPhotos =
+  photoAttachments.some(file =>
+    uncategorizedPostIds.has(file.resource_id)
+  );
+
+/* 미분류 활동 버튼 추가 */
+
+if (
+  hasUncategorizedPhotos &&
+  !categories.some(
+    category => category.code === "uncategorized"
+  )
+) {
+
+  categories.push({
+    code: "uncategorized",
+    name_ko: "미분류 활동"
+  });
+
+}
 
   categories.forEach(category => {
     const btn = document.createElement("button");
