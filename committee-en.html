@@ -3,18 +3,24 @@
 
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
 
 <title>
-About Us | Goyang Global AI Hub
+About the Citizens' Promotion Committee |
+Global AI Hub Initiative
 </title>
 
-<style>
+<meta name="description"
+content="Learn about the Citizens' Promotion Committee for Attracting the Global AI Hub to Goyang Special City, including its mission, principles, activities, chairperson's message, organizational structure, and milestones.">
 
+<style>
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -22,75 +28,57 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f8fc;
   color: #17315b;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-/* 상단 */
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
 
 header {
-  background: #10315e;
+  background: linear-gradient(135deg, #0754a6, #10315e);
   color: white;
-  padding: 25px 20px;
   text-align: center;
+  padding: 55px 20px;
 }
 
 header h1 {
-  margin: 0;
-  font-size: clamp(22px, 3vw, 32px);
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+  line-height: 1.3;
 }
 
 header p {
-  margin: 10px 0 0;
+  font-size: 18px;
 }
 
-/* 언어 선택 */
-
-.language {
-  margin-top: 18px;
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-.language a {
+.home-link {
   display: inline-block;
-  padding: 8px 16px;
-  margin: 4px;
-  color: white;
-  border: 1px solid white;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.language a:hover,
-.language a.active {
   background: white;
-  color: #10315e;
-}
-
-/* 메뉴 */
-
-nav {
-  background: #0754a6;
-  padding: 15px;
-  text-align: center;
-}
-
-nav a {
-  display: inline-block;
-  color: white;
+  color: #0754a6;
   text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
   font-weight: bold;
-  margin: 5px 12px;
 }
-
-nav a:hover {
-  text-decoration: underline;
-}
-
-/* 본문 */
 
 main {
   max-width: 1100px;
-  margin: 35px auto;
-  padding: 0 20px;
+  margin: auto;
+  padding: 35px 15px;
 }
 
 section {
@@ -98,331 +86,517 @@ section {
   padding: 35px;
   margin-bottom: 25px;
   border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
 }
 
 h2 {
   color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
 }
 
-.grid {
+h3 {
+  color: #0754a6;
+}
+
+.slogan {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: bold;
+  color: #0754a6;
+  line-height: 1.7;
+}
+
+.greeting {
+  font-size: 17px;
+}
+
+.greeting p {
+  margin-bottom: 20px;
+}
+
+.signature {
+  text-align: right;
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: zoom-in;
+}
+
+.chart-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #0754a6;
+}
+
+.timeline {
+  border-left: 4px solid #168de0;
+  padding-left: 25px;
+}
+
+.timeline-item {
+  margin-bottom: 25px;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #0754a6;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.principles {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin-top: 25px;
+    repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
 }
 
-.card {
-  background: #eef5ff;
-  padding: 25px;
+.principle-card {
+  background: #f4f8fc;
+  padding: 22px;
   border-radius: 10px;
   border-top: 4px solid #168de0;
 }
 
-.card h3 {
+.principle-card h3 {
   margin-top: 0;
-  color: #0754a6;
 }
 
-/* 조직도 */
-
-.organization {
-  text-align: center;
-}
-
-.organization img {
-  display: block;
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-  margin: 25px auto;
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  margin-top: 20px;
 }
 
-/* 하단 */
+.note {
+  color: #596a80;
+  font-size: 14px;
+}
 
 footer {
   background: #10315e;
   color: white;
   text-align: center;
-  padding: 35px 20px;
+  padding: 35px 15px;
 }
 
-/* 모바일 */
+footer a {
+  color: white;
+}
 
 @media (max-width: 600px) {
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
 
   section {
     padding: 22px;
   }
 
-  nav a {
-    font-size: 13px;
-    margin: 5px 7px;
+  .greeting {
+    font-size: 16px;
   }
 
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
 }
-
-  /* Back to Home Button */
-
-.home-return {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.home-return a {
-  display: inline-block;
-
-  background: #ffffff;
-  color: #0754a6;
-
-  border: 2px solid #0754a6;
-  border-radius: 8px;
-
-  padding: 13px 28px;
-
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.home-return a:hover {
-  background: #0754a6;
-  color: #ffffff;
-}
-  
-  
 </style>
 </head>
 
 <body>
 
 <header>
-
   <h1>
-    Goyang Citizens' Committee
+    About the Citizens' Promotion Committee
   </h1>
 
   <p>
-    For Hosting the Global AI Hub
-    in Gyeonggi Province
+    Citizens' Promotion Committee<br>
+    for Attracting the Global AI Hub<br>
+    to Goyang Special City
   </p>
 
-  <div class="language">
+  <p>
+    Gyeonggi Province, Republic of Korea
+  </p>
 
-    <a href="committee.html" lang="ko">
+  <div class="header-links">
+    <a href="index-en.html" class="home-link">
+      ← English Home
+    </a>
+
+    <a href="committee.html"
+       class="home-link"
+       lang="ko">
       한국어
     </a>
-
-    <a href="committee-en.html"
-       class="active"
-       aria-current="page">
-      English
-    </a>
-
   </div>
-<div class="home-return">
-
-  <p>
- 
 </header>
-
-  <div class="home-return">
-  <a href="index-en.html">
-    ← Back to Home
-  </a>
-</div>
-
-<nav aria-label="Main navigation">
-
-  <a href="index-en.html">Home</a>
-
-  <a href="committee-en.html">About Us</a>
-
-  <a href="hub-en.html">Global AI Hub</a>
-
-  <a href="goyang-en.html">Why Goyang</a>
-
-  <a href="history-en.html">Timeline</a>
-
-  <a href="news-en.html">News</a>
-
-  <a href="participate-en.html">Get Involved</a>
-
-  <a href="library-en.html">Policy Library</a>
-
-</nav>
 
 <main>
 
+<!-- Slogan -->
+
 <section>
-
-  <h2>About the Committee</h2>
-
-  <p>
-    The Goyang Citizens' Committee for Hosting
-    the Global AI Hub in Gyeonggi Province
-    is a civic coalition established to support
-    Goyang Special City's bid to host
-    the Global AI Hub.
-  </p>
-
-  <p>
-    The Committee brings together
-    civic organizations, professionals,
-    community leaders and citizens
-    to promote cooperation among
-    Goyang Special City, Gyeonggi Province,
-    public institutions, universities,
-    businesses and civil society.
-  </p>
-
+  <div class="slogan">
+    A New Growth Engine for Goyang.<br>
+    New Opportunities for Employment.<br>
+    A Global AI Hub for International Cooperation.
+  </div>
 </section>
 
+<!-- Purpose -->
 
 <section>
-
-  <h2>Our Vision</h2>
+  <h2>1. Purpose of the Committee</h2>
 
   <p>
-    Our vision is to help Goyang become
-    an internationally connected city
-    where public-interest artificial intelligence
-    contributes to human well-being,
-    sustainable development
-    and the protection of vulnerable populations.
+    The Citizens' Promotion Committee
+    for Attracting the Global AI Hub
+    to Goyang Special City is a
+    civic-led initiative established
+    to bring together citizens
+    and community stakeholders
+    in support of Goyang's
+    future development.
   </p>
 
   <p>
-    We believe that hosting the Global AI Hub
-    should create lasting value
-    for international organizations,
-    Goyang's citizens
-    and the global community.
+    The Committee seeks to contribute
+    to the development of new
+    growth opportunities,
+    high-quality employment,
+    regional economic vitality,
+    and Goyang's potential
+    as a city of international cooperation.
   </p>
 
+  <p>
+    Its activities include
+    building public awareness,
+    conducting policy research,
+    developing attraction strategies,
+    encouraging institutional cooperation,
+    and promoting citizen participation.
+  </p>
+
+  <p>
+    The Committee believes that
+    the Global AI Hub should be
+    more than a location
+    for international offices.
+  </p>
+
+  <p>
+    It should develop into
+    an international cooperation platform
+    that explores responsible
+    applications of artificial intelligence
+    to address shared global challenges.
+  </p>
+
+  <div class="highlight">
+    <strong>
+      Through citizen participation,
+      evidence-based policy proposals,
+      and constructive cooperation,
+      the Committee seeks to help prepare
+      a new future for Goyang Special City.
+    </strong>
+  </div>
 </section>
 
+<!-- Principles -->
 
 <section>
+  <h2>2. Guiding Principles</h2>
 
-  <h2>Our Three Strategic Priorities</h2>
+  <p>
+    The Committee promotes
+    voluntary civic participation,
+    public accountability,
+    transparency,
+    and evidence-based policy development.
+  </p>
 
-  <div class="grid">
+  <div class="principles">
 
-    <div class="card">
-
-      <h3>1. Initial Settlement</h3>
-
+    <article class="principle-card">
+      <h3>01. Citizen-Centered Participation</h3>
       <p>
-        Support international organizations
-        in establishing their operations
-        through suitable office facilities,
-        housing, transportation,
-        healthcare, education
-        and administrative assistance.
+        Encourage voluntary participation
+        by citizens,
+        civic organizations,
+        experts,
+        local businesses,
+        and other community stakeholders.
       </p>
+    </article>
 
-    </div>
-
-
-    <div class="card">
-
-      <h3>2. Operational Support</h3>
-
+    <article class="principle-card">
+      <h3>02. Evidence-Based Policy</h3>
       <p>
-        Connect local institutions,
-        universities, companies
-        and civic organizations
-        with the practical activities
-        of international organizations.
+        Analyze Goyang's location advantages
+        using objective information
+        and policy research,
+        and develop practical proposals
+        for the Global AI Hub initiative.
       </p>
+    </article>
 
-    </div>
-
-
-    <div class="card">
-
-      <h3>3. Shared Growth</h3>
-
+    <article class="principle-card">
+      <h3>03. Broad Institutional Cooperation</h3>
       <p>
-        Support international organizations
-        in achieving their missions
-        while helping Goyang develop
-        into a city specializing
-        in international cooperation.
+        Explore opportunities
+        for cooperation with
+        Goyang Special City,
+        Gyeonggi Province,
+        relevant national authorities,
+        universities,
+        research institutions,
+        businesses,
+        and civil society.
       </p>
+    </article>
 
-    </div>
+    <article class="principle-card">
+      <h3>04. Transparency and Accountability</h3>
+      <p>
+        Promote responsible operations,
+        public communication,
+        and transparency
+        in the Committee's activities
+        and major developments.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- Activities -->
+
+<section>
+  <h2>3. Major Activities</h2>
+
+  <div class="principles">
+
+    <article class="principle-card">
+      <h3>Public Awareness and Engagement</h3>
+      <p>
+        Encourage public understanding
+        of the Global AI Hub initiative
+        through online expressions of support,
+        outreach activities,
+        and communication with citizens.
+      </p>
+    </article>
+
+    <article class="principle-card">
+      <h3>Policy Research and Proposals</h3>
+      <p>
+        Assess Goyang's urban assets
+        and potential international
+        cooperation requirements
+        to develop competitive
+        attraction strategies
+        and policy recommendations.
+      </p>
+    </article>
+
+    <article class="principle-card">
+      <h3>Expanding Cooperation</h3>
+      <p>
+        Explore opportunities
+        for cooperation with
+        public institutions,
+        healthcare organizations,
+        universities,
+        research institutions,
+        and businesses.
+      </p>
+    </article>
+
+    <article class="principle-card">
+      <h3>Regional Development Opportunities</h3>
+      <p>
+        Examine ways to connect
+        the proposed Global AI Hub
+        with research and development,
+        industrial activity,
+        youth employment,
+        and sustainable regional growth.
+      </p>
+    </article>
 
   </div>
 
+  <p class="note">
+    These activities describe
+    the Committee's objectives
+    and proposed directions.
+    They do not imply confirmed
+    relocation decisions,
+    formal institutional partnerships,
+    or approved projects.
+  </p>
 </section>
 
+<!-- Chairperson's Message -->
 
 <section>
+  <h2>4. Message from the Chairperson</h2>
 
-  <h2>Our Guiding Principles</h2>
+  <div class="greeting">
 
-  <div class="grid">
+    <p>
+      Dear Citizens of Goyang Special City,
+    </p>
 
-    <div class="card">
+    <p>
+      We stand at an important moment
+      that could shape the future
+      of Goyang Special City.
+    </p>
 
-      <h3>Practical Implementation</h3>
+    <p>
+      Over the past several decades,
+      Goyang has developed
+      into a major residential city
+      in the Seoul metropolitan region.
+      However, the city has not yet
+      secured sufficient high-quality
+      employment opportunities
+      and sustainable growth engines
+      to meet the expectations
+      of its citizens.
+    </p>
 
-      <p>
-        Prioritize achievable plans,
-        clear responsibilities,
-        realistic resources
-        and verifiable results.
-      </p>
+    <p>
+      The proposed Global AI Hub
+      represents an opportunity
+      to address these structural challenges
+      and help Goyang develop
+      into an internationally connected city.
+    </p>
 
-    </div>
+    <p>
+      Yet the Global AI Hub
+      must not become merely
+      a project to attract
+      the offices of international organizations.
+    </p>
 
+    <p>
+      It should contribute
+      to addressing the challenges
+      facing humanity,
+      including disease and hunger,
+      climate change and disasters,
+      refugees and migration,
+      unemployment,
+      and educational inequality,
+      through responsible applications
+      of artificial intelligence.
+    </p>
 
-    <div class="card">
+    <p>
+      Goyang Special City possesses
+      a range of assets
+      that could support
+      international cooperation.
+      What matters now
+      is developing concrete,
+      practical,
+      and achievable plans
+      to make effective use
+      of these assets.
+    </p>
 
-      <h3>Public Interest</h3>
+    <p>
+      Our Citizens' Promotion Committee
+      will go beyond gathering
+      public enthusiasm.
+      We will study policy options,
+      encourage cooperation,
+      and work toward
+      meaningful preparation
+      and tangible results.
+    </p>
 
-      <p>
-        Promote the responsible use
-        of artificial intelligence
-        for humanity and sustainable development.
-      </p>
+    <p>
+      Let civil society
+      across Gyeonggi Province
+      work together,
+      and let its citizens
+      unite around a shared vision.
+    </p>
 
-    </div>
+    <p>
+      For the future
+      of Goyang Special City,
+      and for a better future
+      for humanity,
+      I invite you to join us.
+    </p>
 
+    <p>
+      Thank you.
+    </p>
 
-    <div class="card">
-
-      <h3>International Cooperation</h3>
-
-      <p>
-        Build cooperation among
-        international organizations,
-        governments, academic institutions,
-        businesses and civil society.
-      </p>
-
+    <div class="signature">
+      Hong Young-pyo<br>
+      Chairperson<br>
+      Citizens' Promotion Committee<br>
+      for Attracting the Global AI Hub<br>
+      to Goyang Special City
     </div>
 
   </div>
-
 </section>
 
+<!-- Organizational Chart -->
 
-<section class="organization">
-
-  <h2>Committee Organization</h2>
+<section>
+  <h2>5. Organizational Structure</h2>
 
   <p>
     The Committee brings together
-    diverse sectors of civil society
-    to support Goyang's Global AI Hub initiative.
+    participants from different
+    areas of civil society
+    to support the proposed
+    Global AI Hub initiative
+    in Goyang Special City.
   </p>
 
   <a href="committee-chart.jpg"
@@ -430,75 +604,210 @@ footer {
      rel="noopener noreferrer">
 
     <img
+      class="chart"
       src="committee-chart.jpg"
-      alt="Organizational chart of the Goyang Citizens' Committee"
+      alt="Organizational chart of the Citizens' Promotion Committee for Attracting the Global AI Hub to Goyang Special City"
       loading="lazy">
 
   </a>
 
-  <p>
-    Click the chart to view a larger image.
-    The current chart is available in Korean.
+  <p class="chart-link">
+    Select the organizational chart
+    to view a larger image.
   </p>
 
+  <p class="note">
+    The organizational chart
+    is provided in Korean.
+  </p>
 </section>
 
+<!-- Timeline -->
 
 <section>
+  <h2>6. Major Milestones</h2>
 
-  <h2>Join Our Initiative</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        September 7, 2026
+      </div>
+      <div>
+        Inauguration ceremony
+        of the Citizens' Promotion Committee
+        for Attracting the Global AI Hub.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        October 14, 2026
+      </div>
+      <div>
+        Public hearing on the evaluation criteria
+        for selecting the Global AI Hub location.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        October 15, 2026
+      </div>
+      <div>
+        Preparation of recommendations
+        for improving the Global AI Hub
+        site-selection evaluation criteria.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        October 20, 2026
+      </div>
+      <div>
+        Participation in the 7th
+        Goyang Innovation Strategy Seminar.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        October 26, 2026
+      </div>
+      <div>
+        Goyang Special City Council
+        adopted a resolution
+        calling for the attraction
+        of the Global AI Hub.
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-date">
+        October 30, 2026
+      </div>
+      <div>
+        Gyeonggi Province Global AI Hub
+        Attraction Strategy Forum.
+      </div>
+    </div>
+
+  </div>
+
+  <p class="note">
+    The milestones above
+    reflect the activities
+    and developments listed
+    in the Korean-language
+    Committee introduction.
+  </p>
+</section>
+
+<!-- Participation -->
+
+<section>
+  <h2>7. Citizen Participation</h2>
 
   <p>
-    We welcome participation
-    from citizens, civic organizations,
-    researchers, businesses
-    and international partners.
+    The proposed Global AI Hub
+    is a shared civic initiative
+    aimed at expanding
+    Goyang's future growth opportunities
+    and supporting its development
+    as a city of international cooperation.
   </p>
 
   <p>
-    Together, we can help build
-    a Global AI Hub that serves humanity
-    and supports sustainable development.
+    Citizens are encouraged
+    to participate through
+    online expressions of support,
+    Committee registration,
+    supporting membership,
+    and public awareness activities.
   </p>
 
-  <p>
-    <a href="participate-en.html">
-      Learn how to get involved →
-    </a>
-  </p>
+  <a href="participate.html"
+     class="button">
+    Citizen Participation Center (Korean)
+  </a>
+
+  <a href="index-en.html"
+     class="button">
+    English Homepage
+  </a>
 
 </section>
 
-  
+<!-- Clarification -->
+
+<section>
+  <h2>8. Institutional Status</h2>
+
+  <p>
+    The Citizens' Promotion Committee
+    is a civic-led organization
+    supporting the proposed
+    Global AI Hub initiative
+    in Goyang Special City.
+  </p>
+
+  <p>
+    The Committee is not presented
+    as an international organization
+    or as a government authority
+    responsible for official
+    site-selection decisions.
+  </p>
+
+  <p>
+    Any formal institutional participation,
+    location decision,
+    or public support measure
+    would require approval
+    through the procedures
+    of the relevant authorities.
+  </p>
+
+  <div class="highlight">
+    <strong>
+      The Committee seeks to contribute
+      through public engagement,
+      constructive policy proposals,
+      and responsible cooperation.
+    </strong>
+  </div>
+</section>
+
 </main>
 
 <footer>
-
   <p>
     <strong>
-      Goyang Citizens' Committee<br>
-      for Hosting the Global AI Hub
-      in Gyeonggi Province
+      Citizens' Promotion Committee<br>
+      for Attracting the Global AI Hub<br>
+      to Goyang Special City
     </strong>
   </p>
 
   <p>
-    Initial Settlement ·
-    Operational Support ·
-    Shared Growth
+    Gyeonggi Province, Republic of Korea
   </p>
 
   <p>
-    AI for All · AI for Humanity
+    With Citizens, With Gyeonggi Province,
+    and With the World.
   </p>
 
   <p>
-    <a href="index-en.html"
-       style="color:white;">
-      Return to English Homepage
+    <a href="index-en.html">
+      English Home
+    </a>
+    &nbsp; | &nbsp;
+    <a href="committee.html" lang="ko">
+      한국어
     </a>
   </p>
-
 </footer>
 
 </body>
