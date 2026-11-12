@@ -1287,6 +1287,71 @@ resourceCategorySelect.addEventListener(
 
 updatePhotoActivityFields(); 
 
+/* =====================================
+   제175-5-14-43단계
+   활동 분류 목록 불러오기
+===================================== */
+
+async function loadResourceActivityCategories() {
+
+  const select = document.getElementById(
+    "resourceActivityCategory"
+  );
+
+  if (!select) return;
+
+  /* 기존 선택 항목 초기화 */
+
+  select.replaceChildren();
+
+  const placeholder =
+    document.createElement("option");
+
+  placeholder.value = "";
+  placeholder.textContent =
+    "활동 분류를 선택하세요";
+
+  select.appendChild(placeholder);
+
+  /* Supabase 활동 분류 조회 */
+
+  const { data, error } = await supabase
+    .from("photo_activity_categories")
+    .select("code, name_ko")
+    .eq("is_active", true)
+    .order("sort_order", {
+      ascending: true
+    });
+
+  if (error) {
+
+    console.error(
+      "[자료실] 활동 분류 조회 오류:",
+      error
+    );
+
+    placeholder.textContent =
+      "활동 분류를 불러오지 못했습니다";
+
+    return;
+  }
+
+  /* 선택 항목 생성 */
+
+  (data || []).forEach(category => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = category.code;
+    option.textContent = category.name_ko;
+
+    select.appendChild(option);
+
+  });
+
+}  
+
 const resourceCancelButton =
   document.getElementById("resourceCancelButton");
 
@@ -2875,6 +2940,8 @@ async function initializeResources() {
   await checkResourceAdmin();
 
   await loadResources();
+
+  await loadResourceActivityCategories();
 
 }
 
