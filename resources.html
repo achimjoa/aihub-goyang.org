@@ -231,6 +231,14 @@ th {
 #resourceWriteButton {
   margin: 0;
 }
+
+/* =====================================
+   사진 상세 활동정보 표시
+===================================== */
+
+#resourceDetailActivity[hidden] {
+  display: none !important;
+}
   
 </style>
 
@@ -602,6 +610,23 @@ th {
 <h2 id="resourceDetailTitle"></h2>
 
 <p id="resourceDetailDate"></p>
+
+<!-- =====================================
+     제175-5-14-48단계
+     사진자료 활동정보 상세 표시
+===================================== -->
+
+<div
+  id="resourceDetailActivity"
+  hidden
+  style="
+    background: #f1f5f9;
+    padding: 18px;
+    border-radius: 8px;
+    margin: 20px 0;
+    line-height: 1.9;
+  "
+></div>  
 
 <div id="resourceDetailContent"></div>
 
@@ -1084,8 +1109,8 @@ const { data, error } =
   await supabase
     .from("resource_posts")
     .select(
-      "id, title, content, category, youtube_url, created_at, author_id"
-    )
+  "id, title, content, category, youtube_url, created_at, author_id, activity_category, event_name, event_date"
+)
     .eq("id", resourceId)
     .single();
 
@@ -1130,6 +1155,83 @@ const { data, error } =
     data.content || "";
 
   contentArea.style.whiteSpace = "pre-wrap";
+
+  /* =====================================
+   제175-5-14-48단계
+   사진자료 활동정보 상세 표시
+===================================== */
+
+const activityArea =
+  document.getElementById(
+    "resourceDetailActivity"
+  );
+
+/* 기존 내용 초기화 */
+
+activityArea.replaceChildren();
+
+/* 사진자료인 경우에만 표시 */
+
+if (data.category === "image") {
+
+  /* 활동 분류 이름 */
+
+  const activityNames = {
+    solidarity: "시민연대",
+    promotion: "홍보활동",
+    signature: "시민 서명운동",
+    culture: "문화예술",
+    other: "기타 활동"
+  };
+
+  const activityName =
+    activityNames[data.activity_category] ||
+    data.activity_category ||
+    "미분류 활동";
+
+  /* 표시 항목 생성 */
+
+  const items = [
+    ["활동 분류", activityName],
+    ["행사명", data.event_name || "미입력"],
+    [
+      "행사일",
+      data.event_date
+        ? data.event_date
+            .split("-")
+            .join(". ") + "."
+        : "미입력"
+    ]
+  ];
+
+  items.forEach(([label, value]) => {
+
+    const row =
+      document.createElement("div");
+
+    const strong =
+      document.createElement("strong");
+
+    strong.textContent = label + ": ";
+
+    const span =
+      document.createElement("span");
+
+    span.textContent = value;
+
+    row.append(strong, span);
+
+    activityArea.appendChild(row);
+
+  });
+
+  activityArea.hidden = false;
+
+} else {
+
+  activityArea.hidden = true;
+
+}
 
  /* =====================================
    첨부파일 및 미디어 영역 초기화
