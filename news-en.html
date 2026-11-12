@@ -3,17 +3,33 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0754a6">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<title>
+News & Announcements |
+Global AI Hub Initiative
+</title>
 
 <meta name="description"
-content="Latest news, activities, events and policy updates from the Goyang Citizens' Committee for Hosting the Global AI Hub.">
-
-<title>News & Announcements | Global AI Hub Goyang</title>
+content="News, announcements, activities, events and policy updates from the Citizens' Promotion Committee for Attracting the Global AI Hub to Goyang Special City, Republic of Korea.">
 
 <style>
+
+/* =====================================
+   BASIC SETTINGS
+===================================== */
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,8 +40,28 @@ body {
   line-height: 1.7;
 }
 
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
 header {
-  background: linear-gradient(135deg, #0754a6, #10315e);
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
   color: white;
   text-align: center;
   padding: 55px 20px;
@@ -40,35 +76,27 @@ header p {
   font-size: 17px;
 }
 
-.language {
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-top: 20px;
-}
-
-.language a {
-  display: inline-block;
-  color: white;
-  border: 1px solid white;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.language a.active {
-  background: white;
-  color: #0754a6;
 }
 
 .home-link {
   display: inline-block;
   background: white;
   color: #0754a6;
-  text-decoration: none;
   padding: 10px 20px;
   border-radius: 7px;
+  text-decoration: none;
   font-weight: bold;
-  margin-top: 15px;
 }
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
 
 main {
   max-width: 1150px;
@@ -88,6 +116,19 @@ main {
   margin-top: 0;
 }
 
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+/* =====================================
+   SEARCH
+===================================== */
+
 .search-box {
   margin-bottom: 25px;
 }
@@ -99,6 +140,10 @@ main {
   border-radius: 8px;
   font-size: 16px;
 }
+
+/* =====================================
+   CATEGORY FILTERS
+===================================== */
 
 .filters {
   display: flex;
@@ -122,6 +167,18 @@ main {
   color: white;
 }
 
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   NEWS CARDS
+===================================== */
+
 .news-list {
   display: grid;
   gap: 18px;
@@ -139,6 +196,7 @@ main {
   color: #0754a6;
   margin: 10px 0;
   font-size: 21px;
+  overflow-wrap: anywhere;
 }
 
 .category {
@@ -158,6 +216,15 @@ main {
 
 .news-item p {
   color: #46566d;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.content-language {
+  display: inline-block;
+  color: #68788c;
+  font-size: 13px;
+  margin-top: 8px;
 }
 
 .news-link {
@@ -168,6 +235,11 @@ main {
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
+  margin-top: 12px;
+}
+
+.news-link:hover {
+  background: #003a7a;
 }
 
 .empty {
@@ -175,6 +247,17 @@ main {
   padding: 35px;
   color: #68788c;
 }
+
+.status {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
 
 footer {
   background: #10315e;
@@ -188,7 +271,12 @@ footer a {
   color: white;
 }
 
+/* =====================================
+   MOBILE
+===================================== */
+
 @media (max-width: 600px) {
+
   header {
     padding: 40px 15px;
   }
@@ -201,227 +289,640 @@ footer a {
   .news-item {
     padding: 20px;
   }
+
+  .news-link {
+    display: block;
+    text-align: center;
+  }
+
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- =====================================
+     HEADER
+===================================== -->
+
 <header>
 
-  <h1>News & Announcements</h1>
+<h1>
+News & Announcements
+</h1>
 
-  <p>
-    Goyang Citizens' Committee for Hosting<br>
-    the Global AI Hub in Gyeonggi Province
-  </p>
+<p>
+Global AI Hub Initiative<br>
+Goyang Special City, Republic of Korea
+</p>
 
-  <p>
-    Latest activities, events and policy updates
-    supporting Goyang's Global AI Hub initiative.
-  </p>
+<p>
+Updates on civic activities,
+international cooperation,
+policy proposals,
+and major developments.
+</p>
 
-  <div class="language">
-    <a href="news.html" lang="ko">한국어</a>
-    <a href="news-en.html"
-       class="active"
-       aria-current="page">English</a>
-  </div>
+<div class="header-links">
 
-  <a href="index-en.html" class="home-link">
-    ← Back to Home
-  </a>
+<a href="index-en.html"
+class="home-link">
+← English Home
+</a>
+
+<a href="news.html"
+class="home-link"
+lang="ko">
+한국어
+</a>
+
+</div>
 
 </header>
 
 <main>
 
+<!-- =====================================
+     INTRODUCTION
+===================================== -->
+
 <section class="intro">
 
-  <h2>Latest Updates</h2>
+<h2>
+Latest News from the Citizens' Promotion Committee
+</h2>
 
-  <p>
-    Follow the Citizens' Committee's
-    activities, public events,
-    policy recommendations,
-    media coverage and announcements.
-  </p>
+<p>
+This page provides information
+about the activities of the
+Citizens' Promotion Committee
+for Attracting the Global AI Hub
+to Goyang Special City.
+</p>
 
-  <p>
-    New information will be added
-    as it becomes available.
-  </p>
+<p>
+Updates may include
+Committee activities,
+public announcements,
+events,
+media coverage,
+and policy developments.
+</p>
+
+<p>
+New information will be added
+as it becomes available.
+</p>
 
 </section>
 
+<!-- =====================================
+     LANGUAGE NOTICE
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Language Information
+</strong>
+
+<p>
+This English-language page
+displays news and announcements
+from the Committee's existing
+publication database.
+</p>
+
+<p>
+Some articles are available
+only in Korean.
+Original Korean-language titles
+and descriptions are displayed
+without automatic translation.
+</p>
+
+<p>
+Where available,
+the original article or related
+source can be opened
+using the link provided.
+</p>
+
+</div>
+
+<!-- =====================================
+     SEARCH
+===================================== -->
+
 <div class="search-box">
 
-  <input
-    type="search"
-    id="searchInput"
-    placeholder="Search news by title or keyword"
-    aria-label="Search news">
+<input
+type="search"
+id="searchInput"
+placeholder="Search news titles or keywords"
+aria-label="Search news and announcements">
 
 </div>
 
-<div class="filters">
+<!-- =====================================
+     FILTERS
+===================================== -->
 
-  <button class="active" data-category="all">
-    All News
-  </button>
+<nav class="filters"
+aria-label="Filter news by category">
 
-  <button data-category="notice">
-    Notices
-  </button>
+<button
+type="button"
+class="active"
+data-category="all"
+aria-pressed="true">
+All News
+</button>
 
-  <button data-category="activity">
-    Committee Activities
-  </button>
+<button
+type="button"
+data-category="notice"
+aria-pressed="false">
+Announcements
+</button>
 
-  <button data-category="event">
-    Events
-  </button>
+<button
+type="button"
+data-category="activity"
+aria-pressed="false">
+Committee Activities
+</button>
 
-  <button data-category="press">
-    Media Coverage
-  </button>
+<button
+type="button"
+data-category="event"
+aria-pressed="false">
+Events
+</button>
 
-  <button data-category="policy">
-    Policy Updates
-  </button>
+<button
+type="button"
+data-category="press"
+aria-pressed="false">
+Media Coverage
+</button>
 
+<button
+type="button"
+data-category="policy"
+aria-pressed="false">
+Policy Updates
+</button>
+
+</nav>
+
+<!-- =====================================
+     NEWS LIST
+===================================== -->
+
+<div
+class="news-list"
+id="newsList"
+aria-live="polite">
 </div>
 
-<div class="news-list" id="newsList"></div>
-
-<p class="empty" id="empty" hidden>
-  No news items match your search.
+<p
+class="empty"
+id="empty"
+hidden>
+No news items match your search.
 </p>
 
 </main>
 
+<!-- =====================================
+     FOOTER
+===================================== -->
+
 <footer>
 
-  <p>
-    <strong>
-      Goyang Citizens' Committee for Hosting<br>
-      the Global AI Hub in Gyeonggi Province
-    </strong>
-  </p>
+<p>
+<strong>
+Citizens' Promotion Committee<br>
+for Attracting the Global AI Hub<br>
+to Goyang Special City
+</strong>
+</p>
 
-  <p>
-    Together for Goyang ·
-    Together for Gyeonggi ·
-    Together for Humanity
-  </p>
+<p>
+Gyeonggi Province,
+Republic of Korea
+</p>
 
-  <p>
-    <a href="index-en.html">English Home</a>
-  </p>
+<p>
+With Citizens,
+With Gyeonggi Province,
+and With the World.
+</p>
+
+<p>
+<a href="index-en.html">
+English Home
+</a>
+&nbsp; | &nbsp;
+<a href="news.html" lang="ko">
+한국어
+</a>
+</p>
 
 </footer>
 
-<script>
+<!-- =====================================
+     SUPABASE NEWS MODULE
+===================================== -->
 
-/*
-  HOW TO ADD NEWS
+<script type="module">
 
-  Add a new object to the news array below.
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-  date: YYYY-MM-DD
-  category: notice, activity, event, press, policy
-  categoryName: Display name
-  title: News title
-  description: Short summary
-  link: URL (leave empty if unavailable)
+/* =====================================
+   SUPABASE CONNECTION
+===================================== */
 
-  News items are automatically sorted
-  by date, newest first.
-*/
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
 
-const news = [
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHFIeC_lg_Kimof4U5";
 
-  {
-    date: "2026-10-30",
-    category: "event",
-    categoryName: "Events",
-    title: "Gyeonggi Global AI Hub Hosting Strategy Forum",
-    description:
-      "A strategy forum was held at KINTEX in Goyang to discuss the Global AI Hub initiative, hosting conditions and international cooperation.",
-    link: ""
-  },
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-  {
-    date: "2026-10-26",
-    category: "policy",
-    categoryName: "Policy Updates",
-    title: "Goyang City Council Adopts Resolution Supporting the Global AI Hub Bid",
-    description:
-      "Goyang City Council unanimously adopted a resolution supporting the city's bid to host the Global AI Hub.",
-    link: ""
-  },
+/* =====================================
+   DOM ELEMENTS
+===================================== */
 
-  {
-    date: "2026-10-20",
-    category: "activity",
-    categoryName: "Committee Activities",
-    title: "Participation in the 7th Goyang Innovation Strategy Seminar",
-    description:
-      "The importance of finalizing the hosting strategy, organizing implementation teams, securing institutional cooperation and preparing verifiable evidence was emphasized.",
-    link: ""
-  },
+const newsList =
+  document.getElementById("newsList");
 
-  {
-    date: "2026-10-15",
-    category: "activity",
-    categoryName: "Committee Activities",
-    title: "Recommendations on Global AI Hub Site-Selection Criteria",
-    description:
-      "Recommendations proposed greater consideration of initial settlement, community acceptance, public-interest AI pilot projects and international cooperation potential.",
-    link: ""
-  },
+const searchInput =
+  document.getElementById("searchInput");
 
-  {
-    date: "2026-10-14",
-    category: "policy",
-    categoryName: "Policy Updates",
-    title: "Public Hearing on Global AI Hub Site-Selection Criteria",
-    description:
-      "A public hearing was held to discuss the proposed evaluation criteria for selecting the Global AI Hub location.",
-    link: ""
-  },
+const empty =
+  document.getElementById("empty");
 
-  {
-    date: "2026-10-12",
-    category: "policy",
-    categoryName: "Policy Updates",
-    title: "Launch of Gyeonggi Province's Global AI Hub Support Group",
-    description:
-      "Gyeonggi Province launched a support group to develop hosting strategies and strengthen institutional cooperation.",
-    link: ""
-  },
+/* =====================================
+   CATEGORY NAMES
+===================================== */
 
-  {
-    date: "2026-09-07",
-    category: "activity",
-    categoryName: "Committee Activities",
-    title: "Launch of the Goyang Citizens' Committee",
-    description:
-      "The Citizens' Committee was launched at the Flower Exhibition Hall in Goyang Lake Park to promote civic participation in the Global AI Hub initiative.",
-    link: ""
-  }
+const categoryNames = {
 
-];
+  notice: "Announcements",
+
+  activity: "Committee Activities",
+
+  event: "Events",
+
+  press: "Media Coverage",
+
+  policy: "Policy Updates"
+
+};
+
+/* =====================================
+   STATE
+===================================== */
+
+let news = [];
 
 let currentCategory = "all";
 
-const newsList = document.getElementById("newsList");
-const searchInput = document.getElementById("searchInput");
-const empty = document.getElementById("empty");
+let loadFailed = false;
+
+/* =====================================
+   DATE FORMATTING
+===================================== */
+
+function formatDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(value).slice(0, 10);
+  }
+
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join(".");
+
+}
+
+/* =====================================
+   KOREAN TEXT DETECTION
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   LINK VALIDATION
+===================================== */
+
+function getSafeLink(value) {
+
+  if (!value) return "";
+
+  try {
+
+    const url = new URL(
+      value,
+      window.location.href
+    );
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+      return "";
+    }
+
+    return url.href;
+
+  } catch (error) {
+
+    return "";
+
+  }
+
+}
+
+/* =====================================
+   LOAD NEWS
+===================================== */
+
+async function loadNews() {
+
+  newsList.innerHTML =
+    '<div class="status">' +
+    'Loading news and announcements...' +
+    '</div>';
+
+  empty.hidden = true;
+
+  const combinedNews = [];
+
+  let successfulQueries = 0;
+
+  /* =====================================
+     1. NEWS POSTS
+  ===================================== */
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id,title,category,description,link,published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    successfulQueries++;
+
+    for (const item of data || []) {
+
+      combinedNews.push({
+
+        id: "news-" + item.id,
+
+        date: formatDate(
+          item.published_at
+        ),
+
+        sortDate:
+          item.published_at || "",
+
+        category:
+          item.category || "",
+
+        categoryName:
+          categoryNames[item.category] ||
+          "Other",
+
+        title:
+          item.title || "",
+
+        description:
+          item.description || "",
+
+        link:
+          item.link || ""
+
+      });
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "News posts query failed:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     2. SELECTED BOARD POSTS
+  ===================================== */
+
+  try {
+
+    const {
+      data: placements,
+      error
+    } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "notice",
+          "activity"
+        ]);
+
+    if (error) {
+      throw error;
+    }
+
+    if (
+      placements &&
+      placements.length > 0
+    ) {
+
+      const postIds = [
+        ...new Set(
+          placements.map(
+            item => item.post_id
+          )
+        )
+      ];
+
+      const {
+        data: posts,
+        error: postError
+      } =
+        await supabase
+          .from("board_posts")
+          .select(
+            "id,title,content,created_at"
+          )
+          .in("id", postIds);
+
+      if (postError) {
+        throw postError;
+      }
+
+      const postMap = new Map(
+        (posts || []).map(post => [
+          String(post.id),
+          post
+        ])
+      );
+
+      for (const placement of placements) {
+
+        const post = postMap.get(
+          String(placement.post_id)
+        );
+
+        if (!post) continue;
+
+        const content =
+          post.content || "";
+
+        combinedNews.push({
+
+          id:
+            "board-" +
+            placement.placement +
+            "-" +
+            post.id,
+
+          date:
+            formatDate(
+              post.created_at
+            ),
+
+          sortDate:
+            post.created_at || "",
+
+          category:
+            placement.placement,
+
+          categoryName:
+            categoryNames[
+              placement.placement
+            ] || "Other",
+
+          title:
+            post.title || "",
+
+          description:
+            content.length > 200
+              ? content.slice(0, 200) + "..."
+              : content,
+
+          link:
+            "board.html?post=" +
+            encodeURIComponent(post.id)
+
+        });
+
+      }
+
+    }
+
+    successfulQueries++;
+
+  } catch (error) {
+
+    console.error(
+      "Selected board posts query failed:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     3. SORT NEWS
+  ===================================== */
+
+  combinedNews.sort((a, b) =>
+    String(b.sortDate)
+      .localeCompare(
+        String(a.sortDate)
+      )
+  );
+
+  news = combinedNews;
+
+  /* =====================================
+     4. HANDLE QUERY FAILURE
+  ===================================== */
+
+  if (successfulQueries === 0) {
+
+    loadFailed = true;
+
+    newsList.innerHTML =
+      '<div class="status">' +
+      'Unable to load news at this time. ' +
+      'Please try again later.' +
+      '</div>';
+
+    empty.hidden = true;
+
+    return;
+
+  }
+
+  loadFailed = false;
+
+  renderNews();
+
+  console.log(
+    "English news page loaded:",
+    news.length,
+    "items"
+  );
+
+}
+
+/* =====================================
+   RENDER NEWS
+===================================== */
 
 function renderNews() {
 
-  const keyword = searchInput.value.trim().toLowerCase();
+  if (loadFailed) return;
+
+  const keyword =
+    searchInput.value
+      .trim()
+      .toLowerCase();
 
   const filtered = news.filter(item => {
 
@@ -436,83 +937,201 @@ function renderNews() {
       item.date
     ].join(" ").toLowerCase();
 
-    return categoryMatch && searchText.includes(keyword);
+    return (
+      categoryMatch &&
+      searchText.includes(keyword)
+    );
+
   });
 
-  filtered.sort((a, b) => b.date.localeCompare(a.date));
+  filtered.sort((a, b) =>
+    String(b.sortDate || b.date || "")
+      .localeCompare(
+        String(a.sortDate || a.date || "")
+      )
+  );
 
   newsList.innerHTML = "";
 
   filtered.forEach(item => {
 
-    const card = document.createElement("article");
+    const card =
+      document.createElement("article");
+
     card.className = "news-item";
 
-    const category = document.createElement("span");
-    category.className = "category";
-    category.textContent = item.categoryName;
+    const category =
+      document.createElement("span");
 
-    const date = document.createElement("p");
+    category.className = "category";
+
+    category.textContent =
+      item.categoryName;
+
+    const date =
+      document.createElement("p");
+
     date.className = "date";
 
-    const dateObject = new Date(item.date + "T00:00:00");
+    date.textContent =
+      item.date;
 
-    date.textContent = dateObject.toLocaleDateString(
-      "en-US",
-      {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      }
-    );
+    const title =
+      document.createElement("h3");
 
-    const title = document.createElement("h3");
-    title.textContent = item.title;
+    title.textContent =
+      item.title;
 
-    const description = document.createElement("p");
-    description.textContent = item.description;
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description;
 
     card.appendChild(category);
     card.appendChild(date);
     card.appendChild(title);
     card.appendChild(description);
 
-    if (item.link) {
+    /* =====================================
+       KOREAN CONTENT NOTICE
+    ===================================== */
 
-      const link = document.createElement("a");
-      link.className = "news-link";
-      link.href = item.link;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "Read More";
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Original content in Korean";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* =====================================
+       ARTICLE LINK
+    ===================================== */
+
+    const safeLink =
+      getSafeLink(item.link);
+
+    if (safeLink) {
+
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "news-link";
+
+      link.href =
+        safeLink;
+
+      const url =
+        new URL(safeLink);
+
+      const isBoardLink =
+        url.origin ===
+          window.location.origin &&
+        url.pathname.endsWith(
+          "/board.html"
+        );
+
+      if (isBoardLink) {
+
+        link.target = "_self";
+
+      } else {
+
+        link.target = "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+      }
+
+      link.textContent =
+        "Read More";
 
       card.appendChild(link);
+
     }
 
     newsList.appendChild(card);
+
   });
 
-  empty.hidden = filtered.length !== 0;
+  empty.hidden =
+    filtered.length !== 0;
+
 }
 
-document.querySelectorAll("[data-category]").forEach(button => {
+/* =====================================
+   CATEGORY FILTERS
+===================================== */
 
-  button.addEventListener("click", () => {
+document
+  .querySelectorAll("[data-category]")
+  .forEach(button => {
 
-    currentCategory = button.dataset.category;
+    button.addEventListener(
+      "click",
+      () => {
 
-    document.querySelectorAll("[data-category]")
-      .forEach(btn => btn.classList.remove("active"));
+        currentCategory =
+          button.dataset.category;
 
-    button.classList.add("active");
+        document
+          .querySelectorAll(
+            "[data-category]"
+          )
+          .forEach(btn => {
 
-    renderNews();
+            const isActive =
+              btn.dataset.category ===
+              currentCategory;
+
+            btn.classList.toggle(
+              "active",
+              isActive
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              String(isActive)
+            );
+
+          });
+
+        renderNews();
+
+      }
+    );
+
   });
-});
 
-searchInput.addEventListener("input", renderNews);
+/* =====================================
+   SEARCH
+===================================== */
 
-renderNews();
+searchInput.addEventListener(
+  "input",
+  renderNews
+);
+
+/* =====================================
+   INITIAL LOAD
+===================================== */
+
+loadNews();
 
 </script>
 
