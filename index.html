@@ -646,50 +646,7 @@ nav .nav-member-link {
   display: none !important;
 }
 
-/* =====================================
-   공개 배너 수에 따른 자동 배치
-===================================== */
 
-/* 중앙 배너만 있을 때 전체 너비 사용 */
-
-#homepageLayoutModule
-#homepageBannerLayout.center-only {
-
-  grid-template-columns:
-    minmax(0, 1fr);
-
-}
-
-#homepageLayoutModule
-#homepageBannerLayout.center-only
-#homepageBannerCenter {
-
-  grid-column: 1;
-  grid-row: 1;
-
-}
-
-/* 중앙과 좌측 또는 우측 배너만 있을 때 */
-
-#homepageLayoutModule
-#homepageBannerLayout.two-columns {
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
-}
-
-/* 광고가 3개 영역에 모두 있으면 기존 3열 유지 */
-
-#homepageLayoutModule
-#homepageBannerLayout.three-columns {
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    minmax(0, 1.5fr)
-    minmax(0, 1fr);
-
-}
       
 /* =====================================================
    9. 배너 공통 디자인
@@ -1345,7 +1302,10 @@ async function loadHomepageBanners() {
 
       totalCount += banners.length;
 
+        layout.hidden =
+  totalCount === 0;
     }
+
 
    /* 공개 배너가 있는 영역 수 확인 */
 
