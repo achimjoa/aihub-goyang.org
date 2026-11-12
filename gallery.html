@@ -536,92 +536,69 @@ function getCategoryName(code) {
   return fallback[code] || code || "미분류 활동";
 }
 
+/* =====================================
+   제175-5-14-38단계
+   미분류 활동 필터 최종 정리
+===================================== */
+
 function renderCategoryFilters() {
+
   filters.replaceChildren();
 
   const staticCodes = [
-    ...document.querySelectorAll(".event-record[data-category]")
+    ...document.querySelectorAll(
+      ".event-record[data-category]"
+    )
   ].map(section => section.dataset.category);
 
   const codes = new Set([
     ...staticCodes,
     ...activityCategories.map(item => item.code),
-    ...photoPosts.map(post => post.activity_category).filter(Boolean)
+    ...photoPosts
+      .map(post => post.activity_category)
+      .filter(Boolean)
   ]);
 
-  /* =====================================
-   제175-5-14-36단계
-   미분류 활동 필터 표시
-===================================== */
+  codes.delete("all");
+  codes.delete("uncategorized");
 
-/* =====================================
-   제175-5-14-37단계
-   미분류 활동 필터 표시 보완
-===================================== */
+  const categories = [
+    {
+      code: "all",
+      name_ko: "전체"
+    },
 
-const categories = [
-  {
-    code: "all",
-    name_ko: "전체"
-  },
-
-  ...[...codes]
-    .filter(code =>
-      code !== "all" &&
-      code !== "uncategorized"
-    )
-    .map(code => ({
+    ...[...codes].map(code => ({
       code,
       name_ko: getCategoryName(code)
     })),
 
-  {
-    code: "uncategorized",
-    name_ko: "미분류 활동"
-  }
-];
-
-/* 미분류 사진 존재 여부 확인 */
-
-const uncategorizedPostIds = new Set(
-  photoPosts
-    .filter(post => !post.activity_category)
-    .map(post => post.id)
-);
-
-const hasUncategorizedPhotos =
-  photoAttachments.some(file =>
-    uncategorizedPostIds.has(file.resource_id)
-  );
-
-/* 미분류 활동 버튼 추가 */
-
-if (
-  hasUncategorizedPhotos &&
-  !categories.some(
-    category => category.code === "uncategorized"
-  )
-) {
-
-  categories.push({
-    code: "uncategorized",
-    name_ko: "미분류 활동"
-  });
-
-}
+    {
+      code: "uncategorized",
+      name_ko: "미분류 활동"
+    }
+  ];
 
   categories.forEach(category => {
+
     const btn = document.createElement("button");
+
     btn.type = "button";
     btn.dataset.category = category.code;
     btn.textContent = category.name_ko;
-    btn.addEventListener("click", () => filterPhotos(category.code));
+
+    btn.addEventListener("click", () => {
+      filterPhotos(category.code);
+    });
+
     filters.appendChild(btn);
+
   });
 
   filterPhotos(currentPhotoCategory);
-}
 
+}
+  
 function isNewPhoto(createdAt) {
   if (!createdAt) return false;
   const created = new Date(createdAt).getTime();
@@ -653,7 +630,7 @@ function createPhotoCard(post, file) {
 
   const card = document.createElement("div");
   card.className = "photo";
-  card.dataset.category = post.activity_category || "other";
+  card.dataset.category = post.activity_category || "uncategorized";
 
   const img = document.createElement("img");
   img.src = data.publicUrl;
