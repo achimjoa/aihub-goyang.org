@@ -2,17 +2,32 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0754a6">
 
-<meta name="description"
-content="Learn how to support Goyang's bid to host the Global AI Hub through civic participation, volunteering, policy ideas and international cooperation.">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<title>Get Involved | Global AI Hub Goyang</title>
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Citizen Participation Center |
+Global AI Hub Initiative
+</title>
+
+<meta
+  name="description"
+  content="Participate in the Global AI Hub initiative in Goyang Special City through the public support campaign, Committee registration, supporting membership, and community activities."
+>
 
 <style>
+
+/* BASIC SETTINGS */
 
 * {
   box-sizing: border-box;
@@ -26,15 +41,31 @@ body {
   line-height: 1.8;
 }
 
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* HEADER */
+
 header {
-  background: linear-gradient(135deg, #0754a6, #10315e);
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
   color: white;
   text-align: center;
   padding: 55px 20px;
 }
 
 header h1 {
-  font-size: clamp(30px, 5vw, 46px);
+  font-size: clamp(28px, 5vw, 44px);
   margin: 0 0 15px;
 }
 
@@ -42,23 +73,12 @@ header p {
   font-size: 18px;
 }
 
-.language {
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-top: 20px;
-}
-
-.language a {
-  display: inline-block;
-  color: white;
-  border: 1px solid white;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.language a.active {
-  background: white;
-  color: #0754a6;
 }
 
 .home-link {
@@ -69,123 +89,167 @@ header p {
   padding: 10px 20px;
   border-radius: 7px;
   font-weight: bold;
-  margin-top: 15px;
 }
 
+/* MAIN */
+
 main {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: auto;
   padding: 35px 15px;
 }
 
-section {
-  background: white;
-  padding: 35px;
-  margin-bottom: 25px;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0,0,0,.06);
-}
-
-h2 {
-  color: #0754a6;
-  border-bottom: 2px solid #e3edf8;
-  padding-bottom: 12px;
-  margin-top: 0;
-}
-
-h3 {
-  color: #0754a6;
-}
-
-.hero-message {
+.intro {
   text-align: center;
-  font-size: clamp(23px, 4vw, 33px);
-  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
   color: #0754a6;
 }
 
-.subtitle {
-  text-align: center;
-  color: #526780;
-}
+/* GRID */
 
 .grid {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  margin-top: 25px;
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  background: #f4f8fc;
-  padding: 23px;
-  border-radius: 10px;
-  border-top: 4px solid #168de0;
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+  border-top: 5px solid #168de0;
 }
 
 .card h3 {
+  color: #0754a6;
+  font-size: 22px;
   margin-top: 0;
 }
 
-.highlight {
-  background: #eaf4ff;
-  padding: 25px;
-  border-left: 5px solid #168de0;
-  border-radius: 8px;
-  margin: 20px 0;
+.card p {
+  color: #46566d;
 }
 
-.steps {
-  display: grid;
-  gap: 15px;
-}
-
-.step {
-  background: #f4f8fc;
-  padding: 23px;
-  border-radius: 9px;
-  border-left: 5px solid #168de0;
-}
-
-.step h3 {
-  margin-top: 0;
-}
-
-.notice {
-  background: #fff8e8;
-  padding: 22px;
-  border-radius: 8px;
-  margin-top: 20px;
-  color: #57471e;
-}
+/* BUTTONS */
 
 .button {
   display: inline-block;
   background: #0754a6;
   color: white;
-  padding: 12px 22px;
-  border-radius: 7px;
   text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
   font-weight: bold;
+  margin-top: 10px;
 }
 
-.button:hover {
+.button:hover,
+.button:focus-visible {
   background: #003a7a;
 }
+
+/* SIGNATURE */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* NOTICE */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* PAYMENT ACCOUNT INFORMATION */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* FOOTER */
 
 footer {
   background: #10315e;
   color: white;
   text-align: center;
   padding: 35px 15px;
+  margin-top: 40px;
 }
 
 footer a {
   color: white;
 }
 
+/* MOBILE */
+
 @media (max-width: 600px) {
+
   header {
     padding: 40px 15px;
   }
@@ -194,340 +258,729 @@ footer a {
     padding: 20px 12px;
   }
 
-  section {
-    padding: 22px;
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
   }
 
   .card {
-    padding: 18px;
+    padding: 22px;
   }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
 
-  <h1>Get Involved</h1>
+<h1>
+Citizen Participation Center
+</h1>
 
-  <p>
-    Join the Civic Movement<br>
-    to Bring the Global AI Hub to Goyang
-  </p>
+<p>
+Global AI Hub Initiative<br>
+Goyang Special City,
+Gyeonggi Province,
+Republic of Korea
+</p>
 
-  <div class="language">
-    <a href="participate.html" lang="ko">한국어</a>
-    <a href="participate-en.html"
-       class="active"
-       aria-current="page">English</a>
-  </div>
+<p>
+Building a New Future for Goyang
+Through Citizen Participation
+</p>
 
-  <a href="index-en.html" class="home-link">
-    ← Back to Home
-  </a>
+<div class="header-links">
+
+<a
+  href="index-en.html"
+  class="home-link"
+>
+  ← English Home
+</a>
+
+<a
+  href="participate.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
 
 </header>
 
 <main>
 
-<section>
+<!-- INTRODUCTION -->
 
-  <div class="hero-message">
-    Together for Goyang.<br>
-    Together for Gyeonggi Province.<br>
-    Together for Humanity.
-  </div>
+<div class="intro">
 
-  <p class="subtitle">
-    Your Participation Can Help Shape the Future
-  </p>
+<h2>
+Bring the Global AI Hub to Goyang!
+</h2>
 
-</section>
+<p>
+<strong>
+New Growth Opportunities for Goyang!
+</strong>
+<br>
+<strong>
+More High-Quality Jobs for Goyang!
+</strong>
+</p>
 
-<section>
+<p>
+The proposed Global AI Hub
+represents an important opportunity
+for Goyang Special City
+to develop as a center
+for international cooperation
+and AI-related industries.
+</p>
 
-  <h2>Why Civic Participation Matters</h2>
+<p>
+The Citizens' Promotion Committee
+seeks to expand public understanding
+of the initiative
+and encourage voluntary participation
+by citizens,
+professionals,
+and civic organizations.
+</p>
 
-  <p>
-    The Global AI Hub initiative
-    is not simply about attracting
-    international organizations
-    or constructing new facilities.
-  </p>
+<p>
+<strong>
+Your participation can help
+strengthen public support
+for bringing the Global AI Hub
+to Goyang Special City.
+</strong>
+</p>
 
-  <p>
-    It represents an opportunity
-    to build an international cooperation
-    platform that uses artificial intelligence
-    to address global challenges,
-    including disease, hunger,
-    climate change, displacement,
-    unemployment and educational inequality.
-  </p>
+</div>
 
-  <p>
-    Meaningful civic participation
-    can help ensure that the initiative
-    reflects public needs,
-    community values,
-    human rights and
-    sustainable development goals.
-  </p>
+<!-- LANGUAGE NOTICE -->
 
-  <div class="highlight">
-    <strong>
-      The Global AI Hub should be built
-      not only for international organizations,
-      but also with the participation
-      of the communities it aims to serve.
-    </strong>
-  </div>
+<div class="language-notice">
 
-</section>
+<strong>
+Information for International Visitors
+</strong>
 
-<section>
+<p>
+This page introduces
+the Committee's citizen participation
+programs in English.
+</p>
 
-  <h2>Ways to Participate</h2>
+<p>
+The application forms
+are currently provided in Korean.
+Please review the information
+in each form before submitting
+personal information.
+</p>
 
-  <div class="grid">
+<p>
+Financial contributions
+and related participation procedures
+are subject to the Committee's
+applicable rules and requirements.
+</p>
 
-    <article class="card">
-      <h3>1. Signature Campaign</h3>
-      <p>
-        Support the civic campaign
-        calling for the Global AI Hub
-        to be established in Goyang.
-      </p>
-      <p>
-        Information on official
-        signature collection opportunities
-        will be provided when available.
-      </p>
-    </article>
+</div>
 
-    <article class="card">
-      <h3>2. Volunteer Activities</h3>
-      <p>
-        Help with public events,
-        information campaigns,
-        community outreach
-        and civic activities.
-      </p>
-      <p>
-        Volunteer opportunities
-        will be announced
-        through the Committee's
-        official news channels.
-      </p>
-    </article>
+<!-- PUBLIC SUPPORT CAMPAIGN -->
 
-    <article class="card">
-      <h3>3. Policy Suggestions</h3>
-      <p>
-        Share ideas on how Goyang
-        can support international organizations,
-        strengthen public-interest AI
-        and contribute to global development.
-      </p>
-      <p>
-        A formal online submission channel
-        is being considered.
-      </p>
-    </article>
+<section class="signature">
 
-    <article class="card">
-      <h3>4. Civic Organization Partnerships</h3>
-      <p>
-        Civic organizations,
-        professional associations
-        and community groups
-        can explore opportunities
-        for cooperation
-        and joint public engagement.
-      </p>
-    </article>
+<h2>
+100,000 Citizens' Support Campaign
+</h2>
 
-    <article class="card">
-      <h3>5. Academic and Research Cooperation</h3>
-      <p>
-        Universities,
-        research institutions
-        and experts can contribute
-        to policy discussions,
-        research and
-        potential public-interest AI projects.
-      </p>
-    </article>
+<p>
+Join the public signature campaign
+supporting the proposed
+Global AI Hub in Goyang Special City.
+</p>
 
-    <article class="card">
-      <h3>6. International Cooperation</h3>
-      <p>
-        Overseas organizations
-        and international partners
-        are welcome to learn about
-        Goyang's initiative
-        and explore opportunities
-        for dialogue and cooperation.
-      </p>
-    </article>
+<p>
+By bringing together
+the voices of individual citizens,
+we seek to strengthen
+public awareness and support
+for Goyang's future development.
+</p>
 
-  </div>
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Join the Online Support Campaign
+</a>
+
+<p class="small-note">
+Application form in Korean.
+</p>
 
 </section>
 
-<section>
+<!-- PARTICIPATION PROGRAMS -->
 
-  <h2>How to Participate</h2>
+<div class="grid">
 
-  <div class="steps">
+<!-- COMMITTEE REGISTRATION -->
 
-    <div class="step">
-      <h3>Step 1 — Learn About the Initiative</h3>
-      <p>
-        Explore the Global AI Hub vision,
-        Goyang's proposed contributions
-        and the activities
-        of the Citizens' Committee.
-      </p>
-    </div>
+<article class="card">
 
-    <div class="step">
-      <h3>Step 2 — Follow Committee Updates</h3>
-      <p>
-        Check the Committee's
-        news and announcements
-        for public events,
-        participation opportunities
-        and new initiatives.
-      </p>
+<h3>
+Register as a Committee Member
+</h3>
 
-      <a href="news-en.html" class="button">
-        News & Announcements
-      </a>
-    </div>
+<p>
+We welcome citizens,
+professionals,
+representatives of civic organizations,
+and other interested participants
+who wish to support
+the Global AI Hub initiative.
+</p>
 
-    <div class="step">
-      <h3>Step 3 — Join Available Activities</h3>
-      <p>
-        Participate in officially announced
-        signature campaigns,
-        public meetings,
-        volunteer activities
-        or policy discussions.
-      </p>
-    </div>
+<p>
+Committee participation
+provides an opportunity
+to contribute to public engagement,
+policy discussions,
+and community activities.
+</p>
 
-    <div class="step">
-      <h3>Step 4 — Explore Cooperation</h3>
-      <p>
-        Organizations and institutions
-        interested in cooperation
-        may review the Committee's
-        activities and future
-        partnership announcements.
-      </p>
-    </div>
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Committee Registration
+</a>
 
-  </div>
+<p class="small-note">
+Application form in Korean.
+</p>
+
+</article>
+
+<!-- SUPPORTING MEMBERSHIP -->
+
+<article class="card">
+
+<h3>
+Supporting Membership
+</h3>
+
+<p>
+Become a supporting member
+to help sustain civic activities,
+public communication,
+and policy outreach
+related to the Global AI Hub initiative.
+</p>
+
+<p>
+Supporting membership contributions
+may be paid to the designated
+bank account shown below.
+</p>
+
+<!-- AUTOMATIC ACCOUNT DISPLAY -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Apply for Supporting Membership
+</a>
+
+<p class="small-note">
+Application form in Korean.
+Please confirm the latest payment
+instructions before transferring funds.
+</p>
+
+</article>
+
+<!-- BANNER APPLICATION -->
+
+<article class="card">
+
+<h3>
+Promotional Banner Application
+</h3>
+
+<p>
+Participate in public awareness
+activities by applying
+to display promotional banners
+supporting the proposed
+Global AI Hub in Goyang.
+</p>
+
+<p>
+After submitting the application,
+please pay the applicable cost
+to the designated bank account
+shown below.
+</p>
+
+<p>
+Banner placement must comply
+with local regulations,
+applicable laws,
+and location requirements.
+</p>
+
+<!-- AUTOMATIC ACCOUNT DISPLAY -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Apply for a Promotional Banner
+</a>
+
+<p class="small-note">
+Application form in Korean.
+</p>
+
+</article>
+
+<!-- VEHICLE STICKER -->
+
+<article class="card">
+
+<h3>
+Vehicle Promotion Sticker
+</h3>
+
+<p>
+Help raise public awareness
+of the Global AI Hub initiative
+by displaying a promotional sticker
+on your vehicle.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Apply for a Vehicle Sticker
+</a>
+
+<p class="small-note">
+Application form in Korean.
+</p>
+
+</article>
+
+<!-- KAKAO COMMUNITY -->
+
+<article class="card">
+
+<h3>
+KakaoTalk Community
+</h3>
+
+<p>
+Join the Committee's
+KakaoTalk communication group
+to exchange information
+about activities,
+public participation,
+and developments
+related to the Global AI Hub initiative.
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Join the KakaoTalk Community
+</a>
+
+<p class="small-note">
+Community discussions are
+primarily conducted in Korean.
+</p>
+
+</article>
+
+<!-- FACEBOOK COMMUNITY -->
+
+<article class="card">
+
+<h3>
+Facebook Discussion Group
+</h3>
+
+<p>
+Share information,
+exchange perspectives,
+and participate
+in public discussions
+about the proposed
+Global AI Hub initiative.
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Join the Facebook Group
+</a>
+
+</article>
+
+<!-- ACTIVITY GALLERY -->
+
+<article class="card">
+
+<h3>
+Committee Activity Gallery
+</h3>
+
+<p>
+Explore photographs
+documenting the activities
+of the Citizens' Promotion Committee
+and the public support campaign.
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  View Activity Gallery (Korean)
+</a>
+
+</article>
+
+</div>
+
+<!-- PARTICIPATION NOTICE -->
+
+<section class="notice">
+
+<h2>
+Participation Information
+</h2>
+
+<p>
+The Citizens' Promotion Committee
+operates several participation programs,
+including the public signature campaign,
+Committee registration,
+supporting membership,
+promotional banner applications,
+and vehicle sticker applications.
+</p>
+
+<p>
+Each application is submitted
+through the relevant online form.
+Participants should review
+the purpose of the application
+and the information concerning
+the collection and use
+of personal data before applying.
+</p>
+
+<p>
+Supporting membership contributions
+and promotional banner costs
+should be paid only
+to the designated bank accounts
+officially provided by the Committee.
+</p>
+
+<p>
+Please verify the latest
+account details and payment conditions
+before making a transfer.
+</p>
+
+<p>
+For information about
+personal data protection,
+please refer to the
+<a href="privacy.html">
+Privacy Policy (Korean)
+</a>.
+</p>
 
 </section>
 
-<section>
+<!-- RELATED PAGES -->
 
-  <h2>International Solidarity</h2>
+<section class="notice">
 
-  <p>
-    Goyang's civic initiative
-    seeks to connect local aspirations
-    with global responsibilities.
-  </p>
+<h2>
+Explore More
+</h2>
 
-  <p>
-    We believe that artificial intelligence
-    should serve humanity,
-    protect vulnerable communities
-    and contribute to
-    sustainable development.
-  </p>
+<p>
+Learn more about the Committee,
+its objectives,
+and the Global AI Hub initiative.
+</p>
 
-  <p>
-    We welcome opportunities
-    for dialogue with
-    international organizations,
-    universities, research institutions,
-    civil society networks
-    and communities around the world.
-  </p>
+<a
+  class="button"
+  href="committee-en.html"
+>
+  About the Committee
+</a>
 
-  <div class="highlight">
-    <strong>
-      AI for All.<br>
-      AI for Humanity.<br>
-      International Cooperation for a Better Future.
-    </strong>
-  </div>
+<a
+  class="button"
+  href="hub-en.html"
+>
+  About the Global AI Hub
+</a>
 
-</section>
-
-<section>
-
-  <h2>Participation and Contact Information</h2>
-
-  <p>
-    The Committee is preparing
-    additional channels
-    for participation,
-    policy suggestions
-    and international cooperation inquiries.
-  </p>
-
-  <div class="notice">
-    <strong>Notice:</strong>
-    Online registration,
-    electronic signature collection
-    and direct message submission
-    are not currently available
-    through this English-language page.
-    Please refer to official announcements
-    for verified participation channels.
-  </div>
-
-  <p>
-    For the latest information,
-    please visit the Committee's
-    news and announcements page.
-  </p>
-
-  <a href="news-en.html" class="button">
-    View Latest News
-  </a>
+<a
+  class="button"
+  href="news-en.html"
+>
+  News & Announcements
+</a>
 
 </section>
 
 </main>
 
+<!-- FOOTER -->
+
 <footer>
 
-  <p>
-    <strong>
-      Goyang Citizens' Committee for Hosting<br>
-      the Global AI Hub in Gyeonggi Province
-    </strong>
-  </p>
+<p>
+<strong>
+Citizens' Promotion Committee<br>
+for Attracting the Global AI Hub<br>
+to Goyang Special City
+</strong>
+</p>
 
-  <p>
-    Together for Goyang ·
-    Together for Gyeonggi ·
-    Together for Humanity
-  </p>
+<p>
+Gyeonggi Province,
+Republic of Korea
+</p>
 
-  <p>
-    <a href="index-en.html">English Home</a>
-  </p>
+<p>
+With Citizens,
+With Gyeonggi Province,
+and With the World.
+</p>
+
+<p>
+<a href="index-en.html">
+English Home
+</a>
+&nbsp; | &nbsp;
+<a href="participate.html" lang="ko">
+한국어
+</a>
+</p>
 
 </footer>
+
+<!-- =====================================
+     SUPABASE PAYMENT ACCOUNT MODULE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE CONNECTION
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   AUTOMATIC PAYMENT ACCOUNT DISPLAY
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+    membership: "membershipAccountInfo",
+    banner: "bannerAccountInfo"
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* TITLE */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "Designated Payment Account";
+
+      /* BANK NAME */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "Bank: " + bank;
+
+      /* ACCOUNT NUMBER */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "Account Number: " + number;
+
+      /* ACCOUNT HOLDER */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "Account Holder: " + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "Payment account information loaded."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Payment account query failed:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   INITIAL LOAD
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
 
 </body>
 </html>
