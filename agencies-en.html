@@ -2,124 +2,208 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
+<meta name="theme-color"
+content="#0754a6">
+
 <title>
-Nine International Organizations | Global AI Hub Goyang
+International Organizations |
+Global AI Hub Initiative in Goyang
 </title>
 
+<meta name="description"
+content="Explore potential AI cooperation with WHO, WFP, UNEP, UNHCR, IOM, ILO, ITU, UNICEF and UNDP under the proposed Global AI Hub initiative in Goyang Special City, Republic of Korea.">
+
 <style>
+
+/* Basic settings */
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
   background: #f4f8fc;
   color: #17315b;
   line-height: 1.8;
 }
 
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
 /* Header */
 
 header {
-  background: #10315e;
+  background:
+    linear-gradient(
+      135deg,
+      #0754a6,
+      #10315e
+    );
   color: white;
-  padding: 35px 20px;
   text-align: center;
+  padding: 55px 20px;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 32px;
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.3;
 }
 
 header p {
-  margin-bottom: 0;
+  font-size: 18px;
 }
 
-/* Navigation */
-
-nav {
-  background: #0754a6;
-  padding: 15px;
-  text-align: center;
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-nav a {
+.home-link {
   display: inline-block;
-  color: white;
-  text-decoration: none;
-  margin: 5px 12px;
+  padding: 10px 20px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
   font-weight: bold;
+  text-decoration: none;
 }
 
-nav a:hover {
-  color: #ffe44d;
-}
-
-/* Main */
+/* Main content */
 
 main {
-  max-width: 1200px;
+  max-width: 1150px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 35px 15px;
 }
 
-.intro {
+section {
   background: white;
   padding: 35px;
+  margin-bottom: 25px;
   border-radius: 12px;
-  margin-bottom: 30px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
 }
 
-.intro h2 {
+h2 {
+  margin-top: 0;
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+}
+
+h3 {
   color: #0754a6;
 }
 
-/* Agency Cards */
+.slogan {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: bold;
+  color: #0754a6;
+  line-height: 1.7;
+}
 
-.agency-grid {
+/* Cards */
+
+.grid {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
-.agency-card {
-  background: white;
-  padding: 28px;
-  border-radius: 12px;
+.card {
+  background: #f4f8fc;
+  padding: 25px;
+  border-radius: 10px;
   border-top: 5px solid #168de0;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
 
-.agency-card h2 {
-  color: #0754a6;
+.card h3 {
   margin-top: 0;
 }
 
-.agency-card h3 {
-  font-size: 17px;
-  color: #168de0;
-}
-
-.agency-card p {
+.agency-number {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
   margin-bottom: 12px;
 }
 
-/* Strategy */
+.agency-full-name {
+  font-size: 15px;
+  color: #53647a;
+  margin-bottom: 15px;
+}
 
-.strategy-box {
+.agency-field {
+  background: #eaf4ff;
+  border-radius: 7px;
+  padding: 12px;
+  margin: 15px 0;
+  font-weight: bold;
+  color: #0754a6;
+}
+
+/* Highlights */
+
+.highlight {
   background: #eaf4ff;
   border-left: 5px solid #168de0;
-  padding: 30px;
+  padding: 25px;
   border-radius: 8px;
-  margin-top: 35px;
+  margin: 25px 0;
+}
+
+.note {
+  color: #596a80;
+  font-size: 14px;
+}
+
+/* Buttons */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
 }
 
 /* Footer */
@@ -128,311 +212,985 @@ footer {
   background: #10315e;
   color: white;
   text-align: center;
-  padding: 35px 20px;
+  padding: 35px 15px;
+  margin-top: 40px;
 }
+
+footer a {
+  color: white;
+}
+
+/* Mobile */
 
 @media (max-width: 600px) {
 
-  header h1 {
-    font-size: 25px;
+  header {
+    padding: 40px 15px;
   }
 
   main {
     padding: 20px 12px;
   }
 
-  .intro,
-  .agency-card {
-    padding: 23px;
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
   }
 
 }
 
-/* Back to Home Button */
-
-.home-return {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.home-return a {
-  display: inline-block;
-
-  background: #ffffff;
-  color: #0754a6;
-
-  border: 2px solid #0754a6;
-  border-radius: 8px;
-
-  padding: 13px 28px;
-
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.home-return a:hover {
-  background: #0754a6;
-  color: #ffffff;
-}
-  
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<h1>Nine International Organizations</h1>
+<h1>
+International Organizations<br>
+and Potential AI Cooperation
+</h1>
 
 <p>
-Goyang Citizens' Committee for Hosting<br>
-the Global AI Hub in Gyeonggi Province
+Connecting International Expertise<br>
+with Artificial Intelligence
 </p>
-<div class="home-return">
-  <a href="index-en.html">
-    ← Back to Home
-  </a>
+
+<p>
+Global AI Hub Initiative<br>
+Goyang Special City, Republic of Korea
+</p>
+
+<div class="header-links">
+
+<a href="index-en.html"
+class="home-link">
+← English Home
+</a>
+
+<a href="agencies.html"
+class="home-link"
+lang="ko">
+한국어
+</a>
+
 </div>
+
 </header>
-
-
-
-<nav aria-label="Main navigation">
-
-<a href="index-en.html">Home</a>
-
-<a href="committee-en.html">About Us</a>
-
-<a href="hub-en.html">Global AI Hub</a>
-
-<a href="goyang-en.html">Why Goyang</a>
-
-<a href="agencies-en.html" aria-current="page">UN Agencies</a>
-
-<a href="strategy-en.html">Our Strategy</a>
-
-<a href="index.html">한국어</a>
-
-</nav>
 
 <main>
 
-<section class="intro">
+<!-- Vision -->
 
-<h2>International Cooperation for Humanity</h2>
+<section>
+
+<div class="slogan">
+
+Artificial Intelligence for Humanity.<br>
+International Cooperation for a Better Future.<br>
+Global AI Hub Initiative in Goyang.
+
+</div>
+
+</section>
+
+<!-- Introduction -->
+
+<section>
+
+<h2>
+1. Global AI Hub and International Organizations
+</h2>
 
 <p>
-The Global AI Hub is envisioned as an
-international cooperation platform
-that brings together international organizations,
-governments, universities, research institutions,
-businesses and civil society.
+The proposed Global AI Hub is envisioned
+as an international cooperation platform
+connecting the expertise of international
+organizations with advances in
+artificial intelligence.
 </p>
 
 <p>
-Its purpose is to develop and apply
-public-interest artificial intelligence
-to address global challenges
-and advance the United Nations
-Sustainable Development Goals (SDGs).
+The initiative seeks to explore
+how responsible AI applications
+could contribute to addressing
+global challenges in public health,
+food security, climate change,
+environmental protection,
+humanitarian assistance,
+migration, employment,
+education, disaster resilience,
+and sustainable development.
 </p>
 
 <p>
-Goyang is exploring ways to support
-international organizations through
-its healthcare, environmental,
-disaster-management, education,
-welfare and civic resources.
+International organizations,
+governments, universities,
+research institutions,
+businesses, and civil society
+could contribute their respective
+expertise to collaborative activities.
 </p>
 
+<div class="highlight">
+
+<strong>
+The objective of the proposed Global AI Hub
+is not simply to attract offices
+of international organizations.
+</strong>
+
 <p>
-The following areas represent proposed
-cooperation opportunities.
-Specific institutional participation
-and project arrangements remain subject
-to consultation and official confirmation.
+Its broader purpose is to explore
+meaningful cooperation that connects
+international expertise with AI research
+and innovation to address
+shared global challenges.
+</p>
+
+</div>
+
+<p class="note">
+Important clarification:
+The nine organizations introduced below
+are identified as potential areas
+of engagement based on their mandates.
+Their inclusion does not indicate
+confirmed participation, relocation,
+office establishment, or partnership.
 </p>
 
 </section>
 
-<div class="agency-grid">
+<!-- Nine Organizations -->
 
-<article class="agency-card">
-<h2>WHO</h2>
-<h3>World Health Organization</h3>
-<p><strong>Key Areas</strong><br>
-Primary healthcare, public health,
-infectious disease preparedness.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI-enabled primary healthcare,
-public-health monitoring and
-early warning, drawing on
-the National Cancer Center
-and local healthcare institutions.</p>
+<section>
+
+<h2>
+2. Nine International Organizations
+and Potential Areas of AI Cooperation
+</h2>
+
+<div class="grid">
+
+<!-- WHO -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 01
+</span>
+
+<h3>WHO</h3>
+
+<p class="agency-full-name">
+World Health Organization
+</p>
+
+<div class="agency-field">
+Public Health and Healthcare
+</div>
+
+<p>
+WHO is the United Nations
+specialized agency responsible
+for international public health.
+</p>
+
+<p>
+Its work includes disease prevention,
+health emergency preparedness,
+health systems strengthening,
+and international health cooperation.
+</p>
+
+<p>
+Potential areas of AI cooperation
+could include disease surveillance,
+early detection of health risks,
+public health data analysis,
+and improved access to healthcare services.
+</p>
+
+<p class="note">
+Such cooperation would require
+appropriate safeguards for privacy,
+health data governance,
+safety, and equity.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>WFP</h2>
-<h3>World Food Programme</h3>
-<p><strong>Key Areas</strong><br>
-Food security, hunger response
-and emergency food assistance.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI applications for food supply chains,
-nutrition-risk analysis and
-food distribution, drawing on
-local agriculture, school meals
-and community food-support systems.</p>
+<!-- WFP -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 02
+</span>
+
+<h3>WFP</h3>
+
+<p class="agency-full-name">
+World Food Programme
+</p>
+
+<div class="agency-field">
+Food Security and Supply Chains
+</div>
+
+<p>
+WFP is a United Nations humanitarian
+organization addressing hunger
+and food insecurity.
+</p>
+
+<p>
+Its activities include emergency
+food assistance, nutrition support,
+and strengthening resilience
+against food-related crises.
+</p>
+
+<p>
+Potential AI applications could include
+food insecurity forecasting,
+supply-chain risk analysis,
+early warning of food crises,
+and improved humanitarian
+logistics planning.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>UNEP</h2>
-<h3>United Nations Environment Programme</h3>
-<p><strong>Key Areas</strong><br>
-Climate action, environmental protection
-and sustainable development.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI-based ecological monitoring,
-climate-risk analysis and
-environmental data applications
-using Janghang Wetland
-and local climate initiatives.</p>
+<!-- UNEP -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 03
+</span>
+
+<h3>UNEP</h3>
+
+<p class="agency-full-name">
+United Nations Environment Programme
+</p>
+
+<div class="agency-field">
+Climate Change and Environment
+</div>
+
+<p>
+UNEP is the United Nations'
+leading global environmental authority.
+</p>
+
+<p>
+It supports international cooperation
+on climate change, biodiversity,
+pollution, resource management,
+and sustainable development.
+</p>
+
+<p>
+Potential AI cooperation could include
+environmental data analysis,
+climate risk assessment,
+ecosystem monitoring,
+and air and water quality analysis.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>UNHCR</h2>
-<h3>United Nations High Commissioner for Refugees</h3>
-<p><strong>Key Areas</strong><br>
-Refugee protection, forced displacement
-and humanitarian assistance.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-Multilingual settlement-support AI,
-humanitarian information services
-and cooperation drawing on
-community welfare, education
-and healthcare resources.</p>
+<!-- UNHCR -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 04
+</span>
+
+<h3>UNHCR</h3>
+
+<p class="agency-full-name">
+Office of the United Nations
+High Commissioner for Refugees
+</p>
+
+<div class="agency-field">
+Refugee Protection and Forced Displacement
+</div>
+
+<p>
+UNHCR works to protect and assist
+refugees, forcibly displaced people,
+and stateless persons.
+</p>
+
+<p>
+Its responsibilities include
+international protection,
+humanitarian assistance,
+and support for durable solutions
+to displacement.
+</p>
+
+<p>
+Potential AI cooperation could include
+humanitarian needs assessment,
+improved access to protection services,
+and analysis of displacement-related risks.
+</p>
+
+<p class="note">
+Any application must prioritize
+human rights, data protection,
+non-discrimination,
+and the safety of vulnerable populations.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>IOM</h2>
-<h3>International Organization for Migration</h3>
-<p><strong>Key Areas</strong><br>
-Migration, disaster displacement
-and migration policy.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI-assisted displacement information
-management, multilingual disaster
-communications and migration-policy
-research, building on local experience.</p>
+<!-- IOM -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 05
+</span>
+
+<h3>IOM</h3>
+
+<p class="agency-full-name">
+International Organization for Migration
+</p>
+
+<div class="agency-field">
+Migration and Displacement
+</div>
+
+<p>
+IOM promotes humane and orderly migration
+and supports international cooperation
+on migration-related issues.
+</p>
+
+<p>
+Its activities include migrant assistance,
+migration policy support,
+humanitarian response,
+and assistance to displaced populations.
+</p>
+
+<p>
+Potential AI applications could include
+migration policy analysis,
+improved access to migrant services,
+and information support
+for humanitarian responses
+to displacement.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>ILO</h2>
-<h3>International Labour Organization</h3>
-<p><strong>Key Areas</strong><br>
-Labor rights, employment
-and labor-market transitions.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI analysis of labor-market changes,
-employment-risk early warning
-and workforce transition support.</p>
+<!-- ILO -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 06
+</span>
+
+<h3>ILO</h3>
+
+<p class="agency-full-name">
+International Labour Organization
+</p>
+
+<div class="agency-field">
+Employment and the Future of Work
+</div>
+
+<p>
+ILO is the United Nations
+specialized agency promoting
+social justice, labour rights,
+decent work, and international
+labour standards.
+</p>
+
+<p>
+Its tripartite structure brings together
+governments, employers, and workers.
+</p>
+
+<p>
+Potential AI cooperation could include
+labour market analysis,
+future employment forecasting,
+skills development,
+employment service improvement,
+and protection of workers
+during technological transitions.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>ITU</h2>
-<h3>International Telecommunication Union</h3>
-<p><strong>Key Areas</strong><br>
-Telecommunications, disaster communications
-and early-warning systems.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI-enabled disaster early warning,
-emergency communications
-and urban safety applications
-using smart-city and disaster-response
-infrastructure.</p>
+<!-- ITU -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 07
+</span>
+
+<h3>ITU</h3>
+
+<p class="agency-full-name">
+International Telecommunication Union
+</p>
+
+<div class="agency-field">
+Emergency Communications and Early Warning
+</div>
+
+<p>
+ITU is the United Nations
+specialized agency for digital technologies
+and information and communication technologies.
+</p>
+
+<p>
+Its work includes telecommunications
+standardization, connectivity,
+digital infrastructure,
+and emergency communications.
+</p>
+
+<p>
+Potential AI cooperation could include
+disaster communications,
+risk information dissemination,
+early-warning systems,
+and improved digital accessibility.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>UNICEF</h2>
-<h3>United Nations Children's Fund</h3>
-<p><strong>Key Areas</strong><br>
-Child protection, education,
-health and child welfare.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-AI-supported early identification
-of risks to children,
-educational continuity
-and child-protection services.</p>
+<!-- UNICEF -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 08
+</span>
+
+<h3>UNICEF</h3>
+
+<p class="agency-full-name">
+United Nations Children's Fund
+</p>
+
+<div class="agency-field">
+Child Protection and Education
+</div>
+
+<p>
+UNICEF works to protect children's rights
+and improve their health,
+education, safety,
+and overall well-being.
+</p>
+
+<p>
+Its activities include child protection,
+education access,
+support for vulnerable children,
+and emergency assistance.
+</p>
+
+<p>
+Potential AI applications could include
+educational accessibility,
+learning support,
+child welfare information analysis,
+and reducing digital inequalities.
+</p>
+
+<p class="note">
+Children's rights, privacy,
+safety, educational equity,
+and responsible AI governance
+must remain central considerations.
+</p>
+
 </article>
 
-<article class="agency-card">
-<h2>UNDP</h2>
-<h3>United Nations Development Programme</h3>
-<p><strong>Key Areas</strong><br>
-Complex crisis response,
-recovery and sustainable development.</p>
-<p><strong>Potential Cooperation in Goyang</strong><br>
-Integrated AI analysis for complex crises,
-community resilience and recovery,
-connecting disaster management,
-economic development and social services.</p>
+<!-- UNDP -->
+
+<article class="card">
+
+<span class="agency-number">
+Organization 09
+</span>
+
+<h3>UNDP</h3>
+
+<p class="agency-full-name">
+United Nations Development Programme
+</p>
+
+<div class="agency-field">
+Crisis Response and Sustainable Development
+</div>
+
+<p>
+UNDP supports countries in addressing
+poverty, inequality,
+governance challenges,
+and sustainable development.
+</p>
+
+<p>
+Its activities include
+institutional capacity development,
+crisis response,
+recovery, and support
+for the Sustainable Development Goals.
+</p>
+
+<p>
+Potential AI cooperation could include
+development policy analysis,
+complex crisis assessment,
+public service improvement,
+and data-informed planning
+for sustainable development.
+</p>
+
 </article>
 
 </div>
 
-<section class="strategy-box">
+</section>
 
-<h2>Goyang's Cooperation Strategy</h2>
+<!-- Cooperation Framework -->
+
+<section>
+
+<h2>
+3. A Framework for International AI Cooperation
+</h2>
 
 <p>
-Goyang seeks to connect its existing
-institutions, infrastructure and civic
-capabilities with the missions
-of international organizations.
+International organizations bring
+specialized knowledge,
+global networks,
+and experience in addressing
+complex development
+and humanitarian challenges.
 </p>
 
 <p>
-Two potential flagship initiatives
-are AI-enabled primary healthcare
-and AI-supported complex crisis response.
+Universities, research institutions,
+and technology companies
+may contribute research capabilities,
+AI expertise,
+and technological innovation.
 </p>
 
 <p>
-The proposed approach emphasizes
-practical cooperation,
-achievable implementation plans
-and verifiable evidence.
+The proposed Global AI Hub seeks
+to explore opportunities
+to connect these complementary strengths
+through practical international cooperation.
 </p>
 
+<div class="grid">
+
+<div class="card">
+
+<h3>Joint Research</h3>
+
 <p>
+Identifying research questions
+related to global challenges
+and exploring collaborative
+research projects.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Responsible AI Pilots</h3>
+
+<p>
+Exploring AI pilot projects
+that respond to public-interest needs
+while evaluating safety,
+effectiveness, and ethical implications.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Policy and Knowledge Exchange</h3>
+
+<p>
+Supporting opportunities
+for international meetings,
+expert dialogue,
+policy learning,
+and the exchange of research findings.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Capacity Development</h3>
+
+<p>
+Exploring education,
+training,
+professional exchange,
+and capacity-building initiatives
+in international cooperation
+and responsible AI.
+</p>
+
+</div>
+
+</div>
+
+<div class="highlight">
+
 <strong>
-Initial Settlement · Operational Support · Shared Growth
+International Expertise
++ Responsible AI Innovation
++ Institutional Cooperation
 </strong>
+
+<p>
+The proposed framework seeks
+to encourage practical solutions
+that are consistent with
+the mandates and priorities
+of participating institutions.
 </p>
+
+</div>
 
 </section>
 
+<!-- Why Goyang -->
 
-  
+<section>
+
+<h2>
+4. Why Goyang Special City?
+</h2>
+
+<p>
+Goyang Special City is located
+in Gyeonggi Province,
+within the Seoul metropolitan region
+of the Republic of Korea.
+</p>
+
+<p>
+Its existing assets include
+international convention
+and exhibition infrastructure
+centered on KINTEX,
+healthcare institutions such as
+the National Cancer Center,
+urban services,
+cultural facilities,
+and ecological resources
+including the Janghang Wetland.
+</p>
+
+<p>
+These assets provide
+a foundation for exploring
+international cooperation
+in public health,
+environmental sustainability,
+disaster resilience,
+and AI-enabled innovation.
+</p>
+
+<div class="highlight">
+
+<strong>
+The Global AI Hub initiative
+seeks to connect international cooperation
+with new opportunities
+for research, innovation,
+professional employment,
+and sustainable regional development.
+</strong>
+
+</div>
+
+<p>
+Actual economic and employment outcomes
+would depend on the scale
+of future institutional participation,
+the nature of cooperative projects,
+and the operational arrangements
+eventually established.
+</p>
+
+<a href="goyang-en.html"
+class="button">
+Explore Goyang's Advantages
+</a>
+
+</section>
+
+<!-- Three-stage Strategy -->
+
+<section>
+
+<h2>
+5. Three-Stage Development Strategy
+</h2>
+
+<p>
+The proposed strategy recognizes
+that successful international cooperation
+requires attention to initial establishment,
+sustainable operations,
+and long-term shared development.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Stage 1 — Initial Establishment
+</h3>
+
+<p>
+Assessing the requirements
+for suitable office facilities,
+transportation,
+housing,
+healthcare,
+education,
+and other essential services
+for potential participating institutions.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Stage 2 — Operational Support
+</h3>
+
+<p>
+Exploring coordination among
+relevant public authorities,
+universities,
+research institutions,
+businesses,
+and civil society
+to support international cooperation,
+AI research,
+pilot projects,
+and professional exchanges.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Stage 3 — Shared Growth
+</h3>
+
+<p>
+Seeking opportunities
+to contribute to the missions
+of participating organizations
+while encouraging
+regional innovation,
+professional employment,
+business activity,
+and sustainable economic development.
+</p>
+
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+Initial Establishment
+→ Operational Support
+→ Shared Growth
+</strong>
+
+<p>
+Specific projects,
+funding arrangements,
+facilities,
+and institutional support measures
+would require consultation
+and formal decisions
+by the relevant authorities.
+</p>
+
+</div>
+
+</section>
+
+<!-- Institutional Clarification -->
+
+<section>
+
+<h2>
+6. Institutional Status and Next Steps
+</h2>
+
+<p>
+The Global AI Hub in Goyang
+is presented as a proposed initiative
+supported by the Citizens'
+Promotion Committee.
+</p>
+
+<p>
+The identification of nine
+international organizations
+reflects potential thematic relevance
+to the initiative.
+</p>
+
+<p>
+It does not establish
+any formal partnership,
+endorsement,
+relocation decision,
+or commitment
+by these organizations.
+</p>
+
+<p>
+Future engagement would require
+appropriate consultation
+with the organizations concerned
+and decisions through their
+respective institutional procedures.
+</p>
+
+<div class="highlight">
+
+<strong>
+The initiative seeks constructive dialogue,
+institutional cooperation,
+and responsible planning
+based on mutual interests
+and internationally recognized principles.
+</strong>
+
+</div>
+
+</section>
+
+<!-- Participation -->
+
+<section>
+
+<h2>
+7. Public Engagement and International Cooperation
+</h2>
+
+<p>
+The Citizens' Promotion Committee
+seeks to raise public awareness
+of the Global AI Hub initiative
+and encourage constructive participation
+in discussions about
+Goyang's future development.
+</p>
+
+<p>
+The initiative aims to connect
+citizen engagement
+with opportunities for
+international cooperation,
+research,
+and responsible AI innovation.
+</p>
+
+<a href="index-en.html"
+class="button">
+English Homepage
+</a>
+
+<a href="agencies.html"
+class="button"
+lang="ko">
+한국어 원문 보기
+</a>
+
+</section>
+
 </main>
 
 <footer>
 
 <p>
-Goyang Citizens' Committee for Hosting<br>
-the Global AI Hub in Gyeonggi Province
+<strong>
+Global AI Hub Initiative<br>
+Goyang Special City,
+Gyeonggi Province,
+Republic of Korea
+</strong>
 </p>
 
 <p>
-AI for All · AI for Humanity
+Citizens' Promotion Committee
+for Attracting the Global AI Hub
+to Goyang Special City
 </p>
 
 <p>
-<a href="index-en.html" style="color:white;">
-Return to English Homepage
+Artificial Intelligence for Humanity.<br>
+International Cooperation for a Better Future.
+</p>
+
+<p>
+<a href="index-en.html">
+English Home
+</a>
+&nbsp; | &nbsp;
+<a href="agencies.html" lang="ko">
+한국어
 </a>
 </p>
 
