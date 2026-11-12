@@ -2,19 +2,31 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Explore the proposed Global AI Hub attraction strategy for Goyang Special City, including six strategic priorities, international organization settlement conditions, operational cooperation, and sustainable regional development.">
+
 <title>
-Our Strategy | Global AI Hub Goyang
+Global AI Hub Attraction Strategy |
+Goyang Special City
 </title>
 
 <style>
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,75 +37,104 @@ body {
   line-height: 1.8;
 }
 
-/* Header */
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
 
 header {
-  background: #10315e;
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
   color: white;
-  padding: 35px 20px;
   text-align: center;
+  padding: 55px 20px;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 32px;
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.3;
 }
 
 header p {
-  margin-bottom: 0;
+  font-size: 18px;
 }
 
-/* Navigation */
-
-nav {
-  background: #0754a6;
-  padding: 15px;
-  text-align: center;
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
 }
 
-nav a {
+.home-link {
   display: inline-block;
-  color: white;
+  background: white;
+  color: #0754a6;
   text-decoration: none;
-  margin: 5px 12px;
+  padding: 10px 20px;
+  border-radius: 7px;
   font-weight: bold;
 }
 
-nav a:hover {
-  color: #ffe44d;
-}
-
-/* Main */
-
 main {
-  max-width: 1200px;
+  max-width: 1150px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 35px 15px;
 }
 
 section {
   background: white;
   padding: 35px;
+  margin-bottom: 25px;
   border-radius: 12px;
-  margin-bottom: 30px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
 }
 
-section h2 {
+h2 {
   color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
   margin-top: 0;
 }
 
-section h3 {
-  color: #168de0;
+h3 {
+  color: #0754a6;
 }
 
-/* Cards */
+.slogan {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: bold;
+  color: #0754a6;
+  line-height: 1.7;
+}
+
+.intro {
+  font-size: 18px;
+}
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 25px 0;
+}
 
 .grid {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .card {
@@ -103,29 +144,56 @@ section h3 {
   border-top: 5px solid #168de0;
 }
 
-/* Highlight */
-
-.highlight {
-  background: #eaf4ff;
-  border-left: 5px solid #168de0;
-  padding: 25px;
-  border-radius: 8px;
-  margin-top: 25px;
+.card h3 {
+  margin-top: 0;
 }
 
-/* Footer */
+.strategy-number {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
 
 footer {
   background: #10315e;
   color: white;
   text-align: center;
-  padding: 35px 20px;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
 }
 
 @media (max-width: 600px) {
 
-  header h1 {
-    font-size: 25px;
+  header {
+    padding: 40px 15px;
   }
 
   main {
@@ -133,337 +201,471 @@ footer {
   }
 
   section {
-    padding: 23px;
+    padding: 22px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
   }
 
 }
 
-/* Back to Home Button */
-
-.home-return {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.home-return a {
-  display: inline-block;
-
-  background: #ffffff;
-  color: #0754a6;
-
-  border: 2px solid #0754a6;
-  border-radius: 8px;
-
-  padding: 13px 28px;
-
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.home-return a:hover {
-  background: #0754a6;
-  color: #ffffff;
-}
-  
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<h1>Goyang's Global AI Hub Strategy</h1>
+<h1>
+Global AI Hub Attraction Strategy
+</h1>
 
 <p>
-Goyang Citizens' Committee for Hosting<br>
-the Global AI Hub in Gyeonggi Province
+Preparing Goyang Special City<br>
+for International Cooperation,
+Responsible AI Innovation,
+and Sustainable Development
 </p>
 
-<div class="home-return">
-  <a href="index-en.html">
-    ← Back to Home
-  </a>
+<p>
+Gyeonggi Province, Republic of Korea
+</p>
+
+<div class="header-links">
+
+<a href="index-en.html" class="home-link">
+← English Home
+</a>
+
+<a href="strategy.html"
+class="home-link"
+lang="ko">
+한국어
+</a>
+
 </div>
-  
+
 </header>
-
-
-<nav aria-label="Main navigation">
-
-<a href="index-en.html">Home</a>
-
-<a href="committee-en.html">About Us</a>
-
-<a href="hub-en.html">Global AI Hub</a>
-
-<a href="goyang-en.html">Why Goyang</a>
-
-<a href="agencies-en.html">UN Agencies</a>
-
-<a href="strategy-en.html"
-aria-current="page">Our Strategy</a>
-
-<a href="strategy.html">한국어</a>
-
-</nav>
 
 <main>
 
-<!-- Strategic Vision -->
+<!-- Vision -->
 
 <section>
 
-<h2>I. Strategic Vision</h2>
+<div class="slogan">
+
+A New Growth Engine for Goyang.<br>
+New Opportunities for Employment.<br>
+A Global AI Hub for International Cooperation.
+
+</div>
+
+</section>
+
+<!-- Introduction -->
+
+<section>
+
+<h2>
+1. Strategic Vision
+</h2>
+
+<div class="intro">
 
 <p>
-Goyang's strategy for hosting the Global AI Hub
-goes beyond attracting international organizations.
-It seeks to establish an environment in which
-international organizations can settle successfully,
-carry out their missions effectively,
-and grow together with the host city.
+The proposed Global AI Hub represents
+an opportunity for Goyang Special City
+to explore a new role
+as a center for international cooperation
+and responsible artificial intelligence.
 </p>
 
 <p>
-The Global AI Hub should not be understood
-merely as a building or office complex.
-It is envisioned as an international platform
-for cooperation in public-interest artificial
-intelligence, bringing together international
-organizations, governments, universities,
-research institutions, businesses
-and civil society.
+Successful attraction of international
+institutions requires more than
+public enthusiasm.
 </p>
+
+<p>
+It requires objective assessment
+of location advantages,
+practical implementation plans,
+institutional coordination,
+and sustainable operational arrangements.
+</p>
+
+<p>
+The Citizens' Promotion Committee
+seeks to develop constructive proposals
+that connect Goyang's existing assets
+with the needs of potential
+international partners.
+</p>
+
+</div>
 
 <div class="highlight">
 
 <strong>
-Practical and achievable plans matter most.
+The objective is not merely
+to attract international offices.
 </strong>
 
 <p>
-The strategy emphasizes existing assets,
-realistic institutional cooperation,
-clear implementation responsibilities,
-financial planning and verifiable evidence,
-rather than abstract promises.
+The broader vision is to establish
+conditions for meaningful international
+cooperation while creating opportunities
+for research, innovation,
+employment, and sustainable
+regional development.
 </p>
 
 </div>
 
 </section>
 
-<!-- Three-Stage Strategy -->
+<!-- Six Strategies -->
 
 <section>
 
-<h2>II. Three-Stage Development Strategy</h2>
+<h2>
+2. Six Strategic Priorities
+</h2>
 
 <div class="grid">
 
-<div class="card">
+<article class="card">
 
-<h3>1. Initial Settlement</h3>
+<span class="strategy-number">
+Strategy 01
+</span>
+
+<h3>
+Strengthening Location Competitiveness
+</h3>
 
 <p>
-Support international organizations
-in establishing their operations
-quickly and securely in Goyang
-by providing suitable office facilities,
-housing, transportation,
-healthcare, education
+Assess Goyang's existing assets,
+including metropolitan accessibility,
+international convention facilities,
+healthcare institutions,
+education, cultural amenities,
+and living conditions.
+</p>
+
+<p>
+Develop evidence-based proposals
+that respond to the actual requirements
+and evaluation criteria
+of potential international partners.
+</p>
+
+</article>
+
+<article class="card">
+
+<span class="strategy-number">
+Strategy 02
+</span>
+
+<h3>
+Building Institutional Cooperation
+</h3>
+
+<p>
+Explore cooperation among
+Gyeonggi Province,
+Goyang Special City,
+relevant national authorities,
+universities,
+research institutions,
+businesses,
+and civil society.
+</p>
+
+<p>
+Clarify potential institutional roles
+and responsibilities
+and encourage coordinated
+policy discussions
+and preparatory activities.
+</p>
+
+</article>
+
+<article class="card">
+
+<span class="strategy-number">
+Strategy 03
+</span>
+
+<h3>
+Supporting Initial Establishment
+</h3>
+
+<p>
+Assess the conditions necessary
+for international organizations
+and partner institutions
+to establish and maintain
+effective operations.
+</p>
+
+<p>
+Potential requirements include
+office facilities,
+transportation,
+housing,
+education,
+healthcare,
 and other essential services.
 </p>
 
 <p>
-Creating a safe, convenient
-and welcoming living environment
-for international staff
-and their families
-is a central priority.
+Specific support arrangements
+would depend on applicable laws,
+available budgets,
+institutional requirements,
+and formal consultations.
 </p>
 
-</div>
+</article>
 
-<div class="card">
+<article class="card">
 
-<h3>2. Operational Support</h3>
+<span class="strategy-number">
+Strategy 04
+</span>
 
-<p>
-Connect the capabilities
-of Goyang and Gyeonggi Province,
-including public institutions,
-universities, research organizations,
-businesses and civil society,
-to support the practical work
-of international organizations.
-</p>
+<h3>
+Expanding International Cooperation
+in Public-Interest AI
+</h3>
 
 <p>
-Develop potential public-interest
-AI pilot projects in healthcare,
-food security, climate,
-disaster management,
-employment, education
-and social welfare.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>3. Shared Growth</h3>
-
-<p>
-Help international organizations
-advance their institutional missions
-and the Sustainable Development Goals
-while enabling Goyang
-to develop into a city specializing
-in international cooperation
-and public-interest AI.
+Explore responsible AI applications
+in public health,
+food security,
+climate and environmental protection,
+disaster resilience,
+employment,
+and education.
 </p>
 
 <p>
-Build a sustainable ecosystem
-in which international organizations
-and local communities
-benefit from long-term cooperation.
+Identify opportunities
+for collaborative research,
+pilot projects,
+knowledge exchange,
+and practical cooperation
+among international organizations,
+research institutions,
+and technology companies.
 </p>
 
-</div>
+</article>
 
-</div>
+<article class="card">
 
-</section>
+<span class="strategy-number">
+Strategy 05
+</span>
 
-<!-- Public AI Cooperation -->
-
-<section>
-
-<h2>III. International Cooperation in Public AI</h2>
+<h3>
+Connecting Innovation with Employment
+and Regional Development
+</h3>
 
 <p>
-The proposed Global AI Hub
-would enable nine international organizations
-to maintain their respective missions
-while benefiting from a shared
-public-interest AI cooperation platform.
+Explore ways to connect
+the Global AI Hub initiative
+with research and development,
+technological innovation,
+professional services,
+and local business opportunities.
 </p>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>1. Governance, Standards, Evaluation and Procurement</h3>
 
 <p>
-Support the development of
-governance frameworks,
-international standards,
-evaluation methods,
-procurement principles
-and operational practices
-for safe and trustworthy public AI.
+Promote policy discussions
+on high-quality employment,
+youth development,
+skills training,
+and sustainable regional growth.
 </p>
 
-</div>
+</article>
 
-<div class="card">
+<article class="card">
 
-<h3>2. Joint Design Across Specialized Domains</h3>
+<span class="strategy-number">
+Strategy 06
+</span>
+
+<h3>
+Encouraging Citizen Participation
+</h3>
 
 <p>
-Enable international organizations
-to jointly design AI applications
-in healthcare, food security,
-climate action, migration,
-employment, disaster preparedness,
-child protection
-and complex crisis response.
+Promote voluntary citizen participation
+through public information,
+online expressions of support,
+committee registration,
+and outreach activities.
 </p>
-
-</div>
-
-<div class="card">
-
-<h3>3. Co-Development, Localization, Validation and Scaling</h3>
 
 <p>
-Bring together international organizations,
-partner countries, universities,
-research institutions and businesses
-to jointly develop AI solutions,
-adapt them to local conditions,
-validate their performance
-and support international deployment.
+Encourage responsible civic engagement
+based on objective information,
+constructive dialogue,
+and feasible policy proposals.
 </p>
 
-</div>
+</article>
 
 </div>
 
 </section>
 
-<!-- Flagship Projects -->
+<!-- Settlement -->
 
 <section>
 
-<h2>IV. Proposed Flagship AI Initiatives</h2>
+<h2>
+3. Initial Establishment and Operational Conditions
+</h2>
+
+<p>
+The long-term viability
+of an international cooperation hub
+depends on the ability
+of participating institutions
+to operate effectively
+and support their personnel.
+</p>
+
+<p>
+The following areas
+would require detailed assessment
+and consultation.
+</p>
 
 <div class="grid">
 
-<div class="card">
+<article class="card">
 
-<h3>AI-Enabled Primary Healthcare and Public Health</h3>
+<h3>
+Office Space and Facilities
+</h3>
 
 <p>
-In alignment with the mission
-of the World Health Organization,
-Goyang proposes exploring
-AI-enabled primary healthcare,
-improved public-health services,
-infectious disease early warning
-and better access to essential care.
+Assess appropriate facilities
+for institutional operations,
+research activities,
+international meetings,
+and professional exchanges.
 </p>
 
 <p>
-Potential local partners include
-the National Cancer Center
-and other healthcare institutions
-located in Goyang.
+Requirements may include
+digital connectivity,
+accessibility,
+security,
+and meeting infrastructure.
 </p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Transportation and Accessibility
+</h3>
+
+<p>
+Evaluate access to international airports,
+major metropolitan destinations,
+potential office locations,
+and residential areas.
+</p>
+
+<p>
+Transport reliability,
+commuting conditions,
+and accessibility
+should be considered.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Housing and Living Conditions
+</h3>
+
+<p>
+Assess residential options,
+education,
+healthcare,
+and everyday services
+for international personnel
+and accompanying family members.
+</p>
+
+<p>
+Actual needs would depend
+on staffing arrangements
+and institutional requirements.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Administrative and Institutional Support
+</h3>
+
+<p>
+Explore potential coordination
+among relevant authorities
+to address administrative requirements,
+institutional cooperation,
+and operational procedures.
+</p>
+
+<p>
+Any arrangements would be subject
+to the responsibilities
+and approval processes
+of the institutions concerned.
+</p>
+
+</article>
 
 </div>
 
-<div class="card">
-
-<h3>AI-Supported Complex Crisis Response</h3>
-
-<p>
-With UNDP as a potential
-cooperation partner,
-Goyang proposes exploring
-integrated AI analysis
-of disasters, climate change,
-food insecurity, migration,
-employment disruptions
-and social vulnerability.
+<p class="note">
+These considerations represent
+proposed areas for feasibility assessment.
+They do not constitute confirmed
+financial commitments,
+facility allocations,
+or institutional support agreements.
 </p>
-
-<p>
-The initiative could draw on
-Goyang's disaster-management,
-smart-city, environmental
-and social welfare capabilities.
-</p>
-
-</div>
-
-</div>
 
 </section>
 
@@ -471,140 +673,581 @@ and social welfare capabilities.
 
 <section>
 
-<h2>V. Implementation and Cooperation Framework</h2>
+<h2>
+4. From Preparation to Sustainable Operations
+</h2>
 
 <p>
-Success in the competition
-to host the Global AI Hub
-requires more than ambitious plans.
-It requires practical feasibility,
-institutional coordination
-and credible evidence
-of implementation capacity.
+The Global AI Hub initiative
+requires planning beyond
+the initial location selection process.
+</p>
+
+<p>
+The following four phases
+describe a proposed policy approach,
+not an officially approved
+implementation schedule.
 </p>
 
 <div class="grid">
 
-<div class="card">
+<article class="card">
 
-<h3>Responsible Implementation Structure</h3>
+<span class="strategy-number">
+Phase 01
+</span>
 
-<p>
-Establish a practical cooperation
-framework involving Goyang,
-Gyeonggi Province,
-public institutions
-and private-sector experts,
-with clearly defined
-roles and responsibilities.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Broader Institutional Participation</h3>
+<h3>
+Building the Foundation
+</h3>
 
 <p>
-Identify and confirm
-potential cooperation
-from universities,
-healthcare institutions,
-research organizations,
-businesses and civic groups.
+Develop public understanding,
+assess location competitiveness,
+conduct policy research,
+and explore institutional cooperation.
 </p>
 
-</div>
+</article>
 
-<div class="card">
+<article class="card">
 
-<h3>Evidence-Based Preparation</h3>
+<span class="strategy-number">
+Phase 02
+</span>
+
+<h3>
+Developing a Practical Proposal
+</h3>
 
 <p>
-Systematically prepare
-letters of intent,
-facility documentation,
-project plans,
-financial arrangements,
-operational frameworks
-and evidence of pilot-project feasibility.
+Refine potential attraction proposals
+and operational support measures
+based on institutional needs,
+site requirements,
+and relevant evaluation criteria.
 </p>
 
-</div>
+</article>
+
+<article class="card">
+
+<span class="strategy-number">
+Phase 03
+</span>
+
+<h3>
+Supporting Initial Establishment
+</h3>
+
+<p>
+If a location is formally selected,
+explore arrangements for
+office facilities,
+living conditions,
+and administrative coordination
+through consultation
+with relevant authorities.
+</p>
+
+</article>
+
+<article class="card">
+
+<span class="strategy-number">
+Phase 04
+</span>
+
+<h3>
+Expanding International Cooperation
+</h3>
+
+<p>
+Explore opportunities
+for collaborative research,
+pilot projects,
+international conferences,
+professional training,
+and long-term partnerships.
+</p>
+
+</article>
 
 </div>
 
 <div class="highlight">
 
 <strong>
-From Planning to Implementation.<br>
-From Implementation to Results and Evidence.
+Preparation
+→ Practical Proposal
+→ Initial Establishment
+→ Sustainable Cooperation
 </strong>
 
 <p>
-Goyang seeks to develop
-a credible hosting strategy
-based on existing capabilities,
-realistic cooperation
-and achievable commitments.
+Implementation would depend
+on institutional decisions,
+available resources,
+and formal agreements.
 </p>
 
 </div>
 
 </section>
 
-<!-- Our Goal -->
+<!-- Three-stage framework -->
 
 <section>
 
-<h2>VI. Our Goal</h2>
+<h2>
+5. Three-Stage Cooperation Framework
+</h2>
 
 <p>
-If Goyang is selected
-to host the Global AI Hub,
-the city and its civic partners
-will seek to help international organizations
-settle successfully,
-carry out their missions effectively,
-and establish a foundation
-for long-term shared growth.
+Alongside the four-phase
+implementation approach,
+the initiative proposes
+three long-term priorities
+for participating institutions.
 </p>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>
+Stage 1 — Initial Establishment
+</h3>
+
+<p>
+Identify the physical,
+administrative,
+and living conditions
+necessary for potential
+participating organizations
+to establish operations.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Stage 2 — Operational Support
+</h3>
+
+<p>
+Explore mechanisms
+for institutional coordination,
+research cooperation,
+technology demonstration,
+international meetings,
+and professional exchanges.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Stage 3 — Shared Growth
+</h3>
+
+<p>
+Seek opportunities
+for international organizations
+to advance their respective mandates
+while contributing to
+research collaboration,
+innovation,
+and sustainable regional development.
+</p>
+
+</article>
+
+</div>
 
 <div class="highlight">
 
 <strong>
-Initial Settlement · Operational Support · Shared Growth
+Initial Establishment
+→ Operational Support
+→ Shared Growth
 </strong>
 
 <p>
-Powered by Citizens.<br>
-Strengthened by Gyeonggi Province.<br>
-Connected to the World.
+The framework is a strategic proposal.
+Specific measures would require
+consultation and formal decisions
+by the relevant institutions.
 </p>
 
 </div>
 
 </section>
 
+<!-- Economy -->
 
-  
+<section>
+
+<h2>
+6. Employment and Regional Economic Development
+</h2>
+
+<p>
+An important objective
+of the Global AI Hub initiative
+is to explore how international cooperation
+could create new opportunities
+for Goyang's regional economy.
+</p>
+
+<p>
+If institutional cooperation expands,
+potential activities may include
+AI research and development,
+professional services,
+international conferences,
+training programs,
+and technology-related business development.
+</p>
+
+<p>
+Connecting these activities
+with local businesses,
+universities,
+and young professionals
+would be an important
+long-term policy consideration.
+</p>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>
+Research and Innovation
+</h3>
+
+<p>
+Potential collaboration
+among universities,
+research institutions,
+technology companies,
+and international organizations.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Professional Employment
+</h3>
+
+<p>
+Potential opportunities
+in research,
+data analysis,
+international cooperation,
+translation,
+conference management,
+and professional services.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Youth Development
+</h3>
+
+<p>
+Opportunities to explore
+training,
+skills development,
+professional exchanges,
+and career pathways
+related to AI and international cooperation.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Local Business Opportunities
+</h3>
+
+<p>
+Potential connections
+between international cooperation
+and local service providers,
+technology businesses,
+and innovation networks.
+</p>
+
+</article>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+The proposed Global AI Hub
+seeks to connect international cooperation
+with sustainable innovation,
+employment opportunities,
+and regional economic development.
+</strong>
+
+</div>
+
+<p class="note">
+Actual economic impacts,
+investment,
+and employment outcomes
+would depend on the scale,
+structure,
+and implementation
+of future projects.
+No specific outcomes are guaranteed.
+</p>
+
+<a href="goyang-en.html"
+class="button">
+Explore Goyang's Location Advantages
+</a>
+
+</section>
+
+<!-- Committee -->
+
+<section>
+
+<h2>
+7. Role of the Citizens' Promotion Committee
+</h2>
+
+<p>
+The Citizens' Promotion Committee
+is a civic initiative
+supporting the proposed attraction
+of the Global AI Hub
+to Goyang Special City.
+</p>
+
+<p>
+The Committee seeks to
+encourage public participation,
+promote policy discussions,
+and raise awareness
+of potential opportunities
+for international cooperation
+and regional development.
+</p>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>
+Public Consultation
+</h3>
+
+<p>
+Gather citizens' perspectives
+through public communication,
+online participation,
+and community engagement.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Policy Research and Proposals
+</h3>
+
+<p>
+Examine location competitiveness,
+institutional requirements,
+and potential cooperation models
+to develop practical policy proposals.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Citizen Engagement
+</h3>
+
+<p>
+Encourage voluntary participation
+through committee registration,
+public awareness activities,
+and other civic initiatives.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>
+Transparency and Accountability
+</h3>
+
+<p>
+Promote responsible operations,
+public communication,
+and transparent reporting
+of committee activities.
+</p>
+
+</article>
+
+</div>
+
+</section>
+
+<!-- Institutional clarification -->
+
+<section>
+
+<h2>
+8. Institutional Status and Important Clarifications
+</h2>
+
+<p>
+The Global AI Hub attraction strategy
+presented on this website
+is a proposal promoted
+by the Citizens' Promotion Committee.
+</p>
+
+<p>
+It should not be interpreted
+as an officially approved
+government implementation plan
+or as a confirmed commitment
+by any international organization.
+</p>
+
+<p>
+Any future location decision,
+institutional participation,
+facility provision,
+financial support,
+or operational arrangement
+would require appropriate
+consultation and formal approval
+by the responsible authorities.
+</p>
+
+<div class="highlight">
+
+<strong>
+The Committee seeks constructive dialogue
+and evidence-based planning
+to support a realistic
+and sustainable international
+cooperation initiative.
+</strong>
+
+</div>
+
+</section>
+
+<!-- Closing -->
+
+<section>
+
+<h2>
+9. Building the Future Together
+</h2>
+
+<p>
+The proposed Global AI Hub
+offers an opportunity
+to explore how Goyang Special City
+could contribute to
+international cooperation
+while preparing for
+new regional development opportunities.
+</p>
+
+<p>
+The Citizens' Promotion Committee
+will continue to promote
+public awareness,
+constructive policy discussion,
+and responsible civic participation.
+</p>
+
+<div class="highlight">
+
+<strong>
+Artificial Intelligence for Humanity.<br>
+International Cooperation for a Better Future.<br>
+Shared Growth for Goyang Special City.
+</strong>
+
+</div>
+
+<a href="index-en.html"
+class="button">
+English Homepage
+</a>
+
+<a href="agencies-en.html"
+class="button">
+International Organizations
+</a>
+
+<a href="strategy.html"
+class="button"
+lang="ko">
+한국어 원문 보기
+</a>
+
+</section>
+
 </main>
 
 <footer>
 
 <p>
-Goyang Citizens' Committee for Hosting<br>
-the Global AI Hub in Gyeonggi Province
+<strong>
+Global AI Hub Initiative<br>
+Goyang Special City,
+Gyeonggi Province,
+Republic of Korea
+</strong>
 </p>
 
 <p>
-AI for All · AI for Humanity
+Citizens' Promotion Committee
+for Attracting the Global AI Hub
+to Goyang Special City
 </p>
 
 <p>
-<a href="index-en.html"
-style="color:white;">
-Return to English Homepage
+Artificial Intelligence for Humanity.<br>
+International Cooperation for a Better Future.
+</p>
+
+<p>
+<a href="index-en.html">
+English Home
+</a>
+&nbsp; | &nbsp;
+<a href="strategy.html" lang="ko">
+한국어
 </a>
 </p>
 
