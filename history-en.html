@@ -6,17 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0754a6">
 
-<meta name="description"
-content="Timeline of the Global AI Hub initiative and Goyang's civic campaign, including national government, Gyeonggi Province, Goyang City and the Citizens' Committee.">
-
 <title>
-Timeline | Global AI Hub Goyang
+Global AI Hub Initiative | Timeline and Milestones
 </title>
 
-<style>
+<meta name="description"
+content="Explore the timeline of the Global AI Hub initiative in Korea and major activities involving the national government, Gyeonggi Province, Goyang Special City, and the Citizens' Promotion Committee.">
 
+<style>
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -25,6 +28,15 @@ body {
   background: #f4f8fc;
   color: #17315b;
   line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
 }
 
 header {
@@ -37,40 +49,29 @@ header {
 header h1 {
   font-size: clamp(28px, 5vw, 44px);
   margin: 0 0 15px;
+  line-height: 1.3;
 }
 
 header p {
   font-size: 18px;
 }
 
-.language {
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-top: 20px;
-}
-
-.language a {
-  display: inline-block;
-  color: white;
-  border: 1px solid white;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.language a.active {
-  background: white;
-  color: #0754a6;
 }
 
 .home-link {
   display: inline-block;
   background: white;
   color: #0754a6;
-  text-decoration: none;
   padding: 10px 20px;
   border-radius: 7px;
+  text-decoration: none;
   font-weight: bold;
-  margin-top: 15px;
 }
 
 main {
@@ -90,6 +91,10 @@ section {
 h2 {
   color: #0754a6;
   margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
 }
 
 .intro {
@@ -116,6 +121,19 @@ h2 {
 .filters button.active {
   background: #0754a6;
   color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+.filters button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
 }
 
 .timeline {
@@ -179,6 +197,21 @@ h2 {
   margin-top: 25px;
 }
 
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
 footer {
   background: #10315e;
   color: white;
@@ -203,136 +236,204 @@ footer a {
     padding: 20px;
   }
 
-  .filters button {
-    font-size: 13px;
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
   }
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-
-  <h1>Global AI Hub Initiative Timeline</h1>
+  <h1>
+    Global AI Hub Initiative<br>
+    Timeline and Milestones
+  </h1>
 
   <p>
     National Government · Gyeonggi Province<br>
-    Goyang City · Citizens' Committee
+    Goyang Special City · Citizens' Promotion Committee
   </p>
 
-  <div class="language">
-    <a href="history.html" lang="ko">한국어</a>
-    <a href="history-en.html"
-       class="active"
-       aria-current="page">English</a>
+  <div class="header-links">
+    <a href="index-en.html" class="home-link">
+      ← English Home
+    </a>
+
+    <a href="history.html" class="home-link" lang="ko">
+      한국어
+    </a>
   </div>
-
-  <a href="index-en.html" class="home-link">
-    ← Back to Home
-  </a>
-
 </header>
 
 <main>
 
 <section class="intro">
-
-  <h2>Our Journey Toward the Global AI Hub</h2>
+  <h2>
+    The Journey Toward the Global AI Hub
+  </h2>
 
   <p>
     This timeline presents major developments
-    in the Global AI Hub initiative
-    and Goyang's efforts to host the hub.
+    related to the Global AI Hub initiative
+    in the Republic of Korea,
+    together with activities undertaken
+    in support of attracting the proposed Hub
+    to Goyang Special City.
   </p>
 
   <p>
-    It highlights national policy developments,
-    regional cooperation,
-    local government initiatives
-    and civic participation.
+    Citizen participation,
+    policy preparation,
+    and institutional cooperation
+    are important foundations
+    for future international collaboration.
   </p>
-
 </section>
 
-<div class="filters">
+<!-- Filters -->
 
-  <button class="active" data-type="all">
+<nav class="filters" aria-label="Filter timeline by organization">
+
+  <button
+    type="button"
+    class="active"
+    data-type="all"
+    aria-pressed="true">
     All Events
   </button>
 
-  <button data-type="government">
+  <button
+    type="button"
+    data-type="government"
+    aria-pressed="false">
     National Government
   </button>
 
-  <button data-type="gyeonggi">
+  <button
+    type="button"
+    data-type="gyeonggi"
+    aria-pressed="false">
     Gyeonggi Province
   </button>
 
-  <button data-type="goyang">
-    Goyang City
+  <button
+    type="button"
+    data-type="goyang"
+    aria-pressed="false">
+    Goyang Special City
   </button>
 
-  <button data-type="civic">
-    Citizens' Committee
+  <button
+    type="button"
+    data-type="civic"
+    aria-pressed="false">
+    Citizens' Promotion Committee
   </button>
 
-</div>
+</nav>
+
+<!-- Timeline -->
 
 <section>
+  <h2>Major Milestones</h2>
 
-  <h2>Key Milestones</h2>
-
-  <div class="timeline" id="timeline"></div>
+  <div
+    class="timeline"
+    id="timeline"
+    aria-live="polite">
+  </div>
 
 </section>
 
+<!-- Future priorities -->
+
 <section>
 
-  <h2>Next Steps</h2>
+  <h2>
+    Future Priorities
+  </h2>
 
   <div class="future">
-    <h3>Site Selection and Evaluation</h3>
+    <h3>
+      Preparing for the Site-Selection Evaluation
+    </h3>
+
     <p>
-      Respond to the official site-selection
-      process by presenting Goyang's
-      capabilities, implementation plans
-      and verifiable supporting evidence.
+      Review official government announcements
+      and evaluation criteria,
+      and present Goyang's competitiveness
+      and implementation plans
+      using objective supporting evidence.
     </p>
   </div>
 
   <div class="future">
-    <h3>Preparing for Initial Settlement</h3>
+    <h3>
+      Preparing for the Initial Establishment
+      of International Organizations
+    </h3>
+
     <p>
-      Develop practical arrangements
+      Develop practical proposals
       for office facilities,
-      housing, transportation,
-      healthcare and education
-      to support the establishment
-      of international organizations.
+      residential conditions,
+      healthcare,
+      education,
+      transportation,
+      and other services
+      that may be required
+      by participating institutions.
     </p>
   </div>
 
   <div class="future">
-    <h3>Public-Interest AI Pilot Projects</h3>
+    <h3>
+      Preparing Public-Interest AI Pilot Projects
+    </h3>
+
     <p>
-      Explore feasible pilot projects
-      in AI-enabled primary healthcare
-      and complex crisis response,
-      while developing cooperation
-      with relevant institutions.
+      Examine the feasibility
+      of potential cooperation projects
+      in AI-enabled essential healthcare
+      and responses to complex crises.
+    </p>
+
+    <p>
+      Identify potential partner institutions
+      and assess the requirements
+      for implementation.
     </p>
   </div>
 
   <div class="note">
-    <strong>Notice:</strong>
-    This timeline summarizes major developments
-    based on the Committee's working records.
-    Future schedules and implementation details
-    are subject to official announcements
-    and institutional decisions.
+    <strong>Important Notice</strong>
+
+    <p>
+      Future schedules may change
+      according to official government
+      announcements and institutional decisions.
+    </p>
+
+    <p>
+      This page summarizes major developments
+      and activities.
+      It does not imply that all future plans
+      or institutional arrangements
+      have been officially confirmed.
+    </p>
   </div>
+
+  <a href="strategy-en.html" class="button">
+    Global AI Hub Attraction Strategy
+  </a>
+
+  <a href="committee-en.html" class="button">
+    About the Citizens' Promotion Committee
+  </a>
 
 </section>
 
@@ -342,19 +443,25 @@ footer a {
 
   <p>
     <strong>
-      Goyang Citizens' Committee for Hosting<br>
-      the Global AI Hub in Gyeonggi Province
+      Citizens' Promotion Committee<br>
+      for Attracting the Global AI Hub<br>
+      to Goyang Special City
     </strong>
   </p>
 
   <p>
-    Together for Goyang ·
-    Together for Gyeonggi ·
-    Together for Humanity
+    With Citizens, With Gyeonggi Province,<br>
+    and With the World.
   </p>
 
   <p>
-    <a href="index-en.html">English Home</a>
+    <a href="index-en.html">
+      English Home
+    </a>
+    &nbsp; | &nbsp;
+    <a href="history.html" lang="ko">
+      한국어
+    </a>
   </p>
 
 </footer>
@@ -364,111 +471,111 @@ footer a {
 const events = [
 
   {
-    date: "2026-03-10",
+    date: "2026.03.10",
     type: "government",
     label: "National Government",
-    title: "Government Announcement on the Global AI Hub",
+    title: "Government Announcement on the Global AI Hub Initiative",
     description:
-      "The national government announced developments related to preparations for the Global AI Hub initiative."
+      "Government-level discussions and preparations concerning the Global AI Hub initiative gained momentum."
   },
 
   {
-    date: "2026-03-16",
+    date: "2026.03.16",
     type: "government",
     label: "National Government",
     title: "Meeting Between the Prime Minister and UN Representatives",
     description:
-      "Discussions were held on international cooperation related to the Global AI Hub initiative."
+      "Discussions on international cooperation related to the Global AI Hub initiative took place."
   },
 
   {
-    date: "2026-03-17",
+    date: "2026.03.17",
     type: "government",
     label: "National Government",
-    title: "Letters of Intent with International Organizations",
+    title: "Letter of Intent Between the Government and International Organizations",
     description:
-      "Letters of intent concerning cooperation on the Global AI Hub were pursued with international organizations."
+      "Efforts were made to conclude letters of intent concerning cooperation on the Global AI Hub initiative."
   },
 
   {
-    date: "2026-04-09",
+    date: "2026.04.09",
     type: "government",
     label: "National Government",
-    title: "Prime Ministerial Directive on the Global AI Hub",
+    title: "Prime Ministerial Directive on the Global AI Hub Initiative",
     description:
-      "A government-level institutional framework was established to support coordination of the initiative."
+      "An institutional framework for intergovernmental cooperation on the Global AI Hub initiative was established."
   },
 
   {
-    date: "2026-05-21",
+    date: "2026.05.21",
     type: "government",
     label: "National Government",
-    title: "Joint Statement by International Organizations and Development Banks",
+    title: "Joint Statement by International Organizations and Multilateral Development Banks",
     description:
-      "A joint statement involving nine international organizations and five multilateral development banks was announced."
+      "A joint statement concerning cooperation was announced by nine international organizations and five multilateral development banks."
   },
 
   {
-    date: "2026-09-07",
+    date: "2026.09.07",
     type: "civic",
-    label: "Citizens' Committee",
-    title: "Launch of the Citizens' Committee",
+    label: "Citizens' Promotion Committee",
+    title: "Inauguration of the Citizens' Promotion Committee",
     description:
-      "The Citizens' Committee was launched at the Flower Exhibition Hall in Goyang Lake Park."
+      "The civic-led campaign to attract the Global AI Hub was launched at the Flower Exhibition Center in Goyang Lake Park."
   },
 
   {
-    date: "2026-10-12",
+    date: "2026.10.12",
     type: "gyeonggi",
     label: "Gyeonggi Province",
-    title: "Launch of the Gyeonggi Global AI Hub Support Group",
+    title: "Launch of Gyeonggi Province's Global AI Hub Attraction Support Task Force",
     description:
-      "Gyeonggi Province established a support group to develop hosting strategies and promote institutional cooperation."
+      "A provincial task force was launched to support attraction strategy development and institutional cooperation."
   },
 
   {
-    date: "2026-10-14",
+    date: "2026.10.14",
     type: "government",
     label: "National Government",
-    title: "Public Hearing on Proposed Site-Selection Criteria",
+    title: "Public Hearing on Site-Selection Evaluation Criteria",
     description:
-      "A public hearing was held at the Sejong Convention Center to discuss the proposed evaluation criteria."
+      "A draft of the Global AI Hub site-selection evaluation criteria was presented and discussed at the Sejong Convention Center."
   },
 
   {
-    date: "2026-10-15",
+    date: "2026.10.15",
     type: "civic",
-    label: "Citizens' Committee",
-    title: "Recommendations on Site-Selection Criteria",
+    label: "Citizens' Promotion Committee",
+    title: "Recommendations for Improving Site-Selection Evaluation Criteria",
     description:
-      "Recommendations addressed initial settlement, community acceptance, public-interest AI pilot projects and international cooperation potential."
+      "Recommendations were prepared concerning initial establishment conditions, community acceptance, and public-interest AI pilot projects."
   },
 
   {
-    date: "2026-10-20",
+    date: "2026.10.20",
     type: "civic",
-    label: "Citizens' Committee",
+    label: "Citizens' Promotion Committee",
     title: "Participation in the 7th Goyang Innovation Strategy Seminar",
     description:
-      "The Committee emphasized the importance of finalizing strategies, securing partners, organizing implementation teams and collecting evidence."
+      "Participants emphasized the importance of finalizing an attraction strategy, requesting institutional cooperation, establishing an implementation structure, and securing supporting evidence."
   },
 
   {
-    date: "2026-10-26",
+    date: "2026.10.26",
     type: "goyang",
-    label: "Goyang City",
-    title: "Goyang City Council Resolution Supporting the Global AI Hub Bid",
+    label: "Goyang Special City",
+    title: "Goyang Special City Council Resolution Supporting the Global AI Hub",
     description:
-      "Goyang City Council unanimously adopted a resolution supporting the city's bid to host the Global AI Hub."
+      "The City Council unanimously adopted a resolution calling for the attraction of the Global AI Hub, with participation by all council members."
   },
 
   {
-    date: "2026-10-30",
+    date: "2026.10.30",
     type: "gyeonggi",
     label: "Gyeonggi Province",
-    title: "Gyeonggi Global AI Hub Hosting Strategy Forum",
+    title: "Gyeonggi Province Global AI Hub Attraction Strategy Forum",
     description:
-      "A strategy forum was held at KINTEX in Goyang to discuss hosting conditions and international cooperation."
+      "A forum was held at KINTEX in Goyang Special City to discuss attraction strategies and international cooperation."
   }
 
 ];
@@ -486,7 +593,9 @@ function renderTimeline() {
       currentType === "all" ||
       event.type === currentType
     )
-    .sort((a, b) => a.date.localeCompare(b.date));
+    .sort((a, b) =>
+      a.date.localeCompare(b.date)
+    );
 
   filtered.forEach(event => {
 
@@ -495,17 +604,7 @@ function renderTimeline() {
 
     const date = document.createElement("div");
     date.className = "date";
-
-    const dateObject = new Date(event.date + "T00:00:00");
-
-    date.textContent = dateObject.toLocaleDateString(
-      "en-US",
-      {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      }
-    );
+    date.textContent = event.date;
 
     const type = document.createElement("span");
     type.className = "type";
@@ -535,9 +634,22 @@ document.querySelectorAll("[data-type]").forEach(button => {
     currentType = button.dataset.type;
 
     document.querySelectorAll("[data-type]")
-      .forEach(btn => btn.classList.remove("active"));
+      .forEach(btn => {
 
-    button.classList.add("active");
+        const isActive =
+          btn.dataset.type === currentType;
+
+        btn.classList.toggle(
+          "active",
+          isActive
+        );
+
+        btn.setAttribute(
+          "aria-pressed",
+          String(isActive)
+        );
+
+      });
 
     renderTimeline();
 
