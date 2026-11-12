@@ -367,21 +367,27 @@ nav .nav-member-link {
 
 }
 
+/* =====================================
+   PC 상단 메뉴 한 줄 정렬
+===================================== */
+
 #homepageLayoutModule .home-menu {
 
-  max-width: 1500px;
+  width: 100%;
+
+  max-width: none;
 
   margin: 0 auto;
 
   display: flex;
 
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 
   justify-content: center;
 
   align-items: center;
 
-  gap: 8px;
+  gap: 5px;
 
 }
 
@@ -831,6 +837,18 @@ nav .nav-member-link {
 </style>
 
 
+/* 좁은 화면에서 메뉴 가로 스크롤 허용 */
+
+@media (min-width: 901px) {
+
+  #homepageLayoutModule .home-navigation {
+
+    overflow-x: auto;
+
+  }
+
+}
+      
 <!-- =====================================================
      홈페이지 통합 배치 HTML
 ===================================================== -->
