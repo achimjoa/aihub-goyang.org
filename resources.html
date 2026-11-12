@@ -393,14 +393,6 @@ th {
 
 </div>
 
-<!-- 자료 분류 -->
-
-<div class="form-group">
-
-<label for="resourceCategory">
-자료 분류 *
-</label>
-
 <!-- =====================================
      자료 분류
 ===================================== -->
@@ -422,7 +414,7 @@ th {
   </select>
 
 </div>
-
+  
 <!-- =====================================
      사진자료 활동 정보 입력
 ===================================== -->
@@ -1190,8 +1182,13 @@ adminButtons.hidden = !canManageResource;
    상세화면 표시
 ===================================== */
 
-listView.hidden = true;
-detailView.hidden = false;
+/* 자료실 화면 전환 */
+
+resourceListView.hidden = true;
+resourceWriteView.hidden = true;
+resourceDetailView.hidden = false;
+
+/* YouTube 영상 표시 */
 
 showResourceYoutube(data.youtube_url);
   
