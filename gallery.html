@@ -554,16 +554,31 @@ function renderCategoryFilters() {
    미분류 활동 필터 표시
 ===================================== */
 
+/* =====================================
+   제175-5-14-37단계
+   미분류 활동 필터 표시 보완
+===================================== */
+
 const categories = [
   {
     code: "all",
     name_ko: "전체"
   },
 
-  ...[...codes].map(code => ({
-    code,
-    name_ko: getCategoryName(code)
-  }))
+  ...[...codes]
+    .filter(code =>
+      code !== "all" &&
+      code !== "uncategorized"
+    )
+    .map(code => ({
+      code,
+      name_ko: getCategoryName(code)
+    })),
+
+  {
+    code: "uncategorized",
+    name_ko: "미분류 활동"
+  }
 ];
 
 /* 미분류 사진 존재 여부 확인 */
