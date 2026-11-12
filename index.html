@@ -28,8 +28,8 @@ content="고양시에 성장동력을 달라! 고양시에 일자리를 달라! 
 content="https://achimjoa.github.io/aihub-goyang.org/">
 
 <meta property="og:image"
-content="https://achimjoa.github.io/aihub-goyang.org/goyang-main.jpg">
-
+content="https://achimjoa.github.io/aihub-goyang.org/aihub-main-banner.png">
+      
 <meta name="twitter:card"
 content="summary_large_image">
 
@@ -532,60 +532,65 @@ nav .nav-member-link {
    5. 홍보 배너 전체 영역
 ===================================================== */
 
+/* PC 홈페이지 배너 3열 배치 */
+
 #homepageLayoutModule #homepageBannerLayout {
 
-  width: min(1180px, calc(100% - 32px));
+  width: min(1500px, calc(100% - 32px));
 
-  margin: 20px auto 30px;
+  margin: 24px auto 35px;
 
   padding: 0;
 
   display: grid;
 
   grid-template-columns:
-    repeat(2, minmax(0, 1fr));
+    minmax(0, 1fr)
+    minmax(0, 1.5fr)
+    minmax(0, 1fr);
 
-  gap: 20px;
+  gap: 18px;
 
+  align-items: start;
 }
 
-/* hidden 속성 우선 적용 */
-
-#homepageLayoutModule #homepageBannerLayout[hidden],
-#homepageLayoutModule .banner-section[hidden] {
-
-  display: none !important;
-
-}
-
-/* =====================================================
-   6. 중앙 홍보 배너
-===================================================== */
-
-#homepageLayoutModule #homepageBannerCenter {
-
-  grid-column: 1 / -1;
-
-}
-
-/* =====================================================
-   7. 좌측 회원 광고
-===================================================== */
+/* 좌측 광고 */
 
 #homepageLayoutModule #homepageBannerLeft {
-
   grid-column: 1;
-
+  grid-row: 1;
 }
 
-/* =====================================================
-   8. 우측 회원 광고
-===================================================== */
+/* 중앙 홍보 */
+
+#homepageLayoutModule #homepageBannerCenter {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* 우측 광고 */
 
 #homepageLayoutModule #homepageBannerRight {
+  grid-column: 3;
+  grid-row: 1;
+}
 
-  grid-column: 2;
+/* 각 열의 배너를 세로로 표시 */
 
+#homepageLayoutModule .homepage-banner-items {
+
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  gap: 12px;
+}
+
+/* 공개 배너가 없는 영역은 숨김 */
+
+#homepageLayoutModule .banner-section[hidden],
+#homepageLayoutModule #homepageBannerLayout[hidden] {
+  display: none !important;
 }
 
 /* =====================================================
@@ -630,6 +635,19 @@ nav .nav-member-link {
 
 }
 
+/* 배너 목록 - 세로 배열 */
+
+#homepageLayoutModule .homepage-banner-items {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr);
+
+  gap: 12px;
+
+}
+      
 /* 배너 카드 */
 
 #homepageLayoutModule .homepage-banner-link {
@@ -728,10 +746,26 @@ nav .nav-member-link {
 
 @media (max-width: 900px) {
 
+  #homepageLayoutModule #homepageBannerLayout {
+
+    grid-template-columns:
+      minmax(0, 1fr);
+
+  }
+
+  #homepageLayoutModule #homepageBannerLeft,
+  #homepageLayoutModule #homepageBannerCenter,
+  #homepageLayoutModule #homepageBannerRight {
+
+    grid-column: 1;
+    grid-row: auto;
+
+  }
+
   #homepageLayoutModule .homepage-banner-items {
 
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      repeat(2, minmax(0, 1fr));
 
   }
 
@@ -856,19 +890,19 @@ nav .nav-member-link {
 </nav>
 
 
-<!-- 2. 메인 홍보 이미지 예정 영역 -->
+<!-- 2. 메인 대표 이미지 -->
 
 <section
   id="homepageHero"
   class="home-hero"
-  aria-label="메인 홍보 영역">
+  aria-label="글로벌 AI 허브 고양특례시 유치">
 
-  <!--
-    현재 이미지 없음.
-
-    추후 제작된 이미지를
-    이 위치에 삽입합니다.
-  -->
+  <img
+    src="./aihub-main-banner.png"
+    alt="경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회 공식 홍보 이미지"
+    width="1648"
+    height="928"
+    fetchpriority="high">
 
 </section>
 
