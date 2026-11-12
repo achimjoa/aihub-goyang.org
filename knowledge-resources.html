@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>지식·자료 | 글로벌 AI 허브 고양특례시</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Malgun Gothic",
+    "맑은 고딕",
+    Arial,
+    sans-serif;
+  background: #f3f7fc;
+  color: #17345c;
+  line-height: 1.7;
+}
+
+/* 상단 */
+
+header {
+  background: #0b55a4;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: 34px;
+}
+
+header p {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* 본문 */
+
+main {
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 0 20px;
+}
+
+.introduction {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.introduction h2 {
+  color: #0754a3;
+  font-size: 30px;
+}
+
+.introduction p {
+  font-size: 18px;
+}
+
+/* 자료실 카드 */
+
+.resource-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.resource-card {
+  background: white;
+  border-radius: 14px;
+  padding: 35px;
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.06);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.resource-card h3 {
+  color: #0754a3;
+  font-size: 25px;
+  margin-top: 0;
+}
+
+.resource-card p {
+  flex-grow: 1;
+  font-size: 17px;
+}
+
+.resource-link {
+  display: inline-block;
+  text-align: center;
+  background: #0b55a4;
+  color: white;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.resource-link:hover,
+.resource-link:focus-visible {
+  background: #073c78;
+}
+
+/* 홈 버튼 */
+
+.home-link {
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  padding: 12px 25px;
+  background: #ffe34d;
+  color: #073c78;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 하단 */
+
+footer {
+  background: #12335f;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+/* 모바일 */
+
+@media (max-width: 700px) {
+
+  header h1 {
+    font-size: 27px;
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-card {
+    padding: 25px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>📚 지식·자료</h1>
+
+<p>
+글로벌 AI 허브 유치 관련 정책·연구 정보와
+다양한 활동자료를 제공합니다.
+</p>
+
+</header>
+
+<main>
+
+<section class="introduction">
+
+<h2>자료실 안내</h2>
+
+<p>
+원하시는 자료실을 선택해 주세요.
+</p>
+
+</section>
+
+<section class="resource-grid">
+
+<!-- 정책·연구 정보 -->
+
+<article class="resource-card">
+
+<h3>📘 정책·연구 정보</h3>
+
+<p>
+글로벌 AI 허브 유치 전략,
+국제기구 협력,
+공공 AI 실증,
+정책 제안 및 연구자료를
+확인할 수 있습니다.
+</p>
+
+<a
+  href="library.html"
+  class="resource-link"
+>
+정책·연구 정보 보기 →
+</a>
+
+</article>
+
+<!-- 통합 자료실 -->
+
+<article class="resource-card">
+
+<h3>📂 통합 자료실</h3>
+
+<p>
+글로벌 AI 허브 유치와 관련된
+문서, 사진, 동영상, 음성 등
+다양한 자료를 확인할 수 있습니다.
+</p>
+
+<a
+  href="resources.html"
+  class="resource-link"
+>
+통합 자료실 바로가기 →
+</a>
+
+</article>
+
+</section>
+
+<a
+  href="index.html"
+  class="home-link"
+>
+← 홈페이지로 돌아가기
+</a>
+
+</main>
+
+<footer>
+
+<strong>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</strong>
+
+</footer>
+
+</body>
+</html>
