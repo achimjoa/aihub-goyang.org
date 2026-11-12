@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>입금 계좌 관리 | 글로벌 AI 허브</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  margin: 0 0 12px;
+}
+
+.home-return {
+  margin-top: 25px;
+}
+
+.home-return a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 15px;
+}
+
+.account-card {
+  background: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.account-card h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd8e6;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.save-button {
+  padding: 12px 30px;
+  background: #0754a6;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background: #003b79;
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#message {
+  padding: 15px;
+  margin-bottom: 25px;
+  background: #eaf4ff;
+  border-radius: 8px;
+  white-space: pre-line;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 30px;
+  background: #10315e;
+  color: white;
+  text-align: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+  <h1>입금 계좌 관리</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <div class="home-return">
+
+    <a href="admin-center.html">
+      ← 통합 관리센터
+    </a>
+
+    <a href="index.html">
+      홈페이지
+    </a>
+
+  </div>
+
+</header>
+
+<main>
+
+<p id="message" role="status" aria-live="polite">
+  관리자 권한을 확인하고 있습니다.
+</p>
+
+<div id="accountArea" hidden>
+
+  <!-- 후원회원 계좌 -->
+
+  <section class="account-card">
+
+    <h2>① 후원회원 참여회비 계좌</h2>
+
+    <form id="membershipForm">
+
+      <div class="form-group">
+        <label for="membershipBank">은행명</label>
+        <input
+          id="membershipBank"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="membershipNumber">계좌번호</label>
+        <input
+          id="membershipNumber"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="membershipHolder">예금주</label>
+        <input
+          id="membershipHolder"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <button class="save-button" type="submit">
+        후원회원 계좌 저장
+      </button>
+
+    </form>
+
+  </section>
+
+  <!-- 홍보현수막 계좌 -->
+
+  <section class="account-card">
+
+    <h2>② 홍보현수막 게시비용 계좌</h2>
+
+    <form id="bannerForm">
+
+      <div class="form-group">
+        <label for="bannerBank">은행명</label>
+        <input
+          id="bannerBank"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="bannerNumber">계좌번호</label>
+        <input
+          id="bannerNumber"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label for="bannerHolder">예금주</label>
+        <input
+          id="bannerHolder"
+          type="text"
+          maxlength="100"
+          required>
+      </div>
+
+      <button class="save-button" type="submit">
+        현수막 계좌 저장
+      </button>
+
+    </form>
+
+  </section>
+
+</div>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const message =
+  document.getElementById("message");
+
+const accountArea =
+  document.getElementById("accountArea");
+
+let isSaving = false;
+
+function showMessage(text, isError = false) {
+
+  message.textContent = text;
+
+  message.style.color =
+    isError ? "#b91c1c" : "#0754a6";
+
+}
+
+/* 관리자 권한 확인 */
+
+async function checkAdmin() {
+
+  const { data: userData, error: userError } =
+    await supabase.auth.getUser();
+
+  if (userError || !userData.user) {
+
+    showMessage(
+      "로그인이 필요합니다.",
+      true
+    );
+
+    return false;
+  }
+
+  const { data: isAdmin, error } =
+    await supabase.rpc("is_admin");
+
+  if (error || isAdmin !== true) {
+
+    showMessage(
+      "관리자 권한이 없습니다.",
+      true
+    );
+
+    return false;
+  }
+
+  return true;
+}
+
+/* 계좌 조회 */
+
+async function loadAccounts() {
+
+  const { data, error } =
+    await supabase
+      .from("payment_accounts")
+      .select(
+        "account_type, bank_name, account_number, account_holder"
+      );
+
+  if (error) {
+
+    showMessage(
+      "계좌 조회 오류: " + error.message,
+      true
+    );
+
+    return;
+  }
+
+  for (const account of data || []) {
+
+    const prefix =
+      account.account_type === "membership"
+        ? "membership"
+        : account.account_type === "banner"
+          ? "banner"
+          : null;
+
+    if (!prefix) continue;
+
+    document.getElementById(prefix + "Bank").value =
+      account.bank_name || "";
+
+    document.getElementById(prefix + "Number").value =
+      account.account_number || "";
+
+    document.getElementById(prefix + "Holder").value =
+      account.account_holder || "";
+
+  }
+
+  accountArea.hidden = false;
+
+  showMessage(
+    "계좌 정보를 불러왔습니다."
+  );
+
+}
+
+/* 계좌 저장 */
+
+async function saveAccount(type, prefix) {
+
+  if (isSaving) return;
+
+  const bank =
+    document.getElementById(prefix + "Bank")
+      .value.trim();
+
+  const number =
+    document.getElementById(prefix + "Number")
+      .value.trim();
+
+  const holder =
+    document.getElementById(prefix + "Holder")
+      .value.trim();
+
+  if (!bank || !number || !holder) {
+
+    showMessage(
+      "은행명, 계좌번호, 예금주를 모두 입력해 주세요.",
+      true
+    );
+
+    return;
+  }
+
+  isSaving = true;
+
+  const buttons =
+    accountArea.querySelectorAll("button");
+
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+
+  try {
+
+    const { error } =
+      await supabase
+        .from("payment_accounts")
+        .update({
+          bank_name: bank,
+          account_number: number,
+          account_holder: holder,
+          updated_at: new Date().toISOString()
+        })
+        .eq("account_type", type);
+
+    if (error) throw error;
+
+    showMessage(
+      "계좌 정보가 저장되었습니다."
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "계좌 저장 오류: " + error.message,
+      true
+    );
+
+  } finally {
+
+    isSaving = false;
+
+    buttons.forEach(button => {
+      button.disabled = false;
+    });
+
+  }
+
+}
+
+/* 저장 버튼 연결 */
+
+document.getElementById("membershipForm")
+  .addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+    await saveAccount(
+      "membership",
+      "membership"
+    );
+
+  });
+
+document.getElementById("bannerForm")
+  .addEventListener("submit", async event => {
+
+    event.preventDefault();
+
+    await saveAccount(
+      "banner",
+      "banner"
+    );
+
+  });
+
+/* 초기 실행 */
+
+async function initialize() {
+
+  const admin = await checkAdmin();
+
+  if (!admin) return;
+
+  await loadAccounts();
+
+}
+
+initialize();
+
+</script>
+
+</body>
+</html>
