@@ -646,6 +646,51 @@ nav .nav-member-link {
   display: none !important;
 }
 
+/* =====================================
+   공개 배너 수에 따른 자동 배치
+===================================== */
+
+/* 중앙 배너만 있을 때 전체 너비 사용 */
+
+#homepageLayoutModule
+#homepageBannerLayout.center-only {
+
+  grid-template-columns:
+    minmax(0, 1fr);
+
+}
+
+#homepageLayoutModule
+#homepageBannerLayout.center-only
+#homepageBannerCenter {
+
+  grid-column: 1;
+  grid-row: 1;
+
+}
+
+/* 중앙과 좌측 또는 우측 배너만 있을 때 */
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns {
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+}
+
+/* 광고가 3개 영역에 모두 있으면 기존 3열 유지 */
+
+#homepageLayoutModule
+#homepageBannerLayout.three-columns {
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.5fr)
+    minmax(0, 1fr);
+
+}
+      
 /* =====================================================
    9. 배너 공통 디자인
 ===================================================== */
@@ -675,18 +720,6 @@ nav .nav-member-link {
 
 }
 
-/* 배너 목록 */
-
-#homepageLayoutModule .homepage-banner-items {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(5, minmax(0, 1fr));
-
-  gap: 12px;
-
-}
 
 /* 배너 목록 - 세로 배열 */
 
@@ -1314,9 +1347,111 @@ async function loadHomepageBanners() {
 
     }
 
-    layout.hidden =
-      totalCount === 0;
+   /* 공개 배너가 있는 영역 수 확인 */
 
+const visibleSections = [
+  "homepageBannerLeft",
+  "homepageBannerCenter",
+  "homepageBannerRight"
+].filter(id => {
+
+  const section =
+    document.getElementById(id);
+
+  return section && !section.hidden;
+
+});
+
+/* 기존 배치 클래스 초기화 */
+
+layout.classList.remove(
+  "center-only",
+  "two-columns",
+  "three-columns"
+);
+
+/* 공개 영역 수에 따라 자동 배치 */
+
+if (visibleSections.length === 1) {
+
+  layout.classList.add("center-only");
+
+} else if (visibleSections.length === 2) {
+
+  layout.classList.add("two-columns");
+
+} else if (visibleSections.length === 3) {
+
+  layout.classList.add("three-columns");
+
+}
+
+/* 공개 배너가 없으면 전체 영역 숨김 */
+
+layout.hidden =
+  visibleSections.length === 0;
+
+/* 한 영역만 표시될 때 */
+
+#homepageLayoutModule
+#homepageBannerLayout.center-only
+.banner-section:not([hidden]) {
+
+  grid-column: 1;
+  grid-row: 1;
+
+}
+
+/* 두 영역만 표시될 때 */
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns
+#homepageBannerLeft:not([hidden]) {
+
+  grid-column: 1;
+  grid-row: 1;
+
+}
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns
+#homepageBannerCenter:not([hidden]) {
+
+  grid-column: 2;
+  grid-row: 1;
+
+}
+
+/* 중앙이 없고 좌우 광고만 있는 경우 */
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns
+#homepageBannerLeft:not([hidden])
+~ #homepageBannerRight:not([hidden]) {
+
+  grid-column: 2;
+  grid-row: 1;
+
+}
+
+/* 중앙과 우측만 있는 경우 */
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns
+#homepageBannerCenter:not([hidden]) {
+
+  grid-column: 1;
+}
+
+#homepageLayoutModule
+#homepageBannerLayout.two-columns
+#homepageBannerRight:not([hidden]) {
+
+  grid-column: 2;
+  grid-row: 1;
+
+}
+        
     console.log(
       "홈페이지 배너 조회 완료:",
       totalCount,
