@@ -6,14 +6,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0754a6">
 
-<meta name="description"
-content="Learn about the Global AI Hub vision, nine international organizations, public-interest AI cooperation and Goyang's proposed contribution.">
+<title>
+About the Global AI Hub | Goyang Special City
+</title>
 
-<title>Global AI Hub | Goyang Citizens' Committee</title>
+<meta name="description"
+content="Learn about the proposed Global AI Hub in Goyang Special City, its vision, public-interest AI cooperation, international partnerships, and potential contributions to global challenges.">
 
 <style>
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,6 +30,15 @@ body {
   line-height: 1.8;
 }
 
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
 header {
   background: linear-gradient(135deg, #0754a6, #10315e);
   color: white;
@@ -32,7 +47,7 @@ header {
 }
 
 header h1 {
-  font-size: clamp(30px, 5vw, 46px);
+  font-size: clamp(28px, 5vw, 44px);
   margin: 0 0 15px;
 }
 
@@ -40,23 +55,12 @@ header p {
   font-size: 18px;
 }
 
-.language {
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
   margin-top: 20px;
-}
-
-.language a {
-  display: inline-block;
-  color: white;
-  border: 1px solid white;
-  padding: 8px 15px;
-  margin: 5px;
-  border-radius: 6px;
-  text-decoration: none;
-}
-
-.language a.active {
-  background: white;
-  color: #0754a6;
 }
 
 .home-link {
@@ -67,7 +71,6 @@ header p {
   padding: 10px 20px;
   border-radius: 7px;
   font-weight: bold;
-  margin-top: 15px;
 }
 
 main {
@@ -95,74 +98,62 @@ h3 {
   color: #0754a6;
 }
 
-.hero-message {
+.slogan {
   text-align: center;
-  font-size: clamp(23px, 4vw, 33px);
+  font-size: clamp(20px, 4vw, 30px);
   font-weight: bold;
   color: #0754a6;
+  line-height: 1.8;
 }
 
-.subtitle {
-  text-align: center;
-  color: #526780;
+.intro {
+  font-size: 18px;
+}
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 25px 0;
 }
 
 .grid {
   display: grid;
   grid-template-columns:
     repeat(auto-fit, minmax(250px, 1fr));
-  gap: 18px;
-  margin-top: 25px;
+  gap: 20px;
 }
 
 .card {
   background: #f4f8fc;
-  padding: 23px;
+  padding: 25px;
   border-radius: 10px;
-  border-top: 4px solid #168de0;
+  border-top: 5px solid #168de0;
 }
 
 .card h3 {
   margin-top: 0;
 }
 
-.number {
-  display: inline-block;
-  background: #0754a6;
-  color: white;
-  padding: 4px 13px;
-  border-radius: 20px;
-  font-weight: bold;
-}
-
-.highlight {
-  background: #eaf4ff;
-  padding: 25px;
-  border-left: 5px solid #168de0;
-  border-radius: 8px;
-  margin: 20px 0;
-}
-
-.note {
-  background: #fff8e8;
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  color: #57471e;
-}
-
 .button {
   display: inline-block;
   background: #0754a6;
   color: white;
+  text-decoration: none;
   padding: 12px 22px;
   border-radius: 7px;
-  text-decoration: none;
   font-weight: bold;
+  margin: 10px 10px 0 0;
 }
 
 .button:hover {
   background: #003a7a;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
 }
 
 footer {
@@ -170,6 +161,7 @@ footer {
   color: white;
   text-align: center;
   padding: 35px 15px;
+  margin-top: 40px;
 }
 
 footer a {
@@ -189,498 +181,589 @@ footer a {
     padding: 22px;
   }
 
-  .card {
-    padding: 18px;
+  .intro {
+    font-size: 16px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
   }
 }
-
-/* Back to Home Button */
-
-.home-return {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.home-return a {
-  display: inline-block;
-
-  background: #ffffff;
-  color: #0754a6;
-
-  border: 2px solid #0754a6;
-  border-radius: 8px;
-
-  padding: 13px 28px;
-
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-
-  transition: 0.2s;
-}
-
-.home-return a:hover {
-  background: #0754a6;
-  color: #ffffff;
-}
-  
 </style>
 </head>
 
 <body>
 
 <header>
-
-  <h1>The Global AI Hub</h1>
+  <h1>About the Global AI Hub</h1>
 
   <p>
-    International Cooperation for
-    Public-Interest Artificial Intelligence
+    A Proposed International Cooperation Platform<br>
+    for Addressing Global Challenges through AI
   </p>
 
-  <p>AI for All · AI for Humanity</p>
+  <div class="header-links">
+    <a href="index-en.html" class="home-link">
+      ← English Home
+    </a>
 
-  <div class="language">
-    <a href="hub.html" lang="ko">한국어</a>
-    <a href="hub-en.html"
-       class="active"
-       aria-current="page">English</a>
+    <a href="hub.html" class="home-link" lang="ko">
+      한국어
+    </a>
   </div>
-
-  <a href="index-en.html" class="home-link">
-    ← Back to Home
-  </a>
-
 </header>
-
-<div class="home-return">
-  <a href="index-en.html">
-    ← Back to Home
-  </a>
-</div>
 
 <main>
 
-<section>
-  <div class="hero-message">
-    AI for All<br>
-    International Cooperation for a Better Future
-  </div>
+<!-- Vision -->
 
-  <p class="subtitle">
-    The Global AI Hub Vision and Goyang's Initiative
-  </p>
+<section>
+  <div class="slogan">
+    Beyond AI Technology, Toward Humanity's Future.<br>
+    A New Center for International Cooperation.<br>
+    The Global AI Hub.
+  </div>
 </section>
 
+<!-- What is the Global AI Hub? -->
+
 <section>
+  <h2>1. What Is the Global AI Hub?</h2>
 
-  <h2>What Is the Global AI Hub?</h2>
+  <div class="intro">
 
-  <p>
-    The Global AI Hub is envisioned as
-    an international cooperation platform
-    that harnesses artificial intelligence
-    to address some of humanity's
-    most pressing challenges.
-  </p>
+    <p>
+      The proposed Global AI Hub is envisioned
+      as an international cooperation platform
+      where international organizations,
+      governments, universities,
+      research institutions,
+      businesses, and civil society
+      can explore ways to use
+      artificial intelligence
+      for the common good.
+    </p>
 
-  <p>
-    These challenges include public health,
-    food insecurity, climate change,
-    forced displacement, migration,
-    labor-market transformation,
-    disaster preparedness,
-    child protection and
-    sustainable development.
-  </p>
+    <p>
+      Artificial intelligence is a key technology
+      transforming industries and economies.
+      It also has the potential to contribute
+      to addressing global challenges,
+      including disease, hunger,
+      climate change, disasters,
+      and educational inequality.
+    </p>
 
-  <p>
-    The proposed hub would go beyond
-    providing offices or research facilities.
-    It would bring together
-    international organizations,
-    governments, universities,
-    research institutions,
-    businesses and civil society
-    to jointly design, develop,
-    evaluate and deploy
-    public-interest AI solutions.
-  </p>
+    <p>
+      The Global AI Hub initiative seeks
+      to connect these possibilities
+      with international cooperation,
+      public policy,
+      research and development,
+      and practical applications.
+    </p>
+
+  </div>
 
   <div class="highlight">
     <strong>
-      The Global AI Hub is not simply
-      about constructing buildings.
-      It is about creating an international
-      cooperation system capable of
-      addressing real-world challenges.
+      The central purpose of the Global AI Hub
+      is not simply to bring international
+      organizations together in one location,
+      but to encourage international cooperation
+      and collective problem-solving
+      through responsible applications of AI.
     </strong>
   </div>
+</section>
+
+<!-- Why needed -->
+
+<section>
+  <h2>2. Why Is a Global AI Hub Needed?</h2>
+
+  <p>
+    Many of the challenges facing humanity
+    cannot be addressed effectively
+    by a single country
+    or institution acting alone.
+  </p>
+
+  <p>
+    Public health emergencies,
+    food insecurity,
+    climate change,
+    disaster prevention and response,
+    forced displacement,
+    migration,
+    changes in labor markets,
+    and educational inequality
+    require international cooperation,
+    information exchange,
+    and scientific innovation.
+  </p>
+
+  <p>
+    AI can support the analysis
+    of large volumes of information,
+    help identify emerging risks,
+    and assist decision-making
+    in public policy
+    and practical operations.
+  </p>
+
+  <p>
+    However, translating AI capabilities
+    into meaningful public benefits
+    requires reliable data,
+    effective institutional cooperation,
+    ethical safeguards,
+    skilled professionals,
+    and sustainable operating arrangements.
+  </p>
+
+  <p>
+    The proposed Global AI Hub
+    seeks to bring these elements together
+    through an international
+    cooperation framework.
+  </p>
 
 </section>
 
-<section>
+<!-- Functions -->
 
-  <h2>Nine International Organizations</h2>
+<section>
+  <h2>3. Six Core Functions of the Global AI Hub</h2>
+
+  <div class="grid">
+
+    <article class="card">
+      <h3>01. International Cooperation Platform</h3>
+      <p>
+        Facilitate dialogue,
+        information exchange,
+        and potential cooperation
+        among international organizations,
+        governments,
+        research institutions,
+        and businesses.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>02. Public-Interest AI Research</h3>
+      <p>
+        Explore collaborative research
+        and development of AI applications
+        that address public challenges
+        in healthcare,
+        environmental protection,
+        disaster resilience,
+        education,
+        and related fields.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>03. International Joint Projects</h3>
+      <p>
+        Identify opportunities
+        for collaborative research,
+        pilot projects,
+        and practical applications
+        by connecting international needs
+        with local technological capabilities.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>04. Professional Development</h3>
+      <p>
+        Explore education,
+        training,
+        and professional exchange
+        opportunities for people
+        working at the intersection
+        of AI and international cooperation.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>05. Industry and Entrepreneurship</h3>
+      <p>
+        Explore connections among
+        AI businesses,
+        research institutions,
+        and international cooperation needs
+        to support technology demonstration,
+        entrepreneurship,
+        and industrial innovation.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>06. Responsible AI</h3>
+      <p>
+        Promote consideration
+        of privacy,
+        safety,
+        fairness,
+        human rights,
+        and accountability
+        in the development
+        and use of AI technologies.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- Cooperation areas -->
+
+<section>
+  <h2>4. Priority Areas for International Cooperation</h2>
 
   <p>
-    Goyang's policy studies have examined
-    potential cooperation opportunities
-    involving the following organizations.
+    The Global AI Hub initiative
+    seeks to explore cooperation
+    in fields relevant
+    to the mandates and expertise
+    of international organizations
+    and specialized institutions.
   </p>
 
   <div class="grid">
 
     <article class="card">
-      <h3>WHO</h3>
-      <p><strong>World Health Organization</strong></p>
+      <h3>Public Health</h3>
       <p>
-        AI-enabled primary healthcare,
-        infectious disease surveillance
-        and public health systems.
+        Disease prevention,
+        infectious disease response,
+        health information analysis,
+        and strengthening public health capacity.
       </p>
     </article>
 
     <article class="card">
-      <h3>WFP</h3>
-      <p><strong>World Food Programme</strong></p>
+      <h3>Food and Agriculture</h3>
       <p>
-        Food security, nutrition,
-        early warning and
-        supply-chain resilience.
+        Food security,
+        agricultural productivity,
+        climate adaptation,
+        and sustainable agriculture.
       </p>
     </article>
 
     <article class="card">
-      <h3>UNEP</h3>
-      <p><strong>United Nations Environment Programme</strong></p>
+      <h3>Climate and Environment</h3>
       <p>
         Climate action,
-        environmental monitoring
-        and ecosystem conservation.
+        environmental data analysis,
+        ecosystem protection,
+        and sustainable development.
       </p>
     </article>
 
     <article class="card">
-      <h3>UNHCR</h3>
-      <p><strong>UN Refugee Agency</strong></p>
+      <h3>Disaster Risk and Safety</h3>
       <p>
-        Refugee protection,
-        forced displacement
-        and humanitarian assistance.
+        Disaster risk assessment,
+        early-warning systems,
+        emergency response,
+        and reducing disaster impacts.
       </p>
     </article>
 
     <article class="card">
-      <h3>IOM</h3>
-      <p><strong>International Organization for Migration</strong></p>
+      <h3>Refugees and Migration</h3>
       <p>
-        International migration,
-        displacement tracking
-        and migrant assistance.
+        Humanitarian assistance,
+        migration-related information,
+        protection of vulnerable populations,
+        and international cooperation.
       </p>
     </article>
 
     <article class="card">
-      <h3>ILO</h3>
-      <p><strong>International Labour Organization</strong></p>
+      <h3>Employment and Education</h3>
       <p>
-        Employment,
-        labor-market transitions,
-        skills development
-        and workers' rights.
-      </p>
-    </article>
-
-    <article class="card">
-      <h3>ITU</h3>
-      <p><strong>International Telecommunication Union</strong></p>
-      <p>
-        Disaster communications,
-        early warning systems
-        and digital inclusion.
-      </p>
-    </article>
-
-    <article class="card">
-      <h3>UNICEF</h3>
-      <p><strong>United Nations Children's Fund</strong></p>
-      <p>
-        Child protection,
-        healthcare, education
-        and emergency response.
-      </p>
-    </article>
-
-    <article class="card">
-      <h3>UNDP</h3>
-      <p><strong>United Nations Development Programme</strong></p>
-      <p>
-        Complex crisis response,
-        recovery and
-        sustainable development.
+        Future employment,
+        vocational training,
+        educational accessibility,
+        and reducing digital inequalities.
       </p>
     </article>
 
   </div>
 
-  <div class="note">
-    <strong>Important:</strong>
-    The areas described above are based on
-    Goyang's policy research and proposals.
-    They do not imply that all listed
-    organizations have formally approved
-    specific pilot projects in Goyang.
-  </div>
-
-</section>
-
-<section>
-
-  <h2>A Three-Layer Framework for Public AI Cooperation</h2>
-
-  <p>
-    A policy vision articulated by
-    National Assembly Member Cha Ji-ho
-    emphasizes designing the Global AI Hub
-    around its functions and operating model
-    before determining its physical requirements.
+  <p class="note">
+    These areas describe potential
+    fields of cooperation.
+    They do not imply confirmed
+    participation by any
+    international organization
+    or approval of specific projects.
   </p>
 
-  <div class="grid">
-
-    <article class="card">
-      <span class="number">Layer 1</span>
-      <h3>Governance, Evaluation and Procurement</h3>
-      <p>
-        Develop institutional frameworks,
-        safety and evaluation mechanisms,
-        and procurement standards
-        for trustworthy public-interest AI.
-      </p>
-    </article>
-
-    <article class="card">
-      <span class="number">Layer 2</span>
-      <h3>Domain-Specific Co-Design</h3>
-      <p>
-        Jointly design AI initiatives
-        with international organizations
-        across healthcare, food security,
-        climate, migration and
-        other humanitarian fields.
-      </p>
-    </article>
-
-    <article class="card">
-      <span class="number">Layer 3</span>
-      <h3>Development, Localization, Validation and Scaling</h3>
-      <p>
-        Jointly develop AI solutions,
-        adapt them to local contexts,
-        validate their effectiveness
-        and support wider international adoption.
-      </p>
-    </article>
-
-  </div>
-
-  <div class="note">
-    This framework is a policy proposal,
-    not a formally adopted operating structure
-    of the Global AI Hub.
-  </div>
-
+  <a href="agencies-en.html" class="button">
+    Explore Nine International Organizations
+  </a>
 </section>
 
-<section>
-
-  <h2>Proposed Flagship Pilot Projects</h2>
-
-  <p>
-    Goyang's strategic studies identify
-    two priority areas for potential
-    international cooperation.
-  </p>
-
-  <div class="grid">
-
-    <article class="card">
-
-      <h3>1. AI-Enabled Primary Healthcare</h3>
-
-      <p>
-        Explore how public-interest AI
-        can improve access to essential
-        healthcare services,
-        particularly in underserved communities.
-      </p>
-
-      <p>
-        Potential applications include
-        infectious disease surveillance,
-        health-risk detection,
-        clinical decision support
-        and public health information.
-      </p>
-
-      <p>
-        Medical safety, privacy,
-        clinical validation
-        and appropriate human oversight
-        would be essential requirements.
-      </p>
-
-    </article>
-
-    <article class="card">
-
-      <h3>2. AI for Complex Crisis Response</h3>
-
-      <p>
-        Explore integrated approaches
-        to interconnected crises
-        involving climate disasters,
-        food insecurity,
-        infectious diseases,
-        displacement and economic shocks.
-      </p>
-
-      <p>
-        Potential applications include
-        risk forecasting,
-        early warning,
-        humanitarian resource coordination
-        and recovery planning.
-      </p>
-
-      <p>
-        Implementation would require
-        cooperation among relevant
-        international organizations
-        and local institutions.
-      </p>
-
-    </article>
-
-  </div>
-
-</section>
+<!-- Goyang -->
 
 <section>
-
-  <h2>Goyang's Proposed Contribution</h2>
+  <h2>5. The Global AI Hub and Goyang Special City</h2>
 
   <p>
-    Goyang aims to connect its
-    healthcare, education,
-    cultural, environmental,
-    transportation and convention resources
-    to the practical needs
-    of international organizations.
+    Goyang Special City is located
+    in Gyeonggi Province,
+    within the Seoul metropolitan region
+    of the Republic of Korea.
   </p>
 
-  <div class="grid">
+  <p>
+    The city offers metropolitan accessibility,
+    international convention infrastructure,
+    healthcare institutions,
+    educational and cultural facilities,
+    and an established urban environment.
+  </p>
 
-    <article class="card">
-      <h3>Initial Settlement</h3>
-      <p>
-        Facilitate the establishment
-        of international organizations
-        through appropriate office facilities,
-        housing, transportation,
-        healthcare and education services.
-      </p>
-    </article>
+  <p>
+    These assets provide a foundation
+    for exploring Goyang's potential
+    as a center for public-interest AI
+    and international cooperation.
+  </p>
 
-    <article class="card">
-      <h3>Operational Support</h3>
-      <p>
-        Build cooperation among
-        universities, medical institutions,
-        businesses, public agencies
-        and civil society
-        to support practical operations
-        and potential pilot projects.
-      </p>
-    </article>
+  <p>
+    If international cooperation
+    expands in practice,
+    new opportunities could emerge
+    in research and development,
+    business activities,
+    professional services,
+    and the regional economy.
+  </p>
 
-    <article class="card">
-      <h3>Shared Growth</h3>
-      <p>
-        Contribute to the missions
-        of international organizations
-        and the Sustainable Development Goals,
-        while supporting Goyang's development
-        as a city specializing
-        in international cooperation.
-      </p>
-    </article>
-
-  </div>
+  <p>
+    Important long-term objectives
+    include professional development
+    for young people,
+    high-quality employment,
+    technological innovation
+    among local businesses,
+    and expanded international exchange.
+  </p>
 
   <div class="highlight">
     <strong>
-      Our priority is practical feasibility:
-      identify existing assets,
-      secure institutional cooperation,
-      verify implementation conditions
-      and begin with achievable projects.
+      Attracting the proposed Global AI Hub
+      represents a potential strategy
+      for strengthening Goyang's
+      future growth opportunities,
+      employment prospects,
+      and regional economic development.
     </strong>
   </div>
 
+  <p>
+    Actual economic outcomes
+    would depend on the scale
+    of future institutional participation,
+    the nature of cooperative activities,
+    and the operational arrangements
+    ultimately established.
+  </p>
+
+  <a href="goyang-en.html" class="button">
+    Why Goyang Special City?
+  </a>
 </section>
 
-<section>
+<!-- Strategy -->
 
-  <h2>Civic Participation and International Cooperation</h2>
+<section>
+  <h2>6. Proposed Development Strategy</h2>
 
   <p>
-    The success of the Global AI Hub
-    would depend not only on
-    governments and international organizations,
-    but also on meaningful participation
-    by local communities.
+    The Citizens' Promotion Committee
+    seeks to encourage public participation
+    and connect Goyang's urban strengths
+    with practical policy proposals
+    for the Global AI Hub initiative.
+  </p>
+
+  <div class="grid">
+
+    <article class="card">
+      <h3>Public Awareness and Engagement</h3>
+      <p>
+        Expand public understanding
+        and voluntary participation
+        through online expressions of support
+        and outreach activities.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Strengthening Location Competitiveness</h3>
+      <p>
+        Assess Goyang's location advantages
+        and international cooperation assets,
+        and develop practical,
+        evidence-based policy proposals.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Institutional Cooperation</h3>
+      <p>
+        Explore potential cooperation
+        with Gyeonggi Province,
+        Goyang Special City,
+        relevant national authorities,
+        and other institutions.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Sustainable Operations</h3>
+      <p>
+        Develop policy proposals
+        concerning long-term
+        cooperation frameworks
+        and sustainable operating arrangements.
+      </p>
+    </article>
+
+  </div>
+
+  <a href="strategy-en.html" class="button">
+    Explore the Global AI Hub Strategy
+  </a>
+</section>
+
+<!-- Participation -->
+
+<section>
+  <h2>7. Citizen Participation and Shared Responsibility</h2>
+
+  <p>
+    The proposed Global AI Hub
+    is not solely a matter
+    for public authorities.
   </p>
 
   <p>
-    The Goyang Citizens' Committee
-    seeks to contribute through
-    public engagement,
-    policy recommendations,
-    cooperation with local institutions
-    and support for international partnerships.
+    It is also an opportunity
+    for citizens,
+    local communities,
+    universities,
+    research institutions,
+    businesses,
+    and professionals
+    to contribute to discussions
+    about Goyang's future.
+  </p>
+
+  <p>
+    The Citizens' Promotion Committee
+    encourages voluntary public participation
+    in the initiative.
+  </p>
+
+  <p>
+    Activities include
+    online expressions of support,
+    Committee registration,
+    supporting membership,
+    and public awareness campaigns.
   </p>
 
   <a href="participate.html" class="button">
-    Participation Information (Korean)
+    Citizen Participation Center (Korean)
   </a>
-
 </section>
 
+<!-- Institutional clarification -->
 
-  
+<section>
+  <h2>8. Institutional Status</h2>
+
+  <p>
+    The Global AI Hub in Goyang
+    is a proposed initiative
+    supported by the
+    Citizens' Promotion Committee.
+  </p>
+
+  <p>
+    The Committee's proposals
+    do not constitute
+    an official site-selection decision,
+    an approved government project,
+    or a commitment
+    by any international organization.
+  </p>
+
+  <p>
+    Future institutional participation,
+    funding,
+    location decisions,
+    and operational arrangements
+    would require appropriate consultation
+    and formal approval
+    by the responsible authorities.
+  </p>
+
+  <div class="highlight">
+    <strong>
+      The initiative seeks to promote
+      responsible international cooperation,
+      constructive policy dialogue,
+      and practical preparation
+      for future opportunities.
+    </strong>
+  </div>
+</section>
+
 </main>
 
 <footer>
-
   <p>
     <strong>
-      Goyang Citizens' Committee for Hosting<br>
-      the Global AI Hub in Gyeonggi Province
+      Global AI Hub Initiative<br>
+      Goyang Special City,
+      Gyeonggi Province,
+      Republic of Korea
     </strong>
   </p>
 
-  <p>AI for All · AI for Humanity</p>
-
   <p>
-    Initial Settlement · Operational Support · Shared Growth
+    Citizens' Promotion Committee
+    for Attracting the Global AI Hub
+    to Goyang Special City
   </p>
 
   <p>
-    <a href="index-en.html">English Home</a>
+    With Citizens, With Gyeonggi Province,
+    and With the World.
   </p>
 
+  <p>
+    <a href="index-en.html">
+      English Home
+    </a>
+    &nbsp; | &nbsp;
+    <a href="hub.html" lang="ko">
+      한국어
+    </a>
+  </p>
 </footer>
 
 </body>
