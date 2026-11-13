@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Centro di partecipazione dei cittadini |
+Iniziativa per un Polo Globale dell'IA
+</title>
+
+<meta
+  name="description"
+  content="Partecipa all'iniziativa per un Polo Globale dell'IA nella Città Speciale di Goyang attraverso la campagna di sostegno pubblico, l'iscrizione al Comitato, l'adesione come socio sostenitore e le attività della comunità."
+>
+
+<style>
+
+/* =====================================
+   IMPOSTAZIONI GENERALI
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   INTESTAZIONE
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+/* =====================================
+   CONTENUTO PRINCIPALE
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* =====================================
+   GRIGLIA DELLE ATTIVITÀ
+===================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* =====================================
+   PULSANTI
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #003a7a;
+}
+
+/* =====================================
+   CAMPAGNA DI SOSTEGNO
+===================================== */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* =====================================
+   AVVISI
+===================================== */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   INFORMAZIONI BANCARIE
+===================================== */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* =====================================
+   PIÈ DI PAGINA
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   VERSIONE MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     INTESTAZIONE
+===================================== -->
+
+<header>
+
+<h1>
+Centro di partecipazione dei cittadini
+</h1>
+
+<p>
+Iniziativa per un Polo Globale dell'IA<br>
+Città Speciale di Goyang,<br>
+Provincia di Gyeonggi,<br>
+Repubblica di Corea
+</p>
+
+<p>
+Costruire un nuovo futuro per Goyang<br>
+attraverso la partecipazione dei cittadini
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-it.html"
+  class="home-link"
+>
+  ← Homepage italiana
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     INTRODUZIONE
+===================================== -->
+
+<div class="intro">
+
+<h2>
+Portiamo il Polo Globale dell'IA a Goyang!
+</h2>
+
+<p>
+
+<strong>
+Nuove opportunità di crescita per Goyang!
+</strong>
+
+<br>
+
+<strong>
+Più posti di lavoro qualificati per Goyang!
+</strong>
+
+</p>
+
+<p>
+Il Polo Globale dell'IA proposto
+rappresenta un'importante opportunità
+per la Città Speciale di Goyang
+di svilupparsi come centro
+di cooperazione internazionale
+e di industrie legate
+all'intelligenza artificiale.
+</p>
+
+<p>
+Il Comitato Civico Promotore
+intende ampliare
+la comprensione pubblica
+dell'iniziativa
+e incoraggiare
+la partecipazione volontaria
+dei cittadini,
+dei professionisti
+e delle organizzazioni civiche.
+</p>
+
+<p>
+
+<strong>
+La tua partecipazione
+può contribuire
+a rafforzare il sostegno pubblico
+per l'insediamento
+del Polo Globale dell'IA
+nella Città Speciale di Goyang.
+</strong>
+
+</p>
+
+</div>
+
+<!-- =====================================
+     INFORMAZIONI PER I VISITATORI
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Informazioni per i visitatori internazionali
+</strong>
+
+<p>
+Questa pagina presenta
+in lingua italiana
+i programmi di partecipazione
+dei cittadini
+promossi dal Comitato.
+</p>
+
+<p>
+I moduli di iscrizione
+sono attualmente disponibili
+in lingua coreana.
+Prima di inviare informazioni personali,
+si prega di leggere attentamente
+le informazioni contenute
+in ciascun modulo.
+</p>
+
+<p>
+I contributi finanziari
+e le relative procedure
+di partecipazione
+sono soggetti
+alle norme e ai requisiti
+applicabili del Comitato.
+</p>
+
+</div>
+
+<!-- =====================================
+     CAMPAGNA DI SOSTEGNO DI 100.000 CITTADINI
+===================================== -->
+
+<section class="signature">
+
+<h2>
+Campagna di sostegno di 100.000 cittadini
+</h2>
+
+<p>
+Partecipa alla campagna pubblica
+di raccolta firme
+a sostegno dell'iniziativa
+per l'insediamento
+del Polo Globale dell'IA
+nella Città Speciale di Goyang.
+</p>
+
+<p>
+Riunendo le voci
+dei singoli cittadini,
+intendiamo rafforzare
+la consapevolezza pubblica
+e il sostegno
+allo sviluppo futuro di Goyang.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Partecipa alla campagna di sostegno online
+</a>
+
+<p class="small-note">
+Modulo di partecipazione in lingua coreana.
+</p>
+
+</section>
+
+<!-- =====================================
+     PROGRAMMI DI PARTECIPAZIONE
+===================================== -->
+
+<div class="grid">
+
+<!-- =====================================
+     ISCRIZIONE AL COMITATO
+===================================== -->
+
+<article class="card">
+
+<h3>
+Iscriviti al Comitato
+</h3>
+
+<p>
+Accogliamo con favore
+la partecipazione di cittadini,
+professionisti,
+rappresentanti di organizzazioni civiche
+e altre persone interessate
+a sostenere
+l'iniziativa del Polo Globale dell'IA.
+</p>
+
+<p>
+La partecipazione al Comitato
+offre l'opportunità
+di contribuire
+al coinvolgimento pubblico,
+alle discussioni sulle politiche
+e alle attività della comunità.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Iscrizione al Comitato
+</a>
+
+<p class="small-note">
+Modulo di iscrizione in lingua coreana.
+</p>
+
+</article>
+
+<!-- =====================================
+     SOCI SOSTENITORI
+===================================== -->
+
+<article class="card">
+
+<h3>
+Adesione come socio sostenitore
+</h3>
+
+<p>
+Diventa socio sostenitore
+per contribuire
+alla continuità
+delle attività civiche,
+della comunicazione pubblica
+e delle iniziative
+di sensibilizzazione politica
+legate al Polo Globale dell'IA.
+</p>
+
+<p>
+I contributi dei soci sostenitori
+possono essere versati
+sul conto bancario designato
+indicato di seguito.
+</p>
+
+<!-- VISUALIZZAZIONE AUTOMATICA DEL CONTO -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Richiedi l'adesione come socio sostenitore
+</a>
+
+<p class="small-note">
+Modulo di iscrizione in lingua coreana.
+Prima di effettuare un bonifico,
+verificare le istruzioni
+di pagamento più aggiornate.
+</p>
+
+</article>
+
+<!-- =====================================
+     STRISCIONI PROMOZIONALI
+===================================== -->
+
+<article class="card">
+
+<h3>
+Richiesta di striscioni promozionali
+</h3>
+
+<p>
+Partecipa alle attività
+di sensibilizzazione pubblica
+richiedendo l'installazione
+di striscioni promozionali
+a sostegno
+del Polo Globale dell'IA
+nella Città Speciale di Goyang.
+</p>
+
+<p>
+Dopo aver presentato
+la domanda,
+si prega di versare
+il costo applicabile
+sul conto bancario designato
+indicato di seguito.
+</p>
+
+<p>
+L'installazione degli striscioni
+deve rispettare
+i regolamenti locali,
+le leggi applicabili
+e i requisiti relativi
+ai luoghi di esposizione.
+</p>
+
+<!-- VISUALIZZAZIONE AUTOMATICA DEL CONTO -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Richiedi uno striscione promozionale
+</a>
+
+<p class="small-note">
+Modulo di richiesta in lingua coreana.
+</p>
+
+</article>
+
+<!-- =====================================
+     ADESIVI PROMOZIONALI PER VEICOLI
+===================================== -->
+
+<article class="card">
+
+<h3>
+Adesivo promozionale per veicoli
+</h3>
+
+<p>
+Contribuisci
+a far conoscere
+l'iniziativa del Polo Globale dell'IA
+esponendo un adesivo promozionale
+sul tuo veicolo.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Richiedi un adesivo per veicoli
+</a>
+
+<p class="small-note">
+Modulo di richiesta in lingua coreana.
+</p>
+
+</article>
+
+<!-- =====================================
+     COMUNITÀ KAKAOTALK
+===================================== -->
+
+<article class="card">
+
+<h3>
+Comunità KakaoTalk
+</h3>
+
+<p>
+Unisciti al gruppo
+di comunicazione KakaoTalk
+del Comitato
+per scambiare informazioni
+sulle attività,
+sulla partecipazione pubblica
+e sugli sviluppi
+relativi all'iniziativa
+del Polo Globale dell'IA.
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Unisciti alla comunità KakaoTalk
+</a>
+
+<p class="small-note">
+Le discussioni della comunità
+si svolgono principalmente
+in lingua coreana.
+</p>
+
+</article>
+
+<!-- =====================================
+     GRUPPO FACEBOOK
+===================================== -->
+
+<article class="card">
+
+<h3>
+Gruppo di discussione Facebook
+</h3>
+
+<p>
+Condividi informazioni,
+scambia opinioni
+e partecipa
+alle discussioni pubbliche
+sull'iniziativa proposta
+per il Polo Globale dell'IA.
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Unisciti al gruppo Facebook
+</a>
+
+</article>
+
+<!-- =====================================
+     GALLERIA DELLE ATTIVITÀ
+===================================== -->
+
+<article class="card">
+
+<h3>
+Galleria delle attività del Comitato
+</h3>
+
+<p>
+Esplora le fotografie
+che documentano
+le attività
+del Comitato Civico Promotore
+e della campagna
+di sostegno pubblico.
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  Visualizza la galleria delle attività
+  (in coreano)
+</a>
+
+</article>
+
+</div>
+
+<!-- =====================================
+     INFORMAZIONI SULLA PARTECIPAZIONE
+===================================== -->
+
+<section class="notice">
+
+<h2>
+Informazioni sulla partecipazione
+</h2>
+
+<p>
+Il Comitato Civico Promotore
+gestisce diversi programmi
+di partecipazione,
+tra cui
+la campagna pubblica
+di raccolta firme,
+l'iscrizione al Comitato,
+l'adesione come socio sostenitore,
+le richieste
+di striscioni promozionali
+e le richieste
+di adesivi per veicoli.
+</p>
+
+<p>
+Ogni domanda
+viene presentata
+attraverso il relativo modulo online.
+</p>
+
+<p>
+Prima di presentare
+la domanda,
+i partecipanti
+devono esaminare
+lo scopo della richiesta
+e le informazioni
+relative alla raccolta
+e all'utilizzo
+dei dati personali.
+</p>
+
+<p>
+I contributi dei soci sostenitori
+e i costi degli striscioni promozionali
+devono essere versati
+esclusivamente
+sui conti bancari designati
+ufficialmente comunicati
+dal Comitato.
+</p>
+
+<p>
+Prima di effettuare
+qualsiasi trasferimento di denaro,
+si prega di verificare
+i dati bancari più aggiornati
+e le condizioni di pagamento.
+</p>
+
+<p>
+Per informazioni
+sulla protezione
+dei dati personali,
+consultare
+l'informativa sulla privacy:
+<a href="privacy.html">
+Informativa sulla privacy (in coreano)
+</a>.
+</p>
+
+</section>
+
+<!-- =====================================
+     PAGINE CORRELATE
+===================================== -->
+
+<section class="notice">
+
+<h2>
+Esplora altre informazioni
+</h2>
+
+<p>
+Scopri di più
+sul Comitato,
+sui suoi obiettivi
+e sull'iniziativa
+per un Polo Globale dell'IA.
+</p>
+
+<a
+  class="button"
+  href="committee-it.html"
+>
+  Il Comitato Civico Promotore
+</a>
+
+<a
+  class="button"
+  href="hub-it.html"
+>
+  Il Polo Globale dell'IA
+</a>
+
+<a
+  class="button"
+  href="news-it.html"
+>
+  Notizie e comunicazioni
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     PIÈ DI PAGINA
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Comitato Civico Promotore<br>
+per l'insediamento del Polo Globale dell'IA<br>
+nella Città Speciale di Goyang
+</strong>
+</p>
+
+<p>
+Provincia di Gyeonggi,<br>
+Repubblica di Corea
+</p>
+
+<p>
+Con i cittadini,<br>
+con la Provincia di Gyeonggi<br>
+e con il mondo.
+</p>
+
+<p>
+<a href="index-it.html">
+Homepage italiana
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     MODULO SUPABASE
+     VISUALIZZAZIONE AUTOMATICA
+     DEI CONTI BANCARI
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   CONNESSIONE SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   VISUALIZZAZIONE AUTOMATICA
+   DEI CONTI BANCARI
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+
+    membership: "membershipAccountInfo",
+
+    banner: "bannerAccountInfo"
+
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* TITOLO */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "Conto bancario designato";
+
+      /* NOME DELLA BANCA */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "Banca: " + bank;
+
+      /* NUMERO DEL CONTO */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "Numero di conto: " + number;
+
+      /* INTESTATARIO */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "Intestatario: " + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "Informazioni bancarie caricate."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Errore nel caricamento dei conti bancari:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   CARICAMENTO INIZIALE
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
