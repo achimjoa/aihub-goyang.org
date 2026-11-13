@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+全球人工智能枢纽倡议 | 发展历程与重要里程碑
+</title>
+
+<meta
+  name="description"
+  content="了解韩国全球人工智能枢纽倡议的发展历程，以及韩国中央政府、京畿道、高阳特例市和市民推进委员会的主要活动与重要里程碑。"
+>
+
+<style>
+
+/* =====================================
+   基本设置
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans SC",
+    Arial,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   页眉
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.3;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   主要内容
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.intro {
+  text-align: center;
+}
+
+/* =====================================
+   分类筛选按钮
+===================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #0754a6;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+.filters button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   时间轴
+===================================== */
+
+.timeline {
+  border-left: 4px solid #168de0;
+  margin-left: 12px;
+  padding-left: 25px;
+}
+
+.event {
+  position: relative;
+  padding: 0 0 25px;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #168de0;
+  border-radius: 50%;
+}
+
+.date {
+  color: #0754a6;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.type {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.event h3 {
+  margin: 5px 0;
+  color: #17315b;
+}
+
+.event p {
+  margin: 5px 0;
+  color: #46566d;
+}
+
+/* =====================================
+   未来重点任务
+===================================== */
+
+.future {
+  border-left: 4px solid #1b9a80;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+/* =====================================
+   重要说明
+===================================== */
+
+.note {
+  background: #fff8e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+/* =====================================
+   按钮
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   页脚
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   移动设备
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     页眉
+===================================== -->
+
+<header>
+
+<h1>
+全球人工智能枢纽倡议<br>
+发展历程与重要里程碑
+</h1>
+
+<p>
+韩国中央政府 · 京畿道<br>
+高阳特例市 · 市民推进委员会
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-zh.html"
+  class="home-link"
+>
+  ← 中文首页
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     发展历程介绍
+===================================== -->
+
+<section class="intro">
+
+<h2>
+迈向全球人工智能枢纽的发展历程
+</h2>
+
+<p>
+本时间轴介绍
+大韩民国全球人工智能枢纽倡议
+的主要发展进程，
+以及为推动拟议中的全球人工智能枢纽
+落户高阳特例市
+而开展的重要活动。
+</p>
+
+<p>
+市民参与、
+政策准备
+以及机构间合作，
+是未来开展国际合作的重要基础。
+</p>
+
+</section>
+
+<!-- =====================================
+     分类筛选按钮
+===================================== -->
+
+<nav
+  class="filters"
+  aria-label="按机构筛选发展历程"
+>
+
+<button
+  type="button"
+  class="active"
+  data-type="all"
+  aria-pressed="true"
+>
+  全部事件
+</button>
+
+<button
+  type="button"
+  data-type="government"
+  aria-pressed="false"
+>
+  韩国中央政府
+</button>
+
+<button
+  type="button"
+  data-type="gyeonggi"
+  aria-pressed="false"
+>
+  京畿道
+</button>
+
+<button
+  type="button"
+  data-type="goyang"
+  aria-pressed="false"
+>
+  高阳特例市
+</button>
+
+<button
+  type="button"
+  data-type="civic"
+  aria-pressed="false"
+>
+  市民推进委员会
+</button>
+
+</nav>
+
+<!-- =====================================
+     主要发展历程
+===================================== -->
+
+<section>
+
+<h2>
+主要发展历程
+</h2>
+
+<div
+  class="timeline"
+  id="timeline"
+  aria-live="polite"
+>
+</div>
+
+</section>
+
+<!-- =====================================
+     未来重点任务
+===================================== -->
+
+<section>
+
+<h2>
+未来重点任务
+</h2>
+
+<!-- 重点任务 01 -->
+
+<div class="future">
+
+<h3>
+准备全球人工智能枢纽选址评估
+</h3>
+
+<p>
+审查政府正式公告
+以及选址评价标准，
+利用客观支持性证据
+说明高阳特例市的竞争优势
+和实施计划。
+</p>
+
+</div>
+
+<!-- 重点任务 02 -->
+
+<div class="future">
+
+<h3>
+为国际组织初期入驻做好准备
+</h3>
+
+<p>
+针对潜在参与机构
+可能需要的办公设施、
+居住条件、
+医疗、
+教育、
+交通
+以及其他服务，
+制定切实可行的建议方案。
+</p>
+
+</div>
+
+<!-- 重点任务 03 -->
+
+<div class="future">
+
+<h3>
+筹备公共利益人工智能试点项目
+</h3>
+
+<p>
+研究人工智能辅助基本医疗服务
+以及应对复杂危机等领域
+潜在合作项目的可行性。
+</p>
+
+<p>
+确定潜在合作伙伴机构，
+并评估实施项目所需的条件。
+</p>
+
+</div>
+
+<!-- 重要说明 -->
+
+<div class="note">
+
+<strong>
+重要说明
+</strong>
+
+<p>
+未来的实施时间表
+可能根据政府正式公告
+以及相关机构的决定
+发生变化。
+</p>
+
+<p>
+本页面旨在总结
+主要发展进程和活动。
+</p>
+
+<p>
+这并不意味着
+所有未来计划
+或机构合作安排
+均已获得正式确认。
+</p>
+
+</div>
+
+<a
+  href="strategy-zh.html"
+  class="button"
+>
+  全球人工智能枢纽引进战略
+</a>
+
+<a
+  href="committee-zh.html"
+  class="button"
+>
+  关于市民推进委员会
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     页脚
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高阳特例市全球人工智能枢纽<br>
+引进市民推进委员会
+</strong>
+</p>
+
+<p>
+与市民同行，<br>
+与京畿道同行，<br>
+与世界同行。
+</p>
+
+<p>
+<a href="index-zh.html">
+中文首页
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     JavaScript
+     发展历程数据与筛选功能
+===================================== -->
+
+<script>
+
+const events = [
+
+  /* =====================================
+     2026年3月10日
+  ===================================== */
+
+  {
+    date: "2026.03.10",
+    type: "government",
+    label: "韩国中央政府",
+    title: "政府发布全球人工智能枢纽倡议相关公告",
+    description:
+      "有关全球人工智能枢纽倡议的政府层面讨论和筹备工作进一步推进。"
+  },
+
+  /* =====================================
+     2026年3月16日
+  ===================================== */
+
+  {
+    date: "2026.03.16",
+    type: "government",
+    label: "韩国中央政府",
+    title: "韩国国务总理与联合国代表举行会谈",
+    description:
+      "双方就与全球人工智能枢纽倡议相关的国际合作进行了讨论。"
+  },
+
+  /* =====================================
+     2026年3月17日
+  ===================================== */
+
+  {
+    date: "2026.03.17",
+    type: "government",
+    label: "韩国中央政府",
+    title: "韩国政府与国际组织推进签署合作意向书",
+    description:
+      "相关方面推动就全球人工智能枢纽倡议的合作事项签署意向书。"
+  },
+
+  /* =====================================
+     2026年4月9日
+  ===================================== */
+
+  {
+    date: "2026.04.09",
+    type: "government",
+    label: "韩国中央政府",
+    title: "韩国国务总理就全球人工智能枢纽倡议作出指示",
+    description:
+      "建立了围绕全球人工智能枢纽倡议开展政府部门间合作的制度框架。"
+  },
+
+  /* =====================================
+     2026年5月21日
+  ===================================== */
+
+  {
+    date: "2026.05.21",
+    type: "government",
+    label: "韩国中央政府",
+    title: "国际组织与多边开发银行发表联合声明",
+    description:
+      "九个国际组织和五家多边开发银行发表了有关合作的联合声明。"
+  },
+
+  /* =====================================
+     2026年9月7日
+  ===================================== */
+
+  {
+    date: "2026.09.07",
+    type: "civic",
+    label: "市民推进委员会",
+    title: "高阳特例市市民推进委员会正式成立",
+    description:
+      "在高阳湖水公园花卉展示馆举行成立大会，正式启动由市民主导的全球人工智能枢纽引进活动。"
+  },
+
+  /* =====================================
+     2026年10月12日
+  ===================================== */
+
+  {
+    date: "2026.10.12",
+    type: "gyeonggi",
+    label: "京畿道",
+    title: "京畿道全球人工智能枢纽引进支持工作组成立",
+    description:
+      "京畿道成立专门工作组，支持制定引进战略并促进机构间合作。"
+  },
+
+  /* =====================================
+     2026年10月14日
+  ===================================== */
+
+  {
+    date: "2026.10.14",
+    type: "government",
+    label: "韩国中央政府",
+    title: "举行全球人工智能枢纽选址评价标准公众听证会",
+    description:
+      "在世宗会议中心介绍并讨论全球人工智能枢纽选址评价标准草案。"
+  },
+
+  /* =====================================
+     2026年10月15日
+  ===================================== */
+
+  {
+    date: "2026.10.15",
+    type: "civic",
+    label: "市民推进委员会",
+    title: "提出选址评价标准改进建议",
+    description:
+      "围绕国际组织初期入驻条件、当地社区接受度以及公共利益人工智能试点项目等事项提出改进建议。"
+  },
+
+  /* =====================================
+     2026年10月20日
+  ===================================== */
+
+  {
+    date: "2026.10.20",
+    type: "civic",
+    label: "市民推进委员会",
+    title: "参加第七届高阳创新战略研讨会",
+    description:
+      "与会者强调，应完善引进战略、争取机构合作、建立实施体系，并确保相关建议具有充分的支持性证据。"
+  },
+
+  /* =====================================
+     2026年10月26日
+  ===================================== */
+
+  {
+    date: "2026.10.26",
+    type: "goyang",
+    label: "高阳特例市",
+    title: "高阳特例市议会通过支持引进全球人工智能枢纽的决议",
+    description:
+      "高阳特例市议会在全体议员参与下，一致通过呼吁引进全球人工智能枢纽的决议。"
+  },
+
+  /* =====================================
+     2026年10月30日
+  ===================================== */
+
+  {
+    date: "2026.10.30",
+    type: "gyeonggi",
+    label: "京畿道",
+    title: "举行京畿道全球人工智能枢纽引进战略论坛",
+    description:
+      "在高阳特例市韩国国际展览中心（KINTEX）举行论坛，讨论引进战略及国际合作事宜。"
+  }
+
+];
+
+/* =====================================
+   当前筛选类别
+===================================== */
+
+let currentType = "all";
+
+/* =====================================
+   时间轴渲染函数
+===================================== */
+
+function renderTimeline() {
+
+  const timeline =
+    document.getElementById("timeline");
+
+  timeline.innerHTML = "";
+
+  const filtered = events
+
+    .filter(event =>
+      currentType === "all" ||
+      event.type === currentType
+    )
+
+    .sort((a, b) =>
+      a.date.localeCompare(b.date)
+    );
+
+  filtered.forEach(event => {
+
+    const item =
+      document.createElement("article");
+
+    item.className = "event";
+
+    const date =
+      document.createElement("div");
+
+    date.className = "date";
+    date.textContent = event.date;
+
+    const type =
+      document.createElement("span");
+
+    type.className = "type";
+    type.textContent = event.label;
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent = event.title;
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      event.description;
+
+    item.appendChild(date);
+    item.appendChild(type);
+    item.appendChild(title);
+    item.appendChild(description);
+
+    timeline.appendChild(item);
+
+  });
+
+}
+
+/* =====================================
+   筛选按钮事件
+===================================== */
+
+document
+  .querySelectorAll("[data-type]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentType =
+          button.dataset.type;
+
+        document
+          .querySelectorAll("[data-type]")
+          .forEach(btn => {
+
+            const isActive =
+              btn.dataset.type === currentType;
+
+            btn.classList.toggle(
+              "active",
+              isActive
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              String(isActive)
+            );
+
+          });
+
+        renderTimeline();
+
+      }
+    );
+
+  });
+
+/* =====================================
+   初始显示全部事件
+===================================== */
+
+renderTimeline();
+
+</script>
+
+</body>
+</html>
