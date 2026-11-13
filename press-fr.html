@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Revue de presse | Initiative du Centre mondial de l'IA
+</title>
+
+<meta
+  name="description"
+  content="Articles de presse, reportages et couverture médiatique concernant l'initiative du Centre mondial de l'IA et le Comité citoyen de promotion dans la ville spéciale de Goyang, République de Corée."
+>
+
+<style>
+
+/* =====================================
+   CONFIGURATION GÉNÉRALE
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   EN-TÊTE
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   CONTENU PRINCIPAL
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.intro h2 {
+  margin-top: 0;
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+.language-notice p {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+.search-box {
+  margin: 25px 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   LISTE DES ARTICLES
+===================================== */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press-item {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.press-item h3 {
+  margin: 8px 0;
+  color: #0754a6;
+  overflow-wrap: anywhere;
+}
+
+.press-item p {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.press-date {
+  color: #69788c;
+  font-size: 14px;
+}
+
+.press-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e7f0fa;
+  color: #175b9a;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.press-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.press-link:hover {
+  text-decoration: underline;
+}
+
+.content-language {
+  display: block;
+  margin-top: 12px;
+  color: #69788c;
+  font-size: 13px;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   PAGES ASSOCIÉES
+===================================== */
+
+.related {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.related h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   PIED DE PAGE
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 60px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   VERSION MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  main {
+    margin: 25px auto;
+    padding: 0 12px;
+  }
+
+  .intro,
+  .press-item,
+  .related {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     EN-TÊTE
+===================================== -->
+
+<header>
+
+<h1>
+Revue de presse
+</h1>
+
+<p>
+Initiative du Centre mondial de l'IA<br>
+Ville spéciale de Goyang, République de Corée
+</p>
+
+<p>
+Articles de journaux,<br>
+reportages audiovisuels<br>
+et couverture médiatique
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-fr.html"
+  class="home-link"
+>
+  ← Accueil — Français
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     INTRODUCTION
+===================================== -->
+
+<section class="intro">
+
+<h2>
+Couverture médiatique de l'initiative du Centre mondial de l'IA
+</h2>
+
+<p>
+Cette page donne accès
+aux articles de journaux,
+aux reportages audiovisuels
+et aux autres publications médiatiques
+concernant le projet
+de Centre mondial de l'IA
+et les activités associées
+dans la province de Gyeonggi
+et la ville spéciale de Goyang.
+</p>
+
+<p>
+Ces publications sont présentées
+afin d'aider les visiteurs internationaux
+à comprendre les débats publics,
+les évolutions des politiques publiques
+et les activités citoyennes
+liés à cette initiative.
+</p>
+
+</section>
+
+<!-- =====================================
+     INFORMATIONS LINGUISTIQUES
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Informations linguistiques
+</strong>
+
+<p>
+La plupart des reportages
+sont publiés
+par des médias sud-coréens.
+Les titres et descriptions
+rédigés en coréen
+sont affichés dans leur langue originale,
+sans traduction automatique.
+</p>
+
+<p>
+Cliquez sur le lien de l'article
+pour consulter la publication originale
+sur le site de l'organisme de presse.
+</p>
+
+</div>
+
+<!-- =====================================
+     RECHERCHE
+===================================== -->
+
+<div class="search-box">
+
+<input
+  type="search"
+  id="pressSearch"
+  placeholder="Rechercher un article par titre ou mot-clé"
+  aria-label="Rechercher dans la revue de presse"
+>
+
+</div>
+
+<!-- =====================================
+     LISTE DES ARTICLES
+===================================== -->
+
+<div
+  class="press-list"
+  id="pressList"
+  aria-live="polite"
+>
+
+  <p class="empty">
+    Préparation du chargement des articles de presse...
+  </p>
+
+</div>
+
+<!-- =====================================
+     PAGES ASSOCIÉES
+===================================== -->
+
+<section class="related">
+
+<h2>
+Informations complémentaires
+</h2>
+
+<p>
+Pour en savoir davantage
+sur l'initiative du Centre mondial de l'IA,
+nous vous invitons à consulter
+les pages suivantes.
+</p>
+
+<a
+  href="news-fr.html"
+  class="button"
+>
+  Actualités et annonces
+</a>
+
+<a
+  href="history-fr.html"
+  class="button"
+>
+  Chronologie et principales étapes
+</a>
+
+<a
+  href="committee-fr.html"
+  class="button"
+>
+  Présentation du Comité citoyen
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     PIED DE PAGE
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Comité citoyen de promotion<br>
+pour l'implantation du Centre mondial de l'IA<br>
+dans la ville spéciale de Goyang
+</strong>
+</p>
+
+<p>
+Province de Gyeonggi,<br>
+République de Corée
+</p>
+
+<p>
+Avec les citoyens,<br>
+avec la province de Gyeonggi<br>
+et avec le monde.
+</p>
+
+<p>
+<a href="index-fr.html">
+Accueil — Français
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     MODULE SUPABASE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   CONNEXION SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+/*
+  Clé publique Supabase
+  conservée depuis le fichier original.
+*/
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   ÉLÉMENTS DOM
+===================================== */
+
+const pressList =
+  document.getElementById("pressList");
+
+const pressSearch =
+  document.getElementById("pressSearch");
+
+let pressData = [];
+
+/* =====================================
+   AFFICHAGE DES MESSAGES
+===================================== */
+
+function showPressMessage(message) {
+
+  pressList.replaceChildren();
+
+  const paragraph =
+    document.createElement("p");
+
+  paragraph.className = "empty";
+
+  paragraph.textContent = message;
+
+  pressList.appendChild(paragraph);
+
+}
+
+/* =====================================
+   FORMATAGE DES DATES
+===================================== */
+
+function formatPressDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return String(value)
+    .slice(0, 10)
+    .replaceAll("-", ".");
+
+}
+
+/* =====================================
+   DÉTECTION DU CORÉEN
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   AFFICHAGE DES ARTICLES
+===================================== */
+
+function renderPress() {
+
+  const keyword =
+    pressSearch.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    pressData.filter(item => {
+
+      const searchText = [
+        item.title || "",
+        item.description || "",
+        item.published_at || ""
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchText.includes(keyword);
+
+    });
+
+  pressList.replaceChildren();
+
+  if (filtered.length === 0) {
+
+    showPressMessage(
+      "Aucun article ne correspond à votre recherche."
+    );
+
+    return;
+
+  }
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "press-item";
+
+    /* Catégorie */
+
+    const category =
+      document.createElement("span");
+
+    category.className =
+      "press-category";
+
+    category.textContent =
+      "Revue de presse";
+
+    /* Date */
+
+    const date =
+      document.createElement("p");
+
+    date.className =
+      "press-date";
+
+    date.textContent =
+      formatPressDate(
+        item.published_at
+      );
+
+    /* Titre */
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title || "";
+
+    /* Description */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description || "";
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* Information linguistique */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Contenu original en coréen";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* Lien vers l'article original */
+
+    if (item.link) {
+
+      try {
+
+        const url =
+          new URL(item.link);
+
+        if (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        ) {
+
+          const link =
+            document.createElement("a");
+
+          link.className =
+            "press-link";
+
+          link.href = url.href;
+
+          link.target = "_blank";
+
+          link.rel =
+            "noopener noreferrer";
+
+          link.textContent =
+            "Lire l'article original →";
+
+          card.appendChild(link);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Lien d'article invalide :",
+          item.link
+        );
+
+      }
+
+    }
+
+    pressList.appendChild(card);
+
+  });
+
+}
+
+/* =====================================
+   CHARGEMENT DES ARTICLES
+===================================== */
+
+async function loadPress() {
+
+  showPressMessage(
+    "Chargement des articles de presse..."
+  );
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, description, link, published_at"
+        )
+        .eq("category", "press")
+        .order("published_at", {
+          ascending: false
+        })
+        .order("id", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    pressData = data || [];
+
+    console.log(
+      "Articles de presse chargés :",
+      pressData.length
+    );
+
+    if (pressData.length === 0) {
+
+      showPressMessage(
+        "Aucun article de presse n'est actuellement disponible."
+      );
+
+      return;
+
+    }
+
+    renderPress();
+
+  } catch (error) {
+
+    console.error(
+      "Échec du chargement des articles :",
+      error
+    );
+
+    showPressMessage(
+      "Impossible de charger les articles de presse. Veuillez réessayer plus tard."
+    );
+
+  }
+
+}
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+pressSearch.addEventListener(
+  "input",
+  renderPress
+);
+
+/* =====================================
+   CHARGEMENT INITIAL
+===================================== */
+
+loadPress();
+
+</script>
+
+</body>
+</html>
