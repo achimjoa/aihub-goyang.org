@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Centro de Participación Ciudadana |
+Centro Global de IA en Goyang
+</title>
+
+<meta
+  name="description"
+  content="Participe en la iniciativa del Centro Global de Inteligencia Artificial en la Ciudad Especial de Goyang mediante la campaña de apoyo ciudadano, la inscripción en el Comité, la afiliación como miembro colaborador y las actividades comunitarias."
+>
+
+<link
+  rel="canonical"
+  href="https://achimjoa.github.io/aihub-goyang.org/participate-es.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="es"
+  href="https://achimjoa.github.io/aihub-goyang.org/participate-es.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="en"
+  href="https://achimjoa.github.io/aihub-goyang.org/participate-en.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="ko"
+  href="https://achimjoa.github.io/aihub-goyang.org/participate.html"
+>
+
+<style>
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* ENCABEZADO */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.4;
+}
+
+header p {
+  font-size: 17px;
+  color: #e3efff;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+/* SELECTOR DE IDIOMA */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 18px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.18);
+  text-align: left;
+}
+
+.language-options a {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.language-options a:hover,
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  font-weight: bold;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: clamp(24px, 4vw, 30px);
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* TARJETAS */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* BOTONES */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #003a7a;
+  color: white;
+}
+
+/* CAMPAÑA DE APOYO */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: clamp(24px, 4vw, 30px);
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* AVISOS */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* INFORMACIÓN BANCARIA */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* DISEÑO MÓVIL */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+  .language-options {
+    right: auto;
+    left: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+
+<header>
+
+<h1>
+Centro de Participación Ciudadana
+</h1>
+
+<p>
+Iniciativa del Centro Global
+de Inteligencia Artificial<br>
+Ciudad Especial de Goyang<br>
+Provincia de Gyeonggi,
+República de Corea
+</p>
+
+<p>
+Construyendo un nuevo futuro
+para Goyang mediante
+la participación ciudadana
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-es.html"
+  class="home-link"
+>
+  ← Inicio en español
+</a>
+
+<details class="language-dropdown">
+
+<summary aria-label="Seleccionar idioma">
+🌐 Idioma ▾
+</summary>
+
+<div class="language-options">
+
+<a
+  href="participate-es.html"
+  lang="es"
+  aria-current="page"
+>
+Español ✓
+</a>
+
+<a
+  href="participate-en.html"
+  lang="en"
+>
+English
+</a>
+
+<a
+  href="participate.html"
+  lang="ko"
+>
+한국어
+</a>
+
+</div>
+
+</details>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- INTRODUCCIÓN -->
+
+<div class="intro">
+
+<h2>
+¡Apoyemos la llegada
+del Centro Global de IA a Goyang!
+</h2>
+
+<p>
+<strong>
+¡Nuevas oportunidades de crecimiento
+para Goyang!
+</strong>
+<br>
+<strong>
+¡Más empleos de calidad
+para Goyang!
+</strong>
+</p>
+
+<p>
+La propuesta
+del Centro Global
+de Inteligencia Artificial
+representa una importante oportunidad
+para que la Ciudad Especial de Goyang
+se desarrolle como centro
+de cooperación internacional
+y de industrias relacionadas
+con la inteligencia artificial.
+</p>
+
+<p>
+El Comité Ciudadano de Promoción
+busca ampliar
+la comprensión pública
+de esta iniciativa
+y fomentar la participación voluntaria
+de ciudadanos,
+profesionales
+y organizaciones cívicas.
+</p>
+
+<p>
+<strong>
+Su participación puede contribuir
+a fortalecer el apoyo ciudadano
+para atraer el Centro Global de IA
+a la Ciudad Especial de Goyang.
+</strong>
+</p>
+
+</div>
+
+<!-- INFORMACIÓN PARA VISITANTES INTERNACIONALES -->
+
+<div class="language-notice">
+
+<strong>
+Información para visitantes internacionales
+</strong>
+
+<p>
+Esta página presenta en español
+los programas de participación ciudadana
+del Comité.
+</p>
+
+<p>
+Los formularios de solicitud
+se encuentran actualmente
+disponibles en coreano.
+Revise cuidadosamente
+la información de cada formulario
+antes de proporcionar datos personales.
+</p>
+
+<p>
+Las contribuciones económicas
+y los procedimientos de participación
+están sujetos
+a las normas y requisitos
+aplicables del Comité.
+</p>
+
+</div>
+
+<!-- CAMPAÑA DE APOYO CIUDADANO -->
+
+<section class="signature">
+
+<h2>
+Campaña de Apoyo
+de 100.000 Ciudadanos
+</h2>
+
+<p>
+Participe en la campaña
+de recogida de firmas
+en apoyo de la propuesta
+de establecer el Centro Global de IA
+en la Ciudad Especial de Goyang.
+</p>
+
+<p>
+Al reunir las voces
+de los ciudadanos,
+buscamos fortalecer
+la conciencia pública
+y el apoyo
+al desarrollo futuro de Goyang.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Participar en la campaña de apoyo
+</a>
+
+<p class="small-note">
+Formulario de solicitud en coreano.
+</p>
+
+</section>
+
+<!-- PROGRAMAS DE PARTICIPACIÓN -->
+
+<div class="grid">
+
+<!-- INSCRIPCIÓN EN EL COMITÉ -->
+
+<article class="card">
+
+<h3>
+Inscripción como miembro del Comité
+</h3>
+
+<p>
+Damos la bienvenida
+a ciudadanos,
+profesionales,
+representantes
+de organizaciones cívicas
+y otras personas interesadas
+en apoyar la iniciativa
+del Centro Global de IA.
+</p>
+
+<p>
+La participación en el Comité
+ofrece oportunidades
+para contribuir
+a la sensibilización pública,
+los debates sobre políticas
+y las actividades comunitarias.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Inscribirse en el Comité
+</a>
+
+<p class="small-note">
+Formulario de solicitud en coreano.
+</p>
+
+</article>
+
+<!-- MIEMBROS COLABORADORES -->
+
+<article class="card">
+
+<h3>
+Afiliación como miembro colaborador
+</h3>
+
+<p>
+Conviértase en miembro colaborador
+para apoyar la continuidad
+de las actividades ciudadanas,
+la comunicación pública
+y la difusión de propuestas
+relacionadas con la iniciativa
+del Centro Global de IA.
+</p>
+
+<p>
+Las contribuciones
+de los miembros colaboradores
+pueden realizarse
+mediante transferencia bancaria
+a la cuenta designada
+que se muestra a continuación.
+</p>
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Solicitar afiliación
+  como miembro colaborador
+</a>
+
+<p class="small-note">
+Formulario de solicitud en coreano.
+Confirme las instrucciones
+de pago más recientes
+antes de realizar una transferencia.
+</p>
+
+</article>
+
+<!-- SOLICITUD DE PANCARTAS -->
+
+<article class="card">
+
+<h3>
+Solicitud de pancartas promocionales
+</h3>
+
+<p>
+Participe en las actividades
+de sensibilización pública
+solicitando la instalación
+de pancartas promocionales
+en apoyo de la propuesta
+del Centro Global de IA
+en Goyang.
+</p>
+
+<p>
+Después de presentar
+la solicitud,
+abone el coste correspondiente
+en la cuenta bancaria designada
+que se muestra a continuación.
+</p>
+
+<p>
+La instalación de pancartas
+debe cumplir
+las ordenanzas locales,
+la legislación aplicable
+y los requisitos
+de ubicación.
+</p>
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Solicitar una pancarta promocional
+</a>
+
+<p class="small-note">
+Formulario de solicitud en coreano.
+</p>
+
+</article>
+
+<!-- ADHESIVOS PARA VEHÍCULOS -->
+
+<article class="card">
+
+<h3>
+Adhesivo promocional para vehículos
+</h3>
+
+<p>
+Ayude a aumentar
+la conciencia pública
+sobre la iniciativa
+del Centro Global de IA
+colocando un adhesivo promocional
+en su vehículo.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Solicitar un adhesivo para vehículos
+</a>
+
+<p class="small-note">
+Formulario de solicitud en coreano.
+</p>
+
+</article>
+
+<!-- COMUNIDAD KAKAOTALK -->
+
+<article class="card">
+
+<h3>
+Comunidad de KakaoTalk
+</h3>
+
+<p>
+Únase al grupo de comunicación
+del Comité en KakaoTalk
+para intercambiar información
+sobre actividades,
+participación ciudadana
+y novedades relacionadas
+con la iniciativa
+del Centro Global de IA.
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Unirse a la comunidad de KakaoTalk
+</a>
+
+<p class="small-note">
+Las conversaciones de la comunidad
+se realizan principalmente en coreano.
+</p>
+
+</article>
+
+<!-- GRUPO DE FACEBOOK -->
+
+<article class="card">
+
+<h3>
+Grupo de debate en Facebook
+</h3>
+
+<p>
+Comparta información,
+intercambie opiniones
+y participe
+en debates públicos
+sobre la propuesta
+del Centro Global de IA.
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Unirse al grupo de Facebook
+</a>
+
+</article>
+
+<!-- GALERÍA -->
+
+<article class="card">
+
+<h3>
+Galería de actividades del Comité
+</h3>
+
+<p>
+Explore fotografías
+que documentan
+las actividades
+del Comité Ciudadano de Promoción
+y de la campaña
+de apoyo público.
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  Ver la galería de actividades
+  (en coreano)
+</a>
+
+</article>
+
+</div>
+
+<!-- INFORMACIÓN SOBRE PARTICIPACIÓN -->
+
+<section class="notice">
+
+<h2>
+Información sobre la participación
+</h2>
+
+<p>
+El Comité Ciudadano de Promoción
+desarrolla diversos programas
+de participación,
+incluidos la campaña
+de recogida de firmas,
+la inscripción en el Comité,
+la afiliación como miembro colaborador,
+las solicitudes de pancartas
+promocionales
+y los adhesivos para vehículos.
+</p>
+
+<p>
+Cada solicitud se presenta
+mediante el formulario
+en línea correspondiente.
+</p>
+
+<p>
+Antes de presentar una solicitud,
+los participantes deben revisar
+su finalidad
+y la información relativa
+a la recopilación
+y utilización de datos personales.
+</p>
+
+<p>
+Las contribuciones
+de los miembros colaboradores
+y los costes
+de las pancartas promocionales
+deben abonarse únicamente
+en las cuentas bancarias
+oficialmente designadas
+por el Comité.
+</p>
+
+<p>
+Verifique siempre
+los datos bancarios
+y las condiciones de pago
+más recientes
+antes de realizar una transferencia.
+</p>
+
+<p>
+Para obtener información
+sobre la protección
+de datos personales,
+consulte la
+<a href="privacy.html">
+Política de Privacidad (en coreano)
+</a>.
+</p>
+
+</section>
+
+<!-- PÁGINAS RELACIONADAS -->
+
+<section class="notice">
+
+<h2>
+Más información
+</h2>
+
+<p>
+Conozca más sobre
+el Comité Ciudadano de Promoción,
+sus objetivos
+y la iniciativa
+del Centro Global de IA.
+</p>
+
+<a
+  class="button"
+  href="committee-es.html"
+>
+  Acerca del Comité
+</a>
+
+<a
+  class="button"
+  href="hub-es.html"
+>
+  Acerca del Centro Global de IA
+</a>
+
+<a
+  class="button"
+  href="news-es.html"
+>
+  Noticias y Avisos
+</a>
+
+<a
+  class="button"
+  href="index-es.html"
+>
+  Inicio en español
+</a>
+
+</section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+<p>
+<strong>
+Comité Ciudadano de Promoción<br>
+para la Atracción del Centro Global de IA<br>
+a la Ciudad Especial de Goyang
+</strong>
+</p>
+
+<p>
+Provincia de Gyeonggi,
+República de Corea
+</p>
+
+<p>
+Con los ciudadanos,<br>
+con la provincia de Gyeonggi<br>
+y con el mundo.
+</p>
+
+<p>
+
+<a href="index-es.html">
+Inicio en español
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate-en.html" lang="en">
+English
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+<!-- =====================================
+     MÓDULO SUPABASE DE CUENTAS BANCARIAS
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* CONEXIÓN SUPABASE */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* MOSTRAR INFORMACIÓN BANCARIA */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+    membership: "membershipAccountInfo",
+    banner: "bannerAccountInfo"
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* TÍTULO */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "Cuenta bancaria designada";
+
+      /* BANCO */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "Banco: " + bank;
+
+      /* NÚMERO DE CUENTA */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "Número de cuenta: " + number;
+
+      /* TITULAR */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "Titular de la cuenta: " + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "Información bancaria cargada."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Error al consultar las cuentas bancarias:",
+      error
+    );
+
+  }
+
+}
+
+/* CARGA INICIAL */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
