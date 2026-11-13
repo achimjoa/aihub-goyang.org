@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Benutzerhandbuch für die Website der Initiative für ein globales KI-Zentrum in der Sonderstadt Goyang. Informationen zur Navigation, Bürgerbeteiligung, zu Nachrichten und Online-Diensten.">
+
+<title>
+Website-Benutzerhandbuch |
+Initiative für ein globales KI-Zentrum
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* KOPFBEREICH */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* SCHNELLNAVIGATION */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* HAUPTINHALT */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* KARTEN */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* SCHALTFLÄCHEN */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+/* HERVORHEBUNG */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* SCHRITTE */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* HINWEISE */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* FAQ */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* FUSSZEILE */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* MOBILE ANSICHT */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- KOPFBEREICH -->
+
+<header>
+
+<h1>
+Website-Benutzerhandbuch
+</h1>
+
+<p>
+Initiative für ein globales KI-Zentrum<br>
+Sonderstadt Goyang,
+Provinz Gyeonggi,
+Republik Korea
+</p>
+
+<p>
+Ein Leitfaden zu Informationen,
+Navigation
+und Bürgerbeteiligung
+auf dieser Website
+</p>
+
+<div class="header-links">
+
+<a href="index-de.html"
+class="home-link">
+← Deutsche Startseite
+</a>
+
+</div>
+
+</header>
+
+<!-- SCHNELLNAVIGATION -->
+
+<nav
+class="quick-nav"
+aria-label="Navigation im Website-Benutzerhandbuch">
+
+<a href="#intro">
+Einführung
+</a>
+
+<a href="#menus">
+Hauptbereiche
+</a>
+
+<a href="#participation">
+Bürgerbeteiligung
+</a>
+
+<a href="#account">
+Zahlungsinformationen
+</a>
+
+<a href="#board">
+Nachrichten und Ressourcen
+</a>
+
+<a href="#faq">
+Häufige Fragen
+</a>
+
+<a href="#help">
+Hilfe
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. EINFÜHRUNG
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. Willkommen auf unserer Website
+</h2>
+
+<p>
+Willkommen auf der offiziellen Website
+des Bürgerkomitees zur Förderung
+der Ansiedlung eines globalen KI-Zentrums
+in der Sonderstadt Goyang.
+</p>
+
+<p>
+Diese Website bietet Informationen
+über das geplante globale KI-Zentrum,
+die Aktivitäten des Bürgerkomitees,
+die Standortvorteile Goyangs
+und Möglichkeiten
+zur Bürgerbeteiligung.
+</p>
+
+<p>
+Darüber hinaus stellt sie
+die mögliche Rolle
+internationaler Zusammenarbeit
+bei der Bewältigung
+globaler Herausforderungen
+durch verantwortungsvolle Anwendungen
+künstlicher Intelligenz vor.
+</p>
+
+<div class="highlight">
+
+<strong>
+Neue Wachstumschancen für Goyang!<br>
+Mehr hochwertige Arbeitsplätze für Goyang!<br>
+Das globale KI-Zentrum nach Goyang holen!
+</strong>
+
+</div>
+
+<p>
+Die Website kann
+mit einem Computer,
+Tablet
+oder Smartphone
+aufgerufen werden.
+</p>
+
+<p>
+Zusätzliche Software
+ist nicht erforderlich.
+Ein gewöhnlicher Internetbrowser
+ist ausreichend.
+</p>
+
+</section>
+
+<!-- =====================================
+     2. HAUPTBEREICHE
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. Hauptbereiche der Website
+</h2>
+
+<div class="grid">
+
+<!-- BÜRGERKOMITEE -->
+
+<div class="card">
+
+<h3>
+Über das Bürgerkomitee
+</h3>
+
+<p>
+Erfahren Sie mehr
+über die Gründung,
+die Aufgaben,
+die Leitprinzipien
+und die wichtigsten Aktivitäten
+des Bürgerkomitees.
+</p>
+
+<a
+class="button secondary"
+href="committee-de.html">
+Entdecken
+</a>
+
+</div>
+
+<!-- GLOBALES KI-ZENTRUM -->
+
+<div class="card">
+
+<h3>
+Über das globale KI-Zentrum
+</h3>
+
+<p>
+Entdecken Sie
+das geplante globale KI-Zentrum,
+seine Vision
+für internationale Zusammenarbeit
+und mögliche KI-Anwendungen
+im öffentlichen Interesse.
+</p>
+
+<a
+class="button secondary"
+href="hub-de.html">
+Entdecken
+</a>
+
+</div>
+
+<!-- GOYANG -->
+
+<div class="card">
+
+<h3>
+Warum die Sonderstadt Goyang?
+</h3>
+
+<p>
+Erfahren Sie mehr
+über die Standortvorteile,
+die städtische Infrastruktur
+und die potenzielle Wettbewerbsfähigkeit
+Goyangs als Standort
+für ein globales KI-Zentrum.
+</p>
+
+<a
+class="button secondary"
+href="goyang-de.html">
+Entdecken
+</a>
+
+</div>
+
+<!-- INTERNATIONALE ORGANISATIONEN -->
+
+<div class="card">
+
+<h3>
+Neun internationale Organisationen
+</h3>
+
+<p>
+Entdecken Sie die Aufgaben
+von neun internationalen Organisationen
+und mögliche Bereiche
+der KI-bezogenen Zusammenarbeit.
+</p>
+
+<a
+class="button secondary"
+href="agencies-de.html">
+Entdecken
+</a>
+
+</div>
+
+<!-- STRATEGIE -->
+
+<div class="card">
+
+<h3>
+Ansiedlungsstrategie
+</h3>
+
+<p>
+Erfahren Sie mehr
+über die vorgeschlagene Strategie
+für die anfängliche Einrichtung,
+die operative Unterstützung
+und das gemeinsame
+langfristige Wachstum.
+</p>
+
+<a
+class="button secondary"
+href="strategy-de.html">
+Entdecken
+</a>
+
+</div>
+
+<!-- BÜRGERBETEILIGUNG -->
+
+<div class="card">
+
+<h3>
+Bürgerbeteiligungszentrum
+</h3>
+
+<p>
+Hier finden Sie Informationen
+über Online-Unterschriften,
+die Registrierung
+im Bürgerkomitee,
+Fördermitgliedschaften
+und weitere Beteiligungsprogramme.
+</p>
+
+<a
+class="button"
+href="participate-de.html">
+Zum Bürgerbeteiligungszentrum
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. BÜRGERBETEILIGUNG
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. So können Sie sich beteiligen
+</h2>
+
+<p>
+Das Bürgerbeteiligungszentrum
+informiert über fünf
+verschiedene Beteiligungsprogramme.
+</p>
+
+<p class="note">
+Die Antragsformulare
+sind derzeit
+in koreanischer Sprache verfügbar.
+Bitte prüfen Sie
+die Informationen
+und Datenschutzhinweise,
+bevor Sie ein Formular absenden.
+</p>
+
+<div class="grid">
+
+<!-- UNTERSTÜTZUNGSKAMPAGNE -->
+
+<div class="card">
+
+<h3>
+① Online-Unterstützungskampagne
+</h3>
+
+<p>
+Bekunden Sie Ihre Unterstützung
+für das geplante globale KI-Zentrum
+in der Sonderstadt Goyang.
+</p>
+
+<ol class="steps">
+
+<li>
+Wählen Sie die Schaltfläche
+für die Online-Unterstützungskampagne.
+</li>
+
+<li>
+Geben Sie die im Formular
+angeforderten Informationen ein.
+</li>
+
+<li>
+Lesen Sie den Datenschutzhinweis.
+</li>
+
+<li>
+Senden Sie das ausgefüllte Formular ab.
+</li>
+
+</ol>
+
+<a
+class="button"
+href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+target="_blank"
+rel="noopener noreferrer">
+An der Kampagne teilnehmen
+</a>
+
+</div>
+
+<!-- REGISTRIERUNG -->
+
+<div class="card">
+
+<h3>
+② Registrierung im Bürgerkomitee
+</h3>
+
+<p>
+Bürgerinnen und Bürger,
+die sich aktiv
+an der Initiative
+für ein globales KI-Zentrum
+beteiligen möchten,
+können sich als Mitglieder
+des Bürgerkomitees registrieren.
+</p>
+
+<p>
+Bitte geben Sie
+die im Registrierungsformular
+angeforderten Informationen ein.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/FaZCDwm7gqu5rthb7"
+target="_blank"
+rel="noopener noreferrer">
+Registrieren
+</a>
+
+</div>
+
+<!-- FÖRDERMITGLIEDSCHAFT -->
+
+<div class="card">
+
+<h3>
+③ Fördermitgliedschaft
+</h3>
+
+<p>
+Personen,
+die die Aktivitäten
+des Bürgerkomitees unterstützen möchten,
+können eine Fördermitgliedschaft beantragen.
+</p>
+
+<p>
+Nach dem Absenden des Antrags
+prüfen Sie bitte
+die offiziellen Zahlungsinformationen
+im Bürgerbeteiligungszentrum.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+target="_blank"
+rel="noopener noreferrer">
+Fördermitgliedschaft beantragen
+</a>
+
+</div>
+
+<!-- WERBEBANNER -->
+
+<div class="card">
+
+<h3>
+④ Antrag auf ein Werbebanner
+</h3>
+
+<p>
+Beantragen Sie
+die Anbringung eines Werbebanners
+zur Unterstützung
+der geplanten Initiative
+für ein globales KI-Zentrum.
+</p>
+
+<p>
+Bitte beachten Sie
+die geltenden örtlichen Vorschriften,
+Standortanforderungen
+und erforderlichen Genehmigungen.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+target="_blank"
+rel="noopener noreferrer">
+Werbebanner beantragen
+</a>
+
+</div>
+
+<!-- FAHRZEUGAUFKLEBER -->
+
+<div class="card">
+
+<h3>
+⑤ Werbeaufkleber für Fahrzeuge
+</h3>
+
+<p>
+Beantragen Sie
+einen Werbeaufkleber,
+um das öffentliche Bewusstsein
+für die Initiative
+eines globalen KI-Zentrums zu stärken.
+</p>
+
+<p>
+Geben Sie
+die erforderlichen Informationen an,
+einschließlich Kontaktdaten
+und der gewünschten Stückzahl.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/cisRHEsN61pxVycG8"
+target="_blank"
+rel="noopener noreferrer">
+Fahrzeugaufkleber beantragen
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+Die Verfügbarkeit
+der Antragsmöglichkeiten
+und die Bearbeitungszeiten
+können je nach Arbeitsabläufen
+des Bürgerkomitees variieren.
+</p>
+
+</section>
+
+<!-- =====================================
+     4. ZAHLUNGSINFORMATIONEN
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. Fördermitgliedschaft und Zahlungen für Werbebanner
+</h2>
+
+<p>
+Wenn Sie einen Beitrag
+zur Fördermitgliedschaft
+oder die Kosten
+für ein Werbebanner bezahlen möchten,
+prüfen Sie bitte
+die offiziellen Bankkontoinformationen
+im Bürgerbeteiligungszentrum.
+</p>
+
+<div class="highlight">
+
+<strong>
+Wichtige Zahlungsinformationen
+</strong>
+
+<p>
+Überprüfen Sie
+vor einer Überweisung
+den Namen der Bank,
+die Kontonummer
+und den Kontoinhaber.
+</p>
+
+<p>
+Das Einreichen eines Antrags
+und die Durchführung
+einer Banküberweisung
+sind zwei getrennte Vorgänge.
+</p>
+
+<p>
+Wenn die Kontoinformationen
+nicht angezeigt werden
+oder unklar erscheinen,
+überweisen Sie bitte kein Geld,
+bevor die Angaben
+durch offizielle Informationen
+des Bürgerkomitees bestätigt wurden.
+</p>
+
+</div>
+
+<a
+class="button"
+href="participate-de.html">
+Offizielle Zahlungsinformationen prüfen
+</a>
+
+<p class="note">
+Bankkontoinformationen
+können sich ändern.
+Aus diesem Grund
+werden Kontonummern
+in diesem Benutzerhandbuch
+nicht direkt angegeben.
+</p>
+
+</section>
+
+<!-- =====================================
+     5. NACHRICHTEN UND RESSOURCEN
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. Nachrichten, Aktivitäten und Ressourcen
+</h2>
+
+<div class="grid">
+
+<!-- DISKUSSIONSFORUM -->
+
+<div class="card">
+
+<h3>
+Öffentliches Diskussionsforum
+</h3>
+
+<p>
+Ein Raum
+für den Austausch
+von Bürgermeinungen
+und Informationen
+über die Initiative
+für ein globales KI-Zentrum.
+</p>
+
+<a
+class="button secondary"
+href="board.html">
+Forum besuchen (Koreanisch)
+</a>
+
+</div>
+
+<!-- NACHRICHTEN -->
+
+<div class="card">
+
+<h3>
+Nachrichten und Bekanntmachungen
+</h3>
+
+<p>
+Lesen Sie aktuelle Informationen
+über die Aktivitäten
+des Bürgerkomitees,
+Veranstaltungen
+und wichtige Entwicklungen.
+</p>
+
+<a
+class="button secondary"
+href="news-de.html">
+Nachrichten ansehen
+</a>
+
+</div>
+
+<!-- PRESSE -->
+
+<div class="card">
+
+<h3>
+Presse und Medienberichte
+</h3>
+
+<p>
+Entdecken Sie Zeitungsartikel,
+Fernseh- und Rundfunkberichte
+sowie weitere Medienveröffentlichungen
+über die Initiative
+für ein globales KI-Zentrum.
+</p>
+
+<a
+class="button secondary"
+href="press-de.html">
+Medienberichte ansehen
+</a>
+
+</div>
+
+<!-- CHRONOLOGIE -->
+
+<div class="card">
+
+<h3>
+Chronologie und Meilensteine
+</h3>
+
+<p>
+Informieren Sie sich
+über wichtige Entwicklungen
+und Aktivitäten
+des Bürgerkomitees
+in chronologischer Reihenfolge.
+</p>
+
+<a
+class="button secondary"
+href="history-de.html">
+Chronologie ansehen
+</a>
+
+</div>
+
+</div>
+
+<p>
+Einige verlinkte Ressourcen
+und Originalnachrichten
+sind möglicherweise
+nur in koreanischer Sprache verfügbar.
+</p>
+
+<p>
+Bitte respektieren Sie
+bei der Teilnahme
+an Online-Diskussionen
+andere Nutzerinnen und Nutzer.
+Vermeiden Sie
+die Veröffentlichung
+personenbezogener Daten
+oder irreführender Inhalte.
+</p>
+
+</section>
+
+<!-- =====================================
+     6. HÄUFIG GESTELLTE FRAGEN
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. Häufig gestellte Fragen
+</h2>
+
+<div class="faq">
+
+<h3>
+F. Muss ich mich registrieren,
+um diese Website zu nutzen?
+</h3>
+
+<p>
+Allgemeine Informationen
+können ohne Registrierung
+abgerufen werden.
+Einige interaktive Funktionen
+können eine Anmeldung
+oder zusätzliche Berechtigungen erfordern.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+F. Ist die Online-Unterstützungskampagne
+dasselbe wie die Registrierung
+im Bürgerkomitee?
+</h3>
+
+<p>
+Nein.
+Die Online-Unterstützungskampagne
+ermöglicht es Einzelpersonen,
+ihre Unterstützung
+für das geplante globale KI-Zentrum
+zum Ausdruck zu bringen.
+</p>
+
+<p>
+Die Registrierung
+im Bürgerkomitee
+ist ein gesondertes Verfahren
+für Personen,
+die sich an den Aktivitäten
+des Komitees beteiligen möchten.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+F. Ist für die Teilnahme
+an der Online-Unterstützungskampagne
+ein Mitgliedsbeitrag erforderlich?
+</h3>
+
+<p>
+Nein.
+Die Online-Unterstützungskampagne
+und die Fördermitgliedschaft
+sind voneinander getrennte
+Beteiligungsprogramme.
+</p>
+
+<p>
+Mit der Unterzeichnung
+des Unterstützungsformulars
+geht keine Verpflichtung
+zur Zahlung eines Mitgliedsbeitrags einher.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+F. Ist die Zahlung
+mit dem Absenden
+des Fördermitgliedschaftsantrags abgeschlossen?
+</h3>
+
+<p>
+Nein.
+Die Antragstellung
+und die Überweisung
+sind getrennte Vorgänge.
+</p>
+
+<p>
+Bitte überprüfen Sie
+die offiziellen Zahlungsinformationen,
+bevor Sie eine Überweisung vornehmen.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+F. Haben die neun internationalen Organisationen
+ihren Umzug nach Goyang bereits bestätigt?
+</h3>
+
+<p>
+Nein.
+Die auf dieser Website
+vorgestellten internationalen Organisationen
+werden im Zusammenhang
+mit möglichen Kooperationen
+im Rahmen der Initiative
+für ein globales KI-Zentrum behandelt.
+</p>
+
+<p>
+Ihre Erwähnung bedeutet nicht,
+dass eine Beteiligung,
+die Einrichtung eines Büros
+oder ein Umzug nach Goyang
+offiziell bestätigt wurde.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+F. Darf ein Werbebanner
+unmittelbar nach der Antragstellung
+angebracht werden?
+</h3>
+
+<p>
+Nein.
+Die Einreichung eines Antrags
+berechtigt nicht automatisch
+zur Anbringung eines Werbebanners.
+</p>
+
+<p>
+Die geltenden Gesetze,
+örtlichen Vorschriften
+und standortspezifischen Anforderungen
+müssen eingehalten werden.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. WEBSITE-HILFE
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. Hilfe zur Website
+</h2>
+
+<h3>
+Wenn sich die Website nicht öffnen lässt
+</h3>
+
+<p>
+Überprüfen Sie
+Ihre Internetverbindung
+und die Website-Adresse.
+Versuchen Sie,
+die Seite nach kurzer Zeit
+erneut aufzurufen.
+</p>
+
+<h3>
+Wenn die Seite nicht richtig angezeigt wird
+</h3>
+
+<p>
+Laden Sie die Seite neu
+oder versuchen Sie es
+mit einem anderen Browser.
+</p>
+
+<h3>
+Wenn sich ein Antragsformular nicht öffnen lässt
+</h3>
+
+<p>
+Wählen Sie
+die entsprechende Schaltfläche erneut
+oder öffnen Sie das Formular
+mit einem anderen Browser.
+</p>
+
+<h3>
+Wenn die Bankkontoinformationen
+nicht angezeigt werden
+</h3>
+
+<p>
+Laden Sie das Bürgerbeteiligungszentrum
+erneut und prüfen Sie
+die Angaben noch einmal.
+</p>
+
+<p>
+Wenn das Problem weiterhin besteht,
+überweisen Sie bitte kein Geld,
+bevor die Kontoinformationen
+durch offizielle Informationen
+des Bürgerkomitees bestätigt wurden.
+</p>
+
+<h3>
+Schutz personenbezogener Daten
+</h3>
+
+<p>
+Lesen Sie
+vor der Einreichung eines Antrags
+die entsprechenden Hinweise
+zur Erhebung
+und Verwendung personenbezogener Daten.
+</p>
+
+<p>
+Veröffentlichen Sie
+keine personenbezogenen Daten
+anderer Personen
+in öffentlichen Diskussionsforen.
+</p>
+
+<a
+class="button secondary"
+href="privacy.html">
+Datenschutzerklärung (Koreanisch)
+</a>
+
+</section>
+
+<!-- =====================================
+     8. ABSCHLUSS
+===================================== -->
+
+<section>
+
+<h2>
+8. Gestalten Sie mit uns die Zukunft Goyangs
+</h2>
+
+<p>
+Das geplante globale KI-Zentrum
+bietet der Sonderstadt Goyang
+die Möglichkeit,
+neue Wachstumschancen,
+hochwertige Beschäftigung
+und internationale Zusammenarbeit
+zu erschließen.
+</p>
+
+<p>
+Bürgerinnen und Bürger
+sowie weitere Interessierte
+können sich
+durch die Online-Unterstützungskampagne,
+die Registrierung im Bürgerkomitee,
+Fördermitgliedschaften
+und öffentliche Informationsaktivitäten
+beteiligen.
+</p>
+
+<div class="highlight">
+
+<strong>
+Jedes Zeichen des Interesses
+und jede Form der Beteiligung
+kann dazu beitragen,
+die Zukunft Goyangs zu gestalten.
+</strong>
+
+</div>
+
+<a
+class="button"
+href="participate-de.html">
+Bürgerbeteiligungszentrum
+</a>
+
+<a
+class="button secondary"
+href="index-de.html">
+Deutsche Startseite
+</a>
+
+</section>
+
+</main>
+
+<!-- FUSSZEILE -->
+
+<footer>
+
+<p>
+<strong>
+Bürgerkomitee zur Förderung<br>
+der Ansiedlung eines globalen KI-Zentrums<br>
+in der Sonderstadt Goyang
+</strong>
+</p>
+
+<p>
+Provinz Gyeonggi,
+Republik Korea
+</p>
+
+<p>
+Mit den Bürgerinnen und Bürgern,<br>
+mit der Provinz Gyeonggi<br>
+und mit der Welt.
+</p>
+
+<p>
+<a href="index-de.html">
+Deutsche Startseite
+</a>
+&nbsp; | &nbsp;
+<a href="participate-de.html">
+Bürgerbeteiligung
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
