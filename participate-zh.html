@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+市民参与中心 | 全球人工智能枢纽倡议
+</title>
+
+<meta
+  name="description"
+  content="参与韩国京畿道高阳特例市全球人工智能枢纽倡议。通过十万市民支持签名活动、市民推进委员会成员登记、支持会员申请及社区活动，共同支持高阳特例市的未来发展。"
+>
+
+<style>
+
+/* =====================================
+   基本设置
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans SC",
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   页眉
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   主要内容
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* =====================================
+   网格布局
+===================================== */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* =====================================
+   按钮
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #003a7a;
+}
+
+/* =====================================
+   十万市民支持活动
+===================================== */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* =====================================
+   参与说明
+===================================== */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   缴费账户信息
+===================================== */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* =====================================
+   页脚
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   移动设备
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     页眉
+===================================== -->
+
+<header>
+
+<h1>
+市民参与中心
+</h1>
+
+<p>
+全球人工智能枢纽倡议<br>
+大韩民国京畿道高阳特例市
+</p>
+
+<p>
+通过市民参与<br>
+共同开创高阳的新未来
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-zh.html"
+  class="home-link"
+>
+  ← 中文首页
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     页面介绍
+===================================== -->
+
+<div class="intro">
+
+<h2>
+让全球人工智能枢纽落户高阳！
+</h2>
+
+<p>
+
+<strong>
+为高阳创造新的增长机遇！
+</strong>
+
+<br>
+
+<strong>
+为高阳创造更多高质量就业岗位！
+</strong>
+
+</p>
+
+<p>
+拟议中的全球人工智能枢纽
+将为高阳特例市
+发展成为国际合作
+和人工智能相关产业的重要中心
+提供新的机遇。
+</p>
+
+<p>
+市民推进委员会
+致力于增进公众对该倡议的理解，
+并鼓励广大市民、
+专业人士
+及民间社会组织
+自愿参与。
+</p>
+
+<p>
+
+<strong>
+您的参与
+将有助于凝聚公众支持，
+共同推动全球人工智能枢纽
+落户高阳特例市。
+</strong>
+
+</p>
+
+</div>
+
+<!-- =====================================
+     语言说明
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+国际访问者须知
+</strong>
+
+<p>
+本页面以中文介绍
+市民推进委员会
+开展的各项市民参与活动。
+</p>
+
+<p>
+相关申请表目前仅提供韩语版本。
+提交个人信息之前，
+请仔细阅读申请表中的说明。
+</p>
+
+<p>
+支持会员缴费
+及其他相关参与程序，
+须遵守委员会适用的规定和要求。
+</p>
+
+</div>
+
+<!-- =====================================
+     十万市民支持签名活动
+===================================== -->
+
+<section class="signature">
+
+<h2>
+十万市民支持签名活动
+</h2>
+
+<p>
+欢迎参加支持
+全球人工智能枢纽
+落户高阳特例市的
+公众签名活动。
+</p>
+
+<p>
+通过汇聚广大市民的声音，
+我们希望进一步提高公众认知，
+凝聚社会共识，
+共同支持高阳特例市的未来发展。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  参加在线支持签名活动
+</a>
+
+<p class="small-note">
+申请表目前仅提供韩语版本。
+</p>
+
+</section>
+
+<!-- =====================================
+     市民参与项目
+===================================== -->
+
+<div class="grid">
+
+<!-- =====================================
+     1. 推进委员会成员登记
+===================================== -->
+
+<article class="card">
+
+<h3>
+市民推进委员会成员登记
+</h3>
+
+<p>
+欢迎希望支持
+全球人工智能枢纽倡议的
+广大市民、
+专业人士、
+民间社会组织代表
+以及其他有意参与的人士
+加入市民推进委员会。
+</p>
+
+<p>
+通过参与委员会活动，
+您可以为公众交流、
+政策讨论
+以及社区活动
+作出贡献。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请加入推进委员会
+</a>
+
+<p class="small-note">
+申请表目前仅提供韩语版本。
+</p>
+
+</article>
+
+<!-- =====================================
+     2. 支持会员申请
+===================================== -->
+
+<article class="card">
+
+<h3>
+支持会员申请
+</h3>
+
+<p>
+欢迎成为支持会员，
+共同支持与全球人工智能枢纽倡议
+有关的市民活动、
+公众宣传
+以及政策交流工作。
+</p>
+
+<p>
+支持会员缴费
+可汇入下方显示的
+指定银行账户。
+</p>
+
+<!-- 自动显示支持会员账户 -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请成为支持会员
+</a>
+
+<p class="small-note">
+申请表目前仅提供韩语版本。
+汇款前请确认最新缴费说明
+及指定账户信息。
+</p>
+
+</article>
+
+<!-- =====================================
+     3. 宣传横幅申请
+===================================== -->
+
+<article class="card">
+
+<h3>
+宣传横幅申请
+</h3>
+
+<p>
+欢迎通过申请设置
+支持全球人工智能枢纽
+落户高阳特例市的宣传横幅，
+参与公众宣传活动。
+</p>
+
+<p>
+提交申请后，
+请按照相关说明
+将适用费用汇入
+下方显示的指定银行账户。
+</p>
+
+<p>
+宣传横幅的设置
+须遵守当地管理规定、
+适用法律
+以及设置地点的相关要求。
+</p>
+
+<!-- 自动显示宣传横幅账户 -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请设置宣传横幅
+</a>
+
+<p class="small-note">
+申请表目前仅提供韩语版本。
+</p>
+
+</article>
+
+<!-- =====================================
+     4. 车辆宣传贴纸
+===================================== -->
+
+<article class="card">
+
+<h3>
+车辆宣传贴纸申请
+</h3>
+
+<p>
+通过在车辆上张贴
+全球人工智能枢纽倡议
+宣传贴纸，
+帮助提高公众对该倡议的认知。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请车辆宣传贴纸
+</a>
+
+<p class="small-note">
+申请表目前仅提供韩语版本。
+</p>
+
+</article>
+
+<!-- =====================================
+     5. KakaoTalk 社区
+===================================== -->
+
+<article class="card">
+
+<h3>
+KakaoTalk交流社区
+</h3>
+
+<p>
+欢迎加入市民推进委员会的
+KakaoTalk交流社区，
+分享与全球人工智能枢纽倡议
+有关的活动信息、
+公众参与机会
+以及最新发展动态。
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  加入KakaoTalk交流社区
+</a>
+
+<p class="small-note">
+社区交流主要使用韩语。
+</p>
+
+</article>
+
+<!-- =====================================
+     6. Facebook 讨论群组
+===================================== -->
+
+<article class="card">
+
+<h3>
+Facebook讨论群组
+</h3>
+
+<p>
+欢迎分享相关信息、
+交流不同观点，
+并参与关于
+全球人工智能枢纽倡议的
+公众讨论。
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  加入Facebook讨论群组
+</a>
+
+</article>
+
+<!-- =====================================
+     7. 委员会活动相册
+===================================== -->
+
+<article class="card">
+
+<h3>
+市民推进委员会活动相册
+</h3>
+
+<p>
+浏览市民推进委员会
+及公众支持活动的照片，
+了解委员会开展的
+各项活动。
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  查看活动相册（韩语）
+</a>
+
+</article>
+
+</div>
+
+<!-- =====================================
+     参与说明
+===================================== -->
+
+<section class="notice">
+
+<h2>
+参与须知
+</h2>
+
+<p>
+市民推进委员会
+开展多种市民参与项目，
+包括公众支持签名活动、
+推进委员会成员登记、
+支持会员申请、
+宣传横幅申请
+以及车辆宣传贴纸申请。
+</p>
+
+<p>
+各项申请
+均通过相应的在线表格提交。
+</p>
+
+<p>
+提交申请前，
+参与者应仔细了解
+申请目的，
+以及有关个人信息收集
+和使用的说明。
+</p>
+
+<p>
+支持会员缴费
+及宣传横幅相关费用，
+只能汇入委员会正式指定的
+银行账户。
+</p>
+
+<p>
+汇款前，
+请务必确认最新账户信息
+及相关付款条件。
+</p>
+
+<p>
+有关个人信息保护的详细说明，
+请参阅
+<a href="privacy.html">
+个人信息保护政策（韩语）
+</a>。
+</p>
+
+</section>
+
+<!-- =====================================
+     相关页面
+===================================== -->
+
+<section class="notice">
+
+<h2>
+了解更多
+</h2>
+
+<p>
+进一步了解市民推进委员会、
+全球人工智能枢纽倡议
+以及相关最新消息。
+</p>
+
+<a
+  class="button"
+  href="committee-zh.html"
+>
+  关于市民推进委员会
+</a>
+
+<a
+  class="button"
+  href="hub-zh.html"
+>
+  关于全球人工智能枢纽
+</a>
+
+<a
+  class="button"
+  href="news-zh.html"
+>
+  最新消息与公告
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     页脚
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高阳特例市全球人工智能枢纽<br>
+引进市民推进委员会
+</strong>
+</p>
+
+<p>
+大韩民国京畿道
+</p>
+
+<p>
+与市民同行，<br>
+与京畿道同行，<br>
+与世界同行。
+</p>
+
+<p>
+<a href="index-zh.html">
+中文首页
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE 缴费账户模块
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE 连接
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   自动加载缴费账户信息
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+
+    membership:
+      "membershipAccountInfo",
+
+    banner:
+      "bannerAccountInfo"
+
+  };
+
+  const accountTitles = {
+
+    membership:
+      "支持会员缴费账户",
+
+    banner:
+      "宣传横幅费用缴纳账户"
+
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+
+      throw error;
+
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(
+          targetId
+        );
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+
+        continue;
+
+      }
+
+      container.replaceChildren();
+
+      /* =====================================
+         账户标题
+      ===================================== */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        accountTitles[
+          account.account_type
+        ] || "指定缴费账户";
+
+      /* =====================================
+         银行名称
+      ===================================== */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "银行名称：" + bank;
+
+      /* =====================================
+         账号
+      ===================================== */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "账号：" + number;
+
+      /* =====================================
+         账户持有人
+      ===================================== */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "账户持有人：" + holder;
+
+      /* =====================================
+         显示账户信息
+      ===================================== */
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "缴费账户信息加载完成。"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "缴费账户信息查询失败:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   页面初始化
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
