@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Центр участия граждан |
+Инициатива «Глобальный центр ИИ»
+</title>
+
+<meta
+  name="description"
+  content="Примите участие в инициативе «Глобальный центр ИИ» в особом городе Коян: кампания общественной поддержки, регистрация в Комитете, поддерживающее членство и общественные мероприятия."
+>
+
+<style>
+
+/* =====================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ШАПКА САЙТА
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+/* =====================================
+   ОСНОВНОЕ СОДЕРЖИМОЕ
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* =====================================
+   СЕТКА КАРТОЧЕК
+===================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* =====================================
+   КНОПКИ
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #003a7a;
+}
+
+/* =====================================
+   КАМПАНИЯ ПОДДЕРЖКИ
+===================================== */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* =====================================
+   ИНФОРМАЦИОННЫЕ РАЗДЕЛЫ
+===================================== */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   БАНКОВСКИЕ РЕКВИЗИТЫ
+===================================== */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* =====================================
+   ПОДВАЛ САЙТА
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     ШАПКА САЙТА
+===================================== -->
+
+<header>
+
+<h1>
+Центр участия граждан
+</h1>
+
+<p>
+Инициатива «Глобальный центр ИИ»<br>
+Особый город Коян,<br>
+провинция Кёнгидо,<br>
+Республика Корея
+</p>
+
+<p>
+Создаём новое будущее Кояна<br>
+при активном участии граждан
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ru.html"
+  class="home-link"
+>
+  ← Главная страница
+</a>
+
+<a
+  href="participate.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     ВВЕДЕНИЕ
+===================================== -->
+
+<div class="intro">
+
+<h2>
+Поддержим размещение Глобального центра ИИ в Кояне!
+</h2>
+
+<p>
+<strong>
+Новые возможности роста для Кояна!
+</strong>
+<br>
+<strong>
+Больше качественных рабочих мест для Кояна!
+</strong>
+</p>
+
+<p>
+Предлагаемый Глобальный центр ИИ
+представляет собой важную возможность
+для особого города Коян
+развиваться как центр
+международного сотрудничества
+и отраслей, связанных
+с искусственным интеллектом.
+</p>
+
+<p>
+Гражданский комитет содействия
+стремится расширять
+общественное понимание инициативы
+и поощрять добровольное участие
+граждан,
+специалистов
+и общественных организаций.
+</p>
+
+<p>
+<strong>
+Ваше участие может помочь
+укрепить общественную поддержку
+размещения Глобального центра ИИ
+в особом городе Коян.
+</strong>
+</p>
+
+</div>
+
+<!-- =====================================
+     ИНФОРМАЦИЯ ДЛЯ ИНОСТРАННЫХ ГОСТЕЙ
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Информация для иностранных посетителей
+</strong>
+
+<p>
+На этой странице на русском языке
+представлены программы участия граждан,
+организуемые Комитетом.
+</p>
+
+<p>
+Формы заявок в настоящее время
+доступны на корейском языке.
+Пожалуйста, внимательно ознакомьтесь
+с информацией в каждой форме
+перед предоставлением персональных данных.
+</p>
+
+<p>
+Финансовые взносы
+и связанные с ними процедуры участия
+регулируются применимыми правилами
+и требованиями Комитета.
+</p>
+
+</div>
+
+<!-- =====================================
+     КАМПАНИЯ 100 000 ПОДПИСЕЙ
+===================================== -->
+
+<section class="signature">
+
+<h2>
+Кампания по сбору 100 000 подписей граждан
+</h2>
+
+<p>
+Присоединяйтесь к общественной кампании
+по сбору подписей
+в поддержку предлагаемого
+Глобального центра ИИ
+в особом городе Коян.
+</p>
+
+<p>
+Объединяя голоса отдельных граждан,
+мы стремимся укрепить
+общественную осведомлённость
+и поддержку будущего развития Кояна.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Присоединиться к кампании поддержки
+</a>
+
+<p class="small-note">
+Форма заявки на корейском языке.
+</p>
+
+</section>
+
+<!-- =====================================
+     ПРОГРАММЫ УЧАСТИЯ
+===================================== -->
+
+<div class="grid">
+
+<!-- РЕГИСТРАЦИЯ В КОМИТЕТЕ -->
+
+<article class="card">
+
+<h3>
+Регистрация в Комитете
+</h3>
+
+<p>
+Мы приветствуем граждан,
+специалистов,
+представителей общественных организаций
+и других заинтересованных участников,
+желающих поддержать
+инициативу «Глобальный центр ИИ».
+</p>
+
+<p>
+Участие в Комитете
+предоставляет возможность
+вносить вклад
+в общественную деятельность,
+обсуждение государственной политики
+и мероприятия местного сообщества.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Зарегистрироваться в Комитете
+</a>
+
+<p class="small-note">
+Форма заявки на корейском языке.
+</p>
+
+</article>
+
+<!-- ПОДДЕРЖИВАЮЩЕЕ ЧЛЕНСТВО -->
+
+<article class="card">
+
+<h3>
+Поддерживающее членство
+</h3>
+
+<p>
+Станьте поддерживающим членом,
+чтобы содействовать
+устойчивому развитию
+гражданских инициатив,
+общественной коммуникации
+и информационно-просветительской деятельности
+в рамках инициативы
+«Глобальный центр ИИ».
+</p>
+
+<p>
+Членские взносы
+могут перечисляться
+на указанный ниже
+специальный банковский счёт.
+</p>
+
+<!-- АВТОМАТИЧЕСКОЕ ОТОБРАЖЕНИЕ СЧЁТА -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Подать заявку на поддерживающее членство
+</a>
+
+<p class="small-note">
+Форма заявки на корейском языке.
+Пожалуйста, уточните актуальные
+платёжные инструкции
+перед переводом денежных средств.
+</p>
+
+</article>
+
+<!-- ЗАЯВКА НА РЕКЛАМНЫЙ БАННЕР -->
+
+<article class="card">
+
+<h3>
+Заявка на размещение рекламного баннера
+</h3>
+
+<p>
+Примите участие
+в мероприятиях по повышению
+общественной осведомлённости,
+подав заявку
+на размещение рекламных баннеров
+в поддержку предлагаемого
+Глобального центра ИИ в Кояне.
+</p>
+
+<p>
+После подачи заявки
+оплатите соответствующие расходы
+на указанный ниже
+специальный банковский счёт.
+</p>
+
+<p>
+Размещение баннеров
+должно соответствовать
+местным нормативным требованиям,
+применимому законодательству
+и условиям размещения.
+</p>
+
+<!-- АВТОМАТИЧЕСКОЕ ОТОБРАЖЕНИЕ СЧЁТА -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Подать заявку на рекламный баннер
+</a>
+
+<p class="small-note">
+Форма заявки на корейском языке.
+</p>
+
+</article>
+
+<!-- АВТОМОБИЛЬНАЯ НАКЛЕЙКА -->
+
+<article class="card">
+
+<h3>
+Рекламная наклейка на автомобиль
+</h3>
+
+<p>
+Помогите повысить
+общественную осведомлённость
+об инициативе «Глобальный центр ИИ»,
+разместив рекламную наклейку
+на своём автомобиле.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Подать заявку на автомобильную наклейку
+</a>
+
+<p class="small-note">
+Форма заявки на корейском языке.
+</p>
+
+</article>
+
+<!-- СООБЩЕСТВО KAKAOTALK -->
+
+<article class="card">
+
+<h3>
+Сообщество KakaoTalk
+</h3>
+
+<p>
+Присоединяйтесь
+к коммуникационной группе Комитета
+в KakaoTalk,
+чтобы обмениваться информацией
+о мероприятиях,
+участии общественности
+и событиях,
+связанных с инициативой
+«Глобальный центр ИИ».
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Присоединиться к сообществу KakaoTalk
+</a>
+
+<p class="small-note">
+Общение в сообществе
+ведётся преимущественно
+на корейском языке.
+</p>
+
+</article>
+
+<!-- ГРУППА FACEBOOK -->
+
+<article class="card">
+
+<h3>
+Дискуссионная группа Facebook
+</h3>
+
+<p>
+Делитесь информацией,
+обменивайтесь мнениями
+и участвуйте
+в общественных обсуждениях
+предлагаемой инициативы
+«Глобальный центр ИИ».
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Присоединиться к группе Facebook
+</a>
+
+</article>
+
+<!-- ГАЛЕРЕЯ ДЕЯТЕЛЬНОСТИ -->
+
+<article class="card">
+
+<h3>
+Фотогалерея деятельности Комитета
+</h3>
+
+<p>
+Ознакомьтесь с фотографиями,
+документирующими деятельность
+Гражданского комитета содействия
+и общественной кампании поддержки.
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  Посмотреть фотогалерею (на корейском языке)
+</a>
+
+</article>
+
+</div>
+
+<!-- =====================================
+     ИНФОРМАЦИЯ ОБ УЧАСТИИ
+===================================== -->
+
+<section class="notice">
+
+<h2>
+Информация об участии
+</h2>
+
+<p>
+Гражданский комитет содействия
+организует несколько программ
+участия общественности,
+включая кампанию по сбору подписей,
+регистрацию в Комитете,
+поддерживающее членство,
+заявки на рекламные баннеры
+и автомобильные наклейки.
+</p>
+
+<p>
+Каждая заявка подаётся
+через соответствующую онлайн-форму.
+Перед подачей заявки
+участникам следует ознакомиться
+с её целью,
+а также с информацией
+о сборе и использовании
+персональных данных.
+</p>
+
+<p>
+Членские взносы
+и расходы на рекламные баннеры
+следует перечислять
+только на банковские счета,
+официально указанные Комитетом.
+</p>
+
+<p>
+Перед переводом денежных средств
+пожалуйста, проверьте
+актуальные банковские реквизиты
+и условия оплаты.
+</p>
+
+<p>
+Информацию о защите
+персональных данных
+можно найти в документе
+<a href="privacy.html">
+«Политика конфиденциальности»
+(на корейском языке)
+</a>.
+</p>
+
+</section>
+
+<!-- =====================================
+     СВЯЗАННЫЕ СТРАНИЦЫ
+===================================== -->
+
+<section class="notice">
+
+<h2>
+Дополнительная информация
+</h2>
+
+<p>
+Узнайте больше
+о Гражданском комитете содействия,
+его целях
+и инициативе «Глобальный центр ИИ».
+</p>
+
+<a
+  class="button"
+  href="committee-ru.html"
+>
+  О Гражданском комитете
+</a>
+
+<a
+  class="button"
+  href="hub-ru.html"
+>
+  О Глобальном центре ИИ
+</a>
+
+<a
+  class="button"
+  href="news-ru.html"
+>
+  Новости и объявления
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     ПОДВАЛ САЙТА
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Гражданский комитет содействия<br>
+размещению Глобального центра ИИ<br>
+в особом городе Коян
+</strong>
+</p>
+
+<p>
+Провинция Кёнгидо,<br>
+Республика Корея
+</p>
+
+<p>
+Вместе с гражданами,<br>
+вместе с провинцией Кёнгидо<br>
+и вместе со всем миром.
+</p>
+
+<p>
+<a href="index-ru.html">
+Главная страница
+</a>
+&nbsp; | &nbsp;
+<a href="participate.html" lang="ko">
+한국어
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     МОДУЛЬ БАНКОВСКИХ РЕКВИЗИТОВ SUPABASE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   ПОДКЛЮЧЕНИЕ К SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   АВТОМАТИЧЕСКОЕ ОТОБРАЖЕНИЕ СЧЕТОВ
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+    membership: "membershipAccountInfo",
+    banner: "bannerAccountInfo"
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* ЗАГОЛОВОК */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "Банковские реквизиты для оплаты";
+
+      /* БАНК */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "Банк: " + bank;
+
+      /* НОМЕР СЧЁТА */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "Номер счёта: " + number;
+
+      /* ВЛАДЕЛЕЦ СЧЁТА */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "Владелец счёта: " + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "Информация о банковских счетах загружена."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Ошибка загрузки банковских реквизитов:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
