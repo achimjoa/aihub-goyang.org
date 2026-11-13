@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Initiative für ein globales KI-Zentrum in der Sonderstadt Goyang, Republik Korea. Internationale Zusammenarbeit zwischen Organisationen, Forschungseinrichtungen, Unternehmen und der Zivilgesellschaft.">
+
+<title>
+Initiative für ein globales KI-Zentrum | Goyang
+</title>
+
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/index-de.html">
+
+<link rel="alternate"
+hreflang="de"
+href="https://achimjoa.github.io/aihub-goyang.org/index-de.html">
+
+<style>
+
+/* =====================================
+   GRUNDEINSTELLUNGEN
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.75;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   KOMPAKTER KOPFBEREICH
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+  color: white;
+  padding: 16px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 4px;
+  line-height: 1.3;
+}
+
+header h2 {
+  font-size: 15px;
+  font-weight: normal;
+  color: #dcecff;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* =====================================
+   HAUPTNAVIGATION
+===================================== */
+
+.main-nav {
+  background: #10315e;
+  padding: 10px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-nav > a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.main-nav > a:hover {
+  color: #ffdf5a;
+}
+
+/* =====================================
+   SPRACHAUSWAHL
+===================================== */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+  margin-left: 10px;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 190px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+.language-options a {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  background: white;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.language-options a:hover,
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  font-weight: bold;
+}
+
+/* =====================================
+   HAUPTBANNER
+===================================== */
+
+.main-banner {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #0754a6;
+}
+
+.main-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* =====================================
+   HAUPTINHALT
+===================================== */
+
+main {
+  max-width: 1180px;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 35px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* =====================================
+   VISION
+===================================== */
+
+.hero {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #eaf4ff,
+    #ffffff
+  );
+}
+
+.hero h2 {
+  border: none;
+  font-size: clamp(25px, 4vw, 37px);
+  line-height: 1.4;
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+/* =====================================
+   KARTEN
+===================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f4f8fc;
+  padding: 24px;
+  border-radius: 10px;
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* =====================================
+   HERVORHEBUNG
+===================================== */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 24px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+/* =====================================
+   SCHALTFLÄCHEN
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 10px 8px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cce2ff;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   SEITENÜBERSICHT
+===================================== */
+
+.page-directory {
+  background: #f0f6ff;
+}
+
+.page-directory .card {
+  background: white;
+}
+
+/* =====================================
+   FUSSZEILE
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   MOBILE ANSICHT
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 14px 12px;
+  }
+
+  .main-nav {
+    gap: 10px;
+  }
+
+  .language-dropdown {
+    margin-left: 0;
+  }
+
+  section {
+    padding: 23px;
+  }
+
+  .card {
+    padding: 19px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     KOPFBEREICH
+===================================== -->
+
+<header>
+
+<h1>
+INITIATIVE FÜR EIN GLOBALES KI-ZENTRUM
+</h1>
+
+<h2>
+Sonderstadt Goyang ·
+Provinz Gyeonggi, Republik Korea
+</h2>
+
+</header>
+
+<!-- =====================================
+     HAUPTNAVIGATION
+===================================== -->
+
+<nav class="main-nav"
+aria-label="Hauptnavigation">
+
+<a href="index-de.html">
+Startseite
+</a>
+
+<a href="hub-de.html">
+Globales KI-Zentrum
+</a>
+
+<a href="goyang-de.html">
+Warum Goyang?
+</a>
+
+<a href="agencies-de.html">
+Internationale Organisationen
+</a>
+
+<a href="strategy-de.html">
+Strategie
+</a>
+
+<a href="committee-de.html">
+Bürgerkomitee
+</a>
+
+<a href="history-de.html">
+Chronologie
+</a>
+
+<a href="news-de.html">
+Aktuelles
+</a>
+
+<a href="press-de.html">
+Presse
+</a>
+
+<a href="participate-de.html">
+Bürgerbeteiligung
+</a>
+
+<a href="guide-de.html">
+Leitfaden
+</a>
+
+<!-- SPRACHAUSWAHL -->
+
+<details class="language-dropdown">
+
+<summary aria-label="Sprache auswählen">
+🌐 Sprache ▾
+</summary>
+
+<div class="language-options">
+
+<a href="index-de.html"
+lang="de"
+aria-current="page">
+Deutsch ✓
+</a>
+
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+</div>
+
+</details>
+
+</nav>
+
+<!-- =====================================
+     HAUPTBANNER
+===================================== -->
+
+<div class="main-banner">
+
+<img
+src="aihub-main-banner-en.png"
+alt="Initiative für ein globales KI-Zentrum in Goyang"
+loading="eager"
+fetchpriority="high">
+
+</div>
+
+<main>
+
+<!-- =====================================
+     VISION
+===================================== -->
+
+<section class="hero" id="vision">
+
+<h2>
+Künstliche Intelligenz im Dienste der Menschheit.<br>
+Internationale Zusammenarbeit für eine bessere Zukunft.
+</h2>
+
+<p>
+Wir verbinden internationale Organisationen,
+Regierungen, Forschungseinrichtungen,
+Universitäten, Unternehmen und die Zivilgesellschaft,
+um globale Herausforderungen gemeinsam anzugehen.
+</p>
+
+<div class="highlight">
+
+<strong>
+Unsere Vision
+</strong>
+
+<p>
+Die Sonderstadt Goyang soll zu einem Zentrum
+internationaler Zusammenarbeit entwickelt werden,
+in dem künstliche Intelligenz
+nachhaltige Entwicklung,
+menschliches Wohlergehen
+und Lösungen für globale Herausforderungen unterstützt.
+</p>
+
+</div>
+
+<a href="goyang-de.html" class="button">
+Warum Goyang?
+</a>
+
+<a href="agencies-de.html" class="button secondary">
+Internationale Kooperationsmöglichkeiten
+</a>
+
+</section>
+
+<!-- =====================================
+     GLOBALES KI-ZENTRUM
+===================================== -->
+
+<section id="hub">
+
+<h2>
+1. Was ist das globale KI-Zentrum?
+</h2>
+
+<p>
+Das geplante globale KI-Zentrum
+ist als internationale Kooperationsplattform vorgesehen,
+die das Fachwissen internationaler Organisationen
+mit den Fortschritten
+der künstlichen Intelligenz verbindet.
+</p>
+
+<p>
+Ziel ist es zu untersuchen,
+wie KI zur Bewältigung komplexer
+globaler Herausforderungen beitragen kann.
+Dazu gehören öffentliche Gesundheit,
+Ernährungssicherheit,
+Klimawandel,
+Umweltschutz,
+humanitäre Hilfe,
+Migration,
+Beschäftigung,
+Bildung und Katastrophenvorsorge.
+</p>
+
+<p>
+Die Initiative möchte die Zusammenarbeit
+zwischen internationalen Organisationen,
+Regierungen,
+Hochschulen,
+Forschungszentren,
+Unternehmen und der Zivilgesellschaft fördern.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Internationale Zusammenarbeit
+</h3>
+
+<p>
+Förderung des Dialogs,
+des Wissensaustauschs
+und der Zusammenarbeit
+zwischen Institutionen und Ländern.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+KI-Forschung und Innovation
+</h3>
+
+<p>
+Erforschung verantwortungsvoller KI-Anwendungen
+zur Lösung gesellschaftlich relevanter Probleme
+durch Forschung und Zusammenarbeit.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Praktische Lösungen
+</h3>
+
+<p>
+Unterstützung von Möglichkeiten
+für Pilotprojekte,
+Technologiebewertungen
+und evidenzbasierte Ansätze
+zur Bewältigung globaler Herausforderungen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Kompetenzentwicklung
+</h3>
+
+<p>
+Erkundung von Ausbildungsangeboten,
+Fachaustausch
+und internationalen Lernmöglichkeiten.
+</p>
+
+</div>
+
+</div>
+
+<a href="hub-de.html" class="button">
+Mehr über das globale KI-Zentrum erfahren
+</a>
+
+</section>
+
+<!-- =====================================
+     GOYANG
+===================================== -->
+
+<section id="goyang">
+
+<h2>
+2. Warum die Sonderstadt Goyang?
+</h2>
+
+<p>
+Die Sonderstadt Goyang liegt
+in der Provinz Gyeonggi
+innerhalb der Metropolregion Seoul
+in der Republik Korea.
+</p>
+
+<p>
+Ihre Infrastruktur für internationale
+Ausstellungen und Kongresse,
+medizinische Einrichtungen,
+städtische Dienstleistungen
+und natürlichen Ressourcen
+bieten eine Grundlage
+für die Entwicklung
+eines internationalen Kooperationszentrums.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Strategische Lage
+</h3>
+
+<p>
+Goyang profitiert von seiner Lage
+innerhalb der Metropolregion Seoul
+und bietet Zugang
+zu bedeutenden wirtschaftlichen,
+akademischen und institutionellen Netzwerken.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+KINTEX – Kongressinfrastruktur
+</h3>
+
+<p>
+KINTEX bietet Einrichtungen
+für internationale Ausstellungen,
+Konferenzen und Fachaustausch.
+</p>
+
+<p>
+Diese Infrastruktur könnte
+internationale Tagungen,
+Foren und Kooperationsveranstaltungen
+im Zusammenhang mit dem geplanten Zentrum unterstützen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Gesundheitswesen und Forschung
+</h3>
+
+<p>
+In Goyang befinden sich
+das Nationale Krebszentrum
+und weitere medizinische Einrichtungen.
+</p>
+
+<p>
+Diese Einrichtungen bieten Möglichkeiten
+zur Zusammenarbeit
+in der öffentlichen Gesundheit,
+medizinischen Forschung
+und verantwortungsvollen KI-Anwendungen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Natürliche Ressourcen
+</h3>
+
+<p>
+Das Janghang-Feuchtgebiet
+und die umliegenden Ökosysteme
+bieten Möglichkeiten
+für Umweltbildung,
+Forschung und Nachhaltigkeitsinitiativen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Lebensumfeld
+</h3>
+
+<p>
+Goyang bietet Wohngebiete,
+medizinische Versorgung,
+Bildungseinrichtungen,
+kulturelle Angebote
+und städtische Infrastruktur.
+</p>
+
+<p>
+Die besonderen Bedürfnisse
+internationaler Fachkräfte
+und ihrer Familien
+müssten im Rahmen
+weiterer Konsultationen geprüft werden.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Regionale Entwicklungsmöglichkeiten
+</h3>
+
+<p>
+Internationale Zusammenarbeit
+könnte neue Möglichkeiten
+für Forschung,
+qualifizierte Beschäftigung,
+Unternehmensentwicklung
+und damit verbundene Dienstleistungen schaffen.
+</p>
+
+<p>
+Die tatsächlichen Ergebnisse
+würden vom Umfang
+und der Struktur zukünftiger Partnerschaften abhängen.
+</p>
+
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+Ein Standort für internationale Zusammenarbeit
+und gemeinsames Wachstum
+</strong>
+
+<p>
+Die vorhandenen Stärken Goyangs
+bilden eine Grundlage
+für die Entwicklung
+eines globalen KI-Zentrums,
+das internationale Zusammenarbeit
+und regionale Entwicklung fördert.
+</p>
+
+</div>
+
+<a href="goyang-de.html" class="button">
+Die Vorteile Goyangs entdecken
+</a>
+
+</section>
+
+<!-- =====================================
+     INTERNATIONALE ORGANISATIONEN
+===================================== -->
+
+<section id="organizations">
+
+<h2>
+3. Internationale Organisationen
+und mögliche Kooperationsbereiche
+</h2>
+
+<p>
+Die Initiative benennt neun internationale Organisationen,
+deren Fachgebiete
+für eine mögliche KI-gestützte
+internationale Zusammenarbeit relevant sind.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>WHO</h3>
+
+<p>
+<strong>Weltgesundheitsorganisation</strong>
+</p>
+
+<p>
+Öffentliche Gesundheit,
+Krankheitsprävention,
+Gesundheitssysteme
+und mögliche KI-Anwendungen
+zur Analyse von Gesundheitsinformationen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>WFP</h3>
+
+<p>
+<strong>Welternährungsprogramm</strong>
+</p>
+
+<p>
+Ernährungssicherheit,
+humanitäre Hilfe,
+Widerstandsfähigkeit von Lieferketten
+und mögliche KI-gestützte Analysen
+von Ernährungskrisen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>UNEP</h3>
+
+<p>
+<strong>Umweltprogramm der Vereinten Nationen</strong>
+</p>
+
+<p>
+Klimawandel,
+Umweltschutz,
+Biodiversität
+und mögliche KI-Anwendungen
+zur Umweltüberwachung.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>UNHCR</h3>
+
+<p>
+<strong>
+Hoher Flüchtlingskommissar der Vereinten Nationen
+</strong>
+</p>
+
+<p>
+Flüchtlingsschutz,
+Vertreibung,
+humanitäre Hilfe
+und verantwortungsvolle Datenanalysen
+für schutzbezogene Bedürfnisse.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>IOM</h3>
+
+<p>
+<strong>
+Internationale Organisation für Migration
+</strong>
+</p>
+
+<p>
+Migration,
+Vertreibung,
+humanitäre Unterstützung
+und mögliche digitale Werkzeuge
+zur Verbesserung des Zugangs
+zu migrationsbezogenen Dienstleistungen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>ILO</h3>
+
+<p>
+<strong>
+Internationale Arbeitsorganisation
+</strong>
+</p>
+
+<p>
+Beschäftigung,
+Arbeitsrechte,
+Kompetenzentwicklung
+und Analyse der Auswirkungen
+von KI auf die Zukunft der Arbeit.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>ITU</h3>
+
+<p>
+<strong>
+Internationale Fernmeldeunion
+</strong>
+</p>
+
+<p>
+Digitale Vernetzung,
+Telekommunikation,
+Notfallkommunikation
+und Frühwarntechnologien.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>UNICEF</h3>
+
+<p>
+<strong>
+Kinderhilfswerk der Vereinten Nationen
+</strong>
+</p>
+
+<p>
+Kinderschutz,
+Bildung,
+digitale Teilhabe
+und verantwortungsvolle KI-Anwendungen
+zum Schutz der Kinderrechte.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>UNDP</h3>
+
+<p>
+<strong>
+Entwicklungsprogramm der Vereinten Nationen
+</strong>
+</p>
+
+<p>
+Nachhaltige Entwicklung,
+Krisenbewältigung,
+institutionelle Kapazitäten
+und mögliche KI-Anwendungen
+für die Entwicklungsplanung.
+</p>
+
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+Wichtiger Hinweis
+</strong>
+
+<p>
+Diese Organisationen werden
+aufgrund ihrer jeweiligen Aufgabenbereiche
+als mögliche Kooperationspartner betrachtet.
+</p>
+
+<p>
+Ihre Erwähnung bedeutet nicht,
+dass eine Organisation
+einer Beteiligung,
+einem Umzug
+oder der Einrichtung eines Büros
+im geplanten globalen KI-Zentrum zugestimmt hat.
+</p>
+
+<p>
+Jede zukünftige Zusammenarbeit
+würde entsprechende Konsultationen,
+institutionelle Entscheidungen
+und formelle Vereinbarungen erfordern.
+</p>
+
+</div>
+
+<a href="agencies-de.html" class="button">
+Die neun internationalen Organisationen entdecken
+</a>
+
+</section>
+
+<!-- =====================================
+     STRATEGIE
+===================================== -->
+
+<section id="strategy">
+
+<h2>
+4. Dreistufige Entwicklungsstrategie
+</h2>
+
+<p>
+Der vorgeschlagene Ansatz
+berücksichtigt die praktischen Anforderungen
+internationaler Organisationen
+und anderer potenzieller Partner.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Phase 1 – Erste Ansiedlung
+</h3>
+
+<p>
+Prüfung geeigneter Bedingungen
+für die anfängliche Ansiedlung
+teilnehmender Organisationen
+und Partnereinrichtungen.
+</p>
+
+<p>
+Zu den möglichen Anforderungen gehören
+Büroräume,
+Verkehrsanbindung,
+Wohnraum,
+Gesundheitsversorgung,
+Bildung
+und weitere wichtige Dienstleistungen.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Phase 2 – Unterstützung des Betriebs
+</h3>
+
+<p>
+Erkundung der Zusammenarbeit
+zwischen öffentlichen Einrichtungen,
+Universitäten,
+Forschungsorganisationen,
+Unternehmen und der Zivilgesellschaft.
+</p>
+
+<p>
+Mögliche Aktivitäten umfassen
+gemeinsame Forschung,
+internationale Tagungen,
+KI-Pilotprojekte
+und Fachaustausch.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Phase 3 – Gemeinsames und nachhaltiges Wachstum
+</h3>
+
+<p>
+Aufbau einer langfristigen Zusammenarbeit,
+die die Aufgaben
+der beteiligten internationalen Organisationen
+unterstützt und gleichzeitig
+Möglichkeiten für regionale Innovation,
+Beschäftigung und wirtschaftliche Entwicklung schafft.
+</p>
+
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+Erste Ansiedlung
+→ Unterstützung des Betriebs
+→ Gemeinsames Wachstum
+</strong>
+
+<p>
+Konkrete institutionelle Vereinbarungen,
+Finanzierung,
+Einrichtungen und Unterstützungsmaßnahmen
+würden Konsultationen
+und Genehmigungen
+der zuständigen Behörden erfordern.
+</p>
+
+</div>
+
+<a href="strategy-de.html" class="button">
+Entwicklungsstrategie entdecken
+</a>
+
+</section>
+
+<!-- =====================================
+     BÜRGERKOMITEE
+===================================== -->
+
+<section id="committee">
+
+<h2>
+5. Über das Bürgerkomitee
+</h2>
+
+<p>
+Das Bürgerkomitee zur Förderung
+der Ansiedlung eines globalen KI-Zentrums
+in der Sonderstadt Goyang
+ist eine zivilgesellschaftliche Initiative,
+die das öffentliche Bewusstsein
+und die Unterstützung
+für das geplante Zentrum stärken möchte.
+</p>
+
+<p>
+Das Komitee möchte
+den öffentlichen Dialog fördern,
+die Beteiligung der Bürgerinnen und Bürger
+unterstützen
+und über mögliche Vorteile
+internationaler Zusammenarbeit
+und KI-gestützter Innovation informieren.
+</p>
+
+<p>
+Zu seinen Aktivitäten gehören
+Öffentlichkeitsarbeit,
+Bürgerbeteiligung,
+politische Diskussionen
+und Informationsveranstaltungen
+im Zusammenhang mit der Initiative.
+</p>
+
+<div class="highlight">
+
+<strong>
+Unser Engagement
+</strong>
+
+<p>
+Wir setzen uns
+für einen transparenten,
+verantwortungsvollen
+und konstruktiven Dialog ein,
+um internationale Zusammenarbeit
+und die zukünftige Entwicklung
+der Sonderstadt Goyang zu fördern.
+</p>
+
+</div>
+
+<a href="committee-de.html" class="button">
+Mehr über das Bürgerkomitee
+</a>
+
+<a href="participate-de.html"
+class="button secondary">
+Bürgerbeteiligung
+</a>
+
+</section>
+
+<!-- =====================================
+     INTERNATIONALE PARTNERSCHAFTEN
+===================================== -->
+
+<section id="partnership">
+
+<h2>
+6. Möglichkeiten internationaler Partnerschaften
+</h2>
+
+<p>
+Das geplante globale KI-Zentrum
+möchte den Dialog
+mit Organisationen und Einrichtungen fördern,
+die sich für verantwortungsvolle KI,
+internationale Zusammenarbeit
+und nachhaltige Entwicklung interessieren.
+</p>
+
+<p>
+Mögliche Kooperationsbereiche sind:
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Politischer Dialog
+</h3>
+
+<p>
+Austausch über internationale Zusammenarbeit,
+KI-Governance
+und Innovationen im öffentlichen Interesse.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Forschungszusammenarbeit
+</h3>
+
+<p>
+Erkundung von Möglichkeiten
+für interdisziplinäre Forschung
+und Wissensaustausch.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Technologische Demonstrationsprojekte
+</h3>
+
+<p>
+Prüfung verantwortungsvoller Pilotprojekte
+und praktischer Anwendungen
+von KI-Technologien.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Fachaustausch
+</h3>
+
+<p>
+Erkundung von Workshops,
+Schulungen,
+internationalen Foren
+und Initiativen zur Kompetenzentwicklung.
+</p>
+
+</div>
+
+</div>
+
+<p class="note">
+Alle möglichen Partnerschaften
+befinden sich in einer Sondierungsphase,
+sofern sie nicht von den zuständigen Institutionen
+formell bestätigt wurden.
+</p>
+
+<a href="agencies-de.html" class="button">
+Internationale Organisationen
+</a>
+
+</section>
+
+<!-- =====================================
+     KONTAKT
+===================================== -->
+
+<section id="contact">
+
+<h2>
+7. Kontakt und weitere Informationen
+</h2>
+
+<p>
+Internationale Organisationen,
+Forschungseinrichtungen
+und andere interessierte Parteien
+sind eingeladen,
+mehr über die Initiative
+für ein globales KI-Zentrum
+und das Bürgerkomitee zu erfahren.
+</p>
+
+<p>
+Weitere Informationen
+finden Sie auf den deutschsprachigen Seiten
+dieser Website.
+Die koreanische Homepage bietet Zugang
+zu bestehenden koreanischsprachigen
+Informationen und Verwaltungsressourcen.
+</p>
+
+<a href="guide-de.html" class="button">
+Website-Leitfaden
+</a>
+
+<a href="index.html" class="button secondary">
+Koreanische Homepage
+</a>
+
+<div class="highlight">
+
+<strong>
+Initiative für ein globales KI-Zentrum<br>
+Sonderstadt Goyang,<br>
+Provinz Gyeonggi,<br>
+Republik Korea
+</strong>
+
+<p>
+Bürgerkomitee zur Förderung
+der Ansiedlung eines globalen KI-Zentrums
+in der Sonderstadt Goyang
+</p>
+
+<p class="note">
+Diese Website stellt
+eine zivilgesellschaftliche Initiative
+und ihre vorgeschlagene Vision vor.
+Sie stellt weder
+eine offizielle Standortentscheidung
+noch eine Verpflichtung
+einer internationalen Organisation dar.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     DEUTSCHSPRACHIGE SEITEN
+===================================== -->
+
+<section id="directory" class="page-directory">
+
+<h2>
+8. Entdecken Sie unsere Website
+</h2>
+
+<p>
+Auf den folgenden Seiten
+finden Sie ausführliche Informationen
+über die Initiative,
+die Sonderstadt Goyang,
+internationale Zusammenarbeit
+und Bürgerbeteiligung.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>
+Globales KI-Zentrum
+</h3>
+
+<p>
+Erfahren Sie mehr
+über die geplante internationale
+Kooperationsplattform und ihre Vision.
+</p>
+
+<a href="hub-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Warum Goyang?
+</h3>
+
+<p>
+Entdecken Sie
+die Standortvorteile,
+Infrastruktur
+und Entwicklungsmöglichkeiten Goyangs.
+</p>
+
+<a href="goyang-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Internationale Organisationen
+</h3>
+
+<p>
+Erfahren Sie mehr
+über neun internationale Organisationen
+und mögliche Kooperationsbereiche.
+</p>
+
+<a href="agencies-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Entwicklungsstrategie
+</h3>
+
+<p>
+Informieren Sie sich
+über die vorgeschlagene dreistufige Strategie
+für Ansiedlung,
+Unterstützung
+und nachhaltiges Wachstum.
+</p>
+
+<a href="strategy-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Bürgerkomitee
+</h3>
+
+<p>
+Erfahren Sie mehr
+über das Komitee,
+seine Ziele
+und seine zivilgesellschaftlichen Aktivitäten.
+</p>
+
+<a href="committee-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Chronologie und Meilensteine
+</h3>
+
+<p>
+Verfolgen Sie
+wichtige Entwicklungen
+und Aktivitäten
+im Zusammenhang mit der Initiative.
+</p>
+
+<a href="history-de.html" class="button">
+Entdecken
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Aktuelles und Bekanntmachungen
+</h3>
+
+<p>
+Lesen Sie Neuigkeiten
+über die Aktivitäten des Komitees,
+Veranstaltungen
+und wichtige Entwicklungen.
+</p>
+
+<a href="news-de.html" class="button">
+Aktuelles anzeigen
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Presseberichte
+</h3>
+
+<p>
+Entdecken Sie Zeitungsartikel,
+Fernsehberichte
+und weitere Medienberichte.
+</p>
+
+<a href="press-de.html" class="button">
+Presseberichte anzeigen
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Bürgerbeteiligung
+</h3>
+
+<p>
+Erfahren Sie mehr
+über öffentliche Unterstützungskampagnen,
+die Registrierung im Komitee
+und Beteiligungsprogramme.
+</p>
+
+<a href="participate-de.html" class="button">
+Beteiligungszentrum
+</a>
+
+</div>
+
+<div class="card">
+
+<h3>
+Website-Leitfaden
+</h3>
+
+<p>
+Erfahren Sie,
+wie Sie auf der Website navigieren,
+Informationen finden
+und an verfügbaren Programmen teilnehmen können.
+</p>
+
+<a href="guide-de.html" class="button">
+Leitfaden anzeigen
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     MEHRSPRACHIGE INFORMATIONEN
+===================================== -->
+
+<section>
+
+<h2>
+9. Mehrsprachige Informationen
+</h2>
+
+<p>
+Diese Website wird
+als mehrsprachige Informationsplattform
+für internationale Besucher,
+Organisationen,
+Forschungseinrichtungen,
+Unternehmen
+und interessierte Bürgerinnen und Bürger entwickelt.
+</p>
+
+<p>
+Englisch dient
+als internationale Hauptsprache der Website.
+Koreanisch wird
+für das bestehende Verwaltungs-
+und Inhaltsverwaltungssystem verwendet.
+Weitere Sprachversionen
+werden schrittweise eingeführt.
+</p>
+
+<div class="highlight">
+
+<strong>
+Verfügbare Sprachen
+</strong>
+
+<p>
+Deutsch — Deutsche Version
+</p>
+
+<p>
+English — Internationale Website
+</p>
+
+<p>
+Español — Spanische Version
+</p>
+
+<p>
+Français — Französische Version
+</p>
+
+<p>
+한국어 — Koreanische Website
+</p>
+
+</div>
+
+<p>
+Besucherinnen und Besucher
+können ihre bevorzugte Sprache
+über das Sprachmenü
+oben auf der Startseite auswählen.
+</p>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     FUSSZEILE
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+INITIATIVE FÜR EIN GLOBALES KI-ZENTRUM
+</strong>
+</p>
+
+<p>
+Sonderstadt Goyang<br>
+Provinz Gyeonggi,<br>
+Republik Korea
+</p>
+
+<p>
+Bürgerkomitee zur Förderung
+der Ansiedlung eines globalen KI-Zentrums
+in der Sonderstadt Goyang
+</p>
+
+<p>
+Künstliche Intelligenz im Dienste der Menschheit.<br>
+Internationale Zusammenarbeit für eine bessere Zukunft.
+</p>
+
+<p>
+<a href="index-de.html">
+Deutsch
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="index-en.html" lang="en">
+English
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+<p>
+<a href="guide-de.html">
+Website-Leitfaden
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
