@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<meta
+  name="description"
+  content="高陽特例市グローバルAIハブ構想のウェブサイト利用ガイド。情報の閲覧方法、市民参加、ニュース、オンライン申請、賛助会費のお支払い、よくあるご質問についてご案内します。"
+>
+
+<title>
+ウェブサイト利用ガイド |
+グローバルAIハブ構想
+</title>
+
+<style>
+
+/* =====================================
+   基本設定
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ヘッダー
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   クイックナビゲーション
+===================================== */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.quick-nav a:hover {
+  background: #cfe4ff;
+}
+
+/* =====================================
+   メインコンテンツ
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* =====================================
+   カード
+===================================== */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* =====================================
+   ボタン
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cfe4ff;
+}
+
+/* =====================================
+   強調表示
+===================================== */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* =====================================
+   手順
+===================================== */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* =====================================
+   注意事項
+===================================== */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   よくあるご質問
+===================================== */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* =====================================
+   フッター
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   モバイル対応
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     ヘッダー
+===================================== -->
+
+<header>
+
+<h1>
+ウェブサイト利用ガイド
+</h1>
+
+<p>
+グローバルAIハブ構想<br>
+大韓民国・京畿道 高陽特例市
+</p>
+
+<p>
+ウェブサイトの情報、
+各ページの閲覧方法、
+市民参加に関するご案内
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ja.html"
+  class="home-link"
+>
+  ← 日本語ホーム
+</a>
+
+<a
+  href="guide.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<!-- =====================================
+     クイックナビゲーション
+===================================== -->
+
+<nav
+  class="quick-nav"
+  aria-label="ウェブサイト利用ガイドのナビゲーション"
+>
+
+<a href="#intro">
+はじめに
+</a>
+
+<a href="#menus">
+主なメニュー
+</a>
+
+<a href="#participation">
+市民参加
+</a>
+
+<a href="#account">
+お支払い情報
+</a>
+
+<a href="#board">
+ニュース・資料
+</a>
+
+<a href="#faq">
+よくあるご質問
+</a>
+
+<a href="#help">
+ヘルプ
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. はじめに
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. ウェブサイトへようこそ
+</h2>
+
+<p>
+高陽特例市グローバルAIハブ誘致
+市民推進委員会の
+公式ウェブサイトへようこそ。
+</p>
+
+<p>
+このウェブサイトでは、
+グローバルAIハブ構想、
+市民推進委員会の活動、
+高陽特例市の立地上の強み、
+市民参加の機会などに関する
+情報を提供しています。
+</p>
+
+<p>
+また、
+人工知能の責任ある活用を通じて
+地球規模の課題に取り組むための
+国際協力の可能性についても
+ご紹介しています。
+</p>
+
+<div class="highlight">
+
+<strong>
+高陽特例市に新たな成長機会を！<br>
+高陽特例市に質の高い雇用を！<br>
+グローバルAIハブを高陽特例市へ！
+</strong>
+
+</div>
+
+<p>
+このウェブサイトは、
+パソコン、
+タブレット、
+スマートフォンから
+ご利用いただけます。
+</p>
+
+<p>
+特別なソフトウェアの
+インストールは必要ありません。
+一般的なインターネットブラウザで
+閲覧できます。
+</p>
+
+</section>
+
+<!-- =====================================
+     2. 主なメニュー
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. ウェブサイトの主なメニュー
+</h2>
+
+<div class="grid">
+
+<!-- 市民推進委員会 -->
+
+<div class="card">
+
+<h3>
+市民推進委員会について
+</h3>
+
+<p>
+市民推進委員会の設立、
+目的、
+基本方針、
+主な活動について
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="committee-ja.html"
+>
+  詳しく見る
+</a>
+
+</div>
+
+<!-- グローバルAIハブ -->
+
+<div class="card">
+
+<h3>
+グローバルAIハブについて
+</h3>
+
+<p>
+グローバルAIハブ構想、
+国際協力のビジョン、
+公益のためのAI活用の
+可能性について
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="hub-ja.html"
+>
+  詳しく見る
+</a>
+
+</div>
+
+<!-- 高陽特例市 -->
+
+<div class="card">
+
+<h3>
+なぜ高陽特例市なのか？
+</h3>
+
+<p>
+高陽特例市の
+立地上の強み、
+都市インフラ、
+グローバルAIハブの
+候補地としての
+潜在的な競争力を
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="goyang-ja.html"
+>
+  詳しく見る
+</a>
+
+</div>
+
+<!-- 国際機関 -->
+
+<div class="card">
+
+<h3>
+9つの国際機関
+</h3>
+
+<p>
+9つの国際機関の
+使命と役割、
+AIに関連する
+潜在的な協力分野について
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="agencies-ja.html"
+>
+  詳しく見る
+</a>
+
+</div>
+
+<!-- 誘致戦略 -->
+
+<div class="card">
+
+<h3>
+グローバルAIハブ誘致戦略
+</h3>
+
+<p>
+初期拠点の整備、
+運営支援、
+長期的な共同成長に向けた
+誘致戦略について
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="strategy-ja.html"
+>
+  詳しく見る
+</a>
+
+</div>
+
+<!-- 市民参加 -->
+
+<div class="card">
+
+<h3>
+市民参加センター
+</h3>
+
+<p>
+オンライン署名運動、
+市民推進委員会への登録、
+賛助会員制度、
+その他の参加プログラムについて
+ご案内します。
+</p>
+
+<a
+  class="button"
+  href="participate-ja.html"
+>
+  市民参加センター
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. 市民参加
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. 市民参加の方法
+</h2>
+
+<p>
+市民参加センターでは、
+5つの主な参加プログラムについて
+ご案内しています。
+</p>
+
+<p class="note">
+現在、
+各種申請フォームは
+韓国語で提供されています。
+申請前に、
+フォームの内容と
+個人情報の取扱いに関する
+説明をご確認ください。
+</p>
+
+<div class="grid">
+
+<!-- 署名運動 -->
+
+<div class="card">
+
+<h3>
+① オンライン署名運動
+</h3>
+
+<p>
+グローバルAIハブの
+高陽特例市への誘致を支持する
+オンライン署名運動に
+参加できます。
+</p>
+
+<ol class="steps">
+
+<li>
+オンライン署名ボタンを選択します。
+</li>
+
+<li>
+申請フォームに必要な情報を入力します。
+</li>
+
+<li>
+個人情報の取扱いに関する説明を確認します。
+</li>
+
+<li>
+入力内容を確認して送信します。
+</li>
+
+</ol>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  署名運動に参加する
+</a>
+
+</div>
+
+<!-- 委員会登録 -->
+
+<div class="card">
+
+<h3>
+② 市民推進委員会への登録
+</h3>
+
+<p>
+グローバルAIハブ構想に
+積極的に参加したい市民は、
+市民推進委員会への
+登録を申し込むことができます。
+</p>
+
+<p>
+登録フォームに記載された
+必要事項を入力してください。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  委員会に登録する
+</a>
+
+</div>
+
+<!-- 賛助会員 -->
+
+<div class="card">
+
+<h3>
+③ 賛助会員への登録
+</h3>
+
+<p>
+市民推進委員会の活動を
+支援したい方は、
+賛助会員として
+登録を申し込むことができます。
+</p>
+
+<p>
+申請フォームを提出した後、
+市民参加センターに表示される
+正式な振込口座情報を
+ご確認ください。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  賛助会員に申し込む
+</a>
+
+</div>
+
+<!-- 横断幕 -->
+
+<div class="card">
+
+<h3>
+④ 広報横断幕の申請
+</h3>
+
+<p>
+グローバルAIハブ構想を
+支持する広報横断幕の
+掲示を申し込むことができます。
+</p>
+
+<p>
+申請前に、
+地域の条例、
+設置場所に関する条件、
+必要な許可などを
+ご確認ください。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  広報横断幕を申し込む
+</a>
+
+</div>
+
+<!-- ステッカー -->
+
+<div class="card">
+
+<h3>
+⑤ 車両用広報ステッカーの申請
+</h3>
+
+<p>
+グローバルAIハブ構想に対する
+市民の関心を広げるため、
+車両用広報ステッカーを
+申し込むことができます。
+</p>
+
+<p>
+連絡先や希望数量など、
+申請フォームに記載された
+必要事項を入力してください。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  ステッカーを申し込む
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+申請の受付状況や
+処理日程は、
+市民推進委員会の
+運営状況によって
+変更される場合があります。
+</p>
+
+</section>
+
+<!-- =====================================
+     4. お支払い情報
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. 賛助会費・広報横断幕費用のお支払い
+</h2>
+
+<p>
+賛助会費や
+広報横断幕の費用を
+お支払いになる場合は、
+市民参加センターに表示される
+正式な振込口座情報を
+ご確認ください。
+</p>
+
+<div class="highlight">
+
+<strong>
+お支払いに関する重要なお知らせ
+</strong>
+
+<p>
+お振り込みの前に、
+銀行名、
+口座番号、
+口座名義人を
+必ずご確認ください。
+</p>
+
+<p>
+申請フォームの提出と
+銀行振込は
+それぞれ別の手続きです。
+</p>
+
+<p>
+口座情報が表示されない場合や、
+内容が不明確な場合は、
+市民推進委員会の
+公式案内によって
+確認できるまで
+送金しないでください。
+</p>
+
+</div>
+
+<a
+  class="button"
+  href="participate-ja.html"
+>
+  正式な振込口座情報を確認する
+</a>
+
+<p class="note">
+銀行口座情報は
+変更される可能性があります。
+そのため、
+この利用ガイドには
+口座番号を直接掲載していません。
+</p>
+
+</section>
+
+<!-- =====================================
+     5. ニュース・資料
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. ニュース・活動・関連資料
+</h2>
+
+<div class="grid">
+
+<!-- 掲示板 -->
+
+<div class="card">
+
+<h3>
+市民交流掲示板
+</h3>
+
+<p>
+グローバルAIハブ構想に関する
+市民の意見や
+関連情報を共有するための
+掲示板です。
+</p>
+
+<a
+  class="button secondary"
+  href="board.html"
+>
+  掲示板を見る（韓国語）
+</a>
+
+</div>
+
+<!-- ニュース -->
+
+<div class="card">
+
+<h3>
+ニュース・お知らせ
+</h3>
+
+<p>
+市民推進委員会の活動、
+イベント、
+主な進展に関する
+最新情報をご覧いただけます。
+</p>
+
+<a
+  class="button secondary"
+  href="news-ja.html"
+>
+  ニュースを見る
+</a>
+
+</div>
+
+<!-- メディア報道 -->
+
+<div class="card">
+
+<h3>
+メディア報道
+</h3>
+
+<p>
+グローバルAIハブ構想に関する
+新聞記事、
+放送報道、
+その他のメディア情報を
+ご紹介します。
+</p>
+
+<a
+  class="button secondary"
+  href="press-ja.html"
+>
+  メディア報道を見る
+</a>
+
+</div>
+
+<!-- 推進経緯 -->
+
+<div class="card">
+
+<h3>
+推進経緯と主な沿革
+</h3>
+
+<p>
+グローバルAIハブ構想に関する
+主な進展や
+市民推進委員会の活動を
+時系列でご覧いただけます。
+</p>
+
+<a
+  class="button secondary"
+  href="history-ja.html"
+>
+  主な沿革を見る
+</a>
+
+</div>
+
+</div>
+
+<p>
+リンク先の資料や
+報道記事の原文は、
+韓国語のみで提供されている
+場合があります。
+</p>
+
+<p>
+オンラインで意見交換を行う際は、
+他の利用者を尊重し、
+個人情報や
+誤解を招く情報を
+投稿しないよう
+ご注意ください。
+</p>
+
+</section>
+
+<!-- =====================================
+     6. よくあるご質問
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. よくあるご質問
+</h2>
+
+<div class="faq">
+
+<h3>
+Q. このウェブサイトを利用するには
+会員登録が必要ですか？
+</h3>
+
+<p>
+一般的な情報は、
+会員登録なしで
+閲覧できます。
+</p>
+
+<p>
+一部の双方向機能では、
+ログインや
+追加の利用権限が
+必要となる場合があります。
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. オンライン署名運動と
+市民推進委員会への登録は
+同じものですか？
+</h3>
+
+<p>
+いいえ。
+オンライン署名運動は、
+グローバルAIハブの
+高陽特例市への誘致に対する
+支持を表明するものです。
+</p>
+
+<p>
+市民推進委員会への登録は、
+委員会の活動への参加を
+希望する方のための
+別の手続きです。
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. オンライン署名運動への参加には
+会費の支払いが必要ですか？
+</h3>
+
+<p>
+いいえ。
+オンライン署名運動と
+賛助会員制度は、
+それぞれ独立した
+参加プログラムです。
+</p>
+
+<p>
+署名フォームを提出しても、
+賛助会費の支払いを
+約束したことにはなりません。
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. 賛助会員の申請フォームを
+提出すれば、
+支払いも完了しますか？
+</h3>
+
+<p>
+いいえ。
+申請フォームの提出と
+銀行振込は、
+それぞれ別の手続きです。
+</p>
+
+<p>
+送金前に、
+正式な振込口座情報を
+必ずご確認ください。
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. 9つの国際機関の
+高陽特例市への移転は
+正式に決定していますか？
+</h3>
+
+<p>
+いいえ。
+このウェブサイトで紹介している
+国際機関は、
+グローバルAIハブ構想における
+潜在的な協力の可能性に
+関連して紹介されています。
+</p>
+
+<p>
+これらの国際機関が
+掲載されていることは、
+グローバルAIハブへの参加、
+事務所の設置、
+高陽特例市への移転が
+正式に決定したことを
+意味するものではありません。
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. 広報横断幕を申し込めば、
+すぐに設置できますか？
+</h3>
+
+<p>
+いいえ。
+申請フォームの提出によって、
+横断幕の設置が
+自動的に許可されるわけでは
+ありません。
+</p>
+
+<p>
+関係法令、
+地域の条例、
+設置場所ごとの条件を
+遵守する必要があります。
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. ヘルプ
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. ウェブサイトのご利用に関するヘルプ
+</h2>
+
+<h3>
+ウェブサイトが開かない場合
+</h3>
+
+<p>
+インターネット接続と
+ウェブサイトのアドレスを
+ご確認ください。
+</p>
+
+<p>
+しばらく時間をおいてから
+再度アクセスしてください。
+</p>
+
+<h3>
+ページが正しく表示されない場合
+</h3>
+
+<p>
+ページを再読み込みするか、
+別のブラウザで
+お試しください。
+</p>
+
+<h3>
+申請フォームが開かない場合
+</h3>
+
+<p>
+申請ボタンをもう一度選択するか、
+別のブラウザで
+フォームを開いてください。
+</p>
+
+<h3>
+振込口座情報が表示されない場合
+</h3>
+
+<p>
+市民参加センターのページを
+再読み込みし、
+もう一度ご確認ください。
+</p>
+
+<p>
+問題が解決しない場合は、
+市民推進委員会の
+公式案内によって
+口座情報が確認できるまで
+送金しないでください。
+</p>
+
+<h3>
+個人情報の保護
+</h3>
+
+<p>
+申請フォームを提出する前に、
+個人情報の収集および利用に関する
+説明をご確認ください。
+</p>
+
+<p>
+公開掲示板には、
+他人の個人情報を
+投稿しないでください。
+</p>
+
+<a
+  class="button secondary"
+  href="privacy.html"
+>
+  個人情報保護方針（韓国語）
+</a>
+
+</section>
+
+<!-- =====================================
+     8. 最後に
+===================================== -->
+
+<section>
+
+<h2>
+8. 高陽特例市の未来をともに築く
+</h2>
+
+<p>
+グローバルAIハブ構想は、
+高陽特例市における
+新たな成長、
+質の高い雇用、
+国際協力の可能性を
+広げる機会となり得ます。
+</p>
+
+<p>
+市民や関心をお持ちの皆様は、
+オンライン署名運動、
+市民推進委員会への登録、
+賛助会員制度、
+広報活動などを通じて
+参加することができます。
+</p>
+
+<div class="highlight">
+
+<strong>
+一人ひとりの関心と参加が、<br>
+高陽特例市の未来を<br>
+築く力となります。
+</strong>
+
+</div>
+
+<a
+  class="button"
+  href="participate-ja.html"
+>
+  市民参加センター
+</a>
+
+<a
+  class="button secondary"
+  href="index-ja.html"
+>
+  日本語ホームページ
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     フッター
+===================================== -->
+
+<footer>
+
+<p>
+
+<strong>
+高陽特例市グローバルAIハブ誘致<br>
+市民推進委員会
+</strong>
+
+</p>
+
+<p>
+大韓民国・京畿道
+</p>
+
+<p>
+市民とともに、京畿道とともに、<br>
+そして世界とともに。
+</p>
+
+<p>
+
+<a href="index-ja.html">
+日本語ホーム
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate-ja.html">
+市民参加
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="guide.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+</body>
+</html>
