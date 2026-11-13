@@ -11,33 +11,99 @@ content="width=device-width, initial-scale=1.0">
 <meta name="theme-color"
 content="#0754a6">
 
-<meta name="description"
-content="Iniziativa per un Polo Globale dell'Intelligenza Artificiale nella Città Speciale di Goyang, Repubblica di Corea. Una piattaforma di cooperazione internazionale che collega intelligenza artificiale, organizzazioni internazionali, istituti di ricerca e comunità.">
-
 <title>
 Iniziativa per un Polo Globale dell'IA | Città Speciale di Goyang
 </title>
 
+<meta name="description"
+content="Iniziativa civica per un Polo Globale dell'Intelligenza Artificiale nella Città Speciale di Goyang, Repubblica di Corea. Cooperazione internazionale, ricerca, innovazione e sviluppo sostenibile.">
+
+<!-- =====================================
+     SEO E SOCIAL MEDIA
+===================================== -->
+
 <link rel="canonical"
 href="https://achimjoa.github.io/aihub-goyang.org/index-it.html">
 
+<meta property="og:type"
+content="website">
+
+<meta property="og:title"
+content="Iniziativa per un Polo Globale dell'IA | Goyang">
+
+<meta property="og:description"
+content="Intelligenza artificiale al servizio dell'umanità. Cooperazione internazionale per un futuro migliore.">
+
+<meta property="og:url"
+content="https://achimjoa.github.io/aihub-goyang.org/index-it.html">
+
+<meta property="og:image"
+content="https://achimjoa.github.io/aihub-goyang.org/aihub-main-banner-en.png">
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<!-- =====================================
+     SEO MULTILINGUE - 10 LINGUE
+===================================== -->
+
 <link rel="alternate"
-hreflang="it"
-href="https://achimjoa.github.io/aihub-goyang.org/index-it.html">
+hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/index.html">
 
 <link rel="alternate"
 hreflang="en"
 href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
 
 <link rel="alternate"
-hreflang="ko"
-href="https://achimjoa.github.io/aihub-goyang.org/index.html">
+hreflang="zh"
+href="https://achimjoa.github.io/aihub-goyang.org/index-zh.html">
+
+<link rel="alternate"
+hreflang="ja"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ja.html">
+
+<link rel="alternate"
+hreflang="ru"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ru.html">
+
+<link rel="alternate"
+hreflang="ar"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ar.html">
+
+<link rel="alternate"
+hreflang="es"
+href="https://achimjoa.github.io/aihub-goyang.org/index-es.html">
+
+<link rel="alternate"
+hreflang="fr"
+href="https://achimjoa.github.io/aihub-goyang.org/index-fr.html">
+
+<link rel="alternate"
+hreflang="de"
+href="https://achimjoa.github.io/aihub-goyang.org/index-de.html">
+
+<link rel="alternate"
+hreflang="it"
+href="https://achimjoa.github.io/aihub-goyang.org/index-it.html">
+
+<link rel="alternate"
+hreflang="x-default"
+href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
 
 <style>
 
 /* =====================================
-   IMPOSTAZIONI GENERALI
+   01. IMPOSTAZIONI GENERALI
 ===================================== */
+
+:root {
+  --main-blue: #0754a6;
+  --dark-blue: #10315e;
+  --light-blue: #eaf4ff;
+  --yellow: #ffe44d;
+  --teal: #008c95;
+}
 
 * {
   box-sizing: border-box;
@@ -45,219 +111,380 @@ href="https://achimjoa.github.io/aihub-goyang.org/index.html">
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
   background: #f4f8fc;
   color: #17315b;
   line-height: 1.75;
 }
 
 a {
-  color: #0754a6;
+  color: var(--main-blue);
 }
 
-a:focus-visible {
-  outline: 3px solid #ffca28;
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
 }
 
+img {
+  max-width: 100%;
+}
+
 /* =====================================
-   INTESTAZIONE COMPATTA
+   02. INTESTAZIONE
 ===================================== */
 
 header {
-  background: linear-gradient(
-    135deg,
-    #0754a6,
-    #10315e
-  );
-  color: white;
+  width: 100%;
   padding: 16px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0754a6,
+      #10315e
+    );
+
+  color: white;
   text-align: center;
 }
 
 header h1 {
-  font-size: clamp(22px, 3vw, 30px);
   margin: 0 0 4px;
+
+  font-size:
+    clamp(22px, 3vw, 30px);
+
   line-height: 1.3;
 }
 
 header h2 {
-  font-size: 15px;
-  font-weight: normal;
-  color: #dcecff;
   margin: 0;
   padding: 0;
+
+  color: #dcecff;
+  font-size: 15px;
+  font-weight: normal;
   border: none;
 }
 
-header p {
-  display: none;
-}
-
 /* =====================================
-   NAVIGAZIONE PRINCIPALE
+   03. NAVIGAZIONE PRINCIPALE
 ===================================== */
 
 .main-nav {
-  background: #10315e;
-  padding: 10px 18px;
+  position: relative;
+  z-index: 1000;
+
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 12px;
-}
 
-.main-nav > a {
-  color: white;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: bold;
-}
+  gap: 8px;
 
-.main-nav > a:hover {
-  color: #ffdf5a;
+  width: 100%;
+  min-width: 0;
+
+  padding: 10px 14px;
+
+  background: var(--dark-blue);
 }
 
 /* =====================================
-   MENU DELLE LINGUE
+   04. SELETTORE LINGUA
 ===================================== */
 
 .language-dropdown {
   position: relative;
-  z-index: 1000;
-  margin-left: 10px;
+  z-index: 2000;
+
+  flex: 0 0 auto;
+  min-width: 0;
 }
 
-.language-dropdown summary {
+.language-dropdown > summary {
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  padding: 9px 15px;
-  background: #ffe44d;
-  color: #003b79;
-  border-radius: 6px;
+  align-items: center;
+
+  min-height: 42px;
+
+  padding: 9px 14px;
+
+  background: var(--teal);
+  color: white;
+
+  border: 1px solid var(--teal);
+  border-radius: 7px;
+
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 800;
+
+  white-space: nowrap;
   cursor: pointer;
   list-style: none;
+
+  transition:
+    background 0.2s ease;
 }
 
-.language-dropdown summary::-webkit-details-marker {
+.language-dropdown > summary::-webkit-details-marker {
   display: none;
 }
 
-.language-dropdown summary:focus-visible {
-  outline: 3px solid white;
+.language-dropdown > summary::marker {
+  content: "";
+}
+
+.language-dropdown > summary:hover,
+.language-dropdown[open] > summary {
+  background: #006e76;
+  border-color: #006e76;
+}
+
+.language-dropdown > summary:focus-visible {
+  outline: 3px solid var(--yellow);
   outline-offset: 3px;
 }
 
+/* =====================================
+   05. MENU A DISCESA DELLE LINGUE
+===================================== */
+
 .language-options {
   position: absolute;
-  top: calc(100% + 7px);
-  right: 0;
-  min-width: 190px;
+
+  top: calc(100% + 6px);
+  left: 0;
+  right: auto;
+
+  z-index: 3000;
+
+  width: 190px;
+  max-width: calc(100vw - 28px);
+
+  max-height: min(70vh, 480px);
+
   padding: 8px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
   background: white;
+
   border: 1px solid #cbdff5;
   border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.2);
+
+  -webkit-overflow-scrolling: touch;
 }
 
-.language-options a,
-.language-options span {
+.language-options a {
   display: block;
+
+  width: 100%;
+
   padding: 10px 12px;
-  color: #0754a6;
+
+  color: var(--main-blue);
   background: white;
+
   border-radius: 5px;
+
   font-size: 14px;
+  font-weight: 600;
+
   text-align: left;
   text-decoration: none;
   white-space: nowrap;
 }
 
-.language-options a:hover {
+.language-options a:hover,
+.language-options a:focus-visible {
   background: #eaf4ff;
 }
 
-.language-options a[aria-current="page"] {
+.language-options
+a[aria-current="page"] {
   background: #eaf4ff;
-  font-weight: bold;
-}
-
-.language-options .pending {
-  color: #788493;
-  cursor: default;
+  font-weight: 800;
 }
 
 /* =====================================
-   BANNER PRINCIPALE
+   06. MENU ORIZZONTALE SCORREVOLE
+===================================== */
+
+.main-nav-links {
+  display: flex;
+  flex: 1 1 auto;
+
+  flex-wrap: nowrap;
+  align-items: center;
+
+  gap: 6px;
+
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color:
+    var(--yellow)
+    var(--dark-blue);
+
+  padding-bottom: 5px;
+
+  touch-action: pan-x;
+}
+
+.main-nav-links > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 8px 12px;
+
+  background: white;
+  color: var(--main-blue);
+
+  border: 1px solid #d6e5f5;
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.main-nav-links > a:hover,
+.main-nav-links > a:focus-visible {
+  background: var(--yellow);
+  color: #003b79;
+}
+
+/* SCROLLBAR */
+
+.main-nav-links::-webkit-scrollbar {
+  height: 6px;
+}
+
+.main-nav-links::-webkit-scrollbar-track {
+  background: var(--dark-blue);
+}
+
+.main-nav-links::-webkit-scrollbar-thumb {
+  background: var(--yellow);
+  border-radius: 10px;
+}
+
+/* =====================================
+   07. BANNER PRINCIPALE
 ===================================== */
 
 .main-banner {
+  display: block;
+
   width: 100%;
   margin: 0;
-  overflow: hidden;
-  background: #0754a6;
+
+  background: var(--main-blue);
 }
 
 .main-banner img {
   display: block;
+
   width: 100%;
   height: auto;
 }
 
 /* =====================================
-   CONTENUTO PRINCIPALE
+   08. CONTENUTO PRINCIPALE
 ===================================== */
 
 main {
+  width: 100%;
   max-width: 1180px;
-  margin: auto;
+
+  margin: 0 auto;
   padding: 30px 15px;
 }
 
-section {
-  background: white;
-  border-radius: 12px;
-  padding: 35px;
+main section {
+  min-width: 0;
+
   margin-bottom: 25px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  padding: 35px;
+
+  background: white;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
   scroll-margin-top: 20px;
 }
 
-h2 {
-  color: #0754a6;
-  border-bottom: 2px solid #e3edf8;
-  padding-bottom: 12px;
+main h2 {
   margin-top: 0;
+  padding-bottom: 12px;
+
+  color: var(--main-blue);
+
+  border-bottom:
+    2px solid #e3edf8;
 }
 
-h3 {
-  color: #0754a6;
+main h3 {
+  color: var(--main-blue);
 }
 
 /* =====================================
-   SEZIONE INTRODUTTIVA
+   09. SEZIONE INTRODUTTIVA
 ===================================== */
 
 .hero {
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    #eaf4ff,
-    #ffffff
-  );
+
+  background:
+    linear-gradient(
+      135deg,
+      #eaf4ff,
+      #ffffff
+    );
 }
 
 .hero h2 {
   border: none;
-  font-size: clamp(25px, 4vw, 37px);
+
+  font-size:
+    clamp(25px, 4vw, 37px);
+
   line-height: 1.4;
 }
 
@@ -266,19 +493,31 @@ h3 {
 }
 
 /* =====================================
-   GRIGLIA
+   10. GRIGLIA
 ===================================== */
 
 .grid {
   display: grid;
+
   grid-template-columns:
-    repeat(auto-fit, minmax(260px, 1fr));
+    repeat(
+      auto-fit,
+      minmax(
+        min(100%, 260px),
+        1fr
+      )
+    );
+
   gap: 20px;
 }
 
 .card {
-  background: #f4f8fc;
+  min-width: 0;
+
   padding: 24px;
+
+  background: #f4f8fc;
+
   border-radius: 10px;
   border-top: 5px solid #168de0;
 }
@@ -288,30 +527,36 @@ h3 {
 }
 
 /* =====================================
-   RIQUADRI IN EVIDENZA
+   11. RIQUADRI IN EVIDENZA
 ===================================== */
 
 .highlight {
-  background: #eaf4ff;
-  border-left: 5px solid #168de0;
-  padding: 24px;
   margin: 20px 0;
+  padding: 24px;
+
+  background: #eaf4ff;
+
+  border-left: 5px solid #168de0;
   border-radius: 8px;
 }
 
 /* =====================================
-   PULSANTI
+   12. PULSANTI
 ===================================== */
 
 .button {
   display: inline-block;
-  background: #0754a6;
-  color: white;
-  padding: 12px 22px;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
+
   margin: 10px 8px 0 0;
+  padding: 12px 22px;
+
+  background: var(--main-blue);
+  color: white;
+
+  border-radius: 7px;
+
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .button:hover {
@@ -320,7 +565,7 @@ h3 {
 
 .button.secondary {
   background: #e4f0ff;
-  color: #0754a6;
+  color: var(--main-blue);
 }
 
 .button.secondary:hover {
@@ -328,12 +573,12 @@ h3 {
 }
 
 .note {
-  font-size: 14px;
   color: #596a80;
+  font-size: 14px;
 }
 
 /* =====================================
-   INDICE DEL SITO
+   13. INDICE DEL SITO
 ===================================== */
 
 .page-directory {
@@ -349,50 +594,134 @@ h3 {
 }
 
 /* =====================================
-   PIÈ DI PAGINA
+   14. PIÈ DI PAGINA
 ===================================== */
 
 footer {
-  background: #10315e;
-  color: white;
-  text-align: center;
+  width: 100%;
+
   padding: 35px 15px;
+
+  background: var(--dark-blue);
+  color: white;
+
+  text-align: center;
 }
 
 footer a {
   color: white;
 }
 
+.footer-language-links {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 12px 20px;
+
+  max-width: 1100px;
+
+  margin: 25px auto;
+}
+
+.footer-language-links a {
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.footer-language-links a:hover {
+  color: var(--yellow);
+  text-decoration: underline;
+}
+
 /* =====================================
-   VERSIONE MOBILE
+   15. VERSIONE MOBILE
 ===================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
 
   header {
     padding: 14px 12px;
   }
 
   .main-nav {
-    gap: 10px;
+    gap: 6px;
+    padding: 8px 10px;
   }
 
-  .language-dropdown {
-    margin-left: 0;
+  .language-dropdown > summary {
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
-  section {
+  .language-options {
+    width: 170px;
+    max-height: 60vh;
+  }
+
+  .main-nav-links {
+    gap: 5px;
+  }
+
+  .main-nav-links > a {
+    padding: 8px 9px;
+    font-size: 11px;
+  }
+
+  main {
+    padding: 15px 10px;
+  }
+
+  main section {
     padding: 23px;
+    margin-bottom: 15px;
   }
 
   .card {
     padding: 19px;
   }
 
+  .highlight {
+    padding: 18px;
+  }
+
   .button {
     display: block;
     text-align: center;
     margin: 10px 0;
+  }
+
+}
+
+/* =====================================
+   16. SCHERMI BASSI
+===================================== */
+
+@media (max-height: 500px) {
+
+  .language-options {
+    max-height: 55vh;
+  }
+
+}
+
+/* =====================================
+   17. ACCESSIBILITÀ
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .language-dropdown > summary {
+    transition: none;
   }
 
 }
@@ -407,7 +736,7 @@ footer a {
      INTESTAZIONE
 ===================================== -->
 
-<header>
+<header id="home">
 
 <h1>
 INIZIATIVA PER UN POLO GLOBALE DELL'IA
@@ -426,6 +755,68 @@ Provincia di Gyeonggi, Repubblica di Corea
 
 <nav class="main-nav"
 aria-label="Navigazione principale">
+
+<!-- SELETTORE DELLA LINGUA -->
+
+<details class="language-dropdown">
+
+<summary aria-label="Seleziona la lingua del sito">
+🌐 Lingua ▾
+</summary>
+
+<div class="language-options">
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html" lang="ar" dir="rtl">
+العربية
+</a>
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index-de.html" lang="de">
+Deutsch
+</a>
+
+<a href="index-it.html"
+lang="it"
+aria-current="page">
+Italiano ✓
+</a>
+
+</div>
+
+</details>
+
+<!-- =====================================
+     MENU PRINCIPALE SCORREVOLE
+===================================== -->
+
+<div class="main-nav-links">
 
 <a href="index-it.html">
 Home
@@ -471,45 +862,7 @@ Partecipazione
 Guida
 </a>
 
-<!-- SELETTORE DELLA LINGUA -->
-
-<details class="language-dropdown">
-
-<summary aria-label="Seleziona la lingua del sito">
-🌐 Lingua ▾
-</summary>
-
-<div class="language-options">
-
-<a href="index-it.html"
-lang="it"
-aria-current="page">
-Italiano ✓
-</a>
-
-<a href="index-en.html" lang="en">
-English
-</a>
-
-<a href="index-es.html" lang="es">
-Español
-</a>
-
-<a href="index-fr.html" lang="fr">
-Français
-</a>
-
-<a href="index-de.html" lang="de">
-Deutsch
-</a>
-
-<a href="index.html" lang="ko">
-한국어
-</a>
-
 </div>
-
-</details>
 
 </nav>
 
@@ -522,6 +875,8 @@ Deutsch
 <img
 src="aihub-main-banner-en.png"
 alt="Iniziativa per un Polo Globale dell'IA nella Città Speciale di Goyang"
+width="1648"
+height="928"
 loading="eager"
 fetchpriority="high">
 
@@ -530,21 +885,34 @@ fetchpriority="high">
 <main>
 
 <!-- =====================================
-     1. VISIONE
+     01. VISIONE
 ===================================== -->
 
 <section class="hero" id="vision">
 
 <h2>
-Intelligenza artificiale al servizio dell'umanità.<br>
-Cooperazione internazionale per un futuro migliore.
+Intelligenza artificiale al servizio dell'umanità
 </h2>
 
 <p>
-Collegare organizzazioni internazionali,
-governi, istituti di ricerca,
-università, imprese e comunità
-per affrontare le sfide globali.
+Cooperazione internazionale per un futuro migliore
+</p>
+
+<p>
+La nostra iniziativa intende promuovere
+la cooperazione tra organizzazioni
+internazionali, governi, università,
+istituti di ricerca, imprese
+e società civile.
+</p>
+
+<p>
+L'obiettivo è esplorare
+le possibilità offerte
+dall'intelligenza artificiale
+per affrontare le sfide comuni
+dell'umanità e contribuire
+allo sviluppo sostenibile.
 </p>
 
 <div class="highlight">
@@ -554,28 +922,38 @@ La nostra visione
 </strong>
 
 <p>
-Sviluppare la Città Speciale di Goyang
-come centro di cooperazione internazionale,
-dove l'intelligenza artificiale
-contribuisca allo sviluppo sostenibile,
-al benessere umano
-e alla soluzione delle sfide globali.
+Aspiriamo a sviluppare
+la Città Speciale di Goyang
+come possibile centro internazionale
+di cooperazione nel campo
+dell'intelligenza artificiale,
+della ricerca scientifica
+e dell'innovazione.
+</p>
+
+<p>
+Questa iniziativa mira
+a favorire il benessere
+delle persone e lo sviluppo
+sostenibile attraverso
+la collaborazione internazionale.
 </p>
 
 </div>
 
-<a href="goyang-it.html" class="button">
+<a href="#goyang" class="button">
 Perché Goyang?
 </a>
 
-<a href="strategy-it.html" class="button secondary">
-Esplora le opportunità di cooperazione
+<a href="#partnership"
+class="button secondary">
+Cooperazione internazionale
 </a>
 
 </section>
 
 <!-- =====================================
-     2. POLO GLOBALE DELL'IA
+     02. POLO GLOBALE DELL'IA
 ===================================== -->
 
 <section id="hub">
@@ -585,37 +963,42 @@ Esplora le opportunità di cooperazione
 </h2>
 
 <p>
-Il Polo Globale dell'IA proposto
-è concepito come una piattaforma
+Il Polo Globale dell'Intelligenza
+Artificiale è una proposta
+per sviluppare una piattaforma
 di cooperazione internazionale
-che collega le competenze
-delle organizzazioni internazionali
-con i progressi
+dedicata all'utilizzo responsabile
 dell'intelligenza artificiale.
 </p>
 
 <p>
-Il suo obiettivo è esplorare
-come l'intelligenza artificiale
-possa contribuire ad affrontare
-sfide globali complesse,
-tra cui la salute pubblica,
-la sicurezza alimentare,
-il cambiamento climatico,
-la protezione ambientale,
-l'assistenza umanitaria,
-le migrazioni,
-l'occupazione,
-l'istruzione
-e la resilienza ai disastri.
+L'iniziativa intende collegare
+le competenze delle organizzazioni
+internazionali con le capacità
+scientifiche e tecnologiche
+di governi, università,
+istituti di ricerca e imprese.
 </p>
 
 <p>
-L'iniziativa intende incoraggiare
-la cooperazione tra organizzazioni internazionali,
-governi, istituzioni accademiche,
-centri di ricerca, imprese
-e società civile.
+Il progetto propone di esaminare
+come l'intelligenza artificiale
+possa contribuire alla soluzione
+di problemi globali.
+</p>
+
+<p>
+Tra i possibili settori
+di applicazione figurano
+la sanità pubblica,
+la sicurezza alimentare,
+il cambiamento climatico,
+la protezione dell'ambiente,
+l'assistenza umanitaria,
+la migrazione,
+l'occupazione,
+l'istruzione
+e la prevenzione dei disastri.
 </p>
 
 <div class="grid">
@@ -627,41 +1010,10 @@ Cooperazione internazionale
 </h3>
 
 <p>
-Promuovere il dialogo,
-lo scambio di conoscenze
-e la cooperazione
-tra istituzioni e Paesi.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>
-Ricerca e innovazione nell'IA
-</h3>
-
-<p>
-Esplorare applicazioni responsabili
-dell'intelligenza artificiale
-per affrontare sfide di interesse pubblico
-attraverso la ricerca
-e la collaborazione.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>
-Soluzioni pratiche
-</h3>
-
-<p>
-Sostenere opportunità
-per progetti pilota,
-valutazioni tecnologiche
-e approcci basati su evidenze
+Promuovere il dialogo
+internazionale, lo scambio
+di esperienze e lo sviluppo
+di possibili iniziative comuni
 per affrontare le sfide globali.
 </p>
 
@@ -670,14 +1022,48 @@ per affrontare le sfide globali.
 <div class="card">
 
 <h3>
-Sviluppo delle competenze
+Ricerca e innovazione
 </h3>
 
 <p>
-Esplorare opportunità
-di formazione,
-scambi professionali
-e apprendimento internazionale.
+Esaminare applicazioni responsabili
+dell'intelligenza artificiale
+e favorire la ricerca scientifica
+e l'innovazione tecnologica
+nell'interesse pubblico.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Applicazioni pratiche
+</h3>
+
+<p>
+Valutare possibili progetti pilota,
+sperimentazioni tecnologiche
+e applicazioni dell'intelligenza
+artificiale per affrontare
+problemi sociali e pubblici.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Scambio di conoscenze
+</h3>
+
+<p>
+Promuovere la formazione
+specialistica, lo scambio
+internazionale di esperti
+e la diffusione
+delle conoscenze scientifiche
+e tecnologiche.
 </p>
 
 </div>
@@ -685,13 +1071,13 @@ e apprendimento internazionale.
 </div>
 
 <a href="hub-it.html" class="button">
-Scopri di più sul Polo Globale dell'IA
+Scopri il Polo Globale dell'IA
 </a>
 
 </section>
 
 <!-- =====================================
-     3. GOYANG
+     03. PERCHÉ GOYANG?
 ===================================== -->
 
 <section id="goyang">
@@ -702,20 +1088,30 @@ Scopri di più sul Polo Globale dell'IA
 
 <p>
 La Città Speciale di Goyang
-si trova nella Provincia di Gyeonggi,
-all'interno dell'area metropolitana di Seul,
-nella Repubblica di Corea.
+si trova nella Provincia
+di Gyeonggi, nella Repubblica
+di Corea, e fa parte
+dell'area metropolitana di Seul.
 </p>
 
 <p>
-Le sue infrastrutture
-per esposizioni e congressi internazionali,
-le istituzioni sanitarie,
-i servizi urbani
-e le risorse ambientali
-costituiscono una base
-per esplorare lo sviluppo
-di un centro di cooperazione internazionale.
+La città dispone
+di infrastrutture per fiere
+e conferenze internazionali,
+istituzioni mediche,
+strutture educative e culturali,
+oltre a importanti risorse
+urbane e naturali.
+</p>
+
+<p>
+Queste caratteristiche
+possono costituire
+una base per valutare
+la possibilità di sviluppare
+un centro internazionale
+di cooperazione nel campo
+dell'intelligenza artificiale.
 </p>
 
 <div class="grid">
@@ -723,14 +1119,14 @@ di un centro di cooperazione internazionale.
 <div class="card">
 
 <h3>
-Posizione strategica metropolitana
+Posizione metropolitana
 </h3>
 
 <p>
-Goyang beneficia della sua posizione
-nell'area metropolitana di Seul,
-con accesso a importanti reti
-economiche, accademiche
+Goyang si trova
+nell'area metropolitana di Seul
+e offre accesso a reti
+economiche, scientifiche
 e istituzionali.
 </p>
 
@@ -739,22 +1135,25 @@ e istituzionali.
 <div class="card">
 
 <h3>
-Infrastrutture congressuali KINTEX
+Centro internazionale KINTEX
 </h3>
 
 <p>
-KINTEX offre strutture
-per esposizioni internazionali,
-conferenze
-e scambi professionali.
+Il Korea International
+Exhibition Center (KINTEX)
+dispone di strutture
+per esposizioni,
+conferenze ed eventi
+internazionali.
 </p>
 
 <p>
-Queste infrastrutture
-potrebbero sostenere
-incontri internazionali,
-forum ed eventi di collaborazione
-associati al Polo Globale dell'IA.
+Questa infrastruttura
+potrebbe essere utilizzata
+per forum scientifici,
+incontri internazionali
+e futuri programmi
+di cooperazione.
 </p>
 
 </div>
@@ -762,21 +1161,24 @@ associati al Polo Globale dell'IA.
 <div class="card">
 
 <h3>
-Potenziale sanitario e di ricerca
+Risorse mediche e scientifiche
 </h3>
 
 <p>
 Goyang ospita
-il National Cancer Center
+il Centro Nazionale
+per il Cancro della Corea
 e altre istituzioni sanitarie.
 </p>
 
 <p>
-Queste risorse offrono opportunità
-per esplorare la cooperazione
-nella salute pubblica,
-nella ricerca medica
-e nelle applicazioni responsabili dell'IA.
+Queste risorse offrono
+possibilità di esplorare
+la cooperazione scientifica
+nei settori della sanità pubblica,
+della ricerca medica
+e delle applicazioni
+responsabili dell'IA.
 </p>
 
 </div>
@@ -784,16 +1186,17 @@ e nelle applicazioni responsabili dell'IA.
 <div class="card">
 
 <h3>
-Risorse ambientali
+Ambiente e risorse naturali
 </h3>
 
 <p>
-La zona umida di Janghang
-e le risorse ecologiche circostanti
-offrono opportunità
-per l'educazione ambientale,
-la ricerca
-e le iniziative di sostenibilità.
+Le zone umide di Janghang
+e altre risorse naturali
+costituiscono importanti
+elementi per la ricerca
+ambientale, l'educazione
+e le iniziative
+di sviluppo sostenibile.
 </p>
 
 </div>
@@ -801,23 +1204,27 @@ e le iniziative di sostenibilità.
 <div class="card">
 
 <h3>
-Qualità dell'ambiente di vita
+Qualità della vita
 </h3>
 
 <p>
-Goyang offre aree residenziali,
+Goyang dispone
+di aree residenziali,
 servizi sanitari,
-strutture educative,
-servizi culturali
-e infrastrutture urbane.
+istituzioni educative,
+strutture culturali
+e servizi urbani.
 </p>
 
 <p>
 Le esigenze specifiche
-del personale internazionale
+delle eventuali organizzazioni
+internazionali,
+del loro personale
 e delle rispettive famiglie
 dovrebbero essere valutate
-attraverso consultazioni.
+attraverso consultazioni
+appropriate.
 </p>
 
 </div>
@@ -825,23 +1232,24 @@ attraverso consultazioni.
 <div class="card">
 
 <h3>
-Opportunità di sviluppo regionale
+Sviluppo regionale
 </h3>
 
 <p>
-La cooperazione internazionale
-potrebbe creare opportunità
-per la ricerca,
-l'occupazione qualificata,
-lo sviluppo delle imprese
-e i servizi collegati.
+Una maggiore cooperazione
+internazionale potrebbe
+contribuire alla ricerca,
+alla creazione di nuove
+opportunità occupazionali
+e allo sviluppo
+delle attività economiche.
 </p>
 
 <p>
-I risultati effettivi
-dipenderebbero dalla dimensione
-e dalla struttura
-delle future collaborazioni.
+I risultati concreti
+dipenderebbero dalla natura
+e dalla portata
+dei futuri progetti.
 </p>
 
 </div>
@@ -851,166 +1259,164 @@ delle future collaborazioni.
 <div class="highlight">
 
 <strong>
-Un luogo per la cooperazione internazionale
-e la crescita condivisa
+Cooperazione internazionale
+e sviluppo urbano sostenibile
 </strong>
 
 <p>
-Le risorse esistenti di Goyang
-costituiscono una base
-per esplorare un Polo Globale dell'IA
-capace di sostenere
-sia la cooperazione internazionale
-sia lo sviluppo regionale.
+Goyang intende valorizzare
+le proprie risorse
+per esplorare opportunità
+di cooperazione internazionale
+nel settore dell'intelligenza
+artificiale.
+</p>
+
+<p>
+L'iniziativa considera
+sia le sfide globali
+sia lo sviluppo sostenibile
+della città.
 </p>
 
 </div>
 
 <a href="goyang-it.html" class="button">
-Scopri i vantaggi di Goyang
+Scopri i punti di forza di Goyang
 </a>
 
 </section>
 
 <!-- =====================================
-     4. ORGANIZZAZIONI INTERNAZIONALI
+     04. ORGANIZZAZIONI INTERNAZIONALI
 ===================================== -->
 
 <section id="organizations">
 
 <h2>
 3. Organizzazioni internazionali
-e potenziali ambiti di cooperazione
+e possibili settori di cooperazione
 </h2>
 
 <p>
-L'iniziativa individua nove
-organizzazioni internazionali
-le cui competenze
-sono rilevanti per possibili forme
-di cooperazione internazionale
-sostenute dall'intelligenza artificiale.
+L'iniziativa per un Polo Globale
+dell'IA esamina possibili
+settori di cooperazione
+collegati alle missioni
+di nove organizzazioni
+internazionali.
+</p>
+
+<p>
+I settori indicati
+di seguito rappresentano
+esclusivamente possibili
+ambiti di collaborazione futura.
+</p>
+
+<p>
+Non costituiscono accordi
+confermati né impegni
+istituzionali.
 </p>
 
 <div class="grid">
 
 <div class="card">
 
-<h3>WHO / OMS</h3>
+<h3>
+WHO – Organizzazione Mondiale della Sanità
+</h3>
 
 <p>
-<strong>
-Organizzazione Mondiale della Sanità
-</strong>
-</p>
-
-<p>
-Salute pubblica,
+Sanità pubblica,
 prevenzione delle malattie,
-sistemi sanitari
-e potenziali applicazioni dell'IA
-per l'analisi delle informazioni sanitarie.
+rafforzamento dei sistemi sanitari,
+analisi dei dati medici
+e utilizzo responsabile
+dell'intelligenza artificiale.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>WFP / PAM</h3>
-
-<p>
-<strong>
-Programma Alimentare Mondiale
-</strong>
-</p>
+<h3>
+WFP – Programma Alimentare Mondiale
+</h3>
 
 <p>
 Sicurezza alimentare,
 assistenza umanitaria,
-resilienza delle catene di approvvigionamento
-e potenziale analisi delle crisi alimentari
-supportata dall'IA.
+catene di approvvigionamento
+sostenibili e analisi
+delle crisi alimentari.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNEP</h3>
-
-<p>
-<strong>
-Programma delle Nazioni Unite per l'Ambiente
-</strong>
-</p>
+<h3>
+UNEP – Programma delle Nazioni Unite per l'Ambiente
+</h3>
 
 <p>
 Cambiamento climatico,
-protezione ambientale,
+protezione dell'ambiente,
 biodiversità
-e potenziali applicazioni dell'IA
-per il monitoraggio ambientale.
+e monitoraggio
+delle condizioni ambientali.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNHCR</h3>
-
-<p>
-<strong>
-Alto Commissariato delle Nazioni Unite
-per i Rifugiati
-</strong>
-</p>
+<h3>
+UNHCR – Alto Commissariato delle Nazioni Unite per i Rifugiati
+</h3>
 
 <p>
 Protezione dei rifugiati,
 sfollamento forzato,
 assistenza umanitaria
-e analisi responsabile dei dati
-per le esigenze di protezione.
+e utilizzo responsabile
+dei dati nelle attività
+di protezione.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>IOM / OIM</h3>
+<h3>
+IOM – Organizzazione Internazionale per le Migrazioni
+</h3>
 
 <p>
-<strong>
-Organizzazione Internazionale per le Migrazioni
-</strong>
-</p>
-
-<p>
-Migrazione,
-sfollamento,
-sostegno umanitario
-e potenziali strumenti digitali
-per migliorare l'accesso
-ai servizi legati alla migrazione.
+Migrazione internazionale,
+assistenza alle persone
+sfollate, aiuti umanitari
+e soluzioni digitali
+per i servizi connessi
+alla migrazione.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>ILO / OIL</h3>
-
-<p>
-<strong>
-Organizzazione Internazionale del Lavoro
-</strong>
-</p>
+<h3>
+ILO – Organizzazione Internazionale del Lavoro
+</h3>
 
 <p>
 Occupazione,
 diritti dei lavoratori,
-sviluppo delle competenze
-e analisi degli effetti dell'IA
+formazione professionale
+e analisi degli effetti
+dell'intelligenza artificiale
 sul futuro del lavoro.
 </p>
 
@@ -1018,59 +1424,51 @@ sul futuro del lavoro.
 
 <div class="card">
 
-<h3>ITU / UIT</h3>
+<h3>
+ITU – Unione Internazionale delle Telecomunicazioni
+</h3>
 
 <p>
-<strong>
-Unione Internazionale delle Telecomunicazioni
-</strong>
-</p>
-
-<p>
-Connettività digitale,
-telecomunicazioni,
+Telecomunicazioni digitali,
+infrastrutture di comunicazione,
 comunicazioni di emergenza
-e tecnologie di allerta precoce.
+e sistemi di allerta precoce
+in caso di disastri.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNICEF</h3>
-
-<p>
-<strong>
-Fondo delle Nazioni Unite per l'Infanzia
-</strong>
-</p>
+<h3>
+UNICEF – Fondo delle Nazioni Unite per l'Infanzia
+</h3>
 
 <p>
 Protezione dell'infanzia,
 istruzione,
 inclusione digitale
-e applicazioni responsabili dell'IA
-che tutelino i diritti dei bambini.
+e utilizzo responsabile
+dell'intelligenza artificiale
+nel rispetto dei diritti
+dei bambini.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNDP / PNUD</h3>
-
-<p>
-<strong>
-Programma delle Nazioni Unite per lo Sviluppo
-</strong>
-</p>
+<h3>
+UNDP – Programma delle Nazioni Unite per lo Sviluppo
+</h3>
 
 <p>
 Sviluppo sostenibile,
-risposta alle crisi,
-rafforzamento delle capacità istituzionali
-e potenziali applicazioni dell'IA
-per la pianificazione dello sviluppo.
+gestione delle crisi,
+rafforzamento delle capacità
+istituzionali e possibili
+applicazioni dell'IA
+nei programmi di sviluppo.
 </p>
 
 </div>
@@ -1080,42 +1478,49 @@ per la pianificazione dello sviluppo.
 <div class="highlight">
 
 <strong>
-Chiarimento importante
+Avvertenza importante
 </strong>
 
 <p>
-Queste organizzazioni
-sono individuate come potenziali
-interlocutori di cooperazione
-in base ai rispettivi mandati istituzionali.
+Le organizzazioni internazionali
+sopra indicate sono menzionate
+esclusivamente in relazione
+alle rispettive missioni
+istituzionali e ai possibili
+settori di cooperazione futura.
 </p>
 
 <p>
-La loro inclusione
-non implica che alcuna organizzazione
-abbia accettato di partecipare
-al Polo Globale dell'IA proposto,
-di trasferirsi a Goyang
-o di stabilirvi un ufficio.
+Ciò non significa
+che tali organizzazioni
+abbiano confermato
+la propria partecipazione
+all'iniziativa oppure
+abbiano accettato
+di istituire o trasferire
+uffici o unità organizzative
+a Goyang.
 </p>
 
 <p>
-Qualsiasi futura cooperazione
-richiederebbe consultazioni appropriate,
-decisioni istituzionali
-e accordi formali.
+Qualsiasi futura collaborazione
+richiederebbe consultazioni
+ufficiali, decisioni
+istituzionali appropriate
+e il rispetto delle procedure
+di autorizzazione applicabili.
 </p>
 
 </div>
 
 <a href="agencies-it.html" class="button">
-Esplora le nove organizzazioni internazionali
+Scopri le nove organizzazioni
 </a>
 
 </section>
 
 <!-- =====================================
-     5. STRATEGIA
+     05. STRATEGIA IN TRE FASI
 ===================================== -->
 
 <section id="strategy">
@@ -1125,11 +1530,12 @@ Esplora le nove organizzazioni internazionali
 </h2>
 
 <p>
-L'approccio proposto
-prende in considerazione
-le esigenze pratiche
-delle organizzazioni internazionali
-e degli altri potenziali partner.
+L'iniziativa propone
+un approccio graduale
+che tenga conto
+delle esigenze effettive
+dei possibili partner
+internazionali.
 </p>
 
 <div class="grid">
@@ -1137,24 +1543,25 @@ e degli altri potenziali partner.
 <div class="card">
 
 <h3>
-Fase 1 — Insediamento iniziale
+Fase 1 – Insediamento iniziale
 </h3>
 
 <p>
-Esplorare condizioni adeguate
-per l'insediamento iniziale
-delle organizzazioni partecipanti
-e delle istituzioni partner.
+Valutare le condizioni
+necessarie per consentire
+alle eventuali organizzazioni
+internazionali e istituzioni
+partner di avviare
+stabilmente le proprie
+attività a Goyang.
 </p>
 
 <p>
-Le possibili considerazioni includono
-spazi per uffici,
-trasporti,
-alloggi,
-assistenza sanitaria,
-istruzione
-e altri servizi essenziali.
+Tra i possibili aspetti
+da esaminare figurano
+uffici, trasporti,
+alloggi, assistenza sanitaria,
+istruzione e altri servizi.
 </p>
 
 </div>
@@ -1162,24 +1569,23 @@ e altri servizi essenziali.
 <div class="card">
 
 <h3>
-Fase 2 — Supporto operativo
+Fase 2 – Sostegno operativo
 </h3>
 
 <p>
-Esplorare la cooperazione
+Promuovere la collaborazione
 tra istituzioni pubbliche,
-università,
-organizzazioni di ricerca,
-imprese
-e società civile.
+università, centri di ricerca,
+imprese e società civile.
 </p>
 
 <p>
-Le attività potenziali includono
-ricerca congiunta,
-incontri internazionali,
-progetti pilota di IA
-e scambi professionali.
+Esaminare possibili
+progetti di ricerca congiunti,
+conferenze internazionali,
+sperimentazioni dell'IA
+e programmi di scambio
+di esperti.
 </p>
 
 </div>
@@ -1187,17 +1593,26 @@ e scambi professionali.
 <div class="card">
 
 <h3>
-Fase 3 — Crescita condivisa e sostenibile
+Fase 3 – Crescita sostenibile condivisa
 </h3>
 
 <p>
-Promuovere una cooperazione a lungo termine
-che contribuisca ai mandati
-delle organizzazioni internazionali partecipanti,
-creando al tempo stesso opportunità
-per l'innovazione regionale,
-l'occupazione
-e lo sviluppo economico.
+Sviluppare una cooperazione
+a lungo termine
+che contribuisca
+sia agli obiettivi
+delle organizzazioni
+internazionali
+sia allo sviluppo
+sostenibile di Goyang.
+</p>
+
+<p>
+Tra i possibili risultati
+figurano nuove opportunità
+di ricerca, occupazione,
+attività economiche
+e sviluppo regionale.
 </p>
 
 </div>
@@ -1208,78 +1623,84 @@ e lo sviluppo economico.
 
 <strong>
 Insediamento iniziale
-→ Supporto operativo
+→ Sostegno operativo
 → Crescita condivisa
 </strong>
 
 <p>
-Gli accordi istituzionali specifici,
-i finanziamenti,
-le strutture
-e le misure di sostegno
-sarebbero soggetti a consultazione
-e approvazione
-da parte delle autorità competenti.
+Le strutture concrete,
+le risorse finanziarie,
+le misure istituzionali
+e i programmi di cooperazione
+dovrebbero essere definiti
+attraverso consultazioni
+e procedure ufficiali.
 </p>
 
 </div>
 
 <a href="strategy-it.html" class="button">
-Esplora la strategia di sviluppo
+Scopri la strategia
 </a>
 
 </section>
 
 <!-- =====================================
-     6. COMITATO
+     06. COMITATO CIVICO
 ===================================== -->
 
 <section id="committee">
 
 <h2>
-5. Il Comitato Civico Promotore
+5. Comitato civico per l'iniziativa
 </h2>
 
 <p>
-Il Comitato Civico Promotore
-per l'insediamento del Polo Globale dell'IA
+Il Comitato Civico
+per la Promozione
+dell'Insediamento
+di un Polo Globale dell'IA
 nella Città Speciale di Goyang
-è un'iniziativa civica
-che mira a rafforzare
-la consapevolezza pubblica
-e il sostegno al progetto proposto.
+è un'iniziativa
+della società civile.
 </p>
 
 <p>
-Il Comitato intende promuovere
-il dibattito pubblico,
-incoraggiare la partecipazione dei cittadini
-e comunicare i potenziali benefici
-della cooperazione internazionale
-e dell'innovazione basata sull'IA.
+Il Comitato intende
+rafforzare la consapevolezza
+pubblica e promuovere
+la partecipazione dei cittadini
+al dibattito sulla cooperazione
+internazionale,
+sull'intelligenza artificiale
+e sullo sviluppo urbano
+sostenibile.
 </p>
 
 <p>
-Le sue attività comprendono
-l'informazione pubblica,
-il coinvolgimento dei cittadini,
-il dibattito sulle politiche
-e la sensibilizzazione
-relativa all'iniziativa.
+Le attività comprendono
+la diffusione di informazioni,
+la promozione
+della partecipazione civica,
+la discussione
+di proposte strategiche
+e il dialogo
+con le istituzioni interessate.
 </p>
 
 <div class="highlight">
 
 <strong>
-Il nostro impegno
+I nostri principi
 </strong>
 
 <p>
-Promuovere un coinvolgimento
-trasparente, responsabile e costruttivo
-a sostegno della cooperazione internazionale
-e dello sviluppo futuro
-della Città Speciale di Goyang.
+Trasparenza,
+responsabilità,
+partecipazione civica
+costruttiva e rispetto
+delle procedure decisionali
+ufficiali.
 </p>
 
 </div>
@@ -1290,32 +1711,38 @@ Scopri il Comitato
 
 <a href="participate-it.html"
 class="button secondary">
-Partecipazione dei cittadini
+Partecipazione civica
 </a>
 
 </section>
 
 <!-- =====================================
-     7. COOPERAZIONE INTERNAZIONALE
+     07. COOPERAZIONE INTERNAZIONALE
 ===================================== -->
 
 <section id="partnership">
 
 <h2>
-6. Opportunità di partenariato internazionale
+6. Opportunità di cooperazione internazionale
 </h2>
 
 <p>
-Il Polo Globale dell'IA proposto
-intende incoraggiare il dialogo
-con organizzazioni e istituzioni
-interessate all'intelligenza artificiale responsabile,
-alla cooperazione internazionale
+L'iniziativa intende
+promuovere il dialogo
+con organizzazioni
+internazionali,
+istituti di ricerca,
+esperti e altre istituzioni
+interessate all'intelligenza
+artificiale responsabile,
+alla cooperazione
+internazionale
 e allo sviluppo sostenibile.
 </p>
 
 <p>
-I potenziali ambiti di collaborazione includono:
+I possibili settori
+di cooperazione comprendono:
 </p>
 
 <div class="grid">
@@ -1323,14 +1750,17 @@ I potenziali ambiti di collaborazione includono:
 <div class="card">
 
 <h3>
-Dialogo sulle politiche
+Dialogo istituzionale
 </h3>
 
 <p>
-Scambiare prospettive
-sulla cooperazione internazionale,
+Scambio di esperienze
+e prospettive
+sulla cooperazione
+internazionale,
 sulla governance dell'IA
-e sull'innovazione di interesse pubblico.
+e sull'innovazione tecnologica
+nell'interesse pubblico.
 </p>
 
 </div>
@@ -1338,13 +1768,15 @@ e sull'innovazione di interesse pubblico.
 <div class="card">
 
 <h3>
-Collaborazione nella ricerca
+Cooperazione scientifica
 </h3>
 
 <p>
-Esplorare opportunità
-di ricerca interdisciplinare
-e scambio di conoscenze.
+Esplorazione delle possibilità
+di ricerca multidisciplinare,
+scambio di conoscenze
+e sviluppo di reti
+scientifiche internazionali.
 </p>
 
 </div>
@@ -1352,13 +1784,16 @@ e scambio di conoscenze.
 <div class="card">
 
 <h3>
-Sperimentazione tecnologica
+Progetti tecnologici
 </h3>
 
 <p>
-Valutare progetti pilota responsabili
-e applicazioni pratiche
-delle tecnologie di intelligenza artificiale.
+Valutazione di possibili
+progetti pilota,
+applicazioni pratiche
+e strumenti per esaminare
+l'utilizzo responsabile
+delle tecnologie di IA.
 </p>
 
 </div>
@@ -1366,14 +1801,17 @@ delle tecnologie di intelligenza artificiale.
 <div class="card">
 
 <h3>
-Scambi professionali
+Scambio di esperti
 </h3>
 
 <p>
-Esplorare seminari,
+Esame di possibili
 programmi di formazione,
+seminari,
 forum internazionali
-e iniziative di sviluppo delle competenze.
+e iniziative
+per lo sviluppo
+delle competenze.
 </p>
 
 </div>
@@ -1381,20 +1819,20 @@ e iniziative di sviluppo delle competenze.
 </div>
 
 <p class="note">
-Tutti i potenziali partenariati
-sono di natura esplorativa,
-salvo conferma formale
-da parte delle istituzioni competenti.
+I settori indicati
+rappresentano esclusivamente
+possibili ambiti
+di cooperazione futura.
+Non implicano l'esistenza
+di accordi confermati
+con organizzazioni
+internazionali.
 </p>
-
-<a href="strategy-it.html" class="button">
-Scopri la strategia di cooperazione
-</a>
 
 </section>
 
 <!-- =====================================
-     8. CONTATTI
+     08. CONTATTI E INFORMAZIONI
 ===================================== -->
 
 <section id="contact">
@@ -1404,59 +1842,78 @@ Scopri la strategia di cooperazione
 </h2>
 
 <p>
-Le organizzazioni internazionali,
-gli istituti di ricerca
-e le altre parti interessate
-sono invitati a conoscere meglio
-l'iniziativa per un Polo Globale dell'IA
-e il Comitato Civico Promotore.
+Accogliamo con interesse
+l'attenzione di organizzazioni
+internazionali,
+istituti di ricerca,
+esperti e cittadini
+verso l'iniziativa
+per un Polo Globale dell'IA
+e le attività
+del Comitato Civico.
 </p>
 
 <p>
-Per informazioni generali,
-è possibile consultare
-le pagine in lingua italiana
-collegate di seguito.
+Ulteriori informazioni
+sono disponibili
+nelle pagine in lingua
+italiana di questo sito.
 </p>
 
 <p>
-La homepage coreana
-fornisce accesso
-alle informazioni esistenti
-in lingua coreana
-e alle risorse amministrative.
+La versione coreana
+del sito offre
+documenti e servizi
+aggiuntivi in lingua coreana.
 </p>
 
 <a href="guide-it.html" class="button">
-Guida all'utilizzo del sito
+Guida al sito
 </a>
 
-<a href="index.html" class="button secondary">
-Homepage coreana
+<a href="index.html"
+class="button secondary">
+Versione coreana
 </a>
 
 <div class="highlight">
 
 <strong>
-Iniziativa per un Polo Globale dell'IA<br>
-Città Speciale di Goyang,<br>
-Provincia di Gyeonggi,<br>
+Iniziativa per un Polo Globale dell'IA
+<br>
+Città Speciale di Goyang
+<br>
+Provincia di Gyeonggi
+<br>
 Repubblica di Corea
 </strong>
 
 <p>
-Comitato Civico Promotore
-per l'insediamento del Polo Globale dell'IA
-nella Città Speciale di Goyang
+Comitato Civico
+per la Promozione
+dell'Insediamento
+di un Polo Globale dell'IA
+a Goyang
 </p>
 
 <p class="note">
-Questo sito presenta un'iniziativa civica
-e la sua visione progettuale.
-Non costituisce una decisione ufficiale
-sulla scelta della sede
-né un impegno
-da parte di alcuna organizzazione internazionale.
+Questo sito presenta
+un'iniziativa
+della società civile
+e le relative attività.
+</p>
+
+<p class="note">
+Non implica
+che le autorità governative
+abbiano adottato
+una decisione ufficiale
+sulla creazione
+di un Polo Globale dell'IA,
+né che organizzazioni
+internazionali
+abbiano confermato
+la propria partecipazione.
 </p>
 
 </div>
@@ -1464,27 +1921,26 @@ da parte di alcuna organizzazione internazionale.
 </section>
 
 <!-- =====================================
-     9. INDICE DEL SITO
+     09. PAGINE IN ITALIANO
 ===================================== -->
 
 <section id="directory" class="page-directory">
 
 <h2>
-8. Esplora il sito del Polo Globale dell'IA
+8. Pagine disponibili in italiano
 </h2>
 
 <p>
-Esplora le seguenti pagine
-per informazioni dettagliate
-sull'iniziativa per un Polo Globale dell'IA,
-sulla Città Speciale di Goyang,
-sulla cooperazione internazionale
-e sulla partecipazione dei cittadini.
+Le seguenti pagine
+forniscono ulteriori
+informazioni sul Polo Globale
+dell'IA, sulla Città Speciale
+di Goyang, sulla cooperazione
+internazionale
+e sulla partecipazione civica.
 </p>
 
 <div class="grid">
-
-<!-- POLO GLOBALE IA -->
 
 <div class="card">
 
@@ -1493,18 +1949,17 @@ Polo Globale dell'IA
 </h3>
 
 <p>
-Scopri la piattaforma proposta
-per la cooperazione internazionale
-e la sua visione.
+Concetto,
+obiettivi e possibili
+settori di cooperazione
+internazionale.
 </p>
 
 <a href="hub-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
-
-<!-- GOYANG -->
 
 <div class="card">
 
@@ -1513,19 +1968,17 @@ Perché Goyang?
 </h3>
 
 <p>
-Scopri i vantaggi geografici,
-le infrastrutture
-e il potenziale di sviluppo
-della Città Speciale di Goyang.
+Vantaggi geografici,
+infrastrutture
+e opportunità
+di sviluppo.
 </p>
 
 <a href="goyang-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
-
-<!-- ORGANIZZAZIONI -->
 
 <div class="card">
 
@@ -1534,17 +1987,17 @@ Organizzazioni internazionali
 </h3>
 
 <p>
-Scopri nove organizzazioni internazionali
-e i potenziali ambiti di cooperazione.
+Nove organizzazioni
+internazionali
+e possibili settori
+di cooperazione.
 </p>
 
 <a href="agencies-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
-
-<!-- STRATEGIA -->
 
 <div class="card">
 
@@ -1553,136 +2006,126 @@ Strategia di sviluppo
 </h3>
 
 <p>
-Esamina la strategia proposta
-in tre fasi:
-insediamento,
-supporto operativo
-e crescita sostenibile.
+Insediamento iniziale,
+sostegno operativo
+e crescita condivisa.
 </p>
 
 <a href="strategy-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
 
-<!-- COMITATO -->
-
 <div class="card">
 
 <h3>
-Comitato Civico Promotore
+Comitato Civico
 </h3>
 
 <p>
-Scopri il Comitato,
-la sua missione
-e le sue attività civiche.
+Missione,
+organizzazione
+e principali attività
+del Comitato Civico.
 </p>
 
 <a href="committee-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
 
-<!-- CRONOLOGIA -->
-
 <div class="card">
 
 <h3>
-Cronologia e tappe principali
+Cronologia
 </h3>
 
 <p>
-Consulta i principali sviluppi
-e le attività
-relative all'iniziativa.
+Principali eventi
+e tappe di sviluppo
+dell'iniziativa.
 </p>
 
 <a href="history-it.html" class="button">
-Esplora
+Scopri di più
 </a>
 
 </div>
 
-<!-- NOTIZIE -->
-
 <div class="card">
 
 <h3>
-Notizie e comunicazioni
+Notizie
 </h3>
 
 <p>
-Leggi gli aggiornamenti
-sulle attività del Comitato,
-gli eventi
-e i principali sviluppi.
+Informazioni
+sulle attività,
+sugli eventi
+e sugli sviluppi recenti.
 </p>
 
 <a href="news-it.html" class="button">
-Visualizza le notizie
+Leggi le notizie
 </a>
 
 </div>
 
-<!-- STAMPA -->
-
 <div class="card">
 
 <h3>
-Rassegna stampa
+Stampa
 </h3>
 
 <p>
-Esplora articoli di giornale,
-servizi televisivi e radiofonici
-e altre notizie pubblicate dai media.
+Articoli di stampa,
+notizie
+e materiali informativi.
 </p>
 
 <a href="press-it.html" class="button">
-Visualizza la rassegna stampa
+Rassegna stampa
 </a>
 
 </div>
 
-<!-- PARTECIPAZIONE -->
-
 <div class="card">
 
 <h3>
-Partecipazione dei cittadini
+Partecipazione civica
 </h3>
 
 <p>
-Scopri le campagne di sostegno pubblico,
-la registrazione al Comitato
-e i programmi di partecipazione.
+Informazioni
+sulle possibilità
+di sostenere l'iniziativa
+e partecipare
+alle sue attività.
 </p>
 
 <a href="participate-it.html" class="button">
-Centro di partecipazione
+Partecipa
 </a>
 
 </div>
 
-<!-- GUIDA -->
-
 <div class="card">
 
 <h3>
-Guida all'utilizzo del sito
+Guida al sito
 </h3>
 
 <p>
-Scopri come navigare nel sito,
-accedere alle informazioni
-e partecipare ai programmi disponibili.
+Informazioni
+sull'utilizzo del sito
+e sulla consultazione
+dei documenti.
 </p>
 
 <a href="guide-it.html" class="button">
-Visualizza la guida
+Apri la guida
 </a>
 
 </div>
@@ -1692,39 +2135,44 @@ Visualizza la guida
 </section>
 
 <!-- =====================================
-     10. INFORMAZIONI MULTILINGUE
+     10. SITO MULTILINGUE
 ===================================== -->
 
 <section id="languages">
 
 <h2>
-9. Informazioni sul sito multilingue
+9. Sito web multilingue
 </h2>
 
 <p>
-Questo sito viene sviluppato
-come piattaforma informativa multilingue
-per visitatori internazionali,
-organizzazioni,
+Il sito dell'iniziativa
+per un Polo Globale dell'IA
+offre pagine principali
+in dieci lingue.
+</p>
+
+<p>
+L'obiettivo è facilitare
+l'accesso alle informazioni
+per visitatori
+di diversi Paesi,
+organizzazioni internazionali,
 istituti di ricerca,
-imprese
-e cittadini interessati.
+imprese e cittadini.
 </p>
 
 <p>
-L'inglese costituisce
-la principale lingua internazionale del sito.
-Il coreano viene utilizzato
-per il sistema amministrativo
-e di gestione dei contenuti esistente.
+È possibile selezionare
+la lingua preferita
+attraverso il menu
+situato nella parte
+superiore della pagina.
 </p>
 
 <p>
-Sono inoltre disponibili
-versioni in spagnolo,
-francese,
-tedesco
-e italiano.
+La versione coreana
+offre ulteriori documenti
+e servizi in lingua coreana.
 </p>
 
 <div class="highlight">
@@ -1734,36 +2182,76 @@ Lingue disponibili
 </strong>
 
 <p>
-English — Versione internazionale
+<a href="index.html" lang="ko">
+한국어 – Coreano
+</a>
 </p>
 
 <p>
-한국어 — Versione coreana
+<a href="index-en.html" lang="en">
+English – Inglese
+</a>
 </p>
 
 <p>
-Español — Versione spagnola
+<a href="index-zh.html" lang="zh">
+中文 – Cinese
+</a>
 </p>
 
 <p>
-Français — Versione francese
+<a href="index-ja.html" lang="ja">
+日本語 – Giapponese
+</a>
 </p>
 
 <p>
-Deutsch — Versione tedesca
+<a href="index-ru.html" lang="ru">
+Русский – Russo
+</a>
 </p>
 
 <p>
-Italiano — Versione italiana
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية – Arabo
+</a>
+</p>
+
+<p>
+<a href="index-es.html" lang="es">
+Español – Spagnolo
+</a>
+</p>
+
+<p>
+<a href="index-fr.html" lang="fr">
+Français – Francese
+</a>
+</p>
+
+<p>
+<a href="index-de.html" lang="de">
+Deutsch – Tedesco
+</a>
+</p>
+
+<p>
+<a href="index-it.html"
+lang="it"
+aria-current="page">
+Italiano – Italiano ✓
+</a>
 </p>
 
 </div>
 
-<p>
-I visitatori possono selezionare
-la lingua preferita
-utilizzando il menu delle lingue
-nella parte superiore della homepage.
+<p class="note">
+I contenuti
+e i servizi disponibili
+possono variare
+a seconda della lingua
+selezionata.
 </p>
 
 </section>
@@ -1778,53 +2266,135 @@ nella parte superiore della homepage.
 
 <p>
 <strong>
-INIZIATIVA PER UN POLO GLOBALE DELL'IA
+Iniziativa per un Polo Globale dell'IA
 </strong>
 </p>
 
 <p>
-Città Speciale di Goyang<br>
-Provincia di Gyeonggi,<br>
+Città Speciale di Goyang
+<br>
+Provincia di Gyeonggi
+<br>
 Repubblica di Corea
 </p>
 
 <p>
-Comitato Civico Promotore
-per l'insediamento del Polo Globale dell'IA
-nella Città Speciale di Goyang
+Comitato Civico
+per la Promozione
+dell'Insediamento
+di un Polo Globale dell'IA
+a Goyang
 </p>
 
 <p>
-Intelligenza artificiale al servizio dell'umanità.<br>
-Cooperazione internazionale per un futuro migliore.
+Intelligenza artificiale
+al servizio dell'umanità
+<br>
+Cooperazione internazionale
+per un futuro migliore
 </p>
 
-<p>
-<a href="index-it.html">
-Italiano
-</a>
+<!-- =====================================
+     MENU LINGUE NEL PIÈ DI PAGINA
+===================================== -->
 
-&nbsp; | &nbsp;
-
-<a href="index-en.html" lang="en">
-English
-</a>
-
-&nbsp; | &nbsp;
+<div class="footer-language-links"
+aria-label="Selezione della lingua">
 
 <a href="index.html" lang="ko">
 한국어
 </a>
 
-</p>
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html"
+lang="ar"
+dir="rtl">
+العربية
+</a>
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index-de.html" lang="de">
+Deutsch
+</a>
+
+<a href="index-it.html"
+lang="it"
+aria-current="page">
+Italiano ✓
+</a>
+
+</div>
 
 <p>
 <a href="guide-it.html">
-Guida all'utilizzo del sito
+Guida al sito
 </a>
+</p>
+
+<p>
+<a href="index-it.html">
+Torna alla pagina iniziale
+</a>
+</p>
+
+<p style="
+font-size:12px;
+color:#b8cbe5;
+">
+© <span id="copyrightYear">2026</span>
+Iniziativa per un Polo Globale dell'IA.
+Tutti i diritti riservati.
 </p>
 
 </footer>
 
+<!-- =====================================
+     AGGIORNAMENTO AUTOMATICO DELL'ANNO
+===================================== -->
+
+<script>
+
+(function () {
+
+  "use strict";
+
+  const yearElement =
+    document.getElementById(
+      "copyrightYear"
+    );
+
+  if (yearElement) {
+
+    yearElement.textContent =
+      new Date().getFullYear();
+
+  }
+
+})();
+
+</script>
+
 </body>
-</html>
+</html>   
