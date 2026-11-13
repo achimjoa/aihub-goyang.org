@@ -876,7 +876,98 @@ main section h3 {
   cursor: default;
 }
 
+/* =====================================
+   10개 언어 상단 메뉴 최종 설정
+===================================== */
 
+/* 상단 메뉴 */
+
+#homepageLayoutModule .home-navigation {
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
+}
+
+/* 일반 메뉴 한 줄 표시 */
+
+#homepageLayoutModule .home-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* 일반 메뉴 버튼 */
+
+#homepageLayoutModule .home-menu > a {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 8px 9px;
+  font-size: 12px;
+}
+
+/* 다국어 메뉴 */
+
+#homepageLayoutModule .language-dropdown {
+  position: relative;
+  flex: 0 0 auto;
+  z-index: 2000;
+}
+
+/* 다국어 버튼 */
+
+#homepageLayoutModule .language-dropdown summary {
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* 언어 풀다운 */
+
+#homepageLayoutModule .language-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: auto;
+  z-index: 3000;
+  min-width: 190px;
+  max-height: min(70vh, 480px);
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+/* 현재 언어 표시 */
+
+#homepageLayoutModule
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+  font-weight: 800;
+}
+
+/* 모바일 */
+
+@media (max-width: 767px) {
+
+  #homepageLayoutModule .home-menu {
+    gap: 5px;
+  }
+
+  #homepageLayoutModule .home-menu > a {
+    padding: 8px 7px;
+    font-size: 11px;
+  }
+
+  #homepageLayoutModule .language-options {
+    min-width: 170px;
+    max-height: 60vh;
+  }
+
+}
   
 </style>
 </head>
@@ -918,6 +1009,10 @@ aria-label="주 메뉴">
 
 <!-- 다국어 선택 메뉴 -->
 
+<!-- =====================================
+     10개 언어 선택 메뉴
+===================================== -->
+
 <details class="language-dropdown">
 
   <summary aria-label="홈페이지 언어 선택">
@@ -932,14 +1027,42 @@ aria-label="주 메뉴">
       한국어 ✓
     </a>
 
-    <a href="index-en.html"
-       lang="en">
+    <a href="index-en.html" lang="en">
       English
     </a>
 
-    <a href="index-es.html"
-       lang="es">
+    <a href="index-zh.html" lang="zh">
+      中文
+    </a>
+
+    <a href="index-ja.html" lang="ja">
+      日本語
+    </a>
+
+    <a href="index-ru.html" lang="ru">
+      Русский
+    </a>
+
+    <a href="index-ar.html"
+       lang="ar"
+       dir="rtl">
+      العربية
+    </a>
+
+    <a href="index-es.html" lang="es">
       Español
+    </a>
+
+    <a href="index-fr.html" lang="fr">
+      Français
+    </a>
+
+    <a href="index-de.html" lang="de">
+      Deutsch
+    </a>
+
+    <a href="index-it.html" lang="it">
+      Italiano
     </a>
 
   </div>
