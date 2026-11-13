@@ -4,31 +4,62 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color"
-content="#0754a6">
-
-<meta name="description"
-content="Initiative für ein globales KI-Zentrum in der Sonderstadt Goyang, Republik Korea. Internationale Zusammenarbeit zwischen Organisationen, Forschungseinrichtungen, Unternehmen und der Zivilgesellschaft.">
+<meta name="theme-color" content="#0754a6">
 
 <title>
 Initiative für ein globales KI-Zentrum | Goyang
 </title>
 
+<meta name="description"
+content="Initiative für ein globales KI-Zentrum in der Sonderstadt Goyang, Republik Korea. Internationale Zusammenarbeit in künstlicher Intelligenz, Forschung, Innovation und nachhaltiger Entwicklung.">
+
 <link rel="canonical"
 href="https://achimjoa.github.io/aihub-goyang.org/index-de.html">
 
-<link rel="alternate"
-hreflang="de"
+<!-- =====================================
+     MEHRSPRACHIGE SEO-VERKNÜPFUNGEN
+===================================== -->
+
+<link rel="alternate" hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/index.html">
+
+<link rel="alternate" hreflang="en"
+href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
+
+<link rel="alternate" hreflang="zh"
+href="https://achimjoa.github.io/aihub-goyang.org/index-zh.html">
+
+<link rel="alternate" hreflang="ja"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ja.html">
+
+<link rel="alternate" hreflang="ru"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ru.html">
+
+<link rel="alternate" hreflang="ar"
+href="https://achimjoa.github.io/aihub-goyang.org/index-ar.html">
+
+<link rel="alternate" hreflang="es"
+href="https://achimjoa.github.io/aihub-goyang.org/index-es.html">
+
+<link rel="alternate" hreflang="fr"
+href="https://achimjoa.github.io/aihub-goyang.org/index-fr.html">
+
+<link rel="alternate" hreflang="de"
 href="https://achimjoa.github.io/aihub-goyang.org/index-de.html">
+
+<link rel="alternate" hreflang="it"
+href="https://achimjoa.github.io/aihub-goyang.org/index-it.html">
+
+<link rel="alternate" hreflang="x-default"
+href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
 
 <style>
 
 /* =====================================
-   GRUNDEINSTELLUNGEN
+   01. GRUNDEINSTELLUNGEN
 ===================================== */
 
 * {
@@ -41,6 +72,7 @@ html {
 
 body {
   margin: 0;
+  min-width: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f4f8fc;
   color: #17315b;
@@ -57,7 +89,7 @@ a:focus-visible {
 }
 
 /* =====================================
-   KOMPAKTER KOPFBEREICH
+   02. KOPFBEREICH
 ===================================== */
 
 header {
@@ -87,76 +119,128 @@ header h2 {
 }
 
 /* =====================================
-   HAUPTNAVIGATION
+   03. HAUPTNAVIGATION
 ===================================== */
 
 .main-nav {
-  background: #10315e;
-  padding: 10px 18px;
+  position: relative;
+  z-index: 1000;
+
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 12px;
-}
+  justify-content: flex-start;
 
-.main-nav > a {
-  color: white;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: bold;
-}
+  gap: 8px;
 
-.main-nav > a:hover {
-  color: #ffdf5a;
+  width: 100%;
+  min-width: 0;
+
+  padding: 10px 12px;
+
+  background: #10315e;
+
+  border-top: 3px solid #ffe44d;
 }
 
 /* =====================================
-   SPRACHAUSWAHL
+   04. SPRACHAUSWAHL
 ===================================== */
 
 .language-dropdown {
   position: relative;
-  z-index: 1000;
-  margin-left: 10px;
+  flex: 0 0 auto;
+  z-index: 2000;
 }
 
-.language-dropdown summary {
+.language-dropdown > summary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 15px;
-  background: #ffe44d;
-  color: #003b79;
-  border-radius: 6px;
+
+  min-height: 42px;
+  padding: 9px 14px;
+
+  background: #008c95;
+  color: white;
+
+  border: 1px solid #008c95;
+  border-radius: 7px;
+
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 800;
+
   cursor: pointer;
   list-style: none;
+  white-space: nowrap;
+
+  transition: background 0.2s ease;
 }
 
-.language-dropdown summary::-webkit-details-marker {
+.language-dropdown > summary::-webkit-details-marker {
   display: none;
 }
 
+.language-dropdown > summary::marker {
+  content: "";
+}
+
+.language-dropdown > summary:hover,
+.language-dropdown[open] > summary {
+  background: #006e76;
+  border-color: #006e76;
+}
+
+.language-dropdown > summary:focus-visible {
+  outline: 3px solid #ffe44d;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   05. SPRACHMENÜ
+===================================== */
+
 .language-options {
   position: absolute;
-  top: calc(100% + 7px);
-  right: 0;
-  min-width: 190px;
+
+  top: calc(100% + 6px);
+  left: 0;
+  right: auto;
+
+  z-index: 3000;
+
+  width: 190px;
+  max-width: calc(100vw - 20px);
+
+  max-height: min(70vh, 480px);
+  max-height: min(70dvh, 480px);
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  -webkit-overflow-scrolling: touch;
+
   padding: 8px;
+
   background: white;
+
   border: 1px solid #cbdff5;
   border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
 .language-options a {
   display: block;
+
+  width: 100%;
   padding: 10px 12px;
-  color: #0754a6;
+
   background: white;
+  color: #0754a6;
+
   border-radius: 5px;
+
   font-size: 14px;
   text-align: left;
   text-decoration: none;
@@ -164,16 +248,90 @@ header h2 {
 }
 
 .language-options a:hover,
-.language-options a[aria-current="page"] {
+.language-options a:focus-visible {
   background: #eaf4ff;
 }
 
 .language-options a[aria-current="page"] {
-  font-weight: bold;
+  background: #eaf4ff;
+  font-weight: 800;
 }
 
 /* =====================================
-   HAUPTBANNER
+   06. ALLGEMEINES MENÜ
+===================================== */
+
+.home-menu-links {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 6px;
+
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #ffe44d #10315e;
+
+  padding-bottom: 5px;
+}
+
+.home-menu-links > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+  padding: 8px 12px;
+
+  background: white;
+  color: #0754a6;
+
+  border: 1px solid #d6e5f5;
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.home-menu-links > a:hover,
+.home-menu-links > a:focus-visible {
+  background: #ffe44d;
+  color: #003b79;
+}
+
+/* =====================================
+   07. SCROLLBAR
+===================================== */
+
+.home-menu-links::-webkit-scrollbar {
+  height: 6px;
+}
+
+.home-menu-links::-webkit-scrollbar-track {
+  background: #10315e;
+}
+
+.home-menu-links::-webkit-scrollbar-thumb {
+  background: #ffe44d;
+  border-radius: 10px;
+}
+
+/* =====================================
+   08. HAUPTBANNER
 ===================================== */
 
 .main-banner {
@@ -190,7 +348,7 @@ header h2 {
 }
 
 /* =====================================
-   HAUPTINHALT
+   09. HAUPTINHALT
 ===================================== */
 
 main {
@@ -199,7 +357,7 @@ main {
   padding: 30px 15px;
 }
 
-section {
+main section {
   background: white;
   border-radius: 12px;
   padding: 35px;
@@ -207,22 +365,22 @@ section {
   box-shadow: 0 3px 12px rgba(0,0,0,0.06);
 }
 
-h2 {
+main h2 {
   color: #0754a6;
   border-bottom: 2px solid #e3edf8;
   padding-bottom: 12px;
   margin-top: 0;
 }
 
-h3 {
+main h3 {
   color: #0754a6;
 }
 
 /* =====================================
-   VISION
+   10. VISION
 ===================================== */
 
-.hero {
+main section.hero {
   text-align: center;
   background: linear-gradient(
     135deg,
@@ -242,17 +400,18 @@ h3 {
 }
 
 /* =====================================
-   KARTEN
+   11. KARTEN
 ===================================== */
 
 .grid {
   display: grid;
   grid-template-columns:
-    repeat(auto-fit, minmax(260px, 1fr));
+    repeat(auto-fit, minmax(0, 1fr));
   gap: 20px;
 }
 
 .card {
+  min-width: 0;
   background: #f4f8fc;
   padding: 24px;
   border-radius: 10px;
@@ -264,7 +423,7 @@ h3 {
 }
 
 /* =====================================
-   HERVORHEBUNG
+   12. HERVORHEBUNG
 ===================================== */
 
 .highlight {
@@ -276,7 +435,7 @@ h3 {
 }
 
 /* =====================================
-   SCHALTFLÄCHEN
+   13. SCHALTFLÄCHEN
 ===================================== */
 
 .button {
@@ -309,10 +468,10 @@ h3 {
 }
 
 /* =====================================
-   SEITENÜBERSICHT
+   14. SEITENÜBERSICHT
 ===================================== */
 
-.page-directory {
+main section.page-directory {
   background: #f0f6ff;
 }
 
@@ -321,7 +480,7 @@ h3 {
 }
 
 /* =====================================
-   FUSSZEILE
+   15. FUSSZEILE
 ===================================== */
 
 footer {
@@ -335,25 +494,68 @@ footer a {
   color: white;
 }
 
+.footer-language-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 18px;
+  margin: 25px auto;
+}
+
+.footer-language-links a {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-language-links a:hover {
+  color: #ffe44d;
+  text-decoration: underline;
+}
+
 /* =====================================
-   MOBILE ANSICHT
+   16. RESPONSIVE ANPASSUNGEN
 ===================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
 
   header {
     padding: 14px 12px;
   }
 
   .main-nav {
-    gap: 10px;
+    padding: 8px 10px;
+    gap: 6px;
   }
 
-  .language-dropdown {
-    margin-left: 0;
+  .language-dropdown > summary {
+    min-height: 42px;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
-  section {
+  .language-options {
+    width: 170px;
+    max-height: 60vh;
+    max-height: 60dvh;
+  }
+
+  .home-menu-links {
+    gap: 5px;
+  }
+
+  .home-menu-links > a {
+    padding: 8px 9px;
+    font-size: 11px;
+  }
+
+  main {
+    padding: 15px 10px;
+  }
+
+  main section {
     padding: 23px;
   }
 
@@ -369,6 +571,45 @@ footer a {
 
 }
 
+/* =====================================
+   17. GRID RESPONSIVE
+===================================== */
+
+@media (min-width: 600px) {
+
+  .grid {
+    grid-template-columns:
+      repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+}
+
+/* =====================================
+   18. SMALL SCREEN SAFETY
+===================================== */
+
+@media (max-width: 599px) {
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+
+/* =====================================
+   19. LANDSCAPE LANGUAGE SCROLL
+===================================== */
+
+@media (orientation: landscape)
+and (max-height: 500px) {
+
+  .language-options {
+    max-height: 60vh;
+    max-height: 60dvh;
+  }
+
+}
+
 </style>
 
 </head>
@@ -379,7 +620,7 @@ footer a {
      KOPFBEREICH
 ===================================== -->
 
-<header>
+<header id="home">
 
 <h1>
 INITIATIVE FÜR EIN GLOBALES KI-ZENTRUM
@@ -398,6 +639,71 @@ Provinz Gyeonggi, Republik Korea
 
 <nav class="main-nav"
 aria-label="Hauptnavigation">
+
+<!-- =====================================
+     SPRACHAUSWAHL LINKS FIXIERT
+===================================== -->
+
+<details class="language-dropdown">
+
+<summary aria-label="Sprache auswählen">
+🌐 Sprache ▾
+</summary>
+
+<div class="language-options">
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية
+</a>
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index-de.html"
+lang="de"
+aria-current="page">
+Deutsch ✓
+</a>
+
+<a href="index-it.html" lang="it">
+Italiano
+</a>
+
+</div>
+
+</details>
+
+<!-- =====================================
+     ALLGEMEINES MENÜ
+===================================== -->
+
+<div class="home-menu-links">
 
 <a href="index-de.html">
 Startseite
@@ -443,41 +749,7 @@ Bürgerbeteiligung
 Leitfaden
 </a>
 
-<!-- SPRACHAUSWAHL -->
-
-<details class="language-dropdown">
-
-<summary aria-label="Sprache auswählen">
-🌐 Sprache ▾
-</summary>
-
-<div class="language-options">
-
-<a href="index-de.html"
-lang="de"
-aria-current="page">
-Deutsch ✓
-</a>
-
-<a href="index-en.html" lang="en">
-English
-</a>
-
-<a href="index-es.html" lang="es">
-Español
-</a>
-
-<a href="index-fr.html" lang="fr">
-Français
-</a>
-
-<a href="index.html" lang="ko">
-한국어
-</a>
-
 </div>
-
-</details>
 
 </nav>
 
@@ -498,21 +770,30 @@ fetchpriority="high">
 <main>
 
 <!-- =====================================
-     VISION
+     01. VISION
 ===================================== -->
 
 <section class="hero" id="vision">
 
 <h2>
-Künstliche Intelligenz im Dienste der Menschheit.<br>
-Internationale Zusammenarbeit für eine bessere Zukunft.
+Künstliche Intelligenz im Dienste der Menschheit
 </h2>
 
 <p>
-Wir verbinden internationale Organisationen,
-Regierungen, Forschungseinrichtungen,
-Universitäten, Unternehmen und die Zivilgesellschaft,
-um globale Herausforderungen gemeinsam anzugehen.
+Internationale Zusammenarbeit für eine bessere Zukunft
+</p>
+
+<p>
+Wir möchten die Zusammenarbeit
+zwischen internationalen Organisationen,
+Regierungen, Universitäten,
+Forschungseinrichtungen,
+Unternehmen und der Zivilgesellschaft
+fördern, um die Möglichkeiten
+der künstlichen Intelligenz
+zur Bewältigung gemeinsamer
+globaler Herausforderungen
+zu untersuchen.
 </p>
 
 <div class="highlight">
@@ -522,28 +803,37 @@ Unsere Vision
 </strong>
 
 <p>
-Die Sonderstadt Goyang soll zu einem Zentrum
-internationaler Zusammenarbeit entwickelt werden,
-in dem künstliche Intelligenz
-nachhaltige Entwicklung,
-menschliches Wohlergehen
-und Lösungen für globale Herausforderungen unterstützt.
+Wir streben danach,
+die Sonderstadt Goyang
+zu einem internationalen Zentrum
+für Zusammenarbeit
+im Bereich der künstlichen Intelligenz,
+wissenschaftliche Forschung
+und Innovation zu entwickeln.
+</p>
+
+<p>
+Diese Initiative soll
+zur nachhaltigen Entwicklung
+und zum Wohlergehen
+der Menschheit beitragen.
 </p>
 
 </div>
 
-<a href="goyang-de.html" class="button">
+<a href="#goyang" class="button">
 Warum Goyang?
 </a>
 
-<a href="agencies-de.html" class="button secondary">
-Internationale Kooperationsmöglichkeiten
+<a href="#partnership"
+class="button secondary">
+Internationale Zusammenarbeit
 </a>
 
 </section>
 
 <!-- =====================================
-     GLOBALES KI-ZENTRUM
+     02. GLOBALES KI-ZENTRUM
 ===================================== -->
 
 <section id="hub">
@@ -553,34 +843,48 @@ Internationale Kooperationsmöglichkeiten
 </h2>
 
 <p>
-Das geplante globale KI-Zentrum
-ist als internationale Kooperationsplattform vorgesehen,
-die das Fachwissen internationaler Organisationen
-mit den Fortschritten
-der künstlichen Intelligenz verbindet.
+Das globale Zentrum
+für künstliche Intelligenz
+ist eine Initiative,
+die darauf abzielt,
+eine internationale
+Kooperationsplattform
+für die verantwortungsvolle
+Nutzung künstlicher Intelligenz
+vorzuschlagen.
 </p>
 
 <p>
-Ziel ist es zu untersuchen,
-wie KI zur Bewältigung komplexer
-globaler Herausforderungen beitragen kann.
-Dazu gehören öffentliche Gesundheit,
+Dabei sollen die Erfahrungen
+internationaler Organisationen
+mit den wissenschaftlichen
+und technologischen Fähigkeiten
+von Regierungen,
+Universitäten,
+Forschungseinrichtungen
+und Unternehmen
+verbunden werden.
+</p>
+
+<p>
+Die Initiative untersucht,
+wie künstliche Intelligenz
+zur Bewältigung globaler
+Herausforderungen beitragen kann.
+</p>
+
+<p>
+Zu den möglichen
+Anwendungsbereichen gehören
+öffentliche Gesundheit,
 Ernährungssicherheit,
 Klimawandel,
 Umweltschutz,
 humanitäre Hilfe,
 Migration,
 Beschäftigung,
-Bildung und Katastrophenvorsorge.
-</p>
-
-<p>
-Die Initiative möchte die Zusammenarbeit
-zwischen internationalen Organisationen,
-Regierungen,
-Hochschulen,
-Forschungszentren,
-Unternehmen und der Zivilgesellschaft fördern.
+Bildung und
+Katastrophenvorsorge.
 </p>
 
 <div class="grid">
@@ -592,10 +896,12 @@ Internationale Zusammenarbeit
 </h3>
 
 <p>
-Förderung des Dialogs,
-des Wissensaustauschs
-und der Zusammenarbeit
-zwischen Institutionen und Ländern.
+Förderung des internationalen
+Dialogs, des Erfahrungsaustauschs
+und der Entwicklung
+gemeinsamer Initiativen
+zur Bewältigung
+globaler Herausforderungen.
 </p>
 
 </div>
@@ -603,13 +909,16 @@ zwischen Institutionen und Ländern.
 <div class="card">
 
 <h3>
-KI-Forschung und Innovation
+Forschung und Innovation
 </h3>
 
 <p>
-Erforschung verantwortungsvoller KI-Anwendungen
-zur Lösung gesellschaftlich relevanter Probleme
-durch Forschung und Zusammenarbeit.
+Untersuchung verantwortungsvoller
+Anwendungen künstlicher Intelligenz
+sowie Förderung
+wissenschaftlicher Forschung
+und technologischer Innovation
+im öffentlichen Interesse.
 </p>
 
 </div>
@@ -617,15 +926,16 @@ durch Forschung und Zusammenarbeit.
 <div class="card">
 
 <h3>
-Praktische Lösungen
+Praktische Anwendungen
 </h3>
 
 <p>
-Unterstützung von Möglichkeiten
-für Pilotprojekte,
-Technologiebewertungen
-und evidenzbasierte Ansätze
-zur Bewältigung globaler Herausforderungen.
+Prüfung möglicher Pilotprojekte,
+technologischer Erprobungen
+und Anwendungen
+künstlicher Intelligenz
+zur Lösung gesellschaftlicher
+und öffentlicher Aufgaben.
 </p>
 
 </div>
@@ -633,13 +943,15 @@ zur Bewältigung globaler Herausforderungen.
 <div class="card">
 
 <h3>
-Kompetenzentwicklung
+Wissensaustausch
 </h3>
 
 <p>
-Erkundung von Ausbildungsangeboten,
-Fachaustausch
-und internationalen Lernmöglichkeiten.
+Förderung von Fachausbildung,
+internationalem Expertenaustausch
+und der Verbreitung
+wissenschaftlicher
+und technologischer Kenntnisse.
 </p>
 
 </div>
@@ -647,13 +959,13 @@ und internationalen Lernmöglichkeiten.
 </div>
 
 <a href="hub-de.html" class="button">
-Mehr über das globale KI-Zentrum erfahren
+Mehr über das globale KI-Zentrum
 </a>
 
 </section>
 
 <!-- =====================================
-     GOYANG
+     03. WARUM GOYANG?
 ===================================== -->
 
 <section id="goyang">
@@ -663,21 +975,31 @@ Mehr über das globale KI-Zentrum erfahren
 </h2>
 
 <p>
-Die Sonderstadt Goyang liegt
-in der Provinz Gyeonggi
-innerhalb der Metropolregion Seoul
-in der Republik Korea.
+Die Sonderstadt Goyang
+liegt in der Provinz Gyeonggi
+in der Republik Korea
+und gehört zur Metropolregion Seoul.
 </p>
 
 <p>
-Ihre Infrastruktur für internationale
-Ausstellungen und Kongresse,
-medizinische Einrichtungen,
-städtische Dienstleistungen
-und natürlichen Ressourcen
-bieten eine Grundlage
-für die Entwicklung
-eines internationalen Kooperationszentrums.
+Die Stadt verfügt
+über Einrichtungen
+für internationale Ausstellungen
+und Konferenzen,
+medizinische Institutionen,
+Bildungs- und Kultureinrichtungen
+sowie städtische
+und natürliche Ressourcen.
+</p>
+
+<p>
+Diese Voraussetzungen
+können eine Grundlage
+für die Prüfung
+eines internationalen
+Kooperationszentrums
+im Bereich der künstlichen
+Intelligenz bilden.
 </p>
 
 <div class="grid">
@@ -685,15 +1007,16 @@ eines internationalen Kooperationszentrums.
 <div class="card">
 
 <h3>
-Strategische Lage
+Metropolitane Lage
 </h3>
 
 <p>
-Goyang profitiert von seiner Lage
-innerhalb der Metropolregion Seoul
+Goyang befindet sich
+in der Metropolregion Seoul
 und bietet Zugang
-zu bedeutenden wirtschaftlichen,
-akademischen und institutionellen Netzwerken.
+zu wirtschaftlichen,
+wissenschaftlichen
+und institutionellen Netzwerken.
 </p>
 
 </div>
@@ -701,20 +1024,24 @@ akademischen und institutionellen Netzwerken.
 <div class="card">
 
 <h3>
-KINTEX – Kongressinfrastruktur
+Internationales Messezentrum KINTEX
 </h3>
 
 <p>
-KINTEX bietet Einrichtungen
+Das Korea International
+Exhibition Center (KINTEX)
+verfügt über Einrichtungen
 für internationale Ausstellungen,
-Konferenzen und Fachaustausch.
+Konferenzen und Veranstaltungen.
 </p>
 
 <p>
 Diese Infrastruktur könnte
-internationale Tagungen,
-Foren und Kooperationsveranstaltungen
-im Zusammenhang mit dem geplanten Zentrum unterstützen.
+für wissenschaftliche Foren,
+internationale Treffen
+und zukünftige
+Kooperationsprogramme
+genutzt werden.
 </p>
 
 </div>
@@ -722,37 +1049,26 @@ im Zusammenhang mit dem geplanten Zentrum unterstützen.
 <div class="card">
 
 <h3>
-Gesundheitswesen und Forschung
+Medizinische und wissenschaftliche Ressourcen
 </h3>
 
 <p>
 In Goyang befinden sich
-das Nationale Krebszentrum
-und weitere medizinische Einrichtungen.
+unter anderem
+das Nationale Krebszentrum Koreas
+und weitere medizinische
+Einrichtungen.
 </p>
 
 <p>
-Diese Einrichtungen bieten Möglichkeiten
-zur Zusammenarbeit
-in der öffentlichen Gesundheit,
-medizinischen Forschung
-und verantwortungsvollen KI-Anwendungen.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>
-Natürliche Ressourcen
-</h3>
-
-<p>
-Das Janghang-Feuchtgebiet
-und die umliegenden Ökosysteme
-bieten Möglichkeiten
-für Umweltbildung,
-Forschung und Nachhaltigkeitsinitiativen.
+Diese Ressourcen eröffnen
+Möglichkeiten zur Prüfung
+wissenschaftlicher Zusammenarbeit
+in den Bereichen
+öffentliche Gesundheit,
+medizinische Forschung
+und verantwortungsvolle
+KI-Anwendungen.
 </p>
 
 </div>
@@ -760,23 +1076,43 @@ Forschung und Nachhaltigkeitsinitiativen.
 <div class="card">
 
 <h3>
-Lebensumfeld
+Umwelt und natürliche Ressourcen
 </h3>
 
 <p>
-Goyang bietet Wohngebiete,
-medizinische Versorgung,
+Die Janghang-Feuchtgebiete
+und weitere Naturräume
+bieten wertvolle Grundlagen
+für Umweltforschung,
+Bildung und Initiativen
+zur nachhaltigen Entwicklung.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+Lebensqualität
+</h3>
+
+<p>
+Goyang verfügt
+über Wohngebiete,
+Gesundheitsversorgung,
 Bildungseinrichtungen,
 kulturelle Angebote
-und städtische Infrastruktur.
+und städtische Dienstleistungen.
 </p>
 
 <p>
 Die besonderen Bedürfnisse
-internationaler Fachkräfte
-und ihrer Familien
-müssten im Rahmen
-weiterer Konsultationen geprüft werden.
+möglicher internationaler
+Organisationen,
+ihrer Beschäftigten
+und Familien müssten
+im Rahmen entsprechender
+Konsultationen ermittelt werden.
 </p>
 
 </div>
@@ -784,22 +1120,24 @@ weiterer Konsultationen geprüft werden.
 <div class="card">
 
 <h3>
-Regionale Entwicklungsmöglichkeiten
+Regionale Entwicklung
 </h3>
 
 <p>
-Internationale Zusammenarbeit
-könnte neue Möglichkeiten
-für Forschung,
-qualifizierte Beschäftigung,
-Unternehmensentwicklung
-und damit verbundene Dienstleistungen schaffen.
+Eine stärkere internationale
+Zusammenarbeit könnte
+zur wissenschaftlichen Forschung,
+zur Schaffung neuer
+Beschäftigungsmöglichkeiten
+und zur Entwicklung
+wirtschaftlicher Aktivitäten
+beitragen.
 </p>
 
 <p>
-Die tatsächlichen Ergebnisse
-würden vom Umfang
-und der Struktur zukünftiger Partnerschaften abhängen.
+Die konkreten Ergebnisse
+würden von Art und Umfang
+zukünftiger Projekte abhängen.
 </p>
 
 </div>
@@ -809,29 +1147,37 @@ und der Struktur zukünftiger Partnerschaften abhängen.
 <div class="highlight">
 
 <strong>
-Ein Standort für internationale Zusammenarbeit
-und gemeinsames Wachstum
+Internationale Zusammenarbeit
+und nachhaltige Stadtentwicklung
 </strong>
 
 <p>
-Die vorhandenen Stärken Goyangs
-bilden eine Grundlage
-für die Entwicklung
-eines globalen KI-Zentrums,
-das internationale Zusammenarbeit
-und regionale Entwicklung fördert.
+Goyang möchte
+seine vorhandenen Ressourcen
+nutzen, um Möglichkeiten
+für ein internationales
+Kooperationszentrum
+zu untersuchen.
+</p>
+
+<p>
+Dabei sollen sowohl
+globale Herausforderungen
+als auch die nachhaltige
+Entwicklung der Stadt
+berücksichtigt werden.
 </p>
 
 </div>
 
 <a href="goyang-de.html" class="button">
-Die Vorteile Goyangs entdecken
+Mehr über Goyang erfahren
 </a>
 
 </section>
 
 <!-- =====================================
-     INTERNATIONALE ORGANISATIONEN
+     04. INTERNATIONALE ORGANISATIONEN
 ===================================== -->
 
 <section id="organizations">
@@ -842,45 +1188,58 @@ und mögliche Kooperationsbereiche
 </h2>
 
 <p>
-Die Initiative benennt neun internationale Organisationen,
-deren Fachgebiete
-für eine mögliche KI-gestützte
-internationale Zusammenarbeit relevant sind.
+Die Initiative für ein globales
+KI-Zentrum untersucht
+mögliche Kooperationsbereiche,
+die mit den Aufgaben
+von neun internationalen
+Organisationen
+in Verbindung stehen.
+</p>
+
+<p>
+Die folgenden Bereiche
+dienen ausschließlich
+der Darstellung möglicher
+zukünftiger Zusammenarbeit.
+</p>
+
+<p>
+Sie stellen weder bestätigte
+Vereinbarungen noch
+institutionelle Zusagen dar.
 </p>
 
 <div class="grid">
 
 <div class="card">
 
-<h3>WHO</h3>
-
-<p>
-<strong>Weltgesundheitsorganisation</strong>
-</p>
+<h3>
+WHO – Weltgesundheitsorganisation
+</h3>
 
 <p>
 Öffentliche Gesundheit,
 Krankheitsprävention,
-Gesundheitssysteme
-und mögliche KI-Anwendungen
-zur Analyse von Gesundheitsinformationen.
+Stärkung der Gesundheitssysteme,
+Analyse medizinischer Daten
+und verantwortungsvolle
+Nutzung künstlicher Intelligenz.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>WFP</h3>
-
-<p>
-<strong>Welternährungsprogramm</strong>
-</p>
+<h3>
+WFP – Welternährungsprogramm
+</h3>
 
 <p>
 Ernährungssicherheit,
 humanitäre Hilfe,
-Widerstandsfähigkeit von Lieferketten
-und mögliche KI-gestützte Analysen
+nachhaltige Lieferketten
+und Analyse
 von Ernährungskrisen.
 </p>
 
@@ -888,138 +1247,119 @@ von Ernährungskrisen.
 
 <div class="card">
 
-<h3>UNEP</h3>
-
-<p>
-<strong>Umweltprogramm der Vereinten Nationen</strong>
-</p>
+<h3>
+UNEP – Umweltprogramm der Vereinten Nationen
+</h3>
 
 <p>
 Klimawandel,
 Umweltschutz,
-Biodiversität
-und mögliche KI-Anwendungen
-zur Umweltüberwachung.
+biologische Vielfalt
+und Überwachung
+von Umweltbedingungen.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNHCR</h3>
-
-<p>
-<strong>
-Hoher Flüchtlingskommissar der Vereinten Nationen
-</strong>
-</p>
+<h3>
+UNHCR – Hoher Flüchtlingskommissar der Vereinten Nationen
+</h3>
 
 <p>
 Flüchtlingsschutz,
-Vertreibung,
+erzwungene Vertreibung,
 humanitäre Hilfe
-und verantwortungsvolle Datenanalysen
-für schutzbezogene Bedürfnisse.
+und verantwortungsvolle
+Datennutzung
+bei Schutzmaßnahmen.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>IOM</h3>
+<h3>
+IOM – Internationale Organisation für Migration
+</h3>
 
 <p>
-<strong>
-Internationale Organisation für Migration
-</strong>
-</p>
-
-<p>
-Migration,
-Vertreibung,
-humanitäre Unterstützung
-und mögliche digitale Werkzeuge
-zur Verbesserung des Zugangs
-zu migrationsbezogenen Dienstleistungen.
+Internationale Migration,
+Unterstützung
+vertriebener Menschen,
+humanitäre Hilfe
+und digitale Lösungen
+für migrationsbezogene
+Dienstleistungen.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>ILO</h3>
-
-<p>
-<strong>
-Internationale Arbeitsorganisation
-</strong>
-</p>
+<h3>
+ILO – Internationale Arbeitsorganisation
+</h3>
 
 <p>
 Beschäftigung,
-Arbeitsrechte,
-Kompetenzentwicklung
-und Analyse der Auswirkungen
-von KI auf die Zukunft der Arbeit.
+Arbeitnehmerrechte,
+berufliche Weiterbildung
+und Untersuchung
+der Auswirkungen
+künstlicher Intelligenz
+auf die Zukunft der Arbeit.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>ITU</h3>
+<h3>
+ITU – Internationale Fernmeldeunion
+</h3>
 
 <p>
-<strong>
-Internationale Fernmeldeunion
-</strong>
-</p>
-
-<p>
-Digitale Vernetzung,
-Telekommunikation,
+Digitale Telekommunikation,
+Kommunikationsinfrastruktur,
 Notfallkommunikation
-und Frühwarntechnologien.
+und Frühwarnsysteme
+bei Katastrophen.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNICEF</h3>
-
-<p>
-<strong>
-Kinderhilfswerk der Vereinten Nationen
-</strong>
-</p>
+<h3>
+UNICEF – Kinderhilfswerk der Vereinten Nationen
+</h3>
 
 <p>
 Kinderschutz,
 Bildung,
-digitale Teilhabe
-und verantwortungsvolle KI-Anwendungen
-zum Schutz der Kinderrechte.
+digitale Inklusion
+und verantwortungsvolle
+Nutzung künstlicher Intelligenz
+unter Berücksichtigung
+der Rechte von Kindern.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNDP</h3>
-
-<p>
-<strong>
-Entwicklungsprogramm der Vereinten Nationen
-</strong>
-</p>
+<h3>
+UNDP – Entwicklungsprogramm der Vereinten Nationen
+</h3>
 
 <p>
 Nachhaltige Entwicklung,
 Krisenbewältigung,
-institutionelle Kapazitäten
+institutioneller Kapazitätsaufbau
 und mögliche KI-Anwendungen
-für die Entwicklungsplanung.
+in Entwicklungsprogrammen.
 </p>
 
 </div>
@@ -1033,37 +1373,47 @@ Wichtiger Hinweis
 </strong>
 
 <p>
-Diese Organisationen werden
-aufgrund ihrer jeweiligen Aufgabenbereiche
-als mögliche Kooperationspartner betrachtet.
+Die oben genannten
+internationalen Organisationen
+werden ausschließlich
+im Zusammenhang
+mit ihren institutionellen
+Aufgaben und möglichen
+zukünftigen Kooperationsfeldern
+aufgeführt.
 </p>
 
 <p>
-Ihre Erwähnung bedeutet nicht,
-dass eine Organisation
-einer Beteiligung,
-einem Umzug
-oder der Einrichtung eines Büros
-im geplanten globalen KI-Zentrum zugestimmt hat.
+Dies bedeutet nicht,
+dass diese Organisationen
+ihre Teilnahme
+an der Initiative bestätigt
+oder der Einrichtung
+beziehungsweise Verlagerung
+von Büros oder Organisationseinheiten
+nach Goyang zugestimmt haben.
 </p>
 
 <p>
 Jede zukünftige Zusammenarbeit
-würde entsprechende Konsultationen,
-institutionelle Entscheidungen
-und formelle Vereinbarungen erfordern.
+würde offizielle Konsultationen,
+entsprechende institutionelle
+Entscheidungen
+und die jeweils geltenden
+Genehmigungsverfahren
+erfordern.
 </p>
 
 </div>
 
 <a href="agencies-de.html" class="button">
-Die neun internationalen Organisationen entdecken
+Mehr über die neun Organisationen
 </a>
 
 </section>
 
 <!-- =====================================
-     STRATEGIE
+     05. DREISTUFIGE STRATEGIE
 ===================================== -->
 
 <section id="strategy">
@@ -1073,10 +1423,12 @@ Die neun internationalen Organisationen entdecken
 </h2>
 
 <p>
-Der vorgeschlagene Ansatz
-berücksichtigt die praktischen Anforderungen
-internationaler Organisationen
-und anderer potenzieller Partner.
+Die Initiative schlägt
+einen schrittweisen Ansatz
+vor, der die tatsächlichen
+Bedürfnisse möglicher
+internationaler Partner
+berücksichtigt.
 </p>
 
 <div class="grid">
@@ -1088,20 +1440,23 @@ Phase 1 – Erste Ansiedlung
 </h3>
 
 <p>
-Prüfung geeigneter Bedingungen
-für die anfängliche Ansiedlung
-teilnehmender Organisationen
-und Partnereinrichtungen.
+Prüfung der Voraussetzungen
+für einen stabilen Beginn
+der Tätigkeit möglicher
+internationaler Organisationen
+und Partnereinrichtungen
+in Goyang.
 </p>
 
 <p>
-Zu den möglichen Anforderungen gehören
+Zu den möglichen
+Untersuchungsbereichen gehören
 Büroräume,
-Verkehrsanbindung,
+Verkehrsanbindungen,
 Wohnraum,
 Gesundheitsversorgung,
 Bildung
-und weitere wichtige Dienstleistungen.
+und weitere Dienstleistungen.
 </p>
 
 </div>
@@ -1113,19 +1468,21 @@ Phase 2 – Unterstützung des Betriebs
 </h3>
 
 <p>
-Erkundung der Zusammenarbeit
-zwischen öffentlichen Einrichtungen,
+Förderung der Zusammenarbeit
+zwischen öffentlichen
+Institutionen,
 Universitäten,
-Forschungsorganisationen,
-Unternehmen und der Zivilgesellschaft.
+Forschungseinrichtungen,
+Unternehmen
+und der Zivilgesellschaft.
 </p>
 
 <p>
-Mögliche Aktivitäten umfassen
-gemeinsame Forschung,
-internationale Tagungen,
+Prüfung möglicher
+gemeinsamer Forschungsprojekte,
+internationaler Konferenzen,
 KI-Pilotprojekte
-und Fachaustausch.
+und des Expertenaustauschs.
 </p>
 
 </div>
@@ -1133,16 +1490,24 @@ und Fachaustausch.
 <div class="card">
 
 <h3>
-Phase 3 – Gemeinsames und nachhaltiges Wachstum
+Phase 3 – Gemeinsames nachhaltiges Wachstum
 </h3>
 
 <p>
-Aufbau einer langfristigen Zusammenarbeit,
-die die Aufgaben
-der beteiligten internationalen Organisationen
-unterstützt und gleichzeitig
-Möglichkeiten für regionale Innovation,
-Beschäftigung und wirtschaftliche Entwicklung schafft.
+Entwicklung einer langfristigen
+Zusammenarbeit,
+die sowohl zu den Zielen
+internationaler Organisationen
+als auch zur nachhaltigen
+Entwicklung Goyangs beiträgt.
+</p>
+
+<p>
+Mögliche Bereiche umfassen
+wissenschaftliche Forschung,
+Beschäftigungsmöglichkeiten,
+wirtschaftliche Aktivitäten
+und regionale Entwicklung.
 </p>
 
 </div>
@@ -1153,80 +1518,83 @@ Beschäftigung und wirtschaftliche Entwicklung schafft.
 
 <strong>
 Erste Ansiedlung
-→ Unterstützung des Betriebs
+→ Betriebsunterstützung
 → Gemeinsames Wachstum
 </strong>
 
 <p>
-Konkrete institutionelle Vereinbarungen,
-Finanzierung,
-Einrichtungen und Unterstützungsmaßnahmen
-würden Konsultationen
-und Genehmigungen
-der zuständigen Behörden erfordern.
+Konkrete Einrichtungen,
+finanzielle Ressourcen,
+institutionelle Maßnahmen
+und Kooperationsprogramme
+müssten durch offizielle
+Konsultationen und Verfahren
+festgelegt werden.
 </p>
 
 </div>
 
 <a href="strategy-de.html" class="button">
-Entwicklungsstrategie entdecken
+Mehr über die Strategie
 </a>
 
 </section>
 
 <!-- =====================================
-     BÜRGERKOMITEE
+     06. BÜRGERKOMITEE
 ===================================== -->
 
 <section id="committee">
 
 <h2>
-5. Über das Bürgerkomitee
+5. Bürgerkomitee für die Initiative
 </h2>
 
 <p>
-Das Bürgerkomitee zur Förderung
-der Ansiedlung eines globalen KI-Zentrums
+Das Bürgerkomitee
+zur Förderung der Ansiedlung
+eines globalen KI-Zentrums
 in der Sonderstadt Goyang
-ist eine zivilgesellschaftliche Initiative,
-die das öffentliche Bewusstsein
-und die Unterstützung
-für das geplante Zentrum stärken möchte.
+ist eine Initiative
+der Zivilgesellschaft.
 </p>
 
 <p>
-Das Komitee möchte
-den öffentlichen Dialog fördern,
-die Beteiligung der Bürgerinnen und Bürger
-unterstützen
-und über mögliche Vorteile
-internationaler Zusammenarbeit
-und KI-gestützter Innovation informieren.
+Es möchte das öffentliche
+Bewusstsein stärken
+und die Beteiligung
+der Bürgerinnen und Bürger
+an der Diskussion
+über internationale Zusammenarbeit,
+künstliche Intelligenz
+und nachhaltige Stadtentwicklung
+fördern.
 </p>
 
 <p>
 Zu seinen Aktivitäten gehören
-Öffentlichkeitsarbeit,
-Bürgerbeteiligung,
-politische Diskussionen
-und Informationsveranstaltungen
-im Zusammenhang mit der Initiative.
+die Verbreitung von Informationen,
+die Förderung
+der Bürgerbeteiligung,
+die Diskussion
+strategischer Vorschläge
+und die Kommunikation
+mit relevanten Institutionen.
 </p>
 
 <div class="highlight">
 
 <strong>
-Unser Engagement
+Unsere Grundsätze
 </strong>
 
 <p>
-Wir setzen uns
-für einen transparenten,
-verantwortungsvollen
-und konstruktiven Dialog ein,
-um internationale Zusammenarbeit
-und die zukünftige Entwicklung
-der Sonderstadt Goyang zu fördern.
+Transparenz,
+Verantwortung,
+konstruktive Bürgerbeteiligung
+und Achtung
+der offiziellen
+Entscheidungsverfahren.
 </p>
 
 </div>
@@ -1243,26 +1611,32 @@ Bürgerbeteiligung
 </section>
 
 <!-- =====================================
-     INTERNATIONALE PARTNERSCHAFTEN
+     07. INTERNATIONALE ZUSAMMENARBEIT
 ===================================== -->
 
 <section id="partnership">
 
 <h2>
-6. Möglichkeiten internationaler Partnerschaften
+6. Möglichkeiten internationaler Zusammenarbeit
 </h2>
 
 <p>
-Das geplante globale KI-Zentrum
-möchte den Dialog
-mit Organisationen und Einrichtungen fördern,
-die sich für verantwortungsvolle KI,
+Die Initiative möchte
+den Dialog mit internationalen
+Organisationen,
+Forschungseinrichtungen,
+Fachleuten und anderen
+Institutionen fördern,
+die sich für verantwortungsvolle
+künstliche Intelligenz,
 internationale Zusammenarbeit
-und nachhaltige Entwicklung interessieren.
+und nachhaltige Entwicklung
+interessieren.
 </p>
 
 <p>
-Mögliche Kooperationsbereiche sind:
+Zu den möglichen
+Kooperationsbereichen gehören:
 </p>
 
 <div class="grid">
@@ -1270,13 +1644,16 @@ Mögliche Kooperationsbereiche sind:
 <div class="card">
 
 <h3>
-Politischer Dialog
+Institutioneller Dialog
 </h3>
 
 <p>
-Austausch über internationale Zusammenarbeit,
-KI-Governance
-und Innovationen im öffentlichen Interesse.
+Austausch von Erfahrungen
+und Perspektiven
+zur internationalen Zusammenarbeit,
+zur KI-Governance
+und zu technologischer Innovation
+im öffentlichen Interesse.
 </p>
 
 </div>
@@ -1284,13 +1661,16 @@ und Innovationen im öffentlichen Interesse.
 <div class="card">
 
 <h3>
-Forschungszusammenarbeit
+Wissenschaftliche Zusammenarbeit
 </h3>
 
 <p>
-Erkundung von Möglichkeiten
-für interdisziplinäre Forschung
-und Wissensaustausch.
+Prüfung der Möglichkeiten
+multidisziplinärer Forschung,
+des Wissensaustauschs
+und des Aufbaus
+internationaler
+wissenschaftlicher Netzwerke.
 </p>
 
 </div>
@@ -1298,13 +1678,16 @@ und Wissensaustausch.
 <div class="card">
 
 <h3>
-Technologische Demonstrationsprojekte
+Technologische Projekte
 </h3>
 
 <p>
-Prüfung verantwortungsvoller Pilotprojekte
-und praktischer Anwendungen
-von KI-Technologien.
+Untersuchung möglicher
+Pilotprojekte,
+praktischer Anwendungen
+und der Bewertung
+verantwortungsvoller
+KI-Technologien.
 </p>
 
 </div>
@@ -1312,14 +1695,16 @@ von KI-Technologien.
 <div class="card">
 
 <h3>
-Fachaustausch
+Expertenaustausch
 </h3>
 
 <p>
-Erkundung von Workshops,
-Schulungen,
-internationalen Foren
-und Initiativen zur Kompetenzentwicklung.
+Prüfung möglicher
+Ausbildungsprogramme,
+Seminare,
+internationaler Foren
+und Maßnahmen
+zum Kapazitätsaufbau.
 </p>
 
 </div>
@@ -1327,20 +1712,20 @@ und Initiativen zur Kompetenzentwicklung.
 </div>
 
 <p class="note">
-Alle möglichen Partnerschaften
-befinden sich in einer Sondierungsphase,
-sofern sie nicht von den zuständigen Institutionen
-formell bestätigt wurden.
+Die genannten Bereiche
+stellen lediglich mögliche
+Kooperationsfelder dar.
+Sie bedeuten nicht,
+dass bereits bestätigte
+Vereinbarungen
+mit internationalen
+Organisationen bestehen.
 </p>
-
-<a href="agencies-de.html" class="button">
-Internationale Organisationen
-</a>
 
 </section>
 
 <!-- =====================================
-     KONTAKT
+     08. KONTAKT UND INFORMATIONEN
 ===================================== -->
 
 <section id="contact">
@@ -1350,55 +1735,76 @@ Internationale Organisationen
 </h2>
 
 <p>
-Internationale Organisationen,
-Forschungseinrichtungen
-und andere interessierte Parteien
-sind eingeladen,
-mehr über die Initiative
+Wir begrüßen das Interesse
+internationaler Organisationen,
+Forschungseinrichtungen,
+Fachleute und Bürgerinnen
+und Bürger an der Initiative
 für ein globales KI-Zentrum
-und das Bürgerkomitee zu erfahren.
+und an den Aktivitäten
+des Bürgerkomitees.
 </p>
 
 <p>
 Weitere Informationen
-finden Sie auf den deutschsprachigen Seiten
+finden Sie auf den
+deutschsprachigen Seiten
 dieser Website.
-Die koreanische Homepage bietet Zugang
-zu bestehenden koreanischsprachigen
-Informationen und Verwaltungsressourcen.
+</p>
+
+<p>
+Die koreanische Version
+der Website bietet
+zusätzliche Dokumente
+und Dienstleistungen
+in koreanischer Sprache.
 </p>
 
 <a href="guide-de.html" class="button">
 Website-Leitfaden
 </a>
 
-<a href="index.html" class="button secondary">
-Koreanische Homepage
+<a href="index.html"
+class="button secondary">
+Koreanische Version
 </a>
 
 <div class="highlight">
 
 <strong>
-Initiative für ein globales KI-Zentrum<br>
-Sonderstadt Goyang,<br>
-Provinz Gyeonggi,<br>
+Initiative für ein globales KI-Zentrum
+<br>
+Sonderstadt Goyang
+<br>
+Provinz Gyeonggi
+<br>
 Republik Korea
 </strong>
 
 <p>
 Bürgerkomitee zur Förderung
-der Ansiedlung eines globalen KI-Zentrums
-in der Sonderstadt Goyang
+der Ansiedlung
+eines globalen KI-Zentrums
+in Goyang
 </p>
 
 <p class="note">
 Diese Website stellt
-eine zivilgesellschaftliche Initiative
-und ihre vorgeschlagene Vision vor.
-Sie stellt weder
-eine offizielle Standortentscheidung
-noch eine Verpflichtung
-einer internationalen Organisation dar.
+eine Initiative
+der Zivilgesellschaft
+und ihre Aktivitäten vor.
+</p>
+
+<p class="note">
+Sie bedeutet weder,
+dass staatliche Behörden
+eine offizielle Entscheidung
+über die Einrichtung
+eines globalen KI-Zentrums
+getroffen haben,
+noch dass internationale
+Organisationen
+ihre Teilnahme bestätigt haben.
 </p>
 
 </div>
@@ -1406,19 +1812,19 @@ einer internationalen Organisation dar.
 </section>
 
 <!-- =====================================
-     DEUTSCHSPRACHIGE SEITEN
+     09. DEUTSCHE SEITENÜBERSICHT
 ===================================== -->
 
 <section id="directory" class="page-directory">
 
 <h2>
-8. Entdecken Sie unsere Website
+8. Deutschsprachige Seiten
 </h2>
 
 <p>
-Auf den folgenden Seiten
-finden Sie ausführliche Informationen
-über die Initiative,
+Die folgenden Seiten
+bieten weitere Informationen
+über das globale KI-Zentrum,
 die Sonderstadt Goyang,
 internationale Zusammenarbeit
 und Bürgerbeteiligung.
@@ -1433,13 +1839,14 @@ Globales KI-Zentrum
 </h3>
 
 <p>
-Erfahren Sie mehr
-über die geplante internationale
-Kooperationsplattform und ihre Vision.
+Konzept,
+Ziele und mögliche
+internationale
+Kooperationsbereiche.
 </p>
 
 <a href="hub-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1451,14 +1858,13 @@ Warum Goyang?
 </h3>
 
 <p>
-Entdecken Sie
-die Standortvorteile,
+Geografische Vorteile,
 Infrastruktur
-und Entwicklungsmöglichkeiten Goyangs.
+und Entwicklungsmöglichkeiten.
 </p>
 
 <a href="goyang-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1470,13 +1876,14 @@ Internationale Organisationen
 </h3>
 
 <p>
-Erfahren Sie mehr
-über neun internationale Organisationen
-und mögliche Kooperationsbereiche.
+Neun internationale
+Organisationen
+und mögliche
+Kooperationsbereiche.
 </p>
 
 <a href="agencies-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1488,15 +1895,13 @@ Entwicklungsstrategie
 </h3>
 
 <p>
-Informieren Sie sich
-über die vorgeschlagene dreistufige Strategie
-für Ansiedlung,
-Unterstützung
-und nachhaltiges Wachstum.
+Erste Ansiedlung,
+Betriebsunterstützung
+und gemeinsames Wachstum.
 </p>
 
 <a href="strategy-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1508,14 +1913,14 @@ Bürgerkomitee
 </h3>
 
 <p>
-Erfahren Sie mehr
-über das Komitee,
-seine Ziele
-und seine zivilgesellschaftlichen Aktivitäten.
+Aufgaben,
+Organisation
+und wichtige Aktivitäten
+des Bürgerkomitees.
 </p>
 
 <a href="committee-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1523,18 +1928,17 @@ Entdecken
 <div class="card">
 
 <h3>
-Chronologie und Meilensteine
+Chronologie
 </h3>
 
 <p>
-Verfolgen Sie
-wichtige Entwicklungen
-und Aktivitäten
-im Zusammenhang mit der Initiative.
+Wichtige Ereignisse
+und Entwicklungsschritte
+der Initiative.
 </p>
 
 <a href="history-de.html" class="button">
-Entdecken
+Mehr erfahren
 </a>
 
 </div>
@@ -1542,18 +1946,18 @@ Entdecken
 <div class="card">
 
 <h3>
-Aktuelles und Bekanntmachungen
+Aktuelles
 </h3>
 
 <p>
-Lesen Sie Neuigkeiten
-über die Aktivitäten des Komitees,
+Informationen
+über Aktivitäten,
 Veranstaltungen
-und wichtige Entwicklungen.
+und aktuelle Entwicklungen.
 </p>
 
 <a href="news-de.html" class="button">
-Aktuelles anzeigen
+Aktuelles ansehen
 </a>
 
 </div>
@@ -1561,17 +1965,18 @@ Aktuelles anzeigen
 <div class="card">
 
 <h3>
-Presseberichte
+Presse
 </h3>
 
 <p>
-Entdecken Sie Zeitungsartikel,
-Fernsehberichte
-und weitere Medienberichte.
+Presseartikel,
+Berichte
+und weitere
+Informationsmaterialien.
 </p>
 
 <a href="press-de.html" class="button">
-Presseberichte anzeigen
+Presse ansehen
 </a>
 
 </div>
@@ -1583,14 +1988,16 @@ Bürgerbeteiligung
 </h3>
 
 <p>
-Erfahren Sie mehr
-über öffentliche Unterstützungskampagnen,
-die Registrierung im Komitee
-und Beteiligungsprogramme.
+Informationen
+über Möglichkeiten,
+die Initiative
+zu unterstützen
+und sich an ihren
+Aktivitäten zu beteiligen.
 </p>
 
 <a href="participate-de.html" class="button">
-Beteiligungszentrum
+Mitmachen
 </a>
 
 </div>
@@ -1602,14 +2009,15 @@ Website-Leitfaden
 </h3>
 
 <p>
-Erfahren Sie,
-wie Sie auf der Website navigieren,
-Informationen finden
-und an verfügbaren Programmen teilnehmen können.
+Informationen
+zur Nutzung
+der Website
+und zur Suche
+nach Dokumenten.
 </p>
 
 <a href="guide-de.html" class="button">
-Leitfaden anzeigen
+Leitfaden öffnen
 </a>
 
 </div>
@@ -1619,33 +2027,46 @@ Leitfaden anzeigen
 </section>
 
 <!-- =====================================
-     MEHRSPRACHIGE INFORMATIONEN
+     10. MEHRSPRACHIGE WEBSITE
 ===================================== -->
 
-<section>
+<section id="languages">
 
 <h2>
-9. Mehrsprachige Informationen
+9. Mehrsprachige Website
 </h2>
 
 <p>
-Diese Website wird
-als mehrsprachige Informationsplattform
-für internationale Besucher,
-Organisationen,
-Forschungseinrichtungen,
-Unternehmen
-und interessierte Bürgerinnen und Bürger entwickelt.
+Die Website der Initiative
+für ein globales KI-Zentrum
+bietet Hauptseiten
+in zehn Sprachen an.
 </p>
 
 <p>
-Englisch dient
-als internationale Hauptsprache der Website.
-Koreanisch wird
-für das bestehende Verwaltungs-
-und Inhaltsverwaltungssystem verwendet.
-Weitere Sprachversionen
-werden schrittweise eingeführt.
+Damit sollen Besucherinnen
+und Besucher
+aus verschiedenen Ländern,
+internationale Organisationen,
+Forschungseinrichtungen,
+Unternehmen
+und die Öffentlichkeit
+einen besseren Zugang
+zu Informationen erhalten.
+</p>
+
+<p>
+Über die Sprachauswahl
+am oberen Seitenrand
+können Sie Ihre
+bevorzugte Sprache wählen.
+</p>
+
+<p>
+Die koreanische Version
+bietet zusätzliche
+Dokumente und Dienste
+in koreanischer Sprache.
 </p>
 
 <div class="highlight">
@@ -1655,32 +2076,76 @@ Verfügbare Sprachen
 </strong>
 
 <p>
-Deutsch — Deutsche Version
+<a href="index.html" lang="ko">
+한국어 – Koreanisch
+</a>
 </p>
 
 <p>
-English — Internationale Website
+<a href="index-en.html" lang="en">
+English – Englisch
+</a>
 </p>
 
 <p>
-Español — Spanische Version
+<a href="index-zh.html" lang="zh">
+中文 – Chinesisch
+</a>
 </p>
 
 <p>
-Français — Französische Version
+<a href="index-ja.html" lang="ja">
+日本語 – Japanisch
+</a>
 </p>
 
 <p>
-한국어 — Koreanische Website
+<a href="index-ru.html" lang="ru">
+Русский – Russisch
+</a>
+</p>
+
+<p>
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية – Arabisch
+</a>
+</p>
+
+<p>
+<a href="index-es.html" lang="es">
+Español – Spanisch
+</a>
+</p>
+
+<p>
+<a href="index-fr.html" lang="fr">
+Français – Französisch
+</a>
+</p>
+
+<p>
+<a href="index-de.html"
+lang="de"
+aria-current="page">
+Deutsch – Deutsch ✓
+</a>
+</p>
+
+<p>
+<a href="index-it.html" lang="it">
+Italiano – Italienisch
+</a>
 </p>
 
 </div>
 
-<p>
-Besucherinnen und Besucher
-können ihre bevorzugte Sprache
-über das Sprachmenü
-oben auf der Startseite auswählen.
+<p class="note">
+Die verfügbaren Inhalte
+und Dienstleistungen
+können je nach
+ausgewählter Sprache
+unterschiedlich sein.
 </p>
 
 </section>
@@ -1695,57 +2160,86 @@ oben auf der Startseite auswählen.
 
 <p>
 <strong>
-INITIATIVE FÜR EIN GLOBALES KI-ZENTRUM
+Initiative für ein globales KI-Zentrum
 </strong>
 </p>
 
 <p>
-Sonderstadt Goyang<br>
-Provinz Gyeonggi,<br>
+Sonderstadt Goyang
+<br>
+Provinz Gyeonggi
+<br>
 Republik Korea
 </p>
 
 <p>
 Bürgerkomitee zur Förderung
-der Ansiedlung eines globalen KI-Zentrums
-in der Sonderstadt Goyang
+der Ansiedlung
+eines globalen KI-Zentrums
+in Goyang
 </p>
 
 <p>
-Künstliche Intelligenz im Dienste der Menschheit.<br>
-Internationale Zusammenarbeit für eine bessere Zukunft.
+Künstliche Intelligenz
+im Dienste der Menschheit
+<br>
+Internationale Zusammenarbeit
+für eine bessere Zukunft
 </p>
 
-<p>
-<a href="index-de.html">
-Deutsch
-</a>
+<!-- =====================================
+     SPRACHAUSWAHL IM FUSSBEREICH
+===================================== -->
 
-&nbsp; | &nbsp;
-
-<a href="index-en.html" lang="en">
-English
-</a>
-
-&nbsp; | &nbsp;
-
-<a href="index-es.html" lang="es">
-Español
-</a>
-
-&nbsp; | &nbsp;
-
-<a href="index-fr.html" lang="fr">
-Français
-</a>
-
-&nbsp; | &nbsp;
+<div
+class="footer-language-links"
+aria-label="Sprachauswahl"
+>
 
 <a href="index.html" lang="ko">
 한국어
 </a>
 
-</p>
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية
+</a>
+
+<a href="index-es.html" lang="es">
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index-de.html"
+lang="de"
+aria-current="page">
+Deutsch ✓
+</a>
+
+<a href="index-it.html" lang="it">
+Italiano
+</a>
+
+</div>
 
 <p>
 <a href="guide-de.html">
@@ -1753,7 +2247,41 @@ Website-Leitfaden
 </a>
 </p>
 
+<p>
+<a href="index-de.html">
+Zurück zur Startseite
+</a>
+</p>
+
+<p style="font-size:12px; color:#b8cbe5;">
+© <span id="copyrightYear">2026</span>
+Initiative für ein globales KI-Zentrum.
+Alle Rechte vorbehalten.
+</p>
+
 </footer>
 
+<!-- =====================================
+     AUTOMATISCHE JAHRESZAHL
+===================================== -->
+
+<script>
+
+(function () {
+
+  "use strict";
+
+  const yearElement =
+    document.getElementById("copyrightYear");
+
+  if (yearElement) {
+    yearElement.textContent =
+      new Date().getFullYear();
+  }
+
+})();
+
+</script>
+
 </body>
-</html>
+</html>   
