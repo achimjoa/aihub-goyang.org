@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Guida all'utilizzo del sito web dell'iniziativa per un Polo Globale dell'IA nella Città Speciale di Goyang. Scopri come consultare le informazioni, partecipare alle attività civiche, leggere le notizie e utilizzare i servizi online.">
+
+<title>
+Guida all'utilizzo del sito web |
+Iniziativa per un Polo Globale dell'IA
+</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* INTESTAZIONE */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* NAVIGAZIONE RAPIDA */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* CONTENUTO PRINCIPALE */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* SCHEDE */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* PULSANTI */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+/* RIQUADRI IN EVIDENZA */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* PROCEDURE */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* NOTE */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* DOMANDE FREQUENTI */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* PIÈ DI PAGINA */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* VERSIONE MOBILE */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- INTESTAZIONE -->
+
+<header>
+
+<h1>
+Guida all'utilizzo del sito web
+</h1>
+
+<p>
+Iniziativa per un Polo Globale dell'IA<br>
+Città Speciale di Goyang,<br>
+Provincia di Gyeonggi,<br>
+Repubblica di Corea
+</p>
+
+<p>
+Guida alle informazioni del sito,<br>
+alla navigazione<br>
+e alla partecipazione dei cittadini
+</p>
+
+<div class="header-links">
+
+<a href="index-it.html"
+class="home-link">
+← Homepage italiana
+</a>
+
+</div>
+
+</header>
+
+<!-- NAVIGAZIONE RAPIDA -->
+
+<nav
+class="quick-nav"
+aria-label="Navigazione della guida al sito">
+
+<a href="#intro">
+Introduzione
+</a>
+
+<a href="#menus">
+Sezioni principali
+</a>
+
+<a href="#participation">
+Partecipazione
+</a>
+
+<a href="#account">
+Informazioni sui pagamenti
+</a>
+
+<a href="#board">
+Notizie e risorse
+</a>
+
+<a href="#faq">
+Domande frequenti
+</a>
+
+<a href="#help">
+Assistenza
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. INTRODUZIONE
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. Benvenuti nel nostro sito web
+</h2>
+
+<p>
+Benvenuti nel sito web ufficiale
+del Comitato Civico Promotore
+per l'insediamento
+del Polo Globale dell'IA
+nella Città Speciale di Goyang.
+</p>
+
+<p>
+Questo sito fornisce informazioni
+sul Polo Globale dell'IA proposto,
+sulle attività del Comitato,
+sui vantaggi territoriali di Goyang
+e sulle opportunità
+di partecipazione pubblica.
+</p>
+
+<p>
+Presenta inoltre
+il potenziale ruolo
+della cooperazione internazionale
+nell'affrontare le sfide globali
+attraverso applicazioni responsabili
+dell'intelligenza artificiale.
+</p>
+
+<div class="highlight">
+
+<strong>
+Nuove opportunità di crescita per Goyang!<br>
+Più posti di lavoro qualificati per Goyang!<br>
+Portiamo il Polo Globale dell'IA a Goyang!
+</strong>
+
+</div>
+
+<p>
+Il sito web è accessibile
+tramite computer,
+tablet
+o smartphone.
+</p>
+
+<p>
+Non è necessario
+installare software aggiuntivo.
+È sufficiente utilizzare
+un normale browser Internet.
+</p>
+
+</section>
+
+<!-- =====================================
+     2. SEZIONI PRINCIPALI
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. Sezioni principali del sito
+</h2>
+
+<div class="grid">
+
+<!-- COMITATO -->
+
+<div class="card">
+
+<h3>
+Il Comitato Civico Promotore
+</h3>
+
+<p>
+Scopri la costituzione,
+la missione,
+i principi guida
+e le principali attività
+del Comitato Civico Promotore.
+</p>
+
+<a
+class="button secondary"
+href="committee-it.html">
+Esplora
+</a>
+
+</div>
+
+<!-- POLO GLOBALE DELL'IA -->
+
+<div class="card">
+
+<h3>
+Il Polo Globale dell'IA
+</h3>
+
+<p>
+Scopri il Polo Globale dell'IA proposto,
+la sua visione
+di cooperazione internazionale
+e le potenziali applicazioni
+dell'intelligenza artificiale
+per il bene pubblico.
+</p>
+
+<a
+class="button secondary"
+href="hub-it.html">
+Esplora
+</a>
+
+</div>
+
+<!-- GOYANG -->
+
+<div class="card">
+
+<h3>
+Perché la Città Speciale di Goyang?
+</h3>
+
+<p>
+Scopri i vantaggi territoriali di Goyang,
+le sue infrastrutture urbane
+e la sua potenziale competitività
+come sede del Polo Globale dell'IA.
+</p>
+
+<a
+class="button secondary"
+href="goyang-it.html">
+Esplora
+</a>
+
+</div>
+
+<!-- ORGANIZZAZIONI INTERNAZIONALI -->
+
+<div class="card">
+
+<h3>
+Nove organizzazioni internazionali
+</h3>
+
+<p>
+Esplora le missioni
+di nove organizzazioni internazionali
+e i potenziali ambiti
+di cooperazione legati
+all'intelligenza artificiale.
+</p>
+
+<a
+class="button secondary"
+href="agencies-it.html">
+Esplora
+</a>
+
+</div>
+
+<!-- STRATEGIA -->
+
+<div class="card">
+
+<h3>
+Strategia per l'insediamento
+</h3>
+
+<p>
+Scopri la strategia proposta
+per l'insediamento iniziale,
+il sostegno operativo
+e la crescita condivisa
+a lungo termine.
+</p>
+
+<a
+class="button secondary"
+href="strategy-it.html">
+Esplora
+</a>
+
+</div>
+
+<!-- PARTECIPAZIONE -->
+
+<div class="card">
+
+<h3>
+Centro di partecipazione dei cittadini
+</h3>
+
+<p>
+Trova informazioni
+sulla campagna di sostegno online,
+sull'iscrizione al Comitato,
+sull'adesione come socio sostenitore
+e sugli altri programmi
+di partecipazione.
+</p>
+
+<a
+class="button"
+href="participate-it.html">
+Centro di partecipazione
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. PARTECIPAZIONE
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. Come partecipare
+</h2>
+
+<p>
+Il Centro di partecipazione dei cittadini
+fornisce informazioni
+su cinque programmi di partecipazione.
+</p>
+
+<p class="note">
+I moduli di domanda
+sono attualmente disponibili
+in lingua coreana.
+Prima di inviare un modulo,
+si prega di leggere attentamente
+le informazioni
+e le informative sulla privacy.
+</p>
+
+<div class="grid">
+
+<!-- CAMPAGNA DI SOSTEGNO -->
+
+<div class="card">
+
+<h3>
+① Campagna di sostegno online
+</h3>
+
+<p>
+Esprimi il tuo sostegno
+all'iniziativa proposta
+per il Polo Globale dell'IA
+nella Città Speciale di Goyang.
+</p>
+
+<ol class="steps">
+
+<li>
+Seleziona il pulsante
+della campagna di sostegno online.
+</li>
+
+<li>
+Inserisci le informazioni richieste
+nel modulo di partecipazione.
+</li>
+
+<li>
+Leggi l'informativa sulla privacy.
+</li>
+
+<li>
+Invia il modulo compilato.
+</li>
+
+</ol>
+
+<a
+class="button"
+href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+target="_blank"
+rel="noopener noreferrer">
+Partecipa alla campagna
+</a>
+
+</div>
+
+<!-- ISCRIZIONE AL COMITATO -->
+
+<div class="card">
+
+<h3>
+② Iscrizione al Comitato
+</h3>
+
+<p>
+I cittadini interessati
+a partecipare attivamente
+all'iniziativa del Polo Globale dell'IA
+possono richiedere
+l'iscrizione al Comitato.
+</p>
+
+<p>
+Si prega di fornire
+le informazioni richieste
+nel modulo di registrazione.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/FaZCDwm7gqu5rthb7"
+target="_blank"
+rel="noopener noreferrer">
+Iscriviti
+</a>
+
+</div>
+
+<!-- SOCI SOSTENITORI -->
+
+<div class="card">
+
+<h3>
+③ Adesione come socio sostenitore
+</h3>
+
+<p>
+Le persone che desiderano
+sostenere le attività del Comitato
+possono richiedere
+l'adesione come soci sostenitori.
+</p>
+
+<p>
+Dopo aver presentato
+la domanda di adesione,
+si prega di consultare
+le informazioni ufficiali
+sui pagamenti
+visualizzate nel
+Centro di partecipazione dei cittadini.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+target="_blank"
+rel="noopener noreferrer">
+Richiedi l'adesione
+</a>
+
+</div>
+
+<!-- STRISCIONI -->
+
+<div class="card">
+
+<h3>
+④ Richiesta di striscioni promozionali
+</h3>
+
+<p>
+Richiedi l'installazione
+di striscioni promozionali
+a sostegno dell'iniziativa proposta
+per il Polo Globale dell'IA.
+</p>
+
+<p>
+Si prega di verificare
+i regolamenti locali applicabili,
+i requisiti relativi
+ai luoghi di installazione
+e le autorizzazioni necessarie.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+target="_blank"
+rel="noopener noreferrer">
+Richiedi uno striscione
+</a>
+
+</div>
+
+<!-- ADESIVI -->
+
+<div class="card">
+
+<h3>
+⑤ Adesivo promozionale per veicoli
+</h3>
+
+<p>
+Richiedi un adesivo promozionale
+per contribuire
+a far conoscere
+l'iniziativa del Polo Globale dell'IA.
+</p>
+
+<p>
+Fornisci le informazioni richieste,
+compresi i recapiti
+e la quantità desiderata.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/cisRHEsN61pxVycG8"
+target="_blank"
+rel="noopener noreferrer">
+Richiedi un adesivo
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+La disponibilità dei programmi
+e i tempi di elaborazione
+delle domande
+possono variare
+in base alle attività del Comitato.
+</p>
+
+</section>
+
+<!-- =====================================
+     4. INFORMAZIONI SUI PAGAMENTI
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. Pagamenti per i soci sostenitori
+e gli striscioni promozionali
+</h2>
+
+<p>
+Se desideri versare
+un contributo come socio sostenitore
+o pagare il costo
+di uno striscione promozionale,
+consulta le informazioni ufficiali
+sui conti bancari
+visualizzate nel
+Centro di partecipazione dei cittadini.
+</p>
+
+<div class="highlight">
+
+<strong>
+Informazioni importanti sui pagamenti
+</strong>
+
+<p>
+Prima di effettuare
+un bonifico bancario,
+verifica il nome della banca,
+il numero di conto
+e l'intestatario.
+</p>
+
+<p>
+La presentazione della domanda
+e il completamento
+del bonifico bancario
+sono due procedure distinte.
+</p>
+
+<p>
+Se le informazioni sul conto
+non vengono visualizzate
+o risultano poco chiare,
+non trasferire denaro
+finché i dati non siano stati confermati
+attraverso le comunicazioni ufficiali
+del Comitato.
+</p>
+
+</div>
+
+<a
+class="button"
+href="participate-it.html">
+Verifica le informazioni ufficiali sui pagamenti
+</a>
+
+<p class="note">
+Le informazioni sui conti bancari
+possono cambiare.
+Per questo motivo,
+i numeri di conto
+non sono riportati direttamente
+in questa guida.
+</p>
+
+</section>
+
+<!-- =====================================
+     5. NOTIZIE E RISORSE
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. Notizie, attività e risorse
+</h2>
+
+<div class="grid">
+
+<!-- BACHECA -->
+
+<div class="card">
+
+<h3>
+Forum di discussione della comunità
+</h3>
+
+<p>
+Uno spazio per condividere
+opinioni dei cittadini
+e informazioni
+sull'iniziativa del Polo Globale dell'IA.
+</p>
+
+<a
+class="button secondary"
+href="board.html">
+Visita il forum (in coreano)
+</a>
+
+</div>
+
+<!-- NOTIZIE -->
+
+<div class="card">
+
+<h3>
+Notizie e comunicazioni
+</h3>
+
+<p>
+Leggi gli aggiornamenti
+sulle attività del Comitato,
+sugli eventi
+e sui principali sviluppi.
+</p>
+
+<a
+class="button secondary"
+href="news-it.html">
+Visualizza le notizie
+</a>
+
+</div>
+
+<!-- RASSEGNA STAMPA -->
+
+<div class="card">
+
+<h3>
+Rassegna stampa
+</h3>
+
+<p>
+Esplora articoli di giornale,
+servizi radiotelevisivi
+e altre notizie dei media
+relative all'iniziativa
+del Polo Globale dell'IA.
+</p>
+
+<a
+class="button secondary"
+href="press-it.html">
+Visualizza la rassegna stampa
+</a>
+
+</div>
+
+<!-- CRONOLOGIA -->
+
+<div class="card">
+
+<h3>
+Cronologia e principali tappe
+</h3>
+
+<p>
+Esamina i principali sviluppi
+e le attività del Comitato
+in ordine cronologico.
+</p>
+
+<a
+class="button secondary"
+href="history-it.html">
+Visualizza la cronologia
+</a>
+
+</div>
+
+</div>
+
+<p>
+Alcune risorse collegate
+e alcuni articoli originali
+potrebbero essere disponibili
+soltanto in lingua coreana.
+</p>
+
+<p>
+Quando partecipi
+alle discussioni online,
+rispetta gli altri utenti
+ed evita di condividere
+informazioni personali
+o contenuti fuorvianti.
+</p>
+
+</section>
+
+<!-- =====================================
+     6. DOMANDE FREQUENTI
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. Domande frequenti
+</h2>
+
+<div class="faq">
+
+<h3>
+D. È necessario registrarsi
+per utilizzare questo sito web?
+</h3>
+
+<p>
+Le informazioni generali
+sono accessibili
+senza registrazione.
+Alcune funzioni interattive
+potrebbero richiedere
+l'accesso a un account
+o autorizzazioni aggiuntive.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+D. La campagna di sostegno online
+equivale all'iscrizione al Comitato?
+</h3>
+
+<p>
+No.
+La campagna di sostegno online
+consente alle persone
+di esprimere il proprio sostegno
+all'iniziativa proposta
+per il Polo Globale dell'IA.
+</p>
+
+<p>
+L'iscrizione al Comitato
+è una procedura separata
+per coloro che desiderano
+partecipare alle attività del Comitato.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+D. La partecipazione alla campagna
+di sostegno online
+richiede il pagamento
+di una quota associativa?
+</h3>
+
+<p>
+No.
+La campagna di sostegno online
+e l'adesione come socio sostenitore
+sono programmi di partecipazione distinti.
+</p>
+
+<p>
+La firma del modulo di sostegno
+non comporta di per sé
+alcun impegno
+a versare un contributo associativo.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+D. La presentazione
+della domanda di adesione
+come socio sostenitore
+completa il pagamento?
+</h3>
+
+<p>
+No.
+La presentazione della domanda
+e il trasferimento dei fondi
+sono due procedure distinte.
+</p>
+
+<p>
+Si prega di verificare
+le informazioni ufficiali
+sui pagamenti
+prima di effettuare un bonifico.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+D. Le nove organizzazioni internazionali
+hanno confermato
+il loro trasferimento a Goyang?
+</h3>
+
+<p>
+No.
+Le organizzazioni internazionali
+presentate su questo sito
+sono menzionate
+in relazione a potenziali opportunità
+di cooperazione
+nell'ambito dell'iniziativa
+per un Polo Globale dell'IA.
+</p>
+
+<p>
+La loro inclusione
+non significa
+che la partecipazione,
+l'apertura di uffici
+o il trasferimento a Goyang
+siano stati ufficialmente confermati.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+D. È possibile installare
+uno striscione promozionale
+immediatamente dopo
+la presentazione della domanda?
+</h3>
+
+<p>
+No.
+La presentazione della domanda
+non autorizza automaticamente
+l'installazione dello striscione.
+</p>
+
+<p>
+Devono essere rispettate
+le leggi applicabili,
+i regolamenti locali
+e i requisiti specifici
+del luogo di installazione.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. ASSISTENZA
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. Assistenza per l'utilizzo del sito
+</h2>
+
+<h3>
+Se il sito web non si apre
+</h3>
+
+<p>
+Controlla la connessione Internet
+e l'indirizzo del sito.
+Prova ad accedere nuovamente
+alla pagina dopo qualche istante.
+</p>
+
+<h3>
+Se la pagina non viene visualizzata correttamente
+</h3>
+
+<p>
+Aggiorna la pagina
+oppure prova a utilizzare
+un altro browser.
+</p>
+
+<h3>
+Se un modulo di domanda non si apre
+</h3>
+
+<p>
+Seleziona nuovamente
+il pulsante della domanda
+oppure apri il modulo
+utilizzando un altro browser.
+</p>
+
+<h3>
+Se le informazioni sul conto bancario
+non vengono visualizzate
+</h3>
+
+<p>
+Aggiorna il
+Centro di partecipazione dei cittadini
+e controlla nuovamente.
+</p>
+
+<p>
+Se il problema persiste,
+non trasferire fondi
+finché le informazioni sul conto
+non siano state confermate
+attraverso le comunicazioni ufficiali
+del Comitato.
+</p>
+
+<h3>
+Protezione dei dati personali
+</h3>
+
+<p>
+Prima di presentare una domanda,
+consulta la relativa informativa
+sulla raccolta
+e sull'utilizzo
+dei dati personali.
+</p>
+
+<p>
+Non pubblicare
+informazioni personali
+di altre persone
+nei forum di discussione pubblici.
+</p>
+
+<a
+class="button secondary"
+href="privacy.html">
+Informativa sulla privacy (in coreano)
+</a>
+
+</section>
+
+<!-- =====================================
+     8. CONCLUSIONE
+===================================== -->
+
+<section>
+
+<h2>
+8. Costruiamo insieme il futuro di Goyang
+</h2>
+
+<p>
+Il Polo Globale dell'IA proposto
+rappresenta un'opportunità
+per esplorare nuove prospettive
+di crescita,
+occupazione di qualità
+e cooperazione internazionale
+per la Città Speciale di Goyang.
+</p>
+
+<p>
+I cittadini e le persone interessate
+possono partecipare
+attraverso la campagna
+di sostegno online,
+l'iscrizione al Comitato,
+l'adesione come soci sostenitori
+e le attività di sensibilizzazione pubblica.
+</p>
+
+<div class="highlight">
+
+<strong>
+Ogni manifestazione di interesse
+e ogni forma di partecipazione
+possono contribuire
+a costruire il futuro di Goyang.
+</strong>
+
+</div>
+
+<a
+class="button"
+href="participate-it.html">
+Centro di partecipazione dei cittadini
+</a>
+
+<a
+class="button secondary"
+href="index-it.html">
+Homepage italiana
+</a>
+
+</section>
+
+</main>
+
+<!-- PIÈ DI PAGINA -->
+
+<footer>
+
+<p>
+<strong>
+Comitato Civico Promotore<br>
+per l'insediamento del Polo Globale dell'IA<br>
+nella Città Speciale di Goyang
+</strong>
+</p>
+
+<p>
+Provincia di Gyeonggi,<br>
+Repubblica di Corea
+</p>
+
+<p>
+Con i cittadini,<br>
+con la Provincia di Gyeonggi<br>
+e con il mondo.
+</p>
+
+<p>
+<a href="index-it.html">
+Homepage italiana
+</a>
+&nbsp; | &nbsp;
+<a href="participate-it.html">
+Partecipazione dei cittadini
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
