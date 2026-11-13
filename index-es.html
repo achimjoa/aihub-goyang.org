@@ -5,39 +5,141 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<meta name="theme-color"
-content="#0754a6">
-
-<meta name="description"
-content="Iniciativa del Centro Global de Inteligencia Artificial en la Ciudad Especial de Goyang, República de Corea. Cooperación internacional para el desarrollo sostenible y el bienestar de la humanidad.">
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
 
 <title>
 Centro Global de Inteligencia Artificial | Goyang
 </title>
 
-<link rel="canonical"
-href="https://achimjoa.github.io/aihub-goyang.org/index-es.html">
+<meta
+  name="description"
+  content="Iniciativa del Centro Global de Inteligencia Artificial en la Ciudad Especial de Goyang, República de Corea. Cooperación internacional para el desarrollo sostenible y el bienestar de la humanidad."
+>
 
-<link rel="alternate"
-hreflang="es"
-href="https://achimjoa.github.io/aihub-goyang.org/index-es.html">
+<meta property="og:type" content="website">
 
-<link rel="alternate"
-hreflang="en"
-href="https://achimjoa.github.io/aihub-goyang.org/index-en.html">
+<meta
+  property="og:title"
+  content="Centro Global de Inteligencia Artificial | Goyang"
+>
 
-<link rel="alternate"
-hreflang="ko"
-href="https://achimjoa.github.io/aihub-goyang.org/index.html">
+<meta
+  property="og:description"
+  content="Inteligencia artificial al servicio de la humanidad. Cooperación internacional para un futuro mejor."
+>
+
+<meta
+  property="og:url"
+  content="https://achimjoa.github.io/aihub-goyang.org/index-es.html"
+>
+
+<meta
+  property="og:image"
+  content="https://achimjoa.github.io/aihub-goyang.org/aihub-main-banner-en.png"
+>
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+>
+
+<link
+  rel="canonical"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-es.html"
+>
+
+<!-- =====================================
+     MULTILINGUAL SEO
+     10 LANGUAGES
+===================================== -->
+
+<link
+  rel="alternate"
+  hreflang="ko"
+  href="https://achimjoa.github.io/aihub-goyang.org/index.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="en"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-en.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="zh"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-zh.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="ja"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-ja.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="ru"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-ru.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="ar"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-ar.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="es"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-es.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="fr"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-fr.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="de"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-de.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="it"
+  href="https://achimjoa.github.io/aihub-goyang.org/index-it.html"
+>
+
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href="https://achimjoa.github.io/aihub-goyang.org/index.html"
+>
 
 <style>
 
 /* =====================================
-   CONFIGURACIÓN GENERAL
+   01. CONFIGURACIÓN GENERAL
 ===================================== */
+
+:root {
+  --main-blue: #0754a6;
+  --dark-blue: #10315e;
+  --yellow: #ffe44d;
+  --language-color: #008c95;
+  --language-hover: #006e76;
+}
 
 * {
   box-sizing: border-box;
@@ -49,23 +151,27 @@ html {
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
   background: #f4f8fc;
   color: #17315b;
   line-height: 1.75;
 }
 
 a {
-  color: #0754a6;
+  color: var(--main-blue);
 }
 
-a:focus-visible {
+a:focus-visible,
+summary:focus-visible {
   outline: 3px solid #ffca28;
   outline-offset: 3px;
 }
 
 /* =====================================
-   ENCABEZADO COMPACTO
+   02. ENCABEZADO
 ===================================== */
 
 header {
@@ -74,8 +180,11 @@ header {
     #0754a6,
     #10315e
   );
+
   color: white;
+
   padding: 16px 20px;
+
   text-align: center;
 }
 
@@ -89,121 +198,289 @@ header h2 {
   font-size: 15px;
   font-weight: normal;
   color: #dcecff;
+
   margin: 0;
   padding: 0;
+
   border: none;
 }
 
 /* =====================================
-   NAVEGACIÓN PRINCIPAL
+   03. NAVEGACIÓN PRINCIPAL
 ===================================== */
 
 .main-nav {
-  background: #10315e;
-  padding: 10px 18px;
+  position: relative;
+  z-index: 1000;
+
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
   align-items: center;
-  gap: 12px;
-}
 
-.main-nav > a {
-  color: white;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: bold;
-}
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 
-.main-nav > a:hover {
-  color: #ffdf5a;
+  padding: 10px 12px;
+  gap: 8px;
+
+  background: #0754a6;
+
+  border-top: 3px solid #ffe44d;
+
+  direction: ltr;
 }
 
 /* =====================================
-   SELECTOR DE IDIOMA
+   04. SELECTOR DE IDIOMA
 ===================================== */
 
 .language-dropdown {
   position: relative;
-  z-index: 1000;
-  margin-left: 10px;
+
+  flex: 0 0 auto;
+
+  z-index: 2000;
+
+  margin: 0;
+  padding: 0;
 }
 
-.language-dropdown summary {
+/* Botón de idioma */
+
+.language-dropdown > summary {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
-  padding: 9px 15px;
-  background: #ffe44d;
-  color: #003b79;
-  border-radius: 6px;
+
+  min-height: 42px;
+
+  padding: 9px 14px;
+
+  background: #008c95;
+  color: #ffffff;
+
+  border: 1px solid #008c95;
+  border-radius: 7px;
+
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 800;
+
   cursor: pointer;
+
   list-style: none;
+
+  white-space: nowrap;
 }
 
-.language-dropdown summary::-webkit-details-marker {
+.language-dropdown > summary::-webkit-details-marker {
   display: none;
 }
 
-.language-dropdown summary:focus-visible {
-  outline: 3px solid white;
+.language-dropdown > summary::marker {
+  content: "";
+}
+
+.language-dropdown > summary:hover {
+  background: #006e76;
+  border-color: #006e76;
+}
+
+.language-dropdown[open] > summary {
+  background: #006e76;
+  border-color: #006e76;
+}
+
+.language-dropdown > summary:focus-visible {
+  outline: 3px solid #ffe44d;
   outline-offset: 3px;
 }
 
+/* =====================================
+   05. MENÚ DESPLEGABLE
+===================================== */
+
 .language-options {
   position: absolute;
-  top: calc(100% + 7px);
-  right: 0;
-  min-width: 190px;
+
+  top: calc(100% + 6px);
+
+  left: 0;
+  right: auto;
+
+  z-index: 3000;
+
+  width: 190px;
+
+  max-width: calc(100vw - 20px);
+
+  max-height: min(70vh, 480px);
+  max-height: min(70dvh, 480px);
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
   padding: 8px;
-  background: white;
+
+  background: #ffffff;
+
   border: 1px solid #cbdff5;
   border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.2);
+
+  direction: ltr;
 }
 
 .language-options a {
   display: block;
+
+  width: 100%;
+
   padding: 10px 12px;
+
   color: #0754a6;
-  background: white;
+  background: #ffffff;
+
   border-radius: 5px;
+
   font-size: 14px;
+  font-weight: 600;
+
   text-align: left;
+
   text-decoration: none;
+
   white-space: nowrap;
 }
 
-.language-options a:hover {
+.language-options a:hover,
+.language-options a:focus-visible {
   background: #eaf4ff;
 }
 
 .language-options a[aria-current="page"] {
   background: #eaf4ff;
-  font-weight: bold;
+  font-weight: 800;
+}
+
+.language-options a[lang="ar"] {
+  direction: rtl;
+  text-align: right;
 }
 
 /* =====================================
-   IMAGEN PRINCIPAL
+   06. DESPLAZAMIENTO INDEPENDIENTE
+===================================== */
+
+.main-nav-links {
+  display: flex;
+
+  flex: 1 1 auto;
+
+  flex-wrap: nowrap;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  min-width: 0;
+  max-width: 100%;
+
+  gap: 6px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #ffe44d #0754a6;
+
+  direction: ltr;
+
+  padding: 2px 0 6px;
+}
+
+/* Botones de navegación */
+
+.main-nav-links > a {
+  display: inline-flex;
+
+  flex: 0 0 auto;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  padding: 8px 11px;
+
+  background: #ffffff;
+  color: #0754a6;
+
+  border: 1px solid #d6e5f5;
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+}
+
+.main-nav-links > a:hover,
+.main-nav-links > a:focus-visible {
+  background: #ffe44d;
+  color: #003b79;
+}
+
+/* Barra de desplazamiento */
+
+.main-nav-links::-webkit-scrollbar {
+  height: 6px;
+}
+
+.main-nav-links::-webkit-scrollbar-track {
+  background: #0754a6;
+}
+
+.main-nav-links::-webkit-scrollbar-thumb {
+  background: #ffe44d;
+  border-radius: 10px;
+}
+
+/* =====================================
+   07. IMAGEN PRINCIPAL
 ===================================== */
 
 .main-banner {
   width: 100%;
   margin: 0;
+
   overflow: hidden;
+
   background: #0754a6;
 }
 
 .main-banner img {
   display: block;
+
   width: 100%;
   height: auto;
 }
 
 /* =====================================
-   CONTENIDO PRINCIPAL
+   08. CONTENIDO PRINCIPAL
 ===================================== */
 
 main {
@@ -212,32 +489,43 @@ main {
   padding: 30px 15px;
 }
 
-section {
+main section {
   background: white;
+
   border-radius: 12px;
+
   padding: 35px;
+
   margin-bottom: 25px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
   scroll-margin-top: 20px;
 }
 
-h2 {
+main h2 {
   color: #0754a6;
-  border-bottom: 2px solid #e3edf8;
+
+  border-bottom:
+    2px solid #e3edf8;
+
   padding-bottom: 12px;
+
   margin-top: 0;
 }
 
-h3 {
+main h3 {
   color: #0754a6;
 }
 
 /* =====================================
-   PRESENTACIÓN PRINCIPAL
+   09. PRESENTACIÓN PRINCIPAL
 ===================================== */
 
 .hero {
   text-align: center;
+
   background: linear-gradient(
     135deg,
     #eaf4ff,
@@ -247,7 +535,10 @@ h3 {
 
 .hero h2 {
   border: none;
-  font-size: clamp(25px, 4vw, 37px);
+
+  font-size:
+    clamp(25px, 4vw, 37px);
+
   line-height: 1.4;
 }
 
@@ -256,20 +547,30 @@ h3 {
 }
 
 /* =====================================
-   TARJETAS
+   10. TARJETAS
 ===================================== */
 
 .grid {
   display: grid;
+
   grid-template-columns:
-    repeat(auto-fit, minmax(260px, 1fr));
+    repeat(
+      auto-fit,
+      minmax(min(100%, 260px), 1fr)
+    );
+
   gap: 20px;
 }
 
 .card {
+  min-width: 0;
+
   background: #f4f8fc;
+
   padding: 24px;
+
   border-radius: 10px;
+
   border-top: 5px solid #168de0;
 }
 
@@ -278,29 +579,39 @@ h3 {
 }
 
 /* =====================================
-   INFORMACIÓN DESTACADA
+   11. INFORMACIÓN DESTACADA
 ===================================== */
 
 .highlight {
   background: #eaf4ff;
+
   border-left: 5px solid #168de0;
+
   padding: 24px;
+
   margin: 20px 0;
+
   border-radius: 8px;
 }
 
 /* =====================================
-   BOTONES
+   12. BOTONES
 ===================================== */
 
 .button {
   display: inline-block;
+
   background: #0754a6;
   color: white;
+
   padding: 12px 22px;
+
   border-radius: 7px;
+
   text-decoration: none;
+
   font-weight: bold;
+
   margin: 10px 8px 0 0;
 }
 
@@ -322,6 +633,10 @@ h3 {
   color: #596a80;
 }
 
+/* =====================================
+   13. DIRECTORIO
+===================================== */
+
 .page-directory {
   background: #f0f6ff;
 }
@@ -334,25 +649,17 @@ h3 {
   margin-top: 12px;
 }
 
-.button-disabled {
-  display: inline-block;
-  padding: 12px 22px;
-  margin: 10px 8px 0 0;
-  background: #e6eaf0;
-  color: #657487;
-  border-radius: 7px;
-  font-weight: bold;
-  cursor: default;
-}
-
 /* =====================================
-   PIE DE PÁGINA
+   14. PIE DE PÁGINA
 ===================================== */
 
 footer {
   background: #10315e;
+
   color: white;
+
   text-align: center;
+
   padding: 35px 15px;
 }
 
@@ -360,25 +667,82 @@ footer a {
   color: white;
 }
 
+.footer-language-links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 10px 18px;
+
+  margin: 20px auto;
+
+  direction: ltr;
+}
+
+.footer-language-links a {
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+}
+
+.footer-language-links a:hover {
+  color: #ffe44d;
+  text-decoration: underline;
+}
+
+.footer-language-links
+a[aria-current="page"] {
+  color: #ffe44d;
+  font-weight: 800;
+}
+
 /* =====================================
-   DISEÑO MÓVIL
+   15. DISEÑO MÓVIL
 ===================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
 
   header {
     padding: 14px 12px;
   }
 
   .main-nav {
-    gap: 10px;
+    padding: 8px 10px;
+    gap: 6px;
   }
 
-  .language-dropdown {
-    margin-left: 0;
+  .language-dropdown > summary {
+    min-height: 42px;
+    padding: 8px 10px;
+    font-size: 12px;
   }
 
-  section {
+  .language-options {
+    width: 170px;
+    max-height: 60vh;
+    max-height: 60dvh;
+  }
+
+  .main-nav-links {
+    gap: 5px;
+  }
+
+  .main-nav-links > a {
+    padding: 8px 9px;
+    font-size: 11px;
+  }
+
+  main {
+    padding: 15px 10px;
+  }
+
+  main section {
     padding: 23px;
   }
 
@@ -386,14 +750,30 @@ footer a {
     padding: 19px;
   }
 
-  .button,
-  .button-disabled {
+  .button {
     display: block;
     text-align: center;
     margin: 10px 0;
   }
 
 }
+
+/* =====================================
+   16. PANTALLAS HORIZONTALES BAJAS
+===================================== */
+
+@media (max-height: 500px) {
+
+  .language-options {
+    max-height: 55vh;
+    max-height: 55dvh;
+  }
+
+}
+
+/* =====================================
+   FIN DEL CSS
+===================================== */
 
 </style>
 
@@ -422,117 +802,202 @@ Provincia de Gyeonggi · República de Corea
      NAVEGACIÓN PRINCIPAL
 ===================================== -->
 
-<nav class="main-nav"
-     aria-label="Navegación principal">
+<nav
+  class="main-nav"
+  aria-label="Navegación principal"
+>
 
-  <a href="index-es.html">
-    Inicio
-  </a>
+<!-- =====================================
+     SELECTOR DE IDIOMA
+===================================== -->
 
-  <a href="hub-es.html">
-    Centro Global de IA
-  </a>
+<details class="language-dropdown">
 
-  <a href="goyang-es.html">
-    ¿Por qué Goyang?
-  </a>
+<summary aria-label="Seleccionar idioma">
+🌐 Idioma ▾
+</summary>
 
-  <a href="agencies-es.html">
-    Organizaciones internacionales
-  </a>
+<div class="language-options">
 
-  <a href="strategy-es.html">
-    Estrategia
-  </a>
+<a
+  href="index.html"
+  lang="ko"
+>
+한국어
+</a>
 
-  <a href="committee-es.html">
-    Comité
-  </a>
+<a
+  href="index-en.html"
+  lang="en"
+>
+English
+</a>
 
-  <a href="history-es.html">
-    Cronología
-  </a>
+<a
+  href="index-zh.html"
+  lang="zh"
+>
+中文
+</a>
 
-  <a href="news-es.html">
-    Noticias
-  </a>
+<a
+  href="index-ja.html"
+  lang="ja"
+>
+日本語
+</a>
 
-  <a href="press-es.html">
-    Prensa
-  </a>
+<a
+  href="index-ru.html"
+  lang="ru"
+>
+Русский
+</a>
 
-  <a href="participate-es.html">
-    Participación ciudadana
-  </a>
+<a
+  href="index-ar.html"
+  lang="ar"
+  dir="rtl"
+>
+العربية
+</a>
 
-  <a href="guide-es.html">
-    Guía
-  </a>
+<a
+  href="index-es.html"
+  lang="es"
+  aria-current="page"
+>
+Español ✓
+</a>
 
-  <!-- SELECTOR DE IDIOMA -->
+<a
+  href="index-fr.html"
+  lang="fr"
+>
+Français
+</a>
 
-  <details class="language-dropdown">
+<a
+  href="index-de.html"
+  lang="de"
+>
+Deutsch
+</a>
 
-    <summary aria-label="Seleccionar idioma">
-      🌐 Idioma ▾
-    </summary>
+<a
+  href="index-it.html"
+  lang="it"
+>
+Italiano
+</a>
 
-    <div class="language-options">
+</div>
 
-      <a href="index-es.html"
-         lang="es"
-         aria-current="page">
-        Español ✓
-      </a>
+</details>
 
-      <a href="index-en.html"
-         lang="en">
-        English
-      </a>
+<!-- =====================================
+     MENÚ PRINCIPAL EN ESPAÑOL
+===================================== -->
 
-      <a href="index.html"
-         lang="ko">
-        한국어
-      </a>
+<div class="main-nav-links">
 
-    </div>
+<a href="index-es.html">
+Inicio
+</a>
 
-  </details>
+<a href="hub-es.html">
+Centro Global de IA
+</a>
+
+<a href="goyang-es.html">
+¿Por qué Goyang?
+</a>
+
+<a href="agencies-es.html">
+Organizaciones internacionales
+</a>
+
+<a href="strategy-es.html">
+Estrategia
+</a>
+
+<a href="committee-es.html">
+Comité
+</a>
+
+<a href="history-es.html">
+Cronología
+</a>
+
+<a href="news-es.html">
+Noticias
+</a>
+
+<a href="press-es.html">
+Prensa
+</a>
+
+<a href="participate-es.html">
+Participación ciudadana
+</a>
+
+<a href="guide-es.html">
+Guía
+</a>
+
+</div>
 
 </nav>
 
 <!-- =====================================
-     IMAGEN PRINCIPAL EN INGLÉS
+     IMAGEN PRINCIPAL
 ===================================== -->
 
 <div class="main-banner">
 
 <img
-src="aihub-main-banner-en.png"
-alt="Iniciativa del Centro Global de Inteligencia Artificial en Goyang"
-loading="eager"
-fetchpriority="high">
+  src="aihub-main-banner-en.png"
+  alt="Iniciativa del Centro Global de Inteligencia Artificial en Goyang"
+  width="1648"
+  height="928"
+  loading="eager"
+  fetchpriority="high"
+>
 
 </div>
+
+<!-- =====================================
+     FIN DE LA PARTE 1
+
+     LA PARTE 2 COMIENZA CON <main>
+===================================== -->
 
 <main>
 
 <!-- =====================================
-     VISIÓN
+     01. VISIÓN
 ===================================== -->
 
 <section class="hero" id="vision">
 
 <h2>
-Inteligencia artificial al servicio de la humanidad.<br>
-Cooperación internacional para un futuro mejor.
+Inteligencia artificial al servicio de la humanidad
 </h2>
 
 <p>
-Conectamos organizaciones internacionales,
-gobiernos, instituciones de investigación,
-universidades, empresas y comunidades
-para afrontar los desafíos globales.
+Cooperación internacional para un futuro mejor
+</p>
+
+<p>
+Promovemos la cooperación entre
+organizaciones internacionales,
+gobiernos, universidades,
+centros de investigación,
+empresas y sociedad civil
+para explorar el potencial
+de la inteligencia artificial
+en la solución de los
+desafíos globales compartidos.
 </p>
 
 <div class="highlight">
@@ -542,13 +1007,13 @@ Nuestra visión
 </strong>
 
 <p>
-Promover el desarrollo de la Ciudad Especial
-de Goyang como centro de cooperación
-internacional, donde la inteligencia
-artificial contribuya al desarrollo
-sostenible, al bienestar humano
-y a la búsqueda de soluciones
-a los desafíos mundiales.
+Aspiramos a que la Ciudad Especial
+de Goyang se convierta en un
+centro internacional de cooperación
+en inteligencia artificial,
+investigación científica e innovación,
+contribuyendo al desarrollo sostenible
+y al bienestar de la humanidad.
 </p>
 
 </div>
@@ -557,14 +1022,15 @@ a los desafíos mundiales.
 ¿Por qué Goyang?
 </a>
 
-<a href="#partnership" class="button secondary">
-Oportunidades de cooperación
+<a href="#partnership"
+class="button secondary">
+Cooperación internacional
 </a>
 
 </section>
 
 <!-- =====================================
-     CENTRO GLOBAL DE IA
+     02. GLOBAL AI HUB
 ===================================== -->
 
 <section id="hub">
@@ -574,33 +1040,42 @@ Oportunidades de cooperación
 </h2>
 
 <p>
-El Centro Global de Inteligencia Artificial
-es una iniciativa concebida como
-una plataforma de cooperación internacional
-que conecte los conocimientos especializados
-de las organizaciones internacionales
-con los avances de la inteligencia artificial.
+El Centro Global de Inteligencia
+Artificial es una iniciativa
+propuesta para establecer una
+plataforma internacional de
+cooperación que combine
+la experiencia de las
+organizaciones internacionales
+con las capacidades de las
+tecnologías avanzadas de IA.
 </p>
 
 <p>
-Su propósito es explorar cómo la IA
-puede contribuir a afrontar desafíos
-globales complejos, entre ellos
-la salud pública, la seguridad alimentaria,
-el cambio climático, la protección
-del medio ambiente, la asistencia
-humanitaria, la migración,
-el empleo, la educación
-y la resiliencia ante desastres.
+La iniciativa busca explorar
+el uso responsable de la
+inteligencia artificial para
+abordar desafíos globales
+en ámbitos como la salud pública,
+la seguridad alimentaria,
+el cambio climático,
+la protección ambiental,
+la asistencia humanitaria,
+la migración, el empleo,
+la educación y la prevención
+de desastres.
 </p>
 
 <p>
-La iniciativa busca fomentar
-la cooperación entre organizaciones
-internacionales, gobiernos,
-instituciones académicas,
-centros de investigación,
-empresas y sociedad civil.
+Asimismo, pretende fomentar
+el intercambio de conocimientos,
+la investigación conjunta
+y la cooperación entre
+organizaciones internacionales,
+instituciones gubernamentales,
+universidades, centros de
+investigación, empresas
+y sociedad civil.
 </p>
 
 <div class="grid">
@@ -612,10 +1087,10 @@ Cooperación internacional
 </h3>
 
 <p>
-Facilitar el diálogo,
-el intercambio de conocimientos
-y la cooperación entre instituciones
-y países.
+Promover el diálogo internacional,
+el intercambio de experiencias
+y el desarrollo de alianzas
+para afrontar desafíos globales.
 </p>
 
 </div>
@@ -623,15 +1098,15 @@ y países.
 <div class="card">
 
 <h3>
-Investigación e innovación en IA
+Investigación e innovación
 </h3>
 
 <p>
 Explorar aplicaciones responsables
 de la inteligencia artificial
-para abordar desafíos de interés público
-mediante la investigación
-y la colaboración.
+y fomentar la investigación
+científica y la innovación
+tecnológica de interés público.
 </p>
 
 </div>
@@ -639,14 +1114,15 @@ y la colaboración.
 <div class="card">
 
 <h3>
-Soluciones prácticas
+Aplicaciones prácticas
 </h3>
 
 <p>
-Promover oportunidades para proyectos
-piloto, evaluación de tecnologías
-y enfoques basados en evidencia
-frente a los desafíos globales.
+Estudiar oportunidades para
+desarrollar proyectos piloto,
+evaluar tecnologías y aplicar
+la inteligencia artificial
+a problemas de interés público.
 </p>
 
 </div>
@@ -658,9 +1134,10 @@ Desarrollo de capacidades
 </h3>
 
 <p>
-Explorar oportunidades de formación,
-intercambio profesional
-y aprendizaje internacional.
+Promover la formación profesional,
+el intercambio de especialistas
+y la difusión internacional
+del conocimiento.
 </p>
 
 </div>
@@ -668,42 +1145,46 @@ y aprendizaje internacional.
 </div>
 
 <a href="hub-es.html" class="button">
-Más información sobre el Centro Global de IA →
+Más información sobre el Centro Global de IA
 </a>
 
 </section>
 
 <!-- =====================================
-     GOYANG
+     03. GOYANG
 ===================================== -->
 
 <section id="goyang">
-   
+
 <h2>
 2. ¿Por qué la Ciudad Especial de Goyang?
 </h2>
 
-<a href="goyang-es.html" class="button">
-Descubrir la Ciudad Especial de Goyang →
-</a>
-
 <p>
 La Ciudad Especial de Goyang
 se encuentra en la provincia
-de Gyeonggi, dentro de la región
-metropolitana de Seúl,
-en la República de Corea.
+de Gyeonggi, República de Corea,
+y forma parte de la región
+metropolitana de Seúl.
 </p>
 
 <p>
-Su infraestructura para exposiciones
-y convenciones internacionales,
-sus instituciones sanitarias,
-sus servicios urbanos
-y sus recursos ambientales
-constituyen una base para explorar
-el desarrollo de un centro
-de cooperación internacional.
+La ciudad dispone de
+infraestructuras para
+exposiciones y conferencias
+internacionales, instituciones
+médicas, educativas y culturales,
+así como servicios urbanos
+y recursos naturales.
+</p>
+
+<p>
+Estas características pueden
+servir como base para estudiar
+la posibilidad de desarrollar
+un centro internacional de
+cooperación en inteligencia
+artificial.
 </p>
 
 <div class="grid">
@@ -711,15 +1192,15 @@ de cooperación internacional.
 <div class="card">
 
 <h3>
-Ubicación metropolitana estratégica
+Ubicación metropolitana
 </h3>
 
 <p>
-Goyang se beneficia de su ubicación
-dentro de la región metropolitana
-de Seúl, con acceso a importantes
-redes económicas, académicas
-e institucionales.
+Goyang se encuentra en la
+región metropolitana de Seúl,
+lo que facilita la conexión
+con redes económicas,
+científicas e institucionales.
 </p>
 
 </div>
@@ -727,20 +1208,23 @@ e institucionales.
 <div class="card">
 
 <h3>
-Infraestructura de convenciones KINTEX
+Centro Internacional KINTEX
 </h3>
 
 <p>
+El Centro Internacional
+de Exposiciones y Convenciones
 KINTEX dispone de instalaciones
-para exposiciones internacionales,
-conferencias e intercambios profesionales.
+para ferias, conferencias
+y reuniones internacionales.
 </p>
 
 <p>
-Esta infraestructura podría facilitar
-reuniones internacionales,
-foros y actividades de colaboración
-relacionadas con el centro propuesto.
+Estas capacidades podrían
+aprovecharse para organizar
+foros científicos, encuentros
+internacionales y futuros
+programas de cooperación.
 </p>
 
 </div>
@@ -748,21 +1232,23 @@ relacionadas con el centro propuesto.
 <div class="card">
 
 <h3>
-Potencial sanitario y de investigación
+Capacidades médicas y científicas
 </h3>
 
 <p>
-Goyang alberga el Centro Nacional
-del Cáncer y otras instituciones
-sanitarias.
+Goyang alberga el
+Centro Nacional del Cáncer
+de Corea y otras
+instituciones médicas.
 </p>
 
 <p>
-Estos recursos ofrecen oportunidades
-para explorar la cooperación
-en salud pública, investigación
-médica y aplicaciones responsables
-de la inteligencia artificial.
+Estos recursos permiten
+explorar oportunidades
+de cooperación en salud pública,
+investigación médica
+y aplicaciones responsables
+de inteligencia artificial.
 </p>
 
 </div>
@@ -774,12 +1260,12 @@ Recursos ambientales
 </h3>
 
 <p>
-El humedal de Janghang
-y los recursos ecológicos
-de su entorno ofrecen oportunidades
-para la educación ambiental,
-la investigación
-y las iniciativas de sostenibilidad.
+Los humedales de Janghang
+y otros espacios naturales
+constituyen recursos valiosos
+para la investigación ambiental,
+la educación y las iniciativas
+de desarrollo sostenible.
 </p>
 
 </div>
@@ -791,18 +1277,19 @@ Entorno residencial
 </h3>
 
 <p>
-Goyang dispone de zonas residenciales,
-servicios sanitarios,
-centros educativos,
-instalaciones culturales
-e infraestructura urbana.
+La ciudad cuenta con
+servicios residenciales,
+sanitarios, educativos,
+culturales y urbanos.
 </p>
 
 <p>
 Las necesidades específicas
-del personal internacional
-y sus familias deberían evaluarse
-mediante consultas.
+del personal de posibles
+organizaciones internacionales
+y sus familias deberán
+determinarse mediante
+las consultas correspondientes.
 </p>
 
 </div>
@@ -810,22 +1297,25 @@ mediante consultas.
 <div class="card">
 
 <h3>
-Oportunidades de desarrollo regional
+Desarrollo regional
 </h3>
 
 <p>
-La cooperación internacional
-podría generar oportunidades
-de investigación,
-empleo especializado,
-desarrollo empresarial
-y servicios relacionados.
+La ampliación de la
+cooperación internacional
+podría contribuir al
+desarrollo de la investigación,
+la creación de oportunidades
+laborales y el crecimiento
+de actividades económicas
+relacionadas.
 </p>
 
 <p>
-Los resultados reales dependerían
-de la escala y estructura
-de las futuras alianzas.
+Los resultados concretos
+dependerán de la naturaleza
+y escala de los proyectos
+que lleguen a desarrollarse.
 </p>
 
 </div>
@@ -835,242 +1325,201 @@ de las futuras alianzas.
 <div class="highlight">
 
 <strong>
-Un lugar para la cooperación internacional
-y el crecimiento compartido
+Cooperación internacional y desarrollo sostenible
 </strong>
 
 <p>
-Los recursos existentes de Goyang
-constituyen una base para explorar
-un Centro Global de IA que apoye
-tanto la cooperación internacional
-como el desarrollo regional.
+Goyang aspira a aprovechar
+sus capacidades existentes
+para explorar oportunidades
+de desarrollo de un centro
+internacional que contribuya
+a abordar desafíos globales
+y a promover el desarrollo
+sostenible de la ciudad.
 </p>
 
 </div>
 
-<span class="button-disabled">
-Página detallada en preparación
-</span>
+<a href="goyang-es.html" class="button">
+Más información sobre Goyang
+</a>
 
 </section>
 
 <!-- =====================================
-     ORGANIZACIONES INTERNACIONALES
+     04. INTERNATIONAL ORGANIZATIONS
 ===================================== -->
 
 <section id="organizations">
-   
+
 <h2>
-3. Organizaciones internacionales
-y posibles ámbitos de cooperación
+3. Organizaciones internacionales y posibles ámbitos de cooperación
 </h2>
 
-<a href="agencies-es.html" class="button">
-Conocer las nueve organizaciones internacionales →
-</a>
+<p>
+La iniciativa del Centro Global
+de Inteligencia Artificial
+contempla posibles ámbitos
+de cooperación relacionados
+con las misiones de nueve
+organizaciones internacionales.
+</p>
 
 <p>
-La iniciativa identifica nueve
-organizaciones internacionales
-cuyos ámbitos de especialización
-son relevantes para posibles
-actividades de cooperación
-internacional apoyadas por la IA.
+Estos ámbitos se presentan
+para ilustrar oportunidades
+potenciales de colaboración
+futura y no constituyen
+acuerdos ni compromisos
+confirmados.
 </p>
 
 <div class="grid">
 
 <div class="card">
 
-<h3>OMS / WHO</h3>
+<h3>
+OMS (WHO) — Organización Mundial de la Salud
+</h3>
 
 <p>
-<strong>
-Organización Mundial de la Salud
-</strong>
-</p>
-
-<p>
-Salud pública,
-prevención de enfermedades,
-sistemas sanitarios
-y posibles aplicaciones
-de IA para el análisis
-de información sanitaria.
+Salud pública, prevención
+de enfermedades, fortalecimiento
+de los sistemas sanitarios,
+análisis de datos médicos
+y uso responsable de la
+inteligencia artificial.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>PMA / WFP</h3>
-
-<p>
-<strong>
-Programa Mundial de Alimentos
-</strong>
-</p>
+<h3>
+PMA (WFP) — Programa Mundial de Alimentos
+</h3>
 
 <p>
 Seguridad alimentaria,
 asistencia humanitaria,
-resiliencia de las cadenas
-de suministro
-y posibles análisis de crisis
-alimentarias apoyados por IA.
+sostenibilidad de las
+cadenas de suministro
+y análisis de crisis alimentarias.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>PNUMA / UNEP</h3>
-
-<p>
-<strong>
-Programa de las Naciones Unidas
-para el Medio Ambiente
-</strong>
-</p>
+<h3>
+PNUMA (UNEP) — Programa de las Naciones Unidas para el Medio Ambiente
+</h3>
 
 <p>
 Cambio climático,
 protección ambiental,
-biodiversidad
-y posibles aplicaciones
-de IA para la vigilancia
-del medio ambiente.
+biodiversidad y
+seguimiento de las
+condiciones ambientales.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>ACNUR / UNHCR</h3>
+<h3>
+ACNUR (UNHCR) — Agencia de la ONU para los Refugiados
+</h3>
 
 <p>
-<strong>
-Alto Comisionado de las Naciones Unidas
-para los Refugiados
-</strong>
+Protección de personas
+refugiadas, desplazamiento
+forzado, asistencia humanitaria
+y uso responsable de datos
+en actividades de protección.
 </p>
 
+</div>
+
+<div class="card">
+
+<h3>
+OIM (IOM) — Organización Internacional para las Migraciones
+</h3>
+
 <p>
-Protección de refugiados,
-desplazamiento forzado,
+Migración internacional,
+apoyo a personas desplazadas,
 asistencia humanitaria
-y análisis responsable de datos
-relacionados con las necesidades
-de protección.
+y soluciones digitales
+para los servicios migratorios.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>OIM / IOM</h3>
+<h3>
+OIT (ILO) — Organización Internacional del Trabajo
+</h3>
 
 <p>
-<strong>
-Organización Internacional
-para las Migraciones
-</strong>
-</p>
-
-<p>
-Migración,
-desplazamiento,
-apoyo humanitario
-y posibles herramientas digitales
-para mejorar el acceso
-a servicios relacionados
-con la migración.
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>OIT / ILO</h3>
-
-<p>
-<strong>
-Organización Internacional del Trabajo
-</strong>
-</p>
-
-<p>
-Empleo,
-derechos laborales,
-desarrollo de competencias
+Empleo, derechos laborales,
+formación profesional
 y análisis de los efectos
 de la inteligencia artificial
-sobre el futuro del trabajo.
+en el futuro del trabajo.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UIT / ITU</h3>
+<h3>
+UIT (ITU) — Unión Internacional de Telecomunicaciones
+</h3>
 
 <p>
-<strong>
-Unión Internacional
-de Telecomunicaciones
-</strong>
-</p>
-
-<p>
-Conectividad digital,
-telecomunicaciones,
+Telecomunicaciones digitales,
+infraestructuras de conectividad,
 comunicaciones de emergencia
-y tecnologías de alerta temprana.
+y sistemas de alerta temprana
+ante desastres.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>UNICEF</h3>
-
-<p>
-<strong>
-Fondo de las Naciones Unidas
-para la Infancia
-</strong>
-</p>
+<h3>
+UNICEF — Fondo de las Naciones Unidas para la Infancia
+</h3>
 
 <p>
 Protección de la infancia,
-educación,
-inclusión digital
-y aplicaciones responsables
-de IA que salvaguarden
-los derechos de los niños.
+educación, inclusión digital
+y uso responsable de la
+inteligencia artificial
+con respeto a los derechos
+de los niños.
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>PNUD / UNDP</h3>
-
-<p>
-<strong>
-Programa de las Naciones Unidas
-para el Desarrollo
-</strong>
-</p>
+<h3>
+PNUD (UNDP) — Programa de las Naciones Unidas para el Desarrollo
+</h3>
 
 <p>
 Desarrollo sostenible,
 respuesta a crisis,
-capacidad institucional
-y posibles aplicaciones
-de IA para la planificación
-del desarrollo.
+fortalecimiento de capacidades
+institucionales y aplicaciones
+de inteligencia artificial
+en programas de desarrollo.
 </p>
 
 </div>
@@ -1084,53 +1533,58 @@ Aclaración importante
 </strong>
 
 <p>
-Estas organizaciones se identifican
-como posibles interlocutoras
-en función de sus respectivos mandatos.
+Las organizaciones internacionales
+mencionadas anteriormente
+se presentan únicamente
+en relación con sus mandatos
+institucionales y posibles
+ámbitos de cooperación futura.
 </p>
 
 <p>
-Su inclusión no significa
-que ninguna de ellas haya aceptado
-participar, trasladarse
-o establecer una oficina
-en el Centro Global de IA propuesto.
+Esto no significa que dichas
+organizaciones hayan confirmado
+su participación en la iniciativa,
+ni que hayan acordado establecer
+oficinas o trasladar unidades
+a la Ciudad Especial de Goyang.
 </p>
 
 <p>
 Cualquier cooperación futura
-requeriría las consultas pertinentes,
-decisiones institucionales
-y acuerdos formales.
+requerirá consultas oficiales,
+las decisiones institucionales
+correspondientes y los
+procedimientos de aprobación
+aplicables.
 </p>
 
 </div>
 
-<span class="button-disabled">
-Página detallada en preparación
-</span>
+<a href="agencies-es.html" class="button">
+Más información sobre las nueve organizaciones
+</a>
 
 </section>
 
 <!-- =====================================
-     ESTRATEGIA
+     05. DEVELOPMENT STRATEGY
 ===================================== -->
 
 <section id="strategy">
-   
+
 <h2>
 4. Estrategia de desarrollo en tres etapas
 </h2>
 
-<a href="strategy-es.html" class="button">
-Explorar la estrategia de atracción →
-</a>
-   
 <p>
-El enfoque propuesto considera
-las necesidades prácticas
-de las organizaciones internacionales
-y de otros posibles socios.
+La iniciativa del Centro Global
+de Inteligencia Artificial
+propone un enfoque gradual
+de tres etapas que tenga
+en cuenta las necesidades
+reales de los posibles
+socios internacionales.
 </p>
 
 <div class="grid">
@@ -1142,19 +1596,21 @@ Etapa 1 — Establecimiento inicial
 </h3>
 
 <p>
-Explorar condiciones adecuadas
-para el establecimiento inicial
-de las organizaciones participantes
-y las instituciones asociadas.
+Examinar las condiciones
+necesarias para facilitar
+el inicio estable de las
+actividades de posibles
+organizaciones internacionales
+y entidades colaboradoras
+en Goyang.
 </p>
 
 <p>
-Entre los aspectos que podrían
-considerarse figuran oficinas,
+Los ámbitos de estudio
+podrían incluir oficinas,
 transporte, vivienda,
 atención sanitaria,
-educación y otros servicios
-esenciales.
+educación y otros servicios.
 </p>
 
 </div>
@@ -1166,19 +1622,19 @@ Etapa 2 — Apoyo operativo
 </h3>
 
 <p>
-Explorar la cooperación
+Promover la cooperación
 entre instituciones públicas,
-universidades,
-organizaciones de investigación,
-empresas y sociedad civil.
+universidades, centros
+de investigación, empresas
+y sociedad civil.
 </p>
 
 <p>
-Las posibles actividades incluyen
-investigación conjunta,
-reuniones internacionales,
+Explorar oportunidades
+para investigaciones conjuntas,
+conferencias internacionales,
 proyectos piloto de IA
-e intercambios profesionales.
+e intercambio de especialistas.
 </p>
 
 </div>
@@ -1186,19 +1642,24 @@ e intercambios profesionales.
 <div class="card">
 
 <h3>
-Etapa 3 — Crecimiento compartido
-y sostenible
+Etapa 3 — Crecimiento conjunto sostenible
 </h3>
 
 <p>
-Promover una cooperación
+Desarrollar una cooperación
 a largo plazo que contribuya
-a los mandatos de las organizaciones
-internacionales participantes
-y, al mismo tiempo,
-genere oportunidades
-de innovación regional,
-empleo y desarrollo económico.
+a los objetivos de las
+organizaciones internacionales
+y al desarrollo sostenible
+de Goyang.
+</p>
+
+<p>
+Los posibles ámbitos incluyen
+la investigación científica,
+las oportunidades laborales,
+las actividades económicas
+y el desarrollo regional.
 </p>
 
 </div>
@@ -1210,96 +1671,100 @@ empleo y desarrollo económico.
 <strong>
 Establecimiento inicial
 → Apoyo operativo
-→ Crecimiento compartido
+→ Crecimiento conjunto
 </strong>
 
 <p>
-Los acuerdos institucionales,
-la financiación,
-las instalaciones
-y las medidas de apoyo
-estarían sujetos a consultas
-y a la aprobación
-de las autoridades competentes.
+Las instalaciones,
+los recursos financieros,
+las medidas institucionales
+y los programas de cooperación
+deberán definirse mediante
+consultas y procedimientos
+oficiales.
 </p>
 
 </div>
 
-<span class="button-disabled">
-Página detallada en preparación
-</span>
+<a href="strategy-es.html" class="button">
+Más información sobre la estrategia
+</a>
 
 </section>
 
 <!-- =====================================
-     COMITÉ CIUDADANO
+     06. CITIZENS COMMITTEE
 ===================================== -->
 
 <section id="committee">
-   
+
 <h2>
-5. Comité Ciudadano de Promoción
+5. Comité Ciudadano de la Iniciativa
 </h2>
 
-<a href="committee-es.html" class="button">
-Conocer el Comité Ciudadano →
-</a>
-
 <p>
-El Comité Ciudadano de Promoción
-para la Atracción del Centro Global
-de Inteligencia Artificial
-a la Ciudad Especial de Goyang
-es una iniciativa cívica
-que busca fomentar
-la conciencia pública
-y el apoyo al centro propuesto.
+El Comité Ciudadano para
+Promover la Acogida del
+Centro Global de Inteligencia
+Artificial en la Ciudad
+Especial de Goyang
+es una iniciativa de la
+sociedad civil destinada
+a fomentar la conciencia
+pública y ampliar la
+participación ciudadana.
 </p>
 
 <p>
-El Comité tiene como objetivo
-promover el debate público,
-estimular la participación ciudadana
-y comunicar los posibles beneficios
-de la cooperación internacional
-y la innovación impulsada por IA.
+El Comité busca apoyar
+el debate público sobre
+las oportunidades de
+cooperación internacional,
+el desarrollo de la
+inteligencia artificial
+y el crecimiento sostenible
+de la ciudad.
 </p>
 
 <p>
 Sus actividades incluyen
-información pública,
-participación ciudadana,
-debates sobre políticas
-y actividades de divulgación
-relacionadas con la iniciativa
-del Centro Global de IA.
+la difusión de información,
+la promoción de la participación
+ciudadana, el debate de
+propuestas estratégicas
+y la comunicación con
+las instituciones pertinentes.
 </p>
 
 <div class="highlight">
 
 <strong>
-Nuestro compromiso
+Nuestros principios
 </strong>
 
 <p>
-Promover una participación
-transparente, responsable
-y constructiva en apoyo
-de la cooperación internacional
-y del futuro desarrollo
-de la Ciudad Especial de Goyang.
+Transparencia, responsabilidad,
+participación ciudadana
+constructiva y respeto
+a los procedimientos
+oficiales de decisión.
 </p>
 
 </div>
 
 <a href="committee-es.html" class="button">
-Conocer el Comité Ciudadano →
+Más información sobre el Comité
+</a>
+
+<a href="participate-es.html"
+class="button secondary">
+Participación ciudadana
 </a>
 
 </section>
 
 <!-- =====================================
-     COOPERACIÓN INTERNACIONAL
+     07. INTERNATIONAL PARTNERSHIP
 ===================================== -->
 
 <section id="partnership">
@@ -1309,18 +1774,20 @@ Conocer el Comité Ciudadano →
 </h2>
 
 <p>
-El Centro Global de IA propuesto
+La iniciativa del Centro Global
+de Inteligencia Artificial
 busca fomentar el diálogo
-con organizaciones e instituciones
-interesadas en la inteligencia
-artificial responsable,
+con organizaciones e
+instituciones interesadas
+en el desarrollo responsable
+de la inteligencia artificial,
 la cooperación internacional
 y el desarrollo sostenible.
 </p>
 
 <p>
-Entre los posibles ámbitos
-de colaboración se encuentran:
+Los posibles ámbitos
+de colaboración incluyen:
 </p>
 
 <div class="grid">
@@ -1328,14 +1795,16 @@ de colaboración se encuentran:
 <div class="card">
 
 <h3>
-Diálogo sobre políticas
+Diálogo institucional
 </h3>
 
 <p>
-Intercambiar perspectivas
-sobre cooperación internacional,
-gobernanza de la IA
-e innovación de interés público.
+Intercambio de experiencias
+y perspectivas sobre
+cooperación internacional,
+gobernanza de la inteligencia
+artificial e innovación
+tecnológica de interés público.
 </p>
 
 </div>
@@ -1343,13 +1812,16 @@ e innovación de interés público.
 <div class="card">
 
 <h3>
-Colaboración en investigación
+Cooperación científica
 </h3>
 
 <p>
-Explorar oportunidades
-de investigación interdisciplinaria
-e intercambio de conocimientos.
+Exploración de oportunidades
+para investigaciones
+multidisciplinarias,
+intercambio de conocimientos
+y desarrollo de redes
+científicas internacionales.
 </p>
 
 </div>
@@ -1357,13 +1829,16 @@ e intercambio de conocimientos.
 <div class="card">
 
 <h3>
-Demostración tecnológica
+Proyectos tecnológicos
 </h3>
 
 <p>
-Considerar proyectos piloto
-responsables y aplicaciones
-prácticas de tecnologías de IA.
+Estudio de oportunidades
+para proyectos piloto,
+aplicaciones prácticas
+y evaluación de tecnologías
+de inteligencia artificial
+responsable.
 </p>
 
 </div>
@@ -1371,14 +1846,14 @@ prácticas de tecnologías de IA.
 <div class="card">
 
 <h3>
-Intercambio profesional
+Intercambio de especialistas
 </h3>
 
 <p>
-Explorar talleres,
-programas de formación,
+Exploración de programas
+de formación, seminarios,
 foros internacionales
-e iniciativas de desarrollo
+y actividades de desarrollo
 de capacidades.
 </p>
 
@@ -1387,17 +1862,18 @@ de capacidades.
 </div>
 
 <p class="note">
-Todas las posibles alianzas
-tienen carácter exploratorio,
-salvo que sean confirmadas
-formalmente por las instituciones
-correspondientes.
+Los ámbitos mencionados
+representan oportunidades
+potenciales de colaboración
+y no implican acuerdos
+confirmados con organizaciones
+internacionales.
 </p>
 
 </section>
 
 <!-- =====================================
-     CONTACTO
+     08. CONTACT
 ===================================== -->
 
 <section id="contact">
@@ -1407,61 +1883,70 @@ correspondientes.
 </h2>
 
 <p>
-Las organizaciones internacionales,
-instituciones de investigación
-y otras partes interesadas
-pueden obtener más información
-sobre la iniciativa
-del Centro Global de IA
-y el Comité Ciudadano de Promoción.
+Damos la bienvenida al interés
+de organizaciones internacionales,
+instituciones de investigación,
+especialistas y ciudadanos
+en el concepto del Centro
+Global de Inteligencia
+Artificial y las actividades
+del Comité Ciudadano.
 </p>
 
 <p>
-Para información general,
-pueden consultar las páginas
-en inglés vinculadas
-a continuación.
-La página principal en coreano
-permite acceder a los recursos
-existentes de información
-y administración
-en lengua coreana.
+Puede obtener información
+adicional a través de las
+páginas en español de
+este sitio web.
 </p>
 
-<a href="index-en.html"
-class="button">
-Sitio web en inglés
+<p>
+La versión coreana del
+sitio ofrece materiales
+y servicios adicionales
+en idioma coreano.
+</p>
+
+<a href="guide-es.html" class="button">
+Guía del sitio web
 </a>
 
 <a href="index.html"
 class="button secondary">
-Sitio web en coreano
+Versión coreana
 </a>
 
 <div class="highlight">
 
 <strong>
-Iniciativa del Centro Global
-de Inteligencia Artificial<br>
-Ciudad Especial de Goyang<br>
-Provincia de Gyeonggi<br>
+Iniciativa del Centro Global de Inteligencia Artificial
+<br>
+Ciudad Especial de Goyang
+<br>
+Provincia de Gyeonggi
+<br>
 República de Corea
 </strong>
 
 <p>
-Comité Ciudadano de Promoción
-para la Atracción
-del Centro Global de IA
-a la Ciudad Especial de Goyang
+Comité Ciudadano para Promover
+la Acogida del Centro Global
+de Inteligencia Artificial
+en Goyang
 </p>
 
 <p class="note">
-Este sitio presenta una iniciativa
-cívica y su visión propuesta.
-No constituye una decisión oficial
-sobre la selección de la sede
-ni un compromiso
-de ninguna organización internacional.
+Este sitio presenta una
+iniciativa de la sociedad civil
+y sus actividades.
+No implica que las autoridades
+gubernamentales hayan adoptado
+una decisión oficial para
+establecer el Centro Global
+de Inteligencia Artificial,
+ni que alguna organización
+internacional haya confirmado
+su participación.
 </p>
 
 </div>
@@ -1469,31 +1954,25 @@ de ninguna organización internacional.
 </section>
 
 <!-- =====================================
-     DIRECTORIO DEL SITIO
+     09. SPANISH PAGE DIRECTORY
 ===================================== -->
 
 <section id="directory" class="page-directory">
 
 <h2>
-8. Explore el sitio web del Centro Global de IA
+8. Secciones del sitio web en español
 </h2>
 
 <p>
-Acceda directamente a las principales
-secciones del sitio web en español.
-</p>
-
-<p>
-Conozca nuestra visión,
-las ventajas de Goyang,
-las organizaciones internacionales,
-las actividades del Comité
-y las oportunidades de participación ciudadana.
+Las siguientes páginas ofrecen
+información más detallada
+sobre el Centro Global de IA,
+la Ciudad Especial de Goyang,
+la cooperación internacional
+y la participación ciudadana.
 </p>
 
 <div class="grid">
-
-<!-- CENTRO GLOBAL DE IA -->
 
 <div class="card">
 
@@ -1502,19 +1981,16 @@ Centro Global de IA
 </h3>
 
 <p>
-Conozca la visión,
-los objetivos y las oportunidades
-de cooperación internacional
-del Centro Global de Inteligencia Artificial.
+Concepto, objetivos
+y posibles ámbitos
+de cooperación internacional.
 </p>
 
 <a href="hub-es.html" class="button">
-Explorar →
+Más información
 </a>
 
 </div>
-
-<!-- GOYANG -->
 
 <div class="card">
 
@@ -1523,19 +1999,16 @@ Explorar →
 </h3>
 
 <p>
-Descubra las ventajas
-de ubicación, infraestructura,
-investigación y desarrollo
-de la Ciudad Especial de Goyang.
+Ventajas geográficas,
+infraestructuras
+y oportunidades de desarrollo.
 </p>
 
 <a href="goyang-es.html" class="button">
-Explorar →
+Más información
 </a>
 
 </div>
-
-<!-- ORGANIZACIONES INTERNACIONALES -->
 
 <div class="card">
 
@@ -1544,124 +2017,105 @@ Organizaciones internacionales
 </h3>
 
 <p>
-Conozca nueve organizaciones
-internacionales y sus posibles
-ámbitos de cooperación
-con el Centro Global de IA.
+Nueve organizaciones
+internacionales y posibles
+ámbitos de colaboración.
 </p>
 
 <a href="agencies-es.html" class="button">
-Explorar →
+Más información
 </a>
 
 </div>
 
-<!-- ESTRATEGIA -->
-
 <div class="card">
 
 <h3>
-Estrategia de atracción
+Estrategia de desarrollo
 </h3>
 
 <p>
-Explore la estrategia
-de establecimiento inicial,
+Establecimiento inicial,
 apoyo operativo
-y crecimiento compartido.
+y crecimiento conjunto.
 </p>
 
 <a href="strategy-es.html" class="button">
-Explorar →
+Más información
 </a>
 
 </div>
 
-<!-- COMITÉ -->
-
 <div class="card">
 
 <h3>
-Comité Ciudadano de Promoción
+Comité Ciudadano
 </h3>
 
 <p>
-Conozca la misión,
-los objetivos
-y las actividades
-del Comité Ciudadano de Promoción.
+Misión, organización
+y actividades principales
+del Comité.
 </p>
 
 <a href="committee-es.html" class="button">
-Explorar →
+Más información
 </a>
 
 </div>
 
-<!-- CRONOLOGÍA -->
-
 <div class="card">
 
 <h3>
-Cronología y principales acontecimientos
+Cronología
 </h3>
 
 <p>
-Consulte los principales
-acontecimientos,
-hitos y actividades
-relacionados con la iniciativa.
+Principales acontecimientos
+y etapas de desarrollo
+de la iniciativa.
 </p>
 
 <a href="history-es.html" class="button">
-Ver cronología →
+Más información
 </a>
 
 </div>
 
-<!-- NOTICIAS -->
-
 <div class="card">
 
 <h3>
-Noticias y anuncios
+Noticias
 </h3>
 
 <p>
-Consulte las últimas noticias,
-los avisos oficiales
-y las actividades
-del Comité Ciudadano.
+Información sobre actividades,
+eventos y acontecimientos.
 </p>
 
 <a href="news-es.html" class="button">
-Ver noticias →
+Ver noticias
 </a>
 
 </div>
-
-<!-- PRENSA -->
 
 <div class="card">
 
 <h3>
-Cobertura de prensa
+Prensa
 </h3>
 
 <p>
-Explore artículos periodísticos,
-reportajes y otras publicaciones
-sobre la iniciativa
-del Centro Global de IA.
+Artículos periodísticos,
+reportajes y otros
+materiales informativos.
 </p>
 
 <a href="press-es.html" class="button">
-Ver cobertura de prensa →
+Ver prensa
 </a>
 
 </div>
-
-<!-- PARTICIPACIÓN -->
 
 <div class="card">
 
@@ -1670,36 +2124,32 @@ Participación ciudadana
 </h3>
 
 <p>
-Participe en las campañas
-de apoyo ciudadano,
-la inscripción en el Comité
-y otras actividades comunitarias.
+Información sobre las
+oportunidades de apoyar
+la iniciativa y participar
+en sus actividades.
 </p>
 
 <a href="participate-es.html" class="button">
-Participar →
+Cómo participar
 </a>
 
 </div>
 
-<!-- GUÍA -->
-
 <div class="card">
 
 <h3>
-Guía de uso del sitio web
+Guía del sitio
 </h3>
 
 <p>
-Aprenda a navegar
-por el sitio web,
-consultar información
-y utilizar los programas
-de participación ciudadana.
+Información sobre el uso
+del sitio web y la
+búsqueda de materiales.
 </p>
 
 <a href="guide-es.html" class="button">
-Consultar la guía →
+Abrir guía
 </a>
 
 </div>
@@ -1709,38 +2159,38 @@ Consultar la guía →
 </section>
 
 <!-- =====================================
-     INFORMACIÓN MULTILINGÜE
+     10. MULTILINGUAL INFORMATION
 ===================================== -->
 
-<section>
+<section id="languages">
 
 <h2>
-9. Información sobre el sitio web multilingüe
+9. Sitio web multilingüe
 </h2>
 
 <p>
-Este sitio web se desarrolla
-como una plataforma de información
-multilingüe para visitantes
-internacionales,
-organizaciones,
-instituciones de investigación,
-empresas y ciudadanos interesados.
+El sitio web de la iniciativa
+del Centro Global de Inteligencia
+Artificial ofrece páginas
+principales en diez idiomas
+para visitantes de distintos
+países, organizaciones
+internacionales, instituciones
+de investigación, empresas
+y ciudadanos.
 </p>
 
 <p>
-El inglés es el idioma principal
-para la comunicación internacional
-del sitio web.
-El coreano se utiliza
-para el sistema existente
-de administración
-y gestión de contenidos.
+Puede seleccionar su idioma
+preferido mediante el
+selector situado en la
+parte superior de la página.
 </p>
 
 <p>
-Se incorporarán progresivamente
-versiones en otros idiomas.
+La versión coreana ofrece
+materiales y servicios
+adicionales en coreano.
 </p>
 
 <div class="highlight">
@@ -1750,25 +2200,74 @@ Idiomas disponibles
 </strong>
 
 <p>
-Español — Sitio web en español
+<a href="index.html" lang="ko">
+한국어 — Coreano
+</a>
 </p>
 
 <p>
-English — Sitio web internacional
+<a href="index-en.html" lang="en">
+English — Inglés
+</a>
 </p>
 
 <p>
-한국어 — Sitio web en coreano
+<a href="index-zh.html" lang="zh">
+中文 — Chino
+</a>
+</p>
+
+<p>
+<a href="index-ja.html" lang="ja">
+日本語 — Japonés
+</a>
+</p>
+
+<p>
+<a href="index-ru.html" lang="ru">
+Русский — Ruso
+</a>
+</p>
+
+<p>
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية — Árabe
+</a>
+</p>
+
+<p>
+<a href="index-es.html"
+lang="es"
+aria-current="page">
+Español — Español ✓
+</a>
+</p>
+
+<p>
+<a href="index-fr.html" lang="fr">
+Français — Francés
+</a>
+</p>
+
+<p>
+<a href="index-de.html" lang="de">
+Deutsch — Alemán
+</a>
+</p>
+
+<p>
+<a href="index-it.html" lang="it">
+Italiano — Italiano
+</a>
 </p>
 
 </div>
 
-<p>
-Los visitantes pueden seleccionar
-su idioma preferido
-mediante el menú de idiomas
-situado en la parte superior
-de la página principal.
+<p class="note">
+Las páginas y los servicios
+disponibles pueden variar
+según el idioma seleccionado.
 </p>
 
 </section>
@@ -1776,62 +2275,133 @@ de la página principal.
 </main>
 
 <!-- =====================================
-     PIE DE PÁGINA
+     FOOTER
 ===================================== -->
 
 <footer>
 
 <p>
 <strong>
-INICIATIVA DEL CENTRO GLOBAL DE IA
+Iniciativa del Centro Global de Inteligencia Artificial
 </strong>
 </p>
 
 <p>
-Ciudad Especial de Goyang<br>
-Provincia de Gyeonggi<br>
+Ciudad Especial de Goyang
+<br>
+Provincia de Gyeonggi
+<br>
 República de Corea
 </p>
 
 <p>
-Comité Ciudadano de Promoción
-para la Atracción del Centro Global
+Comité Ciudadano para Promover
+la Acogida del Centro Global
 de Inteligencia Artificial
-a la Ciudad Especial de Goyang
+en Goyang
 </p>
 
 <p>
-Inteligencia artificial
-al servicio de la humanidad.<br>
-Cooperación internacional
-para un futuro mejor.
+Inteligencia artificial al servicio de la humanidad
+<br>
+Cooperación internacional para un futuro mejor
 </p>
 
-<p>
+<!-- =====================================
+     FOOTER LANGUAGE LINKS
+===================================== -->
+
+<div
+class="footer-language-links"
+aria-label="Selección de idioma"
+>
+
+<a href="index.html" lang="ko">
+한국어
+</a>
+
+<a href="index-en.html" lang="en">
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html"
+lang="ar" dir="rtl">
+العربية
+</a>
 
 <a href="index-es.html"
 lang="es"
 aria-current="page">
-Español
+Español ✓
 </a>
 
-&nbsp; | &nbsp;
-
-<a href="index-en.html"
-lang="en">
-English
+<a href="index-fr.html" lang="fr">
+Français
 </a>
 
-&nbsp; | &nbsp;
-
-<a href="index.html"
-lang="ko">
-한국어
+<a href="index-de.html" lang="de">
+Deutsch
 </a>
 
+<a href="index-it.html" lang="it">
+Italiano
+</a>
+
+</div>
+
+<p>
+<a href="guide-es.html">
+Guía de uso del sitio web
+</a>
+</p>
+
+<p>
+<a href="index-es.html">
+Volver a la página principal
+</a>
+</p>
+
+<p style="font-size:12px; color:#b8cbe5;">
+© <span id="copyrightYear">2026</span>
+Iniciativa del Centro Global de Inteligencia Artificial.
+Todos los derechos reservados.
 </p>
 
 </footer>
 
+<!-- =====================================
+     COPYRIGHT YEAR
+===================================== -->
+
+<script>
+
+(function () {
+
+  "use strict";
+
+  const yearElement =
+    document.getElementById("copyrightYear");
+
+  if (yearElement) {
+    yearElement.textContent =
+      new Date().getFullYear();
+  }
+
+})();
+
+</script>
+
 </body>
-</html>
+</html>   
