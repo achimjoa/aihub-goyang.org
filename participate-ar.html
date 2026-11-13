@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+مركز المشاركة المدنية |
+مبادرة المركز العالمي للذكاء الاصطناعي
+</title>
+
+<meta
+  name="description"
+  content="شارك في مبادرة المركز العالمي للذكاء الاصطناعي في مدينة غويانغ الخاصة من خلال حملة الدعم الشعبي، والتسجيل في اللجنة المدنية، والعضوية الداعمة، والأنشطة المجتمعية."
+>
+
+<style>
+
+/* =====================================
+   BASIC SETTINGS
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  direction: rtl;
+  font-family:
+    Tahoma,
+    Arial,
+    "Noto Naskh Arabic",
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.9;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.5;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   MAIN
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* =====================================
+   GRID
+===================================== */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* =====================================
+   BUTTONS
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   SIGNATURE CAMPAIGN
+===================================== */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* =====================================
+   NOTICE
+===================================== */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-right: 5px solid #e4b43c;
+  border-left: none;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   PAYMENT ACCOUNT INFORMATION
+===================================== */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+.account-number {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+  text-align: left;
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header>
+
+<h1>
+مركز المشاركة المدنية
+</h1>
+
+<p>
+مبادرة المركز العالمي للذكاء الاصطناعي<br>
+مدينة غويانغ الخاصة،
+مقاطعة غيونغي،
+جمهورية كوريا
+</p>
+
+<p>
+نبني مستقبلاً جديداً لغويانغ
+من خلال مشاركة المواطنين
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ar.html"
+  class="home-link"
+>
+← الصفحة الرئيسية العربية
+</a>
+
+<a
+  href="participate.html"
+  class="home-link"
+  lang="ko"
+  dir="ltr"
+>
+한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     INTRODUCTION
+===================================== -->
+
+<div class="intro">
+
+<h2>
+لنجلب المركز العالمي للذكاء الاصطناعي إلى غويانغ!
+</h2>
+
+<p>
+
+<strong>
+فرص نمو جديدة لمدينة غويانغ!
+</strong>
+
+<br>
+
+<strong>
+المزيد من فرص العمل عالية الجودة لغويانغ!
+</strong>
+
+</p>
+
+<p>
+يمثل المركز العالمي المقترح
+للذكاء الاصطناعي
+فرصة مهمة
+لمدينة غويانغ الخاصة
+للتطور بوصفها مركزاً
+للتعاون الدولي
+والصناعات المرتبطة
+بالذكاء الاصطناعي.
+</p>
+
+<p>
+تسعى اللجنة المدنية الداعمة
+إلى توسيع فهم الجمهور
+لهذه المبادرة،
+وتشجيع المشاركة الطوعية
+للمواطنين،
+والمهنيين،
+والمنظمات المدنية.
+</p>
+
+<p>
+
+<strong>
+يمكن لمشاركتكم
+أن تسهم في تعزيز
+الدعم الشعبي
+لاستقطاب المركز العالمي
+للذكاء الاصطناعي
+إلى مدينة غويانغ الخاصة.
+</strong>
+
+</p>
+
+</div>
+
+<!-- =====================================
+     LANGUAGE NOTICE
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+معلومات للزوار الدوليين
+</strong>
+
+<p>
+تقدم هذه الصفحة
+برامج المشاركة المدنية
+التابعة للجنة
+باللغة العربية.
+</p>
+
+<p>
+تتوفر استمارات التقديم
+حالياً باللغة الكورية.
+يرجى مراجعة المعلومات
+الواردة في كل استمارة
+قبل تقديم أي بيانات شخصية.
+</p>
+
+<p>
+تخضع المساهمات المالية
+وإجراءات المشاركة ذات الصلة
+للقواعد والمتطلبات
+المعمول بها لدى اللجنة.
+</p>
+
+</div>
+
+<!-- =====================================
+     PUBLIC SUPPORT CAMPAIGN
+===================================== -->
+
+<section class="signature">
+
+<h2>
+حملة دعم 100,000 مواطن
+</h2>
+
+<p>
+انضموا إلى حملة التوقيعات الشعبية
+الداعمة لاستقطاب
+المركز العالمي المقترح
+للذكاء الاصطناعي
+إلى مدينة غويانغ الخاصة.
+</p>
+
+<p>
+من خلال جمع أصوات
+المواطنين الأفراد،
+نسعى إلى تعزيز
+الوعي العام والدعم الشعبي
+للتنمية المستقبلية
+لمدينة غويانغ.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+المشاركة في حملة الدعم عبر الإنترنت
+</a>
+
+<p class="small-note">
+استمارة التقديم باللغة الكورية.
+</p>
+
+</section>
+
+<!-- =====================================
+     PARTICIPATION PROGRAMS
+===================================== -->
+
+<div class="grid">
+
+<!-- =====================================
+     COMMITTEE REGISTRATION
+===================================== -->
+
+<article class="card">
+
+<h3>
+التسجيل عضواً في اللجنة
+</h3>
+
+<p>
+نرحب بالمواطنين،
+والمهنيين،
+وممثلي المنظمات المدنية،
+وغيرهم من المهتمين
+الراغبين في دعم
+مبادرة المركز العالمي
+للذكاء الاصطناعي.
+</p>
+
+<p>
+تتيح المشاركة في اللجنة
+فرصة للمساهمة
+في تعزيز المشاركة العامة،
+ومناقشات السياسات،
+والأنشطة المجتمعية.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+التسجيل في اللجنة
+</a>
+
+<p class="small-note">
+استمارة التقديم باللغة الكورية.
+</p>
+
+</article>
+
+<!-- =====================================
+     SUPPORTING MEMBERSHIP
+===================================== -->
+
+<article class="card">
+
+<h3>
+العضوية الداعمة
+</h3>
+
+<p>
+انضموا كأعضاء داعمين
+للمساعدة في استمرار
+الأنشطة المدنية،
+والتواصل العام،
+والتعريف بالسياسات
+المتعلقة بمبادرة
+المركز العالمي للذكاء الاصطناعي.
+</p>
+
+<p>
+يمكن دفع مساهمات
+العضوية الداعمة
+إلى الحساب البنكي المخصص
+الموضح أدناه.
+</p>
+
+<!-- AUTOMATIC ACCOUNT DISPLAY -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+طلب العضوية الداعمة
+</a>
+
+<p class="small-note">
+استمارة التقديم باللغة الكورية.
+يرجى التأكد من أحدث تعليمات الدفع
+قبل تحويل أي أموال.
+</p>
+
+</article>
+
+<!-- =====================================
+     BANNER APPLICATION
+===================================== -->
+
+<article class="card">
+
+<h3>
+طلب تركيب لافتة ترويجية
+</h3>
+
+<p>
+شاركوا في أنشطة
+التوعية العامة
+من خلال التقدم بطلب
+لعرض لافتات ترويجية
+تدعم المركز العالمي
+المقترح للذكاء الاصطناعي
+في غويانغ.
+</p>
+
+<p>
+بعد تقديم الطلب،
+يرجى دفع التكلفة المقررة
+إلى الحساب البنكي المخصص
+الموضح أدناه.
+</p>
+
+<p>
+يجب أن يتوافق
+تركيب اللافتات
+مع اللوائح المحلية،
+والقوانين المعمول بها،
+ومتطلبات المواقع.
+</p>
+
+<!-- AUTOMATIC ACCOUNT DISPLAY -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+طلب لافتة ترويجية
+</a>
+
+<p class="small-note">
+استمارة التقديم باللغة الكورية.
+</p>
+
+</article>
+
+<!-- =====================================
+     VEHICLE STICKER
+===================================== -->
+
+<article class="card">
+
+<h3>
+ملصق ترويجي للمركبات
+</h3>
+
+<p>
+ساعدوا في تعزيز
+الوعي العام
+بمبادرة المركز العالمي
+للذكاء الاصطناعي
+من خلال وضع
+ملصق ترويجي
+على مركباتكم.
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+طلب ملصق للمركبة
+</a>
+
+<p class="small-note">
+استمارة التقديم باللغة الكورية.
+</p>
+
+</article>
+
+<!-- =====================================
+     KAKAOTALK COMMUNITY
+===================================== -->
+
+<article class="card">
+
+<h3>
+مجتمع كاكاوتوك
+</h3>
+
+<p>
+انضموا إلى مجموعة
+التواصل التابعة للجنة
+على تطبيق كاكاوتوك
+لتبادل المعلومات
+حول الأنشطة،
+والمشاركة العامة،
+والتطورات المتعلقة
+بمبادرة المركز العالمي
+للذكاء الاصطناعي.
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+الانضمام إلى مجتمع كاكاوتوك
+</a>
+
+<p class="small-note">
+تُجرى المناقشات المجتمعية
+باللغة الكورية في الغالب.
+</p>
+
+</article>
+
+<!-- =====================================
+     FACEBOOK COMMUNITY
+===================================== -->
+
+<article class="card">
+
+<h3>
+مجموعة النقاش على فيسبوك
+</h3>
+
+<p>
+شاركوا المعلومات،
+وتبادلوا وجهات النظر،
+وشاركوا في المناقشات العامة
+حول مبادرة المركز العالمي
+المقترح للذكاء الاصطناعي.
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+الانضمام إلى مجموعة فيسبوك
+</a>
+
+</article>
+
+<!-- =====================================
+     ACTIVITY GALLERY
+===================================== -->
+
+<article class="card">
+
+<h3>
+معرض أنشطة اللجنة
+</h3>
+
+<p>
+استكشفوا الصور
+التي توثق أنشطة
+اللجنة المدنية الداعمة
+وحملة الدعم الشعبي.
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+عرض معرض الأنشطة (باللغة الكورية)
+</a>
+
+</article>
+
+</div>
+
+<!-- =====================================
+     PARTICIPATION NOTICE
+===================================== -->
+
+<section class="notice">
+
+<h2>
+معلومات المشاركة
+</h2>
+
+<p>
+تدير اللجنة المدنية الداعمة
+عدة برامج للمشاركة،
+بما في ذلك
+حملة التوقيعات الشعبية،
+والتسجيل في اللجنة،
+والعضوية الداعمة،
+وطلبات اللافتات الترويجية،
+وطلبات ملصقات المركبات.
+</p>
+
+<p>
+يُقدَّم كل طلب
+من خلال الاستمارة الإلكترونية
+المخصصة له.
+ويجب على المشاركين
+مراجعة الغرض من الطلب،
+والمعلومات المتعلقة
+بجمع البيانات الشخصية
+واستخدامها،
+قبل تقديم الطلب.
+</p>
+
+<p>
+يجب دفع مساهمات
+العضوية الداعمة
+وتكاليف اللافتات الترويجية
+فقط إلى الحسابات البنكية
+التي تعلن عنها اللجنة رسمياً.
+</p>
+
+<p>
+يرجى التحقق
+من أحدث تفاصيل الحسابات
+وشروط الدفع
+قبل إجراء أي تحويل مالي.
+</p>
+
+<p>
+للحصول على معلومات
+حول حماية البيانات الشخصية،
+يرجى الاطلاع على
+
+<a href="privacy.html">
+سياسة الخصوصية (باللغة الكورية)
+</a>.
+
+</p>
+
+</section>
+
+<!-- =====================================
+     RELATED PAGES
+===================================== -->
+
+<section class="notice">
+
+<h2>
+اكتشف المزيد
+</h2>
+
+<p>
+تعرفوا على المزيد
+حول اللجنة،
+وأهدافها،
+ومبادرة المركز العالمي
+للذكاء الاصطناعي.
+</p>
+
+<a
+  class="button"
+  href="committee-ar.html"
+>
+حول اللجنة المدنية الداعمة
+</a>
+
+<a
+  class="button"
+  href="hub-ar.html"
+>
+حول المركز العالمي للذكاء الاصطناعي
+</a>
+
+<a
+  class="button"
+  href="news-ar.html"
+>
+الأخبار والإعلانات
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+<p>
+
+<strong>
+اللجنة المدنية لدعم استقطاب<br>
+المركز العالمي للذكاء الاصطناعي<br>
+إلى مدينة غويانغ الخاصة
+</strong>
+
+</p>
+
+<p>
+مقاطعة غيونغي،
+جمهورية كوريا
+</p>
+
+<p>
+مع المواطنين،
+ومع مقاطعة غيونغي،
+ومع العالم.
+</p>
+
+<p>
+
+<a href="index-ar.html">
+الصفحة الرئيسية العربية
+</a>
+
+&nbsp; | &nbsp;
+
+<a
+  href="participate.html"
+  lang="ko"
+  dir="ltr"
+>
+한국어
+</a>
+
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE PAYMENT ACCOUNT MODULE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE CONNECTION
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   AUTOMATIC PAYMENT ACCOUNT DISPLAY
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+    membership: "membershipAccountInfo",
+    banner: "bannerAccountInfo"
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* TITLE */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "الحساب البنكي المخصص للدفع";
+
+      /* BANK NAME */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "البنك: " + bank;
+
+      /* ACCOUNT NUMBER */
+
+      const numberLine =
+        document.createElement("p");
+
+      const numberLabel =
+        document.createElement("span");
+
+      numberLabel.textContent =
+        "رقم الحساب: ";
+
+      const numberValue =
+        document.createElement("bdi");
+
+      numberValue.className =
+        "account-number";
+
+      numberValue.dir = "ltr";
+
+      numberValue.textContent =
+        number;
+
+      numberLine.append(
+        numberLabel,
+        numberValue
+      );
+
+      /* ACCOUNT HOLDER */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "اسم صاحب الحساب: " + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "Arabic payment account information loaded."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Payment account query failed:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   INITIAL LOAD
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
