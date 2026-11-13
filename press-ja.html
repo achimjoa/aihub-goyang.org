@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+メディア報道 | グローバルAIハブ構想
+</title>
+
+<meta
+  name="description"
+  content="大韓民国・高陽特例市のグローバルAIハブ構想と市民推進委員会に関する新聞記事、放送報道、メディア情報をご紹介します。"
+>
+
+<style>
+
+/* =====================================
+   基本設定
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ヘッダー
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   メインコンテンツ
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.intro h2 {
+  margin-top: 0;
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+.language-notice p {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   検索
+===================================== */
+
+.search-box {
+  margin: 25px 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   メディア報道一覧
+===================================== */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press-item {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.press-item h3 {
+  margin: 8px 0;
+  color: #0754a6;
+  overflow-wrap: anywhere;
+}
+
+.press-item p {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.press-date {
+  color: #69788c;
+  font-size: 14px;
+}
+
+.press-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e7f0fa;
+  color: #175b9a;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.press-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.press-link:hover {
+  text-decoration: underline;
+}
+
+.content-language {
+  display: block;
+  margin-top: 12px;
+  color: #69788c;
+  font-size: 13px;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   関連情報
+===================================== */
+
+.related {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.related h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   フッター
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 60px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   モバイル対応
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  main {
+    margin: 25px auto;
+    padding: 0 12px;
+  }
+
+  .intro,
+  .press-item,
+  .related {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     ヘッダー
+===================================== -->
+
+<header>
+
+<h1>
+メディア報道
+</h1>
+
+<p>
+グローバルAIハブ構想<br>
+大韓民国・高陽特例市
+</p>
+
+<p>
+新聞記事・放送報道・メディア情報
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ja.html"
+  class="home-link"
+>
+  ← 日本語ホーム
+</a>
+
+<a
+  href="press.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     はじめに
+===================================== -->
+
+<section class="intro">
+
+<h2>
+グローバルAIハブ構想に関する報道
+</h2>
+
+<p>
+このページでは、
+グローバルAIハブ構想と、
+京畿道および高陽特例市における
+関連活動について報じた
+新聞記事、
+放送報道、
+その他のメディア情報を
+ご紹介します。
+</p>
+
+<p>
+海外の皆様が、
+本構想に関する
+社会的な議論、
+政策の進展、
+市民活動について
+理解を深めるための
+参考情報として掲載しています。
+</p>
+
+</section>
+
+<!-- =====================================
+     言語に関するご案内
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+掲載記事の言語について
+</strong>
+
+<p>
+掲載されている報道の多くは、
+韓国の報道機関によって
+公開されたものです。
+</p>
+
+<p>
+韓国語の記事タイトルと説明文は、
+自動翻訳せず、
+原文のまま表示しています。
+</p>
+
+<p>
+記事のリンクを選択すると、
+報道機関のウェブサイトで
+元の記事をご覧いただけます。
+</p>
+
+</div>
+
+<!-- =====================================
+     検索
+===================================== -->
+
+<div class="search-box">
+
+<input
+  type="search"
+  id="pressSearch"
+  placeholder="記事タイトルやキーワードで検索"
+  aria-label="メディア報道を検索"
+>
+
+</div>
+
+<!-- =====================================
+     メディア報道一覧
+===================================== -->
+
+<div
+  class="press-list"
+  id="pressList"
+  aria-live="polite"
+>
+
+  <p class="empty">
+    メディア報道の読み込みを準備しています。
+  </p>
+
+</div>
+
+<!-- =====================================
+     関連情報
+===================================== -->
+
+<section class="related">
+
+<h2>
+関連情報
+</h2>
+
+<p>
+グローバルAIハブ構想について、
+さらに詳しくお知りになりたい方は、
+以下のページをご覧ください。
+</p>
+
+<a
+  href="news-ja.html"
+  class="button"
+>
+  ニュース・お知らせ
+</a>
+
+<a
+  href="history-ja.html"
+  class="button"
+>
+  推進経緯と主な沿革
+</a>
+
+<a
+  href="committee-ja.html"
+  class="button"
+>
+  市民推進委員会について
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     フッター
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高陽特例市グローバルAIハブ誘致<br>
+市民推進委員会
+</strong>
+</p>
+
+<p>
+大韓民国・京畿道
+</p>
+
+<p>
+市民とともに、京畿道とともに、<br>
+そして世界とともに。
+</p>
+
+<p>
+
+<a href="index-ja.html">
+日本語ホーム
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="press.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE メディア報道モジュール
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE 接続
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+/*
+  韓国語版・英語版と同じ
+  Supabase 公開用キーを使用します。
+*/
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   DOM 要素
+===================================== */
+
+const pressList =
+  document.getElementById("pressList");
+
+const pressSearch =
+  document.getElementById("pressSearch");
+
+let pressData = [];
+
+/* =====================================
+   メッセージ表示
+===================================== */
+
+function showPressMessage(message) {
+
+  pressList.replaceChildren();
+
+  const paragraph =
+    document.createElement("p");
+
+  paragraph.className = "empty";
+
+  paragraph.textContent = message;
+
+  pressList.appendChild(paragraph);
+
+}
+
+/* =====================================
+   日付表示
+===================================== */
+
+function formatPressDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return String(value)
+    .slice(0, 10)
+    .replaceAll("-", ".");
+
+}
+
+/* =====================================
+   韓国語テキスト判定
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   メディア報道の表示
+===================================== */
+
+function renderPress() {
+
+  const keyword =
+    pressSearch.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    pressData.filter(item => {
+
+      const searchText = [
+        item.title || "",
+        item.description || "",
+        item.published_at || ""
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchText.includes(keyword);
+
+    });
+
+  pressList.replaceChildren();
+
+  if (filtered.length === 0) {
+
+    showPressMessage(
+      "検索条件に一致する記事はありません。"
+    );
+
+    return;
+
+  }
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "press-item";
+
+    /* カテゴリー */
+
+    const category =
+      document.createElement("span");
+
+    category.className =
+      "press-category";
+
+    category.textContent =
+      "メディア報道";
+
+    /* 日付 */
+
+    const date =
+      document.createElement("p");
+
+    date.className =
+      "press-date";
+
+    date.textContent =
+      formatPressDate(
+        item.published_at
+      );
+
+    /* タイトル */
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title || "";
+
+    /* 説明文 */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description || "";
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* 韓国語原文の表示 */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "原文：韓国語";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* 元の記事へのリンク */
+
+    if (item.link) {
+
+      try {
+
+        const url =
+          new URL(item.link);
+
+        if (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        ) {
+
+          const link =
+            document.createElement("a");
+
+          link.className =
+            "press-link";
+
+          link.href = url.href;
+
+          link.target = "_blank";
+
+          link.rel =
+            "noopener noreferrer";
+
+          link.textContent =
+            "元の記事を読む →";
+
+          card.appendChild(link);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "無効な記事リンク:",
+          item.link
+        );
+
+      }
+
+    }
+
+    pressList.appendChild(card);
+
+  });
+
+}
+
+/* =====================================
+   メディア報道の読み込み
+===================================== */
+
+async function loadPress() {
+
+  showPressMessage(
+    "メディア報道を読み込んでいます..."
+  );
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, description, link, published_at"
+        )
+        .eq("category", "press")
+        .order("published_at", {
+          ascending: false
+        })
+        .order("id", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    pressData = data || [];
+
+    console.log(
+      "メディア報道の読み込み完了:",
+      pressData.length,
+      "件"
+    );
+
+    if (pressData.length === 0) {
+
+      showPressMessage(
+        "現在、掲載されているメディア報道はありません。"
+      );
+
+      return;
+
+    }
+
+    renderPress();
+
+  } catch (error) {
+
+    console.error(
+      "メディア報道の取得に失敗:",
+      error
+    );
+
+    showPressMessage(
+      "メディア報道を読み込めませんでした。しばらくしてからもう一度お試しください。"
+    );
+
+  }
+
+}
+
+/* =====================================
+   検索
+===================================== */
+
+pressSearch.addEventListener(
+  "input",
+  renderPress
+);
+
+/* =====================================
+   初期読み込み
+===================================== */
+
+loadPress();
+
+</script>
+
+</body>
+</html>
