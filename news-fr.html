@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<title>
+Actualités et annonces |
+Initiative du Centre mondial de l'IA
+</title>
+
+<meta name="description"
+content="Actualités, annonces, activités, événements et informations sur les politiques publiques du Comité citoyen de promotion pour l'implantation du Centre mondial de l'IA à Goyang, République de Corée.">
+
+<style>
+
+/* =====================================
+   CONFIGURATION GÉNÉRALE
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   EN-TÊTE
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   CONTENU PRINCIPAL
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+.search-box {
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   FILTRES
+===================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   CARTES D'ACTUALITÉS
+===================================== */
+
+.news-list {
+  display: grid;
+  gap: 18px;
+}
+
+.news-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  border-left: 5px solid #168de0;
+}
+
+.news-item h3 {
+  color: #0754a6;
+  margin: 10px 0;
+  font-size: 21px;
+  overflow-wrap: anywhere;
+}
+
+.category {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.date {
+  color: #68788c;
+  font-size: 14px;
+}
+
+.news-item p {
+  color: #46566d;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.content-language {
+  display: inline-block;
+  color: #68788c;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.news-link {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.news-link:hover {
+  background: #003a7a;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #68788c;
+}
+
+.status {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   PIED DE PAGE
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   VERSION MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .intro,
+  .news-item {
+    padding: 20px;
+  }
+
+  .news-link {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     EN-TÊTE
+===================================== -->
+
+<header>
+
+<h1>
+Actualités et annonces
+</h1>
+
+<p>
+Initiative du Centre mondial de l'IA<br>
+Ville spéciale de Goyang, République de Corée
+</p>
+
+<p>
+Informations sur les activités citoyennes,
+la coopération internationale,
+les propositions de politiques publiques
+et les principales évolutions du projet.
+</p>
+
+<div class="header-links">
+
+<a href="index-fr.html"
+class="home-link">
+← Accueil — Français
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     INTRODUCTION
+===================================== -->
+
+<section class="intro">
+
+<h2>
+Dernières actualités du Comité citoyen de promotion
+</h2>
+
+<p>
+Cette page présente les activités
+du Comité citoyen de promotion
+pour l'implantation du Centre mondial de l'IA
+dans la ville spéciale de Goyang.
+</p>
+
+<p>
+Les informations publiées
+peuvent comprendre
+les activités du Comité,
+les annonces publiques,
+les événements,
+la couverture médiatique
+et les évolutions
+des politiques publiques.
+</p>
+
+<p>
+De nouvelles informations
+seront ajoutées
+au fur et à mesure
+de leur disponibilité.
+</p>
+
+</section>
+
+<!-- =====================================
+     INFORMATIONS LINGUISTIQUES
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Informations linguistiques
+</strong>
+
+<p>
+Cette page en français
+affiche les actualités et les annonces
+provenant de la base de données
+existante du Comité.
+</p>
+
+<p>
+Certains articles
+sont disponibles uniquement en coréen.
+Les titres et descriptions
+rédigés en coréen
+sont affichés dans leur langue originale,
+sans traduction automatique.
+</p>
+
+<p>
+Lorsque cela est possible,
+vous pouvez consulter
+l'article original
+ou la source correspondante
+en cliquant sur le lien fourni.
+</p>
+
+</div>
+
+<!-- =====================================
+     RECHERCHE
+===================================== -->
+
+<div class="search-box">
+
+<input
+type="search"
+id="searchInput"
+placeholder="Rechercher des actualités ou des mots-clés"
+aria-label="Rechercher dans les actualités et les annonces">
+
+</div>
+
+<!-- =====================================
+     FILTRES
+===================================== -->
+
+<nav class="filters"
+aria-label="Filtrer les actualités par catégorie">
+
+<button
+type="button"
+class="active"
+data-category="all"
+aria-pressed="true">
+Toutes les actualités
+</button>
+
+<button
+type="button"
+data-category="notice"
+aria-pressed="false">
+Annonces
+</button>
+
+<button
+type="button"
+data-category="activity"
+aria-pressed="false">
+Activités du Comité
+</button>
+
+<button
+type="button"
+data-category="event"
+aria-pressed="false">
+Événements
+</button>
+
+<button
+type="button"
+data-category="press"
+aria-pressed="false">
+Revue de presse
+</button>
+
+<button
+type="button"
+data-category="policy"
+aria-pressed="false">
+Actualités des politiques publiques
+</button>
+
+</nav>
+
+<!-- =====================================
+     LISTE DES ACTUALITÉS
+===================================== -->
+
+<div
+class="news-list"
+id="newsList"
+aria-live="polite">
+</div>
+
+<p
+class="empty"
+id="empty"
+hidden>
+Aucune actualité ne correspond
+à votre recherche.
+</p>
+
+</main>
+
+<!-- =====================================
+     PIED DE PAGE
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Comité citoyen de promotion<br>
+pour l'implantation du Centre mondial de l'IA<br>
+dans la ville spéciale de Goyang
+</strong>
+</p>
+
+<p>
+Province de Gyeonggi,
+République de Corée
+</p>
+
+<p>
+Avec les citoyens,<br>
+avec la province de Gyeonggi<br>
+et avec le monde.
+</p>
+
+<p>
+<a href="index-fr.html">
+Accueil — Français
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     MODULE SUPABASE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   CONNEXION SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   ÉLÉMENTS DOM
+===================================== */
+
+const newsList =
+  document.getElementById("newsList");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const empty =
+  document.getElementById("empty");
+
+/* =====================================
+   NOMS DES CATÉGORIES
+===================================== */
+
+const categoryNames = {
+
+  notice: "Annonces",
+
+  activity: "Activités du Comité",
+
+  event: "Événements",
+
+  press: "Revue de presse",
+
+  policy: "Actualités des politiques publiques"
+
+};
+
+/* =====================================
+   ÉTAT
+===================================== */
+
+let news = [];
+
+let currentCategory = "all";
+
+let loadFailed = false;
+
+/* =====================================
+   FORMATAGE DES DATES
+===================================== */
+
+function formatDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(value).slice(0, 10);
+  }
+
+  return new Intl.DateTimeFormat(
+    "fr-FR",
+    {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      timeZone: "Asia/Seoul"
+    }
+  ).format(date);
+
+}
+
+/* =====================================
+   DÉTECTION DU CORÉEN
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   VALIDATION DES LIENS
+===================================== */
+
+function getSafeLink(value) {
+
+  if (!value) return "";
+
+  try {
+
+    const url = new URL(
+      value,
+      window.location.href
+    );
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+      return "";
+    }
+
+    return url.href;
+
+  } catch (error) {
+
+    return "";
+
+  }
+
+}
+
+/* =====================================
+   CHARGEMENT DES ACTUALITÉS
+===================================== */
+
+async function loadNews() {
+
+  newsList.innerHTML =
+    '<div class="status">' +
+    'Chargement des actualités et des annonces...' +
+    '</div>';
+
+  empty.hidden = true;
+
+  const combinedNews = [];
+
+  let successfulQueries = 0;
+
+  /* =====================================
+     1. PUBLICATIONS D'ACTUALITÉS
+  ===================================== */
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id,title,category,description,link,published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    successfulQueries++;
+
+    for (const item of data || []) {
+
+      combinedNews.push({
+
+        id: "news-" + item.id,
+
+        date: formatDate(
+          item.published_at
+        ),
+
+        sortDate:
+          item.published_at || "",
+
+        category:
+          item.category || "",
+
+        categoryName:
+          categoryNames[item.category] ||
+          "Autres",
+
+        title:
+          item.title || "",
+
+        description:
+          item.description || "",
+
+        link:
+          item.link || ""
+
+      });
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Échec du chargement des actualités :",
+      error
+    );
+
+  }
+
+  /* =====================================
+     2. PUBLICATIONS DU FORUM
+  ===================================== */
+
+  try {
+
+    const {
+      data: placements,
+      error
+    } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "notice",
+          "activity"
+        ]);
+
+    if (error) {
+      throw error;
+    }
+
+    if (
+      placements &&
+      placements.length > 0
+    ) {
+
+      const postIds = [
+        ...new Set(
+          placements.map(
+            item => item.post_id
+          )
+        )
+      ];
+
+      const {
+        data: posts,
+        error: postError
+      } =
+        await supabase
+          .from("board_posts")
+          .select(
+            "id,title,content,created_at"
+          )
+          .in("id", postIds);
+
+      if (postError) {
+        throw postError;
+      }
+
+      const postMap = new Map(
+        (posts || []).map(post => [
+          String(post.id),
+          post
+        ])
+      );
+
+      for (const placement of placements) {
+
+        const post = postMap.get(
+          String(placement.post_id)
+        );
+
+        if (!post) continue;
+
+        const content =
+          post.content || "";
+
+        combinedNews.push({
+
+          id:
+            "board-" +
+            placement.placement +
+            "-" +
+            post.id,
+
+          date:
+            formatDate(
+              post.created_at
+            ),
+
+          sortDate:
+            post.created_at || "",
+
+          category:
+            placement.placement,
+
+          categoryName:
+            categoryNames[
+              placement.placement
+            ] || "Autres",
+
+          title:
+            post.title || "",
+
+          description:
+            content.length > 200
+              ? content.slice(0, 200) + "..."
+              : content,
+
+          link:
+            "board.html?post=" +
+            encodeURIComponent(post.id)
+
+        });
+
+      }
+
+    }
+
+    successfulQueries++;
+
+  } catch (error) {
+
+    console.error(
+      "Échec du chargement des publications du forum :",
+      error
+    );
+
+  }
+
+  /* =====================================
+     3. TRI DES ACTUALITÉS
+  ===================================== */
+
+  combinedNews.sort((a, b) =>
+    String(b.sortDate)
+      .localeCompare(
+        String(a.sortDate)
+      )
+  );
+
+  news = combinedNews;
+
+  /* =====================================
+     4. GESTION DES ERREURS
+  ===================================== */
+
+  if (successfulQueries === 0) {
+
+    loadFailed = true;
+
+    newsList.innerHTML =
+      '<div class="status">' +
+      'Impossible de charger les actualités ' +
+      'pour le moment. ' +
+      'Veuillez réessayer plus tard.' +
+      '</div>';
+
+    empty.hidden = true;
+
+    return;
+
+  }
+
+  loadFailed = false;
+
+  renderNews();
+
+  console.log(
+    "Page française des actualités chargée :",
+    news.length,
+    "publications"
+  );
+
+}
+
+/* =====================================
+   AFFICHAGE DES ACTUALITÉS
+===================================== */
+
+function renderNews() {
+
+  if (loadFailed) return;
+
+  const keyword =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  const filtered = news.filter(item => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      item.category === currentCategory;
+
+    const searchText = [
+      item.title,
+      item.description,
+      item.categoryName,
+      item.date
+    ].join(" ").toLowerCase();
+
+    return (
+      categoryMatch &&
+      searchText.includes(keyword)
+    );
+
+  });
+
+  filtered.sort((a, b) =>
+    String(b.sortDate || b.date || "")
+      .localeCompare(
+        String(a.sortDate || a.date || "")
+      )
+  );
+
+  newsList.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "news-item";
+
+    const category =
+      document.createElement("span");
+
+    category.className = "category";
+
+    category.textContent =
+      item.categoryName;
+
+    const date =
+      document.createElement("p");
+
+    date.className = "date";
+
+    date.textContent =
+      item.date;
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title;
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description;
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* =====================================
+       AVIS SUR LA LANGUE DU CONTENU
+    ===================================== */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Contenu original en coréen";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* =====================================
+       LIEN VERS L'ARTICLE
+    ===================================== */
+
+    const safeLink =
+      getSafeLink(item.link);
+
+    if (safeLink) {
+
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "news-link";
+
+      link.href =
+        safeLink;
+
+      const url =
+        new URL(safeLink);
+
+      const isBoardLink =
+        url.origin ===
+          window.location.origin &&
+        url.pathname.endsWith(
+          "/board.html"
+        );
+
+      if (isBoardLink) {
+
+        link.target = "_self";
+
+      } else {
+
+        link.target = "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+      }
+
+      link.textContent =
+        "Lire la suite";
+
+      card.appendChild(link);
+
+    }
+
+    newsList.appendChild(card);
+
+  });
+
+  empty.hidden =
+    filtered.length !== 0;
+
+}
+
+/* =====================================
+   FILTRES PAR CATÉGORIE
+===================================== */
+
+document
+  .querySelectorAll("[data-category]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentCategory =
+          button.dataset.category;
+
+        document
+          .querySelectorAll(
+            "[data-category]"
+          )
+          .forEach(btn => {
+
+            const isActive =
+              btn.dataset.category ===
+              currentCategory;
+
+            btn.classList.toggle(
+              "active",
+              isActive
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              String(isActive)
+            );
+
+          });
+
+        renderNews();
+
+      }
+    );
+
+  });
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+searchInput.addEventListener(
+  "input",
+  renderNews
+);
+
+/* =====================================
+   CHARGEMENT INITIAL
+===================================== */
+
+loadNews();
+
+</script>
+
+</body>
+</html>
