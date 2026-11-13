@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>Initiative du Centre mondial de l'IA | Goyang</title>
+
+<meta name="description"
+content="Initiative du Centre mondial de l'intelligence artificielle à Goyang, République de Corée. Une plateforme proposée de coopération internationale pour une IA au service de l'humanité.">
+
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/index-fr.html">
+
+<style>
+
+/* CONFIGURATION GÉNÉRALE */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.75;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* EN-TÊTE */
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  padding: 18px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 5px;
+}
+
+header p {
+  margin: 0;
+  font-size: 15px;
+  color: #dcecff;
+}
+
+/* NAVIGATION */
+
+.main-nav {
+  background: #10315e;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-nav > a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.main-nav > a:hover {
+  color: #ffdf5a;
+}
+
+/* SÉLECTEUR DE LANGUE */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 15px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 190px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.18);
+}
+
+.language-options a,
+.language-options span {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.language-options a:hover {
+  background: #eaf4ff;
+}
+
+.language-options .pending {
+  color: #788493;
+}
+
+/* BANNIÈRE */
+
+.main-banner {
+  width: 100%;
+  background: #0754a6;
+}
+
+.main-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* CONTENU */
+
+main {
+  max-width: 1180px;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.hero {
+  text-align: center;
+  background: linear-gradient(135deg, #eaf4ff, #ffffff);
+}
+
+.hero h2 {
+  border: none;
+  font-size: clamp(25px, 4vw, 37px);
+}
+
+.hero p {
+  font-size: 18px;
+}
+
+/* GRILLE */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f4f8fc;
+  padding: 24px;
+  border-radius: 10px;
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* ENCADRÉS */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 24px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+/* BOUTONS */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 10px 8px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cce2ff;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+.page-directory {
+  background: #f0f6ff;
+}
+
+.page-directory .card {
+  background: white;
+}
+
+/* PIED DE PAGE */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+footer a {
+  color: white;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 15px 12px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 19px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .main-nav {
+    gap: 10px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- EN-TÊTE -->
+
+<header>
+
+<h1>
+INITIATIVE DU CENTRE MONDIAL DE L'IA
+</h1>
+
+<p>
+Ville spéciale de Goyang · Province de Gyeonggi · République de Corée
+</p>
+
+</header>
+
+<!-- NAVIGATION PRINCIPALE -->
+
+<nav class="main-nav" aria-label="Navigation principale">
+
+<a href="index-fr.html">Accueil</a>
+
+<a href="hub-fr.html">Centre mondial de l'IA</a>
+
+<a href="goyang-fr.html">Pourquoi Goyang ?</a>
+
+<a href="agencies-fr.html">Organisations internationales</a>
+
+<a href="strategy-fr.html">Stratégie</a>
+
+<a href="committee-fr.html">Comité citoyen</a>
+
+<a href="history-fr.html">Chronologie</a>
+
+<a href="news-fr.html">Actualités</a>
+
+<a href="press-fr.html">Médias</a>
+
+<a href="participate-fr.html">Participation citoyenne</a>
+
+<a href="guide-fr.html">Guide</a>
+
+<details class="language-dropdown">
+
+<summary aria-label="Choisir la langue">
+🌐 Langue ▾
+</summary>
+
+<div class="language-options">
+
+<a href="index-fr.html" lang="fr" aria-current="page">
+Français ✓
+</a>
+
+<span class="pending">English — liaison à venir</span>
+
+<span class="pending">Español — liaison à venir</span>
+
+<span class="pending">한국어 — 연결 예정</span>
+
+</div>
+
+</details>
+
+</nav>
+
+<!-- BANNIÈRE PRINCIPALE -->
+
+<div class="main-banner">
+
+<img
+src="aihub-main-banner-en.png"
+alt="Initiative du Centre mondial de l'intelligence artificielle à Goyang"
+loading="eager"
+fetchpriority="high">
+
+</div>
+
+<main>
+
+<!-- VISION -->
+
+<section class="hero">
+
+<h2>
+L'intelligence artificielle au service de l'humanité.<br>
+La coopération internationale pour un avenir meilleur.
+</h2>
+
+<p>
+Relier les organisations internationales,
+les gouvernements,
+les établissements de recherche,
+les universités,
+les entreprises et les citoyens
+pour relever les défis mondiaux.
+</p>
+
+<div class="highlight">
+
+<strong>Notre vision</strong>
+
+<p>
+Faire de la ville spéciale de Goyang
+un centre de coopération internationale
+où l'intelligence artificielle contribue
+au développement durable,
+au bien-être humain
+et à la recherche de solutions
+aux grands défis mondiaux.
+</p>
+
+</div>
+
+<a href="goyang-fr.html" class="button">
+Pourquoi Goyang ?
+</a>
+
+<a href="strategy-fr.html" class="button secondary">
+Découvrir les possibilités de coopération
+</a>
+
+</section>
+
+<!-- CENTRE MONDIAL DE L'IA -->
+
+<section id="hub">
+
+<h2>1. Qu'est-ce que le Centre mondial de l'IA ?</h2>
+
+<p>
+Le Centre mondial de l'intelligence artificielle
+est un projet de plateforme
+de coopération internationale
+visant à associer
+l'expertise des organisations internationales
+aux progrès de l'intelligence artificielle.
+</p>
+
+<p>
+Son objectif est d'explorer comment l'IA
+peut contribuer à relever
+des défis mondiaux complexes,
+notamment dans les domaines
+de la santé publique,
+de la sécurité alimentaire,
+du changement climatique,
+de la protection de l'environnement,
+de l'aide humanitaire,
+des migrations,
+de l'emploi,
+de l'éducation
+et de la résilience face aux catastrophes.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Coopération internationale</h3>
+<p>
+Favoriser le dialogue,
+le partage des connaissances
+et la coopération entre institutions et pays.
+</p>
+</div>
+
+<div class="card">
+<h3>Recherche et innovation en IA</h3>
+<p>
+Explorer les applications responsables
+de l'intelligence artificielle
+pour répondre aux défis d'intérêt public.
+</p>
+</div>
+
+<div class="card">
+<h3>Solutions concrètes</h3>
+<p>
+Soutenir les projets pilotes,
+l'évaluation technologique
+et les approches fondées sur des données probantes.
+</p>
+</div>
+
+<div class="card">
+<h3>Renforcement des capacités</h3>
+<p>
+Explorer les possibilités de formation,
+d'échanges professionnels
+et d'apprentissage international.
+</p>
+</div>
+
+</div>
+
+<a href="hub-fr.html" class="button">
+En savoir plus sur le Centre mondial de l'IA →
+</a>
+
+</section>
+
+<!-- POURQUOI GOYANG -->
+
+<section id="goyang">
+
+<h2>2. Pourquoi la ville spéciale de Goyang ?</h2>
+
+<p>
+La ville spéciale de Goyang
+est située dans la province de Gyeonggi,
+au sein de la région métropolitaine de Séoul,
+en République de Corée.
+</p>
+
+<p>
+Ses infrastructures internationales
+d'exposition et de congrès,
+ses établissements de santé,
+ses services urbains
+et ses ressources environnementales
+constituent une base favorable
+à l'étude d'un centre
+de coopération internationale.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Situation métropolitaine stratégique</h3>
+<p>
+Goyang bénéficie de sa situation
+dans la région métropolitaine de Séoul,
+avec un accès aux grands réseaux économiques,
+universitaires et institutionnels.
+</p>
+</div>
+
+<div class="card">
+<h3>Infrastructures du KINTEX</h3>
+<p>
+Le KINTEX dispose d'installations
+destinées aux expositions internationales,
+aux conférences
+et aux échanges professionnels.
+</p>
+</div>
+
+<div class="card">
+<h3>Potentiel médical et scientifique</h3>
+<p>
+Goyang accueille le Centre national du cancer
+ainsi que d'autres établissements de santé,
+offrant des possibilités de coopération
+dans les domaines médicaux et scientifiques.
+</p>
+</div>
+
+<div class="card">
+<h3>Ressources environnementales</h3>
+<p>
+La zone humide de Janghang
+et les ressources écologiques environnantes
+offrent des possibilités
+de recherche environnementale
+et d'initiatives de durabilité.
+</p>
+</div>
+
+<div class="card">
+<h3>Cadre de vie</h3>
+<p>
+Goyang dispose de quartiers résidentiels,
+de services médicaux,
+d'établissements d'enseignement
+et d'équipements culturels.
+</p>
+</div>
+
+<div class="card">
+<h3>Développement régional</h3>
+<p>
+La coopération internationale
+pourrait créer des possibilités
+dans la recherche,
+l'emploi qualifié,
+l'innovation et les services associés.
+</p>
+</div>
+
+</div>
+
+<a href="goyang-fr.html" class="button">
+Découvrir les atouts de Goyang →
+</a>
+
+</section>
+
+<!-- ORGANISATIONS INTERNATIONALES -->
+
+<section id="organizations">
+
+<h2>
+3. Organisations internationales
+et domaines potentiels de coopération
+</h2>
+
+<p>
+L'initiative identifie neuf organisations internationales
+dont les domaines de compétence
+présentent un intérêt
+pour une éventuelle coopération
+fondée sur l'intelligence artificielle.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>OMS / WHO</h3>
+<p><strong>Organisation mondiale de la Santé</strong></p>
+<p>
+Santé publique, prévention des maladies,
+systèmes de santé et applications de l'IA
+dans l'analyse des informations sanitaires.
+</p>
+</div>
+
+<div class="card">
+<h3>PAM / WFP</h3>
+<p><strong>Programme alimentaire mondial</strong></p>
+<p>
+Sécurité alimentaire, aide humanitaire,
+résilience des chaînes d'approvisionnement
+et analyse des crises alimentaires.
+</p>
+</div>
+
+<div class="card">
+<h3>PNUE / UNEP</h3>
+<p><strong>Programme des Nations Unies pour l'environnement</strong></p>
+<p>
+Changement climatique,
+protection de l'environnement,
+biodiversité et surveillance environnementale.
+</p>
+</div>
+
+<div class="card">
+<h3>HCR / UNHCR</h3>
+<p><strong>Haut-Commissariat des Nations Unies pour les réfugiés</strong></p>
+<p>
+Protection des réfugiés,
+déplacements forcés,
+aide humanitaire
+et analyse responsable des données.
+</p>
+</div>
+
+<div class="card">
+<h3>OIM / IOM</h3>
+<p><strong>Organisation internationale pour les migrations</strong></p>
+<p>
+Migrations, déplacements de population,
+assistance humanitaire
+et accès aux services.
+</p>
+</div>
+
+<div class="card">
+<h3>OIT / ILO</h3>
+<p><strong>Organisation internationale du Travail</strong></p>
+<p>
+Emploi, droits du travail,
+développement des compétences
+et avenir du travail à l'ère de l'IA.
+</p>
+</div>
+
+<div class="card">
+<h3>UIT / ITU</h3>
+<p><strong>Union internationale des télécommunications</strong></p>
+<p>
+Connectivité numérique,
+télécommunications,
+communications d'urgence
+et systèmes d'alerte précoce.
+</p>
+</div>
+
+<div class="card">
+<h3>UNICEF</h3>
+<p><strong>Fonds des Nations Unies pour l'enfance</strong></p>
+<p>
+Protection de l'enfance,
+éducation,
+inclusion numérique
+et IA respectueuse des droits des enfants.
+</p>
+</div>
+
+<div class="card">
+<h3>PNUD / UNDP</h3>
+<p><strong>Programme des Nations Unies pour le développement</strong></p>
+<p>
+Développement durable,
+réponse aux crises,
+renforcement institutionnel
+et planification du développement.
+</p>
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>Précision importante</strong>
+
+<p>
+Ces organisations sont mentionnées
+en raison de leurs missions respectives
+et des domaines possibles de coopération.
+</p>
+
+<p>
+Leur inclusion ne signifie pas
+qu'elles ont accepté de participer au projet,
+de transférer leurs activités
+ou d'établir un bureau à Goyang.
+</p>
+
+<p>
+Toute coopération future nécessiterait
+des consultations,
+des décisions institutionnelles
+et des accords formels.
+</p>
+
+</div>
+
+<a href="agencies-fr.html" class="button">
+Découvrir les neuf organisations internationales →
+</a>
+
+</section>
+
+<!-- STRATÉGIE -->
+
+<section id="strategy">
+
+<h2>
+4. Stratégie de développement en trois étapes
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Étape 1 — Installation initiale</h3>
+<p>
+Étudier les conditions appropriées
+pour l'installation initiale
+des organisations participantes
+et des institutions partenaires.
+</p>
+<p>
+Les éléments à examiner comprennent
+les bureaux, les transports,
+le logement, les soins de santé,
+l'éducation et les services essentiels.
+</p>
+</div>
+
+<div class="card">
+<h3>Étape 2 — Soutien opérationnel</h3>
+<p>
+Explorer les possibilités de coopération
+entre les institutions publiques,
+les universités,
+les organismes de recherche,
+les entreprises et la société civile.
+</p>
+</div>
+
+<div class="card">
+<h3>Étape 3 — Croissance partagée et durable</h3>
+<p>
+Rechercher une coopération à long terme
+contribuant aux missions
+des organisations internationales
+tout en créant des possibilités
+d'innovation régionale,
+d'emploi et de développement économique.
+</p>
+</div>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+Installation initiale →
+Soutien opérationnel →
+Croissance partagée
+</strong>
+
+<p>
+Les dispositions institutionnelles,
+les financements,
+les installations et les mesures de soutien
+resteraient soumis aux consultations
+et aux autorisations compétentes.
+</p>
+
+</div>
+
+<a href="strategy-fr.html" class="button">
+Découvrir la stratégie →
+</a>
+
+</section>
+
+<!-- COMITÉ CITOYEN -->
+
+<section id="committee">
+
+<h2>
+5. Présentation du Comité citoyen de promotion
+</h2>
+
+<p>
+Le Comité citoyen de promotion
+pour l'implantation du Centre mondial de l'IA
+dans la ville spéciale de Goyang
+est une initiative citoyenne
+visant à sensibiliser le public
+et à renforcer le soutien
+au projet de Centre mondial de l'IA.
+</p>
+
+<p>
+Le Comité cherche à promouvoir
+le débat public,
+à encourager la participation citoyenne
+et à faire connaître
+les avantages potentiels
+de la coopération internationale
+et de l'innovation fondée sur l'IA.
+</p>
+
+<div class="highlight">
+
+<strong>Notre engagement</strong>
+
+<p>
+Promouvoir une participation
+transparente, responsable et constructive
+en faveur de la coopération internationale
+et du développement futur de Goyang.
+</p>
+
+</div>
+
+<a href="committee-fr.html" class="button">
+Découvrir le Comité →
+</a>
+
+<a href="participate-fr.html" class="button secondary">
+Participation citoyenne
+</a>
+
+</section>
+
+<!-- PARTENARIATS -->
+
+<section id="partnership">
+
+<h2>
+6. Possibilités de partenariats internationaux
+</h2>
+
+<p>
+Le projet de Centre mondial de l'IA
+vise à encourager le dialogue
+avec les organisations
+et les institutions intéressées
+par l'intelligence artificielle responsable,
+la coopération internationale
+et le développement durable.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Dialogue sur les politiques publiques</h3>
+<p>
+Échanger des points de vue
+sur la gouvernance de l'IA
+et l'innovation d'intérêt public.
+</p>
+</div>
+
+<div class="card">
+<h3>Coopération scientifique</h3>
+<p>
+Explorer les possibilités
+de recherche interdisciplinaire
+et de partage des connaissances.
+</p>
+</div>
+
+<div class="card">
+<h3>Démonstration technologique</h3>
+<p>
+Envisager des projets pilotes responsables
+et des applications pratiques de l'IA.
+</p>
+</div>
+
+<div class="card">
+<h3>Échanges professionnels</h3>
+<p>
+Explorer les possibilités d'ateliers,
+de formations,
+de forums internationaux
+et de renforcement des capacités.
+</p>
+</div>
+
+</div>
+
+<p class="note">
+Tous les partenariats potentiels
+restent exploratoires,
+sauf confirmation formelle
+par les institutions concernées.
+</p>
+
+<a href="strategy-fr.html" class="button">
+Explorer les possibilités de coopération →
+</a>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>
+7. Contact et informations complémentaires
+</h2>
+
+<p>
+Les organisations internationales,
+les établissements de recherche
+et les autres parties intéressées
+sont invités à découvrir
+l'initiative du Centre mondial de l'IA
+et les activités du Comité citoyen.
+</p>
+
+<p>
+Pour obtenir des informations générales,
+veuillez consulter les pages en français.
+</p>
+
+<a href="guide-fr.html" class="button">
+Guide d'utilisation du site →
+</a>
+
+<div class="highlight">
+
+<strong>
+Initiative du Centre mondial de l'IA<br>
+Ville spéciale de Goyang<br>
+Province de Gyeonggi<br>
+République de Corée
+</strong>
+
+<p>
+Comité citoyen de promotion
+pour l'implantation du Centre mondial de l'IA
+dans la ville spéciale de Goyang.
+</p>
+
+<p class="note">
+Ce site présente une initiative citoyenne
+et une vision proposée.
+Il ne constitue ni une décision officielle
+relative au choix d'un site
+ni un engagement d'une organisation internationale.
+</p>
+
+</div>
+
+</section>
+
+<!-- RÉPERTOIRE DU SITE -->
+
+<section id="directory" class="page-directory">
+
+<h2>
+8. Explorer le site du Centre mondial de l'IA
+</h2>
+
+<p>
+Consultez les pages suivantes
+pour obtenir des informations détaillées.
+</p>
+
+<div class="grid">
+
+<div class="card">
+<h3>Centre mondial de l'IA</h3>
+<p>Vision et coopération internationale.</p>
+<a href="hub-fr.html" class="button">Explorer →</a>
+</div>
+
+<div class="card">
+<h3>Pourquoi Goyang ?</h3>
+<p>Situation géographique, infrastructures et potentiel.</p>
+<a href="goyang-fr.html" class="button">Explorer →</a>
+</div>
+
+<div class="card">
+<h3>Organisations internationales</h3>
+<p>Neuf organisations et domaines de coopération.</p>
+<a href="agencies-fr.html" class="button">Explorer →</a>
+</div>
+
+<div class="card">
+<h3>Stratégie de développement</h3>
+<p>Installation, soutien et croissance durable.</p>
+<a href="strategy-fr.html" class="button">Explorer →</a>
+</div>
+
+<div class="card">
+<h3>Comité citoyen de promotion</h3>
+<p>Mission et activités citoyennes.</p>
+<a href="committee-fr.html" class="button">Explorer →</a>
+</div>
+
+<div class="card">
+<h3>Chronologie</h3>
+<p>Principaux événements et étapes de l'initiative.</p>
+<a href="history-fr.html" class="button">Consulter →</a>
+</div>
+
+<div class="card">
+<h3>Actualités et annonces</h3>
+<p>Activités du Comité et informations récentes.</p>
+<a href="news-fr.html" class="button">Voir les actualités →</a>
+</div>
+
+<div class="card">
+<h3>Couverture médiatique</h3>
+<p>Articles de presse et reportages.</p>
+<a href="press-fr.html" class="button">Voir les médias →</a>
+</div>
+
+<div class="card">
+<h3>Participation citoyenne</h3>
+<p>Campagnes de soutien et programmes de participation.</p>
+<a href="participate-fr.html" class="button">Participer →</a>
+</div>
+
+<div class="card">
+<h3>Guide d'utilisation</h3>
+<p>Navigation et utilisation des services du site.</p>
+<a href="guide-fr.html" class="button">Consulter le guide →</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- INFORMATIONS MULTILINGUES -->
+
+<section>
+
+<h2>
+9. Informations sur le site multilingue
+</h2>
+
+<p>
+Ce site est développé
+comme une plateforme d'information multilingue
+destinée aux visiteurs internationaux,
+aux organisations,
+aux établissements de recherche,
+aux entreprises et aux citoyens intéressés.
+</p>
+
+<p>
+L'anglais constitue la principale langue
+de communication internationale du site.
+Le coréen est utilisé pour la gestion
+des contenus et des ressources administratives.
+</p>
+
+<div class="highlight">
+
+<strong>Langues du site</strong>
+
+<p>Français — Version française</p>
+<p>English — Version internationale</p>
+<p>Español — Version espagnole</p>
+<p>한국어 — Version coréenne</p>
+
+</div>
+
+<p>
+Les liens entre toutes les versions linguistiques
+seront harmonisés lors d'une étape ultérieure
+du développement du site.
+</p>
+
+</section>
+
+</main>
+
+<!-- PIED DE PAGE -->
+
+<footer>
+
+<p>
+<strong>
+INITIATIVE DU CENTRE MONDIAL DE L'IA
+</strong>
+</p>
+
+<p>
+Ville spéciale de Goyang<br>
+Province de Gyeonggi<br>
+République de Corée
+</p>
+
+<p>
+Comité citoyen de promotion
+pour l'implantation du Centre mondial de l'IA
+dans la ville spéciale de Goyang
+</p>
+
+<p>
+L'intelligence artificielle au service de l'humanité.<br>
+La coopération internationale pour un avenir meilleur.
+</p>
+
+<p>
+<a href="index-fr.html">Accueil</a>
+&nbsp; | &nbsp;
+<a href="participate-fr.html">Participation citoyenne</a>
+&nbsp; | &nbsp;
+<a href="guide-fr.html">Guide</a>
+</p>
+
+<p>
+© Initiative du Centre mondial de l'IA
+</p>
+
+</footer>
+
+</body>
+</html>
