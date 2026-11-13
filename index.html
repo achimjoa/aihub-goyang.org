@@ -103,16 +103,7 @@ body {
   border-color: #ffe44d;
 }
 
-<!-- =====================================
-     GLOBAL LANGUAGE SWITCHER
-===================================== -->
 
-<nav
-  class="global-language-switcher"
-  id="globalLanguageSwitcher"
-  aria-label="언어 선택"
->
-</nav>
   
 /* PC 메뉴 */
 
@@ -885,61 +876,7 @@ main section h3 {
   cursor: default;
 }
 
-/* =====================================
-   GLOBAL LANGUAGE SWITCHER
-===================================== */
 
-.global-language-switcher {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin: 20px auto;
-  padding: 10px;
-  max-width: 1000px;
-}
-
-.global-language-switcher a {
-  display: inline-block;
-  padding: 9px 14px;
-  border-radius: 7px;
-  background: #ffffff;
-  color: #0754a6;
-  border: 1px solid #d7e4f3;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 1.5;
-  transition: background 0.2s ease;
-}
-
-.global-language-switcher a:hover {
-  background: #eaf4ff;
-}
-
-.global-language-switcher a.active {
-  background: #0754a6;
-  color: #ffffff;
-  border-color: #0754a6;
-}
-
-.global-language-switcher a:focus-visible {
-  outline: 3px solid #ffca28;
-  outline-offset: 3px;
-}
-
-@media (max-width: 600px) {
-  .global-language-switcher {
-    gap: 6px;
-    padding: 8px;
-  }
-
-  .global-language-switcher a {
-    padding: 8px 10px;
-    font-size: 13px;
-  }
-}
   
 </style>
 </head>
@@ -2485,112 +2422,6 @@ All rights reserved.
 
 </script>
 
-<script>
-/* =====================================
-   GLOBAL LANGUAGE SWITCHER
-   6 LANGUAGES / 11 PAGES
-===================================== */
-
-(function () {
-
-  "use strict";
-
-  const languages = [
-    { code: "ko", label: "한국어" },
-    { code: "en", label: "English" },
-    { code: "zh", label: "中文" },
-    { code: "ja", label: "日本語" },
-    { code: "ru", label: "Русский" },
-    { code: "ar", label: "العربية" }
-  ];
-
-  const pages = [
-    "index",
-    "hub",
-    "goyang",
-    "agencies",
-    "strategy",
-    "committee",
-    "history",
-    "news",
-    "press",
-    "participate",
-    "guide"
-  ];
-
-  const currentFile =
-    window.location.pathname
-      .split("/")
-      .pop() || "index.html";
-
-  const match = currentFile.match(
-    /^(index|hub|goyang|agencies|strategy|committee|history|news|press|participate|guide)(?:-(en|zh|ja|ru|ar))?\.html$/
-  );
-
-  if (!match) {
-    return;
-  }
-
-  const currentPage = match[1];
-
-  const currentLanguage =
-    match[2] || "ko";
-
-  if (!pages.includes(currentPage)) {
-    return;
-  }
-
-  const container =
-    document.getElementById(
-      "globalLanguageSwitcher"
-    );
-
-  if (!container) {
-    return;
-  }
-
-  languages.forEach(language => {
-
-    const link =
-      document.createElement("a");
-
-    const targetFile =
-      language.code === "ko"
-        ? currentPage + ".html"
-        : currentPage + "-" +
-          language.code + ".html";
-
-    link.href = targetFile;
-
-    link.textContent =
-      language.label;
-
-    link.lang =
-      language.code;
-
-    if (language.code === "ar") {
-      link.dir = "rtl";
-    }
-
-    if (
-      language.code === currentLanguage
-    ) {
-
-      link.classList.add("active");
-
-      link.setAttribute(
-        "aria-current",
-        "page"
-      );
-
-    }
-
-    container.appendChild(link);
-
-  });
-
-})();
-</script>
   
 </body>
 </html>
