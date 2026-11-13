@@ -24,7 +24,16 @@ content="https://achimjoa.github.io/aihub-goyang.org/aihub-main-banner.png">
 
 <style>
 
-/* 기본 설정 */
+/* ==========================================
+   기본 설정
+========================================== */
+
+:root {
+  --main-blue: #0754a6;
+  --dark-blue: #10315e;
+  --yellow: #ffe44d;
+  --teal: #008c95;
+}
 
 * {
   box-sizing: border-box;
@@ -36,77 +45,218 @@ html {
 
 body {
   margin: 0;
+  min-width: 0;
   font-family: "Malgun Gothic", "Noto Sans KR", Arial, sans-serif;
   color: #17315b;
   background: #f5f8fc;
   line-height: 1.8;
 }
 
-:root {
-  --main-blue: #0754a6;
-  --dark-blue: #10315e;
-  --yellow: #ffe44d;
-}
-
-/* 홈페이지 전체 */
-
 #homepageLayoutModule {
   width: 100%;
+  min-width: 0;
   margin: 0;
   padding: 0;
 }
 
-/* 상단 메뉴 */
+/* ==========================================
+   상단 메뉴
+   다국어 왼쪽 고정 + 일반 메뉴 독립 스크롤
+========================================== */
 
 #homepageLayoutModule .home-navigation {
+  position: relative;
+  z-index: 100;
   width: 100%;
-  background: #0754a6;
-  border-top: 3px solid #ffe44d;
-  padding: 12px 16px;
+  min-width: 0;
+  padding: 10px 12px;
+  background: var(--main-blue);
+  border-top: 3px solid var(--yellow);
+  overflow: visible;
 }
 
 #homepageLayoutModule .home-menu {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 5px;
+  justify-content: flex-start;
+  gap: 8px;
   width: 100%;
-  margin: 0 auto;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow: visible;
 }
 
-#homepageLayoutModule .home-menu a {
+/* 다국어 버튼 */
+
+#homepageLayoutModule .language-dropdown {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  z-index: 200;
+}
+
+#homepageLayoutModule .language-dropdown > summary {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  min-height: 42px;
-  padding: 9px 14px;
-  background: white;
-  color: #0754a6;
-  border: 1px solid #d6e5f5;
-  border-radius: 6px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 13px;
+  background: var(--teal);
+  color: #ffffff;
+  border: 1px solid var(--teal);
+  border-radius: 7px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
+  line-height: 1.5;
+  white-space: nowrap;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+#homepageLayoutModule
+.language-dropdown > summary::-webkit-details-marker {
+  display: none;
+}
+
+#homepageLayoutModule .language-dropdown > summary:hover,
+#homepageLayoutModule .language-dropdown[open] > summary {
+  background: #006e76;
+  border-color: #006e76;
+}
+
+#homepageLayoutModule .language-dropdown > summary:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
+/* 다국어 풀다운 */
+
+#homepageLayoutModule .language-options {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: auto;
+  width: 190px;
+  max-width: calc(100vw - 24px);
+  max-height: min(70vh, 480px);
+  padding: 8px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  z-index: 300;
+}
+
+#homepageLayoutModule .language-dropdown:not([open])
+.language-options {
+  display: none;
+}
+
+#homepageLayoutModule .language-options a {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 9px 12px;
+  background: #ffffff;
+  color: var(--main-blue);
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
   text-decoration: none;
   white-space: nowrap;
 }
 
-#homepageLayoutModule .home-menu a:hover,
-#homepageLayoutModule .home-menu a:focus-visible {
-  background: #ffe44d;
+#homepageLayoutModule .language-options a:hover,
+#homepageLayoutModule .language-options a:focus-visible {
+  background: #eaf4ff;
+}
+
+#homepageLayoutModule
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+  font-weight: 800;
+}
+
+/* 일반 메뉴 전용 스크롤 */
+
+#homepageLayoutModule .home-menu-links {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 2px 0 6px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--yellow) var(--main-blue);
+  touch-action: pan-x;
+}
+
+#homepageLayoutModule .home-menu-links > a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 10px;
+  background: #ffffff;
+  color: var(--main-blue);
+  border: 1px solid #d6e5f5;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#homepageLayoutModule .home-menu-links > a:hover,
+#homepageLayoutModule .home-menu-links > a:focus-visible {
+  background: var(--yellow);
   color: #003b79;
 }
 
-#homepageLayoutModule .home-menu .member-link {
-  background: #ffe44d;
+#homepageLayoutModule .home-menu-links > a.member-link {
+  background: var(--yellow);
   color: #003b79;
-  border-color: #ffe44d;
+  border-color: var(--yellow);
 }
 
+#homepageLayoutModule
+.home-menu-links::-webkit-scrollbar {
+  height: 6px;
+}
 
-  
+#homepageLayoutModule
+.home-menu-links::-webkit-scrollbar-track {
+  background: var(--main-blue);
+}
 
-/* 대표 이미지 */
+#homepageLayoutModule
+.home-menu-links::-webkit-scrollbar-thumb {
+  background: var(--yellow);
+  border-radius: 10px;
+}
+
+/* ==========================================
+   대표 이미지
+========================================== */
 
 #homepageLayoutModule .home-hero {
   width: 100%;
@@ -136,7 +286,7 @@ body {
 }
 
 .home-slogan strong {
-  color: #ffe44d;
+  color: var(--yellow);
 }
 
 .home-slogan p {
@@ -167,7 +317,7 @@ body {
   justify-content: center;
   min-height: 50px;
   padding: 12px 24px;
-  background: #ffe44d;
+  background: var(--yellow);
   color: #003b79;
   border-radius: 8px;
   font-size: 16px;
@@ -179,7 +329,9 @@ body {
   background: #ffd52e;
 }
 
-/* 배너 영역 */
+/* ==========================================
+   배너 영역
+========================================== */
 
 #homepageLayoutModule #homepageBannerLayout {
   width: min(1500px, calc(100% - 32px));
@@ -194,14 +346,10 @@ body {
   align-items: start;
 }
 
-/* 숨김 처리 */
-
 #homepageLayoutModule #homepageBannerLayout[hidden],
 #homepageLayoutModule .banner-section[hidden] {
-  display: none !important;
+  display: none;
 }
-
-/* 배너 영역별 디자인 */
 
 #homepageLayoutModule .banner-section {
   min-width: 0;
@@ -213,7 +361,7 @@ body {
 
 #homepageLayoutModule .banner-section h2 {
   margin: 0 0 20px;
-  color: #0754a6;
+  color: var(--main-blue);
   font-size: 25px;
 }
 
@@ -290,14 +438,6 @@ body {
       minmax(0, 1fr);
   }
 
-  #homepageLayoutModule #homepageBannerLayout.center-only
-  > .banner-section:not([hidden]),
-  #homepageLayoutModule #homepageBannerLayout.two-columns
-  > .banner-section:not([hidden]) {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
   #homepageLayoutModule #homepageBannerLayout.three-columns
   #homepageBannerLeft {
     grid-column: 1;
@@ -336,35 +476,9 @@ body {
   }
 }
 
-@media (max-width: 600px) {
-
-  #homepageLayoutModule .home-navigation {
-    padding: 10px;
-  }
-
-  #homepageLayoutModule .home-menu {
-    gap: 6px;
-  }
-
-  #homepageLayoutModule .home-menu a {
-    font-size: 12px;
-    padding: 8px 10px;
-  }
-
-  #homepageLayoutModule #homepageBannerLayout {
-    margin: 15px auto;
-  }
-
-  #homepageLayoutModule .banner-section {
-    padding: 16px;
-  }
-
-  #homepageLayoutModule .homepage-banner-items {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* 주요 게시물 */
+/* ==========================================
+   주요 게시물
+========================================== */
 
 .homepage-posts-section {
   width: calc(100% - 30px);
@@ -387,12 +501,12 @@ body {
 
 .homepage-posts-header h2 {
   margin: 0;
-  color: #0754a6;
+  color: var(--main-blue);
   font-size: 26px;
 }
 
 .homepage-posts-header a {
-  color: #0754a6;
+  color: var(--main-blue);
   font-weight: bold;
   text-decoration: none;
 }
@@ -416,7 +530,7 @@ body {
 }
 
 .homepage-post-card h3 a {
-  color: #0754a6;
+  color: var(--main-blue);
   text-decoration: none;
   overflow-wrap: anywhere;
 }
@@ -437,7 +551,9 @@ body {
   display: none;
 }
 
-/* 본문 */
+/* ==========================================
+   본문
+========================================== */
 
 main {
   max-width: 1180px;
@@ -453,13 +569,13 @@ main section {
 }
 
 main section h2 {
-  color: #0754a6;
+  color: var(--main-blue);
   font-size: 28px;
   margin-top: 0;
 }
 
 main section h3 {
-  color: #0754a6;
+  color: var(--main-blue);
 }
 
 .grid {
@@ -469,6 +585,7 @@ main section h3 {
 }
 
 .card {
+  min-width: 0;
   background: #eef5ff;
   border-radius: 10px;
   padding: 22px;
@@ -496,7 +613,7 @@ main section h3 {
 .btn {
   display: inline-block;
   padding: 10px 18px;
-  background: #ffe44d;
+  background: var(--yellow);
   color: #17315b;
   border-radius: 7px;
   font-weight: 700;
@@ -518,7 +635,7 @@ main section h3 {
 }
 
 .committee-organization h3 {
-  color: #0754a6;
+  color: var(--main-blue);
   font-size: 24px;
 }
 
@@ -557,14 +674,14 @@ main section h3 {
   top: 12px;
   width: 16px;
   height: 16px;
-  background: #0754a6;
+  background: var(--main-blue);
   border: 4px solid white;
   border-radius: 50%;
   box-shadow: 0 0 0 2px #168de0;
 }
 
 .event time {
-  color: #0754a6;
+  color: var(--main-blue);
   font-weight: 800;
 }
 
@@ -592,20 +709,22 @@ main section h3 {
 }
 
 .payment-account-info[hidden] {
-  display: none !important;
+  display: none;
 }
 
 .payment-account-info strong {
-  color: #0754a6;
+  color: var(--main-blue);
 }
 
-/* 하단 */
+/* ==========================================
+   하단
+========================================== */
 
 .site-footer {
   width: 100%;
   margin-top: 40px;
   padding: 40px 20px 25px;
-  background: #10315e;
+  background: var(--dark-blue);
   color: white;
   text-align: center;
 }
@@ -643,7 +762,7 @@ main section h3 {
 }
 
 .footer-links a:hover {
-  color: #ffe44d;
+  color: var(--yellow);
   text-decoration: underline;
 }
 
@@ -662,16 +781,43 @@ main section h3 {
   display: inline-block;
   margin-top: 20px;
   padding: 8px 18px;
-  background: #0754a6;
+  background: var(--main-blue);
   border: 1px solid #8eb9ed;
   border-radius: 6px;
   color: white;
   text-decoration: none;
 }
 
-/* 모바일 */
+/* ==========================================
+   모바일 최적화
+========================================== */
 
 @media (max-width: 767px) {
+
+  #homepageLayoutModule .home-navigation {
+    padding: 8px;
+  }
+
+  #homepageLayoutModule .home-menu {
+    gap: 6px;
+  }
+
+  #homepageLayoutModule .language-dropdown > summary {
+    min-height: 42px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  #homepageLayoutModule .language-options {
+    width: 170px;
+    max-height: 60vh;
+  }
+
+  #homepageLayoutModule .home-menu-links > a {
+    min-height: 42px;
+    padding: 8px 9px;
+    font-size: 12px;
+  }
 
   .homepage-posts-section {
     width: calc(100% - 20px);
@@ -701,387 +847,17 @@ main section h3 {
   }
 }
 
+@media (max-width: 600px) {
 
-/* =====================================
-   다국어 선택 메뉴
-===================================== */
-
-#homepageLayoutModule .language-dropdown {
-  position: relative;
-  flex-shrink: 0;
-  z-index: 1000;
-}
-
-#homepageLayoutModule .language-dropdown summary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 9px 14px;
-  background: #ffe44d;
-  color: #003b79;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  list-style: none;
-  white-space: nowrap;
-}
-
-#homepageLayoutModule
-.language-dropdown summary::-webkit-details-marker {
-  display: none;
-}
-
-#homepageLayoutModule .language-dropdown summary:focus-visible {
-  outline: 3px solid #ffffff;
-  outline-offset: 3px;
-}
-
-#homepageLayoutModule .language-options {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  z-index: 2000;
-  min-width: 180px;
-  padding: 8px;
-  background: #ffffff;
-  border: 1px solid #cbdff5;
-  border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
-}
-
-#homepageLayoutModule .language-options a,
-#homepageLayoutModule .language-options span {
-  display: block;
-  width: 100%;
-  padding: 10px 12px;
-  color: #0754a6;
-  background: #ffffff;
-  border: 0;
-  border-radius: 5px;
-  font-size: 14px;
-  text-align: left;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-#homepageLayoutModule .language-options a:hover {
-  background: #eaf4ff;
-}
-
-#homepageLayoutModule
-.language-options a[aria-current="page"] {
-  background: #eaf4ff;
-  font-weight: 800;
-}
-
-#homepageLayoutModule .language-pending {
-  color: #788493 !important;
-  cursor: default;
-}
-
-/* =====================================
-   10개 언어 상단 메뉴 최종 설정
-===================================== */
-
-/* 상단 메뉴 */
-
-#homepageLayoutModule .home-navigation {
-  position: relative;
-  z-index: 1000;
-  overflow: visible;
-}
-
-/* 일반 메뉴 한 줄 표시 */
-
-#homepageLayoutModule .home-menu {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 6px;
-  width: 100%;
-  min-width: 0;
-}
-
-/* 일반 메뉴 버튼 */
-
-#homepageLayoutModule .home-menu > a {
-  flex: 0 0 auto;
-  white-space: nowrap;
-  padding: 8px 9px;
-  font-size: 12px;
-}
-
-/* 다국어 메뉴 */
-
-#homepageLayoutModule .language-dropdown {
-  position: relative;
-  flex: 0 0 auto;
-  z-index: 2000;
-}
-
-/* 다국어 버튼 */
-
-#homepageLayoutModule .language-dropdown summary {
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-/* 언어 풀다운 */
-
-#homepageLayoutModule .language-options {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  left: auto;
-  z-index: 3000;
-  min-width: 190px;
-  max-height: min(70vh, 480px);
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #cbdff5;
-  border-radius: 8px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-
-/* 현재 언어 표시 */
-
-#homepageLayoutModule
-.language-options a[aria-current="page"] {
-  background: #eaf4ff;
-  font-weight: 800;
-}
-
-/* 모바일 */
-
-@media (max-width: 767px) {
-
-  #homepageLayoutModule .home-menu {
-    gap: 5px;
+  #homepageLayoutModule #homepageBannerLayout {
+    margin: 15px auto;
   }
 
-  #homepageLayoutModule .home-menu > a {
-    padding: 8px 7px;
-    font-size: 11px;
+  #homepageLayoutModule .banner-section {
+    padding: 16px;
   }
-
-  #homepageLayoutModule .language-options {
-    min-width: 170px;
-    max-height: 60vh;
-  }
-
 }
 
-/* ==========================================
-   MOBILE NAVIGATION SCROLL FIX
-   가로·세로 화면 대응
-========================================== */
-
-@media (max-width: 1199px) {
-
-  /* 상단 메뉴 전체 */
-
-  #homepageLayoutModule .home-navigation {
-    position: relative !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow: visible !important;
-    padding: 8px 10px !important;
-  }
-
-  /* 메뉴를 실제 스크롤 영역으로 설정 */
-
-  #homepageLayoutModule .home-menu {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-
-    justify-content: flex-start !important;
-    align-items: center !important;
-
-    width: 100% !important;
-    max-width: 100% !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    -webkit-overflow-scrolling: touch;
-
-    scrollbar-width: thin;
-    scrollbar-color: #ffe44d #0754a6;
-
-    padding-bottom: 5px;
-  }
-
-  /* 메뉴 항목 크기 유지 */
-
-  #homepageLayoutModule .home-menu > a {
-    display: inline-flex !important;
-
-    flex: 0 0 auto !important;
-
-    white-space: nowrap !important;
-
-    min-height: 42px;
-
-    padding: 8px 10px !important;
-  }
-
-  /* 다국어 버튼 */
-
-  #homepageLayoutModule .language-dropdown {
-    position: relative !important;
-
-    flex: 0 0 auto !important;
-  }
-
-  /* 스크롤바 표시 */
-
-  #homepageLayoutModule
-  .home-menu::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  #homepageLayoutModule
-  .home-menu::-webkit-scrollbar-track {
-    background: #0754a6;
-  }
-
-  #homepageLayoutModule
-  .home-menu::-webkit-scrollbar-thumb {
-    background: #ffe44d;
-    border-radius: 10px;
-  }
-
-}
-
-/* =====================================
-   다국어 버튼 청록색 디자인
-===================================== */
-
-#homepageLayoutModule .language-dropdown > summary {
-  background: #008c95 !important;
-  color: #ffffff !important;
-  border: 1px solid #008c95 !important;
-  border-radius: 7px !important;
-  font-weight: 800;
-  transition: background 0.2s ease;
-}
-
-#homepageLayoutModule .language-dropdown > summary:hover {
-  background: #006e76 !important;
-  border-color: #006e76 !important;
-}
-
-#homepageLayoutModule .language-dropdown[open] > summary {
-  background: #006e76 !important;
-  border-color: #006e76 !important;
-}
-
-#homepageLayoutModule .language-dropdown > summary:focus-visible {
-  outline: 3px solid #ffe44d;
-  outline-offset: 3px;
-}
-
-/* ==========================================
-   FINAL LANGUAGE MENU POSITION FIX
-   LEFT FIXED + RIGHT SCROLL
-========================================== */
-
-/* 전체 메뉴 */
-
-#homepageLayoutModule .home-navigation {
-  position: relative !important;
-  overflow: visible !important;
-  z-index: 1000;
-}
-
-/* 다국어 + 일반 메뉴 */
-
-#homepageLayoutModule .home-menu {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 8px !important;
-
-  width: 100% !important;
-  min-width: 0 !important;
-
-  overflow: visible !important;
-}
-
-/* 다국어 버튼 왼쪽 고정 */
-
-#homepageLayoutModule .language-dropdown {
-  position: relative !important;
-  flex: 0 0 auto !important;
-  z-index: 2000;
-}
-
-/* 풀다운 목록을 왼쪽 정렬 */
-
-#homepageLayoutModule .language-options {
-  position: absolute !important;
-
-  top: calc(100% + 6px) !important;
-
-  left: 0 !important;
-  right: auto !important;
-
-  width: 190px !important;
-  max-width: calc(100vw - 20px) !important;
-  max-height: min(70vh, 480px) !important;
-
-  overflow-y: auto !important;
-
-  z-index: 3000 !important;
-}
-
-/* 일반 메뉴 전용 가로 스크롤 */
-
-#homepageLayoutModule .home-menu-links {
-  display: flex !important;
-  flex: 1 1 auto !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  gap: 5px !important;
-
-  min-width: 0 !important;
-
-  overflow-x: auto !important;
-  overflow-y: hidden !important;
-
-  -webkit-overflow-scrolling: touch;
-
-  scrollbar-width: thin;
-  scrollbar-color: #ffe44d #0754a6;
-}
-
-/* 일반 메뉴 버튼 */
-
-#homepageLayoutModule .home-menu-links > a {
-  display: inline-flex !important;
-  flex: 0 0 auto !important;
-  white-space: nowrap !important;
-}
-
-/* 모바일 */
-
-@media (max-width: 767px) {
-
-  #homepageLayoutModule .home-menu {
-    gap: 6px !important;
-  }
-
-  #homepageLayoutModule .language-options {
-    width: 170px !important;
-    max-height: 60vh !important;
-  }
-
-}
-  
 </style>
 </head>
 
@@ -1089,118 +865,91 @@ main section h3 {
 
 <div id="homepageLayoutModule">
 
-<!-- 상단 메뉴 -->
-
-<nav id="home"
-class="home-navigation"
-aria-label="주 메뉴">
-
-<div class="home-menu">
-
-  <!-- 다국어 선택: 맨 왼쪽 -->
-
 <!-- =====================================
-     10개 언어 선택 메뉴
+     상단 메뉴
 ===================================== -->
 
-<details class="language-dropdown">
+<nav id="home"
+     class="home-navigation"
+     aria-label="주 메뉴">
 
-<div class="home-menu-links">
-  
-  <summary aria-label="홈페이지 언어 선택">
-    🌐 다국어 ▾
-  </summary>
+  <div class="home-menu">
 
-  <div class="language-options">
+    <!-- 다국어 선택 -->
 
-    <a href="index.html"
-       lang="ko"
-       aria-current="page">
-      한국어 ✓
-    </a>
+    <details class="language-dropdown">
 
-    <a href="index-en.html" lang="en">
-      English
-    </a>
+      <summary aria-label="홈페이지 언어 선택">
+        🌐 다국어 ▾
+      </summary>
 
-    <a href="index-zh.html" lang="zh">
-      中文
-    </a>
+      <div class="language-options">
 
-    <a href="index-ja.html" lang="ja">
-      日本語
-    </a>
+        <a href="index.html"
+           lang="ko"
+           aria-current="page">
+          한국어 ✓
+        </a>
 
-    <a href="index-ru.html" lang="ru">
-      Русский
-    </a>
+        <a href="index-en.html" lang="en">English</a>
+        <a href="index-zh.html" lang="zh">中文</a>
+        <a href="index-ja.html" lang="ja">日本語</a>
+        <a href="index-ru.html" lang="ru">Русский</a>
+        <a href="index-ar.html" lang="ar" dir="rtl">العربية</a>
+        <a href="index-es.html" lang="es">Español</a>
+        <a href="index-fr.html" lang="fr">Français</a>
+        <a href="index-de.html" lang="de">Deutsch</a>
+        <a href="index-it.html" lang="it">Italiano</a>
 
-    <a href="index-ar.html"
-       lang="ar"
-       dir="rtl">
-      العربية
-    </a>
+      </div>
 
-    <a href="index-es.html" lang="es">
-      Español
-    </a>
+    </details>
 
-    <a href="index-fr.html" lang="fr">
-      Français
-    </a>
+    <!-- 일반 메뉴: 독립 스크롤 -->
 
-    <a href="index-de.html" lang="de">
-      Deutsch
-    </a>
+    <div class="home-menu-links">
 
-    <a href="index-it.html" lang="it">
-      Italiano
-    </a>
-     </div>
+      <a href="#home">홈</a>
+      <a href="committee.html">위원회 소개</a>
+      <a href="hub.html">글로벌 AI 허브</a>
+      <a href="goyang.html">유치 경쟁력</a>
+      <a href="agencies.html">9개 국제기구</a>
+      <a href="strategy.html">유치 전략</a>
+      <a href="news.html">활동 소식</a>
+      <a href="press.html">언론보도</a>
+      <a href="history.html">활동 연혁</a>
+      <a href="participate.html">시민 참여</a>
+      <a href="gallery.html">활동 사진관</a>
+      <a href="knowledge-resources.html">지식·자료</a>
+      <a href="board.html">시민참여 게시판</a>
+
+      <a href="guide.html"
+         class="member-link"
+         title="홈페이지 이용 안내">
+        📖 이용 안내
+      </a>
+
+      <a href="login.html" class="member-link">로그인</a>
+      <a href="signup.html" class="member-link">회원가입</a>
+
+    </div>
+
   </div>
 
-</details>
-
-  
-<a href="#home">홈</a>
-<a href="committee.html">위원회 소개</a>
-<a href="hub.html">글로벌 AI 허브</a>
-<a href="goyang.html">유치 경쟁력</a>
-<a href="agencies.html">9개 국제기구</a>
-<a href="strategy.html">유치 전략</a>
-<a href="news.html">활동 소식</a>
-<a href="press.html">언론보도</a>
-<a href="history.html">활동 연혁</a>
-<a href="participate.html">시민 참여</a>
-<a href="gallery.html">활동 사진관</a>
-<a href="knowledge-resources.html">지식·자료</a>
-<a href="board.html">시민참여 게시판</a>
-
-<a href="guide.html"
-   class="member-link"
-   title="홈페이지 이용 안내">
-📖 이용 안내
-</a>
-
-<a href="login.html" class="member-link">로그인</a>
-<a href="signup.html" class="member-link">회원가입</a>
-
-
-</div>
 </nav>
 
 <!-- 대표 이미지 -->
 
 <section id="homepageHero"
-class="home-hero"
-aria-label="글로벌 AI 허브 고양특례시 유치">
+         class="home-hero"
+         aria-label="글로벌 AI 허브 고양특례시 유치">
 
-<img
-src="./aihub-main-banner.png"
-alt="경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회 공식 홍보 이미지"
-width="1648"
-height="928"
-fetchpriority="high">
+  <img
+    src="./aihub-main-banner.png"
+    alt="경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회 공식 홍보 이미지"
+    width="1648"
+    height="928"
+    fetchpriority="high">
 
 </section>
 
@@ -1208,17 +957,17 @@ fetchpriority="high">
 
 <section class="home-slogan">
 
-<h1>
-고양시에 성장동력을 달라!<br>
-고양시에 일자리를 달라!<br>
-<strong>글로벌 AI 허브는 고양특례시로!</strong>
-</h1>
+  <h1>
+    고양시에 성장동력을 달라!<br>
+    고양시에 일자리를 달라!<br>
+    <strong>글로벌 AI 허브는 고양특례시로!</strong>
+  </h1>
 
-<p>
-국제협력과 인공지능 산업을 연결하여
-고양특례시의 새로운 성장동력과
-양질의 일자리, 지역경제의 미래를 준비합니다.
-</p>
+  <p>
+    국제협력과 인공지능 산업을 연결하여
+    고양특례시의 새로운 성장동력과
+    양질의 일자리, 지역경제의 미래를 준비합니다.
+  </p>
 
 </section>
 
@@ -1226,67 +975,62 @@ fetchpriority="high">
 
 <section class="home-actions">
 
-<div class="home-action-buttons">
+  <div class="home-action-buttons">
 
-<a href="hub.html">
-글로벌 AI 허브 알아보기
-</a>
+    <a href="hub.html">글로벌 AI 허브 알아보기</a>
+    <a href="strategy.html">유치 전략 보기</a>
+    <a href="participate.html">시민 참여</a>
 
-<a href="strategy.html">
-유치 전략 보기
-</a>
+  </div>
 
-<a href="participate.html">
-시민 참여
-</a>
-
-</div>
 </section>
 
 <!-- 배너 -->
 
 <div id="homepageBannerLayout"
-aria-label="홈페이지 홍보 및 광고 배너"
-hidden>
+     aria-label="홈페이지 홍보 및 광고 배너"
+     hidden>
 
-<section id="homepageBannerCenter"
-class="banner-section"
-hidden>
+  <section id="homepageBannerCenter"
+           class="banner-section"
+           hidden>
 
-<h2>위원회 주요 활동</h2>
+    <h2>위원회 주요 활동</h2>
 
-<div id="centerBannerItems"
-class="homepage-banner-items"></div>
+    <div id="centerBannerItems"
+         class="homepage-banner-items"></div>
 
-</section>
+  </section>
 
-<section id="homepageBannerLeft"
-class="banner-section"
-hidden>
+  <section id="homepageBannerLeft"
+           class="banner-section"
+           hidden>
 
-<h2>회원 광고 · 좌측</h2>
+    <h2>회원 광고 · 좌측</h2>
 
-<div id="leftBannerItems"
-class="homepage-banner-items"></div>
+    <div id="leftBannerItems"
+         class="homepage-banner-items"></div>
 
-</section>
+  </section>
 
-<section id="homepageBannerRight"
-class="banner-section"
-hidden>
+  <section id="homepageBannerRight"
+           class="banner-section"
+           hidden>
 
-<h2>회원 광고 · 우측</h2>
+    <h2>회원 광고 · 우측</h2>
 
-<div id="rightBannerItems"
-class="homepage-banner-items"></div>
+    <div id="rightBannerItems"
+         class="homepage-banner-items"></div>
 
-</section>
-
-</div>
+  </section>
 
 </div>
 
-<!-- Supabase 및 배너·게시물 조회 -->
+</div>
+
+<!-- =====================================
+     Supabase 및 배너·게시물 조회
+===================================== -->
 
 <script type="module">
 
@@ -1304,7 +1048,9 @@ const supabase = createClient(
   SUPABASE_KEY
 );
 
-/* 배너 URL 확인 */
+/* =====================================
+   배너 URL 확인
+===================================== */
 
 function resolveBannerUrl(value) {
 
@@ -1336,7 +1082,9 @@ function resolveBannerUrl(value) {
   }
 }
 
-/* 배너 카드 생성 */
+/* =====================================
+   배너 카드 생성
+===================================== */
 
 function createBannerCard(banner) {
 
@@ -1366,6 +1114,7 @@ function createBannerCard(banner) {
       document.createElement("img");
 
     image.src = imageUrl;
+
     image.alt =
       banner.title || "홍보 배너";
 
@@ -1417,7 +1166,9 @@ function createBannerCard(banner) {
   return link;
 }
 
-/* 홈페이지 배너 조회 */
+/* =====================================
+   홈페이지 배너 조회
+===================================== */
 
 async function loadHomepageBanners() {
 
@@ -1510,8 +1261,6 @@ async function loadHomepageBanners() {
       totalCount += banners.length;
     }
 
-    /* 공개 배너 영역 확인 */
-
     const visibleSections = [
       "homepageBannerLeft",
       "homepageBannerCenter",
@@ -1524,15 +1273,11 @@ async function loadHomepageBanners() {
       return section && !section.hidden;
     });
 
-    /* 배치 클래스 초기화 */
-
     layout.classList.remove(
       "center-only",
       "two-columns",
       "three-columns"
     );
-
-    /* 공개 영역 수에 따라 배치 */
 
     if (visibleSections.length === 1) {
 
@@ -1573,7 +1318,9 @@ async function loadHomepageBanners() {
 
 loadHomepageBanners();
 
-/* 입금 계좌 자동 표시 */
+/* =====================================
+   입금 계좌 자동 표시
+===================================== */
 
 async function loadPaymentAccounts() {
 
@@ -1656,7 +1403,9 @@ async function loadPaymentAccounts() {
 
 loadPaymentAccounts();
 
-/* 주요 게시물 */
+/* =====================================
+   주요 게시물
+===================================== */
 
 let homepagePosts = [];
 
@@ -1852,35 +1601,39 @@ loadHomepagePosts();
 
 </script>
 
-<!-- 주요 게시물 -->
+<!-- =====================================
+     시민참여 주요 게시물
+===================================== -->
 
 <section id="homepagePostsSection"
-class="homepage-posts-section">
+         class="homepage-posts-section">
 
-<div class="homepage-posts-header">
+  <div class="homepage-posts-header">
 
-<h2>시민참여 주요 게시물</h2>
+    <h2>시민참여 주요 게시물</h2>
 
-<a href="board.html">
-게시판 전체 보기 →
-</a>
+    <a href="board.html">
+      게시판 전체 보기 →
+    </a>
 
-</div>
+  </div>
 
-<div id="homepagePostList"
-class="homepage-post-list"></div>
+  <div id="homepagePostList"
+       class="homepage-post-list"></div>
 
-<p id="homepagePostEmpty"
-class="homepage-post-empty"
-hidden>
-등록된 주요 게시물이 없습니다.
-</p>
+  <p id="homepagePostEmpty"
+     class="homepage-post-empty"
+     hidden>
+    등록된 주요 게시물이 없습니다.
+  </p>
 
 </section>
 
 <main>
 
-<!-- 주요 소식 -->
+<!-- =====================================
+     주요 소식
+===================================== -->
 
 <section id="news">
 
@@ -1894,42 +1647,56 @@ hidden>
 <div class="grid">
 
 <div class="card">
+
 <h3>2026.10.30</h3>
 <h4>경기도 글로벌 AI 허브 유치전략 포럼</h4>
+
 <p>
 킨텍스에서 글로벌 AI 허브 유치 전략과
 국제협력 방안을 논의하는 포럼이 개최되었습니다.
 </p>
+
 </div>
 
 <div class="card">
+
 <h3>2026.10.26</h3>
 <h4>고양특례시의회 유치 촉구 결의</h4>
+
 <p>
 고양특례시의회가 글로벌 AI 허브
 고양특례시 유치 촉구 결의안을
 만장일치로 채택했습니다.
 </p>
+
 </div>
 
 <div class="card">
+
 <h3>2026.09.07</h3>
 <h4>범시민추진위원회 발대식</h4>
+
 <p>
 고양특례시 시민사회가 글로벌 AI 허브
 유치를 위한 범시민추진위원회를 출범시켰습니다.
 </p>
+
 </div>
 
 </div>
 
 </section>
 
-<!-- 위원회 소개 -->
+<!-- =====================================
+     위원회 소개
+===================================== -->
 
 <section id="committee">
 
-<h2>경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회</h2>
+<h2>
+경기도 글로벌 AI 허브 유치
+고양특례시 범시민추진위원회
+</h2>
 
 <p>
 경기도 글로벌 AI 허브 유치 고양특례시
@@ -1954,38 +1721,51 @@ hidden>
 </p>
 
 <div class="highlight">
+
 <strong>
 시민의 힘으로, 경기도의 역량으로, 세계와 함께!
 </strong>
+
 </div>
 
 <div class="grid">
 
 <div class="card">
+
 <h3>시민의 힘</h3>
+
 <p>
 시민의 자발적인 참여를 바탕으로
 유치 공감대와 범시민운동을 확대합니다.
 </p>
+
 </div>
 
 <div class="card">
+
 <h3>경기도의 역량</h3>
+
 <p>
 고양특례시와 경기도의 공공·민간 역량을 연결하여
 유치 경쟁력을 강화합니다.
 </p>
+
 </div>
 
 <div class="card">
+
 <h3>국제협력</h3>
+
 <p>
 국제기구의 초기 정착과 안정적인 운영,
 공공 AI 국제협력을 지원하는 방안을 모색합니다.
 </p>
+
 </div>
 
 </div>
+
+<!-- 조직도 -->
 
 <div class="committee-organization">
 
@@ -1997,14 +1777,14 @@ hidden>
 </p>
 
 <a href="./committee-chart.jpg"
-target="_blank"
-rel="noopener noreferrer">
+   target="_blank"
+   rel="noopener noreferrer">
 
 <img
-src="./committee-chart.jpg"
-alt="범시민추진위원회 조직도"
-class="organization-image"
-loading="lazy">
+  src="./committee-chart.jpg"
+  alt="범시민추진위원회 조직도"
+  class="organization-image"
+  loading="lazy">
 
 </a>
 
@@ -2022,7 +1802,9 @@ loading="lazy">
 
 </section>
 
-<!-- 글로벌 AI 허브 -->
+<!-- =====================================
+     글로벌 AI 허브
+===================================== -->
 
 <section id="hub">
 
@@ -2118,7 +1900,9 @@ AI 기술의 개발과 실증, 국제협력을
 
 </section>
 
-<!-- 고양특례시 경쟁력 -->
+<!-- =====================================
+     고양특례시 경쟁력
+===================================== -->
 
 <section id="goyang">
 
@@ -2162,44 +1946,32 @@ AI 기술의 개발과 실증, 국제협력을
 
 <div class="card">
 <h3>국제회의 인프라</h3>
-<p>
-킨텍스를 중심으로 한 국제회의·전시 기반
-</p>
+<p>킨텍스를 중심으로 한 국제회의·전시 기반</p>
 </div>
 
 <div class="card">
 <h3>의료·교육 역량</h3>
-<p>
-국립암센터 등 의료기관과 교육·연구 자산
-</p>
+<p>국립암센터 등 의료기관과 교육·연구 자산</p>
 </div>
 
 <div class="card">
 <h3>환경·생태 자산</h3>
-<p>
-장항습지와 다양한 생태환경 자산
-</p>
+<p>장항습지와 다양한 생태환경 자산</p>
 </div>
 
 <div class="card">
 <h3>정주환경</h3>
-<p>
-수도권 접근성과 다양한 생활·문화 인프라
-</p>
+<p>수도권 접근성과 다양한 생활·문화 인프라</p>
 </div>
 
 <div class="card">
 <h3>공공 AI 실증</h3>
-<p>
-보건·복지·환경·재난 분야의 현장 실증 가능성
-</p>
+<p>보건·복지·환경·재난 분야의 현장 실증 가능성</p>
 </div>
 
 <div class="card">
 <h3>시민사회 협력</h3>
-<p>
-시민 참여를 통한 국제협력 지원 잠재력
-</p>
+<p>시민 참여를 통한 국제협력 지원 잠재력</p>
 </div>
 
 </div>
@@ -2212,7 +1984,9 @@ AI 기술의 개발과 실증, 국제협력을
 
 </section>
 
-<!-- 유치 전략 -->
+<!-- =====================================
+     유치 전략
+===================================== -->
 
 <section id="strategy">
 
@@ -2292,7 +2066,9 @@ AI 기술의 개발과 실증, 국제협력을
 
 </section>
 
-<!-- 활동 연혁 -->
+<!-- =====================================
+     활동 연혁
+===================================== -->
 
 <section id="history">
 
@@ -2306,39 +2082,75 @@ AI 기술의 개발과 실증, 국제협력을
 <div class="timeline">
 
 <article class="event">
+
 <time datetime="2026-09-07">2026.09.07</time>
+
 <h3>범시민추진위원회 발대식</h3>
-<p>호수공원 꽃전시관에서 발대식을 개최했습니다.</p>
+
+<p>
+호수공원 꽃전시관에서 발대식을 개최했습니다.
+</p>
+
 </article>
 
 <article class="event">
+
 <time datetime="2026-10-10">2026.10.10</time>
+
 <h3>시민 서명운동 확대</h3>
-<p>글로벌 AI 허브 유치를 위한 시민 서명운동을 확대했습니다.</p>
+
+<p>
+글로벌 AI 허브 유치를 위한 시민 서명운동을 확대했습니다.
+</p>
+
 </article>
 
 <article class="event">
+
 <time datetime="2026-10-14">2026.10.14</time>
+
 <h3>정부 입지 선정 평가기준 공청회</h3>
-<p>글로벌 AI 허브 입지 선정 평가기준 공청회가 개최되었습니다.</p>
+
+<p>
+글로벌 AI 허브 입지 선정 평가기준 공청회가 개최되었습니다.
+</p>
+
 </article>
 
 <article class="event">
+
 <time datetime="2026-10-20">2026.10.20</time>
+
 <h3>제7회 고양혁신전략세미나</h3>
-<p>유치 전략과 실행조직 구축의 필요성을 제기했습니다.</p>
+
+<p>
+유치 전략과 실행조직 구축의 필요성을 제기했습니다.
+</p>
+
 </article>
 
 <article class="event">
+
 <time datetime="2026-10-26">2026.10.26</time>
+
 <h3>고양특례시의회 유치 촉구 결의</h3>
-<p>시의회에서 유치 촉구 결의안이 만장일치로 가결되었습니다.</p>
+
+<p>
+시의회에서 유치 촉구 결의안이 만장일치로 가결되었습니다.
+</p>
+
 </article>
 
 <article class="event">
+
 <time datetime="2026-10-30">2026.10.30</time>
+
 <h3>경기도 글로벌 AI 허브 유치전략 포럼</h3>
-<p>킨텍스에서 유치전략 포럼이 개최되었습니다.</p>
+
+<p>
+킨텍스에서 유치전략 포럼이 개최되었습니다.
+</p>
+
 </article>
 
 </div>
@@ -2351,7 +2163,9 @@ AI 기술의 개발과 실증, 국제협력을
 
 </section>
 
-<!-- 시민 참여 -->
+<!-- =====================================
+     시민 참여
+===================================== -->
 
 <section id="join">
 
@@ -2381,9 +2195,9 @@ AI 기술의 개발과 실증, 국제협력을
 </p>
 
 <a href="https://forms.gle/Um2iRD9fAhoU1CDW8"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 온라인 서명 참여
 </a>
 
@@ -2399,13 +2213,13 @@ class="btn">
 </p>
 
 <div id="bannerAccountInfo"
-class="payment-account-info"
-hidden></div>
+     class="payment-account-info"
+     hidden></div>
 
 <a href="https://forms.gle/pRM9h8SBhYWXnhFi6"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 현수막 게시 신청
 </a>
 
@@ -2426,13 +2240,13 @@ class="btn">
 </p>
 
 <div id="membershipAccountInfo"
-class="payment-account-info"
-hidden></div>
+     class="payment-account-info"
+     hidden></div>
 
 <a href="https://forms.gle/hdgHtRV2qpxrAhjW8"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 후원회원 가입
 </a>
 
@@ -2448,9 +2262,9 @@ class="btn">
 </p>
 
 <a href="https://forms.gle/cisRHEsN61pxVycG8"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 차량 스티커 신청
 </a>
 
@@ -2466,9 +2280,9 @@ class="btn">
 </p>
 
 <a href="https://forms.gle/FaZCDwm7gqu5rthb7"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 추진위원 등록
 </a>
 
@@ -2484,9 +2298,9 @@ class="btn">
 </p>
 
 <a href="https://invite.kakao.com/tc/6vBTJeOAAa"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 카카오톡 소통방 입장
 </a>
 
@@ -2502,9 +2316,9 @@ class="btn">
 </p>
 
 <a href="https://fb.me/g/8JVQBabwP/W4YofuHk"
-target="_blank"
-rel="noopener noreferrer"
-class="btn">
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn">
 페이스북 공론장 가입
 </a>
 
@@ -2521,7 +2335,7 @@ class="btn">
 </p>
 
 <a href="mailto:blue.stone.hong@gmail.com"
-class="btn">
+   class="btn">
 위원장에게 이메일 보내기
 </a>
 
@@ -2531,7 +2345,9 @@ class="btn">
 
 </section>
 
-<!-- 지식 자료 -->
+<!-- =====================================
+     지식·자료
+===================================== -->
 
 <section id="library">
 
@@ -2582,7 +2398,9 @@ class="btn">
 
 </main>
 
-<!-- 하단 -->
+<!-- =====================================
+     하단
+===================================== -->
 
 <footer class="site-footer">
 
@@ -2614,7 +2432,7 @@ class="btn">
 <a href="signup.html">회원가입</a>
 <a href="privacy.html">개인정보처리방침</a>
 
-<!-- 하단 10개 언어 메뉴 -->
+<!-- 하단 10개 언어 -->
 
 <a href="index.html"
    lang="ko"
@@ -2638,7 +2456,9 @@ English
 Русский
 </a>
 
-<a href="index-ar.html" lang="ar" dir="rtl">
+<a href="index-ar.html"
+   lang="ar"
+   dir="rtl">
 العربية
 </a>
 
@@ -2656,7 +2476,7 @@ Deutsch
 
 <a href="index-it.html" lang="it">
 Italiano
-</a>  
+</a>
 
 </div>
 
@@ -2676,6 +2496,10 @@ All rights reserved.
 </div>
 
 </footer>
+
+<!-- =====================================
+     저작권 연도 자동 표시
+===================================== -->
 
 <script>
 
@@ -2698,6 +2522,5 @@ All rights reserved.
 
 </script>
 
-  
 </body>
-</html>
+</html>  
