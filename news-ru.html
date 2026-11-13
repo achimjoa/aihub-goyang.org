@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<title>
+Новости и объявления |
+Инициатива «Глобальный центр ИИ»
+</title>
+
+<meta name="description"
+content="Новости, объявления, мероприятия, деятельность и политические инициативы Гражданского комитета содействия размещению Глобального центра ИИ в особом городе Коян, Республика Корея.">
+
+<style>
+
+/* =====================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ШАПКА САЙТА
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   ОСНОВНОЕ СОДЕРЖИМОЕ
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+/* =====================================
+   ПОИСК
+===================================== */
+
+.search-box {
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   ФИЛЬТРЫ КАТЕГОРИЙ
+===================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   КАРТОЧКИ НОВОСТЕЙ
+===================================== */
+
+.news-list {
+  display: grid;
+  gap: 18px;
+}
+
+.news-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  border-left: 5px solid #168de0;
+}
+
+.news-item h3 {
+  color: #0754a6;
+  margin: 10px 0;
+  font-size: 21px;
+  overflow-wrap: anywhere;
+}
+
+.category {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.date {
+  color: #68788c;
+  font-size: 14px;
+}
+
+.news-item p {
+  color: #46566d;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.content-language {
+  display: inline-block;
+  color: #68788c;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.news-link {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.news-link:hover {
+  background: #003a7a;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #68788c;
+}
+
+.status {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   ПОДВАЛ САЙТА
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .intro,
+  .news-item {
+    padding: 20px;
+  }
+
+  .news-link {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     ШАПКА САЙТА
+===================================== -->
+
+<header>
+
+<h1>
+Новости и объявления
+</h1>
+
+<p>
+Инициатива «Глобальный центр ИИ»<br>
+Особый город Коян, Республика Корея
+</p>
+
+<p>
+Информация о гражданских инициативах,<br>
+международном сотрудничестве,<br>
+политических предложениях<br>
+и основных событиях.
+</p>
+
+<div class="header-links">
+
+<a href="index-ru.html"
+class="home-link">
+← Главная страница
+</a>
+
+<a href="news.html"
+class="home-link"
+lang="ko">
+한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     ВВЕДЕНИЕ
+===================================== -->
+
+<section class="intro">
+
+<h2>
+Последние новости Гражданского комитета содействия
+</h2>
+
+<p>
+На этой странице представлена
+информация о деятельности
+Гражданского комитета содействия
+размещению Глобального центра ИИ
+в особом городе Коян.
+</p>
+
+<p>
+Публикации могут включать
+информацию о деятельности Комитета,
+общественные объявления,
+мероприятия,
+публикации в средствах массовой информации
+и новости государственной политики.
+</p>
+
+<p>
+Новая информация будет добавляться
+по мере её поступления.
+</p>
+
+</section>
+
+<!-- =====================================
+     ИНФОРМАЦИЯ О ЯЗЫКЕ
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Информация о языке публикаций
+</strong>
+
+<p>
+На этой русскоязычной странице
+отображаются новости и объявления
+из существующей базы публикаций
+Гражданского комитета содействия.
+</p>
+
+<p>
+Некоторые материалы доступны
+только на корейском языке.
+Оригинальные корейские заголовки
+и описания отображаются
+без автоматического перевода.
+</p>
+
+<p>
+При наличии соответствующей ссылки
+можно открыть оригинальную статью
+или связанный источник информации.
+</p>
+
+</div>
+
+<!-- =====================================
+     ПОИСК
+===================================== -->
+
+<div class="search-box">
+
+<input
+type="search"
+id="searchInput"
+placeholder="Поиск новостей по заголовку или ключевым словам"
+aria-label="Поиск новостей и объявлений">
+
+</div>
+
+<!-- =====================================
+     ФИЛЬТРЫ
+===================================== -->
+
+<nav class="filters"
+aria-label="Фильтр новостей по категориям">
+
+<button
+type="button"
+class="active"
+data-category="all"
+aria-pressed="true">
+Все новости
+</button>
+
+<button
+type="button"
+data-category="notice"
+aria-pressed="false">
+Объявления
+</button>
+
+<button
+type="button"
+data-category="activity"
+aria-pressed="false">
+Деятельность комитета
+</button>
+
+<button
+type="button"
+data-category="event"
+aria-pressed="false">
+Мероприятия
+</button>
+
+<button
+type="button"
+data-category="press"
+aria-pressed="false">
+Публикации в СМИ
+</button>
+
+<button
+type="button"
+data-category="policy"
+aria-pressed="false">
+Новости государственной политики
+</button>
+
+</nav>
+
+<!-- =====================================
+     СПИСОК НОВОСТЕЙ
+===================================== -->
+
+<div
+class="news-list"
+id="newsList"
+aria-live="polite">
+</div>
+
+<p
+class="empty"
+id="empty"
+hidden>
+По вашему запросу новости не найдены.
+</p>
+
+</main>
+
+<!-- =====================================
+     ПОДВАЛ САЙТА
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Гражданский комитет содействия<br>
+размещению Глобального центра ИИ<br>
+в особом городе Коян
+</strong>
+</p>
+
+<p>
+Провинция Кёнгидо,<br>
+Республика Корея
+</p>
+
+<p>
+Вместе с гражданами,<br>
+вместе с провинцией Кёнгидо<br>
+и вместе со всем миром.
+</p>
+
+<p>
+<a href="index-ru.html">
+Главная страница
+</a>
+&nbsp; | &nbsp;
+<a href="news.html" lang="ko">
+한국어
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     МОДУЛЬ НОВОСТЕЙ SUPABASE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   ПОДКЛЮЧЕНИЕ К SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   ЭЛЕМЕНТЫ СТРАНИЦЫ
+===================================== */
+
+const newsList =
+  document.getElementById("newsList");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const empty =
+  document.getElementById("empty");
+
+/* =====================================
+   НАЗВАНИЯ КАТЕГОРИЙ
+===================================== */
+
+const categoryNames = {
+
+  notice: "Объявления",
+
+  activity: "Деятельность комитета",
+
+  event: "Мероприятия",
+
+  press: "Публикации в СМИ",
+
+  policy: "Новости государственной политики"
+
+};
+
+/* =====================================
+   СОСТОЯНИЕ
+===================================== */
+
+let news = [];
+
+let currentCategory = "all";
+
+let loadFailed = false;
+
+/* =====================================
+   ФОРМАТИРОВАНИЕ ДАТЫ
+===================================== */
+
+function formatDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+    return String(value).slice(0, 10);
+  }
+
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0")
+  ].join(".");
+
+}
+
+/* =====================================
+   ОПРЕДЕЛЕНИЕ КОРЕЙСКОГО ТЕКСТА
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   ПРОВЕРКА ССЫЛОК
+===================================== */
+
+function getSafeLink(value) {
+
+  if (!value) return "";
+
+  try {
+
+    const url = new URL(
+      value,
+      window.location.href
+    );
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+      return "";
+    }
+
+    return url.href;
+
+  } catch (error) {
+
+    return "";
+
+  }
+
+}
+
+/* =====================================
+   ЗАГРУЗКА НОВОСТЕЙ
+===================================== */
+
+async function loadNews() {
+
+  newsList.innerHTML =
+    '<div class="status">' +
+    'Загрузка новостей и объявлений...' +
+    '</div>';
+
+  empty.hidden = true;
+
+  const combinedNews = [];
+
+  let successfulQueries = 0;
+
+  /* =====================================
+     1. НОВОСТНЫЕ ПУБЛИКАЦИИ
+  ===================================== */
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id,title,category,description,link,published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    successfulQueries++;
+
+    for (const item of data || []) {
+
+      combinedNews.push({
+
+        id: "news-" + item.id,
+
+        date: formatDate(
+          item.published_at
+        ),
+
+        sortDate:
+          item.published_at || "",
+
+        category:
+          item.category || "",
+
+        categoryName:
+          categoryNames[item.category] ||
+          "Другое",
+
+        title:
+          item.title || "",
+
+        description:
+          item.description || "",
+
+        link:
+          item.link || ""
+
+      });
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "Ошибка загрузки новостей:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     2. ПУБЛИКАЦИИ ИЗ ОБЩЕГО ФОРУМА
+  ===================================== */
+
+  try {
+
+    const {
+      data: placements,
+      error
+    } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "notice",
+          "activity"
+        ]);
+
+    if (error) {
+      throw error;
+    }
+
+    if (
+      placements &&
+      placements.length > 0
+    ) {
+
+      const postIds = [
+        ...new Set(
+          placements.map(
+            item => item.post_id
+          )
+        )
+      ];
+
+      const {
+        data: posts,
+        error: postError
+      } =
+        await supabase
+          .from("board_posts")
+          .select(
+            "id,title,content,created_at"
+          )
+          .in("id", postIds);
+
+      if (postError) {
+        throw postError;
+      }
+
+      const postMap = new Map(
+        (posts || []).map(post => [
+          String(post.id),
+          post
+        ])
+      );
+
+      for (const placement of placements) {
+
+        const post = postMap.get(
+          String(placement.post_id)
+        );
+
+        if (!post) continue;
+
+        const content =
+          post.content || "";
+
+        combinedNews.push({
+
+          id:
+            "board-" +
+            placement.placement +
+            "-" +
+            post.id,
+
+          date:
+            formatDate(
+              post.created_at
+            ),
+
+          sortDate:
+            post.created_at || "",
+
+          category:
+            placement.placement,
+
+          categoryName:
+            categoryNames[
+              placement.placement
+            ] || "Другое",
+
+          title:
+            post.title || "",
+
+          description:
+            content.length > 200
+              ? content.slice(0, 200) + "..."
+              : content,
+
+          link:
+            "board.html?post=" +
+            encodeURIComponent(post.id)
+
+        });
+
+      }
+
+    }
+
+    successfulQueries++;
+
+  } catch (error) {
+
+    console.error(
+      "Ошибка загрузки публикаций форума:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     3. СОРТИРОВКА НОВОСТЕЙ
+  ===================================== */
+
+  combinedNews.sort((a, b) =>
+    String(b.sortDate)
+      .localeCompare(
+        String(a.sortDate)
+      )
+  );
+
+  news = combinedNews;
+
+  /* =====================================
+     4. ОБРАБОТКА ОШИБКИ
+  ===================================== */
+
+  if (successfulQueries === 0) {
+
+    loadFailed = true;
+
+    newsList.innerHTML =
+      '<div class="status">' +
+      'Не удалось загрузить новости. ' +
+      'Пожалуйста, попробуйте позже.' +
+      '</div>';
+
+    empty.hidden = true;
+
+    return;
+
+  }
+
+  loadFailed = false;
+
+  renderNews();
+
+  console.log(
+    "Загружено новостей:",
+    news.length
+  );
+
+}
+
+/* =====================================
+   ОТОБРАЖЕНИЕ НОВОСТЕЙ
+===================================== */
+
+function renderNews() {
+
+  if (loadFailed) return;
+
+  const keyword =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  const filtered = news.filter(item => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      item.category === currentCategory;
+
+    const searchText = [
+      item.title,
+      item.description,
+      item.categoryName,
+      item.date
+    ].join(" ").toLowerCase();
+
+    return (
+      categoryMatch &&
+      searchText.includes(keyword)
+    );
+
+  });
+
+  filtered.sort((a, b) =>
+    String(b.sortDate || b.date || "")
+      .localeCompare(
+        String(a.sortDate || a.date || "")
+      )
+  );
+
+  newsList.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "news-item";
+
+    const category =
+      document.createElement("span");
+
+    category.className = "category";
+
+    category.textContent =
+      item.categoryName;
+
+    const date =
+      document.createElement("p");
+
+    date.className = "date";
+
+    date.textContent =
+      item.date;
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title;
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description;
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* =====================================
+       УВЕДОМЛЕНИЕ О КОРЕЙСКОМ ТЕКСТЕ
+    ===================================== */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Оригинал на корейском языке";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* =====================================
+       ССЫЛКА НА СТАТЬЮ
+    ===================================== */
+
+    const safeLink =
+      getSafeLink(item.link);
+
+    if (safeLink) {
+
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "news-link";
+
+      link.href =
+        safeLink;
+
+      const url =
+        new URL(safeLink);
+
+      const isBoardLink =
+        url.origin ===
+          window.location.origin &&
+        url.pathname.endsWith(
+          "/board.html"
+        );
+
+      if (isBoardLink) {
+
+        link.target = "_self";
+
+      } else {
+
+        link.target = "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+      }
+
+      link.textContent =
+        "Подробнее";
+
+      card.appendChild(link);
+
+    }
+
+    newsList.appendChild(card);
+
+  });
+
+  empty.hidden =
+    filtered.length !== 0;
+
+}
+
+/* =====================================
+   ФИЛЬТРЫ КАТЕГОРИЙ
+===================================== */
+
+document
+  .querySelectorAll("[data-category]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentCategory =
+          button.dataset.category;
+
+        document
+          .querySelectorAll(
+            "[data-category]"
+          )
+          .forEach(btn => {
+
+            const isActive =
+              btn.dataset.category ===
+              currentCategory;
+
+            btn.classList.toggle(
+              "active",
+              isActive
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              String(isActive)
+            );
+
+          });
+
+        renderNews();
+
+      }
+    );
+
+  });
+
+/* =====================================
+   ПОИСК
+===================================== */
+
+searchInput.addEventListener(
+  "input",
+  renderNews
+);
+
+/* =====================================
+   ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+===================================== */
+
+loadNews();
+
+</script>
+
+</body>
+</html>
