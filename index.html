@@ -873,6 +873,88 @@ main section h3 {
   }
 
 }
+
+/* ==========================================
+   MOBILE NAVIGATION SCROLL FIX
+   가로·세로 화면 대응
+========================================== */
+
+@media (max-width: 1199px) {
+
+  /* 상단 메뉴 전체 */
+
+  #homepageLayoutModule .home-navigation {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 8px 10px !important;
+  }
+
+  /* 메뉴를 실제 스크롤 영역으로 설정 */
+
+  #homepageLayoutModule .home-menu {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+
+    justify-content: flex-start !important;
+    align-items: center !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ffe44d #0754a6;
+
+    padding-bottom: 5px;
+  }
+
+  /* 메뉴 항목 크기 유지 */
+
+  #homepageLayoutModule .home-menu > a {
+    display: inline-flex !important;
+
+    flex: 0 0 auto !important;
+
+    white-space: nowrap !important;
+
+    min-height: 42px;
+
+    padding: 8px 10px !important;
+  }
+
+  /* 다국어 버튼 */
+
+  #homepageLayoutModule .language-dropdown {
+    position: relative !important;
+
+    flex: 0 0 auto !important;
+  }
+
+  /* 스크롤바 표시 */
+
+  #homepageLayoutModule
+  .home-menu::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  #homepageLayoutModule
+  .home-menu::-webkit-scrollbar-track {
+    background: #0754a6;
+  }
+
+  #homepageLayoutModule
+  .home-menu::-webkit-scrollbar-thumb {
+    background: #ffe44d;
+    border-radius: 10px;
+  }
+
+}
   
 </style>
 </head>
