@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Presse und Medienberichte | Initiative für ein globales KI-Zentrum
+</title>
+
+<meta
+  name="description"
+  content="Presseberichte und Medienveröffentlichungen über die Initiative für ein globales KI-Zentrum und das Bürgerkomitee in der Sonderstadt Goyang, Republik Korea."
+>
+
+<style>
+
+/* =====================================
+   GRUNDEINSTELLUNGEN
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   KOPFBEREICH
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   HAUPTINHALT
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.intro h2 {
+  margin-top: 0;
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+.language-notice p {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   SUCHE
+===================================== */
+
+.search-box {
+  margin: 25px 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   PRESSELISTE
+===================================== */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press-item {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.press-item h3 {
+  margin: 8px 0;
+  color: #0754a6;
+  overflow-wrap: anywhere;
+}
+
+.press-item p {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.press-date {
+  color: #69788c;
+  font-size: 14px;
+}
+
+.press-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e7f0fa;
+  color: #175b9a;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.press-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.press-link:hover {
+  text-decoration: underline;
+}
+
+.content-language {
+  display: block;
+  margin-top: 12px;
+  color: #69788c;
+  font-size: 13px;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   VERWANDTE SEITEN
+===================================== */
+
+.related {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.related h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   FUSSZEILE
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 60px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   MOBILE ANSICHT
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  main {
+    margin: 25px auto;
+    padding: 0 12px;
+  }
+
+  .intro,
+  .press-item,
+  .related {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     KOPFBEREICH
+===================================== -->
+
+<header>
+
+<h1>
+Presse und Medienberichte
+</h1>
+
+<p>
+Initiative für ein globales KI-Zentrum<br>
+Sonderstadt Goyang, Republik Korea
+</p>
+
+<p>
+Zeitungsartikel,<br>
+Fernseh- und Rundfunkberichte<br>
+sowie weitere Medienveröffentlichungen
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-de.html"
+  class="home-link"
+>
+  ← Deutsche Startseite
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     EINFÜHRUNG
+===================================== -->
+
+<section class="intro">
+
+<h2>
+Medienberichte über die Initiative
+für ein globales KI-Zentrum
+</h2>
+
+<p>
+Diese Seite bietet Zugang zu
+Zeitungsartikeln,
+Fernseh- und Rundfunkberichten
+sowie weiteren Medienveröffentlichungen
+über die geplante Initiative
+für ein globales KI-Zentrum
+und damit verbundene Aktivitäten
+in der Provinz Gyeonggi
+und der Sonderstadt Goyang.
+</p>
+
+<p>
+Die Berichte sollen
+internationalen Besucherinnen und Besuchern
+helfen,
+öffentliche Diskussionen,
+politische Entwicklungen
+und bürgerschaftliche Aktivitäten
+im Zusammenhang mit der Initiative
+besser zu verstehen.
+</p>
+
+</section>
+
+<!-- =====================================
+     SPRACHINFORMATIONEN
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Sprachinformationen
+</strong>
+
+<p>
+Die meisten Medienberichte
+werden von koreanischen
+Nachrichtenorganisationen veröffentlicht.
+Die ursprünglichen koreanischen Titel
+und Beschreibungen werden
+ohne automatische Übersetzung angezeigt.
+</p>
+
+<p>
+Wählen Sie den Artikellink,
+um den Originalbericht
+auf der Website
+des jeweiligen Medienunternehmens
+zu lesen.
+</p>
+
+</div>
+
+<!-- =====================================
+     SUCHE
+===================================== -->
+
+<div class="search-box">
+
+<input
+  type="search"
+  id="pressSearch"
+  placeholder="Medienberichte nach Titel oder Stichwort suchen"
+  aria-label="Medienberichte durchsuchen"
+>
+
+</div>
+
+<!-- =====================================
+     PRESSELISTE
+===================================== -->
+
+<div
+  class="press-list"
+  id="pressList"
+  aria-live="polite"
+>
+
+  <p class="empty">
+    Medienberichte werden vorbereitet.
+  </p>
+
+</div>
+
+<!-- =====================================
+     VERWANDTE SEITEN
+===================================== -->
+
+<section class="related">
+
+<h2>
+Weitere Informationen
+</h2>
+
+<p>
+Weitere Informationen
+über die Initiative
+für ein globales KI-Zentrum
+finden Sie auf den folgenden Seiten.
+</p>
+
+<a
+  href="news-de.html"
+  class="button"
+>
+  Nachrichten und Bekanntmachungen
+</a>
+
+<a
+  href="history-de.html"
+  class="button"
+>
+  Chronologie und Meilensteine
+</a>
+
+<a
+  href="committee-de.html"
+  class="button"
+>
+  Über das Bürgerkomitee
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     FUSSZEILE
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Bürgerkomitee zur Förderung<br>
+der Ansiedlung eines globalen KI-Zentrums<br>
+in der Sonderstadt Goyang
+</strong>
+</p>
+
+<p>
+Provinz Gyeonggi,
+Republik Korea
+</p>
+
+<p>
+Mit den Bürgerinnen und Bürgern,<br>
+mit der Provinz Gyeonggi<br>
+und mit der Welt.
+</p>
+
+<p>
+<a href="index-de.html">
+Deutsche Startseite
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE-MEDIENMODUL
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE-VERBINDUNG
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+/*
+  Öffentlicher Supabase-Schlüssel.
+  Gleicher Schlüssel wie news-de.html.
+*/
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   DOM-ELEMENTE
+===================================== */
+
+const pressList =
+  document.getElementById("pressList");
+
+const pressSearch =
+  document.getElementById("pressSearch");
+
+let pressData = [];
+
+/* =====================================
+   MELDUNGEN ANZEIGEN
+===================================== */
+
+function showPressMessage(message) {
+
+  pressList.replaceChildren();
+
+  const paragraph =
+    document.createElement("p");
+
+  paragraph.className = "empty";
+
+  paragraph.textContent = message;
+
+  pressList.appendChild(paragraph);
+
+}
+
+/* =====================================
+   DATUMSFORMATIERUNG
+===================================== */
+
+function formatPressDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return String(value)
+    .slice(0, 10)
+    .replaceAll("-", ".");
+
+}
+
+/* =====================================
+   KOREANISCHE TEXTE ERKENNEN
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   PRESSEBERICHTE ANZEIGEN
+===================================== */
+
+function renderPress() {
+
+  const keyword =
+    pressSearch.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    pressData.filter(item => {
+
+      const searchText = [
+        item.title || "",
+        item.description || "",
+        item.published_at || ""
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchText.includes(keyword);
+
+    });
+
+  pressList.replaceChildren();
+
+  if (filtered.length === 0) {
+
+    showPressMessage(
+      "Keine Medienberichte entsprechen Ihrer Suche."
+    );
+
+    return;
+
+  }
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "press-item";
+
+    /* Kategorie */
+
+    const category =
+      document.createElement("span");
+
+    category.className =
+      "press-category";
+
+    category.textContent =
+      "Medienberichte";
+
+    /* Datum */
+
+    const date =
+      document.createElement("p");
+
+    date.className =
+      "press-date";
+
+    date.textContent =
+      formatPressDate(
+        item.published_at
+      );
+
+    /* Titel */
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title || "";
+
+    /* Beschreibung */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description || "";
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* Hinweis auf koreanische Inhalte */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Originalinhalt auf Koreanisch";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* Link zum Originalartikel */
+
+    if (item.link) {
+
+      try {
+
+        const url =
+          new URL(item.link);
+
+        if (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        ) {
+
+          const link =
+            document.createElement("a");
+
+          link.className =
+            "press-link";
+
+          link.href = url.href;
+
+          link.target = "_blank";
+
+          link.rel =
+            "noopener noreferrer";
+
+          link.textContent =
+            "Originalartikel lesen →";
+
+          card.appendChild(link);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Ungültiger Medienlink:",
+          item.link
+        );
+
+      }
+
+    }
+
+    pressList.appendChild(card);
+
+  });
+
+}
+
+/* =====================================
+   PRESSEBERICHTE LADEN
+===================================== */
+
+async function loadPress() {
+
+  showPressMessage(
+    "Medienberichte werden geladen..."
+  );
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, description, link, published_at"
+        )
+        .eq("category", "press")
+        .order("published_at", {
+          ascending: false
+        })
+        .order("id", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    pressData = data || [];
+
+    console.log(
+      "Geladene Medienberichte:",
+      pressData.length
+    );
+
+    if (pressData.length === 0) {
+
+      showPressMessage(
+        "Derzeit sind keine Medienberichte verfügbar."
+      );
+
+      return;
+
+    }
+
+    renderPress();
+
+  } catch (error) {
+
+    console.error(
+      "Abfrage der Medienberichte fehlgeschlagen:",
+      error
+    );
+
+    showPressMessage(
+      "Medienberichte können derzeit nicht geladen werden. Bitte versuchen Sie es später erneut."
+    );
+
+  }
+
+}
+
+/* =====================================
+   SUCHE
+===================================== */
+
+pressSearch.addEventListener(
+  "input",
+  renderPress
+);
+
+/* =====================================
+   ERSTER LADEVORGANG
+===================================== */
+
+loadPress();
+
+</script>
+
+</body>
+</html>
