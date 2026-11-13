@@ -105,26 +105,6 @@ body {
 
 
   
-/* PC 메뉴 */
-
-@media (min-width: 1200px) {
-
-  #homepageLayoutModule .home-menu {
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  #homepageLayoutModule .home-menu a {
-    padding: 8px 7px;
-    font-size: 12px;
-  }
-
-  #homepageLayoutModule .home-navigation {
-    padding: 10px 5px;
-    overflow: visible;
-  }
-
-}
 
 /* 대표 이미지 */
 
@@ -721,81 +701,6 @@ main section h3 {
   }
 }
 
-/* 다국어 선택 메뉴 */
-
-#homepageLayoutModule .language-dropdown {
-  position: relative;
-  flex-shrink: 0;
-}
-
-#homepageLayoutModule .language-dropdown summary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  padding: 9px 14px;
-  background: #ffe44d;
-  color: #003b79;
-  border: 1px solid #ffe44d;
-  border-radius: 6px;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  list-style: none;
-}
-
-#homepageLayoutModule .language-dropdown summary::-webkit-details-marker {
-  display: none;
-}
-
-#homepageLayoutModule .language-dropdown summary:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 3px;
-}
-
-#homepageLayoutModule .language-options {
-  position: absolute;
-  top: calc(100% + 6px);
-  right: 0;
-  z-index: 1000;
-  min-width: 165px;
-  padding: 8px;
-  background: white;
-  border: 1px solid #cbdff5;
-  border-radius: 8px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
-}
-
-#homepageLayoutModule .language-options a,
-#homepageLayoutModule .language-options span {
-  display: block;
-  width: 100%;
-  min-height: 38px;
-  padding: 8px 12px;
-  background: white;
-  border: none;
-  border-radius: 5px;
-  color: #0754a6;
-  font-size: 14px;
-  text-align: left;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-#homepageLayoutModule .language-options a:hover {
-  background: #eaf4ff;
-}
-
-#homepageLayoutModule .language-options a[aria-current="page"] {
-  background: #eaf4ff;
-  font-weight: 800;
-}
-
-#homepageLayoutModule .language-options .language-pending {
-  color: #788493;
-  cursor: default;
-}
 
 /* =====================================
    다국어 선택 메뉴
@@ -2496,14 +2401,50 @@ class="btn">
 <a href="login.html">로그인</a>
 <a href="signup.html">회원가입</a>
 <a href="privacy.html">개인정보처리방침</a>
-<a href="index.html" lang="ko"
-   aria-current="page">한국어</a>
+
+<!-- 하단 10개 언어 메뉴 -->
+
+<a href="index.html"
+   lang="ko"
+   aria-current="page">
+한국어 ✓
+</a>
 
 <a href="index-en.html" lang="en">
-English</a>
+English
+</a>
+
+<a href="index-zh.html" lang="zh">
+中文
+</a>
+
+<a href="index-ja.html" lang="ja">
+日本語
+</a>
+
+<a href="index-ru.html" lang="ru">
+Русский
+</a>
+
+<a href="index-ar.html" lang="ar" dir="rtl">
+العربية
+</a>
 
 <a href="index-es.html" lang="es">
-Español</a>
+Español
+</a>
+
+<a href="index-fr.html" lang="fr">
+Français
+</a>
+
+<a href="index-de.html" lang="de">
+Deutsch
+</a>
+
+<a href="index-it.html" lang="it">
+Italiano
+</a>  
 
 </div>
 
