@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>
+グローバルAIハブ構想 | 推進経緯と主な沿革
+</title>
+
+<meta name="description"
+content="大韓民国におけるグローバルAIハブ構想の推進経緯と、中央政府、京畿道、高陽特例市、市民推進委員会による主な活動を紹介します。">
+
+<style>
+
+/* =====================================
+   基本設定
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    Arial,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ヘッダー
+===================================== */
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+  line-height: 1.3;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* =====================================
+   メインコンテンツ
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.intro {
+  text-align: center;
+}
+
+/* =====================================
+   フィルター
+===================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #0754a6;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+.filters button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   タイムライン
+===================================== */
+
+.timeline {
+  border-left: 4px solid #168de0;
+  margin-left: 12px;
+  padding-left: 25px;
+}
+
+.event {
+  position: relative;
+  padding: 0 0 25px;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #168de0;
+  border-radius: 50%;
+}
+
+.date {
+  color: #0754a6;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.type {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.event h3 {
+  margin: 5px 0;
+  color: #17315b;
+}
+
+.event p {
+  margin: 5px 0;
+  color: #46566d;
+}
+
+/* =====================================
+   今後の重点課題
+===================================== */
+
+.future {
+  border-left: 4px solid #1b9a80;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.note {
+  background: #fff8e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+/* =====================================
+   ボタン
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   フッター
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   モバイル対応
+===================================== */
+
+@media (max-width: 600px) {
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================
+     ヘッダー
+===================================== -->
+
+<header>
+
+<h1>
+グローバルAIハブ構想<br>
+推進経緯と主な沿革
+</h1>
+
+<p>
+中央政府・京畿道<br>
+高陽特例市・市民推進委員会
+</p>
+
+<div class="header-links">
+
+<a href="index-ja.html" class="home-link">
+← 日本語ホーム
+</a>
+
+<a href="history.html" class="home-link" lang="ko">
+한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     はじめに
+===================================== -->
+
+<section class="intro">
+
+<h2>
+グローバルAIハブ構想の歩み
+</h2>
+
+<p>
+このタイムラインでは、
+大韓民国における
+グローバルAIハブ構想に関連する
+主な進展と、
+構想中のグローバルAIハブを
+高陽特例市へ誘致するための
+活動を紹介します。
+</p>
+
+<p>
+市民参加、
+政策面の準備、
+関係機関の協力は、
+将来の国際協力に向けた
+重要な基盤となります。
+</p>
+
+</section>
+
+<!-- =====================================
+     機関別フィルター
+===================================== -->
+
+<nav
+class="filters"
+aria-label="組織別に沿革を絞り込む"
+>
+
+<button
+type="button"
+class="active"
+data-type="all"
+aria-pressed="true">
+すべて
+</button>
+
+<button
+type="button"
+data-type="government"
+aria-pressed="false">
+中央政府
+</button>
+
+<button
+type="button"
+data-type="gyeonggi"
+aria-pressed="false">
+京畿道
+</button>
+
+<button
+type="button"
+data-type="goyang"
+aria-pressed="false">
+高陽特例市
+</button>
+
+<button
+type="button"
+data-type="civic"
+aria-pressed="false">
+市民推進委員会
+</button>
+
+</nav>
+
+<!-- =====================================
+     主な沿革
+===================================== -->
+
+<section>
+
+<h2>
+主な沿革
+</h2>
+
+<div
+class="timeline"
+id="timeline"
+aria-live="polite">
+</div>
+
+</section>
+
+<!-- =====================================
+     今後の重点課題
+===================================== -->
+
+<section>
+
+<h2>
+今後の重点課題
+</h2>
+
+<div class="future">
+
+<h3>
+立地選定評価への準備
+</h3>
+
+<p>
+政府の公式発表と
+評価基準を確認し、
+客観的な根拠資料に基づいて、
+高陽特例市の競争力と
+実施計画を提示します。
+</p>
+
+</div>
+
+<div class="future">
+
+<h3>
+国際機関の初期拠点整備への準備
+</h3>
+
+<p>
+参加機関に必要となる可能性がある
+事務所施設、
+住宅環境、
+医療、
+教育、
+交通、
+その他のサービスについて、
+実践的な提案を策定します。
+</p>
+
+</div>
+
+<div class="future">
+
+<h3>
+公益のためのAI実証事業の準備
+</h3>
+
+<p>
+AIを活用した
+必要不可欠な医療サービスと、
+複合的な危機への対応に関する
+潜在的な協力事業の
+実現可能性を検討します。
+</p>
+
+<p>
+協力先となり得る機関を特定し、
+実施に必要な条件を
+評価します。
+</p>
+
+</div>
+
+<div class="note">
+
+<strong>
+重要なお知らせ
+</strong>
+
+<p>
+今後の日程は、
+政府の公式発表や
+関係機関の決定によって
+変更される可能性があります。
+</p>
+
+<p>
+本ページは、
+主な進展と活動を
+まとめたものです。
+すべての将来計画や
+機関間の取り決めが
+正式に確定したことを
+意味するものではありません。
+</p>
+
+</div>
+
+<a href="strategy-ja.html" class="button">
+グローバルAIハブ誘致戦略
+</a>
+
+<a href="committee-ja.html" class="button">
+市民推進委員会について
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     フッター
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高陽特例市グローバルAIハブ誘致<br>
+市民推進委員会
+</strong>
+</p>
+
+<p>
+市民とともに、京畿道とともに、<br>
+そして世界とともに。
+</p>
+
+<p>
+
+<a href="index-ja.html">
+日本語ホーム
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="history.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+<!-- =====================================
+     タイムライン JavaScript
+===================================== -->
+
+<script>
+
+const events = [
+
+  {
+    date: "2026.03.10",
+    type: "government",
+    label: "中央政府",
+    title: "グローバルAIハブ構想に関する政府発表",
+    description:
+      "グローバルAIハブ構想に関する政府レベルの協議と準備が本格化しました。"
+  },
+
+  {
+    date: "2026.03.16",
+    type: "government",
+    label: "中央政府",
+    title: "国務総理と国連代表者との会合",
+    description:
+      "グローバルAIハブ構想に関連する国際協力について協議が行われました。"
+  },
+
+  {
+    date: "2026.03.17",
+    type: "government",
+    label: "中央政府",
+    title: "政府と国際機関との意向書",
+    description:
+      "グローバルAIハブ構想に関する協力について、意向書の締結に向けた取り組みが行われました。"
+  },
+
+  {
+    date: "2026.04.09",
+    type: "government",
+    label: "中央政府",
+    title: "グローバルAIハブ構想に関する国務総理の指示",
+    description:
+      "グローバルAIハブ構想に関する政府機関間の協力体制が整備されました。"
+  },
+
+  {
+    date: "2026.05.21",
+    type: "government",
+    label: "中央政府",
+    title: "国際機関と多国間開発銀行による共同声明",
+    description:
+      "9つの国際機関と5つの多国間開発銀行による協力に関する共同声明が発表されました。"
+  },
+
+  {
+    date: "2026.09.07",
+    type: "civic",
+    label: "市民推進委員会",
+    title: "市民推進委員会発足式",
+    description:
+      "高陽湖水公園の花展示館で、グローバルAIハブ誘致に向けた市民主導の活動が開始されました。"
+  },
+
+  {
+    date: "2026.10.12",
+    type: "gyeonggi",
+    label: "京畿道",
+    title: "京畿道グローバルAIハブ誘致支援タスクフォース発足",
+    description:
+      "誘致戦略の策定と関係機関の協力を支援するため、京畿道のタスクフォースが発足しました。"
+  },
+
+  {
+    date: "2026.10.14",
+    type: "government",
+    label: "中央政府",
+    title: "立地選定評価基準に関する公聴会",
+    description:
+      "世宗コンベンションセンターで、グローバルAIハブ立地選定評価基準の草案が提示され、議論されました。"
+  },
+
+  {
+    date: "2026.10.15",
+    type: "civic",
+    label: "市民推進委員会",
+    title: "立地選定評価基準の改善に関する提言",
+    description:
+      "初期拠点の整備条件、地域社会の受容性、公益のためのAI実証事業に関する提言が作成されました。"
+  },
+
+  {
+    date: "2026.10.20",
+    type: "civic",
+    label: "市民推進委員会",
+    title: "第7回高陽イノベーション戦略セミナーへの参加",
+    description:
+      "参加者は、誘致戦略の具体化、関係機関への協力要請、実施体制の構築、根拠資料の確保の重要性を強調しました。"
+  },
+
+  {
+    date: "2026.10.26",
+    type: "goyang",
+    label: "高陽特例市",
+    title: "高陽特例市議会によるグローバルAIハブ誘致促進決議",
+    description:
+      "市議会は、全議員の参加により、グローバルAIハブの誘致を求める決議を全会一致で採択しました。"
+  },
+
+  {
+    date: "2026.10.30",
+    type: "gyeonggi",
+    label: "京畿道",
+    title: "京畿道グローバルAIハブ誘致戦略フォーラム",
+    description:
+      "高陽特例市のKINTEXで、誘致戦略と国際協力について議論するフォーラムが開催されました。"
+  }
+
+];
+
+/* =====================================
+   現在のフィルター
+===================================== */
+
+let currentType = "all";
+
+/* =====================================
+   タイムライン描画
+===================================== */
+
+function renderTimeline() {
+
+  const timeline =
+    document.getElementById("timeline");
+
+  timeline.innerHTML = "";
+
+  const filtered = events
+
+    .filter(event =>
+      currentType === "all" ||
+      event.type === currentType
+    )
+
+    .sort((a, b) =>
+      a.date.localeCompare(b.date)
+    );
+
+  filtered.forEach(event => {
+
+    const item =
+      document.createElement("article");
+
+    item.className = "event";
+
+    const date =
+      document.createElement("div");
+
+    date.className = "date";
+    date.textContent = event.date;
+
+    const type =
+      document.createElement("span");
+
+    type.className = "type";
+    type.textContent = event.label;
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent = event.title;
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      event.description;
+
+    item.appendChild(date);
+    item.appendChild(type);
+    item.appendChild(title);
+    item.appendChild(description);
+
+    timeline.appendChild(item);
+
+  });
+
+}
+
+/* =====================================
+   フィルターボタン
+===================================== */
+
+document
+  .querySelectorAll("[data-type]")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      currentType = button.dataset.type;
+
+      document
+        .querySelectorAll("[data-type]")
+        .forEach(btn => {
+
+          const isActive =
+            btn.dataset.type === currentType;
+
+          btn.classList.toggle(
+            "active",
+            isActive
+          );
+
+          btn.setAttribute(
+            "aria-pressed",
+            String(isActive)
+          );
+
+        });
+
+      renderTimeline();
+
+    });
+
+  });
+
+/* =====================================
+   初期表示
+===================================== */
+
+renderTimeline();
+
+</script>
+
+</body>
+</html>
