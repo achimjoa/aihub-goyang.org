@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Guide d'utilisation du site de l'initiative du Centre mondial de l'IA à Goyang. Découvrez les informations, les activités citoyennes, les actualités et les services en ligne.">
+
+<title>
+Guide d'utilisation du site |
+Initiative du Centre mondial de l'IA
+</title>
+
+<style>
+
+/* CONFIGURATION GÉNÉRALE */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* EN-TÊTE */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* NAVIGATION RAPIDE */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.quick-nav a:hover {
+  background: #d2e6ff;
+}
+
+/* CONTENU PRINCIPAL */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* CARTES */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* BOUTONS */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #d2e6ff;
+}
+
+/* ENCADRÉS */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* ÉTAPES */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* NOTES */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* FAQ */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* PIED DE PAGE */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* VERSION MOBILE */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- EN-TÊTE -->
+
+<header>
+
+<h1>
+Guide d'utilisation du site
+</h1>
+
+<p>
+Initiative du Centre mondial de l'IA<br>
+Ville spéciale de Goyang,<br>
+Province de Gyeonggi,<br>
+République de Corée
+</p>
+
+<p>
+Guide des informations,
+de la navigation
+et de la participation citoyenne
+</p>
+
+<div class="header-links">
+
+<a href="index-fr.html"
+class="home-link">
+← Accueil — Français
+</a>
+
+</div>
+
+</header>
+
+<!-- NAVIGATION RAPIDE -->
+
+<nav
+class="quick-nav"
+aria-label="Navigation dans le guide du site">
+
+<a href="#intro">
+Introduction
+</a>
+
+<a href="#menus">
+Rubriques principales
+</a>
+
+<a href="#participation">
+Participation
+</a>
+
+<a href="#account">
+Paiements
+</a>
+
+<a href="#board">
+Actualités et ressources
+</a>
+
+<a href="#faq">
+FAQ
+</a>
+
+<a href="#help">
+Assistance
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. INTRODUCTION
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. Bienvenue sur notre site
+</h2>
+
+<p>
+Bienvenue sur le site officiel
+du Comité citoyen de promotion
+pour l'implantation
+du Centre mondial de l'IA
+dans la ville spéciale de Goyang.
+</p>
+
+<p>
+Ce site présente
+le projet de Centre mondial de l'IA,
+les activités du Comité,
+les avantages territoriaux de Goyang
+et les possibilités
+de participation citoyenne.
+</p>
+
+<p>
+Il présente également
+le rôle potentiel
+de la coopération internationale
+dans la recherche de solutions
+aux défis mondiaux
+grâce à des applications responsables
+de l'intelligence artificielle.
+</p>
+
+<div class="highlight">
+
+<strong>
+De nouvelles possibilités de croissance pour Goyang !<br>
+Davantage d'emplois de qualité pour Goyang !<br>
+Accueillons le Centre mondial de l'IA à Goyang !
+</strong>
+
+</div>
+
+<p>
+Le site est accessible
+depuis un ordinateur,
+une tablette
+ou un smartphone.
+</p>
+
+<p>
+Aucun logiciel supplémentaire
+n'est nécessaire.
+Un navigateur Internet standard suffit.
+</p>
+
+</section>
+
+<!-- =====================================
+     2. RUBRIQUES PRINCIPALES
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. Principales rubriques du site
+</h2>
+
+<div class="grid">
+
+<!-- COMITÉ -->
+
+<div class="card">
+
+<h3>
+Présentation du Comité
+</h3>
+
+<p>
+Découvrez la création,
+la mission,
+les principes directeurs
+et les principales activités
+du Comité citoyen de promotion.
+</p>
+
+<a
+class="button secondary"
+href="committee-fr.html">
+Découvrir
+</a>
+
+</div>
+
+<!-- CENTRE MONDIAL DE L'IA -->
+
+<div class="card">
+
+<h3>
+Présentation du Centre mondial de l'IA
+</h3>
+
+<p>
+Découvrez le projet
+de Centre mondial de l'IA,
+sa vision de coopération internationale
+et les applications potentielles
+de l'IA au service de l'intérêt public.
+</p>
+
+<a
+class="button secondary"
+href="hub-fr.html">
+Découvrir
+</a>
+
+</div>
+
+<!-- GOYANG -->
+
+<div class="card">
+
+<h3>
+Pourquoi la ville spéciale de Goyang ?
+</h3>
+
+<p>
+Découvrez les avantages territoriaux
+de Goyang,
+ses infrastructures urbaines
+et sa compétitivité potentielle
+en tant que site d'implantation
+du Centre mondial de l'IA.
+</p>
+
+<a
+class="button secondary"
+href="goyang-fr.html">
+Découvrir
+</a>
+
+</div>
+
+<!-- ORGANISATIONS INTERNATIONALES -->
+
+<div class="card">
+
+<h3>
+Neuf organisations internationales
+</h3>
+
+<p>
+Découvrez les missions
+de neuf organisations internationales
+et les domaines potentiels
+de coopération liés à l'IA.
+</p>
+
+<a
+class="button secondary"
+href="agencies-fr.html">
+Découvrir
+</a>
+
+</div>
+
+<!-- STRATÉGIE -->
+
+<div class="card">
+
+<h3>
+Stratégie d'implantation
+</h3>
+
+<p>
+Découvrez la stratégie proposée
+pour l'installation initiale,
+le soutien opérationnel
+et la croissance partagée à long terme.
+</p>
+
+<a
+class="button secondary"
+href="strategy-fr.html">
+Découvrir
+</a>
+
+</div>
+
+<!-- PARTICIPATION -->
+
+<div class="card">
+
+<h3>
+Centre de participation citoyenne
+</h3>
+
+<p>
+Trouvez des informations
+sur la campagne de soutien en ligne,
+l'inscription au Comité,
+l'adhésion en tant que membre de soutien
+et les autres programmes
+de participation citoyenne.
+</p>
+
+<a
+class="button"
+href="participate-fr.html">
+Centre de participation
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. PARTICIPATION
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. Comment participer
+</h2>
+
+<p>
+Le Centre de participation citoyenne
+présente cinq programmes
+de participation.
+</p>
+
+<p class="note">
+Les formulaires de candidature
+sont actuellement disponibles en coréen.
+Veuillez examiner attentivement
+les informations
+et les avis de confidentialité
+avant de soumettre un formulaire.
+</p>
+
+<div class="grid">
+
+<!-- CAMPAGNE DE SOUTIEN -->
+
+<div class="card">
+
+<h3>
+① Campagne de soutien en ligne
+</h3>
+
+<p>
+Exprimez votre soutien
+au projet de Centre mondial de l'IA
+dans la ville spéciale de Goyang.
+</p>
+
+<ol class="steps">
+
+<li>
+Sélectionnez le bouton
+de participation à la campagne.
+</li>
+
+<li>
+Saisissez les informations demandées
+dans le formulaire.
+</li>
+
+<li>
+Consultez l'avis
+relatif à la protection
+des données personnelles.
+</li>
+
+<li>
+Envoyez le formulaire rempli.
+</li>
+
+</ol>
+
+<a
+class="button"
+href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+target="_blank"
+rel="noopener noreferrer">
+Participer à la campagne
+</a>
+
+</div>
+
+<!-- INSCRIPTION AU COMITÉ -->
+
+<div class="card">
+
+<h3>
+② Inscription au Comité
+</h3>
+
+<p>
+Les citoyens souhaitant
+participer activement
+à l'initiative du Centre mondial de l'IA
+peuvent demander
+à devenir membres du Comité.
+</p>
+
+<p>
+Veuillez fournir
+les informations demandées
+dans le formulaire d'inscription.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/FaZCDwm7gqu5rthb7"
+target="_blank"
+rel="noopener noreferrer">
+S'inscrire
+</a>
+
+</div>
+
+<!-- MEMBRES DE SOUTIEN -->
+
+<div class="card">
+
+<h3>
+③ Adhésion en tant que membre de soutien
+</h3>
+
+<p>
+Les personnes souhaitant
+soutenir les activités du Comité
+peuvent demander
+à devenir membres de soutien.
+</p>
+
+<p>
+Après avoir envoyé votre demande,
+veuillez consulter
+les informations officielles
+relatives au paiement
+dans le Centre de participation citoyenne.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+target="_blank"
+rel="noopener noreferrer">
+Demander l'adhésion
+</a>
+
+</div>
+
+<!-- BANDEROLES -->
+
+<div class="card">
+
+<h3>
+④ Demande de banderole promotionnelle
+</h3>
+
+<p>
+Demandez l'installation
+d'une banderole promotionnelle
+soutenant le projet
+de Centre mondial de l'IA.
+</p>
+
+<p>
+Veuillez vérifier
+les réglementations locales applicables,
+les exigences relatives à l'emplacement
+et les autorisations nécessaires.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+target="_blank"
+rel="noopener noreferrer">
+Demander une banderole
+</a>
+
+</div>
+
+<!-- AUTOCOLLANTS -->
+
+<div class="card">
+
+<h3>
+⑤ Autocollant promotionnel pour véhicule
+</h3>
+
+<p>
+Demandez un autocollant promotionnel
+afin de contribuer
+à la sensibilisation du public
+au projet de Centre mondial de l'IA.
+</p>
+
+<p>
+Fournissez les informations nécessaires,
+notamment vos coordonnées
+et la quantité souhaitée.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/cisRHEsN61pxVycG8"
+target="_blank"
+rel="noopener noreferrer">
+Demander un autocollant
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+La disponibilité des formulaires
+et les délais de traitement
+peuvent varier
+en fonction des activités du Comité.
+</p>
+
+</section>
+
+<!-- =====================================
+     4. PAIEMENTS
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. Cotisations et paiements des banderoles
+</h2>
+
+<p>
+Si vous souhaitez verser
+une contribution
+en tant que membre de soutien
+ou payer les frais
+d'une banderole promotionnelle,
+veuillez consulter
+les coordonnées bancaires officielles
+affichées dans le
+Centre de participation citoyenne.
+</p>
+
+<div class="highlight">
+
+<strong>
+Informations importantes concernant les paiements
+</strong>
+
+<p>
+Avant d'effectuer un virement,
+vérifiez le nom de la banque,
+le numéro de compte
+et le nom du titulaire du compte.
+</p>
+
+<p>
+L'envoi d'un formulaire
+et la réalisation
+d'un virement bancaire
+constituent deux procédures distinctes.
+</p>
+
+<p>
+Si les coordonnées bancaires
+ne sont pas affichées
+ou semblent incertaines,
+n'effectuez aucun virement
+avant d'avoir confirmé
+les informations
+auprès du Comité
+par ses canaux officiels.
+</p>
+
+</div>
+
+<a
+class="button"
+href="participate-fr.html">
+Vérifier les coordonnées bancaires officielles
+</a>
+
+<p class="note">
+Les coordonnées bancaires
+peuvent être modifiées.
+C'est pourquoi
+les numéros de compte
+ne sont pas reproduits
+directement dans ce guide.
+</p>
+
+</section>
+
+<!-- =====================================
+     5. ACTUALITÉS ET RESSOURCES
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. Actualités, activités et ressources
+</h2>
+
+<div class="grid">
+
+<!-- FORUM -->
+
+<div class="card">
+
+<h3>
+Forum de discussion citoyen
+</h3>
+
+<p>
+Un espace permettant
+de partager
+les points de vue des citoyens
+et des informations
+sur l'initiative
+du Centre mondial de l'IA.
+</p>
+
+<a
+class="button secondary"
+href="board.html">
+Consulter le forum (coréen)
+</a>
+
+</div>
+
+<!-- ACTUALITÉS -->
+
+<div class="card">
+
+<h3>
+Actualités et annonces
+</h3>
+
+<p>
+Consultez les informations
+sur les activités du Comité,
+les événements
+et les principales évolutions du projet.
+</p>
+
+<a
+class="button secondary"
+href="news-fr.html">
+Voir les actualités
+</a>
+
+</div>
+
+<!-- PRESSE -->
+
+<div class="card">
+
+<h3>
+Revue de presse
+</h3>
+
+<p>
+Découvrez les articles de journaux,
+les reportages audiovisuels
+et les autres publications médiatiques
+liés à l'initiative
+du Centre mondial de l'IA.
+</p>
+
+<a
+class="button secondary"
+href="press-fr.html">
+Voir la revue de presse
+</a>
+
+</div>
+
+<!-- CHRONOLOGIE -->
+
+<div class="card">
+
+<h3>
+Chronologie et principales étapes
+</h3>
+
+<p>
+Consultez les principales évolutions
+et les activités du Comité
+dans l'ordre chronologique.
+</p>
+
+<a
+class="button secondary"
+href="history-fr.html">
+Voir la chronologie
+</a>
+
+</div>
+
+</div>
+
+<p>
+Certaines ressources
+et certains articles originaux
+peuvent être disponibles
+uniquement en coréen.
+</p>
+
+<p>
+Lorsque vous participez
+à des discussions en ligne,
+veuillez respecter
+les autres utilisateurs
+et éviter de publier
+des informations personnelles
+ou des contenus trompeurs.
+</p>
+
+</section>
+
+<!-- =====================================
+     6. FAQ
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. Foire aux questions
+</h2>
+
+<div class="faq">
+
+<h3>
+Q. Dois-je m'inscrire
+pour utiliser ce site ?
+</h3>
+
+<p>
+Les informations générales
+sont accessibles
+sans inscription.
+Certaines fonctions interactives
+peuvent nécessiter
+une connexion
+ou des autorisations supplémentaires.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. La campagne de soutien en ligne
+est-elle identique
+à l'inscription au Comité ?
+</h3>
+
+<p>
+Non.
+La campagne de soutien en ligne
+permet aux personnes intéressées
+d'exprimer leur soutien
+au projet de Centre mondial de l'IA.
+</p>
+
+<p>
+L'inscription au Comité
+est une procédure distincte
+destinée aux personnes souhaitant
+participer aux activités du Comité.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. La participation
+à la campagne de soutien en ligne
+nécessite-t-elle
+le paiement d'une cotisation ?
+</h3>
+
+<p>
+Non.
+La campagne de soutien en ligne
+et l'adhésion en tant que membre de soutien
+sont deux programmes distincts.
+</p>
+
+<p>
+Signer le formulaire de soutien
+ne constitue pas
+un engagement à verser
+une contribution financière.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. L'envoi d'une demande d'adhésion
+en tant que membre de soutien
+signifie-t-il que le paiement est effectué ?
+</h3>
+
+<p>
+Non.
+L'envoi de la demande
+et le virement bancaire
+constituent deux procédures distinctes.
+</p>
+
+<p>
+Veuillez vérifier
+les coordonnées bancaires officielles
+avant d'effectuer un virement.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. Les neuf organisations internationales
+ont-elles confirmé
+leur installation à Goyang ?
+</h3>
+
+<p>
+Non.
+Les organisations internationales
+présentées sur ce site
+sont évoquées
+dans le cadre
+des possibilités de coopération
+liées à l'initiative
+du Centre mondial de l'IA.
+</p>
+
+<p>
+Leur présentation
+ne signifie pas
+que leur participation,
+l'établissement de bureaux
+ou leur installation à Goyang
+ont été officiellement confirmés.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+Q. Une banderole promotionnelle
+peut-elle être installée immédiatement
+après l'envoi d'une demande ?
+</h3>
+
+<p>
+Non.
+L'envoi d'une demande
+n'autorise pas automatiquement
+l'installation d'une banderole.
+</p>
+
+<p>
+Les lois applicables,
+les réglementations locales
+et les exigences propres
+à chaque emplacement
+doivent être respectées.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. ASSISTANCE
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. Assistance pour l'utilisation du site
+</h2>
+
+<h3>
+Si le site ne s'ouvre pas
+</h3>
+
+<p>
+Vérifiez votre connexion Internet
+et l'adresse du site.
+Essayez d'accéder de nouveau
+à la page après quelques instants.
+</p>
+
+<h3>
+Si la page ne s'affiche pas correctement
+</h3>
+
+<p>
+Actualisez la page
+ou essayez un autre navigateur.
+</p>
+
+<h3>
+Si un formulaire de candidature
+ne s'ouvre pas
+</h3>
+
+<p>
+Cliquez de nouveau
+sur le bouton correspondant
+ou ouvrez le formulaire
+avec un autre navigateur.
+</p>
+
+<h3>
+Si les coordonnées bancaires
+ne sont pas affichées
+</h3>
+
+<p>
+Actualisez la page
+du Centre de participation citoyenne
+et vérifiez de nouveau.
+</p>
+
+<p>
+Si le problème persiste,
+n'effectuez aucun virement
+avant d'avoir confirmé
+les coordonnées bancaires
+auprès du Comité
+par ses canaux officiels.
+</p>
+
+<h3>
+Protection des données personnelles
+</h3>
+
+<p>
+Consultez l'avis
+relatif à la collecte
+et à l'utilisation
+des données personnelles
+avant de soumettre
+un formulaire.
+</p>
+
+<p>
+Ne publiez pas
+les informations personnelles
+d'une autre personne
+sur les forums publics.
+</p>
+
+<a
+class="button secondary"
+href="privacy.html">
+Politique de confidentialité (coréen)
+</a>
+
+</section>
+
+<!-- =====================================
+     8. CONCLUSION
+===================================== -->
+
+<section>
+
+<h2>
+8. Construisons ensemble l'avenir de Goyang
+</h2>
+
+<p>
+Le projet de Centre mondial de l'IA
+représente une occasion
+d'explorer
+de nouvelles possibilités de croissance,
+des emplois de qualité
+et la coopération internationale
+pour la ville spéciale de Goyang.
+</p>
+
+<p>
+Les citoyens
+et les personnes intéressées
+peuvent participer
+grâce à la campagne
+de soutien en ligne,
+à l'inscription au Comité,
+à l'adhésion
+en tant que membre de soutien
+et aux activités
+de sensibilisation du public.
+</p>
+
+<div class="highlight">
+
+<strong>
+Chaque manifestation d'intérêt
+et chaque acte de participation
+peuvent contribuer
+à façonner l'avenir de Goyang.
+</strong>
+
+</div>
+
+<a
+class="button"
+href="participate-fr.html">
+Centre de participation citoyenne
+</a>
+
+<a
+class="button secondary"
+href="index-fr.html">
+Accueil — Français
+</a>
+
+</section>
+
+</main>
+
+<!-- PIED DE PAGE -->
+
+<footer>
+
+<p>
+<strong>
+Comité citoyen de promotion<br>
+pour l'implantation du Centre mondial de l'IA<br>
+dans la ville spéciale de Goyang
+</strong>
+</p>
+
+<p>
+Province de Gyeonggi,<br>
+République de Corée
+</p>
+
+<p>
+Avec les citoyens,<br>
+avec la province de Gyeonggi<br>
+et avec le monde.
+</p>
+
+<p>
+<a href="index-fr.html">
+Accueil — Français
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate-fr.html">
+Participation citoyenne
+</a>
+
+</p>
+
+</footer>
+
+</body>
+</html>
