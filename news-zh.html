@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+最新消息与公告 | 全球人工智能枢纽倡议
+</title>
+
+<meta
+  name="description"
+  content="了解韩国京畿道高阳特例市全球人工智能枢纽引进市民推进委员会的最新消息、公告、活动、媒体报道、国际合作及政策动态。"
+>
+
+<style>
+
+/* =====================================
+   基本设置
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans SC",
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.7;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   页眉
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  padding: 10px 20px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   主要内容
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+/* =====================================
+   语言提示
+===================================== */
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+/* =====================================
+   搜索
+===================================== */
+
+.search-box {
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #c5d5e8;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   分类筛选
+===================================== */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  border: 1px solid #0754a6;
+  background: white;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   新闻卡片
+===================================== */
+
+.news-list {
+  display: grid;
+  gap: 18px;
+}
+
+.news-item {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.06);
+
+  border-left: 5px solid #168de0;
+}
+
+.news-item h3 {
+  color: #0754a6;
+  margin: 10px 0;
+  font-size: 21px;
+  overflow-wrap: anywhere;
+}
+
+.category {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.date {
+  color: #68788c;
+  font-size: 14px;
+}
+
+.news-item p {
+  color: #46566d;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.content-language {
+  display: block;
+  color: #68788c;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.news-link {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  padding: 10px 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+.news-link:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   空结果与状态
+===================================== */
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #68788c;
+}
+
+.empty[hidden] {
+  display: none;
+}
+
+.status {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   页脚
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   移动设备
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .intro,
+  .news-item {
+    padding: 20px;
+  }
+
+  .news-link {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     页眉
+===================================== -->
+
+<header>
+
+<h1>
+最新消息与公告
+</h1>
+
+<p>
+全球人工智能枢纽倡议<br>
+大韩民国高阳特例市
+</p>
+
+<p>
+市民活动、国际合作、<br>
+政策建议及重要发展动态
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-zh.html"
+  class="home-link"
+>
+  ← 中文首页
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     页面介绍
+===================================== -->
+
+<section class="intro">
+
+<h2>
+市民推进委员会最新消息
+</h2>
+
+<p>
+本页面提供
+高阳特例市全球人工智能枢纽
+引进市民推进委员会
+的相关活动和最新消息。
+</p>
+
+<p>
+内容包括
+推进委员会活动、
+公众公告、
+各类会议和活动、
+媒体报道
+以及政策发展动态。
+</p>
+
+<p>
+随着新信息的发布，
+本页面将持续更新。
+</p>
+
+</section>
+
+<!-- =====================================
+     语言提示
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+语言说明
+</strong>
+
+<p>
+本中文页面
+与推进委员会现有的
+新闻发布数据库连接，
+显示最新消息和公告。
+</p>
+
+<p>
+部分新闻和公告
+目前仅提供韩语原文。
+</p>
+
+<p>
+为确保信息准确，
+韩语新闻标题和内容
+将保留原文，
+不进行自动翻译。
+</p>
+
+<p>
+如有原始报道
+或相关资料链接，
+可点击相应按钮查看。
+</p>
+
+</div>
+
+<!-- =====================================
+     新闻搜索
+===================================== -->
+
+<div class="search-box">
+
+<input
+  type="search"
+  id="searchInput"
+  placeholder="搜索新闻标题或关键词"
+  aria-label="搜索最新消息与公告"
+>
+
+</div>
+
+<!-- =====================================
+     新闻分类
+===================================== -->
+
+<nav
+  class="filters"
+  aria-label="按类别筛选新闻"
+>
+
+<button
+  type="button"
+  class="active"
+  data-category="all"
+  aria-pressed="true"
+>
+  全部消息
+</button>
+
+<button
+  type="button"
+  data-category="notice"
+  aria-pressed="false"
+>
+  公告事项
+</button>
+
+<button
+  type="button"
+  data-category="activity"
+  aria-pressed="false"
+>
+  推进委员会活动
+</button>
+
+<button
+  type="button"
+  data-category="event"
+  aria-pressed="false"
+>
+  活动与会议
+</button>
+
+<button
+  type="button"
+  data-category="press"
+  aria-pressed="false"
+>
+  媒体报道
+</button>
+
+<button
+  type="button"
+  data-category="policy"
+  aria-pressed="false"
+>
+  政策动态
+</button>
+
+</nav>
+
+<!-- =====================================
+     新闻列表
+===================================== -->
+
+<div
+  class="news-list"
+  id="newsList"
+  aria-live="polite"
+>
+</div>
+
+<p
+  class="empty"
+  id="empty"
+  hidden
+>
+  没有找到符合搜索条件的新闻。
+</p>
+
+</main>
+
+<!-- =====================================
+     页脚
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高阳特例市全球人工智能枢纽<br>
+引进市民推进委员会
+</strong>
+</p>
+
+<p>
+大韩民国京畿道
+</p>
+
+<p>
+与市民同行，<br>
+与京畿道同行，<br>
+与世界同行。
+</p>
+
+<p>
+<a href="index-zh.html">
+中文首页
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE 新闻模块
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE 连接
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   DOM 元素
+===================================== */
+
+const newsList =
+  document.getElementById("newsList");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const empty =
+  document.getElementById("empty");
+
+/* =====================================
+   分类名称
+===================================== */
+
+const categoryNames = {
+
+  notice: "公告事项",
+
+  activity: "推进委员会活动",
+
+  event: "活动与会议",
+
+  press: "媒体报道",
+
+  policy: "政策动态"
+
+};
+
+/* =====================================
+   状态
+===================================== */
+
+let news = [];
+
+let currentCategory = "all";
+
+let loadFailed = false;
+
+/* =====================================
+   日期格式
+===================================== */
+
+function formatDate(value) {
+
+  if (!value) return "";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) {
+
+    return String(value).slice(0, 10);
+
+  }
+
+  return [
+
+    date.getFullYear(),
+
+    String(
+      date.getMonth() + 1
+    ).padStart(2, "0"),
+
+    String(
+      date.getDate()
+    ).padStart(2, "0")
+
+  ].join(".");
+
+}
+
+/* =====================================
+   检测韩语
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   安全链接验证
+===================================== */
+
+function getSafeLink(value) {
+
+  if (!value) return "";
+
+  try {
+
+    const url = new URL(
+      value,
+      window.location.href
+    );
+
+    if (
+      url.protocol !== "https:" &&
+      url.protocol !== "http:"
+    ) {
+
+      return "";
+
+    }
+
+    return url.href;
+
+  } catch (error) {
+
+    return "";
+
+  }
+
+}
+
+/* =====================================
+   加载新闻
+===================================== */
+
+async function loadNews() {
+
+  newsList.innerHTML =
+    '<div class="status">' +
+    '正在加载最新消息与公告...' +
+    '</div>';
+
+  empty.hidden = true;
+
+  const combinedNews = [];
+
+  let successfulQueries = 0;
+
+  /* =====================================
+     1. NEWS POSTS
+  ===================================== */
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id,title,category,description,link,published_at"
+        )
+        .order("published_at", {
+          ascending: false
+        });
+
+    if (error) {
+
+      throw error;
+
+    }
+
+    successfulQueries++;
+
+    for (const item of data || []) {
+
+      combinedNews.push({
+
+        id:
+          "news-" + item.id,
+
+        date:
+          formatDate(
+            item.published_at
+          ),
+
+        sortDate:
+          item.published_at || "",
+
+        category:
+          item.category || "",
+
+        categoryName:
+          categoryNames[
+            item.category
+          ] || "其他",
+
+        title:
+          item.title || "",
+
+        description:
+          item.description || "",
+
+        link:
+          item.link || ""
+
+      });
+
+    }
+
+  } catch (error) {
+
+    console.error(
+      "新闻查询失败:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     2. SELECTED BOARD POSTS
+  ===================================== */
+
+  try {
+
+    const {
+      data: placements,
+      error
+    } =
+      await supabase
+        .from("board_post_placements")
+        .select("post_id,placement")
+        .in("placement", [
+          "notice",
+          "activity"
+        ]);
+
+    if (error) {
+
+      throw error;
+
+    }
+
+    if (
+      placements &&
+      placements.length > 0
+    ) {
+
+      const postIds = [
+
+        ...new Set(
+          placements.map(
+            item => item.post_id
+          )
+        )
+
+      ];
+
+      const {
+        data: posts,
+        error: postError
+      } =
+        await supabase
+          .from("board_posts")
+          .select(
+            "id,title,content,created_at"
+          )
+          .in("id", postIds);
+
+      if (postError) {
+
+        throw postError;
+
+      }
+
+      const postMap = new Map(
+
+        (posts || []).map(post => [
+
+          String(post.id),
+          post
+
+        ])
+
+      );
+
+      for (
+        const placement of placements
+      ) {
+
+        const post = postMap.get(
+          String(
+            placement.post_id
+          )
+        );
+
+        if (!post) continue;
+
+        const content =
+          post.content || "";
+
+        combinedNews.push({
+
+          id:
+            "board-" +
+            placement.placement +
+            "-" +
+            post.id,
+
+          date:
+            formatDate(
+              post.created_at
+            ),
+
+          sortDate:
+            post.created_at || "",
+
+          category:
+            placement.placement,
+
+          categoryName:
+            categoryNames[
+              placement.placement
+            ] || "其他",
+
+          title:
+            post.title || "",
+
+          description:
+            content.length > 200
+              ? content.slice(0, 200) + "..."
+              : content,
+
+          link:
+            "board.html?post=" +
+            encodeURIComponent(
+              post.id
+            )
+
+        });
+
+      }
+
+    }
+
+    successfulQueries++;
+
+  } catch (error) {
+
+    console.error(
+      "게시판 뉴스 조회 실패:",
+      error
+    );
+
+  }
+
+  /* =====================================
+     3. 日期排序
+  ===================================== */
+
+  combinedNews.sort((a, b) =>
+
+    String(b.sortDate)
+      .localeCompare(
+        String(a.sortDate)
+      )
+
+  );
+
+  news = combinedNews;
+
+  /* =====================================
+     4. 查询失败处理
+  ===================================== */
+
+  if (successfulQueries === 0) {
+
+    loadFailed = true;
+
+    newsList.innerHTML =
+      '<div class="status">' +
+      '暂时无法加载新闻。' +
+      '请稍后重试。' +
+      '</div>';
+
+    empty.hidden = true;
+
+    return;
+
+  }
+
+  loadFailed = false;
+
+  renderNews();
+
+  console.log(
+    "中文新闻页面加载完成:",
+    news.length,
+    "条"
+  );
+
+}
+
+/* =====================================
+   显示新闻
+===================================== */
+
+function renderNews() {
+
+  if (loadFailed) return;
+
+  const keyword =
+    searchInput.value
+      .trim()
+      .toLowerCase();
+
+  const filtered = news.filter(item => {
+
+    const categoryMatch =
+      currentCategory === "all" ||
+      item.category === currentCategory;
+
+    const searchText = [
+
+      item.title,
+
+      item.description,
+
+      item.categoryName,
+
+      item.date
+
+    ].join(" ").toLowerCase();
+
+    return (
+      categoryMatch &&
+      searchText.includes(keyword)
+    );
+
+  });
+
+  filtered.sort((a, b) =>
+
+    String(
+      b.sortDate || b.date || ""
+    ).localeCompare(
+
+      String(
+        a.sortDate || a.date || ""
+      )
+
+    )
+
+  );
+
+  newsList.innerHTML = "";
+
+  filtered.forEach(item => {
+
+    /* =====================================
+       新闻卡片
+    ===================================== */
+
+    const card =
+      document.createElement("article");
+
+    card.className = "news-item";
+
+    /* =====================================
+       分类
+    ===================================== */
+
+    const category =
+      document.createElement("span");
+
+    category.className = "category";
+
+    category.textContent =
+      item.categoryName;
+
+    /* =====================================
+       日期
+    ===================================== */
+
+    const date =
+      document.createElement("p");
+
+    date.className = "date";
+
+    date.textContent =
+      item.date;
+
+    /* =====================================
+       标题
+    ===================================== */
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title;
+
+    /* =====================================
+       内容
+    ===================================== */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description;
+
+    card.appendChild(category);
+
+    card.appendChild(date);
+
+    card.appendChild(title);
+
+    card.appendChild(description);
+
+    /* =====================================
+       韩语原文提示
+    ===================================== */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "原文为韩语";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* =====================================
+       新闻链接
+    ===================================== */
+
+    const safeLink =
+      getSafeLink(item.link);
+
+    if (safeLink) {
+
+      const link =
+        document.createElement("a");
+
+      link.className =
+        "news-link";
+
+      link.href =
+        safeLink;
+
+      const url =
+        new URL(safeLink);
+
+      const isBoardLink =
+        url.origin ===
+          window.location.origin &&
+        url.pathname.endsWith(
+          "/board.html"
+        );
+
+      if (isBoardLink) {
+
+        link.target = "_self";
+
+      } else {
+
+        link.target = "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+      }
+
+      link.textContent =
+        "阅读全文";
+
+      card.appendChild(link);
+
+    }
+
+    newsList.appendChild(card);
+
+  });
+
+  empty.hidden =
+    filtered.length !== 0;
+
+}
+
+/* =====================================
+   分类筛选按钮
+===================================== */
+
+document
+  .querySelectorAll("[data-category]")
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentCategory =
+          button.dataset.category;
+
+        document
+          .querySelectorAll(
+            "[data-category]"
+          )
+          .forEach(btn => {
+
+            const isActive =
+              btn.dataset.category ===
+              currentCategory;
+
+            btn.classList.toggle(
+              "active",
+              isActive
+            );
+
+            btn.setAttribute(
+              "aria-pressed",
+              String(isActive)
+            );
+
+          });
+
+        renderNews();
+
+      }
+    );
+
+  });
+
+/* =====================================
+   搜索功能
+===================================== */
+
+searchInput.addEventListener(
+  "input",
+  renderNews
+);
+
+/* =====================================
+   初始加载
+===================================== */
+
+loadNews();
+
+</script>
+
+</body>
+</html>
