@@ -106,8 +106,9 @@ body {
 /* PC 메뉴 */
 
 @media (min-width: 1200px) {
+
   #homepageLayoutModule .home-menu {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 5px;
   }
 
@@ -118,8 +119,9 @@ body {
 
   #homepageLayoutModule .home-navigation {
     padding: 10px 5px;
-    overflow-x: auto;
+    overflow: visible;
   }
+
 }
 
 /* 대표 이미지 */
@@ -922,12 +924,11 @@ aria-label="주 메뉴">
       한국어 ✓
     </a>
 
-    <!-- 다국어 선택 메뉴 -->
+<!-- 다국어 선택 메뉴 -->
 
 <details class="language-dropdown">
 
-<details class="language-dropdown">
-  <summary aria-label="언어 선택">
+  <summary aria-label="홈페이지 언어 선택">
     🌐 다국어 ▾
   </summary>
 
@@ -939,19 +940,19 @@ aria-label="주 메뉴">
       한국어 ✓
     </a>
 
-    <a href="index-en.html" lang="en">
+    <a href="index-en.html"
+       lang="en">
       English
     </a>
 
-    <a href="index-es.html" lang="es">
+    <a href="index-es.html"
+       lang="es">
       Español
     </a>
 
   </div>
-</details>
-</div>
-</nav>
 
+</details>
 <!-- 대표 이미지 -->
 
 <section id="homepageHero"
@@ -2376,7 +2377,14 @@ class="btn">
 <a href="login.html">로그인</a>
 <a href="signup.html">회원가입</a>
 <a href="privacy.html">개인정보처리방침</a>
-<a href="index-en.html">English</a>
+<a href="index.html" lang="ko"
+   aria-current="page">한국어</a>
+
+<a href="index-en.html" lang="en">
+English</a>
+
+<a href="index-es.html" lang="es">
+Español</a>
 
 </div>
 
