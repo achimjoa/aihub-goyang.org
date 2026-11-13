@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<meta
+  name="description"
+  content="高阳特例市全球人工智能枢纽倡议网站使用指南。了解网站主要栏目、市民参与方式、最新消息、缴费说明、常见问题及网站使用帮助。"
+>
+
+<title>
+网站使用指南 | 全球人工智能枢纽倡议
+</title>
+
+<style>
+
+/* =====================================
+   基本设置
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Microsoft YaHei",
+    "PingFang SC",
+    "Noto Sans SC",
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   页眉
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   快速导航
+===================================== */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* =====================================
+   主要内容
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,0.06);
+
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* =====================================
+   卡片布局
+===================================== */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* =====================================
+   按钮
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cde4ff;
+}
+
+/* =====================================
+   重点提示
+===================================== */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* =====================================
+   操作步骤
+===================================== */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* =====================================
+   注意事项
+===================================== */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   常见问题
+===================================== */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* =====================================
+   页脚
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   移动设备
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     页眉
+===================================== -->
+
+<header>
+
+<h1>
+网站使用指南
+</h1>
+
+<p>
+全球人工智能枢纽倡议<br>
+大韩民国京畿道高阳特例市
+</p>
+
+<p>
+网站信息、页面导航<br>
+及市民参与指南
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-zh.html"
+  class="home-link"
+>
+  ← 中文首页
+</a>
+
+<a
+  href="guide.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<!-- =====================================
+     快速导航
+===================================== -->
+
+<nav
+  class="quick-nav"
+  aria-label="网站使用指南导航"
+>
+
+<a href="#intro">
+网站介绍
+</a>
+
+<a href="#menus">
+主要栏目
+</a>
+
+<a href="#participation">
+参与方式
+</a>
+
+<a href="#account">
+缴费说明
+</a>
+
+<a href="#board">
+新闻与资料
+</a>
+
+<a href="#faq">
+常见问题
+</a>
+
+<a href="#help">
+使用帮助
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. 网站介绍
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. 欢迎访问本网站
+</h2>
+
+<p>
+欢迎访问
+高阳特例市全球人工智能枢纽
+引进市民推进委员会官方网站。
+</p>
+
+<p>
+本网站提供有关
+拟议中的全球人工智能枢纽、
+市民推进委员会活动、
+高阳特例市区位优势
+以及公众参与机会等信息。
+</p>
+
+<p>
+本网站还介绍
+通过负责任地应用人工智能，
+加强国际合作
+并应对全球共同挑战的
+潜在发展方向。
+</p>
+
+<div class="highlight">
+
+<strong>
+为高阳创造新的增长机遇！<br>
+为高阳创造更多高质量就业岗位！<br>
+让全球人工智能枢纽落户高阳！
+</strong>
+
+</div>
+
+<p>
+您可以使用电脑、
+平板电脑
+或智能手机访问本网站。
+</p>
+
+<p>
+无需安装其他软件，
+使用普通互联网浏览器
+即可浏览网站内容。
+</p>
+
+</section>
+
+<!-- =====================================
+     2. 网站主要栏目
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. 网站主要栏目
+</h2>
+
+<div class="grid">
+
+<!-- 市民推进委员会 -->
+
+<div class="card">
+
+<h3>
+关于市民推进委员会
+</h3>
+
+<p>
+了解市民推进委员会的
+成立背景、
+使命、
+基本原则
+以及主要活动。
+</p>
+
+<a
+  class="button secondary"
+  href="committee-zh.html"
+>
+  了解更多
+</a>
+
+</div>
+
+<!-- 全球人工智能枢纽 -->
+
+<div class="card">
+
+<h3>
+关于全球人工智能枢纽
+</h3>
+
+<p>
+了解拟议中的
+全球人工智能枢纽、
+国际合作愿景
+以及人工智能
+在公共利益领域的
+潜在应用方向。
+</p>
+
+<a
+  class="button secondary"
+  href="hub-zh.html"
+>
+  了解更多
+</a>
+
+</div>
+
+<!-- 高阳特例市 -->
+
+<div class="card">
+
+<h3>
+为什么选择高阳特例市？
+</h3>
+
+<p>
+了解高阳特例市的
+区位优势、
+城市基础设施
+以及作为全球人工智能枢纽
+潜在选址地的竞争优势。
+</p>
+
+<a
+  class="button secondary"
+  href="goyang-zh.html"
+>
+  了解更多
+</a>
+
+</div>
+
+<!-- 国际组织 -->
+
+<div class="card">
+
+<h3>
+九个国际组织
+</h3>
+
+<p>
+了解九个国际组织的
+主要使命，
+以及人工智能相关
+国际合作的潜在领域。
+</p>
+
+<a
+  class="button secondary"
+  href="agencies-zh.html"
+>
+  了解更多
+</a>
+
+</div>
+
+<!-- 引进战略 -->
+
+<div class="card">
+
+<h3>
+全球人工智能枢纽引进战略
+</h3>
+
+<p>
+了解有关初期入驻、
+运营支持
+以及长期共同发展的
+拟议战略。
+</p>
+
+<a
+  class="button secondary"
+  href="strategy-zh.html"
+>
+  了解更多
+</a>
+
+</div>
+
+<!-- 市民参与 -->
+
+<div class="card">
+
+<h3>
+市民参与中心
+</h3>
+
+<p>
+了解在线支持签名活动、
+市民推进委员会成员登记、
+支持会员申请
+以及其他公众参与项目。
+</p>
+
+<a
+  class="button"
+  href="participate-zh.html"
+>
+  前往市民参与中心
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. 市民参与方式
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. 如何参与
+</h2>
+
+<p>
+市民参与中心
+提供五项主要参与项目
+的相关信息。
+</p>
+
+<p class="note">
+申请表目前仅提供韩语版本。
+提交申请前，
+请仔细阅读相关说明
+及个人信息保护事项。
+</p>
+
+<div class="grid">
+
+<!-- ① 在线支持活动 -->
+
+<div class="card">
+
+<h3>
+① 在线支持签名活动
+</h3>
+
+<p>
+通过在线签名，
+表达您对全球人工智能枢纽
+落户高阳特例市的支持。
+</p>
+
+<ol class="steps">
+
+<li>
+点击在线支持活动按钮。
+</li>
+
+<li>
+填写申请表要求的信息。
+</li>
+
+<li>
+阅读个人信息保护说明。
+</li>
+
+<li>
+提交填写完成的表格。
+</li>
+
+</ol>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  参加支持签名活动
+</a>
+
+</div>
+
+<!-- ② 推进委员会登记 -->
+
+<div class="card">
+
+<h3>
+② 市民推进委员会成员登记
+</h3>
+
+<p>
+希望积极参与
+全球人工智能枢纽倡议的市民，
+可以申请登记成为
+市民推进委员会成员。
+</p>
+
+<p>
+请按照登记表的要求
+填写相关信息。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请登记
+</a>
+
+</div>
+
+<!-- ③ 支持会员 -->
+
+<div class="card">
+
+<h3>
+③ 支持会员申请
+</h3>
+
+<p>
+希望支持市民推进委员会
+相关活动的人士，
+可以申请成为支持会员。
+</p>
+
+<p>
+提交申请后，
+请查看市民参与中心
+显示的正式缴费账户信息。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请成为支持会员
+</a>
+
+</div>
+
+<!-- ④ 宣传横幅 -->
+
+<div class="card">
+
+<h3>
+④ 宣传横幅申请
+</h3>
+
+<p>
+申请设置支持
+全球人工智能枢纽倡议的
+宣传横幅。
+</p>
+
+<p>
+请事先确认
+适用的当地管理规定、
+设置地点要求
+以及相关许可条件。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请宣传横幅
+</a>
+
+</div>
+
+<!-- ⑤ 车辆宣传贴纸 -->
+
+<div class="card">
+
+<h3>
+⑤ 车辆宣传贴纸申请
+</h3>
+
+<p>
+申请车辆宣传贴纸，
+帮助提高公众对
+全球人工智能枢纽倡议的认知。
+</p>
+
+<p>
+请填写必要信息，
+包括联系方式
+及申请数量。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  申请车辆宣传贴纸
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+各项申请的受理情况
+及处理时间，
+可能根据市民推进委员会
+的实际运营情况有所调整。
+</p>
+
+</section>
+
+<!-- =====================================
+     4. 缴费说明
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. 支持会员及宣传横幅缴费说明
+</h2>
+
+<p>
+如需缴纳支持会员会费
+或宣传横幅相关费用，
+请前往市民参与中心，
+查看正式公布的
+指定银行账户信息。
+</p>
+
+<div class="highlight">
+
+<strong>
+重要缴费说明
+</strong>
+
+<p>
+汇款前，
+请务必确认银行名称、
+账号
+及账户持有人。
+</p>
+
+<p>
+提交申请
+与完成银行转账
+是两个独立的程序。
+</p>
+
+<p>
+如果账户信息
+未正常显示
+或内容不明确，
+请暂勿汇款。
+</p>
+
+<p>
+应通过市民推进委员会的
+正式说明渠道
+确认账户信息后，
+再进行转账。
+</p>
+
+</div>
+
+<a
+  class="button"
+  href="participate-zh.html"
+>
+  查看正式缴费账户信息
+</a>
+
+<p class="note">
+银行账户信息可能发生变化。
+因此，
+本指南不直接刊登
+银行账号。
+</p>
+
+</section>
+
+<!-- =====================================
+     5. 新闻与资料
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. 最新消息、活动与资料
+</h2>
+
+<div class="grid">
+
+<!-- 讨论公告板 -->
+
+<div class="card">
+
+<h3>
+市民交流公告板
+</h3>
+
+<p>
+分享市民观点
+以及与全球人工智能枢纽倡议
+有关的信息。
+</p>
+
+<a
+  class="button secondary"
+  href="board.html"
+>
+  访问公告板（韩语）
+</a>
+
+</div>
+
+<!-- 最新消息 -->
+
+<div class="card">
+
+<h3>
+最新消息与公告
+</h3>
+
+<p>
+了解市民推进委员会活动、
+各类会议和活动
+以及重要发展动态。
+</p>
+
+<a
+  class="button secondary"
+  href="news-zh.html"
+>
+  查看最新消息
+</a>
+
+</div>
+
+<!-- 媒体报道 -->
+
+<div class="card">
+
+<h3>
+媒体报道
+</h3>
+
+<p>
+浏览有关全球人工智能枢纽倡议的
+报纸文章、
+电视新闻
+以及其他媒体报道。
+</p>
+
+<a
+  class="button secondary"
+  href="press-zh.html"
+>
+  查看媒体报道
+</a>
+
+</div>
+
+<!-- 发展历程 -->
+
+<div class="card">
+
+<h3>
+发展历程与重要里程碑
+</h3>
+
+<p>
+按照时间顺序，
+了解全球人工智能枢纽倡议
+的主要发展进程
+以及市民推进委员会活动。
+</p>
+
+<a
+  class="button secondary"
+  href="history-zh.html"
+>
+  查看发展历程
+</a>
+
+</div>
+
+</div>
+
+<p>
+部分链接资料
+及新闻报道原文
+可能仅提供韩语版本。
+</p>
+
+<p>
+参与在线讨论时，
+请尊重其他用户，
+避免公开他人的个人信息
+或传播误导性内容。
+</p>
+
+</section>
+
+<!-- =====================================
+     6. 常见问题
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. 常见问题
+</h2>
+
+<!-- FAQ 1 -->
+
+<div class="faq">
+
+<h3>
+问：使用本网站需要注册会员吗？
+</h3>
+
+<p>
+不需要。
+一般信息无需注册
+即可浏览。
+</p>
+
+<p>
+部分互动功能
+可能需要登录
+或取得额外权限。
+</p>
+
+</div>
+
+<!-- FAQ 2 -->
+
+<div class="faq">
+
+<h3>
+问：在线支持签名活动
+与市民推进委员会成员登记
+是同一回事吗？
+</h3>
+
+<p>
+不是。
+在线支持签名活动
+旨在让参与者表达
+对全球人工智能枢纽倡议的支持。
+</p>
+
+<p>
+市民推进委员会成员登记
+则是希望参与委员会活动的人士
+所使用的独立申请程序。
+</p>
+
+</div>
+
+<!-- FAQ 3 -->
+
+<div class="faq">
+
+<h3>
+问：参加在线支持签名活动
+需要缴纳会员费吗？
+</h3>
+
+<p>
+不需要。
+在线支持签名活动
+与支持会员申请
+是两个独立的参与项目。
+</p>
+
+<p>
+提交在线支持签名表格，
+并不意味着
+承诺缴纳支持会员会费。
+</p>
+
+</div>
+
+<!-- FAQ 4 -->
+
+<div class="faq">
+
+<h3>
+问：提交支持会员申请后，
+是否就完成了缴费？
+</h3>
+
+<p>
+不是。
+提交支持会员申请
+与完成银行转账
+是两个独立的程序。
+</p>
+
+<p>
+汇款前，
+请务必确认
+正式公布的缴费账户信息。
+</p>
+
+</div>
+
+<!-- FAQ 5 -->
+
+<div class="faq">
+
+<h3>
+问：九个国际组织
+是否已经正式决定
+迁至高阳特例市？
+</h3>
+
+<p>
+没有。
+本网站介绍的九个国际组织，
+是在全球人工智能枢纽倡议框架下，
+就潜在合作可能性
+进行讨论的相关机构。
+</p>
+
+<p>
+这些机构出现在本网站中，
+并不意味着其参与、
+设立办事机构
+或迁至高阳特例市
+已经获得正式确认。
+</p>
+
+</div>
+
+<!-- FAQ 6 -->
+
+<div class="faq">
+
+<h3>
+问：提交宣传横幅申请后，
+可以立即设置横幅吗？
+</h3>
+
+<p>
+不可以。
+提交申请
+并不代表已经获得
+宣传横幅设置许可。
+</p>
+
+<p>
+必须遵守相关法律、
+当地管理规定
+以及设置地点的具体要求。
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. 网站使用帮助
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. 网站使用帮助
+</h2>
+
+<h3>
+网站无法打开时
+</h3>
+
+<p>
+请检查互联网连接
+及网站地址。
+</p>
+
+<p>
+稍等片刻后，
+尝试重新访问页面。
+</p>
+
+<h3>
+页面显示不正常时
+</h3>
+
+<p>
+请刷新页面，
+或尝试使用其他浏览器。
+</p>
+
+<h3>
+申请表无法打开时
+</h3>
+
+<p>
+请再次点击申请按钮，
+或使用其他浏览器
+打开申请表。
+</p>
+
+<h3>
+缴费账户信息未显示时
+</h3>
+
+<p>
+请刷新市民参与中心页面，
+然后重新确认。
+</p>
+
+<p>
+如果问题仍然存在，
+在通过市民推进委员会
+正式渠道确认账户信息之前，
+请勿汇款。
+</p>
+
+<h3>
+个人信息保护
+</h3>
+
+<p>
+提交申请之前，
+请仔细阅读
+有关个人信息收集
+及使用的说明。
+</p>
+
+<p>
+请勿在公开讨论区
+发布他人的个人信息。
+</p>
+
+<a
+  class="button secondary"
+  href="privacy.html"
+>
+  个人信息保护政策（韩语）
+</a>
+
+</section>
+
+<!-- =====================================
+     8. 共同开创高阳未来
+===================================== -->
+
+<section>
+
+<h2>
+8. 共同开创高阳的未来
+</h2>
+
+<p>
+拟议中的全球人工智能枢纽
+为高阳特例市探索
+新的经济增长机遇、
+高质量就业岗位
+以及国际合作
+提供了新的可能性。
+</p>
+
+<p>
+广大市民及有意参与的人士，
+可以通过在线支持签名活动、
+市民推进委员会成员登记、
+支持会员申请
+以及公众宣传活动
+表达支持并参与相关工作。
+</p>
+
+<div class="highlight">
+
+<strong>
+每一份关注，<br>
+每一次参与，<br>
+都将有助于共同塑造<br>
+高阳特例市的未来。
+</strong>
+
+</div>
+
+<a
+  class="button"
+  href="participate-zh.html"
+>
+  前往市民参与中心
+</a>
+
+<a
+  class="button secondary"
+  href="index-zh.html"
+>
+  返回中文首页
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     页脚
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高阳特例市全球人工智能枢纽<br>
+引进市民推进委员会
+</strong>
+</p>
+
+<p>
+大韩民国京畿道
+</p>
+
+<p>
+与市民同行，<br>
+与京畿道同行，<br>
+与世界同行。
+</p>
+
+<p>
+
+<a href="index-zh.html">
+中文首页
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate-zh.html">
+市民参与
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="guide.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+</body>
+</html>
