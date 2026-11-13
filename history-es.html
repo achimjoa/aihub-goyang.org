@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>
+Cronología y Principales Acontecimientos |
+Centro Global de IA en Goyang
+</title>
+
+<meta name="description"
+content="Cronología de la iniciativa del Centro Global de Inteligencia Artificial y las actividades del Gobierno Nacional, la Provincia de Gyeonggi, la Ciudad Especial de Goyang y el Comité Ciudadano de Promoción.">
+
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/history-es.html">
+
+<link rel="alternate" hreflang="es"
+href="https://achimjoa.github.io/aihub-goyang.org/history-es.html">
+
+<link rel="alternate" hreflang="en"
+href="https://achimjoa.github.io/aihub-goyang.org/history-en.html">
+
+<link rel="alternate" hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/history.html">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* ENCABEZADO */
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 0 0 12px;
+  line-height: 1.4;
+}
+
+header p {
+  font-size: 16px;
+  color: #e3efff;
+  margin: 5px 0;
+}
+
+/* NAVEGACIÓN */
+
+.top-navigation {
+  background: #10315e;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-navigation > a {
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.top-navigation > a:hover {
+  color: #ffdf5a;
+}
+
+/* IDIOMAS */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 15px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+.language-options a {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.language-options a:hover,
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  font-weight: bold;
+}
+
+/* CONTENIDO */
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+section {
+  background: white;
+  padding: 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.intro {
+  text-align: center;
+}
+
+/* FILTROS */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.filters button {
+  background: white;
+  border: 1px solid #0754a6;
+  color: #0754a6;
+  padding: 10px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.filters button.active {
+  background: #0754a6;
+  color: white;
+}
+
+.filters button:hover {
+  background: #e7f1ff;
+}
+
+.filters button.active:hover {
+  background: #003a7a;
+}
+
+/* CRONOLOGÍA */
+
+.timeline {
+  border-left: 4px solid #168de0;
+  margin-left: 12px;
+  padding-left: 25px;
+}
+
+.event {
+  position: relative;
+  padding: 0 0 25px;
+}
+
+.event::before {
+  content: "";
+  position: absolute;
+  left: -34px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: #168de0;
+  border-radius: 50%;
+}
+
+.date {
+  color: #0754a6;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.type {
+  display: inline-block;
+  background: #e7f1ff;
+  color: #0754a6;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 8px 0;
+}
+
+.event h3 {
+  margin: 5px 0;
+  color: #17315b;
+}
+
+.event p {
+  margin: 5px 0;
+  color: #46566d;
+}
+
+/* PRIORIDADES FUTURAS */
+
+.future {
+  border-left: 4px solid #1b9a80;
+  padding-left: 20px;
+  margin-top: 20px;
+}
+
+.note {
+  background: #fff8e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 25px;
+}
+
+/* BOTONES */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cce2ff;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+footer a {
+  color: white;
+}
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 25px 12px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  .filters button {
+    flex: 1 1 auto;
+    font-size: 13px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+  .language-options {
+    right: auto;
+    left: 0;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<h1>
+Iniciativa del Centro Global de IA<br>
+Cronología y Principales Acontecimientos
+</h1>
+
+<p>
+Gobierno Nacional · Provincia de Gyeonggi<br>
+Ciudad Especial de Goyang ·
+Comité Ciudadano de Promoción
+</p>
+
+</header>
+
+<nav class="top-navigation"
+aria-label="Navegación principal">
+
+<a href="index-es.html">← Inicio</a>
+<a href="#introduccion">Introducción</a>
+<a href="#acontecimientos">Acontecimientos</a>
+<a href="#prioridades">Prioridades futuras</a>
+<a href="committee-es.html">Comité Ciudadano</a>
+<a href="strategy-es.html">Estrategia</a>
+
+<details class="language-dropdown">
+
+<summary aria-label="Seleccionar idioma">
+🌐 Idioma ▾
+</summary>
+
+<div class="language-options">
+
+<a href="history-es.html"
+lang="es"
+aria-current="page">
+Español ✓
+</a>
+
+<a href="history-en.html" lang="en">
+English
+</a>
+
+<a href="history.html" lang="ko">
+한국어
+</a>
+
+</div>
+</details>
+</nav>
+
+<main>
+
+<section class="intro" id="introduccion">
+
+<h2>
+El camino hacia el Centro Global de IA
+</h2>
+
+<p>
+Esta cronología presenta los principales
+acontecimientos relacionados con la iniciativa
+del Centro Global de Inteligencia Artificial
+en la República de Corea, junto con las
+actividades realizadas para apoyar la propuesta
+de establecer el Centro en la Ciudad Especial
+de Goyang.
+</p>
+
+<p>
+La participación ciudadana, la preparación
+de políticas públicas y la cooperación
+institucional constituyen bases importantes
+para la futura colaboración internacional.
+</p>
+
+</section>
+
+<nav class="filters"
+aria-label="Filtrar acontecimientos por institución">
+
+<button type="button"
+class="active"
+data-type="all"
+aria-pressed="true">
+Todos los acontecimientos
+</button>
+
+<button type="button"
+data-type="government"
+aria-pressed="false">
+Gobierno Nacional
+</button>
+
+<button type="button"
+data-type="gyeonggi"
+aria-pressed="false">
+Provincia de Gyeonggi
+</button>
+
+<button type="button"
+data-type="goyang"
+aria-pressed="false">
+Ciudad Especial de Goyang
+</button>
+
+<button type="button"
+data-type="civic"
+aria-pressed="false">
+Comité Ciudadano de Promoción
+</button>
+
+</nav>
+
+<section id="acontecimientos">
+
+<h2>Principales acontecimientos</h2>
+
+<div class="timeline"
+id="timeline"
+aria-live="polite">
+</div>
+
+</section>
+
+<section id="prioridades">
+
+<h2>Prioridades futuras</h2>
+
+<div class="future">
+
+<h3>
+Preparación para la evaluación
+de selección de ubicación
+</h3>
+
+<p>
+Examinar los anuncios oficiales del Gobierno
+y los criterios de evaluación, y presentar
+la competitividad de la Ciudad Especial
+de Goyang y sus planes de implementación
+mediante pruebas objetivas y documentación
+de respaldo.
+</p>
+
+</div>
+
+<div class="future">
+
+<h3>
+Preparación para el establecimiento inicial
+de organizaciones internacionales
+</h3>
+
+<p>
+Desarrollar propuestas prácticas relacionadas
+con instalaciones de oficinas, condiciones
+residenciales, atención sanitaria, educación,
+transporte y otros servicios que puedan
+necesitar las instituciones participantes.
+</p>
+
+</div>
+
+<div class="future">
+
+<h3>
+Preparación de proyectos piloto
+de IA de interés público
+</h3>
+
+<p>
+Examinar la viabilidad de posibles proyectos
+de cooperación en atención sanitaria esencial
+apoyada por inteligencia artificial y respuestas
+a crisis complejas.
+</p>
+
+<p>
+Identificar posibles instituciones colaboradoras
+y evaluar los requisitos necesarios
+para su implementación.
+</p>
+
+</div>
+
+<div class="note">
+
+<strong>Aviso importante</strong>
+
+<p>
+Los calendarios futuros podrán modificarse
+de acuerdo con los anuncios oficiales
+del Gobierno y las decisiones institucionales.
+</p>
+
+<p>
+Esta página resume los principales
+acontecimientos y actividades relacionados
+con la iniciativa.
+</p>
+
+<p>
+No implica que todos los planes futuros
+o acuerdos institucionales hayan sido
+oficialmente confirmados.
+</p>
+
+</div>
+
+<a href="strategy-es.html" class="button">
+Estrategia de Atracción del Centro Global de IA
+</a>
+
+<a href="committee-es.html" class="button">
+Acerca del Comité Ciudadano de Promoción
+</a>
+
+</section>
+
+<section>
+
+<h2>Más información</h2>
+
+<p>
+Explore las páginas relacionadas con
+la iniciativa del Centro Global de IA
+en la Ciudad Especial de Goyang.
+</p>
+
+<a href="index-es.html" class="button">
+← Página principal en español
+</a>
+
+<a href="hub-es.html" class="button secondary">
+Acerca del Centro Global de IA
+</a>
+
+<a href="goyang-es.html" class="button secondary">
+¿Por qué Goyang?
+</a>
+
+<a href="agencies-es.html" class="button secondary">
+Organizaciones internacionales
+</a>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+<strong>
+Comité Ciudadano de Promoción<br>
+para la Atracción del Centro Global de IA<br>
+a la Ciudad Especial de Goyang
+</strong>
+</p>
+
+<p>
+Con los ciudadanos,<br>
+con la provincia de Gyeonggi<br>
+y con el mundo.
+</p>
+
+<p>
+<a href="index-es.html">Inicio en español</a>
+&nbsp; | &nbsp;
+<a href="history-en.html" lang="en">English</a>
+&nbsp; | &nbsp;
+<a href="history.html" lang="ko">한국어</a>
+</p>
+
+</footer>
+
+<script>
+
+/* DATOS DE LA CRONOLOGÍA */
+
+const events = [
+
+{
+  date: "2026.03.10",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Anuncio gubernamental sobre la iniciativa del Centro Global de IA",
+  description:
+    "Las conversaciones y los preparativos a nivel gubernamental relacionados con la iniciativa del Centro Global de IA cobraron impulso."
+},
+
+{
+  date: "2026.03.16",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Reunión entre el Primer Ministro y representantes de las Naciones Unidas",
+  description:
+    "Se celebraron conversaciones sobre cooperación internacional relacionadas con la iniciativa del Centro Global de IA."
+},
+
+{
+  date: "2026.03.17",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Cartas de intención entre el Gobierno y organizaciones internacionales",
+  description:
+    "Se realizaron gestiones para formalizar cartas de intención relativas a la cooperación en la iniciativa del Centro Global de IA."
+},
+
+{
+  date: "2026.04.09",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Instrucción del Primer Ministro sobre la iniciativa del Centro Global de IA",
+  description:
+    "Se estableció un marco institucional para la cooperación intergubernamental relacionada con la iniciativa del Centro Global de IA."
+},
+
+{
+  date: "2026.05.21",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Declaración conjunta de organizaciones internacionales y bancos multilaterales de desarrollo",
+  description:
+    "Nueve organizaciones internacionales y cinco bancos multilaterales de desarrollo anunciaron una declaración conjunta sobre cooperación."
+},
+
+{
+  date: "2026.09.07",
+  type: "civic",
+  label: "Comité Ciudadano de Promoción",
+  title:
+    "Inauguración del Comité Ciudadano de Promoción",
+  description:
+    "La campaña ciudadana para atraer el Centro Global de IA se puso en marcha en el Centro de Exposiciones Florales del Parque del Lago de Goyang."
+},
+
+{
+  date: "2026.10.12",
+  type: "gyeonggi",
+  label: "Provincia de Gyeonggi",
+  title:
+    "Creación del Grupo de Trabajo de Gyeonggi para apoyar la atracción del Centro Global de IA",
+  description:
+    "Se creó un grupo de trabajo provincial para apoyar el desarrollo de estrategias de atracción y la cooperación institucional."
+},
+
+{
+  date: "2026.10.14",
+  type: "government",
+  label: "Gobierno Nacional",
+  title:
+    "Audiencia pública sobre los criterios de evaluación para la selección de ubicación",
+  description:
+    "Se presentó y debatió un borrador de los criterios de evaluación para seleccionar la ubicación del Centro Global de IA en el Centro de Convenciones de Sejong."
+},
+
+{
+  date: "2026.10.15",
+  type: "civic",
+  label: "Comité Ciudadano de Promoción",
+  title:
+    "Recomendaciones para mejorar los criterios de evaluación de ubicación",
+  description:
+    "Se prepararon recomendaciones sobre las condiciones de establecimiento inicial, la aceptación comunitaria y los proyectos piloto de IA de interés público."
+},
+
+{
+  date: "2026.10.20",
+  type: "civic",
+  label: "Comité Ciudadano de Promoción",
+  title:
+    "Participación en el VII Seminario de Estrategia de Innovación de Goyang",
+  description:
+    "Los participantes destacaron la importancia de finalizar una estrategia de atracción, solicitar cooperación institucional, establecer una estructura de implementación y asegurar documentación de respaldo."
+},
+
+{
+  date: "2026.10.26",
+  type: "goyang",
+  label: "Ciudad Especial de Goyang",
+  title:
+    "Resolución del Consejo Municipal de Goyang en apoyo de la atracción del Centro Global de IA",
+  description:
+    "El Consejo Municipal aprobó por unanimidad una resolución solicitando la atracción del Centro Global de IA, con la participación de todos sus miembros."
+},
+
+{
+  date: "2026.10.30",
+  type: "gyeonggi",
+  label: "Provincia de Gyeonggi",
+  title:
+    "Foro de Estrategia de Atracción del Centro Global de IA de la Provincia de Gyeonggi",
+  description:
+    "Se celebró un foro en KINTEX, en la Ciudad Especial de Goyang, para debatir estrategias de atracción y cooperación internacional."
+}
+
+];
+
+/* FILTRO ACTUAL */
+
+let currentType = "all";
+
+/* MOSTRAR CRONOLOGÍA */
+
+function renderTimeline() {
+
+  const timeline =
+    document.getElementById("timeline");
+
+  timeline.innerHTML = "";
+
+  const filtered = events
+    .filter(event =>
+      currentType === "all" ||
+      event.type === currentType
+    )
+    .sort((a, b) =>
+      a.date.localeCompare(b.date)
+    );
+
+  filtered.forEach(event => {
+
+    const item =
+      document.createElement("article");
+
+    item.className = "event";
+
+    const date =
+      document.createElement("div");
+
+    date.className = "date";
+    date.textContent = event.date;
+
+    const type =
+      document.createElement("span");
+
+    type.className = "type";
+    type.textContent = event.label;
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent = event.title;
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      event.description;
+
+    item.appendChild(date);
+    item.appendChild(type);
+    item.appendChild(title);
+    item.appendChild(description);
+
+    timeline.appendChild(item);
+
+  });
+
+}
+
+/* BOTONES DE FILTRO */
+
+document
+  .querySelectorAll("[data-type]")
+  .forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      currentType = button.dataset.type;
+
+      document
+        .querySelectorAll("[data-type]")
+        .forEach(btn => {
+
+          const isActive =
+            btn.dataset.type === currentType;
+
+          btn.classList.toggle(
+            "active",
+            isActive
+          );
+
+          btn.setAttribute(
+            "aria-pressed",
+            String(isActive)
+          );
+
+        });
+
+      renderTimeline();
+
+    });
+
+  });
+
+/* CARGA INICIAL */
+
+renderTimeline();
+
+</script>
+
+</body>
+</html>
