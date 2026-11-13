@@ -983,6 +983,104 @@ main section h3 {
   outline: 3px solid #ffe44d;
   outline-offset: 3px;
 }
+
+/* ==========================================
+   FINAL LANGUAGE MENU POSITION FIX
+   LEFT FIXED + RIGHT SCROLL
+========================================== */
+
+/* 전체 메뉴 */
+
+#homepageLayoutModule .home-navigation {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 1000;
+}
+
+/* 다국어 + 일반 메뉴 */
+
+#homepageLayoutModule .home-menu {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 8px !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+
+  overflow: visible !important;
+}
+
+/* 다국어 버튼 왼쪽 고정 */
+
+#homepageLayoutModule .language-dropdown {
+  position: relative !important;
+  flex: 0 0 auto !important;
+  z-index: 2000;
+}
+
+/* 풀다운 목록을 왼쪽 정렬 */
+
+#homepageLayoutModule .language-options {
+  position: absolute !important;
+
+  top: calc(100% + 6px) !important;
+
+  left: 0 !important;
+  right: auto !important;
+
+  width: 190px !important;
+  max-width: calc(100vw - 20px) !important;
+  max-height: min(70vh, 480px) !important;
+
+  overflow-y: auto !important;
+
+  z-index: 3000 !important;
+}
+
+/* 일반 메뉴 전용 가로 스크롤 */
+
+#homepageLayoutModule .home-menu-links {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+
+  min-width: 0 !important;
+
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: thin;
+  scrollbar-color: #ffe44d #0754a6;
+}
+
+/* 일반 메뉴 버튼 */
+
+#homepageLayoutModule .home-menu-links > a {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
+}
+
+/* 모바일 */
+
+@media (max-width: 767px) {
+
+  #homepageLayoutModule .home-menu {
+    gap: 6px !important;
+  }
+
+  #homepageLayoutModule .language-options {
+    width: 170px !important;
+    max-height: 60vh !important;
+  }
+
+}
   
 </style>
 </head>
@@ -1007,6 +1105,8 @@ aria-label="주 메뉴">
 
 <details class="language-dropdown">
 
+<div class="home-menu-links">
+  
   <summary aria-label="홈페이지 언어 선택">
     🌐 다국어 ▾
   </summary>
@@ -1056,7 +1156,7 @@ aria-label="주 메뉴">
     <a href="index-it.html" lang="it">
       Italiano
     </a>
-
+     </div>
   </div>
 
 </details>
