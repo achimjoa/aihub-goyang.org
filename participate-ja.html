@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+市民参加センター |
+グローバルAIハブ構想
+</title>
+
+<meta
+  name="description"
+  content="高陽特例市グローバルAIハブ誘致構想に参加しましょう。10万人市民署名運動、市民推進委員会への登録、賛助会員、広報横断幕、車両用ステッカー、地域コミュニティ活動をご案内します。"
+>
+
+<style>
+
+/* =====================================
+   基本設定
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Noto Sans JP",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    Meiryo,
+    Arial,
+    sans-serif;
+
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ヘッダー
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  font-size: clamp(28px, 5vw, 44px);
+  margin: 0 0 15px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  background: white;
+  color: #0754a6;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   メインコンテンツ
+===================================== */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.intro h2 {
+  color: #0754a6;
+  font-size: 28px;
+}
+
+.intro strong {
+  color: #0754a6;
+}
+
+/* =====================================
+   カードグリッド
+===================================== */
+
+.grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+
+  box-shadow:
+    0 3px 12px rgba(0,0,0,.08);
+
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  color: #0754a6;
+  font-size: 22px;
+  margin-top: 0;
+}
+
+.card p {
+  color: #46566d;
+}
+
+/* =====================================
+   ボタン
+===================================== */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: #003a7a;
+}
+
+/* =====================================
+   署名運動
+===================================== */
+
+.signature {
+  background: #eaf4ff;
+  border: 2px solid #168de0;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.signature h2 {
+  color: #0754a6;
+  font-size: 30px;
+}
+
+.signature p {
+  font-size: 18px;
+}
+
+/* =====================================
+   お知らせ
+===================================== */
+
+.notice {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-top: 35px;
+}
+
+.notice h2 {
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* =====================================
+   振込口座情報
+===================================== */
+
+.payment-account-info {
+  margin: 15px 0;
+  padding: 16px;
+  background: #eaf4ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 8px;
+  color: #17315b;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.payment-account-info[hidden] {
+  display: none !important;
+}
+
+.payment-account-info strong {
+  display: block;
+  color: #0754a6;
+  margin-bottom: 5px;
+}
+
+.payment-account-info p {
+  margin: 5px 0;
+}
+
+/* =====================================
+   フッター
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   モバイル対応
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  .signature {
+    padding: 20px;
+  }
+
+  .signature h2 {
+    font-size: 25px;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     ヘッダー
+===================================== -->
+
+<header>
+
+<h1>
+市民参加センター
+</h1>
+
+<p>
+グローバルAIハブ構想<br>
+大韓民国・京畿道 高陽特例市
+</p>
+
+<p>
+市民参加を通じて築く<br>
+高陽特例市の新たな未来
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ja.html"
+  class="home-link"
+>
+  ← 日本語ホーム
+</a>
+
+<a
+  href="participate.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     はじめに
+===================================== -->
+
+<div class="intro">
+
+<h2>
+グローバルAIハブを高陽特例市へ！
+</h2>
+
+<p>
+
+<strong>
+高陽特例市に新たな成長機会を！
+</strong>
+
+<br>
+
+<strong>
+高陽特例市に質の高い雇用を！
+</strong>
+
+</p>
+
+<p>
+グローバルAIハブ構想は、
+高陽特例市が
+国際協力とAI関連産業の
+拠点として発展するための
+重要な機会となり得ます。
+</p>
+
+<p>
+市民推進委員会は、
+本構想に対する
+市民の理解を深め、
+市民、
+専門家、
+市民団体による
+自発的な参加を
+促進することを目指しています。
+</p>
+
+<p>
+
+<strong>
+皆様のご参加が、
+グローバルAIハブの
+高陽特例市への誘致に向けた
+市民の支持を
+さらに広げる力となります。
+</strong>
+
+</p>
+
+</div>
+
+<!-- =====================================
+     海外からの参加者へのご案内
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+海外からの参加者の皆様へ
+</strong>
+
+<p>
+このページでは、
+市民推進委員会が運営する
+市民参加プログラムを
+日本語でご紹介しています。
+</p>
+
+<p>
+現在、
+各種申請フォームは
+韓国語で提供されています。
+</p>
+
+<p>
+個人情報を提出する前に、
+各フォームに記載された
+申請内容と
+個人情報の取扱いについて
+十分にご確認ください。
+</p>
+
+<p>
+賛助会費などの金銭的な支援や
+関連する参加手続きには、
+委員会が定める規則と
+適用条件が適用されます。
+</p>
+
+</div>
+
+<!-- =====================================
+     10万人市民署名運動
+===================================== -->
+
+<section class="signature">
+
+<h2>
+10万人市民署名運動
+</h2>
+
+<p>
+高陽特例市への
+グローバルAIハブ誘致を支持する
+市民署名運動に
+ご参加ください。
+</p>
+
+<p>
+一人ひとりの市民の声を集め、
+高陽特例市の未来の発展に向けた
+社会的な理解と支持を
+広げていきます。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  オンライン署名運動に参加する
+</a>
+
+<p class="small-note">
+申請フォームは韓国語で提供されています。
+</p>
+
+</section>
+
+<!-- =====================================
+     市民参加プログラム
+===================================== -->
+
+<div class="grid">
+
+<!-- =====================================
+     市民推進委員会への登録
+===================================== -->
+
+<article class="card">
+
+<h3>
+市民推進委員会への登録
+</h3>
+
+<p>
+グローバルAIハブ構想を
+支持する市民、
+専門家、
+市民団体の代表者、
+その他の関心をお持ちの皆様の
+参加を歓迎します。
+</p>
+
+<p>
+委員会への参加を通じて、
+市民との交流、
+政策に関する議論、
+地域社会での活動などに
+貢献することができます。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/FaZCDwm7gqu5rthb7"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  市民推進委員会に登録する
+</a>
+
+<p class="small-note">
+申請フォームは韓国語で提供されています。
+</p>
+
+</article>
+
+<!-- =====================================
+     賛助会員
+===================================== -->
+
+<article class="card">
+
+<h3>
+賛助会員への登録
+</h3>
+
+<p>
+グローバルAIハブ構想に関連する
+市民活動、
+広報、
+政策提案活動などを
+継続的に支援するため、
+賛助会員として
+ご参加いただけます。
+</p>
+
+<p>
+賛助会費は、
+以下に表示される
+指定銀行口座へ
+お振り込みいただけます。
+</p>
+
+<!-- SUPABASE 口座情報 -->
+
+<div
+  id="membershipAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  賛助会員に申し込む
+</a>
+
+<p class="small-note">
+申請フォームは韓国語です。
+お振り込みの前に、
+最新の口座情報と
+支払条件をご確認ください。
+</p>
+
+</article>
+
+<!-- =====================================
+     広報横断幕
+===================================== -->
+
+<article class="card">
+
+<h3>
+広報横断幕の申請
+</h3>
+
+<p>
+高陽特例市への
+グローバルAIハブ誘致を
+支持する広報横断幕の掲示を通じて、
+市民への周知活動に
+ご参加いただけます。
+</p>
+
+<p>
+申請書を提出した後、
+該当する費用を
+以下の指定銀行口座へ
+お振り込みください。
+</p>
+
+<p>
+横断幕の掲示に当たっては、
+地域の条例、
+関係法令、
+設置場所に関する条件を
+遵守する必要があります。
+</p>
+
+<!-- SUPABASE 口座情報 -->
+
+<div
+  id="bannerAccountInfo"
+  class="payment-account-info"
+  hidden>
+</div>
+
+<a
+  class="button"
+  href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  広報横断幕を申し込む
+</a>
+
+<p class="small-note">
+申請フォームは韓国語で提供されています。
+</p>
+
+</article>
+
+<!-- =====================================
+     車両用広報ステッカー
+===================================== -->
+
+<article class="card">
+
+<h3>
+車両用広報ステッカー
+</h3>
+
+<p>
+車両に広報ステッカーを貼ることで、
+グローバルAIハブ構想に対する
+市民の関心と理解を
+広げる活動に
+ご参加いただけます。
+</p>
+
+<a
+  class="button"
+  href="https://forms.gle/cisRHEsN61pxVycG8"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  車両用ステッカーを申し込む
+</a>
+
+<p class="small-note">
+申請フォームは韓国語で提供されています。
+</p>
+
+</article>
+
+<!-- =====================================
+     KakaoTalk コミュニティ
+===================================== -->
+
+<article class="card">
+
+<h3>
+KakaoTalkコミュニティ
+</h3>
+
+<p>
+市民推進委員会の
+KakaoTalkコミュニティに参加し、
+委員会の活動、
+市民参加、
+グローバルAIハブ構想の
+進展に関する情報を
+共有することができます。
+</p>
+
+<a
+  class="button"
+  href="https://invite.kakao.com/tc/6vBTJeOAAa"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  KakaoTalkコミュニティに参加する
+</a>
+
+<p class="small-note">
+コミュニティ内での交流は、
+主に韓国語で行われています。
+</p>
+
+</article>
+
+<!-- =====================================
+     Facebook グループ
+===================================== -->
+
+<article class="card">
+
+<h3>
+Facebookディスカッショングループ
+</h3>
+
+<p>
+グローバルAIハブ構想に関する
+情報を共有し、
+さまざまな意見を交換しながら、
+市民による公開討論に
+参加することができます。
+</p>
+
+<a
+  class="button"
+  href="https://fb.me/g/8JVQBabwP/W4YofuHk"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Facebookグループに参加する
+</a>
+
+</article>
+
+<!-- =====================================
+     活動写真ギャラリー
+===================================== -->
+
+<article class="card">
+
+<h3>
+委員会活動ギャラリー
+</h3>
+
+<p>
+市民推進委員会の活動や
+市民による誘致支持運動の様子を
+写真でご覧いただけます。
+</p>
+
+<a
+  class="button"
+  href="gallery.html"
+>
+  活動ギャラリーを見る（韓国語）
+</a>
+
+</article>
+
+</div>
+
+<!-- =====================================
+     参加に関するご案内
+===================================== -->
+
+<section class="notice">
+
+<h2>
+参加に関するご案内
+</h2>
+
+<p>
+市民推進委員会では、
+市民署名運動、
+委員会への登録、
+賛助会員制度、
+広報横断幕の申請、
+車両用ステッカーの申請など、
+さまざまな参加プログラムを
+運営しています。
+</p>
+
+<p>
+各申請は、
+該当するオンラインフォームを通じて
+行われます。
+</p>
+
+<p>
+申請に当たっては、
+申請目的と、
+個人情報の収集および利用に関する
+説明を十分にご確認ください。
+</p>
+
+<p>
+賛助会費および
+広報横断幕の費用は、
+委員会が正式に案内する
+指定銀行口座にのみ
+お振り込みください。
+</p>
+
+<p>
+送金前には、
+必ず最新の口座情報と
+支払条件をご確認ください。
+</p>
+
+<p>
+個人情報の保護については、
+<a href="privacy.html">
+個人情報保護方針（韓国語）
+</a>
+をご参照ください。
+</p>
+
+</section>
+
+<!-- =====================================
+     関連ページ
+===================================== -->
+
+<section class="notice">
+
+<h2>
+関連ページ
+</h2>
+
+<p>
+市民推進委員会の目的、
+活動、
+グローバルAIハブ構想について、
+さらに詳しくご紹介します。
+</p>
+
+<a
+  class="button"
+  href="committee-ja.html"
+>
+  市民推進委員会について
+</a>
+
+<a
+  class="button"
+  href="hub-ja.html"
+>
+  グローバルAIハブについて
+</a>
+
+<a
+  class="button"
+  href="news-ja.html"
+>
+  ニュース・お知らせ
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     フッター
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+高陽特例市グローバルAIハブ誘致<br>
+市民推進委員会
+</strong>
+</p>
+
+<p>
+大韓民国・京畿道
+</p>
+
+<p>
+市民とともに、京畿道とともに、<br>
+そして世界とともに。
+</p>
+
+<p>
+
+<a href="index-ja.html">
+日本語ホーム
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+<!-- =====================================
+     SUPABASE 振込口座情報モジュール
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   SUPABASE 接続
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   振込口座情報の自動表示
+===================================== */
+
+async function loadPaymentAccounts() {
+
+  const targets = {
+    membership: "membershipAccountInfo",
+    banner: "bannerAccountInfo"
+  };
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("payment_accounts")
+        .select(
+          "account_type, bank_name, account_number, account_holder"
+        );
+
+    if (error) {
+      throw error;
+    }
+
+    for (const account of data || []) {
+
+      const targetId =
+        targets[account.account_type];
+
+      if (!targetId) continue;
+
+      const container =
+        document.getElementById(targetId);
+
+      if (!container) continue;
+
+      const bank =
+        String(
+          account.bank_name || ""
+        ).trim();
+
+      const number =
+        String(
+          account.account_number || ""
+        ).trim();
+
+      const holder =
+        String(
+          account.account_holder || ""
+        ).trim();
+
+      if (
+        !bank ||
+        !number ||
+        !holder
+      ) {
+        continue;
+      }
+
+      container.replaceChildren();
+
+      /* 口座情報タイトル */
+
+      const title =
+        document.createElement("strong");
+
+      title.textContent =
+        "指定振込口座";
+
+      /* 銀行名 */
+
+      const bankLine =
+        document.createElement("p");
+
+      bankLine.textContent =
+        "銀行名：" + bank;
+
+      /* 口座番号 */
+
+      const numberLine =
+        document.createElement("p");
+
+      numberLine.textContent =
+        "口座番号：" + number;
+
+      /* 口座名義人 */
+
+      const holderLine =
+        document.createElement("p");
+
+      holderLine.textContent =
+        "口座名義人：" + holder;
+
+      container.append(
+        title,
+        bankLine,
+        numberLine,
+        holderLine
+      );
+
+      container.hidden = false;
+
+    }
+
+    console.log(
+      "振込口座情報の読み込みが完了しました。"
+    );
+
+  } catch (error) {
+
+    console.error(
+      "振込口座情報の取得に失敗しました:",
+      error
+    );
+
+  }
+
+}
+
+/* =====================================
+   初期読み込み
+===================================== */
+
+loadPaymentAccounts();
+
+</script>
+
+</body>
+</html>
