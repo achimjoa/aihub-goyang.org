@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+content="#0754a6">
+
+<meta name="description"
+content="Guía de uso del sitio web de la iniciativa del Centro Global de Inteligencia Artificial en la Ciudad Especial de Goyang. Información, navegación, participación ciudadana y servicios en línea.">
+
+<title>
+Guía de Uso del Sitio Web |
+Centro Global de IA en Goyang
+</title>
+
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/guide-es.html">
+
+<link rel="alternate" hreflang="es"
+href="https://achimjoa.github.io/aihub-goyang.org/guide-es.html">
+
+<link rel="alternate" hreflang="en"
+href="https://achimjoa.github.io/aihub-goyang.org/guide-en.html">
+
+<link rel="alternate" hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/guide.html">
+
+<style>
+
+/* CONFIGURACIÓN GENERAL */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* ENCABEZADO */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #e3efff;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 22px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* SELECTOR DE IDIOMA */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,.18);
+  text-align: left;
+}
+
+.language-options a {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.language-options a:hover,
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  font-weight: bold;
+}
+
+/* NAVEGACIÓN RÁPIDA */
+
+.quick-nav {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.quick-nav a {
+  padding: 10px 16px;
+  background: #e4f0ff;
+  border: 1px solid #b8d6f5;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.quick-nav a:hover {
+  background: #cce2ff;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+/* TARJETAS */
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  padding: 22px;
+  background: #f4f8fc;
+  border-radius: 10px;
+  border-top: 4px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+/* BOTONES */
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.button.secondary {
+  background: #e4f0ff;
+  color: #0754a6;
+}
+
+.button.secondary:hover {
+  background: #cce2ff;
+}
+
+/* BLOQUES DESTACADOS */
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* PASOS */
+
+.steps {
+  padding-left: 24px;
+}
+
+.steps li {
+  margin-bottom: 8px;
+}
+
+/* NOTAS */
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+/* PREGUNTAS FRECUENTES */
+
+.faq {
+  margin-bottom: 22px;
+}
+
+.faq h3 {
+  margin-bottom: 6px;
+}
+
+.faq p {
+  margin-top: 0;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 35px;
+}
+
+footer a {
+  color: white;
+}
+
+/* DISEÑO MÓVIL */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 35px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .language-options {
+    right: auto;
+    left: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ENCABEZADO -->
+
+<header>
+
+<h1>
+Guía de Uso del Sitio Web
+</h1>
+
+<p>
+Iniciativa del Centro Global
+de Inteligencia Artificial<br>
+Ciudad Especial de Goyang,
+Provincia de Gyeonggi,
+República de Corea
+</p>
+
+<p>
+Guía de información,
+navegación y participación ciudadana
+</p>
+
+<div class="header-links">
+
+<a href="index-es.html"
+class="home-link">
+← Inicio en español
+</a>
+
+<details class="language-dropdown">
+
+<summary aria-label="Seleccionar idioma">
+🌐 Idioma ▾
+</summary>
+
+<div class="language-options">
+
+<a href="guide-es.html"
+lang="es"
+aria-current="page">
+Español ✓
+</a>
+
+<a href="guide-en.html"
+lang="en">
+English
+</a>
+
+<a href="guide.html"
+lang="ko">
+한국어
+</a>
+
+</div>
+
+</details>
+
+</div>
+
+</header>
+
+<!-- NAVEGACIÓN RÁPIDA -->
+
+<nav
+class="quick-nav"
+aria-label="Navegación de la guía">
+
+<a href="#intro">
+Introducción
+</a>
+
+<a href="#menus">
+Secciones principales
+</a>
+
+<a href="#participation">
+Participación
+</a>
+
+<a href="#account">
+Información de pago
+</a>
+
+<a href="#board">
+Noticias y recursos
+</a>
+
+<a href="#faq">
+Preguntas frecuentes
+</a>
+
+<a href="#help">
+Ayuda
+</a>
+
+</nav>
+
+<main>
+
+<!-- =====================================
+     1. INTRODUCCIÓN
+===================================== -->
+
+<section id="intro">
+
+<h2>
+1. Bienvenidos a Nuestro Sitio Web
+</h2>
+
+<p>
+Bienvenidos al sitio web oficial
+del Comité Ciudadano de Promoción
+para la Atracción del Centro Global
+de Inteligencia Artificial
+a la Ciudad Especial de Goyang.
+</p>
+
+<p>
+Este sitio web proporciona información
+sobre la propuesta del Centro Global de IA,
+las actividades del Comité,
+las ventajas de ubicación de Goyang
+y las oportunidades de participación ciudadana.
+</p>
+
+<p>
+También presenta
+el posible papel
+de la cooperación internacional
+para afrontar desafíos globales
+mediante aplicaciones responsables
+de la inteligencia artificial.
+</p>
+
+<div class="highlight">
+
+<strong>
+¡Nuevas oportunidades de crecimiento para Goyang!<br>
+¡Más empleos de calidad para Goyang!<br>
+¡Atraigamos el Centro Global de IA a Goyang!
+</strong>
+
+</div>
+
+<p>
+Puede acceder a este sitio web
+desde un ordenador,
+una tableta
+o un teléfono inteligente.
+</p>
+
+<p>
+No es necesario instalar
+ningún programa adicional.
+Es suficiente utilizar
+un navegador de Internet convencional.
+</p>
+
+</section>
+
+<!-- =====================================
+     2. SECCIONES PRINCIPALES
+===================================== -->
+
+<section id="menus">
+
+<h2>
+2. Secciones Principales del Sitio Web
+</h2>
+
+<div class="grid">
+
+<!-- COMITÉ -->
+
+<div class="card">
+
+<h3>
+Acerca del Comité
+</h3>
+
+<p>
+Conozca la creación,
+la misión,
+los principios rectores
+y las principales actividades
+del Comité Ciudadano de Promoción.
+</p>
+
+<a
+class="button secondary"
+href="committee-es.html">
+Explorar
+</a>
+
+</div>
+
+<!-- CENTRO GLOBAL DE IA -->
+
+<div class="card">
+
+<h3>
+Acerca del Centro Global de IA
+</h3>
+
+<p>
+Explore la propuesta
+del Centro Global de IA,
+su visión de cooperación internacional
+y las posibles aplicaciones
+de inteligencia artificial
+de interés público.
+</p>
+
+<a
+class="button secondary"
+href="hub-es.html">
+Explorar
+</a>
+
+</div>
+
+<!-- GOYANG -->
+
+<div class="card">
+
+<h3>
+¿Por qué la Ciudad Especial de Goyang?
+</h3>
+
+<p>
+Conozca las ventajas
+de ubicación de Goyang,
+su infraestructura urbana
+y su posible competitividad
+como sede del Centro Global de IA.
+</p>
+
+<a
+class="button secondary"
+href="goyang-es.html">
+Explorar
+</a>
+
+</div>
+
+<!-- ORGANIZACIONES INTERNACIONALES -->
+
+<div class="card">
+
+<h3>
+Nueve Organizaciones Internacionales
+</h3>
+
+<p>
+Conozca las misiones
+de nueve organizaciones internacionales
+y las posibles áreas
+de cooperación relacionadas
+con la inteligencia artificial.
+</p>
+
+<a
+class="button secondary"
+href="agencies-es.html">
+Explorar
+</a>
+
+</div>
+
+<!-- ESTRATEGIA -->
+
+<div class="card">
+
+<h3>
+Estrategia de Atracción
+</h3>
+
+<p>
+Conozca la estrategia propuesta
+para el establecimiento inicial,
+el apoyo operativo
+y el crecimiento compartido
+a largo plazo.
+</p>
+
+<a
+class="button secondary"
+href="strategy-es.html">
+Explorar
+</a>
+
+</div>
+
+<!-- PARTICIPACIÓN -->
+
+<div class="card">
+
+<h3>
+Centro de Participación Ciudadana
+</h3>
+
+<p>
+Encuentre información
+sobre firmas de apoyo,
+inscripción en el Comité,
+afiliación como miembro colaborador
+y otros programas de participación.
+</p>
+
+<a
+class="button"
+href="participate-es.html">
+Centro de Participación
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     3. PARTICIPACIÓN
+===================================== -->
+
+<section id="participation">
+
+<h2>
+3. Cómo Participar
+</h2>
+
+<p>
+El Centro de Participación Ciudadana
+ofrece información
+sobre cinco programas
+de participación.
+</p>
+
+<p class="note">
+Los formularios de solicitud
+están disponibles actualmente
+en coreano.
+Revise la información
+y los avisos de privacidad
+antes de enviar un formulario.
+</p>
+
+<div class="grid">
+
+<!-- CAMPAÑA DE APOYO -->
+
+<div class="card">
+
+<h3>
+① Campaña de Apoyo en Línea
+</h3>
+
+<p>
+Exprese su apoyo
+a la propuesta
+de establecer el Centro Global de IA
+en la Ciudad Especial de Goyang.
+</p>
+
+<ol class="steps">
+
+<li>
+Seleccione el botón
+de participación en la campaña.
+</li>
+
+<li>
+Introduzca la información solicitada
+en el formulario.
+</li>
+
+<li>
+Revise el aviso de privacidad.
+</li>
+
+<li>
+Envíe el formulario completado.
+</li>
+
+</ol>
+
+<a
+class="button"
+href="https://forms.gle/Um2iRD9fAhoU1CDW8"
+target="_blank"
+rel="noopener noreferrer">
+Participar en la Campaña
+</a>
+
+</div>
+
+<!-- INSCRIPCIÓN EN EL COMITÉ -->
+
+<div class="card">
+
+<h3>
+② Inscripción en el Comité
+</h3>
+
+<p>
+Los ciudadanos interesados
+en participar activamente
+en la iniciativa
+del Centro Global de IA
+pueden solicitar
+su inscripción como miembros
+del Comité.
+</p>
+
+<p>
+Proporcione la información
+solicitada en el formulario
+de inscripción.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/FaZCDwm7gqu5rthb7"
+target="_blank"
+rel="noopener noreferrer">
+Inscribirse
+</a>
+
+</div>
+
+<!-- MIEMBROS COLABORADORES -->
+
+<div class="card">
+
+<h3>
+③ Afiliación como Miembro Colaborador
+</h3>
+
+<p>
+Las personas que deseen
+apoyar las actividades
+del Comité
+pueden solicitar
+su afiliación
+como miembros colaboradores.
+</p>
+
+<p>
+Después de presentar
+la solicitud,
+consulte la información oficial
+de pago disponible
+en el Centro
+de Participación Ciudadana.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/hdgHtRV2qpxrAhjW8"
+target="_blank"
+rel="noopener noreferrer">
+Solicitar Afiliación
+</a>
+
+</div>
+
+<!-- PANCARTAS -->
+
+<div class="card">
+
+<h3>
+④ Solicitud de Pancartas Promocionales
+</h3>
+
+<p>
+Solicite la instalación
+de pancartas promocionales
+en apoyo de la propuesta
+del Centro Global de IA.
+</p>
+
+<p>
+Verifique las normas locales,
+los requisitos de ubicación
+y las autorizaciones necesarias
+para su instalación.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/pRM9h8SBhYWXnhFi6"
+target="_blank"
+rel="noopener noreferrer">
+Solicitar una Pancarta
+</a>
+
+</div>
+
+<!-- ADHESIVOS -->
+
+<div class="card">
+
+<h3>
+⑤ Adhesivos Promocionales para Vehículos
+</h3>
+
+<p>
+Solicite un adhesivo promocional
+para contribuir
+a la difusión
+de la iniciativa
+del Centro Global de IA.
+</p>
+
+<p>
+Proporcione la información requerida,
+incluidos los datos de contacto
+y la cantidad solicitada.
+</p>
+
+<a
+class="button"
+href="https://forms.gle/cisRHEsN61pxVycG8"
+target="_blank"
+rel="noopener noreferrer">
+Solicitar un Adhesivo
+</a>
+
+</div>
+
+</div>
+
+<p class="note">
+La disponibilidad
+de los programas
+y los plazos de tramitación
+pueden variar
+según las actividades
+del Comité.
+</p>
+
+</section>
+
+<!-- =====================================
+     4. INFORMACIÓN DE PAGO
+===================================== -->
+
+<section id="account">
+
+<h2>
+4. Pagos de Miembros Colaboradores
+y Pancartas Promocionales
+</h2>
+
+<p>
+Si desea realizar
+una contribución
+como miembro colaborador
+o pagar el coste
+de una pancarta promocional,
+consulte la información
+de las cuentas bancarias oficiales
+disponible en el
+Centro de Participación Ciudadana.
+</p>
+
+<div class="highlight">
+
+<strong>
+Información Importante sobre Pagos
+</strong>
+
+<p>
+Antes de realizar
+una transferencia,
+verifique el nombre del banco,
+el número de cuenta
+y el titular de la cuenta.
+</p>
+
+<p>
+La presentación
+de una solicitud
+y la realización
+de una transferencia bancaria
+son procedimientos independientes.
+</p>
+
+<p>
+Si la información
+de la cuenta bancaria
+no aparece
+o no está clara,
+no transfiera fondos
+hasta confirmar los datos
+mediante las indicaciones oficiales
+del Comité.
+</p>
+
+</div>
+
+<a
+class="button"
+href="participate-es.html">
+Consultar Información Oficial de Pago
+</a>
+
+<p class="note">
+La información bancaria
+puede cambiar.
+Por esta razón,
+los números de cuenta
+no se reproducen directamente
+en esta guía.
+</p>
+
+</section>
+
+<!-- =====================================
+     5. NOTICIAS Y RECURSOS
+===================================== -->
+
+<section id="board">
+
+<h2>
+5. Noticias, Actividades y Recursos
+</h2>
+
+<div class="grid">
+
+<!-- TABLÓN -->
+
+<div class="card">
+
+<h3>
+Foro de Debate Ciudadano
+</h3>
+
+<p>
+Espacio para compartir
+opiniones ciudadanas
+e información
+sobre la iniciativa
+del Centro Global de IA.
+</p>
+
+<a
+class="button secondary"
+href="board.html">
+Visitar el Foro (en coreano)
+</a>
+
+</div>
+
+<!-- NOTICIAS -->
+
+<div class="card">
+
+<h3>
+Noticias y Avisos
+</h3>
+
+<p>
+Consulte las novedades
+sobre las actividades
+del Comité,
+los eventos
+y los principales acontecimientos.
+</p>
+
+<a
+class="button secondary"
+href="news-es.html">
+Ver Noticias
+</a>
+
+</div>
+
+<!-- PRENSA -->
+
+<div class="card">
+
+<h3>
+Cobertura de Prensa
+</h3>
+
+<p>
+Explore artículos
+de periódicos,
+reportajes de televisión
+y otras informaciones
+de los medios
+relacionadas
+con la iniciativa
+del Centro Global de IA.
+</p>
+
+<a
+class="button secondary"
+href="press-es.html">
+Ver Cobertura de Prensa
+</a>
+
+</div>
+
+<!-- CRONOLOGÍA -->
+
+<div class="card">
+
+<h3>
+Cronología y Principales Acontecimientos
+</h3>
+
+<p>
+Revise los principales
+acontecimientos
+y las actividades
+del Comité
+en orden cronológico.
+</p>
+
+<a
+class="button secondary"
+href="history-es.html">
+Ver Cronología
+</a>
+
+</div>
+
+</div>
+
+<p>
+Algunos recursos
+y artículos originales
+pueden estar disponibles
+únicamente en coreano.
+</p>
+
+<p>
+Al participar
+en debates en línea,
+respete a los demás usuarios
+y evite compartir
+información personal
+o contenidos engañosos.
+</p>
+
+</section>
+
+<!-- =====================================
+     6. PREGUNTAS FRECUENTES
+===================================== -->
+
+<section id="faq">
+
+<h2>
+6. Preguntas Frecuentes
+</h2>
+
+<div class="faq">
+
+<h3>
+P. ¿Es necesario registrarse
+para utilizar este sitio web?
+</h3>
+
+<p>
+La información general
+puede consultarse
+sin necesidad de registrarse.
+Algunas funciones interactivas
+pueden requerir
+inicio de sesión
+o permisos adicionales.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+P. ¿La campaña de apoyo en línea
+es lo mismo que la inscripción
+en el Comité?
+</h3>
+
+<p>
+No.
+La campaña de apoyo en línea
+permite expresar
+el respaldo ciudadano
+a la propuesta
+del Centro Global de IA.
+</p>
+
+<p>
+La inscripción en el Comité
+es un procedimiento independiente
+para quienes deseen
+participar en sus actividades.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+P. ¿Participar en la campaña
+de apoyo requiere pagar
+una cuota de afiliación?
+</h3>
+
+<p>
+No.
+La campaña de apoyo
+y la afiliación
+como miembro colaborador
+son programas diferentes.
+</p>
+
+<p>
+Firmar el formulario de apoyo
+no implica por sí mismo
+ningún compromiso
+de realizar una contribución económica.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+P. ¿La presentación
+de una solicitud
+de afiliación
+completa automáticamente
+el pago?
+</h3>
+
+<p>
+No.
+La presentación
+de la solicitud
+y la transferencia de fondos
+son procedimientos independientes.
+</p>
+
+<p>
+Verifique la información
+oficial de pago
+antes de realizar
+una transferencia.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+P. ¿Las nueve organizaciones
+internacionales
+han confirmado
+su traslado a Goyang?
+</h3>
+
+<p>
+No.
+Las organizaciones internacionales
+presentadas en este sitio web
+se mencionan
+en relación con posibles
+ámbitos de cooperación
+dentro de la iniciativa
+del Centro Global de IA.
+</p>
+
+<p>
+Su inclusión
+no significa
+que su participación,
+el establecimiento
+de oficinas
+o su traslado a Goyang
+hayan sido oficialmente confirmados.
+</p>
+
+</div>
+
+<div class="faq">
+
+<h3>
+P. ¿Se puede instalar
+una pancarta promocional
+inmediatamente después
+de presentar la solicitud?
+</h3>
+
+<p>
+No.
+La presentación
+de una solicitud
+no autoriza automáticamente
+la instalación
+de una pancarta.
+</p>
+
+<p>
+Deben respetarse
+las leyes aplicables,
+las normas locales
+y los requisitos específicos
+de cada ubicación.
+</p>
+
+</div>
+
+</section>
+
+<!-- =====================================
+     7. AYUDA
+===================================== -->
+
+<section id="help">
+
+<h2>
+7. Ayuda para Utilizar el Sitio Web
+</h2>
+
+<h3>
+Si el Sitio Web No Se Abre
+</h3>
+
+<p>
+Compruebe su conexión
+a Internet
+y la dirección del sitio web.
+Intente acceder nuevamente
+después de unos momentos.
+</p>
+
+<h3>
+Si la Página No Se Muestra Correctamente
+</h3>
+
+<p>
+Actualice la página
+o utilice otro navegador.
+</p>
+
+<h3>
+Si un Formulario de Solicitud No Se Abre
+</h3>
+
+<p>
+Seleccione nuevamente
+el botón de solicitud
+o abra el formulario
+con otro navegador.
+</p>
+
+<h3>
+Si No Aparece
+la Información Bancaria
+</h3>
+
+<p>
+Actualice la página
+del Centro de Participación Ciudadana
+y vuelva a comprobar
+la información.
+</p>
+
+<p>
+Si el problema continúa,
+no transfiera fondos
+hasta confirmar
+la información bancaria
+mediante las indicaciones
+oficiales del Comité.
+</p>
+
+<h3>
+Protección de Datos Personales
+</h3>
+
+<p>
+Revise el aviso correspondiente
+sobre recopilación
+y utilización
+de datos personales
+antes de presentar
+una solicitud.
+</p>
+
+<p>
+No publique
+información personal
+de otras personas
+en foros públicos.
+</p>
+
+<a
+class="button secondary"
+href="privacy.html">
+Política de Privacidad (en coreano)
+</a>
+
+</section>
+
+<!-- =====================================
+     8. MENSAJE FINAL
+===================================== -->
+
+<section>
+
+<h2>
+8. Construyamos Juntos
+el Futuro de Goyang
+</h2>
+
+<p>
+La propuesta
+del Centro Global de IA
+representa una oportunidad
+para explorar
+nuevas fuentes de crecimiento,
+empleos de calidad
+y cooperación internacional
+en la Ciudad Especial de Goyang.
+</p>
+
+<p>
+Los ciudadanos
+y las personas interesadas
+pueden participar
+mediante la campaña
+de apoyo en línea,
+la inscripción en el Comité,
+la afiliación
+como miembros colaboradores
+y las actividades
+de sensibilización pública.
+</p>
+
+<div class="highlight">
+
+<strong>
+Cada expresión de interés
+y cada acto de participación
+pueden contribuir
+a construir
+el futuro de Goyang.
+</strong>
+
+</div>
+
+<a
+class="button"
+href="participate-es.html">
+Centro de Participación Ciudadana
+</a>
+
+<a
+class="button secondary"
+href="index-es.html">
+Página Principal en Español
+</a>
+
+</section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+<p>
+<strong>
+Comité Ciudadano de Promoción<br>
+para la Atracción del Centro Global de IA<br>
+a la Ciudad Especial de Goyang
+</strong>
+</p>
+
+<p>
+Provincia de Gyeonggi,
+República de Corea
+</p>
+
+<p>
+Con los ciudadanos,<br>
+con la provincia de Gyeonggi<br>
+y con el mundo.
+</p>
+
+<p>
+
+<a href="index-es.html">
+Inicio en español
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="participate-es.html">
+Participación Ciudadana
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="guide-en.html" lang="en">
+English
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="guide.html" lang="ko">
+한국어
+</a>
+
+</p>
+
+</footer>
+
+</body>
+</html>
