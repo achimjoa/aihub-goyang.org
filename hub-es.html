@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0754a6">
+
+<title>
+Acerca del Centro Global de IA | Ciudad Especial de Goyang
+</title>
+
+<meta name="description"
+content="Conozca la iniciativa del Centro Global de Inteligencia Artificial en Goyang, su visión, sus seis funciones principales y sus oportunidades de cooperación internacional.">
+
+<link rel="canonical"
+href="https://achimjoa.github.io/aihub-goyang.org/hub-es.html">
+
+<link rel="alternate" hreflang="es"
+href="https://achimjoa.github.io/aihub-goyang.org/hub-es.html">
+
+<link rel="alternate" hreflang="en"
+href="https://achimjoa.github.io/aihub-goyang.org/hub-en.html">
+
+<link rel="alternate" hreflang="ko"
+href="https://achimjoa.github.io/aihub-goyang.org/hub.html">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* ENCABEZADO */
+
+header {
+  background: linear-gradient(135deg, #0754a6, #10315e);
+  color: white;
+  text-align: center;
+  padding: 22px 20px;
+}
+
+header h1 {
+  font-size: clamp(24px, 4vw, 34px);
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+header p {
+  font-size: 15px;
+  margin: 5px 0;
+  color: #e3efff;
+}
+
+/* NAVEGACIÓN */
+
+.top-navigation {
+  background: #10315e;
+  padding: 12px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.top-navigation > a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.top-navigation > a:hover {
+  color: #ffdf5a;
+}
+
+/* SELECTOR DE IDIOMA */
+
+.language-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.language-dropdown summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 15px;
+  background: #ffe44d;
+  color: #003b79;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  list-style: none;
+}
+
+.language-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.language-dropdown summary:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
+}
+
+.language-options {
+  position: absolute;
+  top: calc(100% + 7px);
+  right: 0;
+  min-width: 180px;
+  padding: 8px;
+  background: white;
+  border: 1px solid #cbdff5;
+  border-radius: 8px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+.language-options a {
+  display: block;
+  padding: 10px 12px;
+  color: #0754a6;
+  background: white;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.language-options a:hover {
+  background: #eaf4ff;
+}
+
+.language-options a[aria-current="page"] {
+  background: #eaf4ff;
+  font-weight: bold;
+}
+
+/* CONTENIDO */
+
+main {
+  max-width: 1150px;
+  margin: auto;
+  padding: 35px 15px;
+}
+
+section {
+  background: white;
+  padding: 35px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06);
+  scroll-margin-top: 20px;
+}
+
+h2 {
+  color: #0754a6;
+  border-bottom: 2px solid #e3edf8;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+h3 {
+  color: #0754a6;
+}
+
+.slogan {
+  text-align: center;
+  font-size: clamp(20px, 4vw, 30px);
+  font-weight: bold;
+  color: #0754a6;
+  line-height: 1.8;
+}
+
+.intro {
+  font-size: 18px;
+}
+
+.highlight {
+  background: #eaf4ff;
+  border-left: 5px solid #168de0;
+  padding: 25px;
+  border-radius: 8px;
+  margin: 25px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #f4f8fc;
+  padding: 25px;
+  border-radius: 10px;
+  border-top: 5px solid #168de0;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+.note {
+  font-size: 14px;
+  color: #596a80;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+  margin-top: 40px;
+}
+
+footer a {
+  color: white;
+}
+
+/* DISEÑO MÓVIL */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 18px 12px;
+  }
+
+  main {
+    padding: 20px 12px;
+  }
+
+  section {
+    padding: 22px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Acerca del Centro Global de Inteligencia Artificial</h1>
+
+  <p>
+    Una plataforma propuesta de cooperación internacional<br>
+    para afrontar los desafíos globales mediante la IA
+  </p>
+</header>
+
+<nav class="top-navigation" aria-label="Navegación principal">
+
+  <a href="index-es.html">
+    ← Inicio
+  </a>
+
+  <a href="#vision">Visión</a>
+
+  <a href="#funciones">Funciones</a>
+
+  <a href="#cooperacion">Cooperación</a>
+
+  <a href="#goyang">Goyang</a>
+
+  <a href="#estrategia">Estrategia</a>
+
+  <a href="#participacion">Participación</a>
+
+  <details class="language-dropdown">
+
+    <summary aria-label="Seleccionar idioma">
+      🌐 Idioma ▾
+    </summary>
+
+    <div class="language-options">
+
+      <a href="hub-es.html"
+         lang="es"
+         aria-current="page">
+        Español ✓
+      </a>
+
+      <a href="hub-en.html" lang="en">
+        English
+      </a>
+
+      <a href="hub.html" lang="ko">
+        한국어
+      </a>
+
+    </div>
+
+  </details>
+
+</nav>
+
+<main>
+
+<!-- VISIÓN -->
+
+<section id="vision">
+
+  <div class="slogan">
+    Más allá de la tecnología de IA,<br>
+    hacia el futuro de la humanidad.<br>
+    Un nuevo centro de cooperación internacional.<br>
+    El Centro Global de IA.
+  </div>
+
+</section>
+
+<!-- 1. QUÉ ES EL CENTRO GLOBAL DE IA -->
+
+<section>
+
+<h2>1. ¿Qué es el Centro Global de Inteligencia Artificial?</h2>
+
+<div class="intro">
+
+<p>
+El Centro Global de Inteligencia Artificial
+es una iniciativa concebida como una plataforma
+de cooperación internacional en la que
+organizaciones internacionales, gobiernos,
+universidades, instituciones de investigación,
+empresas y sociedad civil puedan explorar
+formas de utilizar la inteligencia artificial
+en beneficio del bien común.
+</p>
+
+<p>
+La inteligencia artificial es una tecnología
+fundamental que está transformando
+las industrias y las economías.
+También tiene el potencial de contribuir
+a afrontar desafíos globales como
+las enfermedades, el hambre,
+el cambio climático, los desastres
+y la desigualdad educativa.
+</p>
+
+<p>
+La iniciativa del Centro Global de IA
+busca conectar estas posibilidades
+con la cooperación internacional,
+las políticas públicas,
+la investigación y el desarrollo,
+y las aplicaciones prácticas.
+</p>
+
+</div>
+
+<div class="highlight">
+
+<strong>
+El propósito central del Centro Global de IA
+no consiste simplemente en reunir
+organizaciones internacionales
+en un mismo lugar, sino en fomentar
+la cooperación internacional
+y la resolución colectiva de problemas
+mediante aplicaciones responsables
+de la inteligencia artificial.
+</strong>
+
+</div>
+
+</section>
+
+<!-- 2. NECESIDAD -->
+
+<section>
+
+<h2>2. ¿Por qué es necesario un Centro Global de IA?</h2>
+
+<p>
+Muchos de los desafíos que enfrenta
+la humanidad no pueden resolverse
+eficazmente mediante la actuación
+aislada de un solo país o institución.
+</p>
+
+<p>
+Las emergencias de salud pública,
+la inseguridad alimentaria,
+el cambio climático,
+la prevención y respuesta ante desastres,
+el desplazamiento forzado,
+la migración,
+los cambios en los mercados laborales
+y la desigualdad educativa
+requieren cooperación internacional,
+intercambio de información
+e innovación científica.
+</p>
+
+<p>
+La inteligencia artificial puede facilitar
+el análisis de grandes volúmenes
+de información, ayudar a identificar
+riesgos emergentes y apoyar
+la toma de decisiones
+en las políticas públicas
+y las operaciones prácticas.
+</p>
+
+<p>
+Sin embargo, transformar las capacidades
+de la IA en beneficios públicos reales
+requiere datos fiables,
+cooperación institucional eficaz,
+garantías éticas,
+profesionales cualificados
+y mecanismos operativos sostenibles.
+</p>
+
+<p>
+El Centro Global de IA propuesto
+busca reunir estos elementos
+mediante un marco de cooperación internacional.
+</p>
+
+</section>
+
+<!-- 3. FUNCIONES -->
+
+<section id="funciones">
+
+<h2>3. Seis funciones principales del Centro Global de IA</h2>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>01. Plataforma de cooperación internacional</h3>
+
+<p>
+Facilitar el diálogo,
+el intercambio de información
+y la posible cooperación
+entre organizaciones internacionales,
+gobiernos, instituciones de investigación
+y empresas.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>02. Investigación de IA para el interés público</h3>
+
+<p>
+Explorar la investigación colaborativa
+y el desarrollo de aplicaciones de IA
+que aborden desafíos públicos
+en salud, protección ambiental,
+resiliencia ante desastres,
+educación y ámbitos relacionados.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>03. Proyectos internacionales conjuntos</h3>
+
+<p>
+Identificar oportunidades
+de investigación colaborativa,
+proyectos piloto y aplicaciones prácticas,
+conectando las necesidades internacionales
+con las capacidades tecnológicas locales.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>04. Desarrollo profesional</h3>
+
+<p>
+Explorar oportunidades de educación,
+formación e intercambio profesional
+para quienes trabajan
+en la intersección de la inteligencia
+artificial y la cooperación internacional.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>05. Industria y emprendimiento</h3>
+
+<p>
+Explorar conexiones entre empresas de IA,
+instituciones de investigación
+y necesidades de cooperación internacional
+para apoyar demostraciones tecnológicas,
+emprendimiento e innovación industrial.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>06. Inteligencia artificial responsable</h3>
+
+<p>
+Promover la consideración
+de la privacidad, la seguridad,
+la equidad, los derechos humanos
+y la rendición de cuentas
+en el desarrollo y uso
+de tecnologías de inteligencia artificial.
+</p>
+
+</article>
+
+</div>
+
+</section>
+
+<!-- 4. COOPERACIÓN -->
+
+<section id="cooperacion">
+
+<h2>4. Ámbitos prioritarios de cooperación internacional</h2>
+
+<p>
+La iniciativa del Centro Global de IA
+busca explorar oportunidades de cooperación
+en ámbitos relacionados con los mandatos
+y conocimientos especializados
+de organizaciones internacionales
+e instituciones especializadas.
+</p>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>Salud pública</h3>
+
+<p>
+Prevención de enfermedades,
+respuesta ante enfermedades infecciosas,
+análisis de información sanitaria
+y fortalecimiento de las capacidades
+de salud pública.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Alimentación y agricultura</h3>
+
+<p>
+Seguridad alimentaria,
+productividad agrícola,
+adaptación climática
+y agricultura sostenible.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Clima y medio ambiente</h3>
+
+<p>
+Acción climática,
+análisis de datos ambientales,
+protección de ecosistemas
+y desarrollo sostenible.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Riesgo de desastres y seguridad</h3>
+
+<p>
+Evaluación de riesgos de desastres,
+sistemas de alerta temprana,
+respuesta ante emergencias
+y reducción de sus impactos.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Refugiados y migración</h3>
+
+<p>
+Asistencia humanitaria,
+información relacionada con la migración,
+protección de poblaciones vulnerables
+y cooperación internacional.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Empleo y educación</h3>
+
+<p>
+Futuro del empleo,
+formación profesional,
+accesibilidad educativa
+y reducción de las desigualdades digitales.
+</p>
+
+</article>
+
+</div>
+
+<p class="note">
+Estos ámbitos describen posibles
+campos de cooperación.
+No implican la participación confirmada
+de ninguna organización internacional
+ni la aprobación de proyectos específicos.
+</p>
+
+<a href="index-es.html#organizations" class="button">
+Conocer las nueve organizaciones internacionales
+</a>
+
+</section>
+
+<!-- 5. GOYANG -->
+
+<section id="goyang">
+
+<h2>5. El Centro Global de IA y la Ciudad Especial de Goyang</h2>
+
+<p>
+La Ciudad Especial de Goyang
+se encuentra en la provincia de Gyeonggi,
+dentro de la región metropolitana de Seúl,
+en la República de Corea.
+</p>
+
+<p>
+La ciudad ofrece accesibilidad metropolitana,
+infraestructura para convenciones internacionales,
+instituciones sanitarias,
+instalaciones educativas y culturales,
+y un entorno urbano consolidado.
+</p>
+
+<p>
+Estos recursos constituyen una base
+para explorar el potencial de Goyang
+como centro de inteligencia artificial
+de interés público y cooperación internacional.
+</p>
+
+<p>
+Si la cooperación internacional
+se amplía en la práctica,
+podrían surgir nuevas oportunidades
+en investigación y desarrollo,
+actividades empresariales,
+servicios profesionales
+y economía regional.
+</p>
+
+<p>
+Entre los objetivos importantes
+a largo plazo se encuentran
+el desarrollo profesional de los jóvenes,
+el empleo de calidad,
+la innovación tecnológica
+en las empresas locales
+y la ampliación del intercambio internacional.
+</p>
+
+<div class="highlight">
+
+<strong>
+La atracción del Centro Global de IA propuesto
+representa una estrategia potencial
+para fortalecer las oportunidades
+de crecimiento futuro de Goyang,
+sus perspectivas de empleo
+y el desarrollo económico regional.
+</strong>
+
+</div>
+
+<p>
+Los resultados económicos reales
+dependerían de la escala
+de la futura participación institucional,
+la naturaleza de las actividades
+de cooperación y los mecanismos
+operativos que finalmente se establezcan.
+</p>
+
+<a href="index-es.html#goyang" class="button">
+¿Por qué la Ciudad Especial de Goyang?
+</a>
+
+</section>
+
+<!-- 6. ESTRATEGIA -->
+
+<section id="estrategia">
+
+<h2>6. Estrategia de desarrollo propuesta</h2>
+
+<p>
+El Comité Ciudadano de Promoción
+busca fomentar la participación pública
+y conectar las fortalezas urbanas de Goyang
+con propuestas de políticas prácticas
+para la iniciativa del Centro Global de IA.
+</p>
+
+<div class="grid">
+
+<article class="card">
+
+<h3>Concienciación y participación ciudadana</h3>
+
+<p>
+Ampliar el conocimiento público
+y la participación voluntaria
+mediante expresiones de apoyo en línea
+y actividades de divulgación.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Fortalecimiento de la competitividad territorial</h3>
+
+<p>
+Evaluar las ventajas de ubicación de Goyang
+y sus recursos para la cooperación internacional,
+y desarrollar propuestas de políticas prácticas
+basadas en evidencia.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Cooperación institucional</h3>
+
+<p>
+Explorar posibles formas de cooperación
+con la provincia de Gyeonggi,
+la Ciudad Especial de Goyang,
+las autoridades nacionales competentes
+y otras instituciones.
+</p>
+
+</article>
+
+<article class="card">
+
+<h3>Operaciones sostenibles</h3>
+
+<p>
+Desarrollar propuestas de políticas
+relacionadas con marcos de cooperación
+a largo plazo y mecanismos
+operativos sostenibles.
+</p>
+
+</article>
+
+</div>
+
+<a href="index-es.html#strategy" class="button">
+Explorar la estrategia del Centro Global de IA
+</a>
+
+</section>
+
+<!-- 7. PARTICIPACIÓN -->
+
+<section id="participacion">
+
+<h2>7. Participación ciudadana y responsabilidad compartida</h2>
+
+<p>
+El Centro Global de IA propuesto
+no es únicamente un asunto
+de las autoridades públicas.
+</p>
+
+<p>
+También representa una oportunidad
+para que ciudadanos,
+comunidades locales,
+universidades,
+instituciones de investigación,
+empresas y profesionales
+contribuyan al debate
+sobre el futuro de Goyang.
+</p>
+
+<p>
+El Comité Ciudadano de Promoción
+fomenta la participación pública voluntaria
+en la iniciativa.
+</p>
+
+<p>
+Las actividades incluyen
+expresiones de apoyo en línea,
+registro en el Comité,
+afiliación como miembro colaborador
+y campañas de sensibilización pública.
+</p>
+
+<a href="participate.html" class="button"
+lang="ko" hreflang="ko">
+Centro de participación ciudadana (en coreano)
+</a>
+
+</section>
+
+<!-- 8. SITUACIÓN INSTITUCIONAL -->
+
+<section>
+
+<h2>8. Situación institucional de la iniciativa</h2>
+
+<p>
+El Centro Global de IA en Goyang
+es una iniciativa propuesta
+que cuenta con el apoyo
+del Comité Ciudadano de Promoción.
+</p>
+
+<p>
+Las propuestas del Comité
+no constituyen una decisión oficial
+sobre la selección de la sede,
+un proyecto gubernamental aprobado
+ni un compromiso de ninguna
+organización internacional.
+</p>
+
+<p>
+La futura participación institucional,
+la financiación,
+las decisiones sobre ubicación
+y los mecanismos operativos
+requerirían las consultas pertinentes
+y la aprobación formal
+de las autoridades responsables.
+</p>
+
+<div class="highlight">
+
+<strong>
+La iniciativa busca promover
+la cooperación internacional responsable,
+el diálogo constructivo sobre políticas
+y la preparación práctica
+para futuras oportunidades.
+</strong>
+
+</div>
+
+</section>
+
+<!-- NAVEGACIÓN FINAL -->
+
+<section>
+
+<h2>Más información</h2>
+
+<p>
+Continúe explorando la iniciativa
+del Centro Global de IA
+y sus oportunidades de cooperación.
+</p>
+
+<a href="index-es.html" class="button">
+← Página principal en español
+</a>
+
+<a href="index-es.html#organizations" class="button">
+Organizaciones internacionales
+</a>
+
+<a href="index-es.html#goyang" class="button">
+¿Por qué Goyang?
+</a>
+
+<a href="index-es.html#strategy" class="button">
+Estrategia
+</a>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+<strong>
+Iniciativa del Centro Global de Inteligencia Artificial<br>
+Ciudad Especial de Goyang,
+Provincia de Gyeonggi,
+República de Corea
+</strong>
+</p>
+
+<p>
+Comité Ciudadano de Promoción
+para la Atracción del Centro Global de IA
+a la Ciudad Especial de Goyang
+</p>
+
+<p>
+Con los ciudadanos,
+con la provincia de Gyeonggi
+y con el mundo.
+</p>
+
+<p>
+<a href="index-es.html">
+Inicio en español
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="hub-en.html" lang="en">
+English
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="hub.html" lang="ko">
+한국어
+</a>
+</p>
+
+</footer>
+
+</body>
+</html>
