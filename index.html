@@ -955,6 +955,34 @@ main section h3 {
   }
 
 }
+
+/* =====================================
+   다국어 버튼 청록색 디자인
+===================================== */
+
+#homepageLayoutModule .language-dropdown > summary {
+  background: #008c95 !important;
+  color: #ffffff !important;
+  border: 1px solid #008c95 !important;
+  border-radius: 7px !important;
+  font-weight: 800;
+  transition: background 0.2s ease;
+}
+
+#homepageLayoutModule .language-dropdown > summary:hover {
+  background: #006e76 !important;
+  border-color: #006e76 !important;
+}
+
+#homepageLayoutModule .language-dropdown[open] > summary {
+  background: #006e76 !important;
+  border-color: #006e76 !important;
+}
+
+#homepageLayoutModule .language-dropdown > summary:focus-visible {
+  outline: 3px solid #ffe44d;
+  outline-offset: 3px;
+}
   
 </style>
 </head>
@@ -971,30 +999,7 @@ aria-label="주 메뉴">
 
 <div class="home-menu">
 
-<a href="#home">홈</a>
-<a href="committee.html">위원회 소개</a>
-<a href="hub.html">글로벌 AI 허브</a>
-<a href="goyang.html">유치 경쟁력</a>
-<a href="agencies.html">9개 국제기구</a>
-<a href="strategy.html">유치 전략</a>
-<a href="news.html">활동 소식</a>
-<a href="press.html">언론보도</a>
-<a href="history.html">활동 연혁</a>
-<a href="participate.html">시민 참여</a>
-<a href="gallery.html">활동 사진관</a>
-<a href="knowledge-resources.html">지식·자료</a>
-<a href="board.html">시민참여 게시판</a>
-
-<a href="guide.html"
-   class="member-link"
-   title="홈페이지 이용 안내">
-📖 이용 안내
-</a>
-
-<a href="login.html" class="member-link">로그인</a>
-<a href="signup.html" class="member-link">회원가입</a>
-
-<!-- 다국어 선택 메뉴 -->
+  <!-- 다국어 선택: 맨 왼쪽 -->
 
 <!-- =====================================
      10개 언어 선택 메뉴
@@ -1055,6 +1060,31 @@ aria-label="주 메뉴">
   </div>
 
 </details>
+
+  
+<a href="#home">홈</a>
+<a href="committee.html">위원회 소개</a>
+<a href="hub.html">글로벌 AI 허브</a>
+<a href="goyang.html">유치 경쟁력</a>
+<a href="agencies.html">9개 국제기구</a>
+<a href="strategy.html">유치 전략</a>
+<a href="news.html">활동 소식</a>
+<a href="press.html">언론보도</a>
+<a href="history.html">활동 연혁</a>
+<a href="participate.html">시민 참여</a>
+<a href="gallery.html">활동 사진관</a>
+<a href="knowledge-resources.html">지식·자료</a>
+<a href="board.html">시민참여 게시판</a>
+
+<a href="guide.html"
+   class="member-link"
+   title="홈페이지 이용 안내">
+📖 이용 안내
+</a>
+
+<a href="login.html" class="member-link">로그인</a>
+<a href="signup.html" class="member-link">회원가입</a>
+
 
 </div>
 </nav>
