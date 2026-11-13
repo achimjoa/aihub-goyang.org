@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0754a6"
+>
+
+<title>
+Публикации в СМИ | Инициатива «Глобальный центр ИИ»
+</title>
+
+<meta
+  name="description"
+  content="Публикации в СМИ, газетные статьи и репортажи об инициативе «Глобальный центр ИИ» и деятельности Гражданского комитета содействия в особом городе Коян, Республика Корея."
+>
+
+<style>
+
+/* =====================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+===================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+  line-height: 1.8;
+}
+
+a {
+  color: #0754a6;
+}
+
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffca28;
+  outline-offset: 3px;
+}
+
+/* =====================================
+   ШАПКА САЙТА
+===================================== */
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+
+  color: white;
+  text-align: center;
+  padding: 55px 20px;
+}
+
+header h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+header p {
+  margin: 12px 0;
+  font-size: 17px;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  color: #0754a6;
+  border-radius: 7px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #eaf4ff;
+}
+
+/* =====================================
+   ОСНОВНОЕ СОДЕРЖИМОЕ
+===================================== */
+
+main {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.intro {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+}
+
+.intro h2 {
+  margin-top: 0;
+  color: #0754a6;
+}
+
+.language-notice {
+  background: #fff8e8;
+  border-left: 5px solid #e4b43c;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  color: #55451f;
+}
+
+.language-notice p {
+  margin-bottom: 0;
+}
+
+/* =====================================
+   ПОИСК
+===================================== */
+
+.search-box {
+  margin: 25px 0;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* =====================================
+   СПИСОК ПУБЛИКАЦИЙ
+===================================== */
+
+.press-list {
+  display: grid;
+  gap: 18px;
+}
+
+.press-item {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #e1e7ef;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+}
+
+.press-item h3 {
+  margin: 8px 0;
+  color: #0754a6;
+  overflow-wrap: anywhere;
+}
+
+.press-item p {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.press-date {
+  color: #69788c;
+  font-size: 14px;
+}
+
+.press-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #e7f0fa;
+  color: #175b9a;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.press-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.press-link:hover {
+  text-decoration: underline;
+}
+
+.content-language {
+  display: block;
+  margin-top: 12px;
+  color: #69788c;
+  font-size: 13px;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  color: #596a80;
+}
+
+/* =====================================
+   СВЯЗАННЫЕ СТРАНИЦЫ
+===================================== */
+
+.related {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.related h2 {
+  color: #0754a6;
+  margin-top: 0;
+}
+
+.button {
+  display: inline-block;
+  background: #0754a6;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 7px;
+  font-weight: bold;
+  margin: 10px 10px 0 0;
+}
+
+.button:hover {
+  background: #003a7a;
+}
+
+/* =====================================
+   ПОДВАЛ САЙТА
+===================================== */
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+  margin-top: 60px;
+}
+
+footer a {
+  color: white;
+}
+
+/* =====================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+===================================== */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 40px 15px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  main {
+    margin: 25px auto;
+    padding: 0 12px;
+  }
+
+  .intro,
+  .press-item,
+  .related {
+    padding: 20px;
+  }
+
+  .button {
+    display: block;
+    text-align: center;
+    margin-right: 0;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =====================================
+     ШАПКА САЙТА
+===================================== -->
+
+<header>
+
+<h1>
+Публикации в СМИ
+</h1>
+
+<p>
+Инициатива «Глобальный центр ИИ»<br>
+Особый город Коян, Республика Корея
+</p>
+
+<p>
+Газетные статьи,<br>
+телевизионные репортажи<br>
+и публикации в средствах массовой информации
+</p>
+
+<div class="header-links">
+
+<a
+  href="index-ru.html"
+  class="home-link"
+>
+  ← Главная страница
+</a>
+
+<a
+  href="press.html"
+  class="home-link"
+  lang="ko"
+>
+  한국어
+</a>
+
+</div>
+
+</header>
+
+<main>
+
+<!-- =====================================
+     ВВЕДЕНИЕ
+===================================== -->
+
+<section class="intro">
+
+<h2>
+Публикации в СМИ об инициативе
+«Глобальный центр ИИ»
+</h2>
+
+<p>
+На этой странице представлены
+газетные статьи,
+телевизионные репортажи
+и другие публикации
+в средствах массовой информации,
+посвящённые предлагаемой инициативе
+«Глобальный центр ИИ»
+и связанной с ней деятельности
+в провинции Кёнгидо
+и особом городе Коян.
+</p>
+
+<p>
+Эти материалы представлены
+для того, чтобы помочь
+международным посетителям
+лучше понять общественные дискуссии,
+изменения государственной политики
+и гражданские инициативы,
+связанные с проектом.
+</p>
+
+</section>
+
+<!-- =====================================
+     ИНФОРМАЦИЯ О ЯЗЫКЕ
+===================================== -->
+
+<div class="language-notice">
+
+<strong>
+Информация о языке публикаций
+</strong>
+
+<p>
+Большинство материалов публикуется
+корейскими средствами массовой информации.
+Оригинальные заголовки
+и описания на корейском языке
+отображаются без автоматического перевода.
+</p>
+
+<p>
+Нажмите на ссылку статьи,
+чтобы открыть оригинальную публикацию
+на сайте соответствующего
+средства массовой информации.
+</p>
+
+</div>
+
+<!-- =====================================
+     ПОИСК
+===================================== -->
+
+<div class="search-box">
+
+<input
+  type="search"
+  id="pressSearch"
+  placeholder="Поиск публикаций по заголовку или ключевому слову"
+  aria-label="Поиск публикаций в СМИ"
+>
+
+</div>
+
+<!-- =====================================
+     СПИСОК ПУБЛИКАЦИЙ
+===================================== -->
+
+<div
+  class="press-list"
+  id="pressList"
+  aria-live="polite"
+>
+
+  <p class="empty">
+    Подготовка к загрузке публикаций.
+  </p>
+
+</div>
+
+<!-- =====================================
+     СВЯЗАННЫЕ СТРАНИЦЫ
+===================================== -->
+
+<section class="related">
+
+<h2>
+Дополнительная информация
+</h2>
+
+<p>
+Для получения дополнительной информации
+об инициативе «Глобальный центр ИИ»
+посетите следующие страницы.
+</p>
+
+<a
+  href="news-ru.html"
+  class="button"
+>
+  Новости и объявления
+</a>
+
+<a
+  href="history-ru.html"
+  class="button"
+>
+  Хронология и основные этапы
+</a>
+
+<a
+  href="committee-ru.html"
+  class="button"
+>
+  О Гражданском комитете содействия
+</a>
+
+</section>
+
+</main>
+
+<!-- =====================================
+     ПОДВАЛ САЙТА
+===================================== -->
+
+<footer>
+
+<p>
+<strong>
+Гражданский комитет содействия<br>
+размещению Глобального центра ИИ<br>
+в особом городе Коян
+</strong>
+</p>
+
+<p>
+Провинция Кёнгидо,<br>
+Республика Корея
+</p>
+
+<p>
+Вместе с гражданами,<br>
+вместе с провинцией Кёнгидо<br>
+и вместе со всем миром.
+</p>
+
+<p>
+<a href="index-ru.html">
+Главная страница
+</a>
+&nbsp; | &nbsp;
+<a href="press.html" lang="ko">
+한국어
+</a>
+</p>
+
+</footer>
+
+<!-- =====================================
+     МОДУЛЬ SUPABASE
+===================================== -->
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/* =====================================
+   ПОДКЛЮЧЕНИЕ К SUPABASE
+===================================== */
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+/*
+  Публичный ключ Supabase
+  сохранён из исходного файла press-en.html.
+*/
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+/* =====================================
+   ЭЛЕМЕНТЫ СТРАНИЦЫ
+===================================== */
+
+const pressList =
+  document.getElementById("pressList");
+
+const pressSearch =
+  document.getElementById("pressSearch");
+
+let pressData = [];
+
+/* =====================================
+   ОТОБРАЖЕНИЕ СООБЩЕНИЙ
+===================================== */
+
+function showPressMessage(message) {
+
+  pressList.replaceChildren();
+
+  const paragraph =
+    document.createElement("p");
+
+  paragraph.className = "empty";
+
+  paragraph.textContent = message;
+
+  pressList.appendChild(paragraph);
+
+}
+
+/* =====================================
+   ФОРМАТИРОВАНИЕ ДАТЫ
+===================================== */
+
+function formatPressDate(value) {
+
+  if (!value) {
+    return "";
+  }
+
+  return String(value)
+    .slice(0, 10)
+    .replaceAll("-", ".");
+
+}
+
+/* =====================================
+   ОПРЕДЕЛЕНИЕ КОРЕЙСКОГО ТЕКСТА
+===================================== */
+
+function containsKorean(value) {
+
+  return /[가-힣ㄱ-ㅎㅏ-ㅣ]/.test(
+    String(value || "")
+  );
+
+}
+
+/* =====================================
+   ОТОБРАЖЕНИЕ ПУБЛИКАЦИЙ
+===================================== */
+
+function renderPress() {
+
+  const keyword =
+    pressSearch.value
+      .trim()
+      .toLowerCase();
+
+  const filtered =
+    pressData.filter(item => {
+
+      const searchText = [
+        item.title || "",
+        item.description || "",
+        item.published_at || ""
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchText.includes(keyword);
+
+    });
+
+  pressList.replaceChildren();
+
+  if (filtered.length === 0) {
+
+    showPressMessage(
+      "По вашему запросу публикации не найдены."
+    );
+
+    return;
+
+  }
+
+  filtered.forEach(item => {
+
+    const card =
+      document.createElement("article");
+
+    card.className = "press-item";
+
+    /* Категория */
+
+    const category =
+      document.createElement("span");
+
+    category.className =
+      "press-category";
+
+    category.textContent =
+      "Публикации в СМИ";
+
+    /* Дата */
+
+    const date =
+      document.createElement("p");
+
+    date.className =
+      "press-date";
+
+    date.textContent =
+      formatPressDate(
+        item.published_at
+      );
+
+    /* Заголовок */
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      item.title || "";
+
+    /* Описание */
+
+    const description =
+      document.createElement("p");
+
+    description.textContent =
+      item.description || "";
+
+    card.appendChild(category);
+    card.appendChild(date);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    /* Уведомление о корейском языке */
+
+    if (
+      containsKorean(item.title) ||
+      containsKorean(item.description)
+    ) {
+
+      const languageNotice =
+        document.createElement("span");
+
+      languageNotice.className =
+        "content-language";
+
+      languageNotice.textContent =
+        "Оригинал на корейском языке";
+
+      card.appendChild(
+        languageNotice
+      );
+
+    }
+
+    /* Ссылка на оригинальную статью */
+
+    if (item.link) {
+
+      try {
+
+        const url =
+          new URL(item.link);
+
+        if (
+          url.protocol === "https:" ||
+          url.protocol === "http:"
+        ) {
+
+          const link =
+            document.createElement("a");
+
+          link.className =
+            "press-link";
+
+          link.href = url.href;
+
+          link.target = "_blank";
+
+          link.rel =
+            "noopener noreferrer";
+
+          link.textContent =
+            "Читать оригинальную статью →";
+
+          card.appendChild(link);
+
+        }
+
+      } catch (error) {
+
+        console.warn(
+          "Некорректная ссылка на публикацию:",
+          item.link
+        );
+
+      }
+
+    }
+
+    pressList.appendChild(card);
+
+  });
+
+}
+
+/* =====================================
+   ЗАГРУЗКА ПУБЛИКАЦИЙ
+===================================== */
+
+async function loadPress() {
+
+  showPressMessage(
+    "Загрузка публикаций..."
+  );
+
+  try {
+
+    const { data, error } =
+      await supabase
+        .from("news_posts")
+        .select(
+          "id, title, category, description, link, published_at"
+        )
+        .eq("category", "press")
+        .order("published_at", {
+          ascending: false
+        })
+        .order("id", {
+          ascending: false
+        });
+
+    if (error) {
+      throw error;
+    }
+
+    pressData = data || [];
+
+    console.log(
+      "Загружено публикаций:",
+      pressData.length
+    );
+
+    if (pressData.length === 0) {
+
+      showPressMessage(
+        "Публикации пока отсутствуют."
+      );
+
+      return;
+
+    }
+
+    renderPress();
+
+  } catch (error) {
+
+    console.error(
+      "Ошибка загрузки публикаций:",
+      error
+    );
+
+    showPressMessage(
+      "Не удалось загрузить публикации. " +
+      "Пожалуйста, попробуйте позже."
+    );
+
+  }
+
+}
+
+/* =====================================
+   ПОИСК
+===================================== */
+
+pressSearch.addEventListener(
+  "input",
+  renderPress
+);
+
+/* =====================================
+   ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+===================================== */
+
+loadPress();
+
+</script>
+
+</body>
+</html>
