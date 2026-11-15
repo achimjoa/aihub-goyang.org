@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>전자책 도서관 | 글로벌 AI 허브 고양특례시</title>
+<link rel="stylesheet" href="./style.css">
+<script defer src="./catalog.js"></script>
+<script defer src="./app.js"></script>
+</head>
+<body>
+<header class="header">
+  <a href="./" class="brand">글로벌 AI 허브 <span>고양특례시</span></a>
+  <a class="site-link" href="../">위원회 홈페이지 ↗</a>
+</header>
+<main id="shelf" class="shelf">
+  <div class="intro">
+    <h1>전자책 도서관</h1>
+    <p>글로벌 AI 허브 유치 전략과 업무 지원 계획을 만나보세요.</p>
+    <a class="member" href="../library.html">전체 보고서 · 실명인증 회원 전용 ↗</a>
+  </div>
+  <div id="books" class="books"></div>
+  <noscript>전자책을 열려면 브라우저에서 JavaScript를 켜 주세요.</noscript>
+</main>
+<main id="reader" class="reader" hidden>
+  <div class="reader-heading">
+    <a href="./" class="back">← 도서관 목록</a>
+    <h1 id="book-title"></h1>
+    <a class="member" href="../library.html">전체 보고서 · 회원 전용 ↗</a>
+  </div>
+  <div id="controls" class="controls" aria-label="전자책 읽기 도구">
+    <div class="control-group">
+      <button id="prev" type="button" aria-label="이전 페이지">‹</button>
+      <form id="jump"><label for="page-number" class="sr-only">페이지 번호</label><input id="page-number" type="number" min="1" inputmode="numeric" required><span id="count"></span><button class="sr-only" type="submit">이동</button></form>
+      <button id="next" type="button" aria-label="다음 페이지">›</button>
+    </div>
+    <div class="control-group">
+      <label for="toc" class="sr-only">목차</label>
+      <select id="toc"><option value="">목차</option></select>
+    </div>
+    <div class="control-group">
+      <button id="smaller" type="button" aria-label="축소">−</button>
+      <button id="reset-zoom" type="button" aria-label="기본 크기로 맞춤">100%</button>
+      <button id="bigger" type="button" aria-label="확대">+</button>
+      <button id="fullscreen" type="button">전체화면</button>
+    </div>
+  </div>
+  <div id="stage" class="stage" tabindex="0" aria-label="전자책 페이지">
+    <div id="sheet" class="sheet">
+      <img id="page" alt="" draggable="false">
+    </div>
+  </div>
+  <div class="reader-footer"><span id="hint">화살표 키 또는 좌우 밀기로 페이지를 넘길 수 있습니다.</span><span id="status" role="status" class="sr-only"></span></div>
+</main>
+<footer id="publisher">경기도 글로벌 AI 허브 유치 고양특례시 범시민추진위원회</footer>
+</body>
+</html>
