@@ -215,30 +215,107 @@ footer {
 
 </div>
 
+<!-- ==========================================
+     제188-19단계
+     전자책 페이지 이동 기능
+========================================== -->
+
 <div class="controls">
 
-<button
-  id="prevButton"
-  type="button"
-  disabled
->
-이전 페이지
-</button>
+  <button id="firstButton" type="button">
+    처음
+  </button>
 
-<span
-  id="pageInfo"
-  class="page-info"
->
-1 / 1
-</span>
+  <button id="back50Button" type="button">
+    -50쪽
+  </button>
 
-<button
-  id="nextButton"
-  type="button"
-  disabled
->
-다음 페이지
-</button>
+  <button id="back10Button" type="button">
+    -10쪽
+  </button>
+
+  <button id="prevButton" type="button" disabled>
+    이전
+  </button>
+
+  <span id="pageInfo" class="page-info">
+    1 / 1
+  </span>
+
+  <button id="nextButton" type="button" disabled>
+    다음
+  </button>
+
+  <button id="forward10Button" type="button">
+    +10쪽
+  </button>
+
+  <button id="forward50Button" type="button">
+    +50쪽
+  </button>
+
+  <button id="lastButton" type="button">
+    마지막
+  </button>
+
+</div>
+
+<!-- 페이지 번호 직접 입력 -->
+
+<div class="controls">
+
+  <label for="pageInput">
+    페이지 이동
+  </label>
+
+  <input
+    id="pageInput"
+    type="number"
+    min="1"
+    step="1"
+    value="1"
+    style="
+      width:100px;
+      padding:10px;
+      border:1px solid #c5d5e8;
+      border-radius:7px;
+      text-align:center;
+    "
+  >
+
+  <button id="jumpButton" type="button">
+    이동
+  </button>
+
+</div>
+
+<!-- 페이지 이동 슬라이더 -->
+
+<div style="margin-top:25px;">
+
+  <input
+    id="pageSlider"
+    type="range"
+    min="1"
+    max="232"
+    value="1"
+    aria-label="전자책 페이지 이동"
+    style="width:100%;"
+  >
+
+  <div
+    style="
+      display:flex;
+      justify-content:space-between;
+      color:#68788c;
+    "
+  >
+
+    <span>1쪽</span>
+
+    <span id="sliderMax">232쪽</span>
+
+  </div>
 
 </div>
 
@@ -542,23 +619,277 @@ async function showPage(
 }
 
 // ==========================================
-// 7. 페이지 이동
+// 제188-19단계
+// 전자책 페이지 이동 기능 개선
+// ==========================================
+
+// 페이지 이동 요청 중복 방지
+let pageLoading = false;
+
+// ==========================================
+// 1. 원하는 페이지로 이동
+// ==========================================
+
+async function goToPage(number) {
+
+  if (pageLoading) {
+    return;
+  }
+
+  const targetPage = Number(number);
+
+  if (!Number.isInteger(targetPage)) {
+
+    alert("올바른 페이지 번호를 입력해 주세요.");
+    return;
+
+  }
+
+  if (
+    targetPage < 1 ||
+    targetPage > totalPages
+  ) {
+
+    alert(
+      "1쪽부터 " +
+      totalPages +
+      "쪽까지 이동할 수 있습니다."
+    );
+
+    return;
+
+  }
+
+  if (targetPage === currentPage) {
+    return;
+  }
+
+  pageLoading = true;
+
+  try {
+
+    await showPage(targetPage);
+
+  } finally {
+
+    pageLoading = false;
+
+    updatePageControls();
+
+  }
+
+}
+
+// ==========================================
+// 2. 페이지 이동 버튼 상태 갱신
+// ==========================================
+
+function updatePageControls() {
+
+  $("pageInput").value = currentPage;
+
+  $("pageSlider").value = currentPage;
+
+  $("pageSlider").max = totalPages;
+
+  $("sliderMax").textContent =
+    totalPages + "쪽";
+
+  $("firstButton").disabled =
+    currentPage <= 1;
+
+  $("back50Button").disabled =
+    currentPage <= 1;
+
+  $("back10Button").disabled =
+    currentPage <= 1;
+
+  $("prevButton").disabled =
+    currentPage <= 1;
+
+  $("nextButton").disabled =
+    currentPage >= totalPages;
+
+  $("forward10Button").disabled =
+    currentPage >= totalPages;
+
+  $("forward50Button").disabled =
+    currentPage >= totalPages;
+
+  $("lastButton").disabled =
+    currentPage >= totalPages;
+
+}
+
+// ==========================================
+// 3. 이전·다음 페이지
 // ==========================================
 
 $("prevButton").addEventListener(
   "click",
-  () => {
-    showPage(currentPage - 1);
-  }
+  () => goToPage(currentPage - 1)
 );
 
 $("nextButton").addEventListener(
   "click",
+  () => goToPage(currentPage + 1)
+);
+
+// ==========================================
+// 4. 빠른 페이지 이동
+// ==========================================
+
+$("firstButton").addEventListener(
+  "click",
+  () => goToPage(1)
+);
+
+$("lastButton").addEventListener(
+  "click",
+  () => goToPage(totalPages)
+);
+
+$("back10Button").addEventListener(
+  "click",
+  () => goToPage(
+    Math.max(1, currentPage - 10)
+  )
+);
+
+$("forward10Button").addEventListener(
+  "click",
+  () => goToPage(
+    Math.min(totalPages, currentPage + 10)
+  )
+);
+
+$("back50Button").addEventListener(
+  "click",
+  () => goToPage(
+    Math.max(1, currentPage - 50)
+  )
+);
+
+$("forward50Button").addEventListener(
+  "click",
+  () => goToPage(
+    Math.min(totalPages, currentPage + 50)
+  )
+);
+
+// ==========================================
+// 5. 페이지 번호 직접 입력
+// ==========================================
+
+$("jumpButton").addEventListener(
+  "click",
   () => {
-    showPage(currentPage + 1);
+
+    goToPage(
+      $("pageInput").value
+    );
+
   }
 );
 
+$("pageInput").addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key === "Enter") {
+
+      goToPage(
+        $("pageInput").value
+      );
+
+    }
+
+  }
+);
+
+// ==========================================
+// 6. 슬라이더 페이지 이동
+// ==========================================
+
+$("pageSlider").addEventListener(
+  "change",
+  event => {
+
+    goToPage(
+      event.target.value
+    );
+
+  }
+);
+
+// ==========================================
+// 7. 키보드 페이지 이동
+// ==========================================
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    const tag =
+      event.target.tagName;
+
+    if (
+      tag === "INPUT" ||
+      tag === "TEXTAREA" ||
+      tag === "SELECT" ||
+      event.target.isContentEditable ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey
+    ) {
+      return;
+    }
+
+    let targetPage = null;
+
+    switch (event.key) {
+
+      case "ArrowRight":
+        targetPage = currentPage + 1;
+        break;
+
+      case "ArrowLeft":
+        targetPage = currentPage - 1;
+        break;
+
+      case "PageDown":
+        targetPage = currentPage + 10;
+        break;
+
+      case "PageUp":
+        targetPage = currentPage - 10;
+        break;
+
+      case "Home":
+        targetPage = 1;
+        break;
+
+      case "End":
+        targetPage = totalPages;
+        break;
+
+      default:
+        return;
+
+    }
+
+    event.preventDefault();
+
+    goToPage(
+      Math.max(
+        1,
+        Math.min(totalPages, targetPage)
+      )
+    );
+
+  }
+);
+  
 // ==========================================
 // 8. 초기 실행
 // ==========================================
@@ -580,6 +911,8 @@ async function initialize() {
     book.title;
 
   totalPages = book.pages;
+
+  updatePageControls();
 
   try {
 
