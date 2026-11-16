@@ -271,7 +271,7 @@ footer {
   <input
     id="pageInput"
     type="number"
-    min="1"
+    min="0"
     step="1"
     value="1"
     style="
@@ -296,7 +296,7 @@ footer {
   <input
     id="pageSlider"
     type="range"
-    min="1"
+    min="0"
     max="232"
     value="1"
     aria-label="전자책 페이지 이동"
@@ -311,7 +311,7 @@ footer {
     "
   >
 
-    <span>1쪽</span>
+    <span>표지</span>
 
     <span id="sliderMax">232쪽</span>
 
@@ -383,9 +383,26 @@ const BOOKS = {
 
 };
 
+// ==========================================
+// 제188-20단계
+// 전자책 공개 표지 설정
+// ==========================================
+
+const EBOOK_COVERS = {
+
+  9: "/ebooks/assets/ebook-covers/issue-01.webp",
+
+  10: "/ebooks/assets/ebook-covers/issue-02.webp"
+
+};
+
 const book = BOOKS[documentId];
 
-let currentPage = 1;
+// 0쪽은 표지
+// 1쪽부터 본문 시작
+
+let currentPage = 0;
+
 let totalPages = 0;
 
 // ==========================================
@@ -558,12 +575,127 @@ async function requestPage(
 }
 
 // ==========================================
+// 제188-20단계
+// 전자책 표지 표시
+// ==========================================
+
+function showCover() {
+
+  const coverUrl =
+    EBOOK_COVERS[documentId];
+
+  if (!coverUrl) {
+
+    showStatus(
+      "전자책 표지를 찾을 수 없습니다.",
+      true
+    );
+
+    return;
+
+  }
+
+  $("pageImage").src = coverUrl;
+
+  $("pageImage").alt =
+    book.title + " 표지";
+
+  currentPage = 0;
+
+  $("pageInfo").textContent =
+    "표지 / " + totalPages;
+
+  $("reader").hidden = false;
+
+  $("status").hidden = true;
+
+  updatePageControls();
+
+}
+  
+// ==========================================
 // 6. 페이지 표시
+// ==========================================
+
+// ==========================================
+// 제188-20단계
+// 표지 및 본문 페이지 표시
 // ==========================================
 
 async function showPage(
   pageNumber
 ) {
+
+  // 0쪽은 표지
+
+  if (pageNumber === 0) {
+
+    showCover();
+
+    return;
+
+  }
+
+  // 본문 페이지 범위 확인
+
+  if (
+    pageNumber < 1 ||
+    pageNumber > totalPages
+  ) {
+    return;
+  }
+
+  $("prevButton").disabled = true;
+  $("nextButton").disabled = true;
+
+  showStatus(
+    pageNumber + "쪽을 불러오는 중입니다."
+  );
+
+  try {
+
+    const result =
+      await requestPage(pageNumber);
+
+    $("pageImage").src =
+      result.url;
+
+    $("pageImage").alt =
+      book.title +
+      " " +
+      pageNumber +
+      "쪽";
+
+    currentPage = pageNumber;
+
+    $("pageInfo").textContent =
+      currentPage +
+      " / " +
+      totalPages;
+
+    $("reader").hidden = false;
+
+    $("status").hidden = true;
+
+  } catch (error) {
+
+    showStatus(
+      "페이지 열람 실패: " +
+      error.message,
+      true
+    );
+
+  } finally {
+
+    $("prevButton").disabled =
+      currentPage <= 0;
+
+    $("nextButton").disabled =
+      currentPage >= totalPages;
+
+  }
+
+}
 
   if (
     pageNumber < 1 ||
@@ -645,16 +777,16 @@ async function goToPage(number) {
 
   }
 
-  if (
-    targetPage < 1 ||
+ if (
+    targetPage < 0 ||
     targetPage > totalPages
   ) {
 
-    alert(
-      "1쪽부터 " +
-      totalPages +
-      "쪽까지 이동할 수 있습니다."
-    );
+alert(
+  "표지(0쪽)부터 " +
+  totalPages +
+  "쪽까지 이동할 수 있습니다."
+);    
 
     return;
 
@@ -684,6 +816,11 @@ async function goToPage(number) {
 // 2. 페이지 이동 버튼 상태 갱신
 // ==========================================
 
+// ==========================================
+// 제188-20단계
+// 표지를 포함한 페이지 이동 상태 갱신
+// ==========================================
+
 function updatePageControls() {
 
   $("pageInput").value = currentPage;
@@ -695,17 +832,21 @@ function updatePageControls() {
   $("sliderMax").textContent =
     totalPages + "쪽";
 
+  // 표지에서는 이전 이동 불가
+
   $("firstButton").disabled =
-    currentPage <= 1;
+    currentPage <= 0;
 
   $("back50Button").disabled =
-    currentPage <= 1;
+    currentPage <= 0;
 
   $("back10Button").disabled =
-    currentPage <= 1;
+    currentPage <= 0;
 
   $("prevButton").disabled =
-    currentPage <= 1;
+    currentPage <= 0;
+
+  // 마지막 페이지에서는 다음 이동 불가
 
   $("nextButton").disabled =
     currentPage >= totalPages;
@@ -741,7 +882,7 @@ $("nextButton").addEventListener(
 
 $("firstButton").addEventListener(
   "click",
-  () => goToPage(1)
+  () => goToPage(0)
 );
 
 $("lastButton").addEventListener(
@@ -752,7 +893,7 @@ $("lastButton").addEventListener(
 $("back10Button").addEventListener(
   "click",
   () => goToPage(
-    Math.max(1, currentPage - 10)
+    Math.max(0, currentPage - 10)
   )
 );
 
@@ -766,7 +907,7 @@ $("forward10Button").addEventListener(
 $("back50Button").addEventListener(
   "click",
   () => goToPage(
-    Math.max(1, currentPage - 50)
+    Math.max(0, currentPage - 50)
   )
 );
 
@@ -866,7 +1007,7 @@ document.addEventListener(
         break;
 
       case "Home":
-        targetPage = 1;
+        targetPage = 0;
         break;
 
       case "End":
@@ -882,7 +1023,7 @@ document.addEventListener(
 
     goToPage(
       Math.max(
-        1,
+        0,
         Math.min(totalPages, targetPage)
       )
     );
@@ -922,7 +1063,7 @@ async function initialize() {
       "회원 인증 완료. 전자책을 불러옵니다."
     );
 
-    await showPage(1);
+    await showPage(0);
 
   } catch (error) {
 
