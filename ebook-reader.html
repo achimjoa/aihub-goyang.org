@@ -1531,7 +1531,7 @@ function createTocItem(title, printPage) {
 }
 
 // ==========================================
-// 5. 목차 목록 구성
+// 다단계 트리 목차 생성
 // ==========================================
 
 function buildTableOfContents() {
@@ -1543,55 +1543,67 @@ function buildTableOfContents() {
 
   tocPanel.replaceChildren(tocHeading);
 
-  tocData.forEach(section => {
+  function renderNode(node, parent) {
 
-    if (
-      section.children &&
-      section.children.length > 0
-    ) {
-
-      const details =
-        document.createElement("details");
-
-      const summary =
-        document.createElement("summary");
-
-      summary.textContent = section.title;
-
-      details.appendChild(summary);
-
-      details.appendChild(
-        createTocItem(
-          "▶ " + section.title + " 시작",
-          section.page
-        )
+    // 기존 제1권 배열 형식 지원
+    if (Array.isArray(node)) {
+      parent.appendChild(
+        createTocItem(node[0], node[1])
       );
-
-      section.children.forEach(child => {
-
-        details.appendChild(
-          createTocItem(child[0], child[1])
-        );
-
-      });
-
-      tocPanel.appendChild(details);
-
-    } else {
-
-      tocPanel.appendChild(
-        createTocItem(
-          section.title,
-          section.page
-        )
-      );
-
+      return;
     }
 
+    const children = node.children || [];
+
+    if (children.length === 0) {
+      parent.appendChild(
+        createTocItem(node.title, node.page)
+      );
+      return;
+    }
+
+    const details =
+      document.createElement("details");
+
+    const summary =
+      document.createElement("summary");
+
+    summary.textContent = node.title;
+
+    details.appendChild(summary);
+
+    // 상위 항목도 페이지 이동 가능
+    if (Number.isInteger(node.page)) {
+      details.appendChild(
+        createTocItem(
+          "▶ " + node.title + " 시작",
+          node.page
+        )
+      );
+    }
+
+    const childContainer =
+      document.createElement("div");
+
+    childContainer.style.marginLeft = "20px";
+    childContainer.style.paddingLeft = "12px";
+    childContainer.style.borderLeft =
+      "2px solid #dce8f5";
+
+    children.forEach(child => {
+      renderNode(child, childContainer);
+    });
+
+    details.appendChild(childContainer);
+
+    parent.appendChild(details);
+  }
+
+  tocData.forEach(node => {
+    renderNode(node, tocPanel);
   });
-
 }
-
+  
 // ==========================================
 // 6. 목차 열기 및 닫기
 // ==========================================
