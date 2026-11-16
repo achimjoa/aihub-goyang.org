@@ -1239,6 +1239,386 @@ $("pageImage").addEventListener(
 // 초기 배율 설정
 
 applyZoom();
+
+// ==========================================
+// 제188-22단계
+// 전자책 목차 탐색 기능
+// ==========================================
+
+// 인쇄 페이지와 전자책 이미지 번호의 차이
+const TOC_OFFSETS = {
+  9: 5,
+  10: 40
+};
+
+// ==========================================
+// 1. 제1권 목차
+// ==========================================
+
+const TOC_BOOK_9 = [
+  {
+    title: "제1부. 종합 전략의 기본체계",
+    page: 1,
+    children: [
+      ["제1장. 전략의 목적과 기본 원칙", 1],
+      ["제2장. 8개 전략문건의 통합체계", 3],
+      ["제3장. 태그전 필승전략의 실행구조", 4],
+      ["제4장. 정부 추진 현황과 사실관계 관리", 6]
+    ]
+  },
+  {
+    title: "제2부. 공모심사 고득점 전략",
+    page: 7,
+    children: [
+      ["제5장. 입지 선정 평가체계", 7],
+      ["제6장. 평가기준 개선 건의와 대응", 10],
+      ["제7장. 평가항목별 득점전략", 13],
+      ["제8장. 경쟁도시별 점수 차이 분석", 17],
+      ["제9장. 고득점 확보를 위한 우선순위 결정", 19]
+    ]
+  },
+  {
+    title: "제3부. 경쟁도시 분석과 승리전략",
+    page: 22,
+    children: [
+      ["제10장. 전국 경쟁 구도", 22],
+      ["제11장. 인천 송도와 고양의 객관적 비교", 25],
+      ["제12장. 송도에 대한 태그전 승리전략", 31],
+      ["제13장. 경기도 예비경합 대응", 36],
+      ["제14장. 고양시의 구조적 약점 보완", 38]
+    ]
+  },
+  {
+    title: "제4부. 허브 초기 안착과 핵심 기능 확보",
+    page: 42,
+    children: [
+      ["제15장. 업무시설 확보", 42],
+      ["제16장. 국제기구 직원 정주 지원", 47],
+      ["제17장. 국제 공동협력사업", 53],
+      ["제18장. AI 안전·윤리·거버넌스", 59],
+      ["제19장. 통합 AI 인프라", 62],
+      ["제20장. 광역 산학연 협력", 67]
+    ]
+  },
+  {
+    title: "제5부. 재정계획·민간투자·행정지원",
+    page: 78,
+    children: [
+      ["제21장. 재정계획과 이행 보증", 78],
+      ["제22장. 민간투자 확보와 기업 참여전략", 87],
+      ["제23장. 행정지원 및 규제 대응", 95]
+    ]
+  },
+  {
+    title: "제6부. 공모심사 종합 실행 로드맵",
+    page: 109,
+    children: [
+      ["제24장. 2026년 공모심사 대응 종합 로드맵", 109],
+      ["제25장. 7대 핵심 실행과제 관리", 118],
+      ["제26장. 공모 응모서 작성 실무지침", 125],
+      ["제27장. 증빙자료 확보와 검증", 133],
+      ["제28장. 발표심사 및 질의응답 대응", 136],
+      ["제29장. 현장실사 대응", 143],
+      ["제30장. 진행상황 점검과 위험관리", 147]
+    ]
+  },
+  {
+    title: "제7부. 범시민추진위원회 활동 및 시민참여 전략",
+    page: 156,
+    children: [
+      ["제31장. 범시민추진위원회의 역할과 운영체계", 156],
+      ["제32장. 시민참여 및 10만 동의 서명운동", 161],
+      ["제33장. 홍보·여론형성 및 시민교육", 167],
+      ["제34장. 기업·대학·연구기관·시민단체 협력", 172],
+      ["제35장. 경기도 및 전국적 연대활동", 176],
+      ["제36장. 공모심사 기간 시민사회 활동지침", 178],
+      ["제37장. 선정 이후 시민사회 참여와 장기 발전", 182]
+    ]
+  },
+  {
+    title: "제8부. 최종 통합 전략관리 및 실무 활용체계",
+    page: 189,
+    children: [
+      ["제38장. 8개 전략문건 통합 및 상충사항 정리", 189],
+      ["제39장. 정부 평가기준과 고득점 전략 최종 점검", 193],
+      ["제40장. 경쟁도시 분석 및 태그전 필승전략 종합", 198],
+      ["제41장. 7대 핵심과제 통합 실행관리", 202],
+      ["제42장. 공모 응모서 최종 제출 점검", 205],
+      ["제43장. 발표심사·현장실사 최종 대응", 207],
+      ["제44장. 확정사실·확약·계획·구상 구분표", 210],
+      ["제45장. 일일·주간·단계별 통합 점검체계", 213],
+      ["제46장. 선정 이후 2027~2028년 발전계획", 216],
+      ["제47장. 최종 종합 결론 및 실천지침", 220]
+    ]
+  },
+  {
+    title: "최종 부록. 종합 실무관리 양식",
+    page: 223,
+    children: []
+  },
+  {
+    title: "종합 안내서 최종 결론",
+    page: 226,
+    children: []
+  }
+];
+
+// ==========================================
+// 2. 제2권 주요 목차
+// ==========================================
+
+const TOC_BOOK_10 = [
+  { title: "업무 지원 종합계획서 시작", page: 1 },
+  { title: "제1부. 계획의 목적과 기본 원칙", page: 6 },
+  { title: "제2부. 고양특례시의 자산 총동원 계획", page: 10 },
+  { title: "제3부. 국제기구별 업무 지원계획", page: 12 },
+  { title: "제4부. 통합 지원체계", page: 30 },
+  { title: "제5부. 국제기구 공동업무 지원계획", page: 32 },
+  { title: "제6부. 국제기구 초기 안착 및 상시 운영 지원계획", page: 34 },
+  { title: "제7부. 국제기구 업무 실증 지원조직", page: 36 },
+  { title: "제8부. 공공 AI 실증의 안전성과 공공성 확보", page: 37 },
+  { title: "제9부. 재정 및 자산확보 계획", page: 38 },
+  { title: "제10부. 단계별 실행계획", page: 39 }
+];
+
+// ==========================================
+// 3. 목차 화면 생성
+// ==========================================
+
+const tocStyle = document.createElement("style");
+
+tocStyle.textContent = `
+  #tocPanel {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f4f8fc;
+    border: 1px solid #c5d5e8;
+    border-radius: 10px;
+    text-align: left;
+    max-height: 65vh;
+    overflow-y: auto;
+  }
+
+  #tocPanel[hidden] {
+    display: none;
+  }
+
+  #tocPanel h3 {
+    color: #0754a6;
+    margin-top: 0;
+  }
+
+  #tocPanel details {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dce8f5;
+    padding-bottom: 8px;
+  }
+
+  #tocPanel summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+  .toc-item {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px 12px;
+    background: white;
+    color: #17315b;
+    border: 1px solid #dce8f5;
+    border-radius: 6px;
+    text-align: left;
+    font-weight: normal;
+  }
+
+  .toc-item:hover,
+  .toc-item:focus-visible {
+    background: #dce8f5;
+  }
+`;
+
+document.head.appendChild(tocStyle);
+
+// 목차 버튼
+
+const tocButton = document.createElement("button");
+
+tocButton.type = "button";
+tocButton.textContent = "☰ 목차 보기";
+tocButton.id = "tocButton";
+tocButton.setAttribute("aria-expanded", "false");
+tocButton.setAttribute("aria-controls", "tocPanel");
+
+// 목차 패널
+
+const tocPanel = document.createElement("div");
+
+tocPanel.id = "tocPanel";
+tocPanel.hidden = true;
+
+const tocHeading = document.createElement("h3");
+
+tocHeading.textContent = "전자책 목차";
+
+tocPanel.appendChild(tocHeading);
+
+// 기존 확대·축소 버튼 앞에 삽입
+
+const readerElement = $("reader");
+const firstControls = readerElement.querySelector(".controls");
+
+const tocControls = document.createElement("div");
+
+tocControls.className = "controls";
+tocControls.appendChild(tocButton);
+
+readerElement.insertBefore(
+  tocControls,
+  firstControls
+);
+
+readerElement.insertBefore(
+  tocPanel,
+  firstControls
+);
+
+// ==========================================
+// 4. 목차 페이지 이동
+// ==========================================
+
+function tocPageToImagePage(printPage) {
+
+  return printPage + TOC_OFFSETS[documentId];
+
+}
+
+function createTocItem(title, printPage) {
+
+  const button = document.createElement("button");
+
+  button.type = "button";
+  button.className = "toc-item";
+
+  button.textContent =
+    title + " (" + printPage + "쪽)";
+
+  button.addEventListener("click", async () => {
+
+    const imagePage =
+      tocPageToImagePage(printPage);
+
+    if (
+      imagePage < 1 ||
+      imagePage > totalPages
+    ) {
+      alert("해당 페이지를 찾을 수 없습니다.");
+      return;
+    }
+
+    await goToPage(imagePage);
+
+    tocPanel.hidden = true;
+
+    tocButton.textContent = "☰ 목차 보기";
+    tocButton.setAttribute("aria-expanded", "false");
+
+  });
+
+  return button;
+
+}
+
+// ==========================================
+// 5. 목차 목록 구성
+// ==========================================
+
+function buildTableOfContents() {
+
+  const tocData =
+    documentId === 9
+      ? TOC_BOOK_9
+      : TOC_BOOK_10;
+
+  tocPanel.replaceChildren(tocHeading);
+
+  tocData.forEach(section => {
+
+    if (
+      section.children &&
+      section.children.length > 0
+    ) {
+
+      const details =
+        document.createElement("details");
+
+      const summary =
+        document.createElement("summary");
+
+      summary.textContent = section.title;
+
+      details.appendChild(summary);
+
+      details.appendChild(
+        createTocItem(
+          "▶ " + section.title + " 시작",
+          section.page
+        )
+      );
+
+      section.children.forEach(child => {
+
+        details.appendChild(
+          createTocItem(child[0], child[1])
+        );
+
+      });
+
+      tocPanel.appendChild(details);
+
+    } else {
+
+      tocPanel.appendChild(
+        createTocItem(
+          section.title,
+          section.page
+        )
+      );
+
+    }
+
+  });
+
+}
+
+// ==========================================
+// 6. 목차 열기 및 닫기
+// ==========================================
+
+tocButton.addEventListener("click", () => {
+
+  tocPanel.hidden = !tocPanel.hidden;
+
+  const isOpen = !tocPanel.hidden;
+
+  tocButton.textContent =
+    isOpen
+      ? "✕ 목차 닫기"
+      : "☰ 목차 보기";
+
+  tocButton.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+
+});
+
+// 목차 초기화
+
+if (book) {
+  buildTableOfContents();
+}
   
 // ==========================================
 // 8. 초기 실행
