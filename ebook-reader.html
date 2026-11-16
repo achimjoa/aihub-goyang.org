@@ -1363,64 +1363,186 @@ const TOC_BOOK_9 = [
   }
 ];
 
-// ==========================================
-// 2. 제2권 주요 목차
+ // ==========================================
+// 제188-23단계
+// 제2권 전체 목차 등록 및 페이지 이동
 // ==========================================
 
-const TOC_BOOK_10 = [
-  {
-    title: "제1편. 글로벌 AI 허브 업무 지원 종합계획",
-    page: 1,
-    children: [
-      ["제1장. 계획의 목적과 기본 원칙", 5],
-      ["제2장. 국제기구별 주요 업무와 지원 방향", 8],
-      ["제3장. 고양특례시의 자산 총동원 계획", 12],
-      ["제4장. 국제기구별 업무 지원", 26],
-      ["제5장. 국제기구 공동업무 지원계획", 32],
-      ["제6장. 국제기구 초기 안착 및 상시 운영 지원계획", 34],
-      ["제7장. 국제기구 업무 실증 지원조직", 35],
-      ["제8장. 공공 AI 실증의 안전성과 공공성 확보", 37],
-      ["제9장. 재정 및 자산확보 계획", 38],
-      ["제10장. 단계별 실행계획", 39]
-    ]
-  },
-  {
-    title: "제2편. 글로벌 AI 허브 업무 지원 종합계획서",
-    page: 45
-  },
-  {
-    title: "제3편. 글로벌 AI 허브 업무 지원 종합계획서",
-    page: 79
-  },
-  {
-    title: "제4편. WFP 관련 업무 지원",
-    page: 127
-  },
-  {
-    title: "제5편. UNEP 관련 업무 지원",
-    page: 175
-  },
-  {
-    title: "제6편. 국제기구 보증보험 전문성 개선 분야",
-    page: 219
-  },
-  {
-    title: "제7편. ITU 관련 업무 지원",
-    page: 367
-  },
-  {
-    title: "제8편. UNICEF 관련 업무 지원",
-    page: 421
-  },
-  {
-    title: "제9편. UNDP 관련 업무 지원",
-    page: 467
-  },
-  {
-    title: "제10편. 동북아허브 관련 업무 지원",
-    page: 521
+// 제2권 전체 목차 원문 저장
+const TOC_STORAGE_KEY = "ebook_full_toc_10";
+
+// 저장된 목차 불러오기
+function loadFullToc() {
+  return localStorage.getItem(TOC_STORAGE_KEY) || "";
+}
+
+// 목차 원문을 항목별 데이터로 변환
+function parseFullToc(text) {
+
+  const entries = [];
+
+  const lines = text.split(/\r?\n/);
+
+  for (const rawLine of lines) {
+
+    const line = rawLine.trim();
+
+    if (!line) continue;
+
+    // 일반 페이지 번호
+    const normalMatch =
+      line.match(/^(.*?)\s*[—–-]?\s+(\d+)\s*(?:쪽)?$/);
+
+    // 원문 앞뒤 공백 정리
+    if (normalMatch) {
+
+      const title = normalMatch[1].trim();
+      const page = Number(normalMatch[2]);
+
+      if (title && page >= 1) {
+
+        entries.push({
+          title,
+          page,
+          type: "normal"
+        });
+
+      }
+
+      continue;
+    }
+
+    // 원문 앞부분의 원문자 페이지
+    const circledMatch =
+      line.match(/^(.*?)\s+([①②③④⑤⑥⑦⑧⑨])$/);
+
+    if (circledMatch) {
+
+      const circledNumbers = "①②③④⑤⑥⑦⑧⑨";
+
+      entries.push({
+        title: circledMatch[1].trim(),
+        page: circledNumbers.indexOf(
+          circledMatch[2]
+        ) + 1,
+        type: "front"
+      });
+
+    }
+
   }
-];
+
+  return entries;
+}
+
+// ==========================================
+// 전체 목차 입력창
+// ==========================================
+
+function createTocEditor() {
+
+  const container = document.createElement("div");
+
+  container.id = "tocEditor";
+
+  container.style.cssText = `
+    margin:15px 0;
+    padding:15px;
+    background:#eef4fb;
+    border:1px solid #c5d5e8;
+    border-radius:8px;
+  `;
+
+  const label = document.createElement("p");
+
+  label.textContent =
+    "전체 목차 원문을 붙여넣으면 항목별 페이지 이동 버튼이 생성됩니다.";
+
+  const textarea = document.createElement("textarea");
+
+  textarea.id = "tocTextInput";
+
+  textarea.value = loadFullToc();
+
+  textarea.placeholder =
+    "전체 목차를 여기에 붙여넣으세요.";
+
+  textarea.style.cssText = `
+    width:100%;
+    height:180px;
+    padding:10px;
+    border:1px solid #c5d5e8;
+    border-radius:6px;
+    font-family:inherit;
+  `;
+
+  const saveButton = document.createElement("button");
+
+  saveButton.type = "button";
+
+  saveButton.textContent = "전체 목차 저장";
+
+  saveButton.style.marginTop = "10px";
+
+  saveButton.addEventListener("click", () => {
+
+    const text = textarea.value;
+
+    const entries = parseFullToc(text);
+
+    if (entries.length === 0) {
+
+      alert("페이지 번호가 포함된 목차를 입력해 주세요.");
+      return;
+
+    }
+
+    localStorage.setItem(
+      TOC_STORAGE_KEY,
+      text
+    );
+
+    buildTableOfContents();
+
+    alert(
+      entries.length +
+      "개 목차 항목을 등록했습니다."
+    );
+
+  });
+
+  container.appendChild(label);
+  container.appendChild(textarea);
+  container.appendChild(saveButton);
+
+  return container;
+}
+
+// ==========================================
+// 제2권 전체 목차
+// ==========================================
+
+const TOC_BOOK_10 = [];
+
+// 저장된 목차 자동 등록
+function refreshBook10Toc() {
+
+  TOC_BOOK_10.length = 0;
+
+  const entries =
+    parseFullToc(loadFullToc());
+
+  entries.forEach(entry => {
+
+    TOC_BOOK_10.push({
+      title: entry.title,
+      page: entry.page,
+      pageType: entry.type
+    });
+
+  });
+
+} 
 
 // ==========================================
 // 3. 목차 화면 생성
@@ -1577,29 +1699,83 @@ function createTocItem(title, printPage) {
 
 function buildTableOfContents() {
 
-  const tocData =
-    documentId === 9
-      ? TOC_BOOK_9
-      : TOC_BOOK_10;
-
   tocPanel.replaceChildren(tocHeading);
+
+  if (documentId === 10) {
+
+    refreshBook10Toc();
+
+    tocPanel.appendChild(
+      createTocEditor()
+    );
+
+    TOC_BOOK_10.forEach(item => {
+
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+      button.className = "toc-item";
+
+      button.textContent =
+        item.title +
+        " (" +
+        item.page +
+        (item.pageType === "front" ? " / 앞부분" : "쪽") +
+        ")";
+
+      button.addEventListener("click", async () => {
+
+        // 본문 페이지는 기존 40쪽 보정
+        // 원문자 페이지는 임시로 1~9번 이미지에 연결
+        const imagePage =
+          item.pageType === "front"
+            ? item.page
+            : item.page + TOC_OFFSETS[10];
+
+        await goToPage(imagePage);
+
+        tocPanel.hidden = true;
+
+        tocButton.textContent =
+          "☰ 목차 보기";
+
+        tocButton.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      });
+
+      tocPanel.appendChild(button);
+
+    });
+
+    return;
+
+  }
+
+  // 제1권 기존 목차 유지
 
   function renderNode(node, parent) {
 
-    // 기존 제1권 배열 형식 지원
     if (Array.isArray(node)) {
+
       parent.appendChild(
         createTocItem(node[0], node[1])
       );
+
       return;
     }
 
     const children = node.children || [];
 
     if (children.length === 0) {
+
       parent.appendChild(
         createTocItem(node.title, node.page)
       );
+
       return;
     }
 
@@ -1613,23 +1789,17 @@ function buildTableOfContents() {
 
     details.appendChild(summary);
 
-    // 상위 항목도 페이지 이동 가능
-    if (Number.isInteger(node.page)) {
-      details.appendChild(
-        createTocItem(
-          "▶ " + node.title + " 시작",
-          node.page
-        )
-      );
-    }
+    details.appendChild(
+      createTocItem(
+        node.title,
+        node.page
+      )
+    );
 
     const childContainer =
       document.createElement("div");
 
     childContainer.style.marginLeft = "20px";
-    childContainer.style.paddingLeft = "12px";
-    childContainer.style.borderLeft =
-      "2px solid #dce8f5";
 
     children.forEach(child => {
       renderNode(child, childContainer);
@@ -1640,9 +1810,10 @@ function buildTableOfContents() {
     parent.appendChild(details);
   }
 
-  tocData.forEach(node => {
+  TOC_BOOK_9.forEach(node => {
     renderNode(node, tocPanel);
   });
+
 }
   
 // ==========================================
