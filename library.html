@@ -1144,37 +1144,10 @@ function createDocumentCard(doc) {
   badges.appendChild(gradeBadge);
 
 // ==========================================
-// 제174-8단계
-// 공개·비공개 상태 표시
+// 제188-13단계
+// 공개·비공개 상태 표시 통합
+// publishBadge 중복 선언 오류 수정
 // ==========================================
-
-const publishBadge =
-  document.createElement("span");
-
-publishBadge.className =
-  "badge";
-
-publishBadge.textContent =
-  doc.is_published
-    ? "공개"
-    : "비공개";
-
-if (!doc.is_published) {
-
-  publishBadge.style.background =
-    "#fce8e8";
-
-  publishBadge.style.color =
-    "#9b2020";
-
-}
-
-badges.appendChild(publishBadge);
-  
-/* =====================================
-   제174-5단계
-   공개·비공개 상태 표시
-===================================== */
 
 const publishBadge =
   document.createElement("span");
@@ -1192,6 +1165,12 @@ if (doc.is_published === true) {
   publishBadge.textContent = "비공개자료";
 
   publishBadge.classList.add("grade-1");
+
+  publishBadge.style.background =
+    "#fce8e8";
+
+  publishBadge.style.color =
+    "#9b2020";
 
 }
 
