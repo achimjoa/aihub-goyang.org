@@ -697,58 +697,6 @@ async function showPage(
 
 }
 
-  if (
-    pageNumber < 1 ||
-    pageNumber > totalPages
-  ) {
-    return;
-  }
-
-  $("prevButton").disabled = true;
-  $("nextButton").disabled = true;
-
-  showStatus(
-    pageNumber + "쪽을 불러오는 중입니다."
-  );
-
-  try {
-
-    const result =
-      await requestPage(pageNumber);
-
-    $("pageImage").src =
-      result.url;
-
-    currentPage = pageNumber;
-
-    $("pageInfo").textContent =
-      currentPage +
-      " / " +
-      totalPages;
-
-    $("reader").hidden = false;
-
-    $("status").hidden = true;
-
-  } catch (error) {
-
-    showStatus(
-      "페이지 열람 실패: " +
-      error.message,
-      true
-    );
-
-  } finally {
-
-    $("prevButton").disabled =
-      currentPage <= 1;
-
-    $("nextButton").disabled =
-      currentPage >= totalPages;
-
-  }
-
-}
 
 // ==========================================
 // 제188-19단계
