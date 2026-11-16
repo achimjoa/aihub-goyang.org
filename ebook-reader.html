@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>
+    글로벌 AI 허브 고양 전자책 열람실
+  </title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: #f3f7fc;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: #173b68;
+    }
+
+    h1 {
+      color: #0756a5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px #00000012;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>
+      글로벌 AI 허브 고양 전자책 열람실
+    </h1>
+
+    <p>
+      전자책 전체본 열람 시스템
+    </p>
+
+    <p id="status">
+      전자책 뷰어 설치 확인 중...
+    </p>
+
+  </div>
+
+  <script>
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const documentId =
+      Number(
+        params.get("document_id")
+      );
+
+    const status =
+      document.getElementById("status");
+
+    if (documentId === 9) {
+
+      status.textContent =
+        "제1호 전자책 뷰어 연결 준비 완료";
+
+    } else if (documentId === 10) {
+
+      status.textContent =
+        "제2호 전자책 뷰어 연결 준비 완료";
+
+    } else {
+
+      status.textContent =
+        "올바른 전자책 자료 ID가 필요합니다.";
+
+    }
+
+  </script>
+
+</body>
+</html>
