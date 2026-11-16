@@ -2,94 +2,609 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1"
-  >
+<meta charset="UTF-8">
 
-  <title>
-    글로벌 AI 허브 고양 전자책 열람실
-  </title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-  <style>
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      background: #f3f7fc;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      color: #173b68;
-    }
+<title>글로벌 AI 허브 전자책 열람실</title>
 
-    h1 {
-      color: #0756a5;
-    }
+<style>
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 40px 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px #00000012;
-    }
-  </style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+}
+
+header {
+  background: linear-gradient(
+    135deg,
+    #0754a6,
+    #10315e
+  );
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 5vw, 34px);
+}
+
+header p {
+  margin: 5px 0;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 25px 15px;
+}
+
+.panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px #00000012;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  color: #0754a6;
+}
+
+.status {
+  padding: 15px;
+  background: #eef4fb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.status.error {
+  background: #fff1f2;
+  color: #991b1b;
+}
+
+.status.success {
+  background: #e8f5e9;
+  color: #176534;
+}
+
+.reader {
+  text-align: center;
+}
+
+.page-container {
+  background: #dce8f5;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 300px;
+}
+
+.page-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  background: white;
+  box-shadow: 0 4px 15px #00000020;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+button,
+.button-link {
+  padding: 11px 18px;
+  background: #0754a6;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-info {
+  font-weight: bold;
+  color: #0754a6;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 40px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 600px) {
+  .panel {
+    padding: 15px;
+  }
+
+  .page-container {
+    padding: 8px;
+  }
+}
+
+</style>
 
 </head>
 
 <body>
 
-  <div class="container">
+<header>
 
-    <h1>
-      글로벌 AI 허브 고양 전자책 열람실
-    </h1>
+<h1>글로벌 AI 허브 전자책 열람실</h1>
 
-    <p>
-      전자책 전체본 열람 시스템
-    </p>
+<p>
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+</p>
 
-    <p id="status">
-      전자책 뷰어 설치 확인 중...
-    </p>
+</header>
 
-  </div>
+<main>
 
-  <script>
+<section class="panel">
 
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
+<a
+  class="button-link"
+  href="library.html"
+>
+← 지식자료실
+</a>
 
-    const documentId =
-      Number(
-        params.get("document_id")
-      );
+<h2 id="bookTitle">
+전자책 정보를 확인하는 중입니다.
+</h2>
 
-    const status =
-      document.getElementById("status");
+<div
+  id="status"
+  class="status"
+  role="status"
+  aria-live="polite"
+>
+회원 인증을 확인하는 중입니다.
+</div>
 
-    if (documentId === 9) {
+</section>
 
-      status.textContent =
-        "제1호 전자책 뷰어 연결 준비 완료";
+<section
+  id="reader"
+  class="panel reader"
+  hidden
+>
 
-    } else if (documentId === 10) {
+<div class="page-container">
 
-      status.textContent =
-        "제2호 전자책 뷰어 연결 준비 완료";
+<img
+  id="pageImage"
+  alt="전자책 페이지"
+  referrerpolicy="no-referrer"
+>
 
-    } else {
+</div>
 
-      status.textContent =
-        "올바른 전자책 자료 ID가 필요합니다.";
+<div class="controls">
 
+<button
+  id="prevButton"
+  type="button"
+  disabled
+>
+이전 페이지
+</button>
+
+<span
+  id="pageInfo"
+  class="page-info"
+>
+1 / 1
+</span>
+
+<button
+  id="nextButton"
+  type="button"
+  disabled
+>
+다음 페이지
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+경기도 글로벌 AI 허브 유치<br>
+고양특례시 범시민추진위원회
+
+</footer>
+
+<script type="module">
+
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+// ==========================================
+// 1. Supabase 연결
+// ==========================================
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const $ = id =>
+  document.getElementById(id);
+
+// ==========================================
+// 2. 전자책 자료 확인
+// ==========================================
+
+const params =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const documentId =
+  Number(
+    params.get("document_id")
+  );
+
+const BOOKS = {
+
+  9: {
+    title:
+      "글로벌 AI 허브 고양특례시 유치 종합 전략 및 실행 안내서",
+    pages: 232
+  },
+
+  10: {
+    title:
+      "글로벌 AI 허브 업무 지원 종합계획서",
+    pages: 590
+  }
+
+};
+
+const book = BOOKS[documentId];
+
+let currentPage = 1;
+let totalPages = 0;
+
+// ==========================================
+// 3. 상태 메시지
+// ==========================================
+
+function showStatus(
+  message,
+  isError = false
+) {
+
+  const box = $("status");
+
+  box.hidden = false;
+
+  box.className =
+    isError
+      ? "status error"
+      : "status";
+
+  box.textContent = message;
+
+}
+
+// ==========================================
+// 4. 로그인 및 승인 회원 확인
+// ==========================================
+
+async function checkMember() {
+
+  const {
+    data: userData,
+    error: userError
+  } = await supabase.auth.getUser();
+
+  if (
+    userError ||
+    !userData.user
+  ) {
+
+    throw new Error(
+      "로그인이 필요합니다. 회원 로그인 후 다시 접속해 주세요."
+    );
+
+  }
+
+  const {
+    data: profile,
+    error: profileError
+  } = await supabase
+    .from("profiles")
+    .select("approval_status")
+    .eq("id", userData.user.id)
+    .single();
+
+  if (profileError) {
+    throw profileError;
+  }
+
+  if (
+    profile.approval_status !== "approved"
+  ) {
+
+    throw new Error(
+      "관리자 승인을 받은 회원만 전자책 전체본을 열람할 수 있습니다."
+    );
+
+  }
+
+  return userData.user;
+
+}
+
+// ==========================================
+// 5. 전자책 페이지 URL 요청
+// ==========================================
+
+async function requestPage(
+  pageNumber
+) {
+
+  const {
+    data: sessionData,
+    error: sessionError
+  } = await supabase.auth.getSession();
+
+  if (
+    sessionError ||
+    !sessionData.session?.access_token
+  ) {
+
+    throw new Error(
+      "로그인 세션이 없습니다. 다시 로그인해 주세요."
+    );
+
+  }
+
+  const accessToken =
+    sessionData.session.access_token;
+
+  const response = await fetch(
+    SUPABASE_URL +
+    "/functions/v1/knowledge-ebook-page-access",
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization":
+          "Bearer " + accessToken
+      },
+
+      body: JSON.stringify({
+        document_id: documentId,
+        page_number: pageNumber
+      })
     }
+  );
 
-  </script>
+  const result =
+    await response.json();
+
+  if (
+    !response.ok ||
+    result.success !== true
+  ) {
+
+    throw new Error(
+      result.error ||
+      "전자책 페이지 접근이 거부되었습니다."
+    );
+
+  }
+
+  if (!result.signed_url) {
+
+    throw new Error(
+      "페이지 열람 주소가 발급되지 않았습니다."
+    );
+
+  }
+
+  // ========================================
+  // 허용된 Supabase Storage 주소만 사용
+  // ========================================
+
+  const url =
+    new URL(result.signed_url);
+
+  if (
+    url.protocol !== "https:" ||
+    url.origin !== SUPABASE_URL ||
+    !url.pathname.startsWith(
+      "/storage/v1/object/sign/knowledge-private/"
+    )
+  ) {
+
+    throw new Error(
+      "허용되지 않은 이미지 주소입니다."
+    );
+
+  }
+
+  return {
+    url: url.href,
+    totalPages: Number(result.total_pages)
+  };
+
+}
+
+// ==========================================
+// 6. 페이지 표시
+// ==========================================
+
+async function showPage(
+  pageNumber
+) {
+
+  if (
+    pageNumber < 1 ||
+    pageNumber > totalPages
+  ) {
+    return;
+  }
+
+  $("prevButton").disabled = true;
+  $("nextButton").disabled = true;
+
+  showStatus(
+    pageNumber + "쪽을 불러오는 중입니다."
+  );
+
+  try {
+
+    const result =
+      await requestPage(pageNumber);
+
+    $("pageImage").src =
+      result.url;
+
+    currentPage = pageNumber;
+
+    $("pageInfo").textContent =
+      currentPage +
+      " / " +
+      totalPages;
+
+    $("reader").hidden = false;
+
+    $("status").hidden = true;
+
+  } catch (error) {
+
+    showStatus(
+      "페이지 열람 실패: " +
+      error.message,
+      true
+    );
+
+  } finally {
+
+    $("prevButton").disabled =
+      currentPage <= 1;
+
+    $("nextButton").disabled =
+      currentPage >= totalPages;
+
+  }
+
+}
+
+// ==========================================
+// 7. 페이지 이동
+// ==========================================
+
+$("prevButton").addEventListener(
+  "click",
+  () => {
+    showPage(currentPage - 1);
+  }
+);
+
+$("nextButton").addEventListener(
+  "click",
+  () => {
+    showPage(currentPage + 1);
+  }
+);
+
+// ==========================================
+// 8. 초기 실행
+// ==========================================
+
+async function initialize() {
+
+  if (!book) {
+
+    showStatus(
+      "올바른 전자책 자료 ID가 필요합니다.",
+      true
+    );
+
+    return;
+
+  }
+
+  $("bookTitle").textContent =
+    book.title;
+
+  totalPages = book.pages;
+
+  try {
+
+    await checkMember();
+
+    showStatus(
+      "회원 인증 완료. 전자책을 불러옵니다."
+    );
+
+    await showPage(1);
+
+  } catch (error) {
+
+    showStatus(
+      error.message,
+      true
+    );
+
+  }
+
+}
+
+initialize();
+
+</script>
 
 </body>
 </html>
