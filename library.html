@@ -1241,33 +1241,61 @@ badges.appendChild(publishBadge);
   actions.appendChild(detailButton);
   actions.appendChild(openButton);
 
-  // 전자책 표지 표시
+/* ==========================================
+   제188-20-2단계
+   전자책 공개 표지 표시
+========================================== */
+
+// 전자책별 공개 표지 주소
+
+const ebookCoverUrls = {
+
+  9: "/ebooks/assets/ebook-covers/issue-01.webp",
+
+  10: "/ebooks/assets/ebook-covers/issue-02.webp"
+
+};
+
+// 현재 자료의 표지 주소 확인
+
+const coverUrl =
+  ebookCoverUrls[Number(doc.id)] ||
+  doc.thumbnail_url;
+
+// 전자책 표지 표시
+
 if (
   type === "ebook" &&
-  doc.thumbnail_url
+  coverUrl
 ) {
 
   const cover =
     document.createElement("div");
 
-  cover.className = "document-cover";
+  cover.className =
+    "document-cover";
 
   const img =
     document.createElement("img");
 
-  img.src = doc.thumbnail_url;
+  img.src = coverUrl;
 
   img.alt =
-    (doc.title || "전자책") + " 표지";
+    (doc.title || "전자책") +
+    " 표지";
 
   img.loading = "lazy";
 
   img.onerror = () => {
+
     cover.remove();
+
   };
 
   cover.appendChild(img);
+
   card.appendChild(cover);
+
 }
 
 body.appendChild(badges);
