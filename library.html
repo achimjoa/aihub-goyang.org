@@ -1430,6 +1430,43 @@ async function openDocument(
     return;
   }
 
+  // ==========================================
+  // 제188-15단계
+  // 전자책 전체본 열람 분기
+  // ==========================================
+
+  if (
+    doc.document_type === "ebook"
+  ) {
+
+    const documentId =
+      Number(doc.id);
+
+    if (
+      documentId !== 9 &&
+      documentId !== 10
+    ) {
+
+      alert(
+        "등록되지 않은 전자책입니다."
+      );
+
+      return;
+    }
+
+    // 전자책 전용 열람 화면으로 이동
+
+    const readerUrl =
+      "/ebook-reader.html" +
+      "?document_id=" +
+      encodeURIComponent(documentId);
+
+    window.location.href =
+      readerUrl;
+
+    return;
+  }
+  
   const originalText =
     button?.textContent;
 
