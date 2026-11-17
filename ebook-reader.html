@@ -1363,64 +1363,131 @@ const TOC_BOOK_9 = [
   }
 ];
 
-// ==========================================
-// 2. 제2권 주요 목차
-// ==========================================
+// 제2권 전체 목차
+// Supabase Full 버전
 
-const TOC_BOOK_10 = [
-  {
-    title: "제1편. 글로벌 AI 허브 업무 지원 종합계획",
-    page: 1,
-    children: [
-      ["제1장. 계획의 목적과 기본 원칙", 5],
-      ["제2장. 국제기구별 주요 업무와 지원 방향", 8],
-      ["제3장. 고양특례시의 자산 총동원 계획", 12],
-      ["제4장. 국제기구별 업무 지원", 26],
-      ["제5장. 국제기구 공동업무 지원계획", 32],
-      ["제6장. 국제기구 초기 안착 및 상시 운영 지원계획", 34],
-      ["제7장. 국제기구 업무 실증 지원조직", 35],
-      ["제8장. 공공 AI 실증의 안전성과 공공성 확보", 37],
-      ["제9장. 재정 및 자산확보 계획", 38],
-      ["제10장. 단계별 실행계획", 39]
-    ]
-  },
-  {
-    title: "제2편. 글로벌 AI 허브 업무 지원 종합계획서",
-    page: 45
-  },
-  {
-    title: "제3편. 글로벌 AI 허브 업무 지원 종합계획서",
-    page: 79
-  },
-  {
-    title: "제4편. WFP 관련 업무 지원",
-    page: 127
-  },
-  {
-    title: "제5편. UNEP 관련 업무 지원",
-    page: 175
-  },
-  {
-    title: "제6편. 국제기구 보증보험 전문성 개선 분야",
-    page: 219
-  },
-  {
-    title: "제7편. ITU 관련 업무 지원",
-    page: 367
-  },
-  {
-    title: "제8편. UNICEF 관련 업무 지원",
-    page: 421
-  },
-  {
-    title: "제9편. UNDP 관련 업무 지원",
-    page: 467
-  },
-  {
-    title: "제10편. 동북아허브 관련 업무 지원",
-    page: 521
+const BOOK10_PAGE_OFFSET = 40;
+
+// 전체 목차를 저장할 공간
+const TOC_BOOK_10 = [];
+
+// 전체 목차 원문 분석
+function registerFullToc(text) {
+
+  TOC_BOOK_10.length = 0;
+
+  const frontPages = "①②③④⑤⑥⑦⑧⑨";
+
+  const lines = text.split(/\r?\n/);
+
+  for (const raw of lines) {
+
+    const line = raw.trim();
+
+    if (!line) continue;
+
+    const match = line.match(
+      /^(.*?)\s*(?:—\s*)?([①②③④⑤⑥⑦⑧⑨]|\d+)\s*(?:쪽)?$/
+    );
+
+    if (!match) continue;
+
+    const title = match[1].trim();
+    const pageText = match[2];
+
+    if (!title) continue;
+
+    const frontIndex = frontPages.indexOf(pageText);
+
+    TOC_BOOK_10.push({
+      title,
+      page: frontIndex >= 0
+        ? frontIndex + 1
+        : Number(pageText),
+      isFront: frontIndex >= 0,
+      pageText
+    });
+
   }
-];
+
+  return TOC_BOOK_10.length;
+}
+
+// 저장된 전체 목차 자동 등록
+registerFullToc(
+  localStorage.getItem("book10_full_toc") || ""
+);
+
+function installFullTocEditor() {
+
+  if (document.getElementById("book10TocEditor")) {
+    return;
+  }
+
+  const editor = document.createElement("div");
+
+  editor.id = "book10TocEditor";
+
+  editor.style.cssText = `
+    padding:12px;
+    margin:12px 0;
+    background:#f1f5f9;
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+  `;
+
+  editor.innerHTML = `
+    <div style="font-weight:bold;margin-bottom:8px;">
+      제2권 전체 목차 등록
+    </div>
+
+    <textarea
+      id="book10TocText"
+      style="width:100%;height:150px;"
+      placeholder="전체 목차 원문을 붙여넣으세요."
+    ></textarea>
+
+    <button
+      type="button"
+      id="book10TocSave"
+      style="margin-top:8px;padding:8px 12px;"
+    >
+      전체 목차 저장
+    </button>
+  `;
+
+  tocPanel.prepend(editor);
+
+  const textarea =
+    document.getElementById("book10TocText");
+
+  textarea.value =
+    localStorage.getItem("book10_full_toc") || "";
+
+  document.getElementById("book10TocSave")
+    .addEventListener("click", () => {
+
+      const text = textarea.value;
+
+      const count = registerFullToc(text);
+
+      if (!count) {
+        alert("페이지 번호가 있는 목차를 입력해 주시게.");
+        return;
+      }
+
+      localStorage.setItem(
+        "book10_full_toc",
+        text
+      );
+
+      buildTableOfContents();
+
+      alert(count + "개 목차 항목 등록 완료");
+
+    });
+
+}  
 
 // ==========================================
 // 3. 목차 화면 생성
