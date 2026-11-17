@@ -2779,29 +2779,273 @@ function installBook10TocStyle() {
 
 
 // ==========================================
-// 19. 초기화
+// ==========================================
+// 19. 목차 및 전자책 초기화 복구
 // ==========================================
 
+let readerInitialized = false;
+
+// ------------------------------------------
+// 목차 초기화
+// ------------------------------------------
+
 function initializeBook10Toc() {
+
+  if (documentId !== 10) return;
+
   installBook10TocStyle();
 
-  const container =
-    document.getElementById("book10-toc");
+  const content = $("tocContent");
 
-  if (container) {
-    renderBook10Toc(container);
+  if (!content) {
+    console.error("목차 표시 영역이 없습니다.");
+    return;
   }
+
+  let container = $("book10-toc");
+
+  if (!container) {
+
+    container = document.createElement("div");
+    container.id = "book10-toc";
+
+    content.appendChild(container);
+
+  }
+
+  renderBook10Toc(container);
+
 }
+
+// ------------------------------------------
+// 제1권 목차 생성
+// ------------------------------------------
+
+function initializeBook9Toc() {
+
+  if (documentId !== 9) return;
+
+  const content = $("tocContent");
+
+  if (!content) return;
+
+  content.replaceChildren();
+
+  function addItem(title, page) {
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "toc-item";
+    button.textContent = title;
+
+    button.addEventListener("click", () => {
+
+      const target = Number(page) + TOC_OFFSETS[9];
+
+      goToPage(target);
+
+      closeToc();
+
+    });
+
+    content.appendChild(button);
+
+  }
+
+  TOC_BOOK_9.forEach(section => {
+
+    addItem(section.title, section.page);
+
+    (section.children || []).forEach(child => {
+
+      if (Array.isArray(child)) {
+        addItem("　" + child[0], child[1]);
+      } else {
+        addItem(child.title, child.page);
+      }
+
+    });
+
+  });
+
+}
+
+// ------------------------------------------
+// 목차 열기 및 닫기
+// ------------------------------------------
+
+function closeToc() {
+
+  const panel = $("tocPanel");
+  const button = $("tocButton");
+
+  if (!panel || !button) return;
+
+  panel.hidden = true;
+
+  button.textContent = "☰ 목차 보기";
+
+  button.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+}
+
+function initializeTocControls() {
+
+  const button = $("tocButton");
+  const panel = $("tocPanel");
+
+  if (!button || !panel) return;
+
+  button.addEventListener("click", () => {
+
+    panel.hidden = !panel.hidden;
+
+    const opened = !panel.hidden;
+
+    button.textContent = opened
+      ? "✕ 목차 닫기"
+      : "☰ 목차 보기";
+
+    button.setAttribute(
+      "aria-expanded",
+      String(opened)
+    );
+
+  });
+
+  window.addEventListener(
+    "book10:navigate",
+    event => {
+
+      if (documentId !== 10) return;
+
+      const printedPage = Number(
+        event.detail?.page
+      );
+
+      if (!Number.isInteger(printedPage)) {
+        return;
+      }
+
+      const targetPage =
+        printedPage + TOC_OFFSETS[10];
+
+      if (
+        targetPage >= 0 &&
+        targetPage <= totalPages
+      ) {
+
+        goToPage(targetPage);
+
+        closeToc();
+
+      }
+
+    }
+  );
+
+}
+
+// ------------------------------------------
+// 전자책 초기 실행
+// ------------------------------------------
+
+async function initializeReader() {
+
+  if (readerInitialized) return;
+
+  readerInitialized = true;
+
+  try {
+
+    if (!book) {
+
+      throw new Error(
+        "올바른 전자책 자료 ID가 필요합니다."
+      );
+
+    }
+
+    $("bookTitle").textContent = book.title;
+
+    totalPages = book.pages;
+
+    updatePageControls();
+
+    initializeTocControls();
+
+    if (documentId === 9) {
+
+      initializeBook9Toc();
+
+    } else if (documentId === 10) {
+
+      initializeBook10Toc();
+
+    }
+
+    showStatus(
+      "전자책 열람 준비 중입니다."
+    );
+
+    // 기존 회원 인증 함수 그대로 사용
+
+    await checkMember();
+
+    showStatus(
+      "전자책을 불러오는 중입니다."
+    );
+
+    // 기존 표지 표시 함수 사용
+
+    showCover();
+
+    console.log(
+      "전자책 초기화 완료",
+      {
+        documentId,
+        totalPages
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "전자책 초기화 실패:",
+      error
+    );
+
+    showStatus(
+      "전자책 실행 실패: " +
+      (error?.message || String(error)),
+      true
+    );
+
+  }
+
+}
+
+// ------------------------------------------
+// 실행
+// ------------------------------------------
 
 if (document.readyState === "loading") {
+
   document.addEventListener(
     "DOMContentLoaded",
-    initializeBook10Toc
+    initializeReader,
+    { once: true }
   );
-} else {
-  initializeBook10Toc();
-}
 
+} else {
+
+  initializeReader();
+
+}
 </script>
 
 </body>
