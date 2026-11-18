@@ -348,7 +348,7 @@ footer {
 
   <div class="admin-grid">
 
-    <div class="admin-card" id="memberAdminMenu" hidden>
+    <div class="admin-card" id="memberManagementMenu" hidden>
 
       <h3>👥 회원관리</h3>
 
@@ -684,7 +684,7 @@ async function initializeAdminCenter() {
       "관리자 인증이 완료되었습니다.";
 
     adminMenu.hidden = false;
-    void enableSuperAdminMenus();
+    void enableGrade1Review();
 
   } catch (error) {
 
@@ -1208,12 +1208,17 @@ const grade1Message = $("grade1ReviewMessage");
 let grade1Authorized = false;
 let grade1Busy = false;
 
-async function enableSuperAdminMenus() {
+async function enableGrade1Review() {
+  grade1Authorized = false;
+  $("memberManagementMenu").hidden = true;
+  $("grade1ReviewMenu").hidden = true;
+  grade1Panel.hidden = true;
+
   try {
     const { data, error } = await supabase.rpc("is_super_admin");
     if (error) throw error;
     grade1Authorized = data === true;
-    $("memberAdminMenu").hidden = !grade1Authorized;
+    $("memberManagementMenu").hidden = !grade1Authorized;
     $("grade1ReviewMenu").hidden = !grade1Authorized;
   } catch (error) {
     console.error("최고관리자 권한 확인 실패", error);
