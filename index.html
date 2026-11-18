@@ -288,7 +288,8 @@ body {
   touch-action: pan-x;
 }
 
-#homepageLayoutModule .home-menu-links > a {
+#homepageLayoutModule .home-menu-links > a,
+#homepageLayoutModule .home-menu-links > button {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
@@ -307,12 +308,15 @@ body {
 }
 
 #homepageLayoutModule .home-menu-links > a:hover,
-#homepageLayoutModule .home-menu-links > a:focus-visible {
+#homepageLayoutModule .home-menu-links > a:focus-visible,
+#homepageLayoutModule .home-menu-links > button:hover,
+#homepageLayoutModule .home-menu-links > button:focus-visible {
   background: var(--yellow);
   color: #003b79;
 }
 
-#homepageLayoutModule .home-menu-links > a.member-link {
+#homepageLayoutModule .home-menu-links > a.member-link,
+#homepageLayoutModule .home-menu-links > button.member-link {
   background: var(--yellow);
   color: #003b79;
   border-color: var(--yellow);
@@ -834,16 +838,43 @@ main section h3 {
   margin: 20px 0;
 }
 
-.footer-links a {
+.footer-links a,
+.footer-links button {
   color: white;
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links button:hover {
   color: var(--yellow);
   text-decoration: underline;
+}
+
+[data-member-menu][hidden] {
+  display: none !important;
+}
+
+button[data-member-menu="signed-in"] {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.footer-links button[data-member-menu="signed-in"] {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+#memberMenuStatus {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+#memberMenuStatus:empty {
+  position: absolute;
 }
 
 .footer-divider {
@@ -893,7 +924,8 @@ main section h3 {
     max-height: 60vh;
   }
 
-  #homepageLayoutModule .home-menu-links > a {
+  #homepageLayoutModule .home-menu-links > a,
+  #homepageLayoutModule .home-menu-links > button {
     min-height: 42px;
     padding: 8px 9px;
     font-size: 12px;
@@ -1009,8 +1041,11 @@ main section h3 {
         📖 이용 안내
       </a>
 
-      <a href="login.html" class="member-link">로그인</a>
-      <a href="signup.html" class="member-link">회원가입</a>
+      <a href="login.html?return=index.html" class="member-link" data-member-menu="guest">로그인</a>
+      <a href="signup.html" class="member-link" data-member-menu="guest">회원가입</a>
+      <button type="button" class="member-link" data-member-menu="signed-in" hidden>로그아웃</button>
+      <a href="grade1-apply.html" class="member-link" data-member-menu="grade1" hidden>1급회원 승급 신청</a>
+      <a href="admin-center.html" class="member-link" data-member-menu="admin" hidden>관리센터</a>
 
     </div>
 
@@ -1678,6 +1713,115 @@ function renderHomepagePosts() {
 }
 
 loadHomepagePosts();
+
+/* 상단과 하단의 회원 메뉴를 기존 Supabase 인증 상태와 동기화 */
+const memberMenus = new Map(
+  ["guest", "signed-in", "grade1", "admin"].map(group => [
+    group, document.querySelectorAll(`[data-member-menu="${group}"]`)
+  ])
+);
+const logoutButtons = memberMenus.get("signed-in");
+const memberMenuStatus = document.getElementById("memberMenuStatus");
+let memberMenuRevision = 0;
+let logoutPending = false;
+
+function setMemberMenuVisibility(group, visible) {
+  for (const item of memberMenus.get(group)) {
+    item.hidden = !visible;
+  }
+}
+
+function renderMemberMenus(signedIn, canApply = false, isAdmin = false) {
+  setMemberMenuVisibility("guest", !signedIn);
+  setMemberMenuVisibility("signed-in", signedIn);
+  setMemberMenuVisibility("grade1", canApply);
+  setMemberMenuVisibility("admin", isAdmin);
+}
+
+async function refreshMemberMenus(revision) {
+  try {
+    const { data, error } = await supabase.auth.getUser();
+    if (revision !== memberMenuRevision) return;
+
+    const user = error ? null : data?.user;
+    renderMemberMenus(Boolean(user));
+    if (!user) return;
+
+    const [profileResult, adminResult] = await Promise.allSettled([
+      supabase.from("profiles")
+        .select("member_role, member_grade, approval_status")
+        .eq("id", user.id)
+        .single(),
+      supabase.rpc("is_admin")
+    ]);
+    if (revision !== memberMenuRevision) return;
+
+    const profile = profileResult.status === "fulfilled" && !profileResult.value.error
+      ? profileResult.value.data
+      : null;
+    const canApply = profile?.approval_status === "approved" &&
+      profile.member_role === "member" && profile.member_grade !== "grade1";
+    const isAdmin = adminResult.status === "fulfilled" &&
+      !adminResult.value.error && adminResult.value.data === true;
+    renderMemberMenus(true, canApply, isAdmin);
+  } catch (error) {
+    if (revision === memberMenuRevision) {
+      console.warn("회원 메뉴를 확인하지 못했습니다.", error);
+    }
+  }
+}
+
+function scheduleMemberMenuRefresh() {
+  const revision = ++memberMenuRevision;
+  // 인증 이벤트 콜백이 끝난 뒤 Supabase에 다시 요청한다.
+  window.setTimeout(() => {
+    if (revision === memberMenuRevision) void refreshMemberMenus(revision);
+  }, 0);
+}
+
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === "SIGNED_OUT" || !session) {
+    ++memberMenuRevision;
+    renderMemberMenus(false);
+    return;
+  }
+  scheduleMemberMenuRefresh();
+});
+
+window.addEventListener("pageshow", event => {
+  if (event.persisted) {
+    setMemberMenuVisibility("grade1", false);
+    setMemberMenuVisibility("admin", false);
+    scheduleMemberMenuRefresh();
+  }
+});
+
+async function logoutFromHomepage(event) {
+  if (logoutPending) return;
+  logoutPending = true;
+  const menu = event.currentTarget.parentElement;
+  memberMenuStatus.textContent = "";
+
+  for (const button of logoutButtons) button.disabled = true;
+  try {
+    const { error } = await supabase.auth.signOut({ scope: "local" });
+    if (error) throw error;
+    ++memberMenuRevision;
+    renderMemberMenus(false);
+    memberMenuStatus.textContent = "로그아웃되었습니다.";
+    menu?.querySelector('[data-member-menu="guest"]')?.focus();
+  } catch (error) {
+    console.warn("로그아웃 오류", error);
+    memberMenuStatus.textContent = "로그아웃에 실패했습니다. 다시 시도해 주세요.";
+  } finally {
+    logoutPending = false;
+    for (const button of logoutButtons) button.disabled = false;
+  }
+}
+
+for (const button of logoutButtons) {
+  button.addEventListener("click", logoutFromHomepage);
+}
 
 </script>
 
@@ -2508,8 +2652,11 @@ AI 기술의 개발과 실증, 국제협력을
 📖 홈페이지 이용 안내
 </a>
 
-<a href="login.html">로그인</a>
-<a href="signup.html">회원가입</a>
+<a href="login.html?return=index.html" data-member-menu="guest">로그인</a>
+<a href="signup.html" data-member-menu="guest">회원가입</a>
+<button type="button" data-member-menu="signed-in" hidden>로그아웃</button>
+<a href="grade1-apply.html" data-member-menu="grade1" hidden>1급회원 승급 신청</a>
+<a href="admin-center.html" data-member-menu="admin" hidden>관리센터</a>
 <a href="privacy.html">개인정보처리방침</a>
 
 <!-- 하단 10개 언어 -->
@@ -2559,6 +2706,8 @@ Italiano
 </a>
 
 </div>
+
+<p id="memberMenuStatus" role="status"></p>
 
 <div class="footer-divider"></div>
 
