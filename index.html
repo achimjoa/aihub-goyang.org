@@ -141,7 +141,7 @@ body {
 
 /* ==========================================
    상단 메뉴
-   다국어 왼쪽 고정 + 일반 메뉴 독립 스크롤
+   다국어·회원 메뉴 왼쪽 + 일반 메뉴 독립 스크롤 + 관리센터 오른쪽
 ========================================== */
 
 #homepageLayoutModule .home-navigation {
@@ -289,6 +289,9 @@ body {
 }
 
 #homepageLayoutModule .home-menu-links > a,
+#homepageLayoutModule .home-member-links > a,
+#homepageLayoutModule .home-member-links > button,
+#homepageLayoutModule .home-menu > a[data-member-menu="admin"],
 #homepageLayoutModule .home-menu-links > button {
   display: inline-flex;
   flex: 0 0 auto;
@@ -308,7 +311,13 @@ body {
 }
 
 #homepageLayoutModule .home-menu-links > a:hover,
+#homepageLayoutModule .home-member-links > a:hover,
+#homepageLayoutModule .home-member-links > button:hover,
+#homepageLayoutModule .home-menu > a[data-member-menu="admin"]:hover,
 #homepageLayoutModule .home-menu-links > a:focus-visible,
+#homepageLayoutModule .home-member-links > a:focus-visible,
+#homepageLayoutModule .home-member-links > button:focus-visible,
+#homepageLayoutModule .home-menu > a[data-member-menu="admin"]:focus-visible,
 #homepageLayoutModule .home-menu-links > button:hover,
 #homepageLayoutModule .home-menu-links > button:focus-visible {
   background: var(--yellow);
@@ -316,10 +325,44 @@ body {
 }
 
 #homepageLayoutModule .home-menu-links > a.member-link,
+#homepageLayoutModule .home-member-links > a.member-link,
+#homepageLayoutModule .home-member-links > button.member-link,
+#homepageLayoutModule .home-menu > a[data-member-menu="admin"],
 #homepageLayoutModule .home-menu-links > button.member-link {
   background: var(--yellow);
   color: #003b79;
   border-color: var(--yellow);
+}
+
+#homepageLayoutModule .home-member-links {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: inherit;
+}
+
+#homepageLayoutModule .home-menu > a[data-member-menu="admin"] {
+  margin-inline-start: auto;
+}
+
+@media (max-width: 480px) {
+  #homepageLayoutModule .home-menu {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  #homepageLayoutModule .home-menu-links {
+    grid-area: 2 / 1 / 3 / -1;
+  }
+
+  #homepageLayoutModule .home-menu > a[data-member-menu="admin"] {
+    grid-area: 1 / 3;
+  }
+
+  #homepageLayoutModule .home-member-links {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
 }
 
 #homepageLayoutModule
@@ -925,7 +968,10 @@ button[data-member-menu="signed-in"] {
   }
 
   #homepageLayoutModule .home-menu-links > a,
-  #homepageLayoutModule .home-menu-links > button {
+  #homepageLayoutModule .home-menu-links > button,
+  #homepageLayoutModule .home-member-links > a,
+  #homepageLayoutModule .home-member-links > button,
+  #homepageLayoutModule .home-menu > a[data-member-menu="admin"] {
     min-height: 42px;
     padding: 8px 9px;
     font-size: 12px;
@@ -1017,6 +1063,13 @@ button[data-member-menu="signed-in"] {
 
     </details>
 
+    <div class="home-member-links">
+      <a href="signup.html" class="member-link" data-member-menu="guest">회원가입</a>
+      <a href="login.html?return=index.html" class="member-link" data-member-menu="guest">로그인</a>
+      <a href="grade1-apply.html" class="member-link" data-member-menu="grade1" hidden>1급회원 승급 신청</a>
+      <button type="button" class="member-link" data-member-menu="signed-in" hidden>로그아웃</button>
+    </div>
+
     <!-- 일반 메뉴: 독립 스크롤 -->
 
     <div class="home-menu-links">
@@ -1041,13 +1094,9 @@ button[data-member-menu="signed-in"] {
         📖 이용 안내
       </a>
 
-      <a href="login.html?return=index.html" class="member-link" data-member-menu="guest">로그인</a>
-      <a href="signup.html" class="member-link" data-member-menu="guest">회원가입</a>
-      <button type="button" class="member-link" data-member-menu="signed-in" hidden>로그아웃</button>
-      <a href="grade1-apply.html" class="member-link" data-member-menu="grade1" hidden>1급회원 승급 신청</a>
-      <a href="admin-center.html" class="member-link" data-member-menu="admin" hidden>관리센터</a>
-
     </div>
+
+    <a href="admin-center.html" class="member-link" data-member-menu="admin" hidden>관리센터</a>
 
   </div>
 
