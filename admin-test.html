@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>통합 회원관리 | 글로벌 AI 허브</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
+
+header h1 {
+  margin: 0 0 12px;
+}
+
+header p {
+  line-height: 1.7;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.navigation a,
+.navigation button {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 7px;
+  background: white;
+  color: #0754a6;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigation [hidden] {
+  display: none !important;
+}
+
+.navigation .admin-link:not([hidden]) {
+  margin-left: auto;
+}
+
+main {
+  max-width: 1250px;
+  margin: auto;
+  padding: 30px 15px;
+}
+
+.admin-panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+}
+
+h2 {
+  color: #0754a6;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border-bottom: 1px solid #dce6f2;
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background: #eaf4ff;
+  white-space: nowrap;
+}
+
+button {
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 3px;
+}
+
+.approve {
+  background: #0754a6;
+  color: white;
+}
+
+.reject {
+  background: #b91c1c;
+  color: white;
+}
+
+.secondary {
+  background: #e8eef7;
+  color: #17315b;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status-message {
+  white-space: pre-line;
+  margin-top: 15px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #10315e;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  margin-top: 40px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .admin-panel {
+    padding: 15px;
+  }
+
+  th, td {
+    padding: 9px;
+    font-size: 13px;
+  }
+
+  .navigation {
+    gap: 6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>통합 회원관리</h1>
+
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
+  </p>
+
+  <nav class="navigation" aria-label="회원 메뉴">
+    <a href="index.html">🏠 홈페이지</a>
+
+    <a href="login.html" id="navLogin" hidden>
+      로그인
+    </a>
+
+    <a href="signup.html" id="navSignup" hidden>
+      회원가입
+    </a>
+
+    <button id="navLogout" hidden>
+      로그아웃
+    </button>
+
+    <a href="admin-center.html"
+       id="navAdmin"
+       class="admin-link"
+       hidden>
+      ⚙️ 통합 관리센터
+    </a>
+  </nav>
+</header>
+
+<main>
+
+<section class="admin-panel">
+  <h2>회원가입 승인 관리</h2>
+
+  <p>
+    관리자는 회원가입 신청자를 확인하고
+    승인하거나 거절할 수 있습니다.
+  </p>
+
+  <p id="message"
+     class="status-message"
+     role="status"
+     aria-live="polite">
+    관리자 권한을 확인하고 있습니다.
+  </p>
+
+  <div class="table-wrap" id="memberArea" hidden>
+    <table>
+      <thead>
+        <tr>
+          <th>이름</th>
+          <th>이메일</th>
+          <th>회원 역할</th>
+          <th>회원등급</th>
+          <th>관리자 권한</th>
+          <th>가입 승인</th>
+          <th>관리</th>
+        </tr>
+      </thead>
+
+      <tbody id="memberList"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="admin-panel"
+         id="upgradePanel"
+         hidden>
+
+  <h2>1급회원 승급 심사</h2>
+
+  <p>
+    최고관리자 전용입니다.
+    제출된 신분 확인 자료를 검토합니다.
+  </p>
+
+  <p id="upgradeMessage"
+     class="status-message"
+     role="status"
+     aria-live="polite"></p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>신청자</th>
+          <th>전화번호</th>
+          <th>소속</th>
+          <th>직책</th>
+          <th>신청 상태</th>
+          <th>증빙자료 및 심사</th>
+        </tr>
+      </thead>
+
+      <tbody id="upgradeList"></tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const supabase = createClient(
+  "https://gugkwqpvtwivqudkimvy.supabase.co",
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5"
+);
+
+const message = document.getElementById("message");
+const memberList = document.getElementById("memberList");
+const memberArea = document.getElementById("memberArea");
+
+const upgradePanel =
+  document.getElementById("upgradePanel");
+
+const upgradeList =
+  document.getElementById("upgradeList");
+
+const upgradeMessage =
+  document.getElementById("upgradeMessage");
+
+const navLogin = document.getElementById("navLogin");
+const navSignup = document.getElementById("navSignup");
+const navLogout = document.getElementById("navLogout");
+const navAdmin = document.getElementById("navAdmin");
+
+let currentAdminId = null;
+let isSuperAdmin = false;
+let busy = false;
+
+function showMessage(text, isError = false) {
+  message.textContent = text;
+  message.style.color =
+    isError ? "#b91c1c" : "#0754a6";
+}
+
+function setBusy(value) {
+  busy = value;
+
+  document.querySelectorAll(
+    "#memberArea button, #upgradePanel button"
+  ).forEach(button => {
+    button.disabled = value;
+  });
+}
+
+function addCell(row, value) {
+  const cell = document.createElement("td");
+  cell.textContent = value ?? "";
+  row.appendChild(cell);
+  return cell;
+}
+
+function addButton(parent, label, className, handler) {
+  const button = document.createElement("button");
+
+  button.textContent = label;
+  button.className = className;
+
+  button.addEventListener("click", handler);
+
+  parent.appendChild(button);
+
+  return button;
+}
+
+/* 로그인 및 관리자 권한 확인 */
+
+async function checkAdmin() {
+
+  const { data: userData, error: userError } =
+    await supabase.auth.getUser();
+
+  const user = userError ? null : userData.user;
+
+  navLogin.hidden = !!user;
+  navSignup.hidden = !!user;
+  navLogout.hidden = !user;
+  navAdmin.hidden = true;
+
+  if (!user) {
+    showMessage("로그인이 필요합니다.", true);
+    return false;
+  }
+
+  currentAdminId = user.id;
+
+  const { data: isAdmin, error } =
+    await supabase.rpc("is_admin");
+
+  if (error || isAdmin !== true) {
+    showMessage("관리자 권한이 없습니다.", true);
+    return false;
+  }
+
+  navAdmin.hidden = false;
+
+  const {
+    data: superAdmin,
+    error: superError
+  } = await supabase.rpc("is_super_admin");
+
+  if (superError) {
+    showMessage(
+      "최고관리자 권한 확인에 실패했습니다.\n" +
+      superError.message,
+      true
+    );
+    return false;
+  }
+
+  isSuperAdmin = superAdmin === true;
+
+  return true;
+}
+
+/* 회원 목록 */
+
+async function loadMembers() {
+
+  memberArea.hidden = true;
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .select(
+      "id, full_name, email, member_role, " +
+      "member_grade, admin_level, approval_status"
+    )
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    showMessage(
+      "회원 목록 조회 실패:\n" + error.message,
+      true
+    );
+    return;
+  }
+
+  memberList.replaceChildren();
+
+  for (const member of data || []) {
+
+    const row = document.createElement("tr");
+
+    addCell(row, member.full_name);
+    addCell(row, member.email);
+    addCell(row, member.member_role);
+
+    addCell(
+      row,
+      member.member_grade === "grade1"
+        ? "1급회원"
+        : "일반회원"
+    );
+
+    addCell(
+      row,
+      member.admin_level === "super_admin"
+        ? "최고관리자"
+        : member.admin_level === "admin"
+          ? "관리자"
+          : "없음"
+    );
+
+    addCell(row, member.approval_status);
+
+    const actions = document.createElement("td");
+
+    /* 기존 회원가입 승인·거절 */
+
+    if (
+      member.id !== currentAdminId &&
+      member.member_role === "member"
+    ) {
+
+      const approve = addButton(
+        actions,
+        "가입 승인",
+        "approve",
+        () => changeApproval(
+          member,
+          "approved"
+        )
+      );
+
+      approve.disabled =
+        member.approval_status === "approved";
+
+      const reject = addButton(
+        actions,
+        "가입 거절",
+        "reject",
+        () => changeApproval(
+          member,
+          "rejected"
+        )
+      );
+
+      reject.disabled =
+        member.approval_status === "rejected";
+    }
+
+    /* 최고관리자 전용 관리자 지정·취소 */
+
+    if (
+      isSuperAdmin &&
+      member.id !== currentAdminId &&
+      member.approval_status === "approved"
+    ) {
+
+      if (
+        member.member_role === "member" &&
+        member.admin_level === "none"
+      ) {
+        addButton(
+          actions,
+          "관리자로 지정",
+          "approve",
+          () => changeAdminRole(member, "grant")
+        );
+      }
+
+      if (
+        member.member_role === "admin" &&
+        member.admin_level === "admin"
+      ) {
+        addButton(
+          actions,
+          "관리자 권한 취소",
+          "reject",
+          () => changeAdminRole(member, "revoke")
+        );
+      }
+    }
+
+    if (!actions.hasChildNodes()) {
+      actions.textContent = "변경 권한 없음";
+    }
+
+    row.appendChild(actions);
+    memberList.appendChild(row);
+  }
+
+  memberArea.hidden = false;
+
+  showMessage(
+    `회원 ${(data || []).length}명의 정보를 불러왔습니다.`
+  );
+}
+
+/* 기존 회원가입 승인·거절 */
+
+async function changeApproval(member, status) {
+
+  if (busy) return;
+
+  const label =
+    status === "approved" ? "승인" : "거절";
+
+  if (!confirm(
+    `${member.full_name || "해당 회원"}님의 가입을 ${label}하시겠습니까?`
+  )) return;
+
+  setBusy(true);
+
+  try {
+
+    const { error } = await supabase.rpc(
+      "manage_member_approval",
+      {
+        target_user_id: member.id,
+        new_status: status
+      }
+    );
+
+    if (error) throw error;
+
+    await loadMembers();
+
+    showMessage(`회원가입 ${label} 완료`);
+
+  } catch (error) {
+
+    showMessage(
+      "회원가입 처리 실패:\n" + error.message,
+      true
+    );
+
+  } finally {
+    setBusy(false);
+  }
+}
+
+/* 관리자 지정·취소 */
+
+async function changeAdminRole(member, action) {
+
+  if (busy || !isSuperAdmin) return;
+
+  const label =
+    action === "grant"
+      ? "관리자로 지정"
+      : "관리자 권한 취소";
+
+  if (!confirm(
+    `${member.full_name || "해당 회원"}님의 ${label}를 진행하시겠습니까?`
+  )) return;
+
+  setBusy(true);
+
+  try {
+
+    const { error } = await supabase.rpc(
+      "manage_admin_role",
+      {
+        p_target_user_id: member.id,
+        p_action: action,
+        p_reason: "최고관리자 직접 처리"
+      }
+    );
+
+    if (error) throw error;
+
+    await loadMembers();
+
+    showMessage(`${label} 완료`);
+
+  } catch (error) {
+
+    showMessage(
+      "관리자 권한 변경 실패:\n" + error.message,
+      true
+    );
+
+  } finally {
+    setBusy(false);
+  }
+}
+
+/* 증빙자료 열람 */
+
+async function viewEvidence(path) {
+
+  if (!isSuperAdmin || !path) return;
+
+  const { data, error } =
+    await supabase.storage
+      .from("member-verification")
+      .createSignedUrl(path, 60);
+
+  if (error) {
+    alert("증빙자료 열람 실패:\n" + error.message);
+    return;
+  }
+
+  window.open(
+    data.signedUrl,
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
+
+/* 1급회원 승급 신청 목록 */
+
+async function loadUpgradeRequests() {
+
+  if (!isSuperAdmin) return;
+
+  upgradePanel.hidden = false;
+
+  const { data, error } =
+    await supabase.rpc("get_grade1_requests");
+
+  if (error) {
+    upgradeMessage.textContent =
+      "승급 신청 조회 실패: " + error.message;
+    return;
+  }
+
+  upgradeList.replaceChildren();
+
+  for (const request of data || []) {
+
+    const row = document.createElement("tr");
+
+    addCell(row, request.full_name);
+    addCell(row, request.phone);
+    addCell(row, request.organization);
+    addCell(row, request.position_title);
+    addCell(row, request.status);
+
+    const actions = document.createElement("td");
+
+    if (request.evidence_path) {
+      addButton(
+        actions,
+        "📄 증빙자료 확인",
+        "secondary",
+        () => viewEvidence(request.evidence_path)
+      );
+    }
+
+    if (request.status === "pending") {
+
+      /*
+       * 서버 측 증빙자료 검증이 완료되기 전까지
+       * 승급 승인 버튼은 비활성화합니다.
+       */
+
+      const approve = addButton(
+        actions,
+        "승급 승인",
+        "approve",
+        () => reviewUpgrade(
+          request.request_id,
+          "approve"
+        )
+      );
+
+      approve.disabled = true;
+      approve.title =
+        "증빙자료 서버 검증 완료 후 활성화";
+
+      addButton(
+        actions,
+        "보완 요청",
+        "secondary",
+        () => reviewUpgrade(
+          request.request_id,
+          "request_revision"
+        )
+      );
+
+      addButton(
+        actions,
+        "승급 거절",
+        "reject",
+        () => reviewUpgrade(
+          request.request_id,
+          "reject"
+        )
+      );
+    }
+
+    row.appendChild(actions);
+    upgradeList.appendChild(row);
+  }
+
+  upgradeMessage.textContent =
+    `승급 신청 ${(data || []).length}건을 불러왔습니다.`;
+}
+
+/* 승급 심사 */
+
+async function reviewUpgrade(requestId, action) {
+
+  if (busy || !isSuperAdmin) return;
+
+  /*
+   * 검증 전 승급 승인 차단
+   */
+  if (action === "approve") {
+    alert(
+      "증빙자료 서버 검증이 완료되지 않아 " +
+      "승급 승인을 사용할 수 없습니다."
+    );
+    return;
+  }
+
+  const labels = {
+    reject: "승급 거절",
+    request_revision: "자료 보완 요청"
+  };
+
+  const label = labels[action];
+
+  if (!label) return;
+
+  if (!confirm(`${label} 처리하시겠습니까?`)) {
+    return;
+  }
+
+  const note = prompt("심사 의견을 입력하세요.", "");
+
+  if (note === null) return;
+
+  setBusy(true);
+
+  try {
+
+    const { error } = await supabase.rpc(
+      "review_grade1_upgrade",
+      {
+        p_request_id: requestId,
+        p_action: action,
+        p_review_note: note
+      }
+    );
+
+    if (error) throw error;
+
+    await loadUpgradeRequests();
+
+    alert(`${label} 완료`);
+
+  } catch (error) {
+
+    alert(
+      "승급 심사 실패:\n" + error.message
+    );
+
+  } finally {
+    setBusy(false);
+  }
+}
+
+/* 로그아웃 */
+
+navLogout.addEventListener("click", async () => {
+
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    alert("로그아웃 실패: " + error.message);
+    return;
+  }
+
+  window.location.href = "index.html";
+});
+
+/* 초기화 */
+
+async function initialize() {
+
+  try {
+
+    const allowed = await checkAdmin();
+
+    if (!allowed) return;
+
+    await loadMembers();
+
+    if (isSuperAdmin) {
+      await loadUpgradeRequests();
+    }
+
+  } catch (error) {
+
+    showMessage(
+      "관리자 화면 실행 오류:\n" + error.message,
+      true
+    );
+  }
+}
+
+initialize();
+
+</script>
+
+</body>
+</html>
