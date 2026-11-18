@@ -107,7 +107,7 @@ button:disabled {
 <div class="notice">
   회원가입 승인이 완료된 일반회원이 신청할 수 있습니다.
   <br>
-  전화번호와 명함 또는 이에 상응하는 신분 확인 자료를 제출해 주세요.
+  전화번호를 입력해 주세요. 명함 또는 이에 상응하는 신분 확인 자료는 선택사항입니다.
   <br>
   최고관리자가 확인한 후 승급 여부를 결정합니다.
 </div>
@@ -132,12 +132,11 @@ button:disabled {
     <label for="position">직책</label>
     <input id="position" maxlength="100">
 
-    <label for="evidence">명함 또는 신분 확인 자료 *</label>
+    <label for="evidence">명함 또는 신분 확인 자료 (선택)</label>
     <input
       id="evidence"
       type="file"
       accept=".jpg,.jpeg,.png,.pdf"
-      required
     >
 
     <p>JPG, PNG, PDF / 최대 5MB</p>
@@ -403,9 +402,11 @@ $("applyForm").addEventListener("submit", async event => {
 
     const file = $("evidence").files[0];
 
-    showMessage("증빙자료 업로드 중...");
-
-    const path = await uploadEvidence(file);
+    let path = null;
+    if (file) {
+      showMessage("증빙자료 업로드 중...");
+      path = await uploadEvidence(file);
+    }
 
     showMessage("승급 신청 접수 중...");
 
