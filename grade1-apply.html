@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>1급회원 승급 신청</title>
 
 <style>
@@ -10,20 +10,20 @@
 
 body {
   margin: 0;
+  font-family: "Malgun Gothic", Arial, sans-serif;
   background: #f4f8fc;
   color: #17315b;
-  font-family: "Malgun Gothic", Arial, sans-serif;
 }
 
 header {
   background: #0754a6;
   color: white;
+  padding: 28px 15px;
   text-align: center;
-  padding: 30px 15px;
 }
 
 main {
-  max-width: 680px;
+  max-width: 720px;
   margin: 35px auto;
   padding: 28px;
   background: white;
@@ -31,10 +31,12 @@ main {
   box-shadow: 0 3px 12px rgba(0,0,0,.08);
 }
 
+h2 { color: #0754a6; }
+
 .notice {
+  padding: 15px;
   background: #edf5ff;
   border-radius: 8px;
-  padding: 15px;
   line-height: 1.8;
 }
 
@@ -53,15 +55,19 @@ input, textarea {
   font: inherit;
 }
 
+input[type="checkbox"] {
+  width: auto;
+}
+
 button {
   background: #0754a6;
   color: white;
   border: 0;
   border-radius: 7px;
   padding: 13px 20px;
-  margin-top: 22px;
-  font-weight: bold;
+  margin-top: 20px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 button:disabled {
@@ -70,12 +76,22 @@ button:disabled {
 }
 
 #message {
-  margin-top: 20px;
   white-space: pre-line;
+  margin-top: 20px;
   line-height: 1.7;
 }
 
-a { color: #0754a6; }
+.status {
+  margin-top: 18px;
+  padding: 15px;
+  background: #f1f6fd;
+  border-radius: 8px;
+  line-height: 1.8;
+}
+
+[hidden] {
+  display: none !important;
+}
 </style>
 </head>
 
@@ -89,58 +105,83 @@ a { color: #0754a6; }
 <main>
 
 <div class="notice">
-  회원가입 승인이 완료된 일반회원만 신청할 수 있습니다.
+  회원가입 승인이 완료된 일반회원이 신청할 수 있습니다.
   <br>
-  전화번호와 명함 또는 상응하는 신분 확인 자료를 제출해 주세요.
+  전화번호와 명함 또는 이에 상응하는 신분 확인 자료를 제출해 주세요.
   <br>
   최고관리자가 확인한 후 승급 여부를 결정합니다.
 </div>
 
-<form id="upgradeForm">
+<section id="statusSection" hidden>
+  <h2>나의 승급 신청 현황</h2>
+  <div id="statusContent" class="status"></div>
+</section>
 
-  <label for="phone">전화번호 *</label>
-  <input
-    id="phone"
-    type="tel"
-    autocomplete="tel"
-    maxlength="30"
-    required
-  >
+<section id="applySection" hidden>
 
-  <label for="organization">소속 기관·단체</label>
-  <input id="organization" type="text" maxlength="150">
+  <h2>1급회원 승급 신청서</h2>
 
-  <label for="position">직책</label>
-  <input id="position" type="text" maxlength="100">
+  <form id="applyForm">
 
-  <label for="evidence">명함 또는 신분 확인 자료 *</label>
-  <input
-    id="evidence"
-    type="file"
-    accept=".jpg,.jpeg,.png,.pdf"
-    required
-  >
+    <label for="phone">전화번호 *</label>
+    <input id="phone" type="tel" required maxlength="30">
 
-  <p>허용 형식: JPG, PNG, PDF / 최대 5MB</p>
+    <label for="organization">소속 기관·단체</label>
+    <input id="organization" maxlength="150">
 
-  <label for="reason">승급 신청 사유</label>
-  <textarea id="reason" rows="4" maxlength="2000"></textarea>
+    <label for="position">직책</label>
+    <input id="position" maxlength="100">
 
-  <label>
+    <label for="evidence">명함 또는 신분 확인 자료 *</label>
     <input
-      id="consent"
-      type="checkbox"
+      id="evidence"
+      type="file"
+      accept=".jpg,.jpeg,.png,.pdf"
       required
-      style="width:auto"
     >
-    승급 심사를 위한 개인정보 수집·이용에 동의합니다.
-  </label>
 
-  <button id="submitButton" type="submit" disabled>
-    1급회원 승급 신청
-  </button>
+    <p>JPG, PNG, PDF / 최대 5MB</p>
 
-</form>
+    <label for="reason">승급 신청 사유</label>
+    <textarea id="reason" rows="4" maxlength="2000"></textarea>
+
+    <label>
+      <input id="consent" type="checkbox" required>
+      승급 심사를 위한 개인정보 수집·이용에 동의합니다.
+    </label>
+
+    <button type="submit" id="applyButton">
+      1급회원 승급 신청
+    </button>
+
+  </form>
+
+</section>
+
+<section id="revisionSection" hidden>
+
+  <h2>증빙자료 보완 제출</h2>
+
+  <p id="revisionNote"></p>
+
+  <form id="revisionForm">
+
+    <label for="revisionFile">새 증빙자료 *</label>
+
+    <input
+      id="revisionFile"
+      type="file"
+      accept=".jpg,.jpeg,.png,.pdf"
+      required
+    >
+
+    <button type="submit" id="revisionButton">
+      보완자료 제출
+    </button>
+
+  </form>
+
+</section>
 
 <p id="message" role="status" aria-live="polite">
   회원정보를 확인하고 있습니다.
@@ -155,39 +196,304 @@ a { color: #0754a6; }
 import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL =
-  "https://gugkwqpvtwivqudkimvy.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
-
 const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+  "https://gugkwqpvtwivqudkimvy.supabase.co",
+  "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5"
 );
 
-const form = document.getElementById("upgradeForm");
-const button = document.getElementById("submitButton");
-const message = document.getElementById("message");
+const $ = id => document.getElementById(id);
 
-let currentUser = null;
-let busy = false;
+const MAX_SIZE = 5 * 1024 * 1024;
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-
-const ALLOWED_TYPES = {
+const TYPES = {
   "image/jpeg": "jpg",
   "image/png": "png",
   "application/pdf": "pdf"
 };
 
-function showMessage(text, isError = false) {
-  message.textContent = text;
-  message.style.color =
-    isError ? "#b91c1c" : "#0754a6";
+let currentUser = null;
+let currentRequest = null;
+let busy = false;
+
+function showMessage(text, error = false) {
+  $("message").textContent = text;
+  $("message").style.color =
+    error ? "#b91c1c" : "#0754a6";
 }
 
-/* 회원 자격 확인 */
+function hideSections() {
+  $("applySection").hidden = true;
+  $("revisionSection").hidden = true;
+  $("statusSection").hidden = true;
+}
+
+function statusLabel(status) {
+  return {
+    pending: "심사 대기",
+    approved: "승급 승인",
+    rejected: "승급 거절",
+    revision_requested: "자료 보완 요청"
+  }[status] || status;
+}
+
+function formatDate(value) {
+  return value
+    ? new Date(value).toLocaleString("ko-KR")
+    : "-";
+}
+
+/* 파일 검증 */
+
+function validateFile(file) {
+
+  if (!file) {
+    throw new Error("증빙자료를 첨부해 주세요.");
+  }
+
+  if (!TYPES[file.type]) {
+    throw new Error("JPG, PNG, PDF만 가능합니다.");
+  }
+
+  if (file.size < 1 || file.size > MAX_SIZE) {
+    throw new Error("파일은 5MB 이하여야 합니다.");
+  }
+
+  return TYPES[file.type];
+}
+
+/* 증빙자료 업로드 */
+
+async function uploadEvidence(file) {
+
+  const extension = validateFile(file);
+
+  const path =
+    `${currentUser.id}/${crypto.randomUUID()}.${extension}`;
+
+  const { error } = await supabase.storage
+    .from("member-verification")
+    .upload(path, file, {
+      contentType: file.type,
+      upsert: false
+    });
+
+  if (error) throw error;
+
+  return path;
+}
+
+/* 신청 상태 조회 */
+
+async function loadRequests() {
+
+  const { data, error } = await supabase.rpc(
+    "get_my_grade1_requests"
+  );
+
+  if (error) throw error;
+
+  return data || [];
+}
+
+/* 화면 갱신 */
+
+async function refreshScreen() {
+
+  hideSections();
+
+  const { data: profile, error: profileError } =
+    await supabase
+      .from("profiles")
+      .select(
+        "member_role, member_grade, approval_status"
+      )
+      .eq("id", currentUser.id)
+      .single();
+
+  if (profileError) throw profileError;
+
+  if (profile.approval_status !== "approved") {
+    showMessage("회원가입 승인 후 이용할 수 있습니다.");
+    return;
+  }
+
+  const requests = await loadRequests();
+
+  const latest = requests[0] || null;
+
+  currentRequest = latest;
+
+  if (latest) {
+
+    $("statusSection").hidden = false;
+
+    const content = $("statusContent");
+
+    content.replaceChildren();
+
+    const lines = [
+      `신청번호: ${latest.request_id}`,
+      `처리 상태: ${statusLabel(latest.request_status)}`,
+      `신청일: ${formatDate(latest.requested_at)}`,
+      `심사일: ${formatDate(latest.reviewed_at)}`
+    ];
+
+    if (latest.review_note) {
+      lines.push(`심사 의견: ${latest.review_note}`);
+    }
+
+    for (const line of lines) {
+      const p = document.createElement("p");
+      p.textContent = line;
+      content.appendChild(p);
+    }
+  }
+
+  if (profile.member_grade === "grade1") {
+    showMessage("이미 1급회원으로 승급되었습니다.");
+    return;
+  }
+
+  if (profile.member_role !== "member") {
+    showMessage("일반회원만 승급 신청할 수 있습니다.");
+    return;
+  }
+
+  const activeRequest = requests.find(
+    r => ["pending", "revision_requested"]
+      .includes(r.request_status)
+  );
+
+  if (activeRequest) {
+
+    currentRequest = activeRequest;
+
+    if (activeRequest.request_status === "pending") {
+      showMessage("현재 최고관리자의 심사를 기다리고 있습니다.");
+      return;
+    }
+
+    $("revisionSection").hidden = false;
+
+    $("revisionNote").textContent =
+      activeRequest.review_note ||
+      "증빙자료를 보완하여 다시 제출해 주세요.";
+
+    showMessage("보완자료를 제출할 수 있습니다.");
+    return;
+  }
+
+  $("applySection").hidden = false;
+
+  showMessage("승급 신청서를 작성해 주세요.");
+}
+
+/* 최초 신청 */
+
+$("applyForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  if (busy || !currentUser) return;
+
+  busy = true;
+  $("applyButton").disabled = true;
+
+  try {
+
+    const file = $("evidence").files[0];
+
+    showMessage("증빙자료 업로드 중...");
+
+    const path = await uploadEvidence(file);
+
+    showMessage("승급 신청 접수 중...");
+
+    const { error } = await supabase.rpc(
+      "request_grade1_upgrade",
+      {
+        p_phone: $("phone").value.trim(),
+        p_organization: $("organization").value.trim(),
+        p_position_title: $("position").value.trim(),
+        p_evidence_path: path,
+        p_reason: $("reason").value.trim()
+      }
+    );
+
+    if (error) throw error;
+
+    $("applyForm").reset();
+
+    await refreshScreen();
+
+    showMessage("승급 신청이 정상 접수되었습니다.");
+
+  } catch (error) {
+
+    showMessage(
+      "신청 실패: " + error.message,
+      true
+    );
+
+  } finally {
+
+    busy = false;
+    $("applyButton").disabled = false;
+  }
+});
+
+/* 보완자료 재제출 */
+
+$("revisionForm").addEventListener("submit", async event => {
+
+  event.preventDefault();
+
+  if (busy || !currentRequest) return;
+
+  busy = true;
+  $("revisionButton").disabled = true;
+
+  try {
+
+    showMessage("보완자료 업로드 중...");
+
+    const path = await uploadEvidence(
+      $("revisionFile").files[0]
+    );
+
+    const { error } = await supabase.rpc(
+      "resubmit_grade1_evidence",
+      {
+        p_request_id: currentRequest.request_id,
+        p_evidence_path: path
+      }
+    );
+
+    if (error) throw error;
+
+    $("revisionForm").reset();
+
+    await refreshScreen();
+
+    showMessage(
+      "보완자료가 접수되었습니다. 재심사를 기다려 주세요."
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "보완자료 제출 실패: " + error.message,
+      true
+    );
+
+  } finally {
+
+    busy = false;
+    $("revisionButton").disabled = false;
+  }
+});
+
+/* 초기화 */
 
 async function initialize() {
 
@@ -199,171 +505,22 @@ async function initialize() {
     if (error) throw error;
 
     if (!data.user) {
-      showMessage(
-        "로그인이 필요합니다. 로그인 후 다시 신청해 주세요.",
-        true
-      );
+      showMessage("로그인 후 이용해 주세요.", true);
       return;
     }
 
     currentUser = data.user;
 
-    const { data: profile, error: profileError } =
-      await supabase
-        .from("profiles")
-        .select(
-          "member_role, member_grade, approval_status"
-        )
-        .eq("id", currentUser.id)
-        .single();
-
-    if (profileError) throw profileError;
-
-    if (
-      profile.approval_status !== "approved" ||
-      profile.member_role !== "member"
-    ) {
-      showMessage(
-        "회원가입 승인이 완료된 일반회원만 신청할 수 있습니다.",
-        true
-      );
-      return;
-    }
-
-    if (profile.member_grade === "grade1") {
-      showMessage("이미 1급회원입니다.");
-      return;
-    }
-
-    button.disabled = false;
-
-    showMessage("승급 신청서를 작성해 주세요.");
+    await refreshScreen();
 
   } catch (error) {
 
     showMessage(
-      "회원정보 확인 오류:\n" + error.message,
+      "화면 초기화 오류: " + error.message,
       true
     );
   }
 }
-
-/* 파일 검사 */
-
-function validateFile(file) {
-
-  if (!file) {
-    throw new Error("증빙자료를 첨부해 주세요.");
-  }
-
-  if (!ALLOWED_TYPES[file.type]) {
-    throw new Error(
-      "JPG, PNG, PDF 파일만 첨부할 수 있습니다."
-    );
-  }
-
-  if (file.size < 1 || file.size > MAX_FILE_SIZE) {
-    throw new Error(
-      "파일 크기는 5MB 이하여야 합니다."
-    );
-  }
-
-  return ALLOWED_TYPES[file.type];
-}
-
-/* 승급 신청 */
-
-form.addEventListener("submit", async event => {
-
-  event.preventDefault();
-
-  if (busy || !currentUser) return;
-
-  const phone =
-    document.getElementById("phone").value.trim();
-
-  const organization =
-    document.getElementById("organization").value.trim();
-
-  const position =
-    document.getElementById("position").value.trim();
-
-  const reason =
-    document.getElementById("reason").value.trim();
-
-  const file =
-    document.getElementById("evidence").files[0];
-
-  const consent =
-    document.getElementById("consent").checked;
-
-  if (!phone || !consent) {
-    showMessage(
-      "전화번호와 개인정보 동의 여부를 확인해 주세요.",
-      true
-    );
-    return;
-  }
-
-  busy = true;
-  button.disabled = true;
-
-  try {
-
-    const extension = validateFile(file);
-
-    const filePath =
-      `${currentUser.id}/${crypto.randomUUID()}.${extension}`;
-
-    showMessage("증빙자료를 업로드하고 있습니다.");
-
-    const { error: uploadError } =
-      await supabase.storage
-        .from("member-verification")
-        .upload(filePath, file, {
-          contentType: file.type,
-          upsert: false
-        });
-
-    if (uploadError) throw uploadError;
-
-    showMessage("승급 신청을 접수하고 있습니다.");
-
-    const { data: requestId, error: requestError } =
-      await supabase.rpc(
-        "request_grade1_upgrade",
-        {
-          p_phone: phone,
-          p_organization: organization,
-          p_position_title: position,
-          p_evidence_path: filePath,
-          p_reason: reason
-        }
-      );
-
-    if (requestError) throw requestError;
-
-    form.reset();
-
-    showMessage(
-      `1급회원 승급 신청이 접수되었습니다.\n` +
-      `신청번호: ${requestId}\n` +
-      `최고관리자의 심사를 기다려 주세요.`
-    );
-
-  } catch (error) {
-
-    showMessage(
-      "승급 신청 처리 실패:\n" + error.message,
-      true
-    );
-
-    button.disabled = false;
-
-  } finally {
-    busy = false;
-  }
-});
 
 initialize();
 
