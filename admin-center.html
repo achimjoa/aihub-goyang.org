@@ -282,6 +282,19 @@ footer {
 
 }
 
+
+#grade1ReviewMessage {
+  padding: 15px;
+  background: #eef4fc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+#grade1ReviewList .discussion-meta {
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
 </style>
 
 </head>
@@ -348,6 +361,14 @@ footer {
         회원관리 열기
       </a>
 
+    </div>
+
+    <div class="admin-card" id="grade1ReviewMenu" hidden>
+      <h3>1급회원 승급 심사</h3>
+      <p>승급 신청과 증빙자료를 확인하고 승인·반려·보완 요청을 처리합니다.</p>
+      <button type="button" id="openGrade1Review" aria-controls="grade1ReviewPanel">
+        승급 심사 열기
+      </button>
     </div>
 
     <div class="admin-card">
@@ -566,6 +587,16 @@ footer {
   
 </section>
 
+<section id="grade1ReviewPanel" aria-labelledby="grade1ReviewHeading" hidden>
+  <h2 id="grade1ReviewHeading" tabindex="-1">1급회원 승급 심사</h2>
+  <div class="discussion-toolbar">
+    <button type="button" class="action-button" id="refreshGrade1Review">새로고침</button>
+    <button type="button" class="action-button" id="closeGrade1Review">심사 화면 닫기</button>
+  </div>
+  <div id="grade1ReviewMessage" role="status"></div>
+  <div id="grade1ReviewList"></div>
+</section>
+
 </main>
 
 <footer>
@@ -653,6 +684,7 @@ async function initializeAdminCenter() {
       "관리자 인증이 완료되었습니다.";
 
     adminMenu.hidden = false;
+    void enableGrade1Review();
 
   } catch (error) {
 
@@ -1168,6 +1200,176 @@ $("closeModerationLogs").addEventListener(
 /* =====================================
    최초 실행
 ===================================== */
+
+/* 최고관리자 전용 1급회원 승급 심사 */
+const grade1Panel = $("grade1ReviewPanel");
+const grade1List = $("grade1ReviewList");
+const grade1Message = $("grade1ReviewMessage");
+let grade1Authorized = false;
+let grade1Busy = false;
+
+async function enableGrade1Review() {
+  try {
+    const { data, error } = await supabase.rpc("is_super_admin");
+    if (error) throw error;
+    grade1Authorized = data === true;
+    $("grade1ReviewMenu").hidden = !grade1Authorized;
+  } catch (error) {
+    console.error("승급 심사 권한 확인 실패", error);
+  }
+}
+
+function setGrade1Busy(busy) {
+  grade1Busy = busy;
+  for (const button of grade1Panel.querySelectorAll("button:not(#closeGrade1Review)")) {
+    button.disabled = busy;
+  }
+}
+
+async function showGrade1Evidence(path, button) {
+  if (!grade1Authorized || grade1Busy) return;
+  try {
+    const { data, error } = await supabase.storage
+      .from("member-verification").createSignedUrl(path, 60);
+    if (error) throw error;
+    const link = document.createElement("a");
+    link.href = data.signedUrl;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "증빙자료 열기 (60초 이내)";
+    button.parentElement.querySelector("a")?.remove();
+    button.after(link);
+    link.focus();
+  } catch (error) {
+    grade1Message.textContent = "증빙자료 링크를 만들지 못했습니다. " + error.message;
+  }
+}
+
+function grade1Button(label, handler, style = "") {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = ("action-button " + style).trim();
+  button.textContent = label;
+  button.addEventListener("click", handler);
+  return button;
+}
+
+function renderGrade1Request(request) {
+  const item = document.createElement("article");
+  item.className = "discussion-admin-item";
+
+  const title = document.createElement("h3");
+  title.textContent = (request.full_name || "이름 미등록") + " · 신청번호 " + request.request_id;
+  item.append(title);
+
+  const status = request.status ?? request.request_status;
+  const labels = {
+    pending: "심사 대기", approved: "승인", rejected: "반려",
+    revision_requested: "보완 요청"
+  };
+  const details = document.createElement("div");
+  details.className = "discussion-meta";
+  for (const [label, value] of [
+    ["상태", labels[status] ?? status], ["전화번호", request.phone],
+    ["소속", request.organization], ["직책", request.position_title],
+    ["신청 사유", request.reason], ["기존 심사 의견", request.review_note],
+    ["증빙자료", request.evidence_path ? "첨부됨" : "미첨부"]
+  ]) {
+    const line = document.createElement("div");
+    line.textContent = label + " · " + (value || "—");
+    details.append(line);
+  }
+  item.append(details);
+
+  if (request.evidence_path) {
+    const evidence = document.createElement("div");
+    evidence.className = "discussion-toolbar";
+    evidence.append(grade1Button("증빙자료 확인", event => {
+      void showGrade1Evidence(request.evidence_path, event.currentTarget);
+    }));
+    item.append(evidence);
+  }
+
+  if (status === "pending") {
+    const actions = document.createElement("div");
+    actions.className = "discussion-toolbar";
+    for (const [label, action, style] of [
+      ["승인", "approve", "restore"],
+      ["반려", "reject", "danger"],
+      ["보완 요청", "request_revision", ""]
+    ]) {
+      actions.append(grade1Button(label, () => {
+        void reviewGrade1Request(request.request_id, action, label);
+      }, style));
+    }
+    item.append(actions);
+  }
+  return item;
+}
+
+async function loadGrade1Requests() {
+  const { data, error } = await supabase.rpc("get_grade1_requests");
+  if (error) throw error;
+  const requests = data ?? [];
+  grade1List.replaceChildren(...requests.map(renderGrade1Request));
+  return requests.length;
+}
+
+async function refreshGrade1Review() {
+  if (!grade1Authorized || grade1Busy) return;
+  setGrade1Busy(true);
+  grade1Message.textContent = "승급 신청을 불러오는 중입니다.";
+  try {
+    const count = await loadGrade1Requests();
+    grade1Message.textContent = count ? `승급 신청 ${count}건` : "접수된 승급 신청이 없습니다.";
+  } catch (error) {
+    grade1List.replaceChildren();
+    grade1Message.textContent = "승급 신청 조회 실패 · " + error.message;
+  } finally {
+    setGrade1Busy(false);
+  }
+}
+
+async function reviewGrade1Request(requestId, action, label) {
+  if (!grade1Authorized || grade1Busy) return;
+  const note = window.prompt(`신청번호 ${requestId} · ${label} 의견을 입력해 주세요.`, "");
+  if (note === null || !window.confirm(`신청번호 ${requestId}에 대해 ${label} 처리하시겠습니까?`)) return;
+
+  setGrade1Busy(true);
+  let saved = false;
+  try {
+    grade1Message.textContent = "심사 결과를 저장하는 중입니다.";
+    const { error } = await supabase.rpc("review_grade1_upgrade", {
+      p_request_id: requestId,
+      p_action: action,
+      p_review_note: note.trim()
+    });
+    if (error) throw error;
+    saved = true;
+    grade1List.replaceChildren();
+    await loadGrade1Requests();
+    grade1Message.textContent = label + " 처리가 완료되었습니다.";
+  } catch (error) {
+    grade1Message.textContent = saved
+      ? label + " 처리 완료. 목록을 갱신하지 못했습니다. 새로고침을 눌러 주세요."
+      : "승급 심사 실패 · " + error.message;
+  } finally {
+    setGrade1Busy(false);
+  }
+}
+
+$("openGrade1Review").addEventListener("click", () => {
+  if (!grade1Authorized) return;
+  grade1Panel.hidden = false;
+  $("grade1ReviewHeading").focus();
+  grade1Panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  void refreshGrade1Review();
+});
+$("refreshGrade1Review").addEventListener("click", refreshGrade1Review);
+$("closeGrade1Review").addEventListener("click", () => {
+  grade1Panel.hidden = true;
+  $("openGrade1Review").focus();
+});
 
 initializeAdminCenter();
 
