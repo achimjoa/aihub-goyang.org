@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1급회원 승급 신청</title>
+
+<style>
+body {
+  font-family: "Malgun Gothic", sans-serif;
+  background: #f4f8fc;
+  margin: 0;
+  color: #17315b;
+}
+
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 28px 15px;
+}
+
+main {
+  max-width: 650px;
+  margin: 35px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+label {
+  display: block;
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  margin-top: 7px;
+  border: 1px solid #ccd7e5;
+  border-radius: 6px;
+}
+
+button {
+  background: #0754a6;
+  color: white;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-top: 22px;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+#message {
+  margin-top: 20px;
+  white-space: pre-line;
+}
+
+.notice {
+  background: #edf5ff;
+  padding: 15px;
+  border-radius: 7px;
+  line-height: 1.7;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>1급회원 승급 신청</h1>
+  <p>경기도 글로벌 AI 허브 유치 범시민추진위원회</p>
+</header>
+
+<main>
+
+<div class="notice">
+  회원가입 승인이 완료된 일반회원이 신청할 수 있습니다.
+  <br>
+  최고관리자가 제출 자료를 확인한 후 승급 여부를 결정합니다.
+</div>
+
+<form id="upgradeForm">
+
+  <label for="phone">전화번호 *</label>
+  <input id="phone" type="tel" required>
+
+  <label for="organization">소속 기관·단체</label>
+  <input id="organization" type="text">
+
+  <label for="position">직책</label>
+  <input id="position" type="text">
+
+  <label for="evidence">명함 또는 신분 확인 자료 *</label>
+  <input
+    id="evidence"
+    type="file"
+    accept=".jpg,.jpeg,.png,.pdf"
+    required
+  >
+
+  <label for="reason">승급 신청 사유</label>
+  <textarea id="reason" rows="4"></textarea>
+
+  <button id="submitButton" type="submit" disabled>
+    1급회원 승급 신청
+  </button>
+
+</form>
+
+<p id="message" role="status"></p>
+
+<p>
+  <a href="index.html">← 홈페이지로 돌아가기</a>
+</p>
+
+</main>
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+/*
+ * 기존 홈페이지의 Supabase URL과
+ * Publishable Key를 입력해야 합니다.
+ */
+
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+const form = document.getElementById("upgradeForm");
+const button = document.getElementById("submitButton");
+const message = document.getElementById("message");
+
+let currentUser = null;
+
+function showMessage(text) {
+  message.textContent = text;
+}
+
+async function initialize() {
+
+  try {
+
+    const { data, error } =
+      await supabase.auth.getUser();
+
+    if (error) throw error;
+
+    if (!data.user) {
+      showMessage("로그인 후 신청할 수 있습니다.");
+      return;
+    }
+
+    currentUser = data.user;
+
+    const { data: profile, error: profileError } =
+      await supabase
+        .from("profiles")
+        .select(
+          "member_role, member_grade, approval_status"
+        )
+        .eq("id", currentUser.id)
+        .single();
+
+    if (profileError) throw profileError;
+
+    if (
+      profile.approval_status !== "approved" ||
+      profile.member_role !== "member"
+    ) {
+      showMessage(
+        "회원가입 승인이 완료된 일반회원만 신청할 수 있습니다."
+      );
+      return;
+    }
+
+    if (profile.member_grade === "grade1") {
+      showMessage("이미 1급회원입니다.");
+      return;
+    }
+
+    showMessage("승급 신청서를 작성해 주세요.");
+
+    /*
+     * 실제 신청 기능은 서버 측 파일 검증과
+     * 신청 함수 연결이 완료된 후 활성화합니다.
+     */
+
+  } catch (error) {
+
+    showMessage(
+      "회원정보 확인 오류: " + error.message
+    );
+  }
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+
+  showMessage(
+    "현재 승급 신청 기능을 준비하고 있습니다."
+  );
+});
+
+initialize();
+
+</script>
+
+</body>
+</html>
