@@ -196,34 +196,6 @@ footer {
 
 </section>
 
-<section class="admin-panel" id="upgradePanel"
-         style="margin-top:25px" hidden>
-
-  <h2>1급회원 승급 심사</h2>
-
-  <p>최고관리자 전용 회원 승급 심사 화면입니다.</p>
-
-  <p id="upgradeMessage" role="status"></p>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>신청자</th>
-          <th>전화번호</th>
-          <th>소속</th>
-          <th>직책</th>
-          <th>신청 상태</th>
-          <th>심사</th>
-        </tr>
-      </thead>
-
-      <tbody id="upgradeList"></tbody>
-    </table>
-  </div>
-
-</section>
-      
 </main>
 
 <footer>
@@ -256,75 +228,6 @@ const memberArea = document.getElementById("memberArea");
 let currentAdminId = null;
 let busy = false;
 
-let isSuperAdmin = false;
-
-async function checkSuperAdmin() {
-  const { data, error } =
-    await supabase.rpc("is_super_admin");
-
-  if (error) {
-    throw new Error(
-      "최고관리자 권한 확인 실패: " + error.message
-    );
-  }
-
-async function changeAdminRole(
-  memberId,
-  memberName,
-  action
-) {
-  if (busy || !isSuperAdmin) return;
-
-  const actionName =
-    action === "grant"
-      ? "관리자로 지정"
-      : "관리자 권한 취소";
-
-  if (!confirm(
-    `${memberName || "해당 회원"}님의 ${actionName}를 진행하시겠습니까?`
-  )) {
-    return;
-  }
-
-  busy = true;
-
-  memberArea.querySelectorAll("button")
-    .forEach(button => button.disabled = true);
-
-  try {
-    const { error } = await supabase.rpc(
-      "manage_admin_role",
-      {
-        p_target_user_id: memberId,
-        p_action: action,
-        p_reason: "최고관리자 직접 처리"
-      }
-    );
-
-    if (error) throw error;
-
-    await loadMembers();
-
-    showMessage(
-      `${actionName} 처리가 완료되었습니다.`
-    );
-
-  } catch (error) {
-    await loadMembers();
-
-    showMessage(
-      `${actionName} 처리 중 오류가 발생했습니다.\n` +
-      error.message,
-      true
-    );
-  } finally {
-    busy = false;
-  }
-}
-      
-  isSuperAdmin = data === true;
-}
-      
 /* 안내 메시지 */
 
 function showMessage(text, isError = false) {
@@ -369,162 +272,7 @@ async function checkAdmin() {
     );
     return false;
   }
-async function loadUpgradeRequests() {
 
-  if (!isSuperAdmin) return;
-
-  const panel = document.getElementById("upgradePanel");
-  const list = document.getElementById("upgradeList");
-  const msg = document.getElementById("upgradeMessage");
-
-  const { data, error } =
-    await supabase.rpc("get_grade1_requests");
-
-  if (error) {
-    msg.textContent = error.message;
-    return;
-  }
-
-  list.replaceChildren();
-
-  for (const request of data) {
-
-    const row = document.createElement("tr");
-
-    const values = [
-      request.full_name,
-      request.phone,
-      request.organization,
-      request.position_title,
-      request.status
-    ];
-
-    for (const value of values) {
-      const td = document.createElement("td");
-      td.textContent = value || "";
-      row.appendChild(td);
-    }
-
-    const actionCell = document.createElement("td");
-
-    if (request.status === "pending") {
-
-      for (const [label, action] of [
-        ["승급 승인", "approve"],
-        ["보완 요청", "request_revision"],
-        ["승급 거절", "reject"]
-      ]) {
-
-        const button = document.createElement("button");
-
-        button.textContent = label;
-        button.className =
-          action === "approve" ? "approve" : "reject";
-
-        button.addEventListener("click", () => {
-          reviewUpgrade(request.request_id, action);
-        });
-
-        actionCell.appendChild(button);
-      }
-    }
-
-    row.appendChild(actionCell);
-    list.appendChild(row);
-  }
-
-  panel.hidden = false;
-  msg.textContent = `승급 신청 ${data.length}건`;
-}
-
-async function reviewUpgrade(requestId, action) {
-
-  if (!isSuperAdmin || busy) return;
-
-  const labels = {
-    approve: "승급 승인",
-    reject: "승급 거절",
-    request_revision: "자료 보완 요청"
-  };
-
-  const label = labels[action];
-
-  if (!label) return;
-
-  if (!confirm(`${label} 처리하시겠습니까?`)) {
-    return;
-  }
-
-  const note = prompt(
-    "심사 의견을 입력해 주세요.",
-    ""
-  );
-
-  if (note === null) return;
-
-  busy = true;
-
-  try {
-
-    const { error } = await supabase.rpc(
-      "review_grade1_upgrade",
-      {
-        p_request_id: requestId,
-        p_action: action,
-        p_review_note: note
-      }
-    );
-
-    if (error) throw error;
-
-    await loadUpgradeRequests();
-
-    alert(`${label} 처리가 완료되었습니다.`);
-
-  } catch (error) {
-
-    alert(
-      "승급 심사 처리 중 오류가 발생했습니다.\n" +
-      error.message
-    );
-
-  } finally {
-    busy = false;
-  }
-}
-
-async function viewEvidence(filePath) {
-
-  if (!isSuperAdmin) {
-    alert("최고관리자만 열람할 수 있습니다.");
-    return;
-  }
-
-  if (!filePath) {
-    alert("제출된 증빙자료가 없습니다.");
-    return;
-  }
-
-  const { data, error } =
-    await supabase.storage
-      .from("member-verification")
-      .createSignedUrl(filePath, 60);
-
-  if (error) {
-    alert(
-      "증빙자료를 열 수 없습니다.\n" +
-      error.message
-    );
-    return;
-  }
-
-  window.open(
-    data.signedUrl,
-    "_blank",
-    "noopener,noreferrer"
-  );
-}
-      
   return true;
 }
 
@@ -538,9 +286,8 @@ async function loadMembers() {
     await supabase
       .from("profiles")
       .select(
-  "id, full_name, email, member_role, " +
-  "member_grade, admin_level, approval_status"
-)
+        "id, full_name, email, member_role, approval_status"
+      )
       .order("created_at", { ascending: false });
 
   if (error) {
@@ -572,21 +319,6 @@ async function loadMembers() {
     }
 
     const actionCell = document.createElement("td");
-
-   if (request.evidence_path) {
-
-  const evidenceButton =
-    document.createElement("button");
-
-  evidenceButton.textContent = "📄 증빙자료 확인";
-  evidenceButton.className = "approve";
-
-  evidenceButton.addEventListener("click", () => {
-    viewEvidence(request.evidence_path);
-  });
-
-  actionCell.appendChild(evidenceButton);
-}     
 
     if (
       member.id !== currentAdminId &&
@@ -636,38 +368,6 @@ async function loadMembers() {
       actionCell.textContent = "관리자 계정";
     }
 
-if (
-  isSuperAdmin &&
-  member.id !== currentAdminId &&
-  member.approval_status === "approved" &&
-  member.admin_level !== "super_admin"
-) {
-  const roleButton =
-    document.createElement("button");
-
-  const isCurrentAdmin =
-    member.member_role === "admin" &&
-    member.admin_level === "admin";
-
-  roleButton.textContent =
-    isCurrentAdmin
-      ? "관리자 권한 취소"
-      : "관리자로 지정";
-
-  roleButton.className =
-    isCurrentAdmin ? "reject" : "approve";
-
-  roleButton.addEventListener("click", () => {
-    changeAdminRole(
-      member.id,
-      member.full_name,
-      isCurrentAdmin ? "revoke" : "grant"
-    );
-  });
-
-  actionCell.appendChild(roleButton);
-}
-        
     row.appendChild(actionCell);
     memberList.appendChild(row);
   }
@@ -746,14 +446,9 @@ async function initialize() {
 
     const isAdmin = await checkAdmin();
 
-   if (isAdmin) {
-  await checkSuperAdmin();
-  await loadMembers();
-
-  if (isSuperAdmin) {
-    await loadUpgradeRequests();
-  }
-}
+    if (isAdmin) {
+      await loadMembers();
+    }
 
   } catch (error) {
 
