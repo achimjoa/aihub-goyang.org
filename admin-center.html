@@ -1265,14 +1265,14 @@ function renderGrade1Request(request) {
   const status = request.status ?? request.request_status;
   const labels = {
     pending: "심사 대기", approved: "승인", rejected: "반려",
-    revision_requested: "보완 요청"
+    revision_requested: "보완 요청", revoked: "승인 취소"
   };
   const details = document.createElement("div");
   details.className = "discussion-meta";
   for (const [label, value] of [
     ["상태", labels[status] ?? status], ["전화번호", request.phone],
     ["소속", request.organization], ["직책", request.position_title],
-    ["신청 사유", request.reason], ["기존 심사 의견", request.review_note],
+    ["신청 사유", request.request_reason ?? request.reason], ["기존 심사 의견", request.review_note],
     ["증빙자료", request.evidence_path ? "첨부됨" : "미첨부"]
   ]) {
     const line = document.createElement("div");
@@ -1302,6 +1302,15 @@ function renderGrade1Request(request) {
         void reviewGrade1Request(request.request_id, action, label);
       }, style));
     }
+    item.append(actions);
+  }
+
+  if (grade1Authorized && request.status === "approved") {
+    const actions = document.createElement("div");
+    actions.className = "discussion-toolbar";
+    actions.append(grade1Button("승급 승인 취소", () => {
+      void revokeGrade1Request(request.request_id);
+    }, "danger"));
     item.append(actions);
   }
   return item;
@@ -1335,15 +1344,40 @@ async function reviewGrade1Request(requestId, action, label) {
   const note = window.prompt(`신청번호 ${requestId} · ${label} 의견을 입력해 주세요.`, "");
   if (note === null || !window.confirm(`신청번호 ${requestId}에 대해 ${label} 처리하시겠습니까?`)) return;
 
+  await saveGrade1Decision("review_grade1_upgrade", {
+    p_request_id: requestId,
+    p_action: action,
+    p_review_note: note.trim()
+  }, label);
+}
+
+async function revokeGrade1Request(requestId) {
+  if (!grade1Authorized || grade1Busy) return;
+  const input = window.prompt(`신청번호 ${requestId} · 승급 승인 취소 사유를 입력해 주세요.`, "");
+  if (input === null) return;
+
+  const reason = input.trim();
+  if (!reason) {
+    grade1Message.textContent = "승급 승인 취소 사유를 입력해 주세요.";
+    window.alert("승급 승인 취소 사유를 입력해 주세요.");
+    return;
+  }
+
+  if (!window.confirm(`신청번호 ${requestId}의 승급 승인을 취소하고 해당 회원을 일반회원으로 변경하시겠습니까?`)) return;
+
+  await saveGrade1Decision("revoke_grade1_upgrade", {
+    p_request_id: requestId,
+    p_reason: reason
+  }, "승급 승인 취소");
+}
+
+async function saveGrade1Decision(rpcName, params, label) {
+  if (!grade1Authorized || grade1Busy) return;
   setGrade1Busy(true);
   let saved = false;
   try {
     grade1Message.textContent = "심사 결과를 저장하는 중입니다.";
-    const { error } = await supabase.rpc("review_grade1_upgrade", {
-      p_request_id: requestId,
-      p_action: action,
-      p_review_note: note.trim()
-    });
+    const { error } = await supabase.rpc(rpcName, params);
     if (error) throw error;
     saved = true;
     grade1List.replaceChildren();
