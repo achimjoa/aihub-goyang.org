@@ -240,6 +240,8 @@ function showMessage(text, isError = false) {
 
 async function checkAdmin() {
 
+  memberArea.hidden = true;
+
   const { data: userData, error: userError } =
     await supabase.auth.getUser();
 
@@ -254,7 +256,7 @@ async function checkAdmin() {
   currentAdminId = userData.user.id;
 
   const { data: isAdmin, error } =
-    await supabase.rpc("is_admin");
+    await supabase.rpc("is_super_admin");
 
   if (error) {
     showMessage(
@@ -266,8 +268,10 @@ async function checkAdmin() {
   }
 
   if (isAdmin !== true) {
+    memberArea.hidden = true;
+
     showMessage(
-      "관리자 권한이 없습니다.",
+      "회원관리 업무는 최고관리자만 수행할 수 있습니다.",
       true
     );
     return false;
