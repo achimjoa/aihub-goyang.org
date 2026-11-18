@@ -348,7 +348,7 @@ footer {
 
   <div class="admin-grid">
 
-    <div class="admin-card">
+    <div class="admin-card" id="memberAdminMenu" hidden>
 
       <h3>👥 회원관리</h3>
 
@@ -684,7 +684,7 @@ async function initializeAdminCenter() {
       "관리자 인증이 완료되었습니다.";
 
     adminMenu.hidden = false;
-    void enableGrade1Review();
+    void enableSuperAdminMenus();
 
   } catch (error) {
 
@@ -1208,14 +1208,15 @@ const grade1Message = $("grade1ReviewMessage");
 let grade1Authorized = false;
 let grade1Busy = false;
 
-async function enableGrade1Review() {
+async function enableSuperAdminMenus() {
   try {
     const { data, error } = await supabase.rpc("is_super_admin");
     if (error) throw error;
     grade1Authorized = data === true;
+    $("memberAdminMenu").hidden = !grade1Authorized;
     $("grade1ReviewMenu").hidden = !grade1Authorized;
   } catch (error) {
-    console.error("승급 심사 권한 확인 실패", error);
+    console.error("최고관리자 권한 확인 실패", error);
   }
 }
 
@@ -1254,7 +1255,7 @@ function grade1Button(label, handler, style = "") {
   return button;
 }
 
-function renderGrade1Request(request) {
+function renderGrade1Request(request, currentGrade) {
   const item = document.createElement("article");
   item.className = "discussion-admin-item";
 
@@ -1278,6 +1279,11 @@ function renderGrade1Request(request) {
     const line = document.createElement("div");
     line.textContent = label + " · " + (value || "—");
     details.append(line);
+  }
+  if (request.status === "approved" && !currentGrade) {
+    const gradeNotice = document.createElement("div");
+    gradeNotice.textContent = "현재 회원등급을 확인할 수 없어 승급 승인 취소를 사용할 수 없습니다.";
+    details.append(gradeNotice);
   }
   item.append(details);
 
@@ -1305,7 +1311,7 @@ function renderGrade1Request(request) {
     item.append(actions);
   }
 
-  if (grade1Authorized && request.status === "approved") {
+  if (grade1Authorized && request.status === "approved" && currentGrade === "grade1") {
     const actions = document.createElement("div");
     actions.className = "discussion-toolbar";
     actions.append(grade1Button("승급 승인 취소", () => {
@@ -1320,7 +1326,30 @@ async function loadGrade1Requests() {
   const { data, error } = await supabase.rpc("get_grade1_requests");
   if (error) throw error;
   const requests = data ?? [];
-  grade1List.replaceChildren(...requests.map(renderGrade1Request));
+  const userIds = [...new Set(requests
+    .filter(request => request.status === "approved" && !request.member_grade && request.user_id)
+    .map(request => request.user_id))];
+  const grades = new Map();
+
+  // 기존 목록 RPC에 현재 등급이 없는 경우 대상 회원의 등급만 조회합니다.
+  for (let start = 0; start < userIds.length; start += 100) {
+    try {
+      const { data: profiles, error: profileError } = await supabase
+        .from("profiles")
+        .select("id, member_grade")
+        .in("id", userIds.slice(start, start + 100));
+      if (profileError) throw profileError;
+      for (const profile of profiles ?? []) {
+        grades.set(profile.id, profile.member_grade);
+      }
+    } catch (error) {
+      console.warn("현재 회원등급 조회 실패", error);
+    }
+  }
+
+  grade1List.replaceChildren(...requests.map(request =>
+    renderGrade1Request(request, request.member_grade || grades.get(request.user_id))
+  ));
   return requests.length;
 }
 
