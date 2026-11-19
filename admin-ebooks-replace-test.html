@@ -372,6 +372,124 @@ const supabase = createClient(
 );
 
 // ==========================================
+// 제189-12-6-9-6-17단계
+// 전자책 이미지 교체 페이지 제한 시험
+//
+// 실제 이미지 전송 없음
+// 실제 교체 실행 없음
+// ==========================================
+
+async function testEbookReplacePageBlock(
+  pageNumber
+) {
+
+  // 시험 대상은 1쪽과 3쪽만 허용
+  if (![1, 3].includes(pageNumber)) {
+    console.error(
+      "시험은 본문 1쪽과 3쪽만 허용됩니다."
+    );
+    return;
+  }
+
+  const {
+    data: { session },
+    error: sessionError
+  } = await supabase.auth.getSession();
+
+  if (
+    sessionError ||
+    !session?.access_token
+  ) {
+    console.error(
+      "로그인 세션을 확인할 수 없습니다."
+    );
+    return;
+  }
+
+  const form = new FormData();
+
+  form.append(
+    "document_id",
+    "12"
+  );
+
+  form.append(
+    "page_number",
+    String(pageNumber)
+  );
+
+  form.append(
+    "confirmation",
+    "TEST"
+  );
+
+  // 이미지 파일은 절대 첨부하지 않음
+
+  const response = await fetch(
+    SUPABASE_URL +
+    "/functions/v1/knowledge-ebook-replace",
+    {
+      method: "POST",
+
+      headers: {
+        Authorization:
+          "Bearer " +
+          session.access_token,
+
+        apikey:
+          SUPABASE_KEY
+      },
+
+      body: form
+    }
+  );
+
+  const result =
+    await response.json();
+
+  console.log(
+    "시험 페이지:",
+    pageNumber
+  );
+
+  console.log(
+    "HTTP 상태:",
+    response.status
+  );
+
+  console.log(
+    "서버 응답:",
+    result
+  );
+
+  if (
+    response.status === 403 &&
+    result.success === false &&
+    result.error ===
+      "현재 이미지 교체 시험은 본문 2쪽만 허용됩니다."
+  ) {
+
+    console.log(
+      "✅ 본문 " +
+      pageNumber +
+      "쪽 교체 차단 정상"
+    );
+
+  } else {
+
+    console.warn(
+      "⚠️ 예상과 다른 응답입니다. 추가 확인이 필요합니다."
+    );
+
+  }
+
+}
+
+// 콘솔에서 시험할 수 있도록 등록
+window.testEbookReplacePageBlock =
+  testEbookReplacePageBlock;
+      
+// ==========================================
 // 2. 시험 설정
 // ==========================================
 
