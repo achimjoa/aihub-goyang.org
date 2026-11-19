@@ -9,7 +9,6 @@
 <title>전자책 이미지 안전 교체 시험</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -78,6 +77,7 @@ h2 {
   padding: 15px;
   line-height: 1.8;
   margin: 15px 0;
+  white-space: pre-line;
 }
 
 button {
@@ -141,6 +141,7 @@ label {
 .info {
   font-size: 14px;
   line-height: 1.8;
+  white-space: pre-line;
   overflow-wrap: anywhere;
 }
 
@@ -163,7 +164,6 @@ footer {
     grid-template-columns: 1fr;
   }
 }
-
 </style>
 </head>
 
@@ -177,7 +177,6 @@ footer {
 <main>
 
 <section>
-
 <h2>1. 관리자 인증</h2>
 
 <div
@@ -188,41 +187,36 @@ footer {
 로그인 상태를 확인하고 있습니다.
 </div>
 
+<div
+  id="permissionMessage"
+  class="message"
+  role="status"
+  aria-live="polite">
+교체 권한을 확인하고 있습니다.
+</div>
 </section>
 
 <section>
-
 <h2>2. 시험 전자책 정보</h2>
 
-<p>
-<strong>문서 ID:</strong> 12
-</p>
+<p><strong>문서 ID:</strong> 12</p>
 
 <p>
 <strong>전자책 제목:</strong>
 디지털 도서관 관리센터 등록 시험
 </p>
 
-<p>
-<strong>발간번호:</strong>
-issue-test-02
-</p>
-
-<p>
-<strong>전체 페이지:</strong>
-3쪽
-</p>
-
-<p>
-<strong>게시 상태:</strong>
-비공개
-</p>
+<p><strong>발간번호:</strong> issue-test-02</p>
+<p><strong>전체 페이지:</strong> 3쪽</p>
+<p><strong>게시 상태:</strong> 비공개</p>
 
 <div class="warning">
-현재는 이미지 비교 기능만 시험합니다.
-실제 이미지 교체 기능은 안전성 검증이 완료된 후 활성화합니다.
-</div>
+현재는 안전성 검증 모드입니다.
 
+실제 이미지 교체 요청은 전송되지 않습니다.
+
+최고관리자 권한과 이미지 비교 기능을 먼저 확인합니다.
+</div>
 </section>
 
 <section id="workSection" hidden>
@@ -234,19 +228,15 @@ issue-test-02
 </label>
 
 <select id="pageSelect">
-
 <option value="1">본문 1쪽</option>
 <option value="2">본문 2쪽</option>
 <option value="3">본문 3쪽</option>
-
 </select>
 
 <div class="controls">
-
 <button id="loadButton" type="button">
 기존 이미지 불러오기
 </button>
-
 </div>
 
 <div
@@ -329,18 +319,28 @@ issue-test-02
 </label>
 
 <div class="controls">
-
 <button
   id="replaceButton"
   type="button"
   disabled>
-이미지 교체 실행 (현재 비활성화)
+최고관리자 이미지 교체 실행
 </button>
+</div>
 
+<div
+  id="replaceResult"
+  class="message"
+  role="status"
+  aria-live="polite"
+  hidden>
 </div>
 
 <div class="warning">
-안전성 검증 단계이므로 실제 교체 요청은 전송되지 않습니다.
+실제 교체 권한은 최고관리자에게만 있습니다.
+
+시험 대상은 전자책 ID 12의 본문 2쪽입니다.
+
+오류가 발생하면 작업 기록을 확인하기 전까지 재시도하지 마세요.
 </div>
 
 </section>
@@ -372,25 +372,38 @@ const supabase = createClient(
 );
 
 // ==========================================
-// 2. 시험 전자책 설정
+// 2. 시험 설정
 // ==========================================
 
 const DOCUMENT_ID = 12;
-
 const TOTAL_PAGES = 3;
+const REPLACE_TEST_PAGE = 2;
 
 const MAX_FILE_SIZE =
   10 * 1024 * 1024;
+
+// 안전성 검증 모드
+// 현재는 실제 교체 요청을 전송하지 않음
+
+const ENABLE_ACTUAL_REPLACEMENT = false;
 
 const $ = id =>
   document.getElementById(id);
 
 let authorized = false;
+let isSuperAdmin = false;
+
 let selectedPage = 1;
 let selectedFile = null;
+
 let oldImageLoaded = false;
+
 let objectUrl = null;
 let loadSequence = 0;
+let fileSequence = 0;
+
+let replacementInProgress = false;
+let replacementBlocked = false;
 
 // ==========================================
 // 3. 메시지
@@ -419,76 +432,32 @@ function showMessage(
 }
 
 // ==========================================
-// 4. 관리자 인증
+// 4. 실행 버튼 상태
 // ==========================================
 
-async function initialize() {
+function updateReplaceButton() {
 
-  $("workSection").hidden = true;
+  const canReplace =
+    ENABLE_ACTUAL_REPLACEMENT &&
+    authorized &&
+    isSuperAdmin &&
+    selectedPage === REPLACE_TEST_PAGE &&
+    oldImageLoaded &&
+    selectedFile !== null &&
+    $("confirmCheck").checked &&
+    !replacementInProgress &&
+    !replacementBlocked;
 
-  try {
-
-    const {
-      data,
-      error
-    } = await supabase.auth.getUser();
-
-    if (
-      error ||
-      !data.user
-    ) {
-
-      showMessage(
-        "authMessage",
-        "로그인이 필요합니다.",
-        true
-      );
-
-      return;
-
-    }
-
-    showMessage(
-      "authMessage",
-      "로그인 확인 완료. 관리자 권한을 검증하고 있습니다."
-    );
-
-    // 기존 미리보기 함수의 권한 검사를 사용합니다.
-    // 이미지 교체 권한 자체는 아직 검증하지 않습니다.
-
-    await requestPreviewPage(1);
-
-    authorized = true;
-
-    $("workSection").hidden = false;
-
-    showMessage(
-      "authMessage",
-      "관리자 인증이 완료되었습니다. 이미지 비교 시험을 진행할 수 있습니다."
-    );
-
-  } catch (error) {
-
-    authorized = false;
-
-    showMessage(
-      "authMessage",
-      "관리자 인증 실패: " +
-      error.message,
-      true
-    );
-
-  }
+  $("replaceButton").disabled =
+    !canReplace;
 
 }
 
 // ==========================================
-// 5. 기존 이미지 임시 URL 요청
+// 5. 로그인 토큰
 // ==========================================
 
-async function requestPreviewPage(
-  pageNumber
-) {
+async function getAccessToken() {
 
   const {
     data,
@@ -499,12 +468,25 @@ async function requestPreviewPage(
     error ||
     !data.session?.access_token
   ) {
-
     throw new Error(
       "로그인 세션이 없습니다."
     );
-
   }
+
+  return data.session.access_token;
+
+}
+
+// ==========================================
+// 6. 미리보기 요청
+// ==========================================
+
+async function requestPreviewPage(
+  pageNumber
+) {
+
+  const token =
+    await getAccessToken();
 
   const response = await fetch(
     SUPABASE_URL +
@@ -520,8 +502,7 @@ async function requestPreviewPage(
           SUPABASE_KEY,
 
         "Authorization":
-          "Bearer " +
-          data.session.access_token
+          "Bearer " + token
       },
 
       body: JSON.stringify({
@@ -537,7 +518,7 @@ async function requestPreviewPage(
     result = await response.json();
   } catch {
     throw new Error(
-      "서버 응답을 확인할 수 없습니다."
+      "미리보기 서버 응답을 확인할 수 없습니다."
     );
   }
 
@@ -545,12 +526,10 @@ async function requestPreviewPage(
     !response.ok ||
     result.success !== true
   ) {
-
     throw new Error(
       result.error ||
       "미리보기 권한이 없습니다."
     );
-
   }
 
   if (!result.signed_url) {
@@ -569,11 +548,9 @@ async function requestPreviewPage(
       "/storage/v1/object/sign/knowledge-private/"
     )
   ) {
-
     throw new Error(
       "허용되지 않은 이미지 주소입니다."
     );
-
   }
 
   return url.href;
@@ -581,23 +558,192 @@ async function requestPreviewPage(
 }
 
 // ==========================================
-// 6. 기존 이미지 표시
+// 7. 최고관리자 교체 권한 확인
+// ==========================================
+
+async function verifyReplacePermission() {
+
+  const token =
+    await getAccessToken();
+
+  // 이미지 파일이나 교체 정보를 보내지 않음
+  // 서버의 권한 검사 결과만 확인
+
+  const response = await fetch(
+    SUPABASE_URL +
+    "/functions/v1/knowledge-ebook-replace",
+    {
+      method: "POST",
+
+      headers: {
+        "apikey": SUPABASE_KEY,
+
+        "Authorization":
+          "Bearer " + token
+      }
+    }
+  );
+
+  let result;
+
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error(
+      "교체 권한 확인 응답을 읽을 수 없습니다."
+    );
+  }
+
+  if (
+    response.status === 400 &&
+    result.error ===
+      "multipart/form-data 형식의 요청이 필요합니다."
+  ) {
+    return true;
+  }
+
+  if (response.status === 403) {
+    return false;
+  }
+
+  throw new Error(
+    result.error ||
+    "교체 권한 확인에 실패했습니다."
+  );
+
+}
+
+// ==========================================
+// 8. 관리자 인증
+// ==========================================
+
+async function initialize() {
+
+  $("workSection").hidden = true;
+
+  try {
+
+    const {
+      data,
+      error
+    } = await supabase.auth.getUser();
+
+    if (
+      error ||
+      !data.user
+    ) {
+      throw new Error(
+        "로그인이 필요합니다."
+      );
+    }
+
+    showMessage(
+      "authMessage",
+      "관리자 미리보기 권한을 확인하고 있습니다."
+    );
+
+    await requestPreviewPage(1);
+
+    authorized = true;
+
+    $("workSection").hidden = false;
+
+    showMessage(
+      "authMessage",
+      "관리자 인증 완료. 이미지 비교가 가능합니다."
+    );
+
+    try {
+
+      isSuperAdmin =
+        await verifyReplacePermission();
+
+      if (isSuperAdmin) {
+
+        showMessage(
+          "permissionMessage",
+          "최고관리자 교체 권한 인증 완료."
+        );
+
+      } else {
+
+        showMessage(
+          "permissionMessage",
+          "일반관리자: 이미지 비교만 가능합니다. 실제 교체 권한은 없습니다."
+        );
+
+      }
+
+    } catch (permissionError) {
+
+      isSuperAdmin = false;
+
+      showMessage(
+        "permissionMessage",
+        "교체 권한 확인 실패: " +
+        permissionError.message,
+        true
+      );
+
+    }
+
+  } catch (error) {
+
+    authorized = false;
+    isSuperAdmin = false;
+
+    showMessage(
+      "authMessage",
+      "관리자 인증 실패: " +
+      error.message,
+      true
+    );
+
+    showMessage(
+      "permissionMessage",
+      "교체 권한을 확인할 수 없습니다.",
+      true
+    );
+
+  }
+
+  updateReplaceButton();
+
+}
+
+// ==========================================
+// 9. 기존 이미지 불러오기
 // ==========================================
 
 async function loadOldImage() {
 
-  if (!authorized) return;
+  if (
+    !authorized ||
+    replacementInProgress ||
+    replacementBlocked
+  ) {
+    return;
+  }
 
   const sequence = ++loadSequence;
 
   const pageNumber =
     Number($("pageSelect").value);
 
+  if (
+    !Number.isSafeInteger(pageNumber) ||
+    pageNumber < 1 ||
+    pageNumber > TOTAL_PAGES
+  ) {
+    return;
+  }
+
   selectedPage = pageNumber;
 
   oldImageLoaded = false;
-
   selectedFile = null;
+
+  ++fileSequence;
 
   $("newFile").value = "";
 
@@ -607,6 +753,8 @@ async function loadOldImage() {
   $("confirmSection").hidden = true;
 
   $("loadButton").disabled = true;
+
+  updateReplaceButton();
 
   showMessage(
     "loadMessage",
@@ -618,9 +766,7 @@ async function loadOldImage() {
   try {
 
     const url =
-      await requestPreviewPage(
-        pageNumber
-      );
+      await requestPreviewPage(pageNumber);
 
     if (sequence !== loadSequence) return;
 
@@ -683,12 +829,14 @@ async function loadOldImage() {
       $("loadButton").disabled = false;
     }
 
+    updateReplaceButton();
+
   }
 
 }
 
 // ==========================================
-// 7. 신규 이미지 초기화
+// 10. 신규 이미지 초기화
 // ==========================================
 
 function clearNewImage() {
@@ -707,10 +855,14 @@ function clearNewImage() {
 
   $("confirmSection").hidden = true;
 
+  $("confirmCheck").checked = false;
+
+  updateReplaceButton();
+
 }
 
 // ==========================================
-// 8. 신규 WebP 파일 검사
+// 11. WebP 검사
 // ==========================================
 
 async function validateWebP(file) {
@@ -720,11 +872,9 @@ async function validateWebP(file) {
     file.size <= 0 ||
     file.size > MAX_FILE_SIZE
   ) {
-
     throw new Error(
-      "10MB 이하의 WebP 파일만 선택할 수 있습니다."
+      "10MB 이하 WebP 파일만 허용됩니다."
     );
-
   }
 
   const header =
@@ -752,20 +902,27 @@ async function validateWebP(file) {
     riff !== "RIFF" ||
     webp !== "WEBP"
   ) {
-
     throw new Error(
       "WebP 형식 검증에 실패했습니다."
     );
-
   }
 
 }
 
 // ==========================================
-// 9. 신규 이미지 선택
+// 12. 신규 이미지 선택
 // ==========================================
 
 async function handleNewFile() {
+
+  if (
+    replacementInProgress ||
+    replacementBlocked
+  ) {
+    return;
+  }
+
+  const sequence = ++fileSequence;
 
   selectedFile = null;
 
@@ -781,6 +938,8 @@ async function handleNewFile() {
   try {
 
     await validateWebP(file);
+
+    if (sequence !== fileSequence) return;
 
     objectUrl =
       URL.createObjectURL(file);
@@ -804,6 +963,8 @@ async function handleNewFile() {
 
       }
     );
+
+    if (sequence !== fileSequence) return;
 
     selectedFile = file;
 
@@ -829,9 +990,13 @@ async function handleNewFile() {
       "쪽" +
       "\n신규 파일: " +
       file.name +
-      "\n현재 단계: 비교 시험 전용";
+      "\n실제 교체 시험 허용 페이지: 2쪽";
+
+    updateReplaceButton();
 
   } catch (error) {
+
+    if (sequence !== fileSequence) return;
 
     selectedFile = null;
 
@@ -846,14 +1011,228 @@ async function handleNewFile() {
 }
 
 // ==========================================
-// 10. 페이지 변경
+// 13. 실제 이미지 교체 요청
+// ==========================================
+
+async function executeReplacement() {
+
+  // 안전성 검증 모드에서는 실행 금지
+
+  if (!ENABLE_ACTUAL_REPLACEMENT) {
+    return;
+  }
+
+  if (
+    !authorized ||
+    !isSuperAdmin ||
+    replacementInProgress ||
+    replacementBlocked
+  ) {
+    return;
+  }
+
+  if (
+    selectedPage !== REPLACE_TEST_PAGE ||
+    !oldImageLoaded ||
+    !selectedFile ||
+    !$("confirmCheck").checked
+  ) {
+    return;
+  }
+
+  const fileToSend = selectedFile;
+
+  const confirmed = window.confirm(
+    "시험 전자책 ID 12의 본문 2쪽을 실제 교체합니다.\n\n" +
+    "원본 백업을 확인했습니까?\n\n" +
+    "이 작업은 실제 Storage 파일을 변경합니다."
+  );
+
+  if (!confirmed) return;
+
+  replacementInProgress = true;
+
+  updateReplaceButton();
+
+  $("replaceResult").hidden = false;
+
+  showMessage(
+    "replaceResult",
+    "최고관리자 권한을 다시 확인하고 있습니다."
+  );
+
+  try {
+
+    const permission =
+      await verifyReplacePermission();
+
+    if (!permission) {
+      throw new Error(
+        "최고관리자 권한이 없습니다."
+      );
+    }
+
+    await validateWebP(fileToSend);
+
+    const token =
+      await getAccessToken();
+
+    const form = new FormData();
+
+    form.append(
+      "document_id",
+      String(DOCUMENT_ID)
+    );
+
+    form.append(
+      "page_number",
+      String(REPLACE_TEST_PAGE)
+    );
+
+    form.append(
+      "confirmation",
+      "REPLACE"
+    );
+
+    form.append(
+      "file",
+      fileToSend
+    );
+
+    // 실제 요청을 시작하기 전에 재실행 잠금
+
+    replacementBlocked = true;
+
+    sessionStorage.setItem(
+      "ebook-replace-test-12-2-locked",
+      "true"
+    );
+
+    showMessage(
+      "replaceResult",
+      "이미지 교체 요청 중입니다.\n재시도하지 마세요."
+    );
+
+    const response = await fetch(
+      SUPABASE_URL +
+      "/functions/v1/knowledge-ebook-replace",
+      {
+        method: "POST",
+
+        headers: {
+          "apikey": SUPABASE_KEY,
+
+          "Authorization":
+            "Bearer " + token
+        },
+
+        body: form
+      }
+    );
+
+    let result;
+
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error(
+        "서버 응답을 읽을 수 없습니다. DB 작업 기록을 확인해 주세요."
+      );
+    }
+
+    if (
+      !response.ok ||
+      result.success !== true
+    ) {
+
+      showMessage(
+        "replaceResult",
+
+        "교체 결과 확인 필요\n\n" +
+
+        "HTTP 상태: " +
+        response.status +
+
+        "\n작업 ID: " +
+        (result.job_id || "없음") +
+
+        "\n오류: " +
+        (result.error || "알 수 없는 오류") +
+
+        "\n\n재시도하지 마세요.",
+
+        true
+      );
+
+      return;
+    }
+
+    showMessage(
+      "replaceResult",
+
+      "이미지 교체 함수 실행 성공\n\n" +
+
+      "문서 ID: " +
+      result.document_id +
+
+      "\n페이지: " +
+      result.page_number +
+
+      "\n작업 ID: " +
+      result.job_id +
+
+      "\n백업 경로: " +
+      result.backup_path +
+
+      "\n\nStorage 및 DB 작업 기록을 확인해 주세요."
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "replaceResult",
+
+      "교체 처리 중 오류 발생\n\n" +
+
+      error.message +
+
+      "\n\n작업 기록 확인 전 재시도 금지",
+
+      true
+    );
+
+  } finally {
+
+    replacementInProgress = false;
+
+    updateReplaceButton();
+
+  }
+
+}
+
+// ==========================================
+// 14. 페이지 변경
 // ==========================================
 
 $("pageSelect").addEventListener(
   "change",
   () => {
 
+    if (
+      replacementInProgress ||
+      replacementBlocked
+    ) {
+      $("pageSelect").value =
+        String(selectedPage);
+      return;
+    }
+
     ++loadSequence;
+    ++fileSequence;
+
+    selectedPage =
+      Number($("pageSelect").value);
 
     oldImageLoaded = false;
     selectedFile = null;
@@ -872,14 +1251,16 @@ $("pageSelect").addEventListener(
 
     showMessage(
       "loadMessage",
-      "교체할 페이지를 선택한 후 기존 이미지를 불러와 주세요."
+      "페이지를 선택한 후 기존 이미지를 불러와 주세요."
     );
+
+    updateReplaceButton();
 
   }
 );
 
 // ==========================================
-// 11. 이벤트
+// 15. 이벤트
 // ==========================================
 
 $("loadButton").addEventListener(
@@ -892,13 +1273,41 @@ $("newFile").addEventListener(
   handleNewFile
 );
 
-// 실제 교체 기능은 의도적으로 구현하지 않습니다.
-// replaceButton은 항상 비활성화합니다.
+$("confirmCheck").addEventListener(
+  "change",
+  updateReplaceButton
+);
 
-$("replaceButton").disabled = true;
+$("replaceButton").addEventListener(
+  "click",
+  executeReplacement
+);
 
 // ==========================================
-// 12. 종료 시 임시 URL 정리
+// 16. 이전 요청 잠금 확인
+// ==========================================
+
+if (
+  sessionStorage.getItem(
+    "ebook-replace-test-12-2-locked"
+  ) === "true"
+) {
+
+  replacementBlocked = true;
+
+  $("replaceResult").hidden = false;
+
+  showMessage(
+    "replaceResult",
+    "이 브라우저에서 이미지 교체 요청 이력이 감지되었습니다.\n" +
+    "DB 작업 기록을 확인하기 전에는 재실행하지 마세요.",
+    true
+  );
+
+}
+
+// ==========================================
+// 17. 임시 URL 정리
 // ==========================================
 
 window.addEventListener(
@@ -913,7 +1322,7 @@ window.addEventListener(
 );
 
 // ==========================================
-// 13. 시작
+// 18. 시작
 // ==========================================
 
 initialize();
