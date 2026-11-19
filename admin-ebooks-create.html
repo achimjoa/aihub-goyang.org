@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>전자책 신규 생성 관리</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 26px;
+}
+
+h2 {
+  margin-top: 35px;
+  font-size: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 11px;
+  margin-top: 7px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: #174ea6;
+  color: white;
+}
+
+.secondary {
+  background: #e8edf5;
+}
+
+.danger {
+  background: #b3261e;
+  color: white;
+}
+
+.page-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.page-item img {
+  width: 80px;
+  height: 110px;
+  object-fit: contain;
+  background: #eee;
+}
+
+.page-info {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.page-actions {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  max-width: 100%;
+  max-height: 600px;
+  border: 1px solid #ddd;
+}
+
+.status {
+  margin-top: 20px;
+  padding: 15px;
+  background: #eef3fa;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+.actions {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#createButton {
+  padding: 15px 35px;
+  font-size: 17px;
+}
+
+@media(max-width:600px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .page-item {
+    flex-wrap: wrap;
+  }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>전자책 신규 생성</h1>
+
+<p>
+최고관리자 전용 전자책 생성 화면입니다.
+</p>
+
+<div id="authStatus" class="status">
+관리자 권한 확인 중...
+</div>
+
+<h2>1. 전자책 기본정보</h2>
+
+<label for="title">전자책 제목 *</label>
+<input id="title" type="text" maxlength="200">
+
+<label for="issueCode">발간번호 *</label>
+<input
+  id="issueCode"
+  type="text"
+  placeholder="예: issue-03"
+  maxlength="100"
+>
+
+<label for="author">저자</label>
+<input id="author" type="text">
+
+<label for="abstract">초록</label>
+<textarea id="abstract"></textarea>
+
+<label for="description">설명</label>
+<textarea id="description"></textarea>
+
+<h2>2. 페이지 이미지</h2>
+
+<p>
+WebP 이미지 파일을 선택하세요.
+파일당 최대 10MB입니다.
+</p>
+
+<input
+  id="fileInput"
+  type="file"
+  accept="image/webp,.webp"
+  multiple
+>
+
+<p>
+선택한 파일의 순서가 전자책 페이지 순서입니다.
+위·아래 버튼으로 변경할 수 있습니다.
+</p>
+
+<div id="pageList"></div>
+
+<h2>3. 페이지 미리보기</h2>
+
+<div class="preview">
+  <p id="previewTitle">
+    미리볼 페이지를 선택하세요.
+  </p>
+
+  <img
+    id="previewImage"
+    alt="전자책 페이지 미리보기"
+    style="display:none"
+  >
+</div>
+
+<h2>4. 전자책 생성</h2>
+
+<p>
+입력 내용과 이미지 순서를 확인한 후
+전자책 생성 버튼을 누르세요.
+</p>
+
+<div class="actions">
+  <button
+    id="createButton"
+    class="primary"
+    disabled
+  >
+    전자책 생성 실행
+  </button>
+</div>
+
+<div id="resultStatus" class="status">
+생성 대기 중
+</div>
+
+</div>
+
+<script type="module">
+
+import {
+  createClient
+} from
+"https://esm.sh/@supabase/supabase-js@2";
+
+// ==========================================
+// 1. Supabase 설정
+// ==========================================
+
+// 실제 프로젝트의 공개 URL 및 anon key 입력
+// service_role key는 절대 입력하지 않습니다.
+
+const SUPABASE_URL =
+  "https://gugkwqpvtwivqudkimvy.supabase.co";
+
+const SUPABASE_ANON_KEY =
+  "YOUR_SUPABASE_ANON_KEY";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+const FUNCTION_URL =
+  SUPABASE_URL +
+  "/functions/v1/knowledge-ebook-create";
+
+// ==========================================
+// 2. 상태
+// ==========================================
+
+let currentUser = null;
+let isSuperAdmin = false;
+let busy = false;
+
+let pages = [];
+
+const titleInput =
+  document.getElementById("title");
+
+const issueCodeInput =
+  document.getElementById("issueCode");
+
+const authorInput =
+  document.getElementById("author");
+
+const abstractInput =
+  document.getElementById("abstract");
+
+const descriptionInput =
+  document.getElementById("description");
+
+const fileInput =
+  document.getElementById("fileInput");
+
+const pageList =
+  document.getElementById("pageList");
+
+const previewImage =
+  document.getElementById("previewImage");
+
+const previewTitle =
+  document.getElementById("previewTitle");
+
+const createButton =
+  document.getElementById("createButton");
+
+const authStatus =
+  document.getElementById("authStatus");
+
+const resultStatus =
+  document.getElementById("resultStatus");
+
+// ==========================================
+// 3. 관리자 권한 확인
+// ==========================================
+
+async function checkAdmin() {
+
+  try {
+
+    const {
+      data: sessionData
+    } = await supabase.auth.getSession();
+
+    const session =
+      sessionData.session;
+
+    if (!session) {
+
+      authStatus.textContent =
+        "로그인이 필요합니다.";
+
+      return;
+    }
+
+    const {
+      data: userData,
+      error: userError
+    } = await supabase.auth.getUser();
+
+    if (userError || !userData.user) {
+
+      authStatus.textContent =
+        "로그인 확인에 실패했습니다.";
+
+      return;
+    }
+
+    currentUser =
+      userData.user;
+
+    const {
+      data: profile,
+      error: profileError
+    } = await supabase
+      .from("profiles")
+      .select(
+        "member_role,admin_level,approval_status"
+      )
+      .eq("id", currentUser.id)
+      .maybeSingle();
+
+    if (profileError) {
+      throw profileError;
+    }
+
+    isSuperAdmin =
+      profile?.member_role === "admin" &&
+      profile?.admin_level === "super_admin" &&
+      profile?.approval_status === "approved";
+
+    authStatus.textContent =
+      isSuperAdmin
+        ? "최고관리자 권한 확인 완료"
+        : "최고관리자 권한이 없습니다.";
+
+  } catch (error) {
+
+    console.error(error);
+
+    authStatus.textContent =
+      "관리자 권한 확인 중 오류가 발생했습니다.";
+
+  }
+
+  updateCreateButton();
+}
+
+// ==========================================
+// 4. 버튼 상태
+// ==========================================
+
+function updateCreateButton() {
+
+  const validTitle =
+    titleInput.value.trim().length > 0;
+
+  const validIssue =
+    /^[a-zA-Z0-9_-]+$/.test(
+      issueCodeInput.value.trim()
+    );
+
+  const validPages =
+    pages.length > 0 &&
+    pages.length <= 1000;
+
+  createButton.disabled =
+    !isSuperAdmin ||
+    !validTitle ||
+    !validIssue ||
+    !validPages ||
+    busy;
+}
+
+// ==========================================
+// 5. 파일 선택
+// ==========================================
+
+fileInput.addEventListener(
+  "change",
+  event => {
+
+    if (busy) return;
+
+    clearPages();
+
+    const selected =
+      Array.from(event.target.files);
+
+    if (selected.length > 1000) {
+      alert("최대 1000페이지까지 선택할 수 있습니다.");
+      fileInput.value = "";
+      updateCreateButton();
+      return;
+    }
+
+    for (const file of selected) {
+
+      if (
+        file.type !== "image/webp" ||
+        file.size <= 0 ||
+        file.size > 10 * 1024 * 1024
+      ) {
+
+        alert(
+          "10MB 이하 WebP 파일만 선택할 수 있습니다."
+        );
+
+        clearPages();
+        fileInput.value = "";
+        updateCreateButton();
+        return;
+      }
+
+      pages.push({
+        file,
+        url: URL.createObjectURL(file)
+      });
+
+    }
+
+    renderPages();
+    updateCreateButton();
+
+  }
+);
+
+// ==========================================
+// 6. 페이지 목록
+// ==========================================
+
+function renderPages() {
+
+  pageList.innerHTML = "";
+
+  pages.forEach((page, index) => {
+
+    const item =
+      document.createElement("div");
+
+    item.className = "page-item";
+
+    const image =
+      document.createElement("img");
+
+    image.src = page.url;
+    image.alt = `${index + 1}쪽`;
+
+    const info =
+      document.createElement("div");
+
+    info.className = "page-info";
+
+    info.textContent =
+      `${index + 1}쪽 — ${page.file.name}`;
+
+    const actions =
+      document.createElement("div");
+
+    actions.className = "page-actions";
+
+    const previewButton =
+      makeButton(
+        "미리보기",
+        () => showPreview(index)
+      );
+
+    const upButton =
+      makeButton(
+        "위",
+        () => movePage(index, -1)
+      );
+
+    const downButton =
+      makeButton(
+        "아래",
+        () => movePage(index, 1)
+      );
+
+    const removeButton =
+      makeButton(
+        "삭제",
+        () => removePage(index)
+      );
+
+    actions.append(
+      previewButton,
+      upButton,
+      downButton,
+      removeButton
+    );
+
+    item.append(
+      image,
+      info,
+      actions
+    );
+
+    pageList.appendChild(item);
+
+  });
+
+}
+
+function makeButton(text, handler) {
+
+  const button =
+    document.createElement("button");
+
+  button.type = "button";
+  button.textContent = text;
+  button.className = "secondary";
+
+  button.disabled = busy;
+
+  button.addEventListener(
+    "click",
+    handler
+  );
+
+  return button;
+}
+
+// ==========================================
+// 7. 순서 변경
+// ==========================================
+
+function movePage(index, direction) {
+
+  if (busy) return;
+
+  const target =
+    index + direction;
+
+  if (
+    target < 0 ||
+    target >= pages.length
+  ) {
+    return;
+  }
+
+  [
+    pages[index],
+    pages[target]
+  ] = [
+    pages[target],
+    pages[index]
+  ];
+
+  renderPages();
+  updateCreateButton();
+}
+
+// ==========================================
+// 8. 페이지 삭제
+// ==========================================
+
+function removePage(index) {
+
+  if (busy) return;
+
+  const removed =
+    pages.splice(index, 1);
+
+  if (removed.length) {
+    URL.revokeObjectURL(
+      removed[0].url
+    );
+  }
+
+  previewImage.style.display = "none";
+  previewImage.removeAttribute("src");
+
+  previewTitle.textContent =
+    "미리볼 페이지를 선택하세요.";
+
+  renderPages();
+  updateCreateButton();
+}
+
+// ==========================================
+// 9. 페이지 초기화
+// ==========================================
+
+function clearPages() {
+
+  for (const page of pages) {
+    URL.revokeObjectURL(page.url);
+  }
+
+  pages = [];
+
+  pageList.innerHTML = "";
+
+  previewImage.style.display = "none";
+  previewImage.removeAttribute("src");
+
+  previewTitle.textContent =
+    "미리볼 페이지를 선택하세요.";
+}
+
+// ==========================================
+// 10. 미리보기
+// ==========================================
+
+function showPreview(index) {
+
+  const page = pages[index];
+
+  if (!page) return;
+
+  previewImage.src = page.url;
+  previewImage.style.display = "inline-block";
+
+  previewTitle.textContent =
+    `${index + 1}쪽 — ${page.file.name}`;
+}
+
+// ==========================================
+// 11. 입력 변경
+// ==========================================
+
+titleInput.addEventListener(
+  "input",
+  updateCreateButton
+);
+
+issueCodeInput.addEventListener(
+  "input",
+  updateCreateButton
+);
+
+// ==========================================
+// 12. 생성 실행
+// ==========================================
+
+createButton.addEventListener(
+  "click",
+  async () => {
+
+    if (busy || !isSuperAdmin) {
+      return;
+    }
+
+    updateCreateButton();
+
+    if (createButton.disabled) {
+      return;
+    }
+
+    const confirmed = confirm(
+      "신규 전자책을 생성하시겠습니까?\n" +
+      "페이지 수: " + pages.length
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    busy = true;
+    updateCreateButton();
+    renderPages();
+
+    resultStatus.textContent =
+      "전자책 생성 요청 중...";
+
+    try {
+
+      const {
+        data: sessionData,
+        error: sessionError
+      } = await supabase.auth.getSession();
+
+      if (
+        sessionError ||
+        !sessionData.session
+      ) {
+        throw new Error(
+          "로그인이 만료되었습니다."
+        );
+      }
+
+      const form =
+        new FormData();
+
+      form.append(
+        "title",
+        titleInput.value.trim()
+      );
+
+      form.append(
+        "issue_code",
+        issueCodeInput.value.trim()
+      );
+
+      form.append(
+        "author",
+        authorInput.value.trim()
+      );
+
+      form.append(
+        "abstract",
+        abstractInput.value.trim()
+      );
+
+      form.append(
+        "description",
+        descriptionInput.value.trim()
+      );
+
+      for (const page of pages) {
+        form.append(
+          "files",
+          page.file
+        );
+      }
+
+      const response =
+        await fetch(
+          FUNCTION_URL,
+          {
+            method: "POST",
+
+            headers: {
+              "Authorization":
+                "Bearer " +
+                sessionData.session.access_token,
+
+              "apikey":
+                SUPABASE_ANON_KEY
+            },
+
+            body: form
+          }
+        );
+
+      const result =
+        await response.json();
+
+      if (!response.ok || !result.success) {
+
+        throw new Error(
+          result.error ||
+          "전자책 생성 실패"
+        );
+      }
+
+      resultStatus.textContent =
+        "전자책 생성 완료\n" +
+        "문서 ID: " +
+        result.document_id + "\n" +
+        "발간번호: " +
+        result.issue_code + "\n" +
+        "페이지 수: " +
+        result.total_pages;
+
+      alert(
+        "전자책 생성이 완료되었습니다."
+      );
+
+    } catch (error) {
+
+      console.error(error);
+
+      resultStatus.textContent =
+        "생성 실패: " +
+        error.message;
+
+    } finally {
+
+      busy = false;
+
+      renderPages();
+      updateCreateButton();
+
+    }
+
+  }
+);
+
+// ==========================================
+// 13. 시작
+// ==========================================
+
+await checkAdmin();
+
+</script>
+
+</body>
+</html>
