@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>전자책 신규 생성 관리</title>
+<title>전자책 신규 생성 | 글로벌 AI 허브</title>
 
 <style>
 * {
@@ -14,838 +15,398 @@
 
 body {
   margin: 0;
-  padding: 24px;
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+  font-family: "Malgun Gothic", Arial, sans-serif;
+  background: #f4f8fc;
+  color: #17315b;
 }
 
-.container {
+header {
+  background: #0754a6;
+  color: white;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+header h1 {
+  margin: 0 0 12px;
+}
+
+header p {
+  line-height: 1.7;
+}
+
+.home-return {
+  margin-top: 25px;
+}
+
+.home-return a {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 5px;
+  background: white;
+  color: #0754a6;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
   max-width: 1000px;
   margin: auto;
+  padding: 35px 15px;
+}
+
+.admin-panel {
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.06);
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 26px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
 }
 
 h2 {
-  margin-top: 35px;
-  font-size: 20px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  color: #0754a6;
+}
+
+.form-group {
+  margin: 20px 0;
 }
 
 label {
   display: block;
-  margin-top: 16px;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
 input,
 textarea {
   width: 100%;
-  padding: 11px;
-  margin-top: 7px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
   border-radius: 6px;
-  font-size: 15px;
+  font: inherit;
 }
 
 textarea {
-  min-height: 90px;
-  resize: vertical;
+  min-height: 100px;
 }
 
 button {
-  border: none;
+  padding: 12px 22px;
+  border: 0;
   border-radius: 6px;
-  padding: 10px 16px;
+  background: #0754a6;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
 }
 
 button:disabled {
-  opacity: .45;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-.primary {
-  background: #174ea6;
-  color: white;
+#message {
+  white-space: pre-line;
+  margin: 20px 0;
+  line-height: 1.7;
 }
 
-.secondary {
-  background: #e8edf5;
+#adminArea {
+  margin-top: 25px;
 }
 
-.danger {
-  background: #b3261e;
-  color: white;
-}
-
-.page-item {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
-.page-item img {
-  width: 80px;
-  height: 110px;
-  object-fit: contain;
-  background: #eee;
-}
-
-.page-info {
-  flex: 1;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.page-actions {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.preview {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.preview img {
-  max-width: 100%;
-  max-height: 600px;
-  border: 1px solid #ddd;
-}
-
-.status {
-  margin-top: 20px;
+.notice {
+  background: #eef5ff;
   padding: 15px;
-  background: #eef3fa;
-  border-radius: 6px;
-  white-space: pre-wrap;
+  border-radius: 8px;
+  line-height: 1.8;
 }
 
-.actions {
-  margin-top: 30px;
+footer {
+  background: #10315e;
+  color: white;
   text-align: center;
+  padding: 30px 15px;
+  margin-top: 40px;
 }
 
-#createButton {
-  padding: 15px 35px;
-  font-size: 17px;
-}
-
-@media(max-width:600px) {
-  body {
-    padding: 10px;
-  }
-
-  .container {
-    padding: 16px;
-  }
-
-  .page-item {
-    flex-wrap: wrap;
+@media (max-width: 600px) {
+  .admin-panel {
+    padding: 18px;
   }
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <h1>전자책 신규 생성</h1>
 
-<h1>전자책 신규 생성</h1>
-
-<p>
-최고관리자 전용 전자책 생성 화면입니다.
-</p>
-
-<div id="authStatus" class="status">
-관리자 권한 확인 중...
-</div>
-
-<h2>1. 전자책 기본정보</h2>
-
-<label for="title">전자책 제목 *</label>
-<input id="title" type="text" maxlength="200">
-
-<label for="issueCode">발간번호 *</label>
-<input
-  id="issueCode"
-  type="text"
-  placeholder="예: issue-03"
-  maxlength="100"
->
-
-<label for="author">저자</label>
-<input id="author" type="text">
-
-<label for="abstract">초록</label>
-<textarea id="abstract"></textarea>
-
-<label for="description">설명</label>
-<textarea id="description"></textarea>
-
-<h2>2. 페이지 이미지</h2>
-
-<p>
-WebP 이미지 파일을 선택하세요.
-파일당 최대 10MB입니다.
-</p>
-
-<input
-  id="fileInput"
-  type="file"
-  accept="image/webp,.webp"
-  multiple
->
-
-<p>
-선택한 파일의 순서가 전자책 페이지 순서입니다.
-위·아래 버튼으로 변경할 수 있습니다.
-</p>
-
-<div id="pageList"></div>
-
-<h2>3. 페이지 미리보기</h2>
-
-<div class="preview">
-  <p id="previewTitle">
-    미리볼 페이지를 선택하세요.
+  <p>
+    경기도 글로벌 AI 허브 유치<br>
+    고양특례시 범시민추진위원회
   </p>
 
-  <img
-    id="previewImage"
-    alt="전자책 페이지 미리보기"
-    style="display:none"
-  >
-</div>
+  <div class="home-return">
+    <a href="index.html">
+      ← 홈페이지로 돌아가기
+    </a>
 
-<h2>4. 전자책 생성</h2>
+    <a href="admin-center.html">
+      ← 통합 관리센터로 돌아가기
+    </a>
+  </div>
+</header>
 
-<p>
-입력 내용과 이미지 순서를 확인한 후
-전자책 생성 버튼을 누르세요.
-</p>
+<main>
 
-<div class="actions">
-  <button
-    id="createButton"
-    class="primary"
-    disabled
-  >
-    전자책 생성 실행
-  </button>
-</div>
+<section class="admin-panel">
 
-<div id="resultStatus" class="status">
-생성 대기 중
-</div>
+  <h2>최고관리자 전자책 생성</h2>
 
-</div>
+  <p id="message"
+     role="status"
+     aria-live="polite">
+    최고관리자 권한을 확인하고 있습니다.
+  </p>
+
+  <div id="adminArea" hidden>
+
+    <div class="notice">
+      신규 전자책을 등록하는 관리자 화면입니다.<br>
+      현재는 인증 및 서버 연결 시험 단계입니다.<br>
+      실제 생성 기능은 서버 검증 후 활성화됩니다.
+    </div>
+
+    <h2>서버 연결 확인</h2>
+
+    <button id="testConnection" type="button">
+      Edge Function 연결 시험
+    </button>
+
+    <hr>
+
+    <h2>신규 전자책 정보</h2>
+
+    <div class="form-group">
+      <label for="issueCode">발간번호</label>
+      <input id="issueCode"
+             type="text"
+             maxlength="80"
+             placeholder="예: issue-03">
+    </div>
+
+    <div class="form-group">
+      <label for="ebookTitle">전자책 제목</label>
+      <input id="ebookTitle"
+             type="text"
+             placeholder="전자책 제목">
+    </div>
+
+    <div class="form-group">
+      <label for="ebookAuthor">저자</label>
+      <input id="ebookAuthor"
+             type="text"
+             placeholder="저자 또는 발행기관">
+    </div>
+
+    <div class="form-group">
+      <label for="ebookAbstract">전자책 요약</label>
+      <textarea id="ebookAbstract"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="totalPages">전체 페이지 수</label>
+      <input id="totalPages"
+             type="number"
+             min="1"
+             max="2000">
+    </div>
+
+    <h2>표지 이미지</h2>
+
+    <div class="form-group">
+      <input id="coverFile"
+             type="file"
+             accept="image/webp">
+    </div>
+
+    <h2>본문 이미지</h2>
+
+    <div class="form-group">
+      <input id="pageFiles"
+             type="file"
+             accept="image/webp"
+             multiple>
+    </div>
+
+    <p class="notice">
+      표지와 본문은 WebP 형식으로 준비하십시오.
+      이미지 업로드 기능은 아직 활성화되지 않았습니다.
+    </p>
+
+    <button id="createButton"
+            type="button"
+            disabled>
+      신규 전자책 생성
+    </button>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  경기도 글로벌 AI 허브 유치<br>
+  고양특례시 범시민추진위원회
+</footer>
 
 <script type="module">
 
-import {
-  createClient
-} from
-"https://esm.sh/@supabase/supabase-js@2";
-
-// ==========================================
-// 1. Supabase 설정
-// ==========================================
-
-// 실제 프로젝트의 공개 URL 및 anon key 입력
-// service_role key는 절대 입력하지 않습니다.
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 const SUPABASE_URL =
   "https://gugkwqpvtwivqudkimvy.supabase.co";
 
-const SUPABASE_ANON_KEY =
-  "YOUR_SUPABASE_ANON_KEY";
+// 기존 admin.html과 동일한 공개 키를 사용합니다.
+// 아래 값은 배포 전에 기존 파일의 publishable key로 교체하십시오.
+const SUPABASE_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 const supabase = createClient(
   SUPABASE_URL,
-  SUPABASE_ANON_KEY
+  SUPABASE_KEY
 );
 
-const FUNCTION_URL =
-  SUPABASE_URL +
-  "/functions/v1/knowledge-ebook-create";
+const message =
+  document.getElementById("message");
 
-// ==========================================
-// 2. 상태
-// ==========================================
+const adminArea =
+  document.getElementById("adminArea");
 
-let currentUser = null;
-let isSuperAdmin = false;
-let busy = false;
+const testButton =
+  document.getElementById("testConnection");
 
-let pages = [];
-
-const titleInput =
-  document.getElementById("title");
-
-const issueCodeInput =
-  document.getElementById("issueCode");
-
-const authorInput =
-  document.getElementById("author");
-
-const abstractInput =
-  document.getElementById("abstract");
-
-const descriptionInput =
-  document.getElementById("description");
-
-const fileInput =
-  document.getElementById("fileInput");
-
-const pageList =
-  document.getElementById("pageList");
-
-const previewImage =
-  document.getElementById("previewImage");
-
-const previewTitle =
-  document.getElementById("previewTitle");
-
-const createButton =
-  document.getElementById("createButton");
-
-const authStatus =
-  document.getElementById("authStatus");
-
-const resultStatus =
-  document.getElementById("resultStatus");
-
-// ==========================================
-// 3. 관리자 권한 확인
-// ==========================================
+function showMessage(text, isError = false) {
+  message.textContent = text;
+  message.style.color =
+    isError ? "#b91c1c" : "#0754a6";
+}
 
 async function checkAdmin() {
 
+  const { data: userData, error: userError } =
+    await supabase.auth.getUser();
+
+  if (userError || !userData.user) {
+    throw new Error("로그인이 필요합니다.");
+  }
+
+  const { data: isAdmin, error: adminError } =
+    await supabase.rpc("is_super_admin");
+
+  if (adminError) {
+    throw adminError;
+  }
+
+  if (isAdmin !== true) {
+    throw new Error(
+      "최고관리자 권한이 필요합니다."
+    );
+  }
+
+  return true;
+}
+
+async function testConnection() {
+
+  testButton.disabled = true;
+
+  showMessage(
+    "전자책 생성 서버에 연결하고 있습니다."
+  );
+
   try {
 
-    const {
-      data: sessionData
-    } = await supabase.auth.getSession();
+    await checkAdmin();
 
-    const session =
-      sessionData.session;
+    const { data, error } =
+      await supabase.functions.invoke(
+        "knowledge-ebook-create",
+        {
+          body: {
+            action: "ping"
+          }
+        }
+      );
 
-    if (!session) {
-
-      authStatus.textContent =
-        "로그인이 필요합니다.";
-
-      return;
+    if (error) {
+      throw error;
     }
 
-    const {
-      data: userData,
-      error: userError
-    } = await supabase.auth.getUser();
-
-    if (userError || !userData.user) {
-
-      authStatus.textContent =
-        "로그인 확인에 실패했습니다.";
-
-      return;
+    if (
+      data?.success !== true ||
+      data?.super_admin !== true
+    ) {
+      throw new Error(
+        data?.error ||
+        "서버 인증에 실패했습니다."
+      );
     }
 
-    currentUser =
-      userData.user;
-
-    const {
-      data: profile,
-      error: profileError
-    } = await supabase
-      .from("profiles")
-      .select(
-        "member_role,admin_level,approval_status"
-      )
-      .eq("id", currentUser.id)
-      .maybeSingle();
-
-    if (profileError) {
-      throw profileError;
-    }
-
-    isSuperAdmin =
-      profile?.member_role === "admin" &&
-      profile?.admin_level === "super_admin" &&
-      profile?.approval_status === "approved";
-
-    authStatus.textContent =
-      isSuperAdmin
-        ? "최고관리자 권한 확인 완료"
-        : "최고관리자 권한이 없습니다.";
+    showMessage(
+      "최고관리자 인증 및 전자책 생성 서버 연결 성공"
+    );
 
   } catch (error) {
 
     console.error(error);
 
-    authStatus.textContent =
-      "관리자 권한 확인 중 오류가 발생했습니다.";
-
-  }
-
-  updateCreateButton();
-}
-
-// ==========================================
-// 4. 버튼 상태
-// ==========================================
-
-function updateCreateButton() {
-
-  const validTitle =
-    titleInput.value.trim().length > 0;
-
-  const validIssue =
-    /^[a-zA-Z0-9_-]+$/.test(
-      issueCodeInput.value.trim()
+    showMessage(
+      "서버 연결 시험 실패\n" +
+      error.message,
+      true
     );
 
-  const validPages =
-    pages.length > 0 &&
-    pages.length <= 1000;
+  } finally {
 
-  createButton.disabled =
-    !isSuperAdmin ||
-    !validTitle ||
-    !validIssue ||
-    !validPages ||
-    busy;
-}
-
-// ==========================================
-// 5. 파일 선택
-// ==========================================
-
-fileInput.addEventListener(
-  "change",
-  event => {
-
-    if (busy) return;
-
-    clearPages();
-
-    const selected =
-      Array.from(event.target.files);
-
-    if (selected.length > 1000) {
-      alert("최대 1000페이지까지 선택할 수 있습니다.");
-      fileInput.value = "";
-      updateCreateButton();
-      return;
-    }
-
-    for (const file of selected) {
-
-      if (
-        file.type !== "image/webp" ||
-        file.size <= 0 ||
-        file.size > 10 * 1024 * 1024
-      ) {
-
-        alert(
-          "10MB 이하 WebP 파일만 선택할 수 있습니다."
-        );
-
-        clearPages();
-        fileInput.value = "";
-        updateCreateButton();
-        return;
-      }
-
-      pages.push({
-        file,
-        url: URL.createObjectURL(file)
-      });
-
-    }
-
-    renderPages();
-    updateCreateButton();
+    testButton.disabled = false;
 
   }
-);
+}
 
-// ==========================================
-// 6. 페이지 목록
-// ==========================================
+async function initialize() {
 
-function renderPages() {
+  adminArea.hidden = true;
 
-  pageList.innerHTML = "";
+  try {
 
-  pages.forEach((page, index) => {
+    await checkAdmin();
 
-    const item =
-      document.createElement("div");
+    adminArea.hidden = false;
 
-    item.className = "page-item";
-
-    const image =
-      document.createElement("img");
-
-    image.src = page.url;
-    image.alt = `${index + 1}쪽`;
-
-    const info =
-      document.createElement("div");
-
-    info.className = "page-info";
-
-    info.textContent =
-      `${index + 1}쪽 — ${page.file.name}`;
-
-    const actions =
-      document.createElement("div");
-
-    actions.className = "page-actions";
-
-    const previewButton =
-      makeButton(
-        "미리보기",
-        () => showPreview(index)
-      );
-
-    const upButton =
-      makeButton(
-        "위",
-        () => movePage(index, -1)
-      );
-
-    const downButton =
-      makeButton(
-        "아래",
-        () => movePage(index, 1)
-      );
-
-    const removeButton =
-      makeButton(
-        "삭제",
-        () => removePage(index)
-      );
-
-    actions.append(
-      previewButton,
-      upButton,
-      downButton,
-      removeButton
+    showMessage(
+      "최고관리자 인증이 완료되었습니다."
     );
 
-    item.append(
-      image,
-      info,
-      actions
+  } catch (error) {
+
+    showMessage(
+      error.message,
+      true
     );
 
-    pageList.appendChild(item);
-
-  });
-
-}
-
-function makeButton(text, handler) {
-
-  const button =
-    document.createElement("button");
-
-  button.type = "button";
-  button.textContent = text;
-  button.className = "secondary";
-
-  button.disabled = busy;
-
-  button.addEventListener(
-    "click",
-    handler
-  );
-
-  return button;
-}
-
-// ==========================================
-// 7. 순서 변경
-// ==========================================
-
-function movePage(index, direction) {
-
-  if (busy) return;
-
-  const target =
-    index + direction;
-
-  if (
-    target < 0 ||
-    target >= pages.length
-  ) {
-    return;
   }
-
-  [
-    pages[index],
-    pages[target]
-  ] = [
-    pages[target],
-    pages[index]
-  ];
-
-  renderPages();
-  updateCreateButton();
 }
 
-// ==========================================
-// 8. 페이지 삭제
-// ==========================================
-
-function removePage(index) {
-
-  if (busy) return;
-
-  const removed =
-    pages.splice(index, 1);
-
-  if (removed.length) {
-    URL.revokeObjectURL(
-      removed[0].url
-    );
-  }
-
-  previewImage.style.display = "none";
-  previewImage.removeAttribute("src");
-
-  previewTitle.textContent =
-    "미리볼 페이지를 선택하세요.";
-
-  renderPages();
-  updateCreateButton();
-}
-
-// ==========================================
-// 9. 페이지 초기화
-// ==========================================
-
-function clearPages() {
-
-  for (const page of pages) {
-    URL.revokeObjectURL(page.url);
-  }
-
-  pages = [];
-
-  pageList.innerHTML = "";
-
-  previewImage.style.display = "none";
-  previewImage.removeAttribute("src");
-
-  previewTitle.textContent =
-    "미리볼 페이지를 선택하세요.";
-}
-
-// ==========================================
-// 10. 미리보기
-// ==========================================
-
-function showPreview(index) {
-
-  const page = pages[index];
-
-  if (!page) return;
-
-  previewImage.src = page.url;
-  previewImage.style.display = "inline-block";
-
-  previewTitle.textContent =
-    `${index + 1}쪽 — ${page.file.name}`;
-}
-
-// ==========================================
-// 11. 입력 변경
-// ==========================================
-
-titleInput.addEventListener(
-  "input",
-  updateCreateButton
-);
-
-issueCodeInput.addEventListener(
-  "input",
-  updateCreateButton
-);
-
-// ==========================================
-// 12. 생성 실행
-// ==========================================
-
-createButton.addEventListener(
+testButton.addEventListener(
   "click",
-  async () => {
-
-    if (busy || !isSuperAdmin) {
-      return;
-    }
-
-    updateCreateButton();
-
-    if (createButton.disabled) {
-      return;
-    }
-
-    const confirmed = confirm(
-      "신규 전자책을 생성하시겠습니까?\n" +
-      "페이지 수: " + pages.length
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
-    busy = true;
-    updateCreateButton();
-    renderPages();
-
-    resultStatus.textContent =
-      "전자책 생성 요청 중...";
-
-    try {
-
-      const {
-        data: sessionData,
-        error: sessionError
-      } = await supabase.auth.getSession();
-
-      if (
-        sessionError ||
-        !sessionData.session
-      ) {
-        throw new Error(
-          "로그인이 만료되었습니다."
-        );
-      }
-
-      const form =
-        new FormData();
-
-      form.append(
-        "title",
-        titleInput.value.trim()
-      );
-
-      form.append(
-        "issue_code",
-        issueCodeInput.value.trim()
-      );
-
-      form.append(
-        "author",
-        authorInput.value.trim()
-      );
-
-      form.append(
-        "abstract",
-        abstractInput.value.trim()
-      );
-
-      form.append(
-        "description",
-        descriptionInput.value.trim()
-      );
-
-      for (const page of pages) {
-        form.append(
-          "files",
-          page.file
-        );
-      }
-
-      const response =
-        await fetch(
-          FUNCTION_URL,
-          {
-            method: "POST",
-
-            headers: {
-              "Authorization":
-                "Bearer " +
-                sessionData.session.access_token,
-
-              "apikey":
-                SUPABASE_ANON_KEY
-            },
-
-            body: form
-          }
-        );
-
-      const result =
-        await response.json();
-
-      if (!response.ok || !result.success) {
-
-        throw new Error(
-          result.error ||
-          "전자책 생성 실패"
-        );
-      }
-
-      resultStatus.textContent =
-        "전자책 생성 완료\n" +
-        "문서 ID: " +
-        result.document_id + "\n" +
-        "발간번호: " +
-        result.issue_code + "\n" +
-        "페이지 수: " +
-        result.total_pages;
-
-      alert(
-        "전자책 생성이 완료되었습니다."
-      );
-
-    } catch (error) {
-
-      console.error(error);
-
-      resultStatus.textContent =
-        "생성 실패: " +
-        error.message;
-
-    } finally {
-
-      busy = false;
-
-      renderPages();
-      updateCreateButton();
-
-    }
-
-  }
+  testConnection
 );
 
-// ==========================================
-// 13. 시작
-// ==========================================
-
-await checkAdmin();
+initialize();
 
 </script>
 
