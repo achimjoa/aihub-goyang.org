@@ -1255,10 +1255,15 @@ $("pageViewport").addEventListener(
   { passive: false }
 );
 
+// ==========================================
+// 이미지 클릭으로 페이지 이동
+// ==========================================
+
 $("pageImage").addEventListener(
   "click",
   event => {
 
+    // 확대 상태에서는 페이지 이동 금지
     if (zoomLevel > 100) {
       return;
     }
@@ -1271,12 +1276,15 @@ $("pageImage").addEventListener(
 
     const half = rect.width / 2;
 
+    // 이미지 왼쪽 클릭: 이전 페이지
     if (clickX < half) {
-  movePage(-1);
-} else {
-  movePage(1);
-}
-      );
+
+      movePage(-1);
+
+    } else {
+
+      // 이미지 오른쪽 클릭: 다음 페이지
+      movePage(1);
 
     }
 
