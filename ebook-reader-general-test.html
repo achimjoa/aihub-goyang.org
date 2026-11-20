@@ -627,31 +627,15 @@ const params =
 const documentId =
   Number(params.get("document_id"));
 
-const BOOKS = {
+// ==========================================
+// 제192단계
+// 공통 전자책 정보 초기화
+// ==========================================
 
-  9: {
-    title:
-      "글로벌 AI 허브 고양특례시 유치 종합 전략 및 실행 안내서",
-    pages: 232
-  },
+// 전자책 정보는 Supabase에서 조회
+let book = null;
 
-  10: {
-    title:
-      "글로벌 AI 허브 업무 지원 종합계획서",
-    pages: 590
-  }
-
-};
-
-const EBOOK_COVERS = {
-
-  9: "/ebooks/assets/ebook-covers/issue-01.webp",
-
-  10: "/ebooks/assets/ebook-covers/issue-02.webp"
-
-};
-
-let book = BOOKS[documentId];
+// 회원 열람 권한
 let canReadBody = false;
 
 async function loadTotalEbook() {
@@ -1058,8 +1042,39 @@ function preloadEbookPages(page) {
 
 function getEbookCoverUrl() {
 
-  const known = EBOOK_COVERS[documentId];
-  if (known) return known;
+// ==========================================
+// 제192단계
+// 공통 전자책 표지 주소 생성
+// ==========================================
+
+function getEbookCoverUrl() {
+
+  if (!book) {
+    throw new Error(
+      "전자책 정보가 아직 준비되지 않았습니다."
+    );
+  }
+
+  const issueCode = book.issueCode;
+
+  if (
+    typeof issueCode !== "string" ||
+    !/^[A-Za-z0-9_-]+$/.test(issueCode)
+  ) {
+    throw new Error(
+      "전자책 표지 호수를 확인할 수 없습니다."
+    );
+  }
+
+  return (
+    SUPABASE_URL +
+    "/storage/v1/object/public/" +
+    "knowledge-public/ebooks/covers/" +
+    encodeURIComponent(issueCode) +
+    ".webp"
+  );
+
+} 
 
   if (
     typeof book.issueCode !== "string" ||
