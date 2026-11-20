@@ -3363,33 +3363,6 @@ let readerInitialized = false;
 // 목차 초기화
 // ------------------------------------------
 
-function initializeBook10Toc() {
-
-  if (documentId !== 10) return;
-
-  installBook10TocStyle();
-
-  const content = $("tocContent");
-
-  if (!content) {
-    console.error("목차 표시 영역이 없습니다.");
-    return;
-  }
-
-  let container = $("book10-toc");
-
-  if (!container) {
-
-    container = document.createElement("div");
-    container.id = "book10-toc";
-
-    content.appendChild(container);
-
-  }
-
-  renderBook10Toc(container);
-
-}
 
 // ==========================================
 // 제191단계
@@ -3419,59 +3392,7 @@ function resetTocView() {
 
 }
   
-// ------------------------------------------
-// 제1권 목차 생성
-// ------------------------------------------
 
-function initializeBook9Toc() {
-
-  if (documentId !== 9) return;
-
-  const content = $("tocContent");
-
-  if (!content) return;
-
-  content.replaceChildren();
-
-  function addItem(title, page) {
-
-    const button = document.createElement("button");
-
-    button.type = "button";
-    button.className = "toc-item";
-    button.textContent = title;
-
-    button.addEventListener("click", () => {
-
-      const target = Number(page) + TOC_OFFSETS[9];
-
-      goToPage(target);
-
-      closeToc();
-
-    });
-
-    content.appendChild(button);
-
-  }
-
-  TOC_BOOK_9.forEach(section => {
-
-    addItem(section.title, section.page);
-
-    (section.children || []).forEach(child => {
-
-      if (Array.isArray(child)) {
-        addItem("　" + child[0], child[1]);
-      } else {
-        addItem(child.title, child.page);
-      }
-
-    });
-
-  });
-
-}
 
 // ------------------------------------------
 // 목차 열기 및 닫기
@@ -3497,77 +3418,7 @@ resetTocView();
 
 }
 
-function initializeTocControls() {
 
-  const button = $("tocButton");
-  const panel = $("tocPanel");
-
-  if (!button || !panel) return;
-
-   // ==========================================
-  // 제191단계 3차 개선
-  // 목차 닫기 시 전체 접기 및 초기화
-  // ==========================================
-
-  button.addEventListener("click", () => {
-
-    // 목차가 열려 있는 경우
-    if (!panel.hidden) {
-
-      // 기존 목차 닫기 함수 호출
-      // 내부에서 전체 접기 및 초기화 실행
-      closeToc();
-
-      return;
-    }
-
-    // 목차가 닫혀 있는 경우
-    // 초기 상태에서 다시 열기
-    resetTocView();
-
-    panel.hidden = false;
-
-    button.textContent = "✕ 목차 닫기";
-
-    button.setAttribute(
-      "aria-expanded",
-      "true"
-    );
-
-  });
-
-  window.addEventListener(
-    "book10:navigate",
-    event => {
-
-      if (documentId !== 10) return;
-
-      const printedPage = Number(
-        event.detail?.page
-      );
-
-      if (!Number.isInteger(printedPage)) {
-        return;
-      }
-
-      const targetPage =
-        printedPage + TOC_OFFSETS[10];
-
-      if (
-        targetPage >= 0 &&
-        targetPage <= totalPages
-      ) {
-
-        goToPage(targetPage);
-
-        closeToc();
-
-      }
-
-    }
-  );
-
-}
 
 // ------------------------------------------
 // 전자책 초기 실행
