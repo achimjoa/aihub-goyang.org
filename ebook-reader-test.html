@@ -596,71 +596,68 @@ async function checkMember() {
 }
 
 // ==========================================
-// 5. 전자책 이미지 URL
+// 제190단계
+// 전자책 열람기 성능 개선 통합본 v1.0
 // ==========================================
 
-async function requestPage(pageNumber) {
+// ------------------------------------------
+// 1. 설정 및 상태
+// ------------------------------------------
+
+const EBOOK_CACHE_MAX_PAGES = 6;
+const EBOOK_CACHE_MAX_BYTES = 30 * 1024 * 1024;
+
+const ebookCache = new Map();
+const ebookPending = new Map();
+const ebookControllers = new Set();
+
+let ebookCacheBytes = 0;
+let ebookGeneration = 0;
+let ebookNavigationId = 0;
+let ebookRequestedPage = currentPage;
+let ebookPreloadTimer = null;
+let ebookDisplayedUrl = null;
+let ebookAuthUserId = null;
+let ebookAuthListener = null;
+
+// ------------------------------------------
+// 2. 기존 인증 기반 페이지 URL 요청
+// ------------------------------------------
+
+async function requestPage(pageNumber, signal) {
 
   if (!canReadBody) {
     throw new Error("전자책 본문 열람 권한이 없습니다.");
   }
 
-  const {
-    data: sessionData,
-    error: sessionError
-  } = await supabase.auth.getSession();
+  const { data: sessionData, error: sessionError } =
+    await supabase.auth.getSession();
 
-  if (
-    sessionError ||
-    !sessionData.session?.access_token
-  ) {
-
-    throw new Error(
-      "로그인 세션이 없습니다. 다시 로그인해 주세요."
-    );
-
+  if (sessionError || !sessionData.session?.access_token) {
+    throw new Error("로그인 세션이 없습니다.");
   }
 
-  const accessToken =
-    sessionData.session.access_token;
-
   const response = await fetch(
-    SUPABASE_URL +
-    "/functions/v1/knowledge-ebook-page-access",
+    SUPABASE_URL + "/functions/v1/knowledge-ebook-page-access",
     {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
         "apikey": SUPABASE_KEY,
-        "Authorization":
-          "Bearer " + accessToken
+        "Authorization": "Bearer " + sessionData.session.access_token
       },
-
       body: JSON.stringify({
         document_id: documentId,
         page_number: pageNumber
-      })
+      }),
+      signal
     }
   );
 
   const result = await response.json();
 
-  if (!response.ok || result.success !== true) {
-
-    throw new Error(
-      result.error ||
-      "전자책 페이지 접근이 거부되었습니다."
-    );
-
-  }
-
-  if (!result.signed_url) {
-
-    throw new Error(
-      "페이지 열람 주소가 발급되지 않았습니다."
-    );
-
+  if (!response.ok || result.success !== true || !result.signed_url) {
+    throw new Error(result.error || "페이지 접근에 실패했습니다.");
   }
 
   const url = new URL(result.signed_url);
@@ -674,318 +671,480 @@ async function requestPage(pageNumber) {
     bucket === "knowledge-public" ||
     !url.pathname.startsWith("/storage/v1/object/sign/" + bucket + "/")
   ) {
-
-    throw new Error(
-      "허용되지 않은 이미지 주소입니다."
-    );
-
+    throw new Error("허용되지 않은 이미지 주소입니다.");
   }
 
   return {
     url: url.href,
     totalPages: Number(result.total_pages)
   };
-
 }
 
-// ==========================================
-// 6. 표지
-// ==========================================
+// ------------------------------------------
+// 3. 캐시 폐기
+// ------------------------------------------
 
-async function setReaderImage(url, alt) {
-  const preview = new Image();
-  preview.referrerPolicy = "no-referrer";
-  await new Promise((resolve, reject) => {
-    preview.onload = resolve;
-    preview.onerror = () => reject(new Error("이미지를 불러오지 못했습니다."));
-    preview.src = url;
-  });
+function clearEbookCache() {
+
+  ebookGeneration++;
+  ebookNavigationId++;
+
+  clearTimeout(ebookPreloadTimer);
+  ebookPreloadTimer = null;
+
+  for (const controller of ebookControllers) {
+    controller.abort();
+  }
+  ebookControllers.clear();
+
   const image = $("pageImage");
-  image.src = url;
-  image.alt = alt;
-  image.hidden = false;
-}
+  image.hidden = true;
+  image.removeAttribute("src");
 
-async function showCover() {
-  try {
-    let url = EBOOK_COVERS[documentId];
-    if (!url) {
-      if (typeof book.issueCode !== "string" ||
-          !/^[A-Za-z0-9_-]+$/.test(book.issueCode)) {
-        throw new Error("표지 경로에 사용할 호수를 확인할 수 없습니다.");
-      }
-      url = SUPABASE_URL + "/storage/v1/object/public/knowledge-public/ebooks/covers/" +
-        book.issueCode + ".webp";
-    }
-
-    await setReaderImage(url, book.title + " 표지");
-    $("status").hidden = true;
-  } catch (error) {
-    const image = $("pageImage");
-    image.hidden = true;
-    image.removeAttribute("src");
-    showStatus("전자책 표지 표시 실패: " + error.message, true);
+  for (const entry of ebookCache.values()) {
+    URL.revokeObjectURL(entry.url);
   }
 
+  ebookCache.clear();
+  ebookPending.clear();
+
+  ebookCacheBytes = 0;
+  ebookDisplayedUrl = null;
+  ebookRequestedPage = 0;
   currentPage = 0;
-  $("pageInfo").textContent = "표지 / " + totalPages;
-  $("reader").hidden = false;
+
   updatePageControls();
 }
 
-// ==========================================
-// 7. 페이지 표시
-// ==========================================
+// ------------------------------------------
+// 4. 캐시 조회
+// ------------------------------------------
 
-async function showPage(pageNumber) {
-  if (pageNumber === 0) {
-    await showCover();
-    return;
-  }
-  if (pageNumber < 1 || pageNumber > totalPages) return;
+function getCachedEbookPage(page) {
+  const entry = ebookCache.get(page);
+  if (!entry) return null;
 
-  $("prevButton").disabled = true;
-  $("nextButton").disabled = true;
-  showStatus(pageNumber + "쪽을 불러오는 중입니다.");
-
-  try {
-    const result = await requestPage(pageNumber);
-    await setReaderImage(result.url, book.title + " " + pageNumber + "쪽");
-    currentPage = pageNumber;
-    $("pageInfo").textContent = currentPage + " / " + totalPages;
-    $("reader").hidden = false;
-    $("status").hidden = true;
-  } catch (error) {
-    showStatus("페이지 열람 실패: " + error.message, true);
-  } finally {
-    updatePageControls();
-  }
+  ebookCache.delete(page);
+  ebookCache.set(page, entry);
+  return entry;
 }
 
-// ==========================================
-// 8. 페이지 이동
-// ==========================================
+// ------------------------------------------
+// 5. 캐시 용량 관리
+// ------------------------------------------
 
-async function goToPage(number) {
+function trimEbookCache(protectedPage = null) {
 
-  if (pageLoading) {
-    return;
-  }
-
-  const targetPage = Number(number);
-
-  if (!Number.isInteger(targetPage)) {
-
-    alert("올바른 페이지 번호를 입력해 주세요.");
-    return;
-
-  }
-
-  if (
-    targetPage < 0 ||
-    targetPage > totalPages
+  while (
+    ebookCache.size > EBOOK_CACHE_MAX_PAGES ||
+    ebookCacheBytes > EBOOK_CACHE_MAX_BYTES
   ) {
 
-    alert(
-      "표지(0쪽)부터 " +
-      totalPages +
-      "쪽까지 이동할 수 있습니다."
-    );
+    let removed = false;
 
-    return;
+    for (const [page, entry] of ebookCache) {
 
+      if (
+        page === currentPage ||
+        page === ebookRequestedPage ||
+        page === protectedPage ||
+        entry.url === ebookDisplayedUrl
+      ) {
+        continue;
+      }
+
+      ebookCache.delete(page);
+      ebookCacheBytes -= entry.bytes;
+      URL.revokeObjectURL(entry.url);
+
+      removed = true;
+      break;
+    }
+
+    if (!removed) break;
+  }
+}
+
+// ------------------------------------------
+// 6. 페이지 다운로드
+// ------------------------------------------
+
+async function prepareEbookPage(page) {
+
+  const cached = getCachedEbookPage(page);
+  if (cached) return cached;
+
+  if (ebookPending.has(page)) {
+    return ebookPending.get(page);
   }
 
-  if (targetPage === currentPage) {
-    return;
+  const generation = ebookGeneration;
+  const controller = new AbortController();
+  ebookControllers.add(controller);
+
+  const promise = (async () => {
+
+    let objectUrl = null;
+
+    try {
+
+      const result = await requestPage(page, controller.signal);
+
+      if (generation !== ebookGeneration || controller.signal.aborted) {
+        throw new DOMException("요청 취소", "AbortError");
+      }
+
+      const response = await fetch(result.url, {
+        signal: controller.signal,
+        cache: "no-store",
+        referrerPolicy: "no-referrer"
+      });
+
+      if (!response.ok) {
+        throw new Error("이미지 다운로드 실패: " + response.status);
+      }
+
+      const blob = await response.blob();
+
+      if (!blob.type.startsWith("image/")) {
+        throw new Error("올바른 이미지 파일이 아닙니다.");
+      }
+
+      if (generation !== ebookGeneration || controller.signal.aborted) {
+        throw new DOMException("요청 취소", "AbortError");
+      }
+
+      objectUrl = URL.createObjectURL(blob);
+
+      const preview = new Image();
+      preview.src = objectUrl;
+      await preview.decode();
+
+      if (generation !== ebookGeneration || controller.signal.aborted) {
+        throw new DOMException("요청 취소", "AbortError");
+      }
+
+      const entry = {
+        url: objectUrl,
+        bytes: blob.size
+      };
+
+      ebookCache.set(page, entry);
+      ebookCacheBytes += entry.bytes;
+
+      objectUrl = null;
+
+      trimEbookCache(page);
+
+      return entry;
+
+    } finally {
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
+      ebookControllers.delete(controller);
+    }
+
+  })();
+
+  ebookPending.set(page, promise);
+
+  try {
+    return await promise;
+  } finally {
+    if (ebookPending.get(page) === promise) {
+      ebookPending.delete(page);
+    }
+  }
+}
+
+// ------------------------------------------
+// 7. 사전 로딩
+// ------------------------------------------
+
+function preloadEbookPages(page) {
+
+  clearTimeout(ebookPreloadTimer);
+
+  const generation = ebookGeneration;
+
+  ebookPreloadTimer = setTimeout(async () => {
+
+    ebookPreloadTimer = null;
+
+    const targets = [
+      page + 1,
+      page + 2,
+      page - 1
+    ].filter(n => n >= 1 && n <= totalPages);
+
+    for (const target of targets) {
+
+      if (generation !== ebookGeneration) return;
+      if (ebookRequestedPage !== page) return;
+
+      try {
+        await prepareEbookPage(target);
+      } catch (error) {
+        console.debug("사전 로딩 실패:", target, error);
+      }
+    }
+
+    trimEbookCache();
+
+  }, 100);
+}
+
+// ------------------------------------------
+// 8. 표지
+// ------------------------------------------
+
+function getEbookCoverUrl() {
+
+  const known = EBOOK_COVERS[documentId];
+  if (known) return known;
+
+  if (
+    typeof book.issueCode !== "string" ||
+    !/^[A-Za-z0-9_-]+$/.test(book.issueCode)
+  ) {
+    throw new Error("표지 호수를 확인할 수 없습니다.");
   }
 
-  pageLoading = true;
+  return SUPABASE_URL +
+    "/storage/v1/object/public/knowledge-public/ebooks/covers/" +
+    book.issueCode + ".webp";
+}
+
+// ------------------------------------------
+// 9. 페이지 표시
+// ------------------------------------------
+
+async function showPage(page) {
+
+  const navigationId = ++ebookNavigationId;
+  const generation = ebookGeneration;
+
+  ebookRequestedPage = page;
+  updatePageControls();
+
+  showStatus(page === 0 ? "표지를 준비하고 있습니다." :
+    page + "쪽을 준비하고 있습니다.");
 
   try {
 
-    await showPage(targetPage);
+    let url;
 
-  } finally {
+    if (page === 0) {
+      url = getEbookCoverUrl();
 
-    pageLoading = false;
+      const preview = new Image();
+      preview.referrerPolicy = "no-referrer";
+      preview.src = url;
+      await preview.decode();
+
+    } else {
+      const entry = await prepareEbookPage(page);
+      url = entry.url;
+    }
+
+    if (
+      navigationId !== ebookNavigationId ||
+      generation !== ebookGeneration
+    ) return;
+
+    const image = $("pageImage");
+
+    image.src = url;
+    image.alt = book.title +
+      (page === 0 ? " 표지" : " " + page + "쪽");
+    image.hidden = false;
+
+    ebookDisplayedUrl = page === 0 ? null : url;
+    currentPage = page;
+
+    $("pageInfo").textContent =
+      page === 0 ? "표지 / " + totalPages :
+      page + " / " + totalPages;
+
+    $("reader").hidden = false;
+    $("status").hidden = true;
+
+    updatePageControls();
+    trimEbookCache();
+    preloadEbookPages(page);
+
+  } catch (error) {
+
+    if (
+      navigationId !== ebookNavigationId ||
+      generation !== ebookGeneration
+    ) return;
+
+    ebookRequestedPage = currentPage;
     updatePageControls();
 
+    showStatus("페이지 열람 실패: " +
+      (error.message || String(error)), true);
+  }
+}
+
+// ------------------------------------------
+// 10. 페이지 이동
+// ------------------------------------------
+
+function goToPage(number) {
+
+  const target = Number(number);
+
+  if (!Number.isInteger(target)) {
+    alert("올바른 페이지 번호를 입력해 주세요.");
+    return;
   }
 
+  if (target < 0 || target > totalPages) {
+    alert("표지(0쪽)부터 " + totalPages + "쪽까지 이동할 수 있습니다.");
+    return;
+  }
+
+  if (target === ebookRequestedPage && target === currentPage) {
+    return;
+  }
+
+  return showPage(target);
 }
+
+function movePage(delta) {
+  return goToPage(
+    Math.max(0, Math.min(totalPages, ebookRequestedPage + delta))
+  );
+}
+
+// ------------------------------------------
+// 11. 페이지 컨트롤
+// ------------------------------------------
 
 function updatePageControls() {
 
-  $("pageInput").value = currentPage;
-  $("pageSlider").value = currentPage;
+  $("pageInput").value = ebookRequestedPage;
+  $("pageSlider").value = ebookRequestedPage;
   $("pageSlider").max = totalPages;
+  $("sliderMax").textContent = totalPages + "쪽";
 
-  $("sliderMax").textContent =
-    totalPages + "쪽";
-
-  const atStart = currentPage <= 0;
-  const atEnd = currentPage >= totalPages;
+  const atStart = ebookRequestedPage <= 0;
+  const atEnd = ebookRequestedPage >= totalPages;
 
   [
-    "firstButton",
-    "back50Button",
-    "back10Button",
-    "prevButton"
-  ].forEach(id => {
-    $(id).disabled = atStart;
-  });
+    "firstButton", "back50Button",
+    "back10Button", "prevButton"
+  ].forEach(id => $(id).disabled = atStart);
 
   [
-    "nextButton",
-    "forward10Button",
-    "forward50Button",
-    "lastButton"
-  ].forEach(id => {
-    $(id).disabled = atEnd;
-  });
-
+    "nextButton", "forward10Button",
+    "forward50Button", "lastButton"
+  ].forEach(id => $(id).disabled = atEnd);
 }
 
-// ==========================================
-// 9. 페이지 이동 이벤트
-// ==========================================
+// ------------------------------------------
+// 12. 페이지 이동 이벤트
+// ------------------------------------------
 
-$("prevButton").addEventListener(
-  "click",
-  () => goToPage(currentPage - 1)
-);
+$("prevButton").addEventListener("click", () => movePage(-1));
+$("nextButton").addEventListener("click", () => movePage(1));
+$("firstButton").addEventListener("click", () => goToPage(0));
+$("lastButton").addEventListener("click", () => goToPage(totalPages));
 
-$("nextButton").addEventListener(
-  "click",
-  () => goToPage(currentPage + 1)
-);
+$("back10Button").addEventListener("click", () => movePage(-10));
+$("forward10Button").addEventListener("click", () => movePage(10));
+$("back50Button").addEventListener("click", () => movePage(-50));
+$("forward50Button").addEventListener("click", () => movePage(50));
 
-$("firstButton").addEventListener(
-  "click",
-  () => goToPage(0)
-);
+$("jumpButton").addEventListener("click",
+  () => goToPage($("pageInput").value));
 
-$("lastButton").addEventListener(
-  "click",
-  () => goToPage(totalPages)
-);
+$("pageInput").addEventListener("keydown", event => {
+  if (event.key === "Enter") goToPage($("pageInput").value);
+});
 
-$("back10Button").addEventListener(
-  "click",
-  () => goToPage(
-    Math.max(0, currentPage - 10)
-  )
-);
+$("pageSlider").addEventListener("change",
+  event => goToPage(event.target.value));
 
-$("forward10Button").addEventListener(
-  "click",
-  () => goToPage(
-    Math.min(totalPages, currentPage + 10)
-  )
-);
+// ------------------------------------------
+// 13. 키보드 이동
+// ------------------------------------------
 
-$("back50Button").addEventListener(
-  "click",
-  () => goToPage(
-    Math.max(0, currentPage - 50)
-  )
-);
+document.addEventListener("keydown", event => {
 
-$("forward50Button").addEventListener(
-  "click",
-  () => goToPage(
-    Math.min(totalPages, currentPage + 50)
-  )
-);
+  const tag = event.target.tagName;
 
-$("jumpButton").addEventListener(
-  "click",
-  () => goToPage($("pageInput").value)
-);
+  if (
+    tag === "INPUT" ||
+    tag === "TEXTAREA" ||
+    tag === "SELECT" ||
+    event.target.isContentEditable ||
+    event.altKey ||
+    event.ctrlKey ||
+    event.metaKey
+  ) return;
 
-$("pageInput").addEventListener(
-  "keydown",
-  event => {
+  const keys = {
+    ArrowRight: 1,
+    ArrowLeft: -1,
+    PageDown: 10,
+    PageUp: -10
+  };
 
-    if (event.key === "Enter") {
-      goToPage($("pageInput").value);
-    }
-
-  }
-);
-
-$("pageSlider").addEventListener(
-  "change",
-  event => goToPage(event.target.value)
-);
-
-// ==========================================
-// 10. 키보드 페이지 이동
-// ==========================================
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    const tag = event.target.tagName;
-
-    if (
-      tag === "INPUT" ||
-      tag === "TEXTAREA" ||
-      tag === "SELECT" ||
-      event.target.isContentEditable ||
-      event.altKey ||
-      event.ctrlKey ||
-      event.metaKey
-    ) {
-      return;
-    }
-
-    let targetPage = null;
-
-    switch (event.key) {
-
-      case "ArrowRight":
-        targetPage = currentPage + 1;
-        break;
-
-      case "ArrowLeft":
-        targetPage = currentPage - 1;
-        break;
-
-      case "PageDown":
-        targetPage = currentPage + 10;
-        break;
-
-      case "PageUp":
-        targetPage = currentPage - 10;
-        break;
-
-      case "Home":
-        targetPage = 0;
-        break;
-
-      case "End":
-        targetPage = totalPages;
-        break;
-
-      default:
-        return;
-
-    }
-
+  if (event.key === "Home") {
     event.preventDefault();
-
-    goToPage(
-      Math.max(
-        0,
-        Math.min(totalPages, targetPage)
-      )
-    );
-
+    goToPage(0);
+    return;
   }
-);
+
+  if (event.key === "End") {
+    event.preventDefault();
+    goToPage(totalPages);
+    return;
+  }
+
+  if (Object.prototype.hasOwnProperty.call(keys, event.key)) {
+    event.preventDefault();
+    movePage(keys[event.key]);
+  }
+});
+
+// ------------------------------------------
+// 14. 인증 변경 감지
+// ------------------------------------------
+
+function registerEbookAuthListener(userId) {
+
+  ebookAuthUserId = userId;
+
+  if (ebookAuthListener) return;
+
+  const { data } = supabase.auth.onAuthStateChange(
+    (event, session) => {
+
+      const nextUserId = session?.user?.id ?? null;
+
+      if (
+        event === "SIGNED_OUT" ||
+        (ebookAuthUserId !== null && nextUserId !== ebookAuthUserId)
+      ) {
+
+        clearEbookCache();
+        canReadBody = false;
+
+        showStatus(
+          "로그인 상태가 변경되었습니다. 전자책을 다시 열어 주세요.",
+          true
+        );
+      }
+
+      ebookAuthUserId = nextUserId;
+    }
+  );
+
+  ebookAuthListener = data.subscription;
+}
 
 // ==========================================
 // 11. 확대·축소
@@ -1113,18 +1272,10 @@ $("pageImage").addEventListener(
     const half = rect.width / 2;
 
     if (clickX < half) {
-
-      goToPage(
-        Math.max(0, currentPage - 1)
-      );
-
-    } else {
-
-      goToPage(
-        Math.min(
-          totalPages,
-          currentPage + 1
-        )
+  movePage(-1);
+} else {
+  movePage(1);
+}
       );
 
     }
@@ -3036,8 +3187,11 @@ async function initializeReader() {
       throw new Error("올바른 전자책 자료 ID가 필요합니다.");
     }
 
-    await checkMember();
-    canReadBody = true;
+    const user = await checkMember();
+
+canReadBody = true;
+
+registerEbookAuthListener(user.id);
 
     if (!book) book = await loadTotalEbook();
 
@@ -3064,7 +3218,7 @@ async function initializeReader() {
     }
 
     showStatus("전자책을 불러오는 중입니다.");
-    await showCover();
+    await showPage(0);
 
     console.log(
       "전자책 초기화 완료",
