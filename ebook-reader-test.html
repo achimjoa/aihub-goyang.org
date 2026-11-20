@@ -3306,30 +3306,29 @@ function initializeBook10Toc() {
 }
 
 // ==========================================
-// 제191단계 2차 개선
-// 목차 전체 접기 및 초기화
+// 제191단계
+// 목차 전체 접기 및 스크롤 초기화
 // ==========================================
 
 function resetTocView() {
 
-  const panel = $("tocContent");
+  const content = $("tocContent");
+  const panel = $("tocPanel");
 
-  if (!panel) return;
+  if (!content) return;
 
-  // 펼쳐진 모든 그룹 접기
-  panel.querySelectorAll("details[open]")
+  // 1. 펼쳐진 모든 목차 그룹 접기
+  content.querySelectorAll("details[open]")
     .forEach(details => {
       details.open = false;
     });
 
-  // 목차 스크롤 초기화
-  panel.scrollTop = 0;
+  // 2. 목차 내용 스크롤 초기화
+  content.scrollTop = 0;
 
-  // 실제 스크롤 영역이 부모인 경우
-  const scrollParent = panel.closest(".toc-scroll");
-
-  if (scrollParent) {
-    scrollParent.scrollTop = 0;
+  // 3. 실제 목차 패널 스크롤 초기화
+  if (panel) {
+    panel.scrollTop = 0;
   }
 
 }
@@ -3419,19 +3418,34 @@ function initializeTocControls() {
 
   if (!button || !panel) return;
 
+   // ==========================================
+  // 제191단계 3차 개선
+  // 목차 닫기 시 전체 접기 및 초기화
+  // ==========================================
+
   button.addEventListener("click", () => {
 
-    panel.hidden = !panel.hidden;
+    // 목차가 열려 있는 경우
+    if (!panel.hidden) {
 
-    const opened = !panel.hidden;
+      // 기존 목차 닫기 함수 호출
+      // 내부에서 전체 접기 및 초기화 실행
+      closeToc();
 
-    button.textContent = opened
-      ? "✕ 목차 닫기"
-      : "☰ 목차 보기";
+      return;
+    }
+
+    // 목차가 닫혀 있는 경우
+    // 초기 상태에서 다시 열기
+    resetTocView();
+
+    panel.hidden = false;
+
+    button.textContent = "✕ 목차 닫기";
 
     button.setAttribute(
       "aria-expanded",
-      String(opened)
+      "true"
     );
 
   });
