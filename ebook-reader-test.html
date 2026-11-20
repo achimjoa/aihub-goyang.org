@@ -344,6 +344,60 @@ footer {
     font-size: 13px;
   }
 }
+
+/* ==========================================
+   제191단계 목차 조작 편의성 개선
+========================================== */
+
+.toc-fold-page {
+  min-width: 100px;
+  min-height: 44px;
+  padding: 10px 14px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #0754a6;
+  background: #ffffff;
+
+  border: 1px solid #b8cce3;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.toc-fold-page:hover {
+  background: #e8f2ff;
+  border-color: #0754a6;
+}
+
+.toc-fold-toolbar button {
+  min-height: 44px;
+  padding: 10px 16px;
+
+  color: #0754a6 !important;
+  background: #e8f2ff !important;
+
+  border: 1px solid #b8cce3;
+  border-radius: 8px;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toc-fold-toolbar {
+  position: relative;
+  top: auto;
+  z-index: 1;
+
+  background: #f8fbff;
+  border-bottom: 1px solid #dbe5f0;
+}
+
+.toc-fold-children {
+  margin-left: 16px;
+  padding-left: 12px;
+}
   
 </style>
 </head>
@@ -3108,16 +3162,9 @@ function renderBook10Toc(container) {
 
   collapseButton.addEventListener("click", () => {
 
-    tree.querySelectorAll("details").forEach(details => {
-      details.open = false;
-    });
+    resetTocView();
 
-    tree.scrollIntoView({
-      block: "nearest",
-      behavior: "instant"
-    });
-
-  });
+  }); 
 
 }
 
@@ -3258,6 +3305,35 @@ function initializeBook10Toc() {
 
 }
 
+// ==========================================
+// 제191단계 2차 개선
+// 목차 전체 접기 및 초기화
+// ==========================================
+
+function resetTocView() {
+
+  const panel = $("tocContent");
+
+  if (!panel) return;
+
+  // 펼쳐진 모든 그룹 접기
+  panel.querySelectorAll("details[open]")
+    .forEach(details => {
+      details.open = false;
+    });
+
+  // 목차 스크롤 초기화
+  panel.scrollTop = 0;
+
+  // 실제 스크롤 영역이 부모인 경우
+  const scrollParent = panel.closest(".toc-scroll");
+
+  if (scrollParent) {
+    scrollParent.scrollTop = 0;
+  }
+
+}
+  
 // ------------------------------------------
 // 제1권 목차 생성
 // ------------------------------------------
@@ -3318,6 +3394,8 @@ function initializeBook9Toc() {
 
 function closeToc() {
 
+resetTocView();
+  
   const panel = $("tocPanel");
   const button = $("tocButton");
 
