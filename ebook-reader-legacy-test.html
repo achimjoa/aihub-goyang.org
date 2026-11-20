@@ -3614,9 +3614,19 @@ async function initializeReader() {
 
   try {
 
-    if (!Number.isSafeInteger(documentId) || documentId < 1) {
-      throw new Error("올바른 전자책 자료 ID가 필요합니다.");
-    }
+ // ==========================================
+// 제192단계
+// 9번·10번 전용 열람기 접근 제한
+// ==========================================
+
+if (!Number.isSafeInteger(documentId) ||
+    ![9, 10].includes(documentId)) {
+
+  throw new Error(
+    "이 열람기는 9번·10번 전자책 전용입니다."
+  );
+
+}   
 
     const user = await checkMember();
 
