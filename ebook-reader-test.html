@@ -240,6 +240,111 @@ footer {
   width: calc(100% - 12px);
 }
 
+/* ==========================================
+   제191단계 절첩식 목차
+========================================== */
+
+.toc-fold-toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.toc-fold-toolbar button {
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.toc-fold-tree {
+  padding: 12px;
+}
+
+.toc-fold-node {
+  margin: 3px 0;
+}
+
+.toc-fold-details {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.toc-fold-summary,
+.toc-fold-leaf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 6px;
+}
+
+.toc-fold-summary {
+  cursor: pointer;
+}
+
+.toc-fold-summary:hover,
+.toc-fold-leaf:hover {
+  background: #f1f5f9;
+}
+
+.toc-fold-title {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.toc-fold-page {
+  flex-shrink: 0;
+  padding: 5px 9px;
+  border: 1px solid #cbd5e1;
+  border-radius: 5px;
+  background: #fff;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.toc-fold-page:hover {
+  background: #dbeafe;
+}
+
+.toc-fold-children {
+  margin-left: 18px;
+  padding-left: 10px;
+  border-left: 2px solid #e2e8f0;
+}
+
+.toc-fold-details[open] > summary {
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+.toc-fold-summary:focus-visible,
+.toc-fold-page:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .toc-fold-children {
+    margin-left: 9px;
+    padding-left: 7px;
+  }
+
+  .toc-fold-summary,
+  .toc-fold-leaf {
+    padding: 9px 4px;
+    font-size: 13px;
+  }
+}
+  
 </style>
 </head>
 
@@ -2812,54 +2917,209 @@ function escapeBook10Html(value) {
     .replace(/'/g, "&#39;");
 }
 
+// ==========================================
+// 제191단계
+// 10번 전자책 계층형 절첩식 목차
+// ==========================================
+
 function renderBook10Toc(container) {
+
   if (!container) return;
 
-  container.innerHTML = "";
+  container.replaceChildren();
 
-  const fragment = document.createDocumentFragment();
+  // ----------------------------------------
+  // 1. 목차 계층 구조 생성
+  // ----------------------------------------
+
+  const root = [];
+  const stack = [];
 
   BOOK10_TOC_ENTRIES.forEach((entry, index) => {
+
+    const level = Math.max(
+      1,
+      Math.min(6, Number(entry.level) || 1)
+    );
+
+    const node = {
+      ...entry,
+      level,
+      index,
+      children: []
+    };
+
+    while (
+      stack.length &&
+      stack[stack.length - 1].level >= level
+    ) {
+      stack.pop();
+    }
+
+    if (stack.length) {
+      stack[stack.length - 1].children.push(node);
+    } else {
+      root.push(node);
+    }
+
+    stack.push(node);
+
+  });
+
+  // ----------------------------------------
+  // 2. 전체 펼치기 / 접기
+  // ----------------------------------------
+
+  const toolbar = document.createElement("div");
+  toolbar.className = "toc-fold-toolbar";
+
+  const expandButton = document.createElement("button");
+  expandButton.type = "button";
+  expandButton.textContent = "전체 펼치기";
+
+  const collapseButton = document.createElement("button");
+  collapseButton.type = "button";
+  collapseButton.textContent = "전체 접기";
+
+  toolbar.append(expandButton, collapseButton);
+  container.appendChild(toolbar);
+
+  // ----------------------------------------
+  // 3. 목차 항목 생성
+  // ----------------------------------------
+
+  const tree = document.createElement("div");
+  tree.className = "toc-fold-tree";
+
+  function createPageButton(node) {
+
     const button = document.createElement("button");
 
     button.type = "button";
-    button.className =
-      "book10-toc-item book10-toc-level-" + entry.level;
+    button.className = "toc-fold-page";
+    button.textContent = node.pageText + "쪽";
 
-    button.dataset.tocIndex = String(index);
+    button.setAttribute(
+      "aria-label",
+      node.title + " " + node.pageText + "쪽으로 이동"
+    );
 
-    const title = document.createElement("span");
-    title.className = "book10-toc-title";
-    title.textContent = entry.title;
+    button.addEventListener("click", event => {
 
-    const page = document.createElement("span");
-    page.className = "book10-toc-page";
-    page.textContent = entry.pageText;
+      event.stopPropagation();
 
-    button.appendChild(title);
-    button.appendChild(page);
+      const printedPage = Number(node.pageText);
 
-    button.addEventListener("click", () => {
-      const pageNumber = Number(entry.pageText);
-
-      if (Number.isFinite(pageNumber)) {
-        window.dispatchEvent(
-          new CustomEvent("book10:navigate", {
-            detail: {
-              page: pageNumber,
-              title: entry.title
-            }
-          })
+      if (!Number.isInteger(printedPage)) {
+        console.warn(
+          "별도 페이지 변환이 필요한 목차:",
+          node.title,
+          node.pageText
         );
+        return;
       }
+
+      window.dispatchEvent(
+        new CustomEvent("book10:navigate", {
+          detail: {
+            page: printedPage,
+            title: node.title
+          }
+        })
+      );
+
     });
 
-    fragment.appendChild(button);
+    return button;
+  }
+
+  function createNode(node) {
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "toc-fold-node";
+
+    if (node.children.length) {
+
+      const details = document.createElement("details");
+      details.className = "toc-fold-details";
+
+      const summary = document.createElement("summary");
+      summary.className = "toc-fold-summary";
+
+      const title = document.createElement("span");
+      title.className = "toc-fold-title";
+      title.textContent = node.title;
+
+      summary.append(
+        title,
+        createPageButton(node)
+      );
+
+      details.appendChild(summary);
+
+      const children = document.createElement("div");
+      children.className = "toc-fold-children";
+
+      node.children.forEach(child => {
+        children.appendChild(createNode(child));
+      });
+
+      details.appendChild(children);
+      wrapper.appendChild(details);
+
+    } else {
+
+      const row = document.createElement("div");
+      row.className = "toc-fold-leaf";
+
+      const title = document.createElement("span");
+      title.className = "toc-fold-title";
+      title.textContent = node.title;
+
+      row.append(title, createPageButton(node));
+      wrapper.appendChild(row);
+
+    }
+
+    return wrapper;
+  }
+
+  root.forEach(node => {
+    tree.appendChild(createNode(node));
   });
 
-  container.appendChild(fragment);
-}
+  container.appendChild(tree);
 
+  // ----------------------------------------
+  // 4. 전체 펼치기
+  // ----------------------------------------
+
+  expandButton.addEventListener("click", () => {
+
+    tree.querySelectorAll("details").forEach(details => {
+      details.open = true;
+    });
+
+  });
+
+  // ----------------------------------------
+  // 5. 전체 접기
+  // ----------------------------------------
+
+  collapseButton.addEventListener("click", () => {
+
+    tree.querySelectorAll("details").forEach(details => {
+      details.open = false;
+    });
+
+    tree.scrollIntoView({
+      block: "nearest",
+      behavior: "instant"
+    });
+
+  });
+
+}
 
 // ==========================================
 // 17. 목차 검색
