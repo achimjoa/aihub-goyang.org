@@ -2973,9 +2973,31 @@ function escapeBook10Html(value) {
 
 // ==========================================
 // 제191단계
-// 10번 전자책 계층형 절첩식 목차
+// 10번 전자책 원문자 페이지 변환
 // ==========================================
 
+function convertBook10CircledPage(pageText) {
+
+  const circledNumbers =
+    "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭";
+
+  const index =
+    circledNumbers.indexOf(String(pageText).trim());
+
+  if (index === -1) {
+    return null;
+  }
+
+  // ① = 실제 전자책 5쪽
+  return index + 5;
+
+}
+  
+// ==========================================
+// 제191단계
+// 10번 전자책 계층형 절첩식 목차
+// ==========================================
+  
 function renderBook10Toc(container) {
 
   if (!container) return;
@@ -2989,7 +3011,41 @@ function renderBook10Toc(container) {
   const root = [];
   const stack = [];
 
-  BOOK10_TOC_ENTRIES.forEach((entry, index) => {
+// ==========================================
+// 원문자 선행 목차 그룹화
+// ==========================================
+
+const tocEntries = BOOK10_TOC_ENTRIES.map(
+  entry => ({ ...entry })
+);
+
+let insideFrontMatter = false;
+
+tocEntries.forEach(entry => {
+
+  const pageText =
+    String(entry.pageText).trim();
+
+  // 원문자 페이지에 해당하는 항목
+  if (/^[①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭]$/.test(pageText)) {
+
+    insideFrontMatter = true;
+
+    // 선행 목차는 최상위 그룹 아래에 배치
+    entry.level = Math.max(
+      2,
+      Number(entry.level) || 2
+    );
+
+  } else if (insideFrontMatter) {
+
+    insideFrontMatter = false;
+
+  }
+
+});
+  
+  tocEntries.forEach((entry, index) => {
 
     const level = Math.max(
       1,
@@ -3062,25 +3118,40 @@ function renderBook10Toc(container) {
 
       event.stopPropagation();
 
-      const printedPage = Number(node.pageText);
+   const pageText = String(node.pageText).trim();
 
-      if (!Number.isInteger(printedPage)) {
-        console.warn(
-          "별도 페이지 변환이 필요한 목차:",
-          node.title,
-          node.pageText
-        );
-        return;
-      }
+const circledPage =
+  convertBook10CircledPage(pageText);
 
-      window.dispatchEvent(
-        new CustomEvent("book10:navigate", {
-          detail: {
-            page: printedPage,
-            title: node.title
-          }
-        })
-      );
+if (circledPage !== null) {
+
+  // 원문자 페이지는 실제 전자책 번호로 직접 이동
+  void goToPage(circledPage);
+  closeToc();
+  return;
+
+}
+
+const printedPage = Number(pageText);
+
+if (!Number.isInteger(printedPage)) {
+  console.warn(
+    "페이지 번호를 해석할 수 없습니다:",
+    node.title,
+    pageText
+  );
+  return;
+}
+
+// 일반 숫자 페이지는 기존 보정 규칙 유지
+window.dispatchEvent(
+  new CustomEvent("book10:navigate", {
+    detail: {
+      page: printedPage,
+      title: node.title
+    }
+  })
+);   
 
     });
 
