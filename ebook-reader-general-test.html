@@ -1492,21 +1492,22 @@ function resetTocView() {
 
 function closeToc() {
 
-resetTocView();
-  
   const panel = $("tocPanel");
   const button = $("tocButton");
 
-  if (!panel || !button) return;
+  if (panel) {
+    panel.hidden = true;
+  }
 
-  panel.hidden = true;
+  if (button) {
+    button.textContent = "☰ 목차";
+    button.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+  }
 
-  button.textContent = "☰ 목차 보기";
-
-  button.setAttribute(
-    "aria-expanded",
-    "false"
-  );
+  resetTocView();
 
 }
 
@@ -1550,140 +1551,299 @@ function initializeTocControls() {
 
 }
 
-// ------------------------------------------
-// 전자책 초기 실행
-// ------------------------------------------
+// ==========================================
+// 제192단계
+// 범용 계층형 절첩식 목차
+// ==========================================
 
 function initializeTotalToc(contents) {
+
   const panel = $("tocContent");
+
+  if (!panel) return;
+
+  panel.replaceChildren();
+
+  // ----------------------------------------
+  // 1. 목차 데이터 해석
+  // ----------------------------------------
+
   let entries = contents;
+
   if (typeof entries === "string") {
+
     try {
       entries = JSON.parse(entries);
     } catch {
-      entries = contents.split(/\r?\n/).filter(line => line.trim());
+
+      entries = entries
+        .split(/\r?\n/)
+        .filter(line => line.trim());
+
     }
-    if (typeof entries === "string") entries = entries.split(/\r?\n/);
+
   }
+
+  if (!Array.isArray(entries)) {
+
+    panel.textContent =
+      "표시할 목차 항목이 없습니다.";
+
+    return;
+
+  }
+
+  // ----------------------------------------
+  // 2. 목차 도구 모음
+  // ----------------------------------------
+
+  const toolbar =
+    document.createElement("div");
+
+  toolbar.className =
+    "toc-fold-toolbar";
+
+  const expandButton =
+    document.createElement("button");
+
+  expandButton.type = "button";
+  expandButton.textContent =
+    "전체 펼치기";
+
+  const collapseButton =
+    document.createElement("button");
+
+  collapseButton.type = "button";
+  collapseButton.textContent =
+    "전체 접기";
+
+  toolbar.append(
+    expandButton,
+    collapseButton
+  );
+
+  panel.appendChild(toolbar);
+
+  // ----------------------------------------
+  // 3. 목차 트리
+  // ----------------------------------------
+
+  const tree =
+    document.createElement("div");
+
+  tree.className =
+    "toc-fold-tree";
+
+  panel.appendChild(tree);
 
   let count = 0;
-  function appendEntries(items, depth = 0) {
-    for (const entry of Array.isArray(items) ? items : [items]) {
-      if (typeof entry === "string") {
-        const match = entry.trim().match(/^(.+?)\s+(\d+)\s*(?:쪽)?$/);
-        if (match) appendEntries({ title: match[1], page: match[2] }, depth);
+
+  // ----------------------------------------
+  // 4. 페이지 이동 버튼
+  // ----------------------------------------
+
+  function createPageButton(page) {
+
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+
+    button.className =
+      "toc-fold-page";
+
+    button.textContent =
+      page + "쪽";
+
+    button.addEventListener(
+      "click",
+      event => {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        void goToPage(page);
+
+        closeToc();
+
+      }
+    );
+
+    return button;
+
+  }
+
+  // ----------------------------------------
+  // 5. 계층형 목차 생성
+  // ----------------------------------------
+
+  function appendEntries(items, parent) {
+
+    for (const entry of items) {
+
+      if (
+        !entry ||
+        typeof entry !== "object"
+      ) {
         continue;
       }
-      if (!entry || typeof entry !== "object") continue;
 
-      const title = entry.title ?? entry.label ?? entry.text;
-      const page = Number(entry.page ?? entry.page_number);
-      if (typeof title === "string" && title.trim() &&
-          Number.isInteger(page) && page >= 1 && page <= totalPages) {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "toc-item";
-        button.style.paddingInlineStart = 12 + Math.min(depth, 4) * 12 + "px";
-        button.textContent = title + " · " + page + "쪽";
-        button.addEventListener("click", () => {
-          void goToPage(page);
-          closeToc();
-        });
-        panel.appendChild(button);
-        count++;
+      const title =
+        entry.title ??
+        entry.label ??
+        entry.text;
+
+      const page = Number(
+        entry.page ??
+        entry.page_number
+      );
+
+      if (
+        typeof title !== "string" ||
+        !title.trim() ||
+        !Number.isInteger(page) ||
+        page < 1 ||
+        page > totalPages
+      ) {
+        continue;
       }
-      const children = entry.children ?? entry.items ?? entry.entries ?? entry.sections ?? entry.toc;
-      if (Array.isArray(children)) appendEntries(children, depth + 1);
+
+      const children =
+        entry.children ??
+        entry.items ??
+        entry.entries ??
+        entry.sections ??
+        entry.toc ??
+        [];
+
+      const hasChildren =
+        Array.isArray(children) &&
+        children.length > 0;
+
+      count++;
+
+      // 하위 목차가 있는 경우
+      if (hasChildren) {
+
+        const details =
+          document.createElement("details");
+
+        details.className =
+          "toc-fold-details";
+
+        const summary =
+          document.createElement("summary");
+
+        summary.className =
+          "toc-fold-summary";
+
+        const titleSpan =
+          document.createElement("span");
+
+        titleSpan.className =
+          "toc-fold-title";
+
+        titleSpan.textContent =
+          title;
+
+        summary.append(
+          titleSpan,
+          createPageButton(page)
+        );
+
+        details.appendChild(summary);
+
+        const childBox =
+          document.createElement("div");
+
+        childBox.className =
+          "toc-fold-children";
+
+        appendEntries(
+          children,
+          childBox
+        );
+
+        details.appendChild(childBox);
+
+        parent.appendChild(details);
+
+      } else {
+
+        const row =
+          document.createElement("div");
+
+        row.className =
+          "toc-fold-leaf";
+
+        const titleSpan =
+          document.createElement("span");
+
+        titleSpan.className =
+          "toc-fold-title";
+
+        titleSpan.textContent =
+          title;
+
+        row.append(
+          titleSpan,
+          createPageButton(page)
+        );
+
+        parent.appendChild(row);
+
+      }
+
     }
+
   }
 
-  panel.replaceChildren();
-  appendEntries(entries);
-  if (!count) panel.textContent = "표시할 목차 항목을 확인할 수 없습니다.";
-}
+  appendEntries(entries, tree);
 
-async function initializeReader() {
+  // ----------------------------------------
+  // 6. 전체 펼치기
+  // ----------------------------------------
 
-  if (readerInitialized) return;
+  expandButton.addEventListener(
+    "click",
+    () => {
 
-  readerInitialized = true;
+      tree.querySelectorAll("details")
+        .forEach(details => {
+          details.open = true;
+        });
 
-  try {
-
-// ==========================================
-// 제192단계
-// 신규 전자책 공통 열람기
-// ==========================================
-
-if (!Number.isSafeInteger(documentId) ||
-    documentId < 1) {
-
-  throw new Error(
-    "올바른 전자책 자료 ID가 필요합니다."
+    }
   );
 
-}
+  // ----------------------------------------
+  // 7. 전체 접기
+  // ----------------------------------------
 
-if ([9, 10].includes(documentId)) {
+  collapseButton.addEventListener(
+    "click",
+    () => {
 
-  throw new Error(
-    "9번·10번 전자책은 전용 열람기를 이용해 주세요."
+      resetTocView();
+
+    }
   );
 
-}
-    
-    const user = await checkMember();
+  // ----------------------------------------
+  // 8. 목차 데이터가 없는 경우
+  // ----------------------------------------
 
-canReadBody = true;
+  if (!count) {
 
-registerEbookAuthListener(user.id);
+    panel.replaceChildren();
 
-    if (!book) book = await loadTotalEbook();
-
-    $("bookTitle").textContent = book.title;
-
-    totalPages = book.pages;
-
-    updatePageControls();
-
-    initializeTocControls();
-
- // ==========================================
-// 제192단계
-// 신규 전자책 공통 목차 초기화
-// ==========================================
-
-initializeTotalToc(book.contents);   
-
-    showStatus("전자책을 불러오는 중입니다.");
-    await showPage(0);
-
-    console.log(
-      "전자책 초기화 완료",
-      {
-        documentId,
-        totalPages
-      }
-    );
-
-  } catch (error) {
-
-    canReadBody = false;
-    console.error(
-      "전자책 초기화 실패:",
-      error
-    );
-
-    showStatus(
-      "전자책 실행 실패: " +
-      (error?.message || String(error)),
-      true
-    );
+    panel.textContent =
+      "표시할 목차 항목이 없습니다.";
 
   }
 
 }
-
+  
 // ------------------------------------------
 // 실행
 // ------------------------------------------
