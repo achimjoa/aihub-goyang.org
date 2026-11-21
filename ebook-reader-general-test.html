@@ -1843,6 +1843,94 @@ function initializeTotalToc(contents) {
   }
 
 }
+
+// ==========================================
+// 제192단계
+// 공통 전자책 열람기 초기화
+// ==========================================
+
+async function initializeReader() {
+
+  if (readerInitialized) return;
+
+  readerInitialized = true;
+
+  try {
+
+    // 1. 자료 ID 검증
+    if (
+      !Number.isSafeInteger(documentId) ||
+      documentId < 1
+    ) {
+      throw new Error(
+        "올바른 전자책 자료 ID가 필요합니다."
+      );
+    }
+
+    // 2. 9번·10번은 전용 열람기 사용
+    if ([9, 10].includes(documentId)) {
+      throw new Error(
+        "9번·10번 전자책은 전용 열람기를 이용해 주세요."
+      );
+    }
+
+    // 3. 회원 인증
+    const user = await checkMember();
+
+    canReadBody = true;
+
+    registerEbookAuthListener(user.id);
+
+    // 4. 전자책 정보 조회
+    if (!book) {
+      book = await loadTotalEbook();
+    }
+
+    // 5. 전자책 기본 정보
+    $("bookTitle").textContent = book.title;
+
+    totalPages = book.pages;
+
+    updatePageControls();
+
+    // 6. 공통 목차 초기화
+    initializeTocControls();
+
+    initializeTotalToc(book.contents);
+
+    // 7. 표지 표시
+    showStatus(
+      "전자책을 불러오는 중입니다."
+    );
+
+    await showPage(0);
+
+    console.log(
+      "공통 전자책 열람기 초기화 완료",
+      {
+        documentId,
+        totalPages
+      }
+    );
+
+  } catch (error) {
+
+    canReadBody = false;
+
+    console.error(
+      "전자책 초기화 실패:",
+      error
+    );
+
+    showStatus(
+      "전자책 실행 실패: " +
+      (error?.message || String(error)),
+      true
+    );
+
+  }
+
+}
   
 // ------------------------------------------
 // 실행
