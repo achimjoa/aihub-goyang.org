@@ -211,11 +211,18 @@ footer {
 <p><strong>게시 상태:</strong> 비공개</p>
 
 <div class="warning">
-현재는 안전성 검증 모드입니다.
+⚠️ 실제 이미지 교체 시험
 
-실제 이미지 교체 요청은 전송되지 않습니다.
+시험 대상: 전자책 ID 12
 
-최고관리자 권한과 이미지 비교 기능을 먼저 확인합니다.
+교체 페이지: 본문 2쪽
+
+기존 이미지의 별도 백업을 확보한 후
+최고관리자 확인을 거쳐 실행합니다.
+
+이 작업은 실제 Supabase Storage 파일을 변경합니다.
+
+9번·10번 전자책은 변경하지 않습니다.
 </div>
 </section>
 
@@ -228,9 +235,9 @@ footer {
 </label>
 
 <select id="pageSelect">
-<option value="1">본문 1쪽</option>
-<option value="2">본문 2쪽</option>
-<option value="3">본문 3쪽</option>
+<option value="2" selected>
+본문 2쪽 (실제 교체 시험 대상)
+</option>
 </select>
 
 <div class="controls">
@@ -503,7 +510,7 @@ const MAX_FILE_SIZE =
 // 안전성 검증 모드
 // 현재는 실제 교체 요청을 전송하지 않음
 
-const ENABLE_ACTUAL_REPLACEMENT = false;
+const ENABLE_ACTUAL_REPLACEMENT = true;
 
 const $ = id =>
   document.getElementById(id);
