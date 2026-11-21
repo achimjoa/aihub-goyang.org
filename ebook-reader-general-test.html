@@ -565,7 +565,7 @@ Ctrl + 마우스 휠: 확대·축소
   id="pageSlider"
   type="range"
   min="0"
-  max="232"
+  max="1"
   value="1"
   aria-label="전자책 페이지 이동"
   style="width:100%;"
@@ -580,7 +580,7 @@ Ctrl + 마우스 휠: 확대·축소
 >
 
 <span>표지</span>
-<span id="sliderMax">232쪽</span>
+<span id="sliderMax">0쪽</span>
 
 </div>
 
@@ -1510,7 +1510,45 @@ resetTocView();
 
 }
 
+// ==========================================
+// 제192단계
+// 공통 전자책 목차 열기·닫기
+// ==========================================
 
+function initializeTocControls() {
+
+  const button = $("tocButton");
+  const panel = $("tocPanel");
+
+  if (!button || !panel) return;
+
+  button.setAttribute(
+    "aria-expanded",
+    "false"
+  );
+
+  button.addEventListener("click", () => {
+
+    if (panel.hidden) {
+
+      panel.hidden = false;
+
+      button.textContent = "✕ 목차 닫기";
+
+      button.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+    } else {
+
+      closeToc();
+
+    }
+
+  });
+
+}
 
 // ------------------------------------------
 // 전자책 초기 실행
