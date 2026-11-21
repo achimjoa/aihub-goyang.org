@@ -199,7 +199,8 @@ Supabase Edge Function을 통해
 <th>구분</th>
 <th>페이지</th>
 <th>게시 상태</th>
-<th>관리 구분</th>  
+<th>관리 구분</th> 
+<th>휴지통 관리</th>  
 </tr>
 </thead>
 
@@ -211,6 +212,61 @@ Supabase Edge Function을 통해
 
 </section>
 
+<!-- ======================================
+제194-10-6단계
+전자책 휴지통 관리
+====================================== -->
+
+<section id="trashSection" hidden>
+
+<h2>3. 전자책 휴지통 관리</h2>
+
+<p>
+최고관리자 전용 기능입니다.
+휴지통으로 이동한 전자책은
+복원할 수 있습니다.
+</p>
+
+<button
+  id="trashRefreshButton"
+  type="button"
+>
+휴지통 목록 새로고침
+</button>
+
+<div
+  id="trashMessage"
+  class="message"
+  role="status"
+  aria-live="polite"
+  style="margin-top:20px;"
+>
+휴지통 조회 준비 완료
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>전자책 제목</th>
+<th>구분</th>
+<th>삭제 일시</th>
+<th>삭제 사유</th>
+<th>복원</th>
+</tr>
+</thead>
+
+<tbody id="trashList"></tbody>
+
+</table>
+
+</div>
+
+</section>
+  
 <section>
 
 <h2>3. 시험 안내</h2>
@@ -221,8 +277,9 @@ Supabase Edge Function을 통해
 </p>
 
 <p>
-전자책 등록, 수정, 삭제,
-게시 상태 변경은 수행하지 않습니다.
+이 페이지는 전자책 목록 조회와 
+  최고관리자의 휴지통 이동·목록·복원 기능을 시험합니다. 
+  전자책 파일의 영구 삭제는 수행하지 않습니다.
 </p>
 
 <p>
@@ -431,6 +488,422 @@ async function requestEbookList() {
 }
 
 // ==========================================
+// 제194-10-6단계
+// 전자책 휴지통 관리 공통 요청
+// ==========================================
+
+let isSuperAdmin = false;
+let trashLoading = false;
+let trashOperationInProgress = false;
+
+async function requestEbookAdmin(
+  action,
+  parameters = {}
+) {
+
+  const {
+    data: sessionData,
+    error: sessionError
+  } = await supabase.auth.getSession();
+
+  if (
+    sessionError ||
+    !sessionData.session?.access_token
+  ) {
+    throw new Error(
+      "로그인 세션이 없습니다."
+    );
+  }
+
+  const response = await fetch(
+    SUPABASE_URL +
+    "/functions/v1/knowledge-ebook-admin",
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization":
+          "Bearer " +
+          sessionData.session.access_token
+      },
+
+      body: JSON.stringify({
+        action,
+        ...parameters
+      })
+    }
+  );
+
+  let result;
+
+  try {
+    result = await response.json();
+  } catch {
+    throw new Error(
+      "서버 응답을 읽을 수 없습니다."
+    );
+  }
+
+  if (
+    !response.ok ||
+    result.success !== true
+  ) {
+
+    const error = new Error(
+      result.error ||
+      "요청 처리에 실패했습니다."
+    );
+
+    error.status = response.status;
+
+    throw error;
+  }
+
+  return result;
+
+}
+
+// ==========================================
+// 최고관리자 휴지통 권한 확인
+// ==========================================
+
+async function verifyTrashPermission() {
+
+  isSuperAdmin = false;
+
+  $("trashSection").hidden = true;
+
+  try {
+
+    const result =
+      await requestEbookAdmin(
+        "trash_list"
+      );
+
+    if (!Array.isArray(result.ebooks)) {
+      throw new Error(
+        "휴지통 응답 형식이 올바르지 않습니다."
+      );
+    }
+
+    isSuperAdmin = true;
+
+    $("trashSection").hidden = false;
+
+    renderTrash(result.ebooks);
+
+    showMessage(
+      "trashMessage",
+      "휴지통 " +
+      result.ebooks.length +
+      "권을 조회했습니다."
+    );
+
+  } catch (error) {
+
+    if (error.status === 403) {
+      return;
+    }
+
+    showMessage(
+      "listMessage",
+      "휴지통 관리 권한 확인 실패: " +
+      error.message,
+      true
+    );
+
+  }
+
+}
+
+// ==========================================
+// 전자책 휴지통 이동
+// ==========================================
+
+async function moveToTrash(documentId) {
+
+  if (
+    !isSuperAdmin ||
+    trashOperationInProgress
+  ) {
+    return;
+  }
+
+  if (
+    !Number.isSafeInteger(documentId) ||
+    documentId <= 0
+  ) {
+    return;
+  }
+
+  if (
+    PROTECTED_EBOOK_IDS.has(documentId)
+  ) {
+    alert(
+      "보존 대상 전자책은 시험 화면에서 삭제할 수 없습니다."
+    );
+    return;
+  }
+
+  const confirmed = confirm(
+    "전자책 ID " +
+    documentId +
+    "을(를) 휴지통으로 이동하시겠습니까?\n\n" +
+    "휴지통에서 복원할 수 있습니다."
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  const reason = prompt(
+    "휴지통 이동 사유를 입력하십시오.",
+    "관리자 휴지통 이동"
+  );
+
+  if (reason === null) {
+    return;
+  }
+
+  trashOperationInProgress = true;
+
+  try {
+
+    const result =
+      await requestEbookAdmin(
+        "trash",
+        {
+          document_id: documentId,
+          reason
+        }
+      );
+
+    alert(result.message);
+
+    await loadEbooks();
+
+    await loadTrash();
+
+  } catch (error) {
+
+    alert(
+      "휴지통 이동 실패: " +
+      error.message
+    );
+
+  } finally {
+
+    trashOperationInProgress = false;
+
+  }
+
+}
+
+
+// ==========================================
+// 전자책 복원
+// ==========================================
+
+async function restoreEbook(documentId) {
+
+  if (
+    !isSuperAdmin ||
+    trashOperationInProgress
+  ) {
+    return;
+  }
+
+  if (
+    !Number.isSafeInteger(documentId) ||
+    documentId <= 0
+  ) {
+    return;
+  }
+
+  const confirmed = confirm(
+    "전자책 ID " +
+    documentId +
+    "을(를) 휴지통에서 복원하시겠습니까?"
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  trashOperationInProgress = true;
+
+  try {
+
+    const result =
+      await requestEbookAdmin(
+        "restore",
+        {
+          document_id: documentId
+        }
+      );
+
+    alert(result.message);
+
+    await loadEbooks();
+
+    await loadTrash();
+
+  } catch (error) {
+
+    alert(
+      "전자책 복원 실패: " +
+      error.message
+    );
+
+  } finally {
+
+    trashOperationInProgress = false;
+
+  }
+
+}
+
+// ==========================================
+// 휴지통 목록 표시
+// ==========================================
+
+function renderTrash(ebooks) {
+
+  const tbody = $("trashList");
+
+  tbody.replaceChildren();
+
+  if (!ebooks.length) {
+
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+
+    td.colSpan = 6;
+    td.textContent =
+      "휴지통에 전자책이 없습니다.";
+
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
+    return;
+  }
+
+  ebooks.forEach(book => {
+
+    const tr = document.createElement("tr");
+
+    const values = [
+      book.id,
+      book.title || "-",
+      book.ebook_edition || "-",
+      book.deleted_at
+        ? new Date(book.deleted_at)
+            .toLocaleString("ko-KR")
+        : "-",
+      book.deletion_reason || "-"
+    ];
+
+    values.forEach(value => {
+
+      const td =
+        document.createElement("td");
+
+      td.textContent = String(value);
+
+      tr.appendChild(td);
+
+    });
+
+    const actionTd =
+      document.createElement("td");
+
+    const button =
+      document.createElement("button");
+
+    button.type = "button";
+    button.textContent = "복원";
+
+    button.addEventListener(
+      "click",
+      () => restoreEbook(Number(book.id))
+    );
+
+    actionTd.appendChild(button);
+    tr.appendChild(actionTd);
+
+    tbody.appendChild(tr);
+
+  });
+
+}
+
+
+// ==========================================
+// 휴지통 목록 조회
+// ==========================================
+
+async function loadTrash() {
+
+  if (
+    !isSuperAdmin ||
+    trashLoading
+  ) {
+    return;
+  }
+
+  trashLoading = true;
+
+  $("trashRefreshButton").disabled = true;
+
+  try {
+
+    const result =
+      await requestEbookAdmin(
+        "trash_list"
+      );
+
+    if (!Array.isArray(result.ebooks)) {
+      throw new Error(
+        "휴지통 응답 형식이 올바르지 않습니다."
+      );
+    }
+
+    renderTrash(result.ebooks);
+
+    showMessage(
+      "trashMessage",
+      "휴지통 " +
+      result.ebooks.length +
+      "권을 조회했습니다."
+    );
+
+  } catch (error) {
+
+    showMessage(
+      "trashMessage",
+      "휴지통 조회 실패: " +
+      error.message,
+      true
+    );
+
+  } finally {
+
+    trashLoading = false;
+
+    $("trashRefreshButton").disabled = false;
+
+  }
+
+}
+
+$("trashRefreshButton").addEventListener(
+  "click",
+  loadTrash
+);
+  
+// ==========================================
 // 5. 전자책 목록 조회
 // ==========================================
 
@@ -463,7 +936,9 @@ async function loadEbooks() {
       "전자책 관리 권한 인증이 완료되었습니다."
     );
 
-    renderEbooks(ebooks);
+    await verifyTrashPermission();
+
+renderEbooks(ebooks);
 
     showMessage(
       "listMessage",
@@ -543,7 +1018,13 @@ function getEbookManagementStatus(book) {
 }
   
 // ==========================================
-// 6. 목록 표시
+// 제194-10-6-7단계
+// 전자책 목록 표시
+//
+// 기존 기능 유지
+// document 변수 충돌 해결
+// 최고관리자 휴지통 이동 버튼 추가
+// 보존 대상 전자책 보호
 // ==========================================
 
 function renderEbooks(ebooks) {
@@ -552,13 +1033,20 @@ function renderEbooks(ebooks) {
 
   tbody.replaceChildren();
 
+  // ========================================
+  // 1. 전자책이 없는 경우
+  // ========================================
+
   if (!ebooks.length) {
 
-    const tr = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
 
-    const td = document.createElement("td");
+    const td =
+      document.createElement("td");
 
-    td.colSpan = 7;
+    // 기존 7열 + 휴지통 관리 1열
+    td.colSpan = 8;
 
     td.textContent =
       "등록된 전자책이 없습니다.";
@@ -570,27 +1058,53 @@ function renderEbooks(ebooks) {
     return;
   }
 
+  // ========================================
+  // 2. 전자책 목록 생성
+  // ========================================
+
   ebooks.forEach(book => {
 
-    const tr = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
 
-    const document = book.knowledge_documents || book;
+    // document 변수 충돌 방지
+    const ebookDocument =
+      book.knowledge_documents || book;
 
-const id = book.document_id ?? document.id;
+    const id = Number(
+      book.document_id ??
+      ebookDocument.id
+    );
 
-const values = [
-  id,
-  document.title || "-",
-  book.issue_code || "-",
-  document.ebook_edition || "-",
-  book.total_pages ?? "-",
-  document.is_published
-    ? "게시"
-    : "비공개",
-  getEbookManagementStatus({
-    id
-  })
-];
+    // ======================================
+    // 3. 기존 목록 정보
+    // ======================================
+
+    const values = [
+
+      id,
+
+      ebookDocument.title || "-",
+
+      book.issue_code || "-",
+
+      ebookDocument.ebook_edition || "-",
+
+      book.total_pages ?? "-",
+
+      ebookDocument.is_published
+        ? "게시"
+        : "비공개",
+
+      getEbookManagementStatus({
+        id
+      })
+
+    ];
+
+    // ======================================
+    // 4. 기존 목록 열 생성
+    // ======================================
 
     values.forEach(value => {
 
@@ -603,6 +1117,58 @@ const values = [
       tr.appendChild(td);
 
     });
+
+    // ======================================
+    // 5. 휴지통 관리 열
+    // ======================================
+
+    const actionTd =
+      document.createElement("td");
+
+    // 최고관리자이며
+    // 보존 대상이 아닌 전자책만
+    // 휴지통 이동 버튼 표시
+
+    if (
+      isSuperAdmin &&
+      Number.isSafeInteger(id) &&
+      id > 0 &&
+      !PROTECTED_EBOOK_IDS.has(id)
+    ) {
+
+      const button =
+        document.createElement("button");
+
+      button.type = "button";
+
+      button.textContent =
+        "휴지통 이동";
+
+      button.addEventListener(
+        "click",
+        () => moveToTrash(id)
+      );
+
+      actionTd.appendChild(button);
+
+    } else if (
+      PROTECTED_EBOOK_IDS.has(id)
+    ) {
+
+      actionTd.textContent =
+        "보존 대상";
+
+    } else {
+
+      actionTd.textContent = "-";
+
+    }
+
+    tr.appendChild(actionTd);
+
+    // ======================================
+    // 6. 목록에 추가
+    // ======================================
 
     tbody.appendChild(tr);
 
