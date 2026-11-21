@@ -574,16 +574,22 @@ function renderEbooks(ebooks) {
 
     const tr = document.createElement("tr");
 
-    const values = [
-  book.id,
-  book.title,
+    const document = book.knowledge_documents || book;
+
+const id = book.document_id ?? document.id;
+
+const values = [
+  id,
+  document.title || "-",
   book.issue_code || "-",
-  book.ebook_edition || "-",
+  document.ebook_edition || "-",
   book.total_pages ?? "-",
-  book.is_published
+  document.is_published
     ? "게시"
     : "비공개",
-  getEbookManagementStatus(book)
+  getEbookManagementStatus({
+    id
+  })
 ];
 
     values.forEach(value => {
