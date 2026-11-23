@@ -680,80 +680,7 @@ select:hover {
 기존 catalog.js 통합
 ========================================== -->
 
-<script>
-
-window.EBOOK_CATALOG = [
-
-  {
-    id: "issue-01",
-    number: 1,
-
-    title:
-      "글로벌 AI 허브 고양특례시 유치 종합 전략 및 실행 안내서",
-
-    date: "2026.10.18",
-    pages: 28,
-
-    contents: [
-
-      [1, "앞표지", 1],
-      [1, "속표지", 2],
-      [1, "머리말", 3],
-      [1, "목차", 5],
-
-      [1, "제1부. 종합 전략의 기본체계", 7],
-
-      [2, "제1장. 전략의 목적과 기본 원칙", 7],
-
-      [2, "제2장. 8개 전략문건의 통합체계", 9],
-
-      [2, "제3장. 태그전 필승전략의 실행구조", 10],
-
-      [2, "제4장. 정부 추진 현황과 사실관계 관리", 12],
-
-      [1, "제2부. 공모심사 고득점 전략", 13],
-
-      [2, "제5장. 입지 선정 평가체계", 13],
-
-      [2, "제6장. 평가기준 개선 건의와 대응", 16],
-
-      [2, "제7장. 평가항목별 득점전략", 19],
-
-      [2, "제8장. 경쟁도시별 점수 차이 분석", 23],
-
-      [2, "제9장. 고득점 확보를 위한 우선순위 결정", 25],
-
-      [1, "뒤표지", 28]
-
-    ]
-
-  },
-
-  {
-    id: "issue-02",
-    number: 2,
-
-    title:
-      "글로벌 AI 허브 업무 지원 종합계획서",
-
-    date: "2026.10.29",
-    pages: 32,
-
-    contents: [
-
-      [1, "앞표지", 1],
-      [1, "속표지", 2],
-      [1, "머리말", 4],
-      [1, "목차", 6],
-      [1, "뒤표지", 32]
-
-    ]
-
-  }
-
-];
-
-</script>
+<script src="intro-catalog.js"></script>
 
 <!-- ==========================================
 전자책 열람 기능
@@ -767,26 +694,8 @@ window.EBOOK_CATALOG = [
 const byId = id =>
   document.getElementById(id);
 
-const pageUrl = (book, number) =>
-  './assets/' +
-  book.id +
-  '/' +
-  String(number).padStart(2, '0') +
-  '.webp';
-
-const catalog =
-  window.EBOOK_CATALOG;
-
-const query =
-  new URLSearchParams(
-    location.search
-  );
-
-const book =
-  catalog.find(
-    ({ id }) =>
-      id === query.get('book')
-  );
+const pageUrl = IntroCatalog.image;
+let catalog = IntroCatalog.builtIn;
 
 // ==========================================
 // 전자책 목록
@@ -893,7 +802,7 @@ function renderReader(item) {
 
   let page = 0;
   let zoom = 100;
-  let touchStart;
+  let gesture;
   let animation;
 
   byId('shelf').hidden = true;
@@ -1040,16 +949,14 @@ function renderReader(item) {
         [
           {
             transform:
-              'rotateY(' +
-              (-24 * direction) +
-              'deg)',
+              'translateX(' + (24 * direction) + 'px)',
 
             opacity: 0.6
           },
 
           {
             transform:
-              'rotateY(0deg)',
+              'translateX(0)',
 
             opacity: 1
           }
@@ -1293,7 +1200,7 @@ function renderReader(item) {
         event.ctrlKey ||
         event.metaKey ||
         event.target.closest?.(
-          'input, select, textarea'
+          'input, select, textarea, [contenteditable]'
         )
       ) {
         return;
@@ -1320,92 +1227,42 @@ function renderReader(item) {
     }
   );
 
-  // ======================================
-  // 모바일 터치 이동
-  // ======================================
+  stage.addEventListener("pointerdown", event => {
+    if (!event.isPrimary || event.button !== 0 || zoom > 100) return;
+    if (event.target.closest("button, a, input, select")) return;
+    gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    stage.setPointerCapture(event.pointerId);
+  });
 
-  stage.addEventListener(
-    'touchstart',
-    event => {
-
-      touchStart =
-        zoom <= 100 &&
-        event.touches.length === 1
-          ? event.touches[0]
-          : null;
-
-    },
-    {
-      passive: true
+  stage.addEventListener("pointerup", event => {
+    if (!gesture || gesture.id !== event.pointerId) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    gesture = null;
+    if (zoom <= 100 && Math.abs(dx) >= 48 && Math.abs(dx) > 1.5 * Math.abs(dy)) {
+      show(page + (dx < 0 ? 1 : -1));
     }
-  );
+  });
 
-  stage.addEventListener(
-    'touchcancel',
-    () => {
+  for (const name of ["pointercancel", "lostpointercapture"]) {
+    stage.addEventListener(name, event => {
+      if (gesture?.id === event.pointerId) gesture = null;
+    });
+  }
 
-      touchStart = null;
-
-    },
-    {
-      passive: true
-    }
-  );
-
-  stage.addEventListener(
-    'touchend',
-    event => {
-
-      if (
-        !touchStart ||
-        event.touches.length
-      ) {
-        return;
-      }
-
-      const end =
-        event.changedTouches[0];
-
-      const dx =
-        end.clientX -
-        touchStart.clientX;
-
-      const dy =
-        end.clientY -
-        touchStart.clientY;
-
-      touchStart = null;
-
-      if (
-        Math.abs(dx) > 48 &&
-        Math.abs(dx) >
-        1.5 * Math.abs(dy)
-      ) {
-
-        show(
-          page +
-          (
-            dx < 0
-              ? 1
-              : -1
-          )
-        );
-
-      }
-
-    },
-    {
-      passive: true
-    }
-  );
+  image.addEventListener("error", () => {
+    byId("status").textContent = page + "쪽 이미지를 불러오지 못했습니다. 다른 쪽으로 이동하거나 새로고침해 주세요.";
+  });
 
   // ======================================
   // 초기화
   // ======================================
 
-  new ResizeObserver(
-    resize
-  ).observe(stage);
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(resize).observe(stage);
+  } else {
+    window.addEventListener("resize", resize);
+  }
 
   changeZoom(100);
 
@@ -1419,16 +1276,30 @@ function renderReader(item) {
 // 실행
 // ==========================================
 
-if (book) {
-
-  renderReader(book);
-
-} else {
-
-  renderShelf();
-
+async function start() {
+  try {
+    catalog = await IntroCatalog.load();
+  } catch (error) {
+    const notice = document.createElement("p");
+    notice.textContent = "공개 소개판 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.";
+    byId("books").before(notice);
+    return;
+  }
+  const requested = new URLSearchParams(location.search).get("book");
+  const book = catalog.find(item => item.id === requested);
+  if (book) {
+    renderReader(book);
+  } else {
+    if (requested) {
+      const notice = document.createElement("p");
+      notice.textContent = "현재 공개 중인 소개판만 열람할 수 있습니다.";
+      byId("books").before(notice);
+    }
+    renderShelf();
+  }
 }
 
+start();
 </script>
 
 </body>
