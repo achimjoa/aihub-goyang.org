@@ -418,9 +418,28 @@ footer {
 }
   
 </style>
+
+<style id="site-return-style">
+body > .site-return {
+  display: flex; justify-content: flex-start; align-items: center;
+  box-sizing: border-box; inline-size: 100%; max-inline-size: 76rem;
+  padding: 12px clamp(12px, 3vw, 24px); margin-inline: auto;
+}
+body > .site-return > a {
+  display: inline-flex; align-items: center; gap: .45em; min-height: 44px;
+  box-sizing: border-box; padding: 8px 16px; margin: 0;
+  border: 1px solid #173653; border-radius: 8px;
+  background: #173653; color: #fff;
+  font: 600 15px/1.4 system-ui, sans-serif; text-decoration: none;
+}
+body > .site-return > a:hover { background: #244b71; color: #fff; }
+body > .site-return > a:focus-visible { outline: 3px solid #1f6eac; outline-offset: 3px; }
+</style>
 </head>
 
 <body>
+<div class="site-return"><a href="index.html"><span aria-hidden="true">←</span>홈페이지로</a></div>
+
 
 <header>
 <h1>시민참여 게시판</h1>
@@ -431,9 +450,9 @@ footer {
 </p>
 
 <div class="top-menu">
-<a href="index.html">← 홈페이지</a>
-<a href="login.html">로그인</a>
-<a href="signup.html">회원가입</a>
+
+<a href="index.html?view=login">로그인</a>
+<a href="index.html?view=signup">회원가입</a>
 </div>
 </header>
 
