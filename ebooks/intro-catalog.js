@@ -74,7 +74,29 @@ const IntroCatalog = (() => {
   const table = "public_ebook_intros";
   const bucket = "public-ebook-intros";
 
+  const cacheKey = "aihub-public-intros-v1";
+
   async function load() {
+    try {
+      const items = await fetchCatalog();
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(items));
+      } catch {
+        // Reading remains available when browser storage is disabled.
+      }
+      return items;
+    } catch (error) {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(cacheKey));
+        if (Array.isArray(saved)) return saved;
+      } catch {
+        // The caller can still show the original public editions.
+      }
+      throw error;
+    }
+  }
+
+  async function fetchCatalog() {
     const response = await fetch(url + "/rest/v1/" + table +
       "?select=id,number,title,date,pages,contents,revision,published", {
       headers: { apikey: key }, signal: AbortSignal.timeout(4000), cache: "no-store"
