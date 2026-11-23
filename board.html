@@ -494,35 +494,48 @@ aria-labelledby="ebookBannerTitle">
 </strong>
 </p>
 
-<div class="ebook-list" id="public-intro-books"></div>
+<div class="ebook-list" id="public-intro-books">
+  <a class="ebook-item" href="ebooks/intro.html?book=issue-01">
+    <strong>발간 제1호 소개판</strong>
+    글로벌 AI 허브 고양특례시 유치 종합 전략 및 실행 안내서
+  </a>
+  <a class="ebook-item" href="ebooks/intro.html?book=issue-02">
+    <strong>발간 제2호 소개판</strong>
+    글로벌 AI 허브 업무 지원 종합계획서
+  </a>
+</div>
 <script src="ebooks/intro-catalog.js"></script>
 <script>
 function renderPublicIntros(books) {
   const shelf = document.getElementById("public-intro-books");
+  shelf.replaceChildren();
+  if (!books.length) {
+    shelf.textContent = "현재 공개 중인 소개판이 없습니다.";
+    return;
+  }
   for (const book of books) {
     const link = document.createElement("a");
     link.className = "ebook-item";
-    link.href = "ebooks/?book=" + encodeURIComponent(book.id);
+    link.href = "ebooks/intro.html?book=" + encodeURIComponent(book.id);
     const issue = document.createElement("strong");
-    issue.textContent = "발간 제" + book.number + "호";
+    issue.textContent = "발간 제" + book.number + "호 소개판";
     link.append(issue, document.createTextNode(book.title));
     shelf.append(link);
   }
 }
-IntroCatalog.load().then(renderPublicIntros, () => {
-  document.getElementById("public-intro-books").textContent = "소개판 목록을 불러오지 못했습니다.";
-});
+if (typeof IntroCatalog !== "undefined") {
+  IntroCatalog.load().then(renderPublicIntros).catch(error => console.warn(error));
+}
 </script>
 
 <a
-href="ebooks/"
+href="ebooks/intro.html"
 class="ebook-link">
-📖 전자책 도서관 바로가기 →
+📖 공개 소개판 도서관 →
 </a>
 
 <p style="font-size:14px;margin-top:18px;">
-※ 전체 보고서는 실명인증 회원 전용
-자료실에서 열람할 수 있습니다.
+<a href="library.html">회원 자료실에서 완전판 보기 →</a>
 </p>
 
 </section>
