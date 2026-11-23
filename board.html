@@ -494,27 +494,25 @@ aria-labelledby="ebookBannerTitle">
 </strong>
 </p>
 
-<div class="ebook-list">
-
-<div class="ebook-item">
-
-<strong>발간 제1호</strong>
-
-글로벌 AI 허브 고양특례시 유치<br>
-종합 전략 및 실행 안내서
-
-</div>
-
-<div class="ebook-item">
-
-<strong>발간 제2호</strong>
-
-글로벌 AI 허브 업무 지원<br>
-종합계획서
-
-</div>
-
-</div>
+<div class="ebook-list" id="public-intro-books"></div>
+<script src="ebooks/intro-catalog.js"></script>
+<script>
+function renderPublicIntros(books) {
+  const shelf = document.getElementById("public-intro-books");
+  for (const book of books) {
+    const link = document.createElement("a");
+    link.className = "ebook-item";
+    link.href = "ebooks/?book=" + encodeURIComponent(book.id);
+    const issue = document.createElement("strong");
+    issue.textContent = "발간 제" + book.number + "호";
+    link.append(issue, document.createTextNode(book.title));
+    shelf.append(link);
+  }
+}
+IntroCatalog.load().then(renderPublicIntros, () => {
+  document.getElementById("public-intro-books").textContent = "소개판 목록을 불러오지 못했습니다.";
+});
+</script>
 
 <a
 href="ebooks/"
