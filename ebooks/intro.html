@@ -1,1 +1,1451 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<title>전자책 도서관 | 글로벌 AI 허브 고양특례시</title>
+
+<!-- ==========================================
+제196단계
+전자책 공개 소개판 통합본
+
+기존 통합 파일
+1. index.html
+2. style.css
+3. catalog.js
+4. app.js
+
+기존 기능 유지
+========================================== -->
+
+<style>
+
+:root {
+  color-scheme: light;
+  --ink: #102340;
+  --muted: #48617c;
+  --blue: #0c58ac;
+  --line: #d6e2ef;
+  --paper: #fff;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    "Malgun Gothic",
+    "Apple SD Gothic Neo",
+    sans-serif;
+
+  background: #f1f6fc;
+  color: var(--ink);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid #1774da;
+  outline-offset: 3px;
+}
+
+.header {
+  min-height: 62px;
+  padding: 10px max(
+    20px,
+    calc((100vw - 1100px) / 2)
+  );
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.brand span,
+.site-link {
+  color: var(--muted);
+}
+
+.site-link {
+  font-size: .82rem;
+  white-space: nowrap;
+}
+
+.shelf {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 22px 56px;
+}
+
+.intro {
+  padding: 48px 0 30px;
+}
+
+.intro h1 {
+  font-size: clamp(2rem, 6vw, 3.3rem);
+  margin: 0;
+  letter-spacing: -.065em;
+}
+
+.intro p {
+  color: var(--muted);
+  margin: 10px 0 18px;
+  line-height: 1.6;
+}
+
+.member {
+  font-size: .88rem;
+  font-weight: 720;
+}
+
+.books {
+  display: grid;
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(min(100%, 300px), 1fr)
+    );
+  gap: 22px;
+}
+
+.book {
+  background: white;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns:
+    minmax(92px, 36%) 1fr;
+
+  align-items: center;
+  gap: 17px;
+  padding: 17px;
+
+  color: var(--ink);
+
+  box-shadow:
+    0 8px 24px #10234010;
+}
+
+.book:hover {
+  text-decoration: none;
+  border-color: #7aa8db;
+}
+
+.book img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+
+  box-shadow:
+    0 4px 10px #10234033;
+}
+
+.eyebrow {
+  color: var(--blue);
+  font-size: .8rem;
+  font-weight: 800;
+}
+
+.book h2 {
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  line-height: 1.4;
+  margin: 6px 0;
+}
+
+.meta {
+  display: block;
+  color: var(--muted);
+  font-size: .79rem;
+  line-height: 1.6;
+}
+
+.open {
+  display: inline-block;
+  margin-top: 9px;
+  color: var(--blue);
+  font-size: .86rem;
+  font-weight: 750;
+}
+
+#publisher {
+  color: var(--muted);
+  padding: 0 22px 24px;
+  text-align: center;
+  font-size: .82rem;
+}
+
+.reading #publisher {
+  display: none;
+}
+
+.reader {
+  height: calc(100vh - 62px);
+  height: calc(100dvh - 62px);
+
+  min-height: 345px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #e7eff8;
+}
+
+.reader:fullscreen,
+.reader.expanded {
+  height: 100%;
+  width: 100%;
+  background: #e7eff8;
+}
+
+.reader.expanded {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+}
+
+.reader-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  justify-content: space-between;
+
+  padding: 8px 16px;
+  background: white;
+}
+
+.reader-heading h1 {
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.back {
+  font-size: .82rem;
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 5px 10px;
+  padding: 6px 10px;
+
+  background: #f9fbfe;
+
+  border-block:
+    1px solid var(--line);
+}
+
+.control-group,
+#jump {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+button,
+select,
+input {
+  height: 37px;
+
+  border:
+    1px solid #c4d4e6;
+
+  border-radius: 7px;
+  background: white;
+}
+
+button,
+select {
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+button:hover:not(:disabled),
+select:hover {
+  background: #e9f3ff;
+}
+
+#prev,
+#next,
+#smaller,
+#bigger {
+  width: 37px;
+  font-size: 1.25rem;
+}
+
+#reset-zoom {
+  min-width: 56px;
+}
+
+#jump input {
+  width: 49px;
+  text-align: center;
+  appearance: textfield;
+}
+
+#jump input::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+#count {
+  font-size: .85rem;
+  white-space: nowrap;
+}
+
+#toc {
+  width: 83px;
+}
+
+.stage {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+
+  padding: 12px;
+
+  overscroll-behavior: contain;
+  perspective: 1300px;
+}
+
+.stage.fit {
+  touch-action: pan-y;
+}
+
+.sheet {
+  width:
+    var(--page-width, min(100%, 595px));
+
+  margin: auto;
+  background: white;
+
+  box-shadow:
+    0 7px 22px #18365330;
+
+  transform-origin: left center;
+}
+
+.sheet img {
+  display: block;
+  width: 100%;
+
+  aspect-ratio:
+    595.32 / 841.92;
+
+  user-select: none;
+}
+
+.reader-footer {
+  padding: 5px 12px;
+  text-align: center;
+  font-size: .75rem;
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+
+  .header {
+    min-height: 50px;
+  }
+
+  .reader {
+    height: calc(100vh - 50px);
+    height: calc(100dvh - 50px);
+  }
+
+  .reader-heading {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 5px 8px;
+    padding: 6px 9px;
+  }
+
+  .reader-heading h1 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+    font-size: .81rem;
+  }
+
+  .reader-heading .member {
+    font-size: .75rem;
+  }
+
+  .stage {
+    padding: 8px;
+  }
+
+  .intro {
+    padding-top: 32px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+  <a href="intro.html" class="brand">
+    글로벌 AI 허브
+    <span>고양특례시</span>
+  </a>
+
+  <a
+    class="site-link"
+    href="../"
+  >
+    위원회 홈페이지 ↗
+  </a>
+
+</header>
+
+<main
+  id="shelf"
+  class="shelf"
+>
+
+  <div class="intro">
+
+    <h1>전자책 도서관</h1>
+
+    <p>
+      글로벌 AI 허브 유치 전략과
+      업무 지원 계획을 만나보세요.
+    </p>
+
+    <a
+      class="member"
+      href="../library.html"
+    >
+      전체 보고서 · 실명인증 회원 전용 ↗
+    </a>
+
+  </div>
+
+  <div
+    id="books"
+    class="books"
+  >
+    <a class="book" href="?book=issue-01">발간 제1호 · 공개 소개판 열기</a>
+    <a class="book" href="?book=issue-02">발간 제2호 · 공개 소개판 열기</a>
+  </div>
+
+  <noscript>
+    전자책을 열려면 브라우저에서
+    JavaScript를 켜 주세요.
+  </noscript>
+
+</main>
+
+<main
+  id="reader"
+  class="reader"
+  hidden
+>
+
+  <div class="reader-heading">
+
+    <a
+      href="intro.html"
+      class="back"
+    >
+      ← 도서관 목록
+    </a>
+
+    <h1 id="book-title"></h1>
+
+    <a
+      class="member"
+      href="../library.html"
+    >
+      전체 보고서 · 회원 전용 ↗
+    </a>
+
+  </div>
+
+  <div
+    id="controls"
+    class="controls"
+    aria-label="전자책 읽기 도구"
+  >
+
+    <div class="control-group">
+
+      <button
+        id="prev"
+        type="button"
+        aria-label="이전 페이지"
+      >
+        ‹
+      </button>
+
+      <form id="jump">
+
+        <label
+          for="page-number"
+          class="sr-only"
+        >
+          페이지 번호
+        </label>
+
+        <input
+          id="page-number"
+          type="number"
+          min="1"
+          inputmode="numeric"
+          required
+        >
+
+        <span id="count"></span>
+
+        <button
+          class="sr-only"
+          type="submit"
+        >
+          이동
+        </button>
+
+      </form>
+
+      <button
+        id="next"
+        type="button"
+        aria-label="다음 페이지"
+      >
+        ›
+      </button>
+
+    </div>
+
+    <div class="control-group">
+
+      <label
+        for="toc"
+        class="sr-only"
+      >
+        목차
+      </label>
+
+      <select id="toc">
+        <option value="">
+          목차
+        </option>
+      </select>
+
+    </div>
+
+    <div class="control-group">
+
+      <button
+        id="smaller"
+        type="button"
+        aria-label="축소"
+      >
+        −
+      </button>
+
+      <button
+        id="reset-zoom"
+        type="button"
+        aria-label="기본 크기로 맞춤"
+      >
+        100%
+      </button>
+
+      <button
+        id="bigger"
+        type="button"
+        aria-label="확대"
+      >
+        +
+      </button>
+
+      <button
+        id="fullscreen"
+        type="button"
+      >
+        전체화면
+      </button>
+
+    </div>
+
+  </div>
+
+  <div
+    id="stage"
+    class="stage"
+    tabindex="0"
+    aria-label="전자책 페이지"
+  >
+
+    <div
+      id="sheet"
+      class="sheet"
+    >
+
+      <img
+        id="page"
+        alt=""
+        draggable="false"
+      >
+
+    </div>
+
+  </div>
+
+  <div class="reader-footer">
+
+    <span id="hint">
+      화살표 키 또는 좌우 밀기로
+      페이지를 넘길 수 있습니다.
+    </span>
+
+    <span
+      id="status"
+      role="status"
+      class="sr-only"
+    ></span>
+
+  </div>
+
+</main>
+
+<footer id="publisher">
+  경기도 글로벌 AI 허브 유치
+  고양특례시 범시민추진위원회
+</footer>
+
+<!-- ==========================================
+전자책 목록 및 목차 데이터
+기존 catalog.js 통합
+========================================== -->
+
+<script>
+const IntroCatalog = (() => {
+  const url = "https://gugkwqpvtwivqudkimvy.supabase.co";
+  const key = "sb_publishable_eM-_5M-a-vHISHIFIeC_lg_Kimof4U5";
+  const builtIn = [
+
+  {
+    id: "issue-01",
+    number: 1,
+
+    title:
+      "글로벌 AI 허브 고양특례시 유치 종합 전략 및 실행 안내서",
+
+    date: "2026.10.18",
+    pages: 28,
+
+    contents: [
+
+      [1, "앞표지", 1],
+      [1, "속표지", 2],
+      [1, "머리말", 3],
+      [1, "목차", 5],
+
+      [1, "제1부. 종합 전략의 기본체계", 7],
+
+      [2, "제1장. 전략의 목적과 기본 원칙", 7],
+
+      [2, "제2장. 8개 전략문건의 통합체계", 9],
+
+      [2, "제3장. 태그전 필승전략의 실행구조", 10],
+
+      [2, "제4장. 정부 추진 현황과 사실관계 관리", 12],
+
+      [1, "제2부. 공모심사 고득점 전략", 13],
+
+      [2, "제5장. 입지 선정 평가체계", 13],
+
+      [2, "제6장. 평가기준 개선 건의와 대응", 16],
+
+      [2, "제7장. 평가항목별 득점전략", 19],
+
+      [2, "제8장. 경쟁도시별 점수 차이 분석", 23],
+
+      [2, "제9장. 고득점 확보를 위한 우선순위 결정", 25],
+
+      [1, "뒤표지", 28]
+
+    ]
+
+  },
+
+  {
+    id: "issue-02",
+    number: 2,
+
+    title:
+      "글로벌 AI 허브 업무 지원 종합계획서",
+
+    date: "2026.10.29",
+    pages: 32,
+
+    contents: [
+
+      [1, "앞표지", 1],
+      [1, "속표지", 2],
+      [1, "머리말", 4],
+      [1, "목차", 6],
+      [1, "뒤표지", 32]
+
+    ]
+
+  }
+
+];
+  const table = "public_ebook_intros";
+  const bucket = "public-ebook-intros";
+
+  const cacheKey = "aihub-public-intros-v1";
+
+  async function load() {
+    try {
+      const items = await fetchCatalog();
+      try {
+        sessionStorage.setItem(cacheKey, JSON.stringify(items));
+      } catch {
+        // Reading remains available when browser storage is disabled.
+      }
+      return items;
+    } catch (error) {
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(cacheKey));
+        if (Array.isArray(saved)) return saved;
+      } catch {
+        // The caller can still show the original public editions.
+      }
+      throw error;
+    }
+  }
+
+  async function fetchCatalog() {
+    const response = await fetch(url + "/rest/v1/" + table +
+      "?select=id,number,title,date,pages,contents,revision,published", {
+      headers: { apikey: key }, signal: AbortSignal.timeout(4000), cache: "no-store"
+    });
+    if (!response.ok) {
+      const result = await response.json().catch(() => ({}));
+      if (response.status === 404 && result.code === "PGRST205") return builtIn;
+      throw new Error("공개 소개판 목록을 불러오지 못했습니다.");
+    }
+    const overrides = await response.json();
+    const items = new Map(builtIn.map(book => [book.id, book]));
+    for (const row of overrides) {
+      if (row.published) items.set(row.id, row);
+      else items.delete(row.id);
+    }
+    return [...items.values()].sort((a, b) => a.number - b.number);
+  }
+
+  function image(book, number) {
+    const name = String(number).padStart(2, "0") + ".webp";
+    return book.revision
+      ? url + "/storage/v1/object/public/" + bucket + "/" + book.id + "/" + book.revision + "/" + name
+      : "./assets/" + book.id + "/" + name;
+  }
+
+  return { url, key, table, bucket, builtIn, load, image };
+})();
+
+</script>
+
+<!-- ==========================================
+전자책 열람 기능
+기존 app.js 통합
+========================================== -->
+
+<script>
+
+'use strict';
+
+const byId = id =>
+  document.getElementById(id);
+
+const pageUrl = IntroCatalog.image;
+let catalog = IntroCatalog.builtIn;
+
+// ==========================================
+// 전자책 목록
+// ==========================================
+
+function renderShelf() {
+  const books = byId('books');
+  const cards = document.createDocumentFragment();
+
+  for (const item of catalog) {
+
+    const card =
+      document.createElement('a');
+
+    card.className = 'book';
+
+    card.href =
+      '?book=' +
+      encodeURIComponent(item.id);
+
+    const cover = new Image();
+
+    cover.src =
+      pageUrl(item, 1);
+
+    cover.alt = '';
+
+    const info =
+      document.createElement('div');
+
+    for (
+      const [tag, css, value]
+      of [
+
+        [
+          'span',
+          'eyebrow',
+          '발간 제' + item.number + '호'
+        ],
+
+        [
+          'h2',
+          '',
+          item.title
+        ],
+
+        [
+          'span',
+          'meta',
+          item.date + ' · ' +
+          item.pages + '쪽'
+        ],
+
+        [
+          'span',
+          'open',
+          '공개 소개판 읽기 →'
+        ]
+
+      ]
+    ) {
+
+      const element =
+        document.createElement(tag);
+
+      element.className = css;
+
+      element.textContent = value;
+
+      info.append(element);
+
+    }
+
+    card.append(
+      cover,
+      info
+    );
+
+    cards.append(card);
+
+  }
+
+  books.replaceChildren(cards);
+  if (!catalog.length) books.textContent = "현재 공개 중인 소개판이 없습니다.";
+}
+
+// ==========================================
+// 전자책 열람
+// ==========================================
+
+function renderReader(item) {
+
+  const reader = byId('reader');
+  const stage = byId('stage');
+  const sheet = byId('sheet');
+  const image = byId('page');
+  const target = byId('page-number');
+
+  const previous = byId('prev');
+  const next = byId('next');
+  const full = byId('fullscreen');
+  const toc = byId('toc');
+
+  const reducedMotion =
+    matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+  let page = 0;
+  let zoom = 100;
+  let gesture;
+  let animation;
+
+  byId('shelf').hidden = true;
+
+  reader.hidden = false;
+
+  document.body.classList.add(
+    'reading'
+  );
+
+  byId('book-title').textContent =
+    item.title;
+
+  document.title =
+    item.title +
+    ' | 전자책 도서관';
+
+  target.max = item.pages;
+
+  byId('count').textContent =
+    '/ ' + item.pages;
+
+  for (
+    const [level, label, number]
+    of item.contents
+  ) {
+
+    toc.add(
+      new Option(
+        (level > 1 ? '　' : '') +
+        label,
+        number
+      )
+    );
+
+  }
+
+  // ======================================
+  // 화면 크기 조정
+  // ======================================
+
+  function resize() {
+
+    const style =
+      getComputedStyle(stage);
+
+    const width =
+      stage.clientWidth -
+      2 * parseFloat(
+        style.paddingLeft
+      );
+
+    const height =
+      stage.clientHeight -
+      2 * parseFloat(
+        style.paddingTop
+      );
+
+    if (!width || !height) {
+      return;
+    }
+
+    const fitted =
+      stage.clientWidth < 640
+        ? width
+        : Math.min(
+            width,
+            height *
+            595.32 / 841.92
+          );
+
+    sheet.style.setProperty(
+      '--page-width',
+      Math.max(1, fitted) *
+      zoom / 100 +
+      'px'
+    );
+
+  }
+
+  // ======================================
+  // 페이지 표시
+  // ======================================
+
+  function show(
+    number,
+    animate = true
+  ) {
+
+    if (
+      !Number.isInteger(number) ||
+      number < 1 ||
+      number > item.pages ||
+      number === page
+    ) {
+
+      target.value = page;
+
+      return;
+
+    }
+
+    const direction =
+      Math.sign(number - page);
+
+    animation?.cancel();
+
+    page = number;
+
+    image.src =
+      pageUrl(item, page);
+
+    image.alt =
+      '발간 제' +
+      item.number +
+      '호 ' +
+      page +
+      '쪽';
+
+    target.value = page;
+
+    previous.disabled =
+      page === 1;
+
+    next.disabled =
+      page === item.pages;
+
+    byId('status').textContent =
+      page +
+      ' / ' +
+      item.pages +
+      '쪽';
+
+    stage.scrollTo(0, 0);
+
+    if (
+      animate &&
+      !reducedMotion.matches &&
+      typeof sheet.animate === 'function'
+    ) {
+
+      animation = sheet.animate(
+
+        [
+          {
+            transform:
+              'translateX(' + (24 * direction) + 'px)',
+
+            opacity: 0.6
+          },
+
+          {
+            transform:
+              'translateX(0)',
+
+            opacity: 1
+          }
+        ],
+
+        {
+          duration: 240,
+          easing: 'ease-out'
+        }
+
+      );
+
+    }
+
+    for (
+      const adjacent
+      of [
+        page - 1,
+        page + 1
+      ]
+    ) {
+
+      if (
+        adjacent >= 1 &&
+        adjacent <= item.pages
+      ) {
+
+        new Image().src =
+          pageUrl(
+            item,
+            adjacent
+          );
+
+      }
+
+    }
+
+  }
+
+  // ======================================
+  // 확대 및 축소
+  // ======================================
+
+  function changeZoom(percent) {
+
+    zoom = Math.min(
+      250,
+      Math.max(
+        75,
+        percent
+      )
+    );
+
+    byId('reset-zoom').textContent =
+      zoom + '%';
+
+    byId('smaller').disabled =
+      zoom === 75;
+
+    byId('bigger').disabled =
+      zoom === 250;
+
+    stage.classList.toggle(
+      'fit',
+      zoom <= 100
+    );
+
+    resize();
+
+  }
+
+  // ======================================
+  // 전체화면
+  // ======================================
+
+  const isFull = () =>
+    document.fullscreenElement === reader ||
+    reader.classList.contains(
+      'expanded'
+    );
+
+  function syncFullscreen() {
+
+    full.textContent =
+      isFull()
+        ? '전체화면 종료'
+        : '전체화면';
+
+    full.setAttribute(
+      'aria-pressed',
+      String(isFull())
+    );
+
+    resize();
+
+  }
+
+  full.addEventListener(
+    'click',
+    async () => {
+
+      if (
+        document.fullscreenElement === reader
+      ) {
+
+        await document.exitFullscreen();
+
+      } else if (
+        reader.classList.contains(
+          'expanded'
+        )
+      ) {
+
+        reader.classList.remove(
+          'expanded'
+        );
+
+      } else {
+
+        try {
+
+          await reader.requestFullscreen();
+
+        } catch {
+
+          reader.classList.add(
+            'expanded'
+          );
+
+        }
+
+      }
+
+      syncFullscreen();
+
+    }
+  );
+
+  document.addEventListener(
+    'fullscreenchange',
+    syncFullscreen
+  );
+
+  // ======================================
+  // 페이지 이동 버튼
+  // ======================================
+
+  previous.addEventListener(
+    'click',
+    () => show(page - 1)
+  );
+
+  next.addEventListener(
+    'click',
+    () => show(page + 1)
+  );
+
+  byId('jump').addEventListener(
+    'submit',
+    event => {
+
+      event.preventDefault();
+
+      show(
+        target.valueAsNumber
+      );
+
+    }
+  );
+
+  // ======================================
+  // 목차 이동
+  // ======================================
+
+  toc.addEventListener(
+    'change',
+    () => {
+
+      if (toc.value) {
+
+        show(
+          Number(toc.value)
+        );
+
+      }
+
+      toc.value = '';
+
+    }
+  );
+
+  // ======================================
+  // 확대 및 축소 버튼
+  // ======================================
+
+  byId('smaller').addEventListener(
+    'click',
+    () => changeZoom(
+      zoom - 25
+    )
+  );
+
+  byId('bigger').addEventListener(
+    'click',
+    () => changeZoom(
+      zoom + 25
+    )
+  );
+
+  byId('reset-zoom').addEventListener(
+    'click',
+    () => changeZoom(100)
+  );
+
+  // ======================================
+  // 키보드 이동
+  // ======================================
+
+  document.addEventListener(
+    'keydown',
+    event => {
+
+      if (
+        event.key === 'Escape' &&
+        reader.classList.contains(
+          'expanded'
+        )
+      ) {
+
+        reader.classList.remove(
+          'expanded'
+        );
+
+        syncFullscreen();
+
+      }
+
+      if (
+        event.defaultPrevented ||
+        event.altKey ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.target.closest?.(
+          'input, select, textarea, [contenteditable]'
+        )
+      ) {
+        return;
+      }
+
+      if (
+        event.key === 'ArrowLeft' ||
+        event.key === 'ArrowRight'
+      ) {
+
+        event.preventDefault();
+
+        show(
+          page +
+          (
+            event.key === 'ArrowRight'
+              ? 1
+              : -1
+          )
+        );
+
+      }
+
+    }
+  );
+
+  stage.addEventListener("pointerdown", event => {
+    if (!event.isPrimary || event.button !== 0 || zoom > 100) return;
+    if (event.target.closest("button, a, input, select")) return;
+    gesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    stage.setPointerCapture(event.pointerId);
+  });
+
+  stage.addEventListener("pointerup", event => {
+    if (!gesture || gesture.id !== event.pointerId) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    gesture = null;
+    if (zoom <= 100 && Math.abs(dx) >= 48 && Math.abs(dx) > 1.5 * Math.abs(dy)) {
+      show(page + (dx < 0 ? 1 : -1));
+    }
+  });
+
+  for (const name of ["pointercancel", "lostpointercapture"]) {
+    stage.addEventListener(name, event => {
+      if (gesture?.id === event.pointerId) gesture = null;
+    });
+  }
+
+  image.addEventListener("error", () => {
+    byId("status").textContent = page + "쪽 이미지를 불러오지 못했습니다. 다른 쪽으로 이동하거나 새로고침해 주세요.";
+  });
+
+  // ======================================
+  // 초기화
+  // ======================================
+
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(resize).observe(stage);
+  } else {
+    window.addEventListener("resize", resize);
+  }
+
+  changeZoom(100);
+
+  syncFullscreen();
+
+  show(1, false);
+
+}
+
+// ==========================================
+// 실행
+// ==========================================
+
+async function start() {
+  try {
+    catalog = await IntroCatalog.load();
+  } catch (error) {
+    const notice = document.createElement("p");
+    catalog = IntroCatalog.builtIn;
+    notice.textContent = "목록 서버에 연결하지 못해 기존 공개 소개판을 표시합니다.";
+    byId("books").before(notice);
+  }
+  const requested = new URLSearchParams(location.search).get("book");
+  const book = catalog.find(item => item.id === requested);
+  if (book) {
+    renderReader(book);
+  } else {
+    if (requested) {
+      const notice = document.createElement("p");
+      notice.textContent = "현재 공개 중인 소개판만 열람할 수 있습니다.";
+      byId("books").before(notice);
+    }
+    renderShelf();
+  }
+}
+
+start().catch(error => {
+  console.error(error);
+  byId("reader").hidden = true;
+  byId("shelf").hidden = false;
+  document.body.classList.remove("reading");
+  const notice = document.createElement("p");
+  notice.setAttribute("role", "alert");
+  notice.textContent = "열람 화면을 초기화하지 못했습니다. 페이지를 새로고침해 주세요.";
+  byId("books").before(notice);
+});
+</script>
+
+</body>
+</html>
 
