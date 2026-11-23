@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>게시판 공개 소개판 관리</title>
+<style>
+  body { font: 1rem system-ui; margin: 2rem auto; padding: 0 1rem; max-width: 48rem; color: #182c44; }
+  form, #catalogue { border: 1px solid #becbd7; border-radius: .6rem; padding: 1rem; margin-block: 1rem; }
+  label { display: block; margin: .75rem 0; } input:not([type=file]), textarea { display: block; width: min(100%,32rem); font: inherit; }
+  button { margin: .2rem .6rem .2rem 0; padding: .42rem .65rem; font: inherit; }
+  [hidden] { display: none !important; } li { margin: .7rem 0; } #status { white-space: pre-wrap; }
+</style>
+<a href="../admin-center.html">통합관리센터로 돌아가기</a>
+<h1>게시판 공개 소개판 관리</h1>
+<p>여기에 올린 WebP 페이지는 누구나 읽을 수 있습니다. 소개판 파일만 업로드하세요.</p>
+<a href="../index.html?view=login&amp;return=ebooks%2Fmanage.html">관리자 로그인</a>
+<p id="status" role="status">최고관리자 권한 확인 중…</p>
+<section id="workspace" hidden>
+  <h2>등록된 소개판</h2>
+  <ul id="catalogue"></ul>
+  <h2>신규 등록 또는 기존 소개판 교체</h2>
+  <form id="publication">
+    <fieldset id="controls">
+      <label>발간 번호 <input name="number" type="number" min="1" max="9999" required></label>
+      <label>제목 <input name="title" maxlength="240" required></label>
+      <label>발간일 <input name="date" type="date" required></label>
+      <label>목차 (선택). 한 줄에 <code>페이지 번호 | 항목명</code>
+        <textarea name="contents" rows="5"></textarea>
+      </label>
+      <label>소개판 전체 페이지 WebP (01.webp부터 연속 번호)
+        <input name="images" type="file" accept=".webp,image/webp" multiple required>
+      </label>
+      <button type="submit">공개 등록·교체</button>
+    </fieldset>
+  </form>
+</section>
+<script src="intro-catalog.js"></script>
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const client = createClient(IntroCatalog.url, IntroCatalog.key);
+const status = document.getElementById("status");
+const list = document.getElementById("catalogue");
+const form = document.getElementById("publication");
+const fields = form.elements;
+const controls = document.getElementById("controls");
+let busy = false;
+
+async function requireSuperAdmin() {
+  const { data, error } = await client.rpc("is_super_admin");
+  if (error) throw error;
+  if (data !== true) throw new Error("최고관리자 권한이 필요합니다.");
+}
+
+async function getRows() {
+  const { data, error } = await client.from(IntroCatalog.table).select(
+    "id,number,title,date,pages,contents,revision,published"
+  );
+  if (error) throw error;
+  return data;
+}
+
+async function renderRows() {
+  const overrides = await getRows();
+  const items = new Map(IntroCatalog.builtIn.map(book => [book.id, { ...book, published: true }]));
+  for (const book of overrides) items.set(book.id, book);
+  list.replaceChildren();
+  for (const book of [...items.values()].sort((a, b) => a.number - b.number)) {
+    const item = document.createElement("li");
+    item.append(document.createTextNode("제" + book.number + "호 · " + book.title + " · " +
+      (book.published ? "공개" : "게시 목록에서 숨김") + " "));
+    const edit = document.createElement("button");
+    edit.textContent = "교체 양식 채우기";
+    edit.onclick = () => {
+      if (busy) return;
+      fields.namedItem("number").value = book.number;
+      fields.namedItem("title").value = book.title;
+      fields.namedItem("date").value = book.date.replaceAll(".", "-");
+      fields.namedItem("contents").value = book.contents.map(([, label, page]) => page + " | " + label).join("\n");
+      fields.namedItem("images").focus();
+    };
+    item.append(edit);
+    if (book.published) {
+      const remove = document.createElement("button");
+      remove.textContent = "게시 목록에서 내리기";
+      remove.onclick = () => {
+        if (busy || !confirm(book.title + "을 게시 목록에서 내리겠습니까? 기존 공개 파일 주소는 계속 열릴 수 있습니다.")) return;
+        void run(async () => {
+          await writeBook({...book, published: false});
+          status.textContent = "게시 목록에서 내렸습니다.";
+        });
+      };
+      item.append(remove);
+    }
+    list.append(item);
+  }
+}
+
+async function writeBook(book) {
+  const { error } = await client.from(IntroCatalog.table).upsert({
+    id: book.id, number: book.number, title: book.title, date: book.date.replaceAll(".", "-"),
+    pages: book.pages, contents: book.contents, revision: book.revision ?? null, published: book.published
+  });
+  if (error) throw error;
+}
+
+async function run(operation) {
+  if (busy) return;
+  busy = true;
+  controls.disabled = true;
+  try {
+    await requireSuperAdmin();
+    await operation();
+    try {
+      await renderRows();
+    } catch (error) {
+      status.textContent += "\n목록 새로고침 실패: " + error.message;
+    }
+  } catch (error) {
+    status.textContent = "처리 실패: " + error.message;
+  } finally {
+    busy = false;
+    controls.disabled = false;
+  }
+}
+
+async function orderedFiles(files) {
+  const order = new Map();
+  for (const file of files) {
+    const match = /^(\d{1,4})\.webp$/i.exec(file.name);
+    const page = match ? Number(match[1]) : 0;
+    if (!page || page > files.length || order.has(page)) {
+      throw new Error("파일은 01.webp부터 중복 없이 연속 번호로 선택해 주세요.");
+    }
+    if (file.size > 8 * 1024 * 1024) throw new Error(file.name + " 파일이 8 MB를 초과합니다.");
+    const header = new TextDecoder().decode(await file.slice(0, 12).arrayBuffer());
+    if (!header.startsWith("RIFF") || header.slice(8) !== "WEBP") {
+      throw new Error(file.name + " 파일은 WebP 이미지가 아닙니다.");
+    }
+    order.set(page, file);
+  }
+  return Array.from({ length: files.length }, (_, index) => order.get(index + 1));
+}
+
+form.addEventListener("submit", event => {
+  event.preventDefault();
+  if (busy) return;
+  const input = new FormData(form);
+  const number = Number(input.get("number"));
+  const title = input.get("title").trim();
+  const date = input.get("date");
+  const files = [...fields.namedItem("images").files];
+  if (!title || !files.length || files.length > 1000) {
+    status.textContent = "제목과 1~1000개 페이지를 입력하세요.";
+    return;
+  }
+  const id = "issue-" + String(number).padStart(2, "0");
+  if (!confirm("발간 제" + number + "호 소개판을 누구나 읽을 수 있게 공개하겠습니까? 같은 발간 번호의 게시본은 새 파일로 교체됩니다.")) return;
+
+  void run(async () => {
+    const contents = input.get("contents").split("\n").filter(row => row.trim()).map(row => {
+      const match = /^(\d+)\s*\|\s*(.+)$/.exec(row.trim());
+      const page = match ? Number(match[1]) : 0;
+      if (!page || page > files.length) throw new Error("목차의 페이지 번호나 항목명을 확인하세요.");
+      return [1, match[2].trim(), page];
+    });
+    const ordered = await orderedFiles(files);
+    const revision = crypto.randomUUID();
+
+    for (const [index, file] of ordered.entries()) {
+      status.textContent = "업로드 중 " + (index + 1) + " / " + files.length;
+      const path = id + "/" + revision + "/" + String(index + 1).padStart(2, "0") + ".webp";
+      const { error } = await client.storage.from(IntroCatalog.bucket).upload(path, file, {
+        contentType: "image/webp", upsert: false, cacheControl: "31536000"
+      });
+      if (error) throw error;
+    }
+
+    await writeBook({id, number, title, date, contents, pages: files.length, revision, published: true});
+    form.reset();
+    status.textContent = "공개 소개판을 등록했습니다.";
+  });
+});
+
+try {
+  await requireSuperAdmin();
+  await renderRows();
+  document.getElementById("workspace").hidden = false;
+  status.textContent = "게시판 소개판을 관리할 수 있습니다.";
+} catch (error) {
+  status.textContent = "관리 화면을 열지 못했습니다: " + error.message;
+}
+</script>
+</html>
