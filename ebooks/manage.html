@@ -126,6 +126,17 @@ async function renderRows() {
       };
       item.append(remove);
     }
+    if (!IntroCatalog.builtIn.some(original => original.id === book.id)) {
+      const destroy = document.createElement("button");
+      destroy.type = "button";
+      destroy.textContent = "소개판 영구 삭제";
+      destroy.onclick = () => {
+        if (busy || !confirm("제" + book.number + "호 「" + book.title +
+          "」의 등록 정보와 저장된 모든 버전의 WebP를 삭제하시겠습니까? 삭제 후에는 복구할 수 없습니다.")) return;
+        void run(() => deleteBook(book));
+      };
+      item.append(destroy);
+    }
     list.append(item);
   }
 }
@@ -136,6 +147,75 @@ async function writeBook(book) {
     pages: book.pages, contents: book.contents, revision: book.revision ?? null, published: book.published
   });
   if (error) throw error;
+}
+
+async function listStorage(path) {
+  const items = [];
+  const limit = 100;
+  for (let offset = 0; ; offset += limit) {
+    const { data, error } = await client.storage.from(IntroCatalog.bucket).list(path, {
+      limit, offset, sortBy: { column: "name", order: "asc" }
+    });
+    if (error) throw error;
+    items.push(...data);
+    if (data.length < limit) return items;
+  }
+}
+
+async function listBookFiles(bookId) {
+  const revisions = await listStorage(bookId);
+  const paths = [];
+  for (const revision of revisions) {
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(revision.name)) {
+      throw new Error("예상과 다른 저장 경로가 있어 작업을 중단했습니다.");
+    }
+    for (const file of await listStorage(bookId + "/" + revision.name)) {
+      if (!/^\d{2,4}\.webp$/.test(file.name)) {
+        throw new Error("예상과 다른 파일이 있어 작업을 중단했습니다.");
+      }
+      paths.push(bookId + "/" + revision.name + "/" + file.name);
+    }
+  }
+  return paths;
+}
+
+function atRevision(query, book) {
+  const edition = query.eq("id", book.id);
+  return book.revision == null ? edition.is("revision", null) : edition.eq("revision", book.revision);
+}
+
+async function deleteBook(book) {
+  if (!/^issue-\d{2,4}$/.test(book.id) || IntroCatalog.builtIn.some(original => original.id === book.id)) {
+    throw new Error("관리센터에 등록한 소개판만 영구 삭제할 수 있습니다.");
+  }
+
+  const files = await listBookFiles(book.id);
+  if (book.revision && book.published && !files.some(path => path.startsWith(book.id + "/" + book.revision + "/"))) {
+    throw new Error("현재 공개 버전의 파일을 조회할 수 없습니다. Storage 목록 권한과 삭제용 SQL 적용 여부를 확인해 주세요.");
+  }
+
+  const table = () => client.from(IntroCatalog.table);
+  const { data: hidden, error: hideError } = await atRevision(table().update({ published: false }), book).select("id");
+  if (hideError) throw hideError;
+  if (hidden.length !== 1) throw new Error("소개판이 변경되었습니다. 새로고침 후 다시 선택해 주세요.");
+
+  report("게시 목록에서 내렸습니다. 이미지 파일을 삭제하는 중입니다.");
+  try {
+    for (let offset = 0; offset < files.length; offset += 100) {
+      const { error } = await client.storage.from(IntroCatalog.bucket).remove(files.slice(offset, offset + 100));
+      if (error) throw error;
+    }
+    if ((await listBookFiles(book.id)).length) {
+      throw new Error("삭제되지 않은 파일이 남았습니다. 권한을 확인하거나 진행 중인 업로드가 끝난 후 다시 시도해 주세요.");
+    }
+    const { data, error } = await atRevision(table().delete(), book)
+      .eq("published", false).select("id");
+    if (error) throw error;
+    if (data.length !== 1) throw new Error("등록 정보 삭제를 확인하지 못했습니다.");
+  } catch (error) {
+    throw new Error("게시 목록에서 내렸으나 영구 삭제가 완료되지 않았습니다. 같은 버튼으로 재시도할 수 있습니다. " + describe(error));
+  }
+  report("제" + book.number + "호 등록 정보와 저장된 WebP 파일을 삭제했습니다.");
 }
 
 async function run(operation) {
@@ -152,6 +232,7 @@ async function run(operation) {
     }
   } catch (error) {
     report("처리 실패: " + describe(error));
+    try { await renderRows(); } catch { /* Keep the original failure visible. */ }
   } finally {
     busy = false;
     controls.disabled = false;
